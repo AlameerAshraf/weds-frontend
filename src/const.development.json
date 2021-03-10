@@ -1,0 +1,8 @@
+{
+    "SERVER_ERROR_MESSAGE" : "Something went wrong on the server, try again later!",
+    "BFO_LOADING_ERROR" : "Error loading data from bFO.",
+    "SUCCESSFULL_SAVING" : "has been saved successfully.",
+    "FAILURE_SAVING" : "hasn't been saved.",
+    "LOGGED_IN_USER" : "loggedInUser",
+    "LOGGED_IN_USER_ROLES" : "loggedInUserRoles"
+}

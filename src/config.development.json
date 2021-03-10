@@ -1,0 +1,5 @@
+{
+    "BASE_URL" : "http://localhost:3257/api",
+    "SERVER_URL" : "http://localhost:3257",
+    "SSO_PING" : "http://tut.schneider-electric.com/sso"
+}
