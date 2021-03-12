@@ -1,15 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { Inject, AfterViewInit, ElementRef } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  // Animation variables!
+  startTypingAnimation: boolean = true;
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document,
+    private elementRef: ElementRef) {
 
-  ngOnInit() {
   }
 
+
+  ngOnInit() {
+  };
+
+  ngAfterViewInit(): void {
+    const s = this.document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'assets/scripts/typedwords.js';
+    this.elementRef.nativeElement.appendChild(s);
+  };
 }
