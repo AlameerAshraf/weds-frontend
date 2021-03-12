@@ -154,13 +154,33 @@
 
 
             <!-- Right Side Content / End -->
-            <div class="right-side">
+            <div *ngIf="isLogined" class="right-side">
                 <div class="header-widget">
                     <a class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i>
                         Login
                     </a>
                 </div>
             </div>
+
+            <div class="right-side">
+				<!-- Header Widget -->
+				<div class="header-widget">
+					
+					<!-- User Menu -->
+					<div class="user-menu">
+						<div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt="">
+                        </span>Hi, Alameer!</div>
+						<ul>
+							<li><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+							<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
+							<li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i> Bookings</a></li>
+							<li><a href="index.html"><i class="sl sl-icon-power"></i> Logout</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- Header Widget / End -->
+			</div>
+
             <!-- Right Side Content / End -->
 
             <!-- Sign In Popup -->
