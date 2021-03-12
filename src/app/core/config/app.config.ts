@@ -1,6 +1,6 @@
-import { Inject, Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { forkJoin, Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { forkJoin } from 'rxjs';
 import { constants, urls } from "../helpers";
 import { map } from 'rxjs/operators';
 
