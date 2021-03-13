@@ -5,7 +5,7 @@ import * as appComponents from './app-components';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':lang',
     component : appComponents.AppComponent,
     children: [
       {

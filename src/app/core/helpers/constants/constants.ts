@@ -3,6 +3,13 @@ import { urls } from '../urls';
 
 export class constants {
   public static _config: AppConfig;
+
+  //** This is the mapper for the current view name, and the resources file! */
+  public static get VIEWS(){
+    return {
+      "HOME_LAYOUT" : "home"
+    }
+  };
   
 
   public static get SERVER_ERROR(): string { return  this._config.getConst("SERVER_ERROR_MESSAGE")};
