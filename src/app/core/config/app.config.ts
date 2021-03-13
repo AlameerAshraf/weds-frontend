@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { forkJoin } from 'rxjs';
 import { constants, urls } from "../helpers";
 import { map } from 'rxjs/operators';
-
+import { environment } from '../../../environments/environment';
 @Injectable()
 export class AppConfig {
   private config: Object = null;
@@ -27,28 +26,26 @@ export class AppConfig {
     return this.env[key];
   }
 
-  public async load() {
-    return await new Promise((resolve, reject) => {
-      this.http.get("env.json").subscribe((envResponse: any) => {
-        this.env = envResponse;
-
-        let files = forkJoin(
-          this.getConfigFile(envResponse.env),
-          this.getConstFile(envResponse.env)
-        ).subscribe((result) => {
-          this.const = result[0];
-          this.config = result[1];
-          resolve(true)
-        })
-      });
-    });
+  async load(): Promise<any> {
+    let currentEnv = environment.production ? "production" : "development";
+    return this.getFiles(currentEnv).then((result) => {
+      debugger
+      this.const = result[0];
+      this.config = result[1];
+    })
   }
 
-  getConstFile(env: string) {
-    return this.http.get(`config.${env}.json`).pipe(map(res => res));
+  getFiles(env: string) {
+    let constFile = this.getConstFile(env).toPromise();
+    let configFile = this.getConfigFile(env).toPromise();
+    return Promise.all([constFile , configFile]);
   }
 
   getConfigFile(env: string) {
+    return this.http.get(`config.${env}.json`).pipe(map(res => res));
+  };
+
+  getConstFile(env: string) {
     return this.http.get(`const.${env}.json`).pipe(map(res => res));
-  }
+  };
 }

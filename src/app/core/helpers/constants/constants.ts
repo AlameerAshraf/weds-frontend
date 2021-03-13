@@ -11,4 +11,5 @@ export class constants {
   public static get FAILURE_SAVING(): string { return  this._config.getConst("FAILURE_SAVING")};
   public static get LOGGED_IN_USER(): string { return  this._config.getConst("LOGGED_IN_USER")};
   public static get LOGGED_IN_USER_ROLES(): string { return  this._config.getConst("LOGGED_IN_USER_ROLES")};
+  public static get BASE_URL(): string { return  this._config.getConfig("BASE_URL")};
 }
