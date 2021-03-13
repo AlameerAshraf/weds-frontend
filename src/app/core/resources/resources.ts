@@ -7,12 +7,13 @@ export class resources {
     }
 
 
-    async load(lang , viewName){
+    async load(lang: string, viewName: string) {
         return await new Promise((resolve, reject) => {
             this.http.get(`assets/resources/${lang}/${viewName}.json`).subscribe((resources: any) => {
-                console.log(resources);
-                resolve(true);
+                resolve({ error: false, res: resources });
+            }, (err) => {
+                reject({ error: true, e: err })
             })
-          });
+        });
     };
 }
