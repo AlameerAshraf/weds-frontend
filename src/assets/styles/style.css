@@ -2408,7 +2408,9 @@ body .alt-search-box .main-search-input-item .chosen-container-active.chosen-wit
  
 .highlighted-categories-headline,
 .highlighted-categories,
-.main-search-headlines{ padding-right: 550px; }
+.main-search-headlines{ 
+	/* padding-right: 550px; */
+ }
  
 @media(max-width: 992px) {
     .highlighted-categories-headline,
