@@ -3,11 +3,10 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { COMPONENTS, THEME_MODULE } from './app.imports';
-import { AppConfig, httpService, localStorageService } from './core';
-import { HttpClientModule } from '@angular/common/http';
+import { AppConfig, httpService, localStorageService, resources } from './core';
 
 
 @NgModule({
@@ -17,17 +16,18 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [  
     BrowserModule,
+    THEME_MODULE,
     AppRoutingModule,
     HttpClientModule,
-    THEME_MODULE
   ],
   providers: [
     localStorageService,
     httpService,
     AppConfig,
+    // resources,
     { 
       provide: APP_INITIALIZER , 
-      useFactory: (config: AppConfig)=> () => config.load() , 
+      useFactory: (ds: AppConfig) => () => ds.load(),
       deps: [AppConfig] , 
       multi: true 
     },

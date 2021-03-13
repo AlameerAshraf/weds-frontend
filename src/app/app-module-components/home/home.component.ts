@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Inject, AfterViewInit, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { constants } from 'src/app/core';
+import { constants, resources } from 'src/app/core';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef) {
+      // this.resources.load("ar" , "home");
+      console.log(constants.BASE_URL);
   }
 
 
