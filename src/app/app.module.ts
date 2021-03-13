@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
 import { COMPONENTS, THEME_MODULE } from './app.imports';
+import { AppConfig, httpService, localStorageService } from './core';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -13,12 +15,23 @@ import { COMPONENTS, THEME_MODULE } from './app.imports';
     AppComponent,
     COMPONENTS.HomeComponent,
   ],
-  imports: [
+  imports: [  
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     THEME_MODULE
   ],
-  providers: [],
+  providers: [
+    localStorageService,
+    httpService,
+    AppConfig,
+    { 
+      provide: APP_INITIALIZER , 
+      useFactory: (config: AppConfig)=> () => config.load() , 
+      deps: [AppConfig] , 
+      multi: true 
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

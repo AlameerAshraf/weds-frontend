@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     localStorageService,
-    httpService
+    httpService,
   ]
 })
 export class CoreModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Inject, AfterViewInit, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { constants } from 'src/app/core';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   // Animation variables!
   startTypingAnimation: boolean = true;
 
-  constructor(@Inject(DOCUMENT) private document,
+  constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef) {
-
   }
 
 
