@@ -24,7 +24,7 @@ import { AppConfig, httpService, localStorageService, resources } from './core';
     localStorageService,
     httpService,
     AppConfig,
-    // resources,
+    resources,
     { 
       provide: APP_INITIALIZER , 
       useFactory: (ds: AppConfig) => () => ds.load(),

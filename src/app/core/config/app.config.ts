@@ -29,7 +29,6 @@ export class AppConfig {
   async load(): Promise<any> {
     let currentEnv = environment.production ? "production" : "development";
     return this.getFiles(currentEnv).then((result) => {
-      debugger
       this.const = result[0];
       this.config = result[1];
     })

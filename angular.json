@@ -25,7 +25,6 @@
             "assets": [
               "src/favicon.png",
               "src/assets",
-              "src/env.json",
               "src/config.development.json",
               "src/config.production.json",
               "src/const.development.json",
