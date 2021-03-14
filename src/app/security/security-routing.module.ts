@@ -5,8 +5,8 @@ import * as securityComponents from './components';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: securityComponents.LoginComponent
+    path: 'register',
+    component: securityComponents.RegisterComponent
   }
 ];
 
