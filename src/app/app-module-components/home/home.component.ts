@@ -39,5 +39,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     s.type = 'text/javascript';
     s.src = 'assets/scripts/typedwords.js';
     this.elementRef.nativeElement.appendChild(s);
+
+    const s2 = this.document.createElement('script');
+    s2.type = 'text/javascript';
+    s2.src = 'assets/scripts/custom.js';
+    this.elementRef.nativeElement.appendChild(s2);
   };
 }
