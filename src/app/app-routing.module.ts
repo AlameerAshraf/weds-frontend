@@ -6,13 +6,18 @@ import * as appComponents from './app-components';
 const routes: Routes = [
   {
     path: ':lang',
-    component : appComponents.AppComponent,
+    component: appComponents.AppComponent,
     children: [
       {
         path: 'home',
         component: appComponents.HomeComponent
       }
     ]
+  },
+  {
+    path: 'security/:lang',
+    loadChildren: () => import('./security/security.module')
+      .then(m => m.SecurityModule),
   }
 ];
 
