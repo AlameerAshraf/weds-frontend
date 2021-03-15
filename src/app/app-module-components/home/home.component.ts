@@ -35,14 +35,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    const s = this.document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = 'assets/scripts/typedwords.js';
-    this.elementRef.nativeElement.appendChild(s);
+    let scripts = ['assets/scripts/typedwords.js' , 'assets/scripts/custom.js'];
 
-    const s2 = this.document.createElement('script');
-    s2.type = 'text/javascript';
-    s2.src = 'assets/scripts/custom.js';
-    this.elementRef.nativeElement.appendChild(s2);
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
   };
 }
