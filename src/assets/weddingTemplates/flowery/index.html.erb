@@ -1,0 +1,122 @@
+<div id="top-section" class="bg-img top-image">
+  <%= image_tag "themes/flowery/top-image.png" %>
+
+  <h1><%= @website.user.formatted_bride_and_groom %></h1>
+  <p class="wow swing slow" id="getting--married--txt">Are Getting Married</p>
+
+  <!-- <p id="date- -txt"><%= @website.user.profile.wedding_date.strftime("#{@website.user.profile.wedding_date.day.ordinalize}, %^B, %Y") if @website.user.profile.wedding_date.present? %></p> -->
+</div>
+
+<div class="third--background">
+  <div class="bg-img cover-photo wow fadeIn">
+    <%= image_tag @website.cover_photo_url(:cover) %>
+  </div>
+</div>
+
+
+<div id="our-story" class="second--div--background">
+  <h2 id="header--para--txt">OUR STORY</h2>
+  <p id="para--txt--css">
+    <%= @website.our_story %>
+  </p>
+
+</div>
+
+
+<div id="wedding" class="fifth--background">
+  <div class="thewedding--txt--contain">
+    <h2 id="header--para--txt">THE WEDDING</h2>
+    <div class="container--one">
+      <p id="wedding--para">
+        <span id="span--css">When:
+        </span><%= @website.user.profile.wedding_date.strftime("#{@website.user.profile.wedding_date.day.ordinalize}, %^B, %Y") if @website.user.profile.wedding_date.present? %></p>
+      <p id="wedding--para1">Wedding Ceremony:
+        <%= @website.wedding_ceremony_time.strftime("#{@website.wedding_ceremony_time.day.ordinalize}, %^B, %Y %H:%M") %></p>
+      <p id="wedding--para">Wedding Reception:
+        <%= @website.reception_time.strftime("#{@website.reception_time.day.ordinalize}, %^B, %Y %H:%M") %>
+        <p></div>
+        <div class="container--two">
+          <p id="wedding--para">
+            <span id="span--css">Where:
+            </span>
+            <span>
+              <%= @website.location %></span>
+          </div>
+        </div>
+      </div>
+
+      <% if user_signed_in? && current_user.website != @website %>
+      <div class="events">
+        <% @website.user.events.each do |event| %>
+        <% if event.display_on_wedding_website? && current_user.guest_from_event(event).present? %>
+        <div class="event-wrapper">
+          <div class="event"><%= event.name %>
+            -
+            <%= event.location %></div>
+          <% if user_signed_in? && @website.is_allowed_guest?(current_user) && event.allow_rsvp? %>
+          <%= link_to 'Going', bride_and_groom_personal_website_events_update_rsvp_path(@website.slug, event, email: current_user.email, rsvp: :going), class: current_user.guest_from_event(event).try(:going?) ? 'going-btn active' : 'going-btn' %>
+
+          <%= link_to 'Not Going', bride_and_groom_personal_website_events_update_rsvp_path(@website.slug, event, email: current_user.email, rsvp: :no), class: current_user.guest_from_event(event).try(:going?) ? 'going-btn' : 'going-btn active' %>
+          <% end %>
+        </div>
+        <% end %>
+
+        <% end %>
+      </div>
+      <% end %>
+
+      <script src='https://maps.googleapis.com/maps/api/js?key=<%= ENV['WEDS_GOOGLE_MAPS_KEY'] %>'></script>
+      <div id="location" style='overflow:hidden;height:440px;width:100%;'>
+        <div id='gmap_canvas' style='height:440px;width:100%;'></div>
+        <div>
+          <small>
+            <a href="http://embedgooglemaps.com">embed google maps</a>
+          </small>
+        </div>
+        <div>
+          <small>
+            <a href="http://phplinkdir.com/">add your link</a>
+          </small>
+        </div>
+        <style>
+          #gmap_canvas img {
+            max-width: none!important;
+            background: none!important;
+          }
+
+        </style>
+      </div>
+
+      <script type='text/javascript'>
+        $(document).ready(function () {
+
+          $(".navbar-nav li a.animate").click(($this) => {
+            $this.preventDefault();
+            let $target = $this.currentTarget.hash;
+            $target = $($target).offset();
+            $("html").animate({
+              scrollTop: $target.top - 50
+            }, 1500);
+          })
+          function init_map() {
+            var myOptions = {
+              zoom: 16,
+              scrollwheel: false,
+              navigationControl: false,
+              center: new google.maps.LatLng(<%= @website.lat %>, <%= @website.long %>),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+            marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(<%= @website.lat %>, <%= @website.long %>)
+            });
+            infowindow = new google.maps.InfoWindow({content: '<strong><%=  @website.user.formatted_bride_and_groom %></strong><br><%=  @website.location %><br>'});
+            google.maps.event.addListener(marker, 'click', function () {
+              infowindow.open(map, marker);
+            });
+            infowindow.open(map, marker);
+          }
+          google.maps.event.addDomListener(window, 'load', init_map);
+        });
+      </script>
