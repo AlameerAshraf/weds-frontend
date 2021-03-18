@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
     let resData = await this.resources.load(resourceLang , constants.VIEWS["HOME_LAYOUT"]);
-    console.log(resData)
   };
 
   ngAfterViewInit(): void {
