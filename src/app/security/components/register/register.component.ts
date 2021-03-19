@@ -78,4 +78,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     s.src = 'assets/scripts/custom.js';
     this.elementRef.nativeElement.appendChild(s);
   };
+
+  /** Register current user */
+  register(){
+    console.log("register")
+  };
 }

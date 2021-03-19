@@ -42,6 +42,11 @@
     outline: none !important;
   }
 
+  .disabled {
+    background-color: gray !important;
+    cursor: not-allowed;
+  }
+
   .removed-margins {
     margin-bottom: 0px !important;
   }

@@ -104,7 +104,11 @@
 
                 </div>
 
-                <button class="button book-now fullwidth margin-top-5">
+                <button
+                  (click)="register()"
+                  [ngClass]="{'disabled': !registerForm.valid}"
+                  [disabled] = "!registerForm.valid"
+                  class="button fullwidth margin-top-5">
                   Register
                 </button>
               </div>
