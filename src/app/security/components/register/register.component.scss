@@ -6,23 +6,23 @@
     line-height: 50px;
     text-align: center;
   }
-  
+
   #or::before,
   #or::after {
     position: absolute;
     width: 100px;
     height: 1px;
     top: 24px;
-    
+
     background-color: #aaa;
-    
+
     content: '';
   }
-  
+
   #or::before {
     left: 0;
   }
-  
+
   #or::after {
     right: 0;
   }
@@ -42,10 +42,16 @@
     outline: none !important;
   }
 
-  .dot {
-    height: 15px;
-    width: 15px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
+  .disabled {
+    background-color: gray !important;
+    cursor: not-allowed;
+  }
+
+  .removed-margins {
+    margin-bottom: 0px !important;
+  }
+
+
+  .removed-paddings {
+    padding: 8px !important;
   }
