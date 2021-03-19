@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   bkImage = "";
   isVendorRegistering: boolean;
   lang: any;
+  passwordHidden = true;
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
@@ -37,6 +38,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
   };
 
+  /** toggle password. */
+  togglePassword(){
+    this.passwordHidden = !this.passwordHidden;
+  };
 
   /**
    * Change the type for who is registerating now!

@@ -35,14 +35,23 @@
 
                             <div class="main-search-input-item location">
                                 <div id="autocomplete-container">
-                                    <input id="autocomplete-input" type="text" placeholder="Password">
+                                    <input [type]="passwordHidden ? 'password' : 'text'" placeholder="Password">
                                 </div>
-                                <a href="#"><i class="fa fa-eye"></i></a>
+                                <a (click) = "togglePassword()" style="cursor: pointer;">
+                                    <i *ngIf="!passwordHidden" class = "fa fa-eye"></i>
+                                    <i *ngIf="passwordHidden" class = "fa fa-eye-slash"></i>
+                                </a>
                             </div>
+                            <div class="panel-dropdown-content checkboxes" style="padding: 0px !important;">
+                                <input id="check-a" type="checkbox" name="check">
+                                <label for="check-a">Remeber me</label>
+                            </div>
+
 
                             <div class="main-search-input-item" style="margin-bottom: 0px;">
                                 <div id="or">OR</div>
                             </div>
+
 
                             <div class="main-search-input-item">
                                 <ul class="social-icons color rounded icons-ul">

@@ -10,9 +10,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
-  bkImage = "../../../../assets/images/backgrounds/login/9.jpg";
+  bkImage = "assets/images/backgrounds/login/9.jpg";
   isVendorRegistering: boolean;
   lang: any;
+
+  passwordHidden = true;
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
@@ -20,6 +22,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.loadResources();
+  };
+
+  /** toggle password. */
+  togglePassword(){
+    this.passwordHidden = !this.passwordHidden;
   };
 
 
@@ -31,8 +38,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
   };
-
-
 
   /**
    * Navigate to the register page.

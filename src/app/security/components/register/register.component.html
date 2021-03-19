@@ -37,13 +37,16 @@
 
                             <div class="main-search-input-item location">
                                 <div id="autocomplete-container">
-                                    <input id="autocomplete-input" type="text" placeholder="Password">
+                                    <input [type]="passwordHidden ? 'password' : 'text'" placeholder="Password">
                                 </div>
-                                <a href="#"><i class="fa fa-eye"></i></a>
+                                <a (click) = "togglePassword()" style="cursor: pointer;">
+                                  <i *ngIf="!passwordHidden" class = "fa fa-eye"></i>
+                                  <i *ngIf="passwordHidden" class = "fa fa-eye-slash"></i>
+                                </a>
                             </div>
 
                             <div class="main-search-input-item" style="margin-bottom: 0px;">
-                                <div id="or">OR</div> 
+                                <div id="or">OR</div>
                             </div>
 
                             <div class="main-search-input-item">
@@ -69,7 +72,7 @@
                         </span>
 
                             <span
-                                (click) = "navigateToLogin()" 
+                                (click) = "navigateToLogin()"
                                 style="font-size: 13px; cursor: pointer;" class="icons-ul">
                                 <span>
                                     Aleady have an account?
