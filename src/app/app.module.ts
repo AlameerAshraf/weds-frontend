@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { COMPONENTS, THEME_MODULE } from './app.imports';
-import { AppConfig, httpService, localStorageService, resources } from './core';
+import { AppConfig, httpService, localStorageService, resources , ValidateService } from './core';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { AppConfig, httpService, localStorageService, resources } from './core';
     AppComponent,
     COMPONENTS.HomeComponent,
   ],
-  imports: [  
+  imports: [
     BrowserModule,
     THEME_MODULE,
     AppRoutingModule,
@@ -25,11 +25,12 @@ import { AppConfig, httpService, localStorageService, resources } from './core';
     httpService,
     AppConfig,
     resources,
-    { 
-      provide: APP_INITIALIZER , 
+    ValidateService,
+    {
+      provide: APP_INITIALIZER ,
       useFactory: (ds: AppConfig) => () => ds.load(),
-      deps: [AppConfig] , 
-      multi: true 
+      deps: [AppConfig] ,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]
