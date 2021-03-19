@@ -1,3 +1,4 @@
+import { FormBuilder, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,19 +14,33 @@ export class LoginComponent implements OnInit, AfterViewInit {
   bkImage = "assets/images/backgrounds/login/9.jpg";
   isVendorRegistering: boolean;
   lang: any;
-
   passwordHidden = true;
+
+  // Form variables!
+  loginForm;
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
-    private resources: resources) { }
+    private resources: resources, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.loadResources();
+    this.initForm();
+  };
+
+  /** Form functions */
+  initForm() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.email, Validators.required])],
+      password: ['', Validators.required]
+    });
+  };
+  get lf() {
+    return this.loginForm.controls;
   };
 
   /** toggle password. */
-  togglePassword(){
+  togglePassword() {
     this.passwordHidden = !this.passwordHidden;
   };
 

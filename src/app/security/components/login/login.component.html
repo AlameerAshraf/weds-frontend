@@ -1,81 +1,107 @@
 <div class="transparent-header">
-    <header id="header-container" class="fullwidth">
-        <div id="header" style="border-bottom: 0px;">
-            <div class="container">
-                <div class="left-side">
-                    <div id="logo">
-                        <a>
-                            <img style="max-height: 55px;" src="assets/images/logos/logo_1.png"
-                                data-sticky-logo="assets/images/logos/logo_1.png" alt="Weds360 logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <header id="header-container" class="fullwidth">
+    <div id="header" style="border-bottom: 0px;">
+      <div class="container">
+        <div class="left-side">
+          <div id="logo">
+            <a>
+              <img style="max-height: 55px;" src="assets/images/logos/logo_1.png"
+                data-sticky-logo="assets/images/logos/logo_1.png" alt="Weds360 logo">
+            </a>
+          </div>
         </div>
-    </header>
-
-
-    <div class="main-search-container full-height alt-search-box centered" [attr.data-background-image]="bkImage">
-        <div class="main-search-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class="main-search-input">
-
-                            <div class="main-search-input-headline">
-                                <h2>Login Now </h2>
-                            </div>
-
-                            <div class="main-search-input-item">
-                                <div>
-                                    <input type="text" placeholder="example@weds360.com">
-                                </div>
-                            </div>
-
-                            <div class="main-search-input-item location">
-                                <div id="autocomplete-container">
-                                    <input [type]="passwordHidden ? 'password' : 'text'" placeholder="Password">
-                                </div>
-                                <a (click) = "togglePassword()" style="cursor: pointer;">
-                                    <i *ngIf="!passwordHidden" class = "fa fa-eye"></i>
-                                    <i *ngIf="passwordHidden" class = "fa fa-eye-slash"></i>
-                                </a>
-                            </div>
-                            <div class="panel-dropdown-content checkboxes" style="padding: 0px !important;">
-                                <input id="check-a" type="checkbox" name="check">
-                                <label for="check-a">Remeber me</label>
-                            </div>
-
-
-                            <div class="main-search-input-item" style="margin-bottom: 0px;">
-                                <div id="or">OR</div>
-                            </div>
-
-
-                            <div class="main-search-input-item">
-                                <ul class="social-icons color rounded icons-ul">
-                                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-                                </ul>
-
-                                <span (click)="navigateToRegister()"
-                                    style="font-size: 13px; cursor: pointer;" class="icons-ul">
-                                    <span>
-                                        Create new account!
-                                    </span>
-                                </span>
-
-                            </div>
-
-                            <button class="disabled button fullwidth margin-top-5">
-                                Login
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </header>
+
+
+  <div class="main-search-container full-height alt-search-box centered" [attr.data-background-image]="bkImage">
+    <div class="main-search-inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <form [formGroup]="loginForm">
+              <div class="main-search-input">
+                <div class="main-search-input-headline">
+                  <h2>Login Now </h2>
+                </div>
+
+                <!-- Email Errors -->
+                <div *ngIf="lf['email'].errors?.required && lf.email.touched"
+                  class="main-search-input-item removed-margins">
+                  <div class="notification error closeable fullWidth removed-paddings">
+                    <p>Email is required to register.</p>
+                  </div>
+                </div>
+
+                <div *ngIf="lf['email'].errors?.email && lf.email.touched"
+                  class="main-search-input-item removed-margins">
+                  <div class="notification error closeable fullWidth removed-paddings">
+                    <p>Please enter a valid email.</p>
+                  </div>
+                </div>
+                <!-- End Email Errors -->
+
+
+                <!-- Password Errors -->
+                <div *ngIf="lf['password'].errors?.required && lf.password.touched"
+                  class="main-search-input-item removed-margins">
+                  <div class="notification error closeable fullWidth removed-paddings">
+                    <p>Password is required to register.</p>
+                  </div>
+                </div>
+                <!-- End Password Errors -->
+
+                <div class="main-search-input-item">
+                  <div>
+                    <input formControlName="email" type="text" placeholder="example@weds360.com">
+                  </div>
+                </div>
+
+                <div class="main-search-input-item location">
+                  <div>
+                    <input formControlName="password" [type]="passwordHidden ? 'password' : 'text'"
+                      placeholder="Password">
+                  </div>
+                  <a (click)="togglePassword()" style="cursor: pointer;">
+                    <i *ngIf="!passwordHidden" class="fa fa-eye"></i>
+                    <i *ngIf="passwordHidden" class="fa fa-eye-slash"></i>
+                  </a>
+                </div>
+                <div class="panel-dropdown-content checkboxes" style="padding: 0px !important;">
+                  <input id="check-a" type="checkbox" name="check">
+                  <label for="check-a">Remeber me</label>
+                </div>
+
+
+                <div class="main-search-input-item" style="margin-bottom: 0px;">
+                  <div id="or">OR</div>
+                </div>
+
+
+                <div class="main-search-input-item">
+                  <ul class="social-icons color rounded icons-ul">
+                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                  </ul>
+
+                  <span (click)="navigateToRegister()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                    <span>
+                      Create new account!
+                    </span>
+                  </span>
+
+                </div>
+
+                <button class="disabled button fullwidth margin-top-5">
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
