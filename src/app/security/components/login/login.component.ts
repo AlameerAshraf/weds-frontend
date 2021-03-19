@@ -54,21 +54,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
     let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
   };
 
-  /**
-   * Navigate to the register page.
-   */
+  /** Navigate to the register page.*/
   navigateToRegister() {
     this.router.navigateByUrl(`/security/${this.lang}/register`);
   };
 
-  /**
-   * Binding scripts to the component.
-   */
+  /** Binding scripts to the component.*/
   ngAfterViewInit(): void {
     const s = this.document.createElement('script');
     s.type = 'text/javascript';
     s.src = 'assets/scripts/custom.js';
     this.elementRef.nativeElement.appendChild(s);
+  };
+
+  /** Login current user to weds360! */
+  login(){
+    console.log("Now")
   };
 
 }

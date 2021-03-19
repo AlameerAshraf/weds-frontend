@@ -94,7 +94,9 @@
 
                 </div>
 
-                <button class="disabled button fullwidth margin-top-5">
+                <button [disabled]="!loginForm.valid" [ngClass]="{'disabled': !loginForm.valid }"
+                  (click)="login()"
+                  class="button fullwidth margin-top-5">
                   Login
                 </button>
               </div>
