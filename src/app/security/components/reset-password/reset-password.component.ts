@@ -11,8 +11,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit, AfterViewInit {
+  bkImage: string = 'assets/images/backgrounds/login/11.jpg';
   lang: any;
   resetForm: any = null;
+
 
   constructor(@Inject(DOCUMENT) private document: any, //private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
