@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.passwordHidden = !this.passwordHidden;
   };
 
-
   /** Use this function at each view to load corrosponding resources! */
   async loadResources() {
     let providedlang: any = this.actictedRoute.parent.params;
@@ -57,6 +56,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   /** Navigate to the register page.*/
   navigateToRegister() {
     this.router.navigateByUrl(`/security/${this.lang}/register`);
+  };
+
+  /** Navigate to the reset page.*/
+  navigateToReset() {
+    this.router.navigateByUrl(`/security/${this.lang}/reset-password`);
   };
 
   /** Binding scripts to the component.*/
