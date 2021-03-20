@@ -15,6 +15,9 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   lang: any;
   resetForm: any = null;
 
+  // Logic variables
+  emailSent: boolean = false;
+
 
   constructor(@Inject(DOCUMENT) private document: any, //private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
