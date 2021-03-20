@@ -13,10 +13,13 @@ import { environment } from 'src/environments/environment';
 export class ResetPasswordComponent implements OnInit, AfterViewInit {
   bkImage: string = 'assets/images/backgrounds/login/11.jpg';
   lang: any;
-  resetForm: any = null;
+  requestEmailForm: any = null;
+  resetPasswordForm: any = null;
+  passwordHidden = true;
 
   // Logic variables
   emailSent: boolean = false;
+  resetView: string;
 
 
   constructor(@Inject(DOCUMENT) private document: any, //private router: Router,
@@ -26,16 +29,37 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loadResources();
     this.initForm();
+    this.initResetPasswordForm();
+    this.getResetPasswordView();
   };
+
+  /** Get the status of the reset view 1- reset view email request, 2- reset password view. based on the routes */
+  getResetPasswordView(){
+    this.actictedRoute.params.subscribe((params) => {
+      let userToken = params["token"];
+      this.resetView = (userToken == undefined) ? 'email-request' : 'password-reset';
+    })
+  }
 
   /** Form functions */
   initForm() {
-    this.resetForm = this.formBuilder.group({
+    this.requestEmailForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])]
     });
   };
   get rpf() {
-    return this.resetForm.controls;
+    return this.requestEmailForm.controls;
+  };
+
+  /** Form functions */
+  initResetPasswordForm() {
+    this.resetPasswordForm = this.formBuilder.group({
+      oldPassowrd: ['', Validators.required],
+      newPassowrd: ['', Validators.required],
+    });
+  };
+  get resetf() {
+    return this.resetPasswordForm.controls;
   };
 
   /** Use this function at each view to load corrosponding resources! */
@@ -53,6 +77,11 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
     s.type = 'text/javascript';
     s.src = 'assets/scripts/custom.js';
     this.elementRef.nativeElement.appendChild(s);
+  };
+
+  /** toggle password. */
+  togglePassword(){
+    this.passwordHidden = !this.passwordHidden;
   };
 
   /** Request password reset email. */
