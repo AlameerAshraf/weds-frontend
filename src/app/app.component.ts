@@ -17,7 +17,9 @@ export class AppComponent {
   initUserNavigation(){
     let authCookies = this.storage.getCookie('WEDSUSER');
     if(authCookies == ''){
-      this.router.navigateByUrl(`/${environment.defaultLang}/home`);
+      if(!window.location.href.includes('register')){
+        this.router.navigateByUrl(`/${environment.defaultLang}/home`);
+      }
     }
   };
 }

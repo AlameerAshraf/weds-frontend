@@ -40,15 +40,15 @@
 
 
       <!-- Right Side Content / End -->
-      <div *ngIf="isLogined" class="right-side">
+      <div *ngIf="!isLogined" class="right-side">
         <div class="header-widget">
-          <a class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i>
-            Login
+          <a style="cursor: pointer;" class="sign-in popup-with-zoom-anim" (click)="navigateToLogin()">
+            <i class="sl sl-icon-login"></i> Sign In
           </a>
         </div>
       </div>
 
-      <div class="right-side">
+      <div *ngIf="isLogined" class="right-side">
         <div class="header-widget">
           <div class="user-menu">
             <div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt="">
