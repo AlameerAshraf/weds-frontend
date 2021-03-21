@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   // Animation variables!
   startTypingAnimation: boolean = true;
 
@@ -31,16 +31,5 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
     let resData = await this.resources.load(resourceLang , constants.VIEWS["HOME_LAYOUT"]);
-  };
-
-  ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/typedwords.js' , 'assets/scripts/custom.js'];
-
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
-    });
   };
 }
