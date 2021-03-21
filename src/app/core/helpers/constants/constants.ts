@@ -7,10 +7,11 @@ export class constants {
   //** This is the mapper for the current view name, and the resources file! */
   public static get VIEWS(){
     return {
-      "HOME_LAYOUT" : "home"
+      "HOME_LAYOUT" : "home",
+      "HEADER": "menu-items"
     }
   };
-  
+
 
   public static get SERVER_ERROR(): string { return  this._config.getConst("SERVER_ERROR_MESSAGE")};
   public static get BFO_LOADING_ERROR(): string { return  this._config.getConst("BFO_LOADING_ERROR")};

@@ -21,7 +21,7 @@ export class localStorageService {
                 return c.substring(cookieName.length, c.length);
             }
         }
-        return '';
+        return c;
     }
 
     eraseCookie(name: string){
@@ -55,7 +55,7 @@ export class localStorageService {
         if(item){
             if(item.indexOf("{") !== -1 || item.indexOf("}") !== -1 ){
                 content = JSON.parse(item);
-            } 
+            }
             else {
                 content = item;
             }
