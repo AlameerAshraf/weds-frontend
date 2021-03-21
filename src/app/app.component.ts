@@ -13,6 +13,7 @@ export class AppComponent {
     this.initUserNavigation();
   }
 
+  /** Navigate the user based on the credentials */
   initUserNavigation(){
     let authCookies = this.storage.getCookie('WEDSUSER');
     if(authCookies == ''){
