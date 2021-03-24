@@ -1,10 +1,10 @@
-import { ValidateService } from './../../../core/services/validate/validate.service';
+import { helper } from './helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants, resources } from 'src/app/core';
 import { environment } from 'src/environments/environment';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   lang: any;
   passwordHidden = true;
 
+  helpers = new helper(this.router);
   // Form variables
   registerForm = null;
 
@@ -58,17 +59,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   /** toggle password. */
   togglePassword(){
     this.passwordHidden = !this.passwordHidden;
-  };
-
-  /** Change the type for who is registerating now! */
-  changeRegisterationType(type: string) {
-    if (type == "user") window.location.href = "/security/ar/register";
-    else window.location.href = `/security/ar/register?vendor=join`
-  };
-
-  /** Change the type for who is registerating now! */
-  navigateToLogin() {
-    this.router.navigateByUrl(`/security/${this.lang}/login`);
   };
 
   /** Binding scripts to the component. */

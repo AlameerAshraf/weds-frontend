@@ -82,21 +82,21 @@
                     <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
                     <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
                   </ul>
-                  <span *ngIf="!isVendorRegistering" (click)="changeRegisterationType('vendor')"
-                    style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span *ngIf="!isVendorRegistering" (click)="helpers.changeRegisterationType('vendor')"
+                    style="font-size: 15px; cursor: pointer; color: rgb(82, 80, 80); font-weight: 600;" class="icons-ul">
                     <span>
                       Wanna join us as a vendor?
                     </span>
                   </span>
 
-                  <span *ngIf="isVendorRegistering" (click)="changeRegisterationType('user')"
-                    style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span *ngIf="isVendorRegistering" (click)="helpers.changeRegisterationType('user')"
+                    style="font-size: 15px; cursor: pointer; color: rgb(63, 62, 62); font-weight: 600;" class="icons-ul">
                     <span>
                       Join as a user?
                     </span>
                   </span>
 
-                  <span (click)="navigateToLogin()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span (click)="helpers.navigateToLogin()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
                     <span>
                       Aleady have an account?
                     </span>
