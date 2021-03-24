@@ -3,7 +3,6 @@ import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants, resources } from 'src/app/core';
-import { environment } from 'src/environments/environment';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
+  translated = {};
   userRegisterationImage = "assets/images/backgrounds/login/8.png";
   vendorRegisterationImage = "assets/images/backgrounds/login/4_vendor.png";
   bkImage = "";
@@ -19,46 +19,46 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   lang: any;
   passwordHidden = true;
 
-  helpers = new helper(this.router);
+  helpers = new helper(this.router, this.actictedRoute, this.resources);
+
   // Form variables
   registerForm = null;
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
-    private resources: resources , private formBuilder: FormBuilder) { }
+    private resources: resources, private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
-    this.loadResources();
+  async ngOnInit() {
     this.initForm();
     this.actictedRoute.queryParams.subscribe((params) => {
       let isVendor = this.isVendorRegistering = params["vendor"];
       this.bkImage = isVendor == undefined ? this.userRegisterationImage : this.vendorRegisterationImage;
-    })
+    });
+
+    let resourcesData = await this.helpers.loadResources();
+    this.lang = resourcesData.lang;
+    this.translated = resourcesData.translatedObject;
   };
 
   /** Form functions */
-  initForm(){
+  initForm() {
     this.registerForm = this.formBuilder.group({
-      email: ['' , Validators.compose([Validators.email , Validators.required])],
-      password : ['' , Validators.required]
+      email: ['', Validators.compose([Validators.email, Validators.required])],
+      password: ['', Validators.required]
     });
   };
   get rf() {
     return this.registerForm.controls;
   };
 
-  /** Use this function at each view to load corrosponding resources! */
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
+  /** toggle password. */
+  togglePassword() {
+    this.passwordHidden = !this.passwordHidden;
   };
 
-  /** toggle password. */
-  togglePassword(){
-    this.passwordHidden = !this.passwordHidden;
+  /** Register current user */
+  register() {
+    console.log("register")
   };
 
   /** Binding scripts to the component. */
@@ -67,10 +67,5 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     s.type = 'text/javascript';
     s.src = 'assets/scripts/custom.js';
     this.elementRef.nativeElement.appendChild(s);
-  };
-
-  /** Register current user */
-  register(){
-    console.log("register")
   };
 }
