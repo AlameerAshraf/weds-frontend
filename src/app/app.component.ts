@@ -17,7 +17,7 @@ export class AppComponent {
   initUserNavigation(){
     let authCookies = this.storage.getCookie('WEDSUSER');
     if(authCookies == ''){
-      if(!window.location.href.includes('register')){
+      if(!window.location.href.includes('security')){
         this.router.navigateByUrl(`/${environment.defaultLang}/home`);
       }
     }
