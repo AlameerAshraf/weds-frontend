@@ -1,8 +1,8 @@
+import { urls , resources , httpService } from './../../../core';
 import { helper } from './helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constants, resources } from 'src/app/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
-    private resources: resources, private formBuilder: FormBuilder) { }
+    private resources: resources, private formBuilder: FormBuilder,
+    private httpService: httpService) { }
 
   async ngOnInit() {
     this.initForm();
@@ -58,14 +59,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   /** Register current user */
   register() {
-    console.log("register")
+    let signUpURL = `${urls.USER_SIGN_UP}`
   };
 
-  /** Binding scripts to the component. */
+  //#region Binding scripts to the component.
   ngAfterViewInit(): void {
     const s = this.document.createElement('script');
     s.type = 'text/javascript';
     s.src = 'assets/scripts/custom.js';
     this.elementRef.nativeElement.appendChild(s);
   };
+  //#endregion
 }
