@@ -1,9 +1,11 @@
-import { urls , resources , httpService } from './../../../core';
+import { errorBuilder } from './../../../core/models/response';
+import { urls , resources , httpService, constants , responseModel } from './../../../core';
 import { helper } from './helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -18,16 +20,21 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   isVendorRegistering: boolean;
   lang: any;
   passwordHidden = true;
+  hasErrors = false;
+  hasWarnings = false;
+  hasInfo = false;
+  hasSuccessMessages = false;
+  showNotification = false;
 
   helpers = new helper(this.router, this.actictedRoute, this.resources);
 
   // Form variables
-  registerForm = null;
+  registerForm: FormGroup = null;
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
     private resources: resources, private formBuilder: FormBuilder,
-    private httpService: httpService) { }
+    private httpService: httpService , private spinner: NgxSpinnerService) { }
 
   async ngOnInit() {
     this.initForm();
@@ -57,9 +64,52 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.passwordHidden = !this.passwordHidden;
   };
 
+  /**Get the Long&Lat location info */
+  getGeoLocationInfo(){
+    return new Promise((resolve , reject) => {
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((locationInfo) => {
+          let lat = locationInfo.coords.latitude;
+          let long = locationInfo.coords.longitude;
+
+          let address = { address : { latitude: lat , longtitude: long } };
+          resolve(address);
+        })
+      } else {
+        //TODO: Implememnt a generic alert function!
+        alert("Error Finding user location!");
+        let address = { address : { latitude: "" , longtitude: "" } };
+        resolve(address);
+      }
+    })
+  };
+
+  //** Prepare all needed data from the current form! */
+  async getFormData(){
+    let geoLocationData: any = await this.getGeoLocationInfo();
+    let formData = this.registerForm.value;
+    let accountSource = { accountSource : constants.ACCOUNT_SOURCES.WEDS360 };
+    let userRole = this.isVendorRegistering ? { role: constants.USER_ROLES.VENDOR } : { role: constants.USER_ROLES.USER };
+
+    let result = {...formData , ...geoLocationData , ...accountSource ,  ...userRole };
+    return result;
+  };
+
   /** Register current user */
-  register() {
-    let signUpURL = `${urls.USER_SIGN_UP}`
+  async register() {
+    this.spinner.show();
+    let signUpURL = `${urls.USER_SIGN_UP}/${constants.APP_IDENTITY_FOR_USERS}`;
+    let userData = await this.getFormData();
+
+    this.httpService.Post(signUpURL , {} , { "user" : userData }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.spinner.hide();
+        this.helpers.navigateToLogin();
+      } else {
+        let errors = errorBuilder.build(response.details);
+        this.buildErrorsInView(errors);
+      }
+    });
   };
 
   //#region Binding scripts to the component.
@@ -69,5 +119,22 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     s.src = 'assets/scripts/custom.js';
     this.elementRef.nativeElement.appendChild(s);
   };
+  //#endregion
+
+  //#region Build Errors ..
+  buildErrorsInView(errors) {
+    this.showNotification = this.hasErrors = true;
+    let errorBody = '';
+
+    errors.forEach(anError => {
+      errorBody = errorBody + `<li> ${anError.message} </li>`;
+    });
+
+    document.getElementById('notifyMessage').innerHTML = `<ul> ${errorBody} </ul>`;;
+  };
+
+  textChanged(){
+    this.showNotification = false;
+  }
   //#endregion
 }
