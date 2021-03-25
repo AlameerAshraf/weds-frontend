@@ -4,8 +4,9 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { COMPONENTS, THEME_MODULE } from './app.imports';
+import { COMPONENTS, THEME_MODULE , NGX_SPINNER} from './app.imports';
 import { AppConfig, httpService, localStorageService, resources , ValidateService } from './core';
 
 
@@ -16,6 +17,7 @@ import { AppConfig, httpService, localStorageService, resources , ValidateServic
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     THEME_MODULE,
     AppRoutingModule,
     HttpClientModule,
