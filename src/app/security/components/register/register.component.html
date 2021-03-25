@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div class="transparent-header">
   <header id="header-container" class="fullwidth">
     <div id="header" style="border-bottom: 0px;">
@@ -28,6 +29,16 @@
                   <h4 style="margin-bottom: 8px;">Wedding Planning is a piece of cake with Weds360</h4>
                 </div>
 
+                <div [ngClass]="{'enable-notify': showNotification , ' disable-notify' : !showNotification }" class="main-search-input-item closeable removed-margins">
+                  <div [ngClass]="{'error': hasErrors ,
+                                    'success' : hasSuccessMessages ,
+                                    'warning' : hasWarnings ,
+                                    'notice' : hasInfo}" class="notification  closeable fullWidth removed-paddings">
+                    <p id="notifyMessage"></p>
+                  </div>
+                </div>
+
+
                 <!-- Email Errors -->
                 <div *ngIf="rf['email'].errors?.required && rf.email.touched"
                   class="main-search-input-item removed-margins">
@@ -57,16 +68,16 @@
 
                 <div class="main-search-input-item">
                   <div>
-                    <input formControlName="email" type="email" placeholder="example@weds360.com">
+                    <input (keydown)="textChanged()" formControlName="email" type="email" placeholder="example@weds360.com">
                   </div>
                 </div>
 
                 <div class="main-search-input-item location">
                   <div>
                     <input formControlName="password" [type]="passwordHidden ? 'password' : 'text'"
-                      placeholder="Password">
+                      (keydown)="textChanged()" placeholder="Password">
                   </div>
-                  <a (click)="togglePassword()" style="cursor: pointer;">
+                  <a (click)="togglePassword(passwordHidden)" style="cursor: pointer;">
                     <i *ngIf="!passwordHidden" class="fa fa-eye"></i>
                     <i *ngIf="passwordHidden" class="fa fa-eye-slash"></i>
                   </a>
@@ -82,21 +93,23 @@
                     <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
                     <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
                   </ul>
-                  <span *ngIf="!isVendorRegistering" (click)="changeRegisterationType('vendor')"
-                    style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span *ngIf="!isVendorRegistering" (click)="helpers.changeRegisterationType('vendor')"
+                    style="font-size: 15px; cursor: pointer; color: rgb(82, 80, 80); font-weight: 600;"
+                    class="icons-ul">
                     <span>
                       Wanna join us as a vendor?
                     </span>
                   </span>
 
-                  <span *ngIf="isVendorRegistering" (click)="changeRegisterationType('user')"
-                    style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span *ngIf="isVendorRegistering" (click)="helpers.changeRegisterationType('user')"
+                    style="font-size: 15px; cursor: pointer; color: rgb(63, 62, 62); font-weight: 600;"
+                    class="icons-ul">
                     <span>
                       Join as a user?
                     </span>
                   </span>
 
-                  <span (click)="navigateToLogin()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span (click)="helpers.navigateToLogin()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
                     <span>
                       Aleady have an account?
                     </span>
@@ -104,11 +117,8 @@
 
                 </div>
 
-                <button
-                  (click)="register()"
-                  [ngClass]="{'disabled': !registerForm.valid}"
-                  [disabled] = "!registerForm.valid"
-                  class="button fullwidth margin-top-5">
+                <button (click)="register()" [ngClass]="{'disabled': !registerForm.valid}"
+                  [disabled]="!registerForm.valid" class="button fullwidth margin-top-5">
                   Register
                 </button>
               </div>
