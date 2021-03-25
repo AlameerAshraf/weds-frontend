@@ -5,4 +5,8 @@ export const COMPONENTS = {
     ...securityComponents
 };
 
+import { NgxSpinnerModule } from "ngx-spinner";
+
 export const THEME_MODULE = ThemeModule;
+export const NGX_SPINNER = NgxSpinnerModule;
+
