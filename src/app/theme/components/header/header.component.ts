@@ -14,8 +14,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   isLogined = false;
   menuItems = [];
+  profileLinks = [];
   lang: any;
+
+  // Languge!
   loginURL: string;
+  langChangerURL: string;
+
+
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
     @Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef,
@@ -34,12 +40,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
     let resData = await this.resources.load(resourceLang, constants.VIEWS["HEADER"]) as any;
-    this.menuItems = this.menuItems.concat(resData.res);
+    this.menuItems = this.menuItems.concat(resData.res["menu"]);
+    this.profileLinks = this.profileLinks.concat(resData.res["actions"]);
   };
 
   checkViewAuthority(){
     console.log(this.authorizedUser)
     this.isLogined = this.authorizedUser;
+  };
+
+  changeLangauge(){
+    console.log("HI")
   };
 
   ngAfterViewInit(): void {
