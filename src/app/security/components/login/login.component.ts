@@ -1,9 +1,10 @@
-import { httpService ,  resources , urls , constants , responseModel } from './../../../core';
+import { httpService ,  resources , urls , constants , responseModel, errorBuilder , localStorageService } from './../../../core';
 import { helper } from './helper/helper';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
+    private storage: localStorageService, private spinner: NgxSpinnerService,
     private resources: resources, private formBuilder: FormBuilder, private http: httpService) { }
 
   async ngOnInit() {
@@ -65,13 +67,24 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   /** Login current user to weds360! */
   login(){
+    this.spinner.show();
     let loginURL = `${urls.USER_SIGN_IN}/${constants.APP_IDENTITY_FOR_USERS}`;
     let userCredentials = this.getFormData();
     this.http.Post(loginURL , {} , { userCredentials: userCredentials }).subscribe((response: responseModel) => {
       if(!response.error){
-
+        this.spinner.hide();
+        this.storage.setCookie('weds360#data' , response.data.token , '' , '');
+        this.storage.setLocalStorage('weds360#name' , response.data.info.name);
+        this.storage.setLocalStorage('weds360#role' , btoa(response.data.info.name));
+        this.storage.setLocalStorage('weds360#avatar' , response.data.info.avatar);
+        this.storage.setLocalStorage('weds360#email' , btoa(response.data.info.email));
       } else {
-
+        this.spinner.hide();
+        let errors = errorBuilder.build(response.details);
+        if(errors !== undefined)
+          this.buildErrorsInView(errors);
+        else
+          this.buildErrorsInView([ { message : response.details } ]);
       }
     })
   };
