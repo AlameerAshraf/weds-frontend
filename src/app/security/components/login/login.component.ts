@@ -71,15 +71,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
     let loginURL = `${urls.USER_SIGN_IN}/${constants.APP_IDENTITY_FOR_USERS}`;
     let userCredentials = this.getFormData();
     this.http.Post(loginURL , {} , { userCredentials: userCredentials }).subscribe((response: responseModel) => {
+      this.spinner.hide();
       if(!response.error){
-        this.spinner.hide();
         this.storage.setCookie('weds360#data' , response.data.token , '' , '');
         this.storage.setLocalStorage('weds360#name' , response.data.info.name);
         this.storage.setLocalStorage('weds360#role' , btoa(response.data.info.name));
         this.storage.setLocalStorage('weds360#avatar' , response.data.info.avatar);
         this.storage.setLocalStorage('weds360#email' , btoa(response.data.info.email));
       } else {
-        this.spinner.hide();
         let errors = errorBuilder.build(response.details);
         if(errors !== undefined)
           this.buildErrorsInView(errors);
@@ -107,7 +106,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       errorBody = errorBody + `<li> ${anError.message} </li>`;
     });
 
-    document.getElementById('notifyMessage').innerHTML = `<ul> ${errorBody} </ul>`;;
+    document.getElementById('notifyMessage').innerHTML = `<ul style="list-style-type:none;margin: 0px;padding: 0px;"> ${errorBody} </ul>`;;
   };
 
   textChanged() {
