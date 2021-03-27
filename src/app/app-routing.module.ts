@@ -14,7 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'home/app',
-        component: appComponents.HomeComponent
+        component: appComponents.AuthorizedHomeComponent
       }
     ]
   },

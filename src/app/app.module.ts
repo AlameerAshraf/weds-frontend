@@ -13,7 +13,6 @@ import { AppConfig, httpService, localStorageService, resources , ValidateServic
 @NgModule({
   declarations: [
     AppComponent,
-    COMPONENTS.HomeComponent,
     COMPONENTS.AnonymousHomeComponent,
     COMPONENTS.AuthorizedHomeComponent,
   ],
