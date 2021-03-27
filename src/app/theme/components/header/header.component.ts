@@ -49,12 +49,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.isLogined = this.authorizedUser;
   };
 
-  changeLangauge(){
-    console.log("HI")
-  };
-
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/custom.js'];
+    let scripts = ['assets/scripts/custom.js' , 'assets/scripts/changeLang.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');
