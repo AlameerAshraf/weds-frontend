@@ -26,6 +26,15 @@
                   <h2>Login Now </h2>
                 </div>
 
+                <div [ngClass]="{'enable-notify': showNotification , ' disable-notify' : !showNotification }" class="main-search-input-item closeable removed-margins">
+                  <div [ngClass]="{'error': hasErrors ,
+                                    'success' : hasSuccessMessages ,
+                                    'warning' : hasWarnings ,
+                                    'notice' : hasInfo}" class="notification  closeable fullWidth removed-paddings">
+                    <p id="notifyMessage"></p>
+                  </div>
+                </div>
+
                 <!-- Email Errors -->
                 <div *ngIf="lf['email'].errors?.required && lf.email.touched"
                   class="main-search-input-item removed-margins">
@@ -74,7 +83,7 @@
                 </div>
 
                 <div class="panel-dropdown-content" style="padding: 0px !important;">
-                  <label style="cursor: pointer;" (click)="navigateToReset()">Forget my password?</label>
+                  <label style="cursor: pointer;" (click)="helpers.navigateToReset()">Forget my password?</label>
                 </div>
 
 
@@ -90,9 +99,9 @@
                     <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
                   </ul>
 
-                  <span (click)="navigateToRegister()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span (click)="helpers.navigateToRegister()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
                     <span>
-                      Create new account!
+                      Create a new account.
                     </span>
                   </span>
 
