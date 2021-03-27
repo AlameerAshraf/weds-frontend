@@ -13,11 +13,13 @@ export class HeaderComponent implements OnInit {
   isLogined = false;
   menuItems = [];
   lang: any;
+  loginURL: string;
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
     private router: Router) { }
 
   ngOnInit() {
     this.loadResources();
+    this.loginURL = `/security/${this.lang}/login`;
   }
 
   /** Use this function at each view to load corrosponding resources! */
@@ -34,10 +36,5 @@ export class HeaderComponent implements OnInit {
     if (this.router.url.includes('authed')) {
       this.isLogined = true;
     }
-  };
-
-
-  navigateToLogin(){
-    this.router.navigateByUrl(`/security/${this.lang}/login`)
   };
 }
