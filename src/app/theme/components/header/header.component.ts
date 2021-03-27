@@ -1,5 +1,5 @@
 import { constants, resources } from 'src/app/core';
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { DOCUMENT } from '@angular/common';
@@ -9,16 +9,21 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
+  @Input() authorizedUser: boolean = false;
+
   isLogined = false;
   menuItems = [];
   lang: any;
   loginURL: string;
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
+    @Inject(DOCUMENT) private document: any,
+    private elementRef: ElementRef,
     private router: Router) { }
 
   ngOnInit() {
     this.loadResources();
+    this.checkViewAuthority();
     this.loginURL = `/security/${this.lang}/login`;
   }
 
@@ -33,8 +38,18 @@ export class HeaderComponent implements OnInit {
   };
 
   checkViewAuthority(){
-    if (this.router.url.includes('authed')) {
-      this.isLogined = true;
-    }
+    console.log(this.authorizedUser)
+    this.isLogined = this.authorizedUser;
+  };
+
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
   };
 }

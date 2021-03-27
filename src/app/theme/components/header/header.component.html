@@ -37,7 +37,7 @@
 
 
       <!-- Right Side Content / End -->
-      <div class="right-side">
+      <div *ngIf="!isLogined" class="right-side">
         <div class="header-widget" >
           <a [routerLink]="loginURL" style="cursor: pointer;" class="sign-in" >
             <i class="sl sl-icon-login"></i> Sign In
