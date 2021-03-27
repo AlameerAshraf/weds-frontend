@@ -10,6 +10,10 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
+        component: appComponents.AnonymousHomeComponent
+      },
+      {
+        path: 'home/app',
         component: appComponents.HomeComponent
       }
     ]
