@@ -102,12 +102,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     let userData = await this.getFormData();
 
     this.httpService.Post(signUpURL , {} , { "user" : userData }).subscribe((response: responseModel) => {
+      this.spinner.hide();
       if(!response.error){
-        this.spinner.hide();
         this.helpers.navigateToLogin();
       } else {
         let errors = errorBuilder.build(response.details);
-        this.buildErrorsInView(errors);
+        if(errors !== undefined)
+          this.buildErrorsInView(errors);
+        else
+          this.buildErrorsInView([ { message : response.details } ]);
       }
     });
   };
@@ -130,7 +133,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       errorBody = errorBody + `<li> ${anError.message} </li>`;
     });
 
-    document.getElementById('notifyMessage').innerHTML = `<ul> ${errorBody} </ul>`;;
+    document.getElementById('notifyMessage').innerHTML = `<ul style="list-style-type:none;margin: 0px;padding: 0px;"> ${errorBody} </ul>`;;
   };
 
   textChanged(){
