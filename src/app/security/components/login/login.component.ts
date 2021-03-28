@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.http.Post(loginURL , {} , { userCredentials: userCredentials }).subscribe((response: responseModel) => {
       this.spinner.hide();
       if(!response.error){
-        this.storage.setCookie('weds360#data' , response.data.token , '' , '');
+        this.storage.setLocalStorage('weds360#data' , response.data.token);
         this.storage.setLocalStorage('weds360#name' , response.data.info.name);
         this.storage.setLocalStorage('weds360#role' , btoa(response.data.info.name));
         this.storage.setLocalStorage('weds360#avatar' , response.data.info.avatar);
