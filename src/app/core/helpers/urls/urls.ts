@@ -10,4 +10,5 @@ export class urls {
 
   // Users ...
   public static get USER_SIGN_UP(): string { return this.BASE_URL + '/users/sign-up' };
+  public static get USER_SIGN_IN(): string { return this.BASE_URL + '/users/sign-in' };
 }

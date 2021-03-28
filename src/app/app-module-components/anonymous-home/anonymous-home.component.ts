@@ -7,10 +7,10 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './anonymous-home.component.html',
+  styleUrls: ['./anonymous-home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   // Animation variables!
   startTypingAnimation: boolean = true;
 

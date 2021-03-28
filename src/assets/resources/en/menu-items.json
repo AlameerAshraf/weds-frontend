@@ -1,154 +1,189 @@
-[
-  {
-    "name": "360 Planner",
-    "url": "",
-    "child": [
-      {
-        "name": "Check List",
-        "url": ""
-      },
-      {
-        "name": "Budgeter",
-        "url": ""
-      },
-      {
-        "name": "Registry List",
-        "url": ""
-      },
-      {
-        "name": "Guest List",
-        "url": ""
-      },
-      {
-        "name": "Wedding Website",
-        "url": ""
-      },
-      {
-        "name": "Couple Website",
-        "url": ""
-      },
-      {
-        "name": "More",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "name": "Her",
-    "url": "",
-    "child": [
-      {
-        "name": "Designers",
-        "url": ""
-      },
-      {
-        "name": "Bridal Boutique",
-        "url": ""
-      },
-      {
-        "name": "Wedding Dresses",
-        "url": ""
-      },
-      {
-        "name": "Rings",
-        "url": ""
-      },
-      {
-        "name": "Makeup Artists",
-        "url": ""
-      },
-      {
-        "name": "More",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "name": "Him",
-    "url": "",
-    "child": [
-      {
-        "name": "Suits",
-        "url": ""
-      },
-      {
-        "name": "Health",
-        "url": ""
-      },
-      {
-        "name": "Men's Grooming",
-        "url": ""
-      },
-      {
-        "name": "Fitness",
-        "url": ""
-      },
-      {
-        "name": "More",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "name": "The Wedding",
-    "url": "",
-    "child": [
-      {
-        "name": "Venues",
-        "url": ""
-      },
-      {
-        "name": "Outdoor Wedding Venues",
-        "url": ""
-      },
-      {
-        "name": "Videographers",
-        "url": ""
-      },
-      {
-        "name": "Photographers",
-        "url": ""
-      },
-      {
-        "name": "DJs",
-        "url": ""
-      },
-      {
-        "name": "More",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "name": "Gallery",
-    "url": "",
-    "child": [
-      {
-        "name": "Wedding Ideas",
-        "url": ""
-      },
-      {
-        "name": "More",
-        "url": ""
-      }
-    ]
-  },
-  {
-    "name": "Ideas & More",
-    "url": "",
-    "child": [
-      {
-        "name": "Tips & Etiquette",
-        "url": ""
-      },
-      {
-        "name": "Wedding Of The Week",
-        "url": ""
-      },
-      {
-        "name": "More",
-        "url": ""
-      }
-    ]
-  }
-]
+{
+  "menu" : [
+    {
+      "name": "360 Planner",
+      "url": "",
+      "child": [
+        {
+          "name": "Check List",
+          "url": ""
+        },
+        {
+          "name": "Budgeter",
+          "url": ""
+        },
+        {
+          "name": "Registry List",
+          "url": ""
+        },
+        {
+          "name": "Guest List",
+          "url": ""
+        },
+        {
+          "name": "Wedding Website",
+          "url": ""
+        },
+        {
+          "name": "Couple Website",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Her",
+      "url": "",
+      "child": [
+        {
+          "name": "Designers",
+          "url": ""
+        },
+        {
+          "name": "Bridal Boutique",
+          "url": ""
+        },
+        {
+          "name": "Wedding Dresses",
+          "url": ""
+        },
+        {
+          "name": "Rings",
+          "url": ""
+        },
+        {
+          "name": "Makeup Artists",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Him",
+      "url": "",
+      "child": [
+        {
+          "name": "Suits",
+          "url": ""
+        },
+        {
+          "name": "Health",
+          "url": ""
+        },
+        {
+          "name": "Men's Grooming",
+          "url": ""
+        },
+        {
+          "name": "Fitness",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "The Wedding",
+      "url": "",
+      "child": [
+        {
+          "name": "Venues",
+          "url": ""
+        },
+        {
+          "name": "Outdoor Wedding Venues",
+          "url": ""
+        },
+        {
+          "name": "Videographers",
+          "url": ""
+        },
+        {
+          "name": "Photographers",
+          "url": ""
+        },
+        {
+          "name": "DJs",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Gallery",
+      "url": "",
+      "child": [
+        {
+          "name": "Wedding Ideas",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Ideas & More",
+      "url": "",
+      "child": [
+        {
+          "name": "Tips & Etiquette",
+          "url": ""
+        },
+        {
+          "name": "Wedding Of The Week",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "actions" : [
+    {
+      "title" : "360 Planner",
+      "url" : "",
+      "icon" : "sl sl-icon-magic-wand"
+    },
+    {
+      "title" : "My Account",
+      "url" : "",
+      "icon" : "sl sl-icon-settings"
+    },
+    {
+      "title" : "My bookmarks",
+      "url" : "",
+      "icon" : "sl sl-icon-heart"
+    },
+    {
+      "title" : "Messages",
+      "url" : "",
+      "icon" : "sl sl-icon-envelope-open"
+    },
+    {
+      "title" : "English",
+      "url" : "",
+      "icon" : "",
+      "hasImage" : "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title" : "Logout",
+      "url" : "",
+      "icon" : "sl sl-icon-power"
+    }
+  ]
+}

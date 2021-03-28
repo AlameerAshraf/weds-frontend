@@ -6,14 +6,15 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { COMPONENTS, THEME_MODULE , NGX_SPINNER} from './app.imports';
+import { COMPONENTS, THEME_MODULE } from './app.imports';
 import { AppConfig, httpService, localStorageService, resources , ValidateService } from './core';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    COMPONENTS.HomeComponent,
+    COMPONENTS.AnonymousHomeComponent,
+    COMPONENTS.AuthorizedHomeComponent,
   ],
   imports: [
     BrowserModule,

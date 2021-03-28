@@ -1,3 +1,4 @@
+import { helper } from './../register/helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -11,6 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit, AfterViewInit {
+  translated = {};
   bkImage: string = 'assets/images/backgrounds/login/11.jpg';
   lang: any;
   requestEmailForm: any = null;
@@ -20,17 +22,28 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   // Logic variables
   emailSent: boolean = false;
   resetView: string;
+  helpers = new helper(this.router , this.actictedRoute , this.resources);
+
+  hasErrors = false;
+  hasWarnings = false;
+  hasInfo = false;
+  hasSuccessMessages = false;
+  showNotification = false;
 
 
   constructor(@Inject(DOCUMENT) private document: any, //private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
+    private router: Router,
     private resources: resources, private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
-    this.loadResources();
+  async ngOnInit() {
     this.initForm();
     this.initResetPasswordForm();
     this.getResetPasswordView();
+
+    let resourcesData = await this.helpers.loadResources();
+    this.lang = resourcesData.lang;
+    this.translated = resourcesData.translatedObject;
   };
 
   /** Get the status of the reset view 1- reset view email request, 2- reset password view. based on the routes */
@@ -39,7 +52,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
       let userToken = params["token"];
       this.resetView = (userToken == undefined) ? 'email-request' : 'password-reset';
     })
-  }
+  };
 
   /** Form functions */
   initForm() {
@@ -62,23 +75,6 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
     return this.resetPasswordForm.controls;
   };
 
-  /** Use this function at each view to load corrosponding resources! */
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
-
-  /** Binding scripts to the component.*/
-  ngAfterViewInit(): void {
-    const s = this.document.createElement('script');
-    s.type = 'text/javascript';
-    s.src = 'assets/scripts/custom.js';
-    this.elementRef.nativeElement.appendChild(s);
-  };
-
   /** toggle password. */
   togglePassword(){
     this.passwordHidden = !this.passwordHidden;
@@ -88,4 +84,32 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   resetMyPassword(){
 
   };
+
+
+  //#region Binding scripts to the component...
+  ngAfterViewInit(): void {
+    const s = this.document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'assets/scripts/custom.js';
+    this.elementRef.nativeElement.appendChild(s);
+  };
+  //#endregion
+
+  //#region Build Errors ..
+  buildErrorsInView(errors) {
+    this.showNotification = this.hasErrors = true;
+    let errorBody = '';
+
+    errors.forEach(anError => {
+      errorBody = errorBody + `<li> ${anError.message} </li>`;
+    });
+
+    document.getElementById('notifyMessage').innerHTML = `<ul> ${errorBody} </ul>`;;
+  };
+
+  textChanged(){
+    this.showNotification = false;
+  }
+  //#endregion
+
 }

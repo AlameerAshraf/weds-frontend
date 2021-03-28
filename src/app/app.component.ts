@@ -15,7 +15,8 @@ export class AppComponent {
 
   /** Navigate the user based on the credentials */
   initUserNavigation(){
-    let authCookies = this.storage.getCookie('WEDSUSER');
+    let authCookies = this.storage.getLocalStorage('weds360#data');
+    console.log(authCookies)
     if(authCookies == ''){
       if(!window.location.href.includes('security')){
         this.router.navigateByUrl(`/${environment.defaultLang}/home`);
