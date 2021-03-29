@@ -1,16 +1,19 @@
+import { Router } from '@angular/router';
+import { slideInOutAnimation } from './../../../core/helpers/animations/slideInOutAnimation';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-vendor',
-  templateUrl: './vendor.component.html',
-  styleUrls: ['./vendor.component.scss']
+  selector: 'app-list-of-categories',
+  templateUrl: './list-of-categories.component.html',
+  styleUrls: ['./list-of-categories.component.scss'],
+  animations: [slideInOutAnimation]
 })
-export class VendorComponent implements OnInit {
+export class ListOfCategoriesComponent implements OnInit {
   isSearchExpanded = false;
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef,) { }
+    private elementRef: ElementRef, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +25,10 @@ export class VendorComponent implements OnInit {
 
   pageChange(pageNumber: number) {
     console.log(pageNumber);
+  };
+
+  navigateToVendorsList(categoryName){
+    this.router.navigate([`segment/en/all-vendors/${categoryName}`]);
   }
 
   ngAfterViewInit(): void {

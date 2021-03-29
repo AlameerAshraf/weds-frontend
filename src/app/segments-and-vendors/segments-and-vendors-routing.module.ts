@@ -5,8 +5,12 @@ import * as segmentAndVendorComponents from './components';
 
 const routes: Routes = [
   {
-    path: ':segmentName',
-    component: segmentAndVendorComponents.SegmentComponent
+    path: 'all-categories/:segmentName',
+    component: segmentAndVendorComponents.ListOfCategoriesComponent //List of categories in segment.
+  },
+  {
+    path: 'all-vendors/:categorName',
+    component: segmentAndVendorComponents.ListOfVendorsComponent // List of vendors in category.
   }
 ];
 
