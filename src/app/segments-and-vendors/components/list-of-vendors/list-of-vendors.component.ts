@@ -1,10 +1,12 @@
+import { slideInOutAnimation } from './../../../core/helpers/animations/slideInOutAnimation';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-of-vendors',
   templateUrl: './list-of-vendors.component.html',
-  styleUrls: ['./list-of-vendors.component.scss']
+  styleUrls: ['./list-of-vendors.component.scss'],
+  animations: [slideInOutAnimation]
 })
 export class ListOfVendorsComponent implements OnInit {
   isSearchExpanded = false;
