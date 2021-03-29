@@ -1,33 +1,33 @@
-import { slideInOutAnimation } from './../../../core';
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
+import { slideInOutAnimation } from './../../../core/helpers/animations/slideInOutAnimation';
 import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-segment',
-  templateUrl: './segment.component.html',
-  styleUrls: ['./segment.component.scss'],
+  selector: 'app-list-of-categories',
+  templateUrl: './list-of-categories.component.html',
+  styleUrls: ['./list-of-categories.component.scss'],
   animations: [slideInOutAnimation]
 })
-export class SegmentComponent implements OnInit {
+export class ListOfCategoriesComponent implements OnInit {
   isSearchExpanded = false;
 
   constructor(@Inject(DOCUMENT) private document: any,
-  private elementRef: ElementRef,) { }
+    private elementRef: ElementRef,) { }
 
   ngOnInit() {
   }
 
-  showCategories(event: any){
+  showCategories(event: any) {
     event.stopPropagation();
     this.isSearchExpanded = !this.isSearchExpanded;
   };
 
-  pageChange(pageNumber: number){
+  pageChange(pageNumber: number) {
     console.log(pageNumber);
   }
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/custom.js'];
+    let scripts = ['assets/scripts/sideBarSlider.js', 'assets/scripts/custom.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');

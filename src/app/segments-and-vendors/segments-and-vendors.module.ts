@@ -14,7 +14,6 @@ import { NGX_SPINNER , COMPONENTS , THEME_MODULE} from './segments-and-vendors.i
     COMPONENTS.VendorComponent,
     COMPONENTS.SegmentComponent,
     COMPONENTS.SearchResultsComponent,
-    COMPONENTS.CategoryComponent
   ],
   imports: [
     CommonModule,
