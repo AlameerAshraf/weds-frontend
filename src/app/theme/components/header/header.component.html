@@ -22,10 +22,10 @@
         <!-- Main Navigation -->
         <nav id="navigation" class="style-1">
           <ul id="responsive">
-            <li *ngFor="let item of menuItems"><a href="#">{{ item.name }}</a>
+            <li *ngFor="let item of menuItems"><a>{{ item.name }}</a>
               <ul>
-                <li *ngFor="let we of item.child">
-                  <a href="index.html">{{ we.name }}</a>
+                <li *ngFor="let subItem of item.child">
+                  <a [routerLink]="['../../../'+subItem.url]">{{ subItem.name }}</a>
                 </li>
               </ul>
             </li>
