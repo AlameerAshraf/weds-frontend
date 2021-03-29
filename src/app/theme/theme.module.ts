@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     themeComponents.HeaderComponent,
-    themeComponents.FooterComponent
+    themeComponents.FooterComponent,
+    themeComponents.PagingComponent,
   ],
   exports: [
     themeComponents.HeaderComponent,
-    themeComponents.FooterComponent
+    themeComponents.FooterComponent,
+    themeComponents.PagingComponent,
   ],
   imports: [
     CommonModule,

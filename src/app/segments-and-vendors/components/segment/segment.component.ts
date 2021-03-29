@@ -17,10 +17,14 @@ export class SegmentComponent implements OnInit {
   ngOnInit() {
   }
 
-  showCategories(event){
+  showCategories(event: any){
     event.stopPropagation();
     this.isSearchExpanded = !this.isSearchExpanded;
   };
+
+  pageChange(pageNumber: number){
+    console.log(pageNumber);
+  }
 
   ngAfterViewInit(): void {
     let scripts = ['assets/scripts/sideBarSlider.js' , 'assets/scripts/custom.js'];

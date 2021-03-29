@@ -1,0 +1,26 @@
+<div class="pagination-container margin-top-20 margin-bottom-40">
+  <nav class="pagination">
+    <ul>
+      <li style="cursor: pointer;" *ngIf="showPrevSliderNavigator" >
+        <a (click)="getPrevSlider()">
+          <i class="sl sl-icon-arrow-left"></i>
+        </a>
+      </li>
+
+
+      <ng-container *ngFor="let page of sliderOnView">
+        <li>
+          <a style="cursor: pointer;" (click)="changeSelectedPage(page)"
+            [ngClass]="{'current-page': page == activePage}">{{ page }}</a>
+        </li>
+      </ng-container>
+
+      <li style="cursor: pointer;" *ngIf="showNextSliderNavigator">
+        <a (click)="getNextSlider()">
+          <i class="sl sl-icon-arrow-right"></i>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+</div>
