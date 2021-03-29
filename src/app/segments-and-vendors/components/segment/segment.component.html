@@ -1,2 +1,152 @@
+<weds-header [authorizedUser]="false"></weds-header>
 
-<p>Segemnt works !</p>
+<!-- Header Text -->
+<div id="titlebar" class="gradient" style="margin-bottom: 24px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>We care about you little angel! <i style="color: #046B69;" class="fa fa-fw"></i></h2>
+        <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search bar -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="main-search-input gray-style margin-top-0 margin-bottom-10">
+
+        <div class="main-search-input-item">
+          <input type="text" placeholder="What are you looking for?" value="" />
+        </div>
+
+        <div class="main-search-input-item location">
+          <div id="autocomplete-container">
+            <input id="autocomplete-input" type="text" placeholder="Location">
+          </div>
+          <a href="#"><i class="fa fa-map-marker"></i></a>
+        </div>
+
+        <div class="main-search-input-item">
+          <select data-placeholder="All Categories" class="chosen-select">
+            <option>All Categories</option>
+            <option>Shops</option>
+            <option>Hotels</option>
+            <option>Restaurants</option>
+            <option>Fitness</option>
+            <option>Events</option>
+          </select>
+        </div>
+
+        <button class="button">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+
+    <!-- Sorting - Filtering Section -->
+    <div class="row margin-bottom-25 margin-top-30">
+
+      <div class="col-md-6">
+        <!-- Layout Switcher -->
+        <div class="layout-switcher">
+          <a href="#" class="grid active"><i class="fa fa-th"></i></a>
+          <a href="listings-list-full-width.html" class="list"><i class="fa fa-align-justify"></i></a>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="fullwidth-filters">
+          <!-- Panel Dropdown -->
+          <div class="sort-by">
+            <a data-open-title="Categories" data-close-title="Categories" (click)="showCategories($event)"
+              class="sort-by-select more-search-options-trigger " style="margin-top: 4px; cursor: pointer;"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div [@slideInOut]="isSearchExpanded ? 'in' : 'out'" class="fullwidth-carousel-container margin-top-25">
+  <div class="fullwidth-slick-carousel category-carousel">
+
+    <!-- Item -->
+    <div style="    width: 200px; height: 200px;" class="fw-carousel-item">
+      <div class="category-box-container">
+        <a href="listings-half-screen-map-grid-1.html" class="category-box"
+          data-background-image="images/category-box-01.jpg">
+          <div class="category-box-content">
+            <h3>Hotels</h3>
+            <span>64 listings</span>
+          </div>
+          <span class="category-box-btn">Browse</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div style="    width: 200px;height: 200px;" class="fw-carousel-item">
+      <div class="category-box-container">
+        <a href="listings-half-screen-map-grid-1.html" class="category-box"
+          data-background-image="images/category-box-03.jpg">
+          <div class="category-box-content">
+            <h3>Events</h3>
+            <span>67 listings</span>
+          </div>
+          <span class="category-box-btn">Browse</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div style="    width: 200px;height: 200px;" class="fw-carousel-item">
+      <div class="category-box-container">
+        <a href="listings-half-screen-map-grid-1.html" class="category-box"
+          data-background-image="images/category-box-04.jpg">
+          <div class="category-box-content">
+            <h3>Fitness</h3>
+            <span>27 listings</span>
+          </div>
+          <span class="category-box-btn">Browse</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div style="    width: 200px;height: 200px;" class="fw-carousel-item">
+      <div class="category-box-container">
+        <a href="listings-half-screen-map-list.html" class="category-box"
+          data-background-image="images/category-box-05.jpg">
+          <div class="category-box-content">
+            <h3>Nightlife</h3>
+            <span>22 listings</span>
+          </div>
+          <span class="category-box-btn">Browse</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div  style="    width: 250px;height: 200px;" class="fw-carousel-item">
+      <div class="category-box-container">
+        <a href="listings-half-screen-map-list.html" class="category-box"
+          data-background-image="images/category-box-06.jpg">
+          <div class="category-box-content">
+            <h3>Eat & Drink</h3>
+            <span>130 listings</span>
+          </div>
+          <span class="category-box-btn">Browse</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<weds-footer></weds-footer>
