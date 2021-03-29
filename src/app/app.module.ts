@@ -19,9 +19,9 @@ import { AppConfig, httpService, localStorageService, resources , ValidateServic
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     THEME_MODULE,
     AppRoutingModule,
-    HttpClientModule,
   ],
   providers: [
     localStorageService,
