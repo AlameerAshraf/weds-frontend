@@ -4,6 +4,31 @@ import { urls } from '../urls';
 export class constants {
   public static _config: AppConfig;
 
+  public static get CATEGORIES() {
+    return [
+      {
+        id: "1",
+        name: "For Him"
+      },
+      {
+        id: "2",
+        name: "For Her"
+      },
+      {
+        id: "3",
+        name: "Wedding"
+      },
+      {
+        id: "4",
+        name: "Photos"
+      },
+      {
+        id: "5",
+        name: "Posts"
+      }
+    ]
+  };
+  
   //** This is the mapper for the current view name, and the resources file! */
   public static get VIEWS(){
     return {
