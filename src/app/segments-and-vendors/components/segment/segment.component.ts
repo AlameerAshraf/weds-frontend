@@ -1,5 +1,5 @@
 import { slideInOutAnimation } from './../../../core';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -11,7 +11,8 @@ import { DOCUMENT } from '@angular/common';
 export class SegmentComponent implements OnInit {
   isSearchExpanded = false;
 
-  constructor(@Inject(DOCUMENT) private document: any) { }
+  constructor(@Inject(DOCUMENT) private document: any,
+  private elementRef: ElementRef,) { }
 
   ngOnInit() {
   }
@@ -19,5 +20,16 @@ export class SegmentComponent implements OnInit {
   showCategories(event){
     event.stopPropagation();
     this.isSearchExpanded = !this.isSearchExpanded;
-  }
+  };
+
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/sideBarSlider.js' , 'assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  };
 }

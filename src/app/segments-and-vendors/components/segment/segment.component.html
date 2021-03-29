@@ -44,108 +44,322 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div class="col-md-12">
 
-    <!-- Sorting - Filtering Section -->
-    <div class="row margin-bottom-25 margin-top-30">
+<div class="container">
+	<div class="row">
 
-      <div class="col-md-6">
-        <!-- Layout Switcher -->
-        <div class="layout-switcher">
-          <a href="#" class="grid active"><i class="fa fa-th"></i></a>
-          <a href="listings-list-full-width.html" class="list"><i class="fa fa-align-justify"></i></a>
-        </div>
-      </div>
+		<div class="col-lg-9 col-md-8 padding-right-30">
 
-      <div class="col-md-6">
-        <div class="fullwidth-filters">
-          <!-- Panel Dropdown -->
+			<!-- Sorting / Layout Switcher -->
+			<div class="row margin-bottom-25">
+
+				<div class="col-md-6 col-xs-6">
+					<!-- Layout Switcher -->
+					<div class="layout-switcher">
+						<a href="#" class="grid active"><i class="fa fa-th"></i></a>
+						<a href="listings-list-with-sidebar.html" class="list"><i class="fa fa-align-justify"></i></a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-xs-6">
+					<!-- Sort by -->
           <div class="sort-by">
             <a data-open-title="Categories" data-close-title="Categories" (click)="showCategories($event)"
               class="sort-by-select more-search-options-trigger " style="margin-top: 4px; cursor: pointer;"></a>
           </div>
+				</div>
+			</div>
+
+      <div class="row">
+        <div [@slideInOut]="isSearchExpanded ? 'in' : 'out'" class="fullwidth-carousel-container">
+          <div class="fullwidth-slick-carousel category-carousel">
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-grid-1.html" class="category-box"
+                  data-background-image="images/category-box-01.jpg">
+                  <div class="category-box-content">
+                    <h3>Hotels</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-grid-1.html" class="category-box"
+                  data-background-image="images/category-box-03.jpg">
+                  <div class="category-box-content">
+                    <h3>Events</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-grid-1.html" class="category-box"
+                  data-background-image="images/category-box-04.jpg">
+                  <div class="category-box-content">
+                    <h3>Fitness</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-list.html" class="category-box"
+                  data-background-image="images/category-box-05.jpg">
+                  <div class="category-box-content">
+                    <h3>Nightlife</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div  style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-list.html" class="category-box"
+                  data-background-image="images/category-box-06.jpg">
+                  <div class="category-box-content">
+                    <h3>Eat & Drink</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
+			<!-- Sorting / Layout Switcher / End -->
 
-<div [@slideInOut]="isSearchExpanded ? 'in' : 'out'" class="fullwidth-carousel-container margin-top-25">
-  <div class="fullwidth-slick-carousel category-carousel">
+			<div class="row">
 
-    <!-- Item -->
-    <div style="    width: 200px; height: 200px;" class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-grid-1.html" class="category-box"
-          data-background-image="images/category-box-01.jpg">
-          <div class="category-box-content">
-            <h3>Hotels</h3>
-            <span>64 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
+				<!-- Listing Item -->
+				<div class="col-lg-4 col-md-6">
+					<a href="listings-single-page.html" class="listing-item-container compact">
+						<div class="listing-item">
+							<img src="https://weds360-production.s3.eu-west-1.amazonaws.com/store/category/36/image/large-0afc36248e2ca034ac4358342b776733.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3XIBZMGBAF2YAFWK%2F20210329%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210329T061111Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=d0ff18588d97db2c17396ca86928609403ff0d37e69a3340b929e4902858943c" alt="">
 
-    <!-- Item -->
-    <div style="    width: 200px;height: 200px;" class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-grid-1.html" class="category-box"
-          data-background-image="images/category-box-03.jpg">
-          <div class="category-box-content">
-            <h3>Events</h3>
-            <span>67 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
+							<div class="listing-badge now-open">Now Open</div>
 
-    <!-- Item -->
-    <div style="    width: 200px;height: 200px;" class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-grid-1.html" class="category-box"
-          data-background-image="images/category-box-04.jpg">
-          <div class="category-box-content">
-            <h3>Fitness</h3>
-            <span>27 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
+							<div class="listing-item-content">
+								<div class="numerical-rating" data-rating="3.5"></div>
+								<h3>Tom's Restaurant <i class="verified-icon"></i></h3>
+								<span>964 School Street, New York</span>
+							</div>
+							<span class="like-icon"></span>
+						</div>
+					</a>
+				</div>
+				<!-- Listing Item / End -->
 
-    <!-- Item -->
-    <div style="    width: 200px;height: 200px;" class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-list.html" class="category-box"
-          data-background-image="images/category-box-05.jpg">
-          <div class="category-box-content">
-            <h3>Nightlife</h3>
-            <span>22 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
+				<!-- Listing Item -->
+				<div class="col-lg-4 col-md-6">
+					<a href="listings-single-page.html" class="listing-item-container compact">
+						<div class="listing-item">
+							<img src="images/listing-item-02.jpg" alt="">
+							<div class="listing-item-details">
+								<ul>
+									<li>Friday, August 10</li>
+								</ul>
+							</div>
+							<div class="listing-item-content">
+								<div class="numerical-rating" data-rating="5.0"></div>
+								<h3>Sticky Band</h3>
+								<span>Bishop Avenue, New York</span>
+							</div>
+							<span class="like-icon"></span>
+						</div>
+					</a>
+				</div>
+				<!-- Listing Item / End -->
 
-    <!-- Item -->
-    <div  style="    width: 250px;height: 200px;" class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-list.html" class="category-box"
-          data-background-image="images/category-box-06.jpg">
-          <div class="category-box-content">
-            <h3>Eat & Drink</h3>
-            <span>130 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
+				<!-- Listing Item -->
+				<div class="col-lg-4 col-md-6">
+					<a href="listings-single-page.html" class="listing-item-container compact">
+						<div class="listing-item">
+							<img src="images/listing-item-03.jpg" alt="">
+							<div class="listing-item-details">
+								<ul>
+									<li>Starting from $59 per night</li>
+								</ul>
+							</div>
+							<div class="listing-item-content">
+								<div class="numerical-rating" data-rating="2.0"></div>
+								<h3>Hotel Govendor</h3>
+								<span>778 Country Street, New York</span>
+							</div>
+							<span class="like-icon"></span>
+						</div>
 
-  </div>
+					</a>
+				</div>
+				<!-- Listing Item / End -->
+
+				<!-- Listing Item -->
+				<div class="col-lg-4 col-md-6">
+					<a href="listings-single-page.html" class="listing-item-container compact">
+						<div class="listing-item">
+							<img src="images/listing-item-04.jpg" alt="">
+
+							<div class="listing-badge now-open">Now Open</div>
+
+							<div class="listing-item-content">
+								<div class="numerical-rating" data-rating="5.0"></div>
+								<h3>Burger House <i class="verified-icon"></i></h3>
+								<span>2726 Shinn Street, New York</span>
+							</div>
+							<span class="like-icon"></span>
+						</div>
+					</a>
+				</div>
+				<!-- Listing Item / End -->
+
+				<!-- Listing Item -->
+				<div class="col-lg-4 col-md-6">
+					<a href="listings-single-page.html" class="listing-item-container compact">
+						<div class="listing-item">
+							<img src="images/listing-item-05.jpg" alt="">
+							<div class="listing-item-content">
+								<div class="numerical-rating" data-rating="3.5"></div>
+								<h3>Airport</h3>
+								<span>1512 Duncan Avenue, New York</span>
+							</div>
+							<span class="like-icon"></span>
+						</div>
+					</a>
+				</div>
+				<!-- Listing Item / End -->
+
+				<!-- Listing Item -->
+				<div class="col-lg-4 col-md-6">
+					<a href="listings-single-page.html" class="listing-item-container compact">
+						<div class="listing-item">
+							<img src="images/listing-item-06.jpg" alt="">
+
+							<div class="listing-badge now-closed">Now Closed</div>
+
+							<div class="listing-item-content">
+								<div class="numerical-rating" data-rating="4.5"></div>
+								<h3>Think Coffee</h3>
+								<span>215 Terry Lane, New York</span>
+							</div>
+							<span class="like-icon"></span>
+						</div>
+					</a>
+				</div>
+				<!-- Listing Item / End -->
+
+			</div>
+
+			<!-- Pagination -->
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<!-- Pagination -->
+					<div class="pagination-container margin-top-20 margin-bottom-40">
+						<nav class="pagination">
+							<ul>
+
+								<li><a href="#" class="current-page">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- Sidebar -->
+		<div class="col-lg-3 col-md-4 sticky">
+			<div class="sidebar ">
+				<div class="widget margin-bottom-40" style="margin-top: 17px;">
+					<h3 class="margin-top-0 margin-bottom-30">Promoted Vendors</h3>
+
+				<!-- Listing Item -->
+				<div class="col-lg-12">
+					<div class="slideshow-container">
+
+						<div class="mySlides fade">
+							<a href="listings-single-page.html" class="listing-item-container compact">
+								<div class="listing-item">
+									<img src="https://weds360-production.s3.eu-west-1.amazonaws.com/store/category/3/image/large-8396f963bebc748c1b5e55101df390c8.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3XIBZMGBAF2YAFWK%2F20210329%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210329T061111Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=84ee467168694b1777f7fd63e57b2f5d486bb27340b74f82c1ecc56e006b7e35" alt="">
+
+									<div class="listing-badge now-open">Now Open</div>
+
+									<div class="listing-item-content">
+										<div class="numerical-rating" data-rating="3.5"></div>
+										<h3>Alameer Ashraf <i class="verified-icon"></i></h3>
+									</div>
+									<span class="like-icon"></span>
+								</div>
+							</a>
+						</div>
+
+						<div class="mySlides fade">
+							<a href="listings-single-page.html" class="listing-item-container compact">
+								<div class="listing-item">
+									<img src="https://weds360-production.s3.eu-west-1.amazonaws.com/store/category/25/image/large-824fe185bee84d0c68f35a56b1f456df.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3XIBZMGBAF2YAFWK%2F20210329%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210329T061111Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=6a924dec5cd3258943aaf33b4a79dad89ade60097ec3b9f2bb01ac2dd852dcaa" alt="">
+
+									<div class="listing-badge now-open">Now Open</div>
+
+									<div class="listing-item-content">
+										<div class="numerical-rating" data-rating="3.5"></div>
+										<h3>Mohamed Assaf <i class="verified-icon"></i></h3>
+									</div>
+									<span class="like-icon"></span>
+								</div>
+							</a>
+						</div>
+
+						<div class="mySlides fade">
+							<a href="listings-single-page.html" class="listing-item-container compact">
+								<div class="listing-item">
+									<img src="https://weds360-production.s3.eu-west-1.amazonaws.com/store/category/36/image/large-0afc36248e2ca034ac4358342b776733.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3XIBZMGBAF2YAFWK%2F20210329%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210329T061111Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=d0ff18588d97db2c17396ca86928609403ff0d37e69a3340b929e4902858943c" alt="">
+
+									<div class="listing-badge now-open">Now Open</div>
+
+									<div class="listing-item-content">
+										<div class="numerical-rating" data-rating="3.5"></div>
+										<h3>Mayan Alameer <i class="verified-icon"></i></h3>
+									</div>
+									<span class="like-icon"></span>
+								</div>
+							</a>
+						</div>
+
+						<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+						<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+						</div>
+
+						<div style="text-align:center">
+						  <span class="dot" onclick="currentSlide(1)"></span>
+						  <span class="dot" onclick="currentSlide(2)"></span>
+						  <span class="dot" onclick="currentSlide(3)"></span>
+						</div>
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
 </div>
 
 
