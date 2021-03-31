@@ -16,11 +16,12 @@ export class AppComponent {
   /** Navigate the user based on the credentials */
   initUserNavigation(){
     let authCookies = this.storage.getLocalStorage('weds360#data');
-    console.log(authCookies)
-    if(authCookies == ''){
+    if(authCookies == '' || authCookies == undefined){
       if(!window.location.href.includes('security')){
         this.router.navigateByUrl(`/${environment.defaultLang}/home`);
       }
+    } else {
+      this.router.navigateByUrl(`/${environment.defaultLang}/home/app`);
     }
   };
 }
