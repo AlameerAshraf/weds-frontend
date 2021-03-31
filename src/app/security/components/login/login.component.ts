@@ -68,24 +68,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   /** Login current user to weds360! */
   login(){
     this.spinner.show();
-    let loginURL = `${urls.USER_SIGN_IN}/${constants.APP_IDENTITY_FOR_USERS}`;
-    let userCredentials = this.getFormData();
-    this.http.Post(loginURL , {} , { userCredentials: userCredentials }).subscribe((response: responseModel) => {
+
+    setTimeout(() => {
       this.spinner.hide();
-      if(!response.error){
-        this.storage.setLocalStorage('weds360#data' , response.data.token);
-        this.storage.setLocalStorage('weds360#name' , response.data.info.name);
-        this.storage.setLocalStorage('weds360#role' , btoa(response.data.info.name));
-        this.storage.setLocalStorage('weds360#avatar' , response.data.info.avatar);
-        this.storage.setLocalStorage('weds360#email' , btoa(response.data.info.email));
-      } else {
-        let errors = errorBuilder.build(response.details);
-        if(errors !== undefined)
-          this.buildErrorsInView(errors);
-        else
-          this.buildErrorsInView([ { message : response.details } ]);
-      }
-    })
+      this.storage.setLocalStorage('weds360#data' , "wdwdwdwdwdwdwd");
+      this.storage.setLocalStorage('weds360#name' , "Alameer Ashraf");
+      this.storage.setLocalStorage('weds360#role' , "User");
+      this.storage.setLocalStorage('weds360#avatar' , "");
+      this.storage.setLocalStorage('weds360#email' , "alameer.ashraf@gmail.com");
+    }, 3000);
   };
 
   //#region Binding scripts to the component.

@@ -3,7 +3,7 @@ import { Inject, AfterViewInit, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { constants, resources } from 'src/app/core';
 import { environment } from '../../../environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private resources: resources,
-    private actictedRoute: ActivatedRoute) {
+    private actictedRoute: ActivatedRoute, private router: Router) {
     this.loadResources();
   }
 
@@ -32,6 +32,10 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
     let resData = await this.resources.load(resourceLang , constants.VIEWS["HOME_LAYOUT"]);
   };
+
+  navigateToLogin(){
+    this.router.navigateByUrl('security/en/login')
+  }
 
   ngAfterViewInit(): void {
     let scripts = ['assets/scripts/typedwords.js' , 'assets/scripts/custom.js'];
