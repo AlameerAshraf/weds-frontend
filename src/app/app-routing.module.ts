@@ -27,6 +27,11 @@ const routes: Routes = [
     path: 'segment/:lang',
     loadChildren: () => import('./segments-and-vendors/segments-and-vendors.module')
       .then(m => m.SegmentsAndVendorsModule)
+  },
+  {
+    path: 'profile/:lang',
+    loadChildren: () => import('./profile/profile.module')
+      .then(m => m.ProfileModule)
   }
 ];
 
