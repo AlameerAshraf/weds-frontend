@@ -21,7 +21,7 @@ export class AppComponent {
         this.router.navigateByUrl(`/${environment.defaultLang}/home`);
       }
     } else {
-      this.router.navigateByUrl(`/${environment.defaultLang}/home/app`);
+      //this.router.navigateByUrl(`/${environment.defaultLang}/home/app`);
     }
   };
 }

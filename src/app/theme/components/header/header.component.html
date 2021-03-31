@@ -55,11 +55,11 @@
             <ul>
               <ng-container  *ngFor="let link of profileLinks">
                 <li *ngIf="!link.hasImage">
-                  <a [routerLink]="link.url"><i [class]="link.icon"></i>{{ link.title }}</a>
+                  <a [routerLink]="['../../../'+link.url]"><i [class]="link.icon"></i>{{ link.title }}</a>
                 </li>
 
                   <li *ngIf="link.hasImage">
-                    <a [routerLink]="link.url"> <img style="max-width: 17%;" [src]="link.hasImage"> {{ link.title }}</a>
+                    <a [routerLink]="['../../../'+link.url]"> <img style="max-width: 17%;" [src]="link.hasImage"> {{ link.title }}</a>
                   </li>
               </ng-container>
             </ul>

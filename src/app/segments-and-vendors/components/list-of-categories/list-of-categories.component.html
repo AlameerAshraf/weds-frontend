@@ -20,11 +20,15 @@
         <div class="main-search-input-item">
           <select data-placeholder="All Categories" class="chosen-select">
             <option>All Categories</option>
-            <option>Shops</option>
-            <option>Hotels</option>
-            <option>Restaurants</option>
+            <option>Designers</option>
+            <option>Bridal Boutique</option>
+            <option>Wedding Dresses</option>
+            <option>Rings</option>
+            <option>Suits</option>
+            <option>Health</option>
+            <option>Men's Grooming</option>
             <option>Fitness</option>
-            <option>Events</option>
+            <option>Makeup</option>
           </select>
         </div>
 
@@ -62,25 +66,12 @@
           <div class="fullwidth-slick-carousel category-carousel">
 
             <!-- Item -->
-            <div style="height: 250px;" class="fw-carousel-item">
-              <div class="category-box-container">
-                <a (click)="navigateToVendorsList('cat')" class="category-box"
-                  data-background-image="images/category-box-01.jpg">
-                  <div class="category-box-content">
-                    <h3>Hotels</h3>
-                  </div>
-                  <span class="category-box-btn">Browse</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Item -->
-            <div style="height: 250px;" class="fw-carousel-item">
+            <div class="fw-carousel-item">
               <div class="category-box-container">
                 <a href="listings-half-screen-map-grid-1.html" class="category-box"
-                  data-background-image="images/category-box-03.jpg">
+                  data-background-image="assets/images/tests/6.png">
                   <div class="category-box-content">
-                    <h3>Events</h3>
+                    <h3>Designers</h3>
                   </div>
                   <span class="category-box-btn">Browse</span>
                 </a>
@@ -88,12 +79,12 @@
             </div>
 
             <!-- Item -->
-            <div style="height: 250px;" class="fw-carousel-item">
+            <div class="fw-carousel-item">
               <div class="category-box-container">
                 <a href="listings-half-screen-map-grid-1.html" class="category-box"
-                  data-background-image="images/category-box-04.jpg">
+                  data-background-image="assets/images/tests/5.png">
                   <div class="category-box-content">
-                    <h3>Fitness</h3>
+                    <h3>Bridal Boutique</h3>
                   </div>
                   <span class="category-box-btn">Browse</span>
                 </a>
@@ -101,12 +92,12 @@
             </div>
 
             <!-- Item -->
-            <div style="height: 250px;" class="fw-carousel-item">
+            <div class="fw-carousel-item">
               <div class="category-box-container">
-                <a href="listings-half-screen-map-list.html" class="category-box"
-                  data-background-image="images/category-box-05.jpg">
+                <a href="listings-half-screen-map-grid-1.html" class="category-box"
+                  data-background-image="assets/images/tests/4.png">
                   <div class="category-box-content">
-                    <h3>Nightlife</h3>
+                    <h3>Wedding Dresses</h3>
                   </div>
                   <span class="category-box-btn">Browse</span>
                 </a>
@@ -114,12 +105,38 @@
             </div>
 
             <!-- Item -->
-            <div style="height: 250px;" class="fw-carousel-item">
+            <div class="fw-carousel-item">
               <div class="category-box-container">
                 <a href="listings-half-screen-map-list.html" class="category-box"
-                  data-background-image="images/category-box-06.jpg">
+                  data-background-image="assets/images/tests/3.jpg">
                   <div class="category-box-content">
-                    <h3>Eat & Drink</h3>
+                    <h3>Rings</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-list.html" class="category-box"
+                  data-background-image="assets/images/tests/1.jpg">
+                  <div class="category-box-content">
+                    <h3>Suits</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-list.html" class="category-box"
+                  data-background-image="assets/images/tests/2.png">
+                  <div class="category-box-content">
+                    <h3>Health</h3>
                   </div>
                   <span class="category-box-btn">Browse</span>
                 </a>
@@ -136,14 +153,13 @@
           <div class="col-lg-4 col-md-6">
             <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-01.jpg" alt="">
+                <img src="assets/images/backgrounds/login/10.jpg" alt="">
 
                 <div class="listing-badge now-open">Now Open</div>
 
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="3.5"></div>
                   <h3>Tom's Restaurant <i class="verified-icon"></i></h3>
-                  <span>964 School Street, New York</span>
                 </div>
                 <span class="like-icon"></span>
               </div>
@@ -151,18 +167,12 @@
           </div>
 
           <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-02.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Friday, August 10</li>
-                  </ul>
-                </div>
+                <img src="assets/images/backgrounds/login/3.jpg" alt="">
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="5.0"></div>
                   <h3>Sticky Band</h3>
-                  <span>Bishop Avenue, New York</span>
                 </div>
                 <span class="like-icon"></span>
               </div>
@@ -170,18 +180,13 @@
           </div>
 
           <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
+                <img src="assets/images/backgrounds/login/7.jpg" alt="">
+
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="2.0"></div>
                   <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
                 </div>
                 <span class="like-icon"></span>
               </div>
@@ -189,18 +194,12 @@
             </a>
           </div>
           <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
+                <img src="assets/images/backgrounds/login/11.jpg" alt="">
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="2.0"></div>
                   <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
                 </div>
                 <span class="like-icon"></span>
               </div>
@@ -209,18 +208,13 @@
           </div>
 
           <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
+                <img src="assets/images/backgrounds/login/9.jpg" alt="">
+
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="2.0"></div>
                   <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
                 </div>
                 <span class="like-icon"></span>
               </div>
@@ -228,18 +222,12 @@
             </a>
           </div>
           <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
+                <img src="assets/images/backgrounds/login/6.png" alt="">
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="2.0"></div>
                   <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
                 </div>
                 <span class="like-icon"></span>
               </div>
@@ -247,18 +235,12 @@
             </a>
           </div>
           <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
+                <img src="assets/images/backgrounds/login/3.png" alt="">
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="2.0"></div>
                   <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
                 </div>
                 <span class="like-icon"></span>
               </div>
@@ -266,14 +248,10 @@
             </a>
           </div>
           <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
               <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
+                <img src="assets/images/backgrounds/login/3.png" alt="">
+
                 <div class="listing-item-content">
                   <div class="numerical-rating" data-rating="2.0"></div>
                   <h3>Hotel Govendor</h3>

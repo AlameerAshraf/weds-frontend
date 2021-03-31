@@ -40,23 +40,23 @@
       "child": [
         {
           "name": "Designers",
-          "url": ""
+          "url": "segment/en/all-categories/her"
         },
         {
           "name": "Bridal Boutique",
-          "url": ""
+          "url": "segment/en/all-categories/her"
         },
         {
           "name": "Wedding Dresses",
-          "url": ""
+          "url": "segment/en/all-categories/her"
         },
         {
           "name": "Rings",
-          "url": ""
+          "url": "segment/en/all-categories/her"
         },
         {
           "name": "Makeup Artists",
-          "url": ""
+          "url": "segment/en/all-categories/her"
         },
         {
           "name": "More",
@@ -156,22 +156,22 @@
   "actions" : [
     {
       "title" : "360 Planner",
-      "url" : "",
+      "url" : "profile/en/user/messages",
       "icon" : "sl sl-icon-magic-wand"
     },
     {
       "title" : "My Account",
-      "url" : "",
+      "url" : "profile/en/user/overview",
       "icon" : "sl sl-icon-settings"
     },
     {
       "title" : "My bookmarks",
-      "url" : "",
+      "url" : "profile/en/user/messages",
       "icon" : "sl sl-icon-heart"
     },
     {
       "title" : "Messages",
-      "url" : "",
+      "url" : "profile/en/user/overview",
       "icon" : "sl sl-icon-envelope-open"
     },
     {
@@ -182,7 +182,7 @@
     },
     {
       "title" : "Logout",
-      "url" : "",
+      "url" : "profile/en/user/overview",
       "icon" : "sl sl-icon-power"
     }
   ]
