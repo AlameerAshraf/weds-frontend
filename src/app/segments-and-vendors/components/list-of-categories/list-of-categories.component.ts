@@ -32,7 +32,7 @@ export class ListOfCategoriesComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/sideBarSlider.js', 'assets/scripts/custom.js'];
+    let scripts = ['assets/scripts/custom.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');

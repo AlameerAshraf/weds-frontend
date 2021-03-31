@@ -1,9 +1,9 @@
 <weds-header [authorizedUser]="false"></weds-header>
 
-<!-- Search bar -->
-<div class="container" style="margin-top: 50px;">
+<div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <!-- Search Bar -->
+    <div class="col-md-12 margin-top-50">
       <div class="main-search-input gray-style margin-top-0 margin-bottom-10">
 
         <div class="main-search-input-item">
@@ -31,270 +31,271 @@
         <button class="button">Search</button>
       </div>
     </div>
-  </div>
-</div>
 
 
-<div class="container">
-  <div class="row">
-    <!-- Sorting / Layout Switcher -->
-    <div class="row margin-bottom-25">
+    <div class="col-md-12">
 
-      <div class="col-md-6 col-xs-6">
-        <!-- Layout Switcher -->
-        <div class="layout-switcher">
-          <a href="#" class="grid active"><i class="fa fa-th"></i></a>
-          <a href="listings-list-with-sidebar.html" class="list"><i class="fa fa-align-justify"></i></a>
+      <!-- Searchnig -->
+      <div class="row margin-bottom-25 margin-top-30">
+        <div class="col-md-6">
+          <div class="layout-switcher">
+            <a href="#" class="grid active"><i class="fa fa-th"></i></a>
+            <a href="listings-list-full-width.html" class="list"><i class="fa fa-align-justify"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="fullwidth-filters">
+
+            <div class="sort-by">
+              <a data-open-title="Categories" data-close-title="Categories" (click)="showCategories($event)"
+                class="sort-by-select more-search-options-trigger " style="margin-top: 4px; cursor: pointer;"></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Categories -->
+      <div class="row">
+        <div [@slideInOut]="isSearchExpanded ? 'in' : 'out'" class="fullwidth-carousel-container margin-bottom-30">
+          <div class="fullwidth-slick-carousel category-carousel">
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a (click)="navigateToVendorsList('cat')" class="category-box"
+                  data-background-image="images/category-box-01.jpg">
+                  <div class="category-box-content">
+                    <h3>Hotels</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-grid-1.html" class="category-box"
+                  data-background-image="images/category-box-03.jpg">
+                  <div class="category-box-content">
+                    <h3>Events</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-grid-1.html" class="category-box"
+                  data-background-image="images/category-box-04.jpg">
+                  <div class="category-box-content">
+                    <h3>Fitness</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-list.html" class="category-box"
+                  data-background-image="images/category-box-05.jpg">
+                  <div class="category-box-content">
+                    <h3>Nightlife</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div style="height: 250px;" class="fw-carousel-item">
+              <div class="category-box-container">
+                <a href="listings-half-screen-map-list.html" class="category-box"
+                  data-background-image="images/category-box-06.jpg">
+                  <div class="category-box-content">
+                    <h3>Eat & Drink</h3>
+                  </div>
+                  <span class="category-box-btn">Browse</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
-      <div class="col-md-6 col-xs-6">
-        <!-- Sort by -->
-        <div class="sort-by">
-          <a data-open-title="Categories" data-close-title="Categories" (click)="showCategories($event)"
-            class="sort-by-select more-search-options-trigger " style="margin-top: 4px; cursor: pointer;"></a>
+      <!-- Items -->
+      <div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-01.jpg" alt="">
+
+                <div class="listing-badge now-open">Now Open</div>
+
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="3.5"></div>
+                  <h3>Tom's Restaurant <i class="verified-icon"></i></h3>
+                  <span>964 School Street, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-02.jpg" alt="">
+                <div class="listing-item-details">
+                  <ul>
+                    <li>Friday, August 10</li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="5.0"></div>
+                  <h3>Sticky Band</h3>
+                  <span>Bishop Avenue, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-03.jpg" alt="">
+                <div class="listing-item-details">
+                  <ul>
+                    <li>Starting from $59 per night</li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="2.0"></div>
+                  <h3>Hotel Govendor</h3>
+                  <span>778 Country Street, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-03.jpg" alt="">
+                <div class="listing-item-details">
+                  <ul>
+                    <li>Starting from $59 per night</li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="2.0"></div>
+                  <h3>Hotel Govendor</h3>
+                  <span>778 Country Street, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-03.jpg" alt="">
+                <div class="listing-item-details">
+                  <ul>
+                    <li>Starting from $59 per night</li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="2.0"></div>
+                  <h3>Hotel Govendor</h3>
+                  <span>778 Country Street, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-03.jpg" alt="">
+                <div class="listing-item-details">
+                  <ul>
+                    <li>Starting from $59 per night</li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="2.0"></div>
+                  <h3>Hotel Govendor</h3>
+                  <span>778 Country Street, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-03.jpg" alt="">
+                <div class="listing-item-details">
+                  <ul>
+                    <li>Starting from $59 per night</li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="2.0"></div>
+                  <h3>Hotel Govendor</h3>
+                  <span>778 Country Street, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+
+            </a>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <a href="listings-single-page.html" class="listing-item-container compact">
+              <div class="listing-item">
+                <img src="images/listing-item-03.jpg" alt="">
+                <div class="listing-item-details">
+                  <ul>
+                    <li>Starting from $59 per night</li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="2.0"></div>
+                  <h3>Hotel Govendor</h3>
+                  <span>778 Country Street, New York</span>
+                </div>
+                <span class="like-icon"></span>
+              </div>
+
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+          </weds-paging>
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div [@slideInOut]="isSearchExpanded ? 'in' : 'out'" class="fullwidth-carousel-container">
-        <div class="fullwidth-slick-carousel category-carousel">
-
-          <!-- Item -->
-          <div style="height: 250px;" class="fw-carousel-item">
-            <div class="category-box-container">
-              <a (click)="navigateToVendorsList()" class="category-box"
-                data-background-image="images/category-box-01.jpg">
-                <div class="category-box-content">
-                  <h3>Hotels</h3>
-                </div>
-                <span class="category-box-btn">Browse</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Item -->
-          <div style="height: 250px;" class="fw-carousel-item">
-            <div class="category-box-container">
-              <a href="listings-half-screen-map-grid-1.html" class="category-box"
-                data-background-image="images/category-box-03.jpg">
-                <div class="category-box-content">
-                  <h3>Events</h3>
-                </div>
-                <span class="category-box-btn">Browse</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Item -->
-          <div style="height: 250px;" class="fw-carousel-item">
-            <div class="category-box-container">
-              <a href="listings-half-screen-map-grid-1.html" class="category-box"
-                data-background-image="images/category-box-04.jpg">
-                <div class="category-box-content">
-                  <h3>Fitness</h3>
-                </div>
-                <span class="category-box-btn">Browse</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Item -->
-          <div style="height: 250px;" class="fw-carousel-item">
-            <div class="category-box-container">
-              <a href="listings-half-screen-map-list.html" class="category-box"
-                data-background-image="images/category-box-05.jpg">
-                <div class="category-box-content">
-                  <h3>Nightlife</h3>
-                </div>
-                <span class="category-box-btn">Browse</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Item -->
-          <div style="height: 250px;" class="fw-carousel-item">
-            <div class="category-box-container">
-              <a href="listings-half-screen-map-list.html" class="category-box"
-                data-background-image="images/category-box-06.jpg">
-                <div class="category-box-content">
-                  <h3>Eat & Drink</h3>
-                </div>
-                <span class="category-box-btn">Browse</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-lg-4 col-md-6">
-        <a (click)="navigateToVendorsList('designers')" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-01.jpg" alt="">
-
-            <div class="listing-badge now-open">Now Open</div>
-
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="3.5"></div>
-              <h3>Tom's Restaurant <i class="verified-icon"></i></h3>
-              <span>964 School Street, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <a href="listings-single-page.html" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-02.jpg" alt="">
-            <div class="listing-item-details">
-              <ul>
-                <li>Friday, August 10</li>
-              </ul>
-            </div>
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="5.0"></div>
-              <h3>Sticky Band</h3>
-              <span>Bishop Avenue, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <a href="listings-single-page.html" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-03.jpg" alt="">
-            <div class="listing-item-details">
-              <ul>
-                <li>Starting from $59 per night</li>
-              </ul>
-            </div>
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="2.0"></div>
-              <h3>Hotel Govendor</h3>
-              <span>778 Country Street, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <a href="listings-single-page.html" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-03.jpg" alt="">
-            <div class="listing-item-details">
-              <ul>
-                <li>Starting from $59 per night</li>
-              </ul>
-            </div>
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="2.0"></div>
-              <h3>Hotel Govendor</h3>
-              <span>778 Country Street, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-
-        </a>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <a href="listings-single-page.html" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-03.jpg" alt="">
-            <div class="listing-item-details">
-              <ul>
-                <li>Starting from $59 per night</li>
-              </ul>
-            </div>
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="2.0"></div>
-              <h3>Hotel Govendor</h3>
-              <span>778 Country Street, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <a href="listings-single-page.html" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-03.jpg" alt="">
-            <div class="listing-item-details">
-              <ul>
-                <li>Starting from $59 per night</li>
-              </ul>
-            </div>
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="2.0"></div>
-              <h3>Hotel Govendor</h3>
-              <span>778 Country Street, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <a href="listings-single-page.html" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-03.jpg" alt="">
-            <div class="listing-item-details">
-              <ul>
-                <li>Starting from $59 per night</li>
-              </ul>
-            </div>
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="2.0"></div>
-              <h3>Hotel Govendor</h3>
-              <span>778 Country Street, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-
-        </a>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <a href="listings-single-page.html" class="listing-item-container compact">
-          <div class="listing-item">
-            <img src="images/listing-item-03.jpg" alt="">
-            <div class="listing-item-details">
-              <ul>
-                <li>Starting from $59 per night</li>
-              </ul>
-            </div>
-            <div class="listing-item-content">
-              <div class="numerical-rating" data-rating="2.0"></div>
-              <h3>Hotel Govendor</h3>
-              <span>778 Country Street, New York</span>
-            </div>
-            <span class="like-icon"></span>
-          </div>
-
-        </a>
-      </div>
-    </div>
-
-    <div class="clearfix"></div>
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Pagination -->
-        <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
-        </weds-paging>
-      </div>
-    </div>
-
-
   </div>
 </div>
 
