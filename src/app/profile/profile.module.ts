@@ -12,10 +12,11 @@ import * as COMPONENTS from './components';
     COMPONENTS.MessagesComponent,
     COMPONENTS.ChecklistComponent,
     COMPONENTS.RegistrylistComponent,
+    COMPONENTS.BudgeterComponent,
   ],
   imports: [
     CommonModule,
-    ProfileRoutingModule
+    ProfileRoutingModule,
   ]
 })
 export class ProfileModule { }

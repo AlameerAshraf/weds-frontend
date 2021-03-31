@@ -210,6 +210,7 @@
         {
           "title" : "Registery List",
           "icon" : "im im-icon-Gift-Box",
+          "url" : "registery",
           "child" : [
 
           ]
