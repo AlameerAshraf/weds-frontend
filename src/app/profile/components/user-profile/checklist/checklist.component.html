@@ -1,7 +1,7 @@
 <div id="titlebar" class="gradient">
   <div class="row">
     <div class="col-md-12">
-      <h2>We care about you little angel! <i style="color: #046B69;" class="im im-icon-Check"></i></h2>
+      <h2>Welcome to your checklist <i style="color: #046B69;" class="im im-icon-Check"></i></h2>
       <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
     </div>
   </div>
@@ -12,35 +12,23 @@
     <div class="dashboard-list-box with-icons margin-top-20">
       <h4>My CheckList</h4>
       <ul>
-        <li (click)="toggleNote(1)">
+        <li style="cursor: pointer;" (click)="toggleNote(1)">
           <i  style="background-color: rgb(117, 248, 117); color: white; font-size: 25px;"
             class="list-box-icon fa fa-check"></i> Hire
           a planner
         </li>
 
 
-        <div  [@slideInOut]="showNote == 1 ? 'in' : 'out'"  [ngClass]="{'show': showNote == 1 , 'hide' : showNote == 0}" id="add-review" class="add-review-box no-margins">
+        <div [@slideInOut]="showNote == 1 ? 'in' : 'out'"  [ngClass]="{'show': showNote == 1 , 'hide' : showNote == 0}"
+          id="add-review" class="add-review-box no-margins">
           <label>Note:</label>
           <textarea cols="40" rows="2"></textarea>
 
           <button class="button">Save Note</button>
         </div>
 
-
         <li>
-          <i style="background-color: rgb(117, 248, 117); color: white; font-size: 25px;"
-            class="list-box-icon fa fa-check"></i>
-          Reserve my venue
-        </li>
-
-        <li>
-          <i style="background-color: rgb(117, 248, 117); color: white; font-size: 25px;"
-            class="list-box-icon fa fa-check"></i>
-          Create my wedding website on Weds360
-        </li>
-
-        <li>
-          <i style="background-color: rgb(248, 117, 117); color: white; font-size: 25px;"
+          <i style="cursor: pointer;"  style="background-color: rgb(248, 117, 117); color: white; font-size: 25px;"
             class="list-box-icon fa fa-times"></i>
           Start looking at wedding attires
         </li>

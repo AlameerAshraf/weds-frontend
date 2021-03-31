@@ -1,3 +1,8 @@
 .user-menu .user-name:after {
   content: "";
 }
+
+
+.noBorder:focus{
+  outline: 0;
+}

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent {
   constructor(private storage: localStorageService, private router: Router){
-    this.initUserNavigation();
+    //this.initUserNavigation();
   }
 
   /** Navigate the user based on the credentials */

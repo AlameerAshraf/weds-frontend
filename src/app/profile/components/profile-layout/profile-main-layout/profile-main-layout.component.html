@@ -63,7 +63,7 @@
       <ng-container *ngFor="let navItem of navLinks">
         <ul [attr.data-submenu-title]="navItem.menuTitle">
           <ng-container *ngFor="let childMenuItem of navItem.childMenuItem">
-            <li [ngClass]="{ 'active' : selectedTitle == childMenuItem.title }">
+            <li class="noBorder" [routerLink]="redierctURL + childMenuItem.url" routerLinkActive="active">
               <a (click)="navigateTo(childMenuItem.url , childMenuItem.title )">
                 <i [class]="childMenuItem.icon" ></i> {{ childMenuItem.title }}
               </a>

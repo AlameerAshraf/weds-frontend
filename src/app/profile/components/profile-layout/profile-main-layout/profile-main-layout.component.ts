@@ -20,7 +20,7 @@ export class ProfileMainLayoutComponent implements OnInit {
   lang: any;
 
   // Languge!
-  loginURL: string;
+  redierctURL: string;
   langChangerURL: string;
   selectedTitle: any;
 
@@ -33,7 +33,7 @@ export class ProfileMainLayoutComponent implements OnInit {
   ngOnInit() {
     this.loadResources();
     this.checkViewAuthority();
-    this.loginURL = `/security/${this.lang}/login`;
+    this.redierctURL = `/profile/${this.lang}/user/`;
   }
 
   /** Use this function at each view to load corrosponding resources! */
@@ -54,7 +54,7 @@ export class ProfileMainLayoutComponent implements OnInit {
 
   navigateTo(url: any , title: any){
     this.selectedTitle = title;
-    this.router.navigateByUrl(`/profile/${this.lang}/user/${url}`);
+    // this.router.navigateByUrl();
   };
 
   ngAfterViewInit(): void {
