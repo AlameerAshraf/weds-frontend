@@ -1,0 +1,277 @@
+{
+  "menu" : [
+    {
+      "name": "360 Planner",
+      "url": "",
+      "child": [
+        {
+          "name": "Check List",
+          "url": ""
+        },
+        {
+          "name": "Budgeter",
+          "url": ""
+        },
+        {
+          "name": "Registry List",
+          "url": ""
+        },
+        {
+          "name": "Guest List",
+          "url": ""
+        },
+        {
+          "name": "Wedding Website",
+          "url": ""
+        },
+        {
+          "name": "Couple Website",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Her",
+      "url": "",
+      "child": [
+        {
+          "name": "Designers",
+          "url": ""
+        },
+        {
+          "name": "Bridal Boutique",
+          "url": ""
+        },
+        {
+          "name": "Wedding Dresses",
+          "url": ""
+        },
+        {
+          "name": "Rings",
+          "url": ""
+        },
+        {
+          "name": "Makeup Artists",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": "segment/ar/her"
+        }
+      ]
+    },
+    {
+      "name": "Him",
+      "url": "",
+      "child": [
+        {
+          "name": "Suits",
+          "url": ""
+        },
+        {
+          "name": "Health",
+          "url": ""
+        },
+        {
+          "name": "Men's Grooming",
+          "url": ""
+        },
+        {
+          "name": "Fitness",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "The Wedding",
+      "url": "",
+      "child": [
+        {
+          "name": "Venues",
+          "url": ""
+        },
+        {
+          "name": "Outdoor Wedding Venues",
+          "url": ""
+        },
+        {
+          "name": "Videographers",
+          "url": ""
+        },
+        {
+          "name": "Photographers",
+          "url": ""
+        },
+        {
+          "name": "DJs",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Gallery",
+      "url": "",
+      "child": [
+        {
+          "name": "Wedding Ideas",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "Ideas & More",
+      "url": "",
+      "child": [
+        {
+          "name": "Tips & Etiquette",
+          "url": ""
+        },
+        {
+          "name": "Wedding Of The Week",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "actions" : [
+    {
+      "title" : "Logout",
+      "url" : "",
+      "icon" : "sl sl-icon-power"
+    }
+  ],
+  "navigations" : [
+    {
+      "menuTitle" : "My Dashboard",
+      "childMenuItem" : [
+        {
+          "title" : "Overview",
+          "icon" : "sl sl-icon-rocket",
+          "url" : "overview",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Messages",
+          "icon" : "sl sl-icon-envelope-open",
+          "child" : [
+
+          ]
+        }
+      ]
+    },
+    {
+      "menuTitle" : "360Planner",
+      "childMenuItem" : [
+        {
+          "title" : "Check List",
+          "icon" : "im im-icon-Check",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Budgeter",
+          "icon" : "im im-icon-Calculator-2",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Events & Guest List",
+          "icon" : "im im-icon-CD-2",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Registery List",
+          "icon" : "im im-icon-Gift-Box",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Wedding website",
+          "icon" : "im im-icon-Touch-Window",
+          "child" : [
+
+          ]
+        }
+      ]
+    },
+    {
+      "menuTitle" : "Account & Info",
+      "childMenuItem" : [
+        {
+          "title" : "Wedding Details",
+          "icon" : "im im-icon-Suit",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Personal Details",
+          "icon" : "im im-icon-Male",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Settings",
+          "icon" : "im im-icon-Gear",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Log out",
+          "icon" : "sl sl-icon-logout",
+          "child" : [
+
+          ]
+        }
+      ]
+    },
+    {
+      "menuTitle" : "My Taste",
+      "childMenuItem" : [
+        {
+          "title" : "Bookmarks",
+          "icon" : "im im-icon-Bookmark",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Loved",
+          "icon" : "im im-icon-Heart",
+          "child" : [
+
+          ]
+        }
+      ]
+    }
+  ]
+}

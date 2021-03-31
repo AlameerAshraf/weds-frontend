@@ -45,7 +45,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   };
 
   checkViewAuthority(){
-    console.log(this.authorizedUser)
     this.isLogined = this.authorizedUser;
   };
 

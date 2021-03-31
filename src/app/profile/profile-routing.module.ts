@@ -12,7 +12,7 @@ const routes: Routes = [
         path: 'user',
         children: [
           {
-            path: 'dashboard',
+            path: 'overview',
           }
         ]
       }

@@ -8,7 +8,8 @@ export class constants {
   public static get VIEWS(){
     return {
       "HOME_LAYOUT" : "home",
-      "HEADER": "menu-items"
+      "HEADER": "menu-items",
+      "USER_DASHBOARD" : "user-profile-nav"
     }
   };
 
