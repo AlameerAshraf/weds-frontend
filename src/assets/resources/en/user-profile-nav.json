@@ -188,6 +188,7 @@
         {
           "title" : "Check List",
           "icon" : "im im-icon-Check",
+          "url" : "checklist",
           "child" : [
 
           ]

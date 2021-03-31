@@ -9,7 +9,8 @@ import * as COMPONENTS from './components';
   declarations: [
     COMPONENTS.ProfileMainLayoutComponent,
     COMPONENTS.OverviewComponent,
-    COMPONENTS.MessagesComponent
+    COMPONENTS.MessagesComponent,
+    COMPONENTS.ChecklistComponent
   ],
   imports: [
     CommonModule,

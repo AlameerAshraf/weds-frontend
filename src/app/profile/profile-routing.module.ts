@@ -18,6 +18,10 @@ const routes: Routes = [
           {
             path: 'messages',
             component: COMPONENTS.MessagesComponent
+          },
+          {
+            path: 'checklist',
+            component: COMPONENTS.ChecklistComponent
           }
         ]
       }
