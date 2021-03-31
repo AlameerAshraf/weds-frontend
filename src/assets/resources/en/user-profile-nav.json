@@ -175,6 +175,7 @@
         {
           "title" : "Messages",
           "icon" : "sl sl-icon-envelope-open",
+          "url" : "overview",
           "child" : [
 
           ]
@@ -234,13 +235,6 @@
         {
           "title" : "Personal Details",
           "icon" : "im im-icon-Male",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Settings",
-          "icon" : "im im-icon-Gear",
           "child" : [
 
           ]

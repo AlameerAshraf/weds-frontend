@@ -22,6 +22,7 @@ export class ProfileMainLayoutComponent implements OnInit {
   // Languge!
   loginURL: string;
   langChangerURL: string;
+  selectedTitle: any;
 
 
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
@@ -51,8 +52,9 @@ export class ProfileMainLayoutComponent implements OnInit {
     this.isLogined = this.authorizedUser;
   };
 
-  navigateTo(url: any){
-    this.router.navigateByUrl(`/profile/${this.lang}/user/${url}`)
+  navigateTo(url: any , title: any){
+    this.selectedTitle = title;
+    this.router.navigateByUrl(`/profile/${this.lang}/user/${url}`);
   };
 
   ngAfterViewInit(): void {

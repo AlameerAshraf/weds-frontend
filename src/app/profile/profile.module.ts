@@ -8,6 +8,7 @@ import * as COMPONENTS from './components';
 @NgModule({
   declarations: [
     COMPONENTS.ProfileMainLayoutComponent,
+    COMPONENTS.OverviewComponent
   ],
   imports: [
     CommonModule,
