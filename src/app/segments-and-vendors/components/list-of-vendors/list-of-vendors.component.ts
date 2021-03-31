@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { slideInOutAnimation } from './../../../core/helpers/animations/slideInOutAnimation';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ export class ListOfVendorsComponent implements OnInit {
   isSearchExpanded = false;
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef,) { }
+    private elementRef: ElementRef, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,7 +25,11 @@ export class ListOfVendorsComponent implements OnInit {
 
   pageChange(pageNumber: number) {
     console.log(pageNumber);
-  }
+  };
+
+  navigateToVendor(vendorId){
+    this.router.navigate([`segment/en/vendor/${vendorId}`]);
+  };
 
   ngAfterViewInit(): void {
     let scripts = ['assets/scripts/sideBarSlider.js', 'assets/scripts/custom.js'];
