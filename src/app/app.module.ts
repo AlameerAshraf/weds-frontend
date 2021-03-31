@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { COMPONENTS, THEME_MODULE } from './app.imports';
+import { THEME_MODULE } from './app.imports';
+import * as COMPONENTS from './app-module-components';
+
 import { AppConfig, httpService, localStorageService, resources , ValidateService } from './core';
 
 
