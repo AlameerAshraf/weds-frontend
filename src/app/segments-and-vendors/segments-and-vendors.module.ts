@@ -1,12 +1,12 @@
-import { ListOfCategoriesComponent } from './components/list-of-categories/list-of-categories.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SegmentsAndVendorsRoutingModule } from './segments-and-vendors-routing.module';
 
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import * as COMPONENTS from './components';
 
-import { NGX_SPINNER , COMPONENTS , THEME_MODULE} from './segments-and-vendors.imports';
+
+import { NGX_SPINNER , THEME_MODULE} from './segments-and-vendors.imports';
 
 @NgModule({
   declarations: [
