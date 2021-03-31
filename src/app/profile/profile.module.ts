@@ -10,7 +10,8 @@ import * as COMPONENTS from './components';
     COMPONENTS.ProfileMainLayoutComponent,
     COMPONENTS.OverviewComponent,
     COMPONENTS.MessagesComponent,
-    COMPONENTS.ChecklistComponent
+    COMPONENTS.ChecklistComponent,
+    COMPONENTS.RegistrylistComponent,
   ],
   imports: [
     CommonModule,

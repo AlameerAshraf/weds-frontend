@@ -22,6 +22,10 @@ const routes: Routes = [
           {
             path: 'checklist',
             component: COMPONENTS.ChecklistComponent
+          },
+          {
+            path: 'registery',
+            component: COMPONENTS.RegistrylistComponent
           }
         ]
       }
