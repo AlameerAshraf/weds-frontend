@@ -175,7 +175,7 @@
         {
           "title" : "Messages",
           "icon" : "sl sl-icon-envelope-open",
-          "url" : "overview",
+          "url" : "messages",
           "child" : [
 
           ]

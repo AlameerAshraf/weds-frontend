@@ -14,6 +14,10 @@ const routes: Routes = [
           {
             path: 'overview',
             component: COMPONENTS.OverviewComponent
+          },
+          {
+            path: 'messages',
+            component: COMPONENTS.MessagesComponent
           }
         ]
       }
