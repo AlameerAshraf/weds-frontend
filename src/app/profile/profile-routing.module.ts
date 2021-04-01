@@ -34,6 +34,10 @@ const routes: Routes = [
           {
             path: 'events',
             component: COMPONENTS.EventsComponent
+          },
+          {
+            path : 'wedding',
+            component: COMPONENTS.WeddingWebsiteComponent
           }
         ]
       }
