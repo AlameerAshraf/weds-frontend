@@ -12,4 +12,7 @@ export class ChecklistGridComponent implements OnInit {
   ngOnInit() {
   }
 
+  pageChange(pageNumber){
+
+  }
 }
