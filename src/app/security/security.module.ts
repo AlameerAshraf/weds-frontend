@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import { SecurityRoutingModule } from './security-routing.module';
 
-import { COMPONENTS, THEME_MODULE , NGX_SPINNER } from './security.imports';
+import * as COMPONENTS from './components';
+import { THEME_MODULE , NGX_SPINNER } from './security.imports';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({

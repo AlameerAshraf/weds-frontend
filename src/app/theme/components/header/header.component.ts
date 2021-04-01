@@ -11,6 +11,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() authorizedUser: boolean = false;
+  @Input() urlSegment = ''
 
   isLogined = false;
   menuItems = [];
@@ -45,7 +46,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   };
 
   checkViewAuthority(){
-    console.log(this.authorizedUser)
     this.isLogined = this.authorizedUser;
   };
 

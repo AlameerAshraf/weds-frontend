@@ -1,0 +1,89 @@
+<header id="header-container" class="fixed fullwidth dashboard">
+
+  <div id="header" class="not-sticky">
+    <div class="container">
+
+      <!-- Left Side Content -->
+      <div class="left-side">
+
+        <!-- Logo -->
+        <div id="logo">
+          <a><img src="assets/images/logos/logo_1.png" alt="Weds360"></a>
+          <a class="dashboard-logo"><img style="max-width: 70%;" src="assets/images/logos/dashboard_logo.png" alt="Weds360"></a>
+        </div>
+
+        <div class="mmenu-trigger">
+          <button class="hamburger hamburger--collapse" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+        </div>
+
+        <nav id="navigation" class="style-1">
+          <ul id="responsive">
+            <li *ngFor="let item of menuItems"><a>{{ item.name }}</a>
+              <ul>
+                <li *ngFor="let subItem of item.child">
+                  <a [routerLink]="['../../'+subItem.url]">{{ subItem.name }}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="clearfix"></div>
+
+
+
+      </div>
+
+      <div class="right-side">
+        <div class="header-widget">
+          <div class="user-menu">
+            <div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt="">
+              </span>Hi, Alameer!</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+<div class="clearfix"></div>
+
+
+<div id="dashboard">
+
+  <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
+
+  <div class="dashboard-nav">
+    <div class="dashboard-nav-inner">
+
+      <ng-container *ngFor="let navItem of navLinks">
+        <ul [attr.data-submenu-title]="navItem.menuTitle">
+          <ng-container *ngFor="let childMenuItem of navItem.childMenuItem">
+            <li class="noBorder" [routerLink]="redierctURL + childMenuItem.url" routerLinkActive="active">
+              <a (click)="navigateTo(childMenuItem.url , childMenuItem.title )">
+                <i [class]="childMenuItem.icon" ></i> {{ childMenuItem.title }}
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </ng-container>
+
+    </div>
+  </div>
+
+
+  <div class="dashboard-content">
+
+    <router-outlet></router-outlet>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="copyrights">© 2021 Plus360. All Rights Reserved.</div>
+      </div>
+    </div>
+  </div>
+</div>

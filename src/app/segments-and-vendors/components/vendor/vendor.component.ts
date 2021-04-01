@@ -25,13 +25,13 @@ export class VendorComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/sideBarSlider.js', 'assets/scripts/custom.js'];
+    // let scripts = ['assets/scripts/custom.js'];
 
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
-    });
+    // scripts.forEach(element => {
+    //   const s = this.document.createElement('script');
+    //   s.type = 'text/javascript';
+    //   s.src = element;
+    //   this.elementRef.nativeElement.appendChild(s);
+    // });
   };
 }

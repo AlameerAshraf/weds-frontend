@@ -77,7 +77,7 @@
                     <input formControlName="password" [type]="passwordHidden ? 'password' : 'text'"
                       (keydown)="textChanged()" placeholder="Password">
                   </div>
-                  <a (click)="togglePassword(passwordHidden)" style="cursor: pointer;">
+                  <a (click)="togglePassword()" style="cursor: pointer;">
                     <i *ngIf="!passwordHidden" class="fa fa-eye"></i>
                     <i *ngIf="passwordHidden" class="fa fa-eye-slash"></i>
                   </a>
