@@ -196,6 +196,7 @@
         {
           "title" : "Budgeter",
           "icon" : "im im-icon-Calculator-2",
+          "url" : "budgeter",
           "child" : [
 
           ]

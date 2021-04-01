@@ -26,6 +26,10 @@ const routes: Routes = [
           {
             path: 'registery',
             component: COMPONENTS.RegistrylistComponent
+          },
+          {
+            path: 'budgeter',
+            component: COMPONENTS.BudgeterComponent
           }
         ]
       }

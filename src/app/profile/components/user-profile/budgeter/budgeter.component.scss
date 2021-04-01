@@ -1,0 +1,18 @@
+.borderless td, .borderless th {
+  border: none;
+};
+
+.td-in-table {
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+
+.show-div {
+  display: contents !important;
+}
+
+.hide-div {
+  display: none !important;
+}
