@@ -30,6 +30,10 @@ const routes: Routes = [
           {
             path: 'budgeter',
             component: COMPONENTS.BudgeterComponent
+          },
+          {
+            path: 'events',
+            component: COMPONENTS.EventsComponent
           }
         ]
       }

@@ -13,6 +13,7 @@ import * as COMPONENTS from './components';
     COMPONENTS.ChecklistComponent,
     COMPONENTS.RegistrylistComponent,
     COMPONENTS.BudgeterComponent,
+    COMPONENTS.EventsComponent,
   ],
   imports: [
     CommonModule,

@@ -204,6 +204,7 @@
         {
           "title" : "Events & Guest List",
           "icon" : "im im-icon-CD-2",
+          "url" : "events",
           "child" : [
 
           ]
