@@ -14,6 +14,7 @@ import * as COMPONENTS from './components';
     COMPONENTS.RegistrylistComponent,
     COMPONENTS.BudgeterComponent,
     COMPONENTS.EventsComponent,
+    COMPONENTS.WeddingWebsiteComponent,
   ],
   imports: [
     CommonModule,
