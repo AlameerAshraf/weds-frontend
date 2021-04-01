@@ -15,6 +15,8 @@ import * as COMPONENTS from './components';
     COMPONENTS.BudgeterComponent,
     COMPONENTS.EventsComponent,
     COMPONENTS.WeddingWebsiteComponent,
+    COMPONENTS.ChecklistGridComponent,
+    COMPONENTS.ChecklistFormComponent,
   ],
   imports: [
     CommonModule,

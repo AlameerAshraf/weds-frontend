@@ -40,6 +40,19 @@ const routes: Routes = [
             component: COMPONENTS.WeddingWebsiteComponent
           }
         ]
+      },
+      {
+        path: 'admin',
+        children : [
+          {
+            path: 'checklist-defaults',
+            component: COMPONENTS.ChecklistGridComponent
+          },
+          {
+            path: 'checklist-action/:actionType',
+            component : COMPONENTS.ChecklistFormComponent
+          }
+        ]
       }
     ]
   }

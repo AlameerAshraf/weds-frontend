@@ -63,10 +63,29 @@
       <ng-container *ngFor="let navItem of navLinks">
         <ul [attr.data-submenu-title]="navItem.menuTitle">
           <ng-container *ngFor="let childMenuItem of navItem.childMenuItem">
-            <li class="noBorder" [routerLink]="redierctURL + childMenuItem.url" routerLinkActive="active">
-              <a (click)="navigateTo(childMenuItem.url , childMenuItem.title )">
+            <li *ngIf="childMenuItem.child.length == 0" class="noBorder"
+              [routerLink]="redierctURL + childMenuItem.url" routerLinkActive="active">
+              <a (click)="navigateTo(childMenuItem.url , childMenuItem.title)">
                 <i [class]="childMenuItem.icon" ></i> {{ childMenuItem.title }}
               </a>
+            </li>
+
+            <li *ngIf="childMenuItem.child.length > 0" class="noBorder" >
+              <a (click)="navigateTo(childMenuItem.url , childMenuItem.title)">
+                <i [class]="childMenuItem.icon" ></i> {{ childMenuItem.title }}
+              </a>
+
+              <ng-container *ngIf="childMenuItem.child.length > 0">
+                <ng-container *ngFor="let nestedChild of childMenuItem.child">
+                  <ul>
+                    <li class="noBorder" [routerLink]="redierctURL + nestedChild.url" routerLinkActive="active">
+                      <a (click)="navigateTo(nestedChild.url , nestedChild.title )">
+                        <i [class]="nestedChild.icon" ></i> {{ nestedChild.title }}
+                      </a>
+                    </li>
+                  </ul>
+                </ng-container>
+              </ng-container>
             </li>
           </ng-container>
         </ul>
