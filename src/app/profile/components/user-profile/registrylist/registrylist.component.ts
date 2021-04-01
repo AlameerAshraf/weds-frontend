@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-registrylist',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registrylist.component.scss']
 })
 export class RegistrylistComponent implements OnInit {
-
-  constructor() { }
+  private window: any = window;
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
   }
 
 }

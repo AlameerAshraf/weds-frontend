@@ -8,12 +8,13 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./budgeter.component.scss'],
   animations: [slideInOutAnimation]
 })
-export class BudgeterComponent implements OnInit, AfterViewInit {
+export class BudgeterComponent implements OnInit {
   showBudgeter: any = 0;
   budgetItem = false;
 
-  constructor(@Inject(DOCUMENT) private document: any,
-  private elementRef: ElementRef, ) { }
+  constructor(){
+
+  }
 
   ngOnInit() {
   }
@@ -22,15 +23,4 @@ export class BudgeterComponent implements OnInit, AfterViewInit {
     console.log(id);
     this.budgetItem = !this.budgetItem;
   }
-
-  ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/custom.js'];
-
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
-    });
-  };
 }
