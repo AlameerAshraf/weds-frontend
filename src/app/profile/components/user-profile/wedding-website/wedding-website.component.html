@@ -162,7 +162,7 @@
         <div class="col-md-12">
           <ngx-dropzone (change)="onSelect($event)">
             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
               <ngx-dropzone-label></ngx-dropzone-label>
             </ngx-dropzone-image-preview>
           </ngx-dropzone>
