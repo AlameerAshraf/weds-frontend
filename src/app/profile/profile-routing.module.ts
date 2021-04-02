@@ -26,6 +26,39 @@ const routes: Routes = [
           {
             path: 'registery',
             component: COMPONENTS.RegistrylistComponent
+          },
+          {
+            path: 'budgeter',
+            component: COMPONENTS.BudgeterComponent
+          },
+          {
+            path: 'events',
+            component: COMPONENTS.EventsComponent
+          },
+          {
+            path : 'wedding',
+            component: COMPONENTS.WeddingWebsiteComponent
+          }
+        ]
+      },
+      {
+        path: 'admin',
+        children : [
+          {
+            path: 'checklist-defaults',
+            component: COMPONENTS.ChecklistGridComponent
+          },
+          {
+            path: 'checklist-action/:actionType',
+            component : COMPONENTS.ChecklistFormComponent
+          },
+          {
+            path: 'budgeter-defaults',
+            component: COMPONENTS.BudgeterGridComponent
+          },
+          {
+            path: 'budgeter-action/:actionType',
+            component : COMPONENTS.BudgeterFormComponent
           }
         ]
       }

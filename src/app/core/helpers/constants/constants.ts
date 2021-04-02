@@ -9,7 +9,9 @@ export class constants {
     return {
       "HOME_LAYOUT" : "home",
       "HEADER": "menu-items",
-      "USER_DASHBOARD" : "user-profile-nav"
+      "USER_DASHBOARD" : "user-profile-nav",
+      "ADMIN_DASHBOARD" : "admin-profile-nav",
+      "VENDOR_DASHBOARD" : "vendor-profile-nav",
     }
   };
 

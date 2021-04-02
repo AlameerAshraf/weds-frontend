@@ -10,6 +10,7 @@ import { THEME_MODULE } from './app.imports';
 import * as COMPONENTS from './app-module-components';
 
 import { AppConfig, httpService, localStorageService, resources , ValidateService } from './core';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AppConfig, httpService, localStorageService, resources , ValidateServic
     HttpClientModule,
     THEME_MODULE,
     AppRoutingModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     localStorageService,
@@ -31,6 +33,7 @@ import { AppConfig, httpService, localStorageService, resources , ValidateServic
     AppConfig,
     resources,
     ValidateService,
+    ToastrService,
     {
       provide: APP_INITIALIZER ,
       useFactory: (ds: AppConfig) => () => ds.load(),

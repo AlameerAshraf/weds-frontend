@@ -32,6 +32,11 @@ const routes: Routes = [
     path: 'profile/:lang',
     loadChildren: () => import('./profile/profile.module')
       .then(m => m.ProfileModule)
+  },
+  {
+    path: 'blogs/:lang',
+    loadChildren: () => import('./blogs/blogs.module')
+      .then(m => m.BlogsModule)
   }
 ];
 

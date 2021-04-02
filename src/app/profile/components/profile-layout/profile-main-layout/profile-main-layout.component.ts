@@ -30,19 +30,23 @@ export class ProfileMainLayoutComponent implements OnInit {
     private elementRef: ElementRef,
     private router: Router) { }
 
-  ngOnInit() {
-    this.loadResources();
+  async ngOnInit() {
     this.checkViewAuthority();
-    this.redierctURL = `/profile/${this.lang}/user/`;
+    let currentUserType = window.location.href.split('/')[5];
+
+    await this.loadResources(currentUserType);
+    this.redierctURL = `/profile/${this.lang}/${currentUserType}/`;
   }
 
   /** Use this function at each view to load corrosponding resources! */
-  async loadResources() {
+  async loadResources(currentUserType: string) {
     let providedlang: any = this.actictedRoute.parent.params;
     let lang = providedlang._value["lang"];
     let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["USER_DASHBOARD"]) as any;
+    let dashboardNavs = `${currentUserType.toUpperCase()}_DASHBOARD`;
+
+    let resData = await this.resources.load(resourceLang, constants.VIEWS[dashboardNavs]) as any;
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
     this.profileLinks = this.profileLinks.concat(resData.res["actions"]);
     this.navLinks = this.navLinks.concat(resData.res["navigations"]);

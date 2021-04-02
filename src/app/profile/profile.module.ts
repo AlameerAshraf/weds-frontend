@@ -1,3 +1,5 @@
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { THEME_MODULE } from './../security/security.imports';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,10 +15,21 @@ import * as COMPONENTS from './components';
     COMPONENTS.ChecklistComponent,
     COMPONENTS.RegistrylistComponent,
     COMPONENTS.BudgeterComponent,
+    COMPONENTS.EventsComponent,
+    COMPONENTS.WeddingWebsiteComponent,
+    COMPONENTS.ChecklistGridComponent,
+    COMPONENTS.ChecklistFormComponent,
+    COMPONENTS.BudgeterGridComponent,
+    COMPONENTS.BudgeterFormComponent,
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
+    THEME_MODULE,
+    NgxSpinnerModule,
+  ],
+  providers:[
+    NgxSpinnerService,
   ]
 })
 export class ProfileModule { }

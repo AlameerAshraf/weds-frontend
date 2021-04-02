@@ -20,7 +20,8 @@
         </li>
 
 
-        <div [@slideInOut]="showNote == 1 ? 'in' : 'out'"  [ngClass]="{'show': showNote == 1 , 'hide' : showNote == 0}"
+        <div [ngClass]="{'show': showNote == 1 , 'hide' : showNote == 0}"
+          [@slideInOut]="showNote == 1 ? 'in' : 'out'"
           id="add-review" class="add-review-box no-margins">
           <label>Note:</label>
           <textarea cols="40" rows="2"></textarea>

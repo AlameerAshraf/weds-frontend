@@ -1,1 +1,108 @@
-<p>budgeter works!</p>
+<div id="titlebar" class="gradient">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Welcome to your checklist</h2>
+      <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div id="add-listing">
+      <div class="add-listing-section">
+        <!-- Headline -->
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-doc"></i> Wedding Planning</h3>
+        </div>
+        <div class="row with-forms">
+          <!-- Status -->
+          <div class="col-md-6">
+            <h5>How would you want to enjoy your weddding?</h5>
+            <select class="chosen-select-no-single">
+              <option>Select Category</option>
+              <option>Exoensively</option>
+              <option>Affordably</option>
+              <option>cheably</option>
+              <option>Let me plane freely</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <h5>Budget <i class="tip" data-tip-content="sdsdsd"></i></h5>
+            <input type="text" placeholder="Enter the planned budget to prepare your wedding.">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box with-icons margin-top-20">
+      <h4>Wedding Budget <div class="comission-taken"> <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong>Add budget</strong>
+        </div>
+      </h4>
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th scope="col" width="45%">Plan</th>
+              <th scope="col" width="25%">Rec.</th>
+              <th scope="col" width="25%">Amount</th>
+              <th scope="col" width="1%"></th>
+              <th scope="col" width="1%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Plan"/></td>
+              <td><input type="text" placeholder="Recommended"/></td>
+              <td><input type="text" placeholder="Amount"/></td>
+              <td class="td-in-table" (click)="openBudgeter(1)">
+                <p><i [class]="budgetItem ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></p>
+              </td>
+              <td class="td-in-table">
+                <p><i class="fa fa-scissors"></i></p>
+              </td>
+            </tr>
+            <tr [ngClass]="{ 'show-div' : budgetItem , 'hide-div' : !budgetItem }" >
+              <td
+                [@slideInOut]="budgetItem  == true ? 'in' : 'out'"
+                colspan="5" style="background-color: #F9F9F9 !important;">
+                <div >
+                  <div class="row with-forms">
+                    <div class="col-md-6">
+                      <h5>Select vendor </h5>
+                      <select class="chosen-select-no-single">
+                        <option style="padding-left: 2px;" label="blank">Select Category</option>
+                        <option style="padding-left: 2px;">Exoensively</option>
+                        <option style="padding-left: 2px;">Affordably</option>
+                        <option style="padding-left: 2px;">cheably</option>
+                        <option style="padding-left: 2px;">Let me plane freely</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <h5>Amount to spend</h5>
+                      <input type="text" placeholder="Enter the planned budget to prepare your wedding.">
+                    </div>
+                  </div>
+
+                  <div class="row with-forms">
+                    <div class="col-md-12">
+                      <h5>How would you want to enjoy your weddding?</h5>
+                      <textarea cols="40" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

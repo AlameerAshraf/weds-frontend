@@ -162,6 +162,104 @@
   ],
   "navigations" : [
     {
+      "menuTitle" : "Admin Panel",
+      "childMenuItem" : [
+        {
+          "title" : "Website",
+          "icon" : "sl sl-icon-screen-desktop",
+          "url" : "messages",
+          "child" : [
+            {
+              "title" : "Categories",
+              "icon" : "sl sl-icon-grid",
+              "url" : "messages"
+            },
+            {
+              "title" : "Areas",
+              "icon" : "sl sl-icon-globe",
+              "url" : "messages"
+            },
+            {
+              "title" : "Themes",
+              "icon" : "sl sl-icon-docs",
+              "url" : "overview"
+            },
+            {
+              "title" : "Tags",
+              "icon" : "sl sl-icon-tag",
+              "url" : "overview"
+            },
+            {
+              "title" : "Offers",
+              "icon" : "sl sl-icon-social-dropbox",
+              "url" : "messages"
+            },
+            {
+              "title" : "Events",
+              "icon" : "im im-icon-CD-2",
+              "url" : "messages"
+            }
+          ]
+        },
+        {
+          "title" : "Vendors",
+          "icon" : "sl sl-icon-handbag",
+          "url" : "messages",
+          "child" : [
+            {
+              "title" : "Vendors",
+              "icon" : "sl sl-icon-briefcase",
+              "url" : "messages"
+            },
+            {
+              "title" : "Services",
+              "icon" : "sl sl-icon-basket",
+              "url" : "messages"
+            }
+          ]
+        },
+        {
+          "title" : "User",
+          "icon" : "sl sl-icon-people",
+          "url" : "messages",
+          "child" : [
+            {
+              "title" : "Users",
+              "icon" : "sl sl-icon-people",
+              "url" : "messages"
+            },
+            {
+              "title" : "Checklists",
+              "icon" : "sl sl-icon-note",
+              "url" : "checklist-defaults"
+            },
+            {
+              "title" : "Budgeters",
+              "icon" : "sl sl-icon-calculator",
+              "url" : "budgeter-defaults"
+            },
+            {
+              "title" : "Wedding websites",
+              "icon" : "im im-icon-Heart-2",
+              "url" : "overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "menuTitle" : "Account & Info",
+      "childMenuItem" : [
+        {
+          "title" : "Personal Details",
+          "icon" : "im im-icon-Male",
+          "child" : [
+
+          ]
+        }
+      ]
+    },
+    {
       "menuTitle" : "My Dashboard",
       "childMenuItem" : [
         {
@@ -177,77 +275,6 @@
           "icon" : "sl sl-icon-envelope-open",
           "url" : "messages",
           "child" : [
-          ]
-        }
-      ]
-    },
-    {
-      "menuTitle" : "360Planner",
-      "childMenuItem" : [
-        {
-          "title" : "Check List",
-          "icon" : "im im-icon-Check",
-          "url" : "checklist",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Budgeter",
-          "icon" : "im im-icon-Calculator-2",
-          "url" : "budgeter",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Events & Guest List",
-          "icon" : "im im-icon-CD-2",
-          "url" : "events",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Registery List",
-          "icon" : "im im-icon-Gift-Box",
-          "url" : "registery",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Wedding website",
-          "icon" : "im im-icon-Touch-Window",
-          "url" : "wedding",
-          "child" : [
-
-          ]
-        }
-      ]
-    },
-    {
-      "menuTitle" : "Account & Info",
-      "childMenuItem" : [
-        {
-          "title" : "Wedding Details",
-          "icon" : "im im-icon-Suit",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Personal Details",
-          "icon" : "im im-icon-Male",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Bookmarks & Loves",
-          "icon" : "im im-icon-Bookmark",
-          "child" : [
-
           ]
         }
       ]
