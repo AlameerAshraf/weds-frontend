@@ -51,6 +51,14 @@ const routes: Routes = [
           {
             path: 'checklist-action/:actionType',
             component : COMPONENTS.ChecklistFormComponent
+          },
+          {
+            path: 'budgeter-defaults',
+            component: COMPONENTS.BudgeterGridComponent
+          },
+          {
+            path: 'budgeter-action/:actionType',
+            component : COMPONENTS.BudgeterFormComponent
           }
         ]
       }
