@@ -12,7 +12,7 @@ export class BudgeterComponent implements OnInit {
   showBudgeter: any = 0;
   budgetItem = false;
 
-  constructor(){
+  constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef){
 
   }
 
@@ -22,5 +22,16 @@ export class BudgeterComponent implements OnInit {
   openBudgeter(id: any){
     console.log(id);
     this.budgetItem = !this.budgetItem;
-  }
+  };
+
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/custom.js' , 'assets/scripts/changeLang.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  };
 }

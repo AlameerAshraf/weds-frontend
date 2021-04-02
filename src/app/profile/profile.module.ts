@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,21 @@ import * as COMPONENTS from './components';
     COMPONENTS.ChecklistFormComponent,
     COMPONENTS.BudgeterGridComponent,
     COMPONENTS.BudgeterFormComponent,
+    COMPONENTS.UsersGridComponent,
+    COMPONENTS.UsersFormComponent,
+    COMPONENTS.WeddingWebsitesGridComponent,
+    COMPONENTS.ProfileDetailsComponent,
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
     THEME_MODULE,
     NgxSpinnerModule,
+    NgxDropzoneModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAnZPhwhppJByAoyUEzJtF31F0TalEoiYA',
+      libraries: ['places']
+    })
   ],
   providers:[
     NgxSpinnerService,

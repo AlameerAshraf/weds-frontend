@@ -1,6 +1,5 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-vendor',
   templateUrl: './vendor.component.html',
@@ -9,8 +8,12 @@ import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 export class VendorComponent implements OnInit {
   isSearchExpanded = false;
 
+  latitude: number = 23.333;
+  longitude: number = 45.655;
+
+
   constructor(@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef,) { }
+    private elementRef: ElementRef) { }
 
   ngOnInit() {
   }
