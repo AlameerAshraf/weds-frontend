@@ -20,7 +20,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
   files: File[] = [];
 
-  private geoCoder;
+  private geoCoder: any;
 
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
@@ -30,7 +30,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     this.mapsLoader();
   }
 
-  selectTemplate(e) {
+  selectTemplate(e: any) {
     e.preventDefault();
     this.is = !this.is;
     let like = document.getElementById('template1');
@@ -65,6 +65,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
           }
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
+          this.getAddress(this.latitude, this.longitude);
           this.zoom = 12;
         });
       });
@@ -80,9 +81,15 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
         this.getAddress(this.latitude, this.longitude);
       });
     }
-  }
+  };
 
-  getAddress(latitude, longitude) {
+  markerDragEnd(e: any){
+    this.latitude = e.coords.lat;
+    this.longitude = e.coords.lng;
+    this.getAddress(this.latitude, this.longitude);
+  };
+
+  getAddress(latitude: number, longitude: number) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
@@ -97,15 +104,18 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     });
   };
 
-
-  onSelect(event) {
+  onSelect(event : any) {
     console.log(event);
     this.files.push(...event.addedFiles);
   };
 
-  onRemove(event) {
+  onRemove(event: any) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
+  };
+
+  createNewWebsiteRequest(){
+
   };
 
   ngAfterViewInit(): void {
