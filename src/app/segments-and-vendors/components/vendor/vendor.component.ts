@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, NgZone, ViewChild } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-
+declare const google: any
 @Component({
   selector: 'app-vendor',
   templateUrl: './vendor.component.html',
@@ -23,6 +23,7 @@ export class VendorComponent implements OnInit {
     private ngZone: NgZone) { }
 
   ngOnInit() {
+
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;

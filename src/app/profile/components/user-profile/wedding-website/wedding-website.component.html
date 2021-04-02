@@ -136,7 +136,7 @@
     <div class="dashboard-list-box margin-top-0">
       <h4>Cover Photo
       </h4>
-      <div style="padding: 10px !important;">
+      <div class="row" style="padding: 10px !important; height: 205px !important;">
         <div class="col-md-12">
           <div class="edit-profile-photo">
             <img class="anImage"
@@ -158,7 +158,52 @@
     <div class="dashboard-list-box margin-top-0">
       <h4>Gallery
       </h4>
-      <div style="padding: 10px !important;">
+      <div class="row" style="padding: 10px !important;">
+        <div class="col-md-12">
+          <ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label></ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </ngx-dropzone>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+<div class="row margin-bottom-20">
+  <div class="col-lg-3 col-md-3">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>Cover Photo
+      </h4>
+      <div class="row" style="padding: 10px !important; height: 205px !important;">
+        <div class="col-md-12">
+          <div class="edit-profile-photo">
+            <img class="anImage"
+              [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+              alt="">
+            <div class="change-photo-btn">
+              <div class="photoUpload">
+                <span><i class="fa fa-upload"></i> Upload Photo</span>
+                <input type="file" class="upload" (change)="onFileSelected($event)" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-9 col-md-9">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>Gallery
+      </h4>
+      <div class="row" style="padding: 10px !important;">
         <div class="col-md-12">
           <ngx-dropzone (change)="onSelect($event)">
             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
