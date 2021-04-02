@@ -10,23 +10,29 @@
 <div class="row">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>Select your template <div class="comission-taken"></div></h4>
+      <h4>Select your template <div class="comission-taken"></div>
+      </h4>
       <div style="padding: 8px !important;">
         <div class="row">
+
           <div class="col-md-3">
             <div class="fw-carousel-item">
-              <a href="listings-single-page.html" class="listing-item-container compact">
+              <a (click)="selectTemplate($event , 'template1')" class="listing-item-container compact">
                 <div class="listing-item">
-                  <img src="https://weds360-production.s3.eu-west-1.amazonaws.com/store/theme/1/image/medium-9aa0c8fce8cb5f6e41730cabba6400b3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3XIBZMGBAF2YAFWK%2F20210401%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210401T200131Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=13ece40be72fa7b93a24fd775bf4ec4c60bb8a22f731e8e43557ba7b71e718f6" alt="">
+                  <img
+                    src="https://weds360-production.s3.eu-west-1.amazonaws.com/store/theme/1/image/medium-9aa0c8fce8cb5f6e41730cabba6400b3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3XIBZMGBAF2YAFWK%2F20210401%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210401T200131Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=13ece40be72fa7b93a24fd775bf4ec4c60bb8a22f731e8e43557ba7b71e718f6"
+                    alt="">
 
                   <div class="listing-item-content">
                     <h3>Save the date theme</h3>
                   </div>
-                  <span class="like-icon"></span>
+                  <span id="template1" [ngClass]="{ 'liked' : is }" class="like-icon"></span>
                 </div>
               </a>
             </div>
           </div>
+
+
         </div>
       </div>
     </div>
