@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile-details',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileDetailsComponent implements OnInit {
   coverPhotoSource: string | ArrayBuffer = ''
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document: any,
+  private elementRef: ElementRef,) { }
 
   ngOnInit() {
   };
@@ -22,5 +24,16 @@ export class ProfileDetailsComponent implements OnInit {
       };
       fileReader.readAsDataURL(imageFile);
     }
+  };
+
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/datePickerInitakizer.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
   };
 }

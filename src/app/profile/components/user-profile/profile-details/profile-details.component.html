@@ -30,11 +30,21 @@
           <label>Your Name</label>
           <input value="Tom Perrin" type="text">
 
+          <label>Email</label>
+          <input value="tom@example.com" type="text">
+
           <label>Phone</label>
           <input value="(123) 123-456" type="text">
 
-          <label>Email</label>
-          <input value="tom@example.com" type="text">
+          <label>Date of birth</label>
+          <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+
+          <label>Gender</label>
+          <select class="chosen-select-no-single">
+            <option label="blank">Perfect Hour</option>
+            <option>New York</option>
+            <option>Los Angeles</option>
+          </select>
 
           <label>Notes</label>
           <textarea name="notes" id="notes" cols="30"
@@ -78,8 +88,9 @@
     </div>
   </div>
 
+  <!-- Location -->
   <div class="col-lg-6 col-md-12">
-    <div class="dashboard-list-box margin-top-0">
+    <div class="dashboard-list-box margin-top-10">
       <h4 class="gray">Change Password</h4>
       <div class="dashboard-list-box-static">
         <div class="my-profile">
