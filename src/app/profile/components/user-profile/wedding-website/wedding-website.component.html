@@ -7,10 +7,10 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row margin-bottom-20">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>Select your template <div class="comission-taken"></div>
+      <h4>Select your template
       </h4>
       <div style="padding: 8px !important;">
         <div class="row">
@@ -37,4 +37,141 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="row margin-bottom-20">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>Pre-wedding marital ceremony
+      </h4>
+      <div style="padding: 10px !important;">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Select the date </label>
+            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+          </div>
+
+          <div class="col-md-3">
+            <label>Select perfect hour </label>
+            <select class="chosen-select-no-single">
+              <option label="blank">Perfect Hour</option>
+              <option>New York</option>
+              <option>Los Angeles</option>
+              <option>Chicago</option>
+              <option>Houston</option>
+              <option>Phoenix</option>
+              <option>San Diego</option>
+              <option>Austin</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label>More specific</label>
+            <select class="chosen-select-no-single">
+              <option label="blank">Perfect Minute</option>
+              <option>New York</option>
+              <option>Los Angeles</option>
+              <option>Chicago</option>
+              <option>Houston</option>
+              <option>Phoenix</option>
+              <option>San Diego</option>
+              <option>Austin</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row margin-bottom-20">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>Wedding date & time
+      </h4>
+      <div style="padding: 10px !important;">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Select the date </label>
+            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+          </div>
+
+          <div class="col-md-3">
+            <label>Select perfect hour </label>
+            <select class="chosen-select-no-single">
+              <option label="blank">Perfect Hour</option>
+              <option>New York</option>
+              <option>Los Angeles</option>
+              <option>Chicago</option>
+              <option>Houston</option>
+              <option>Phoenix</option>
+              <option>San Diego</option>
+              <option>Austin</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label>More specific</label>
+            <select class="chosen-select-no-single">
+              <option label="blank">Perfect Minute</option>
+              <option>New York</option>
+              <option>Los Angeles</option>
+              <option>Chicago</option>
+              <option>Houston</option>
+              <option>Phoenix</option>
+              <option>San Diego</option>
+              <option>Austin</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row margin-bottom-20">
+  <div class="col-lg-3 col-md-3">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>Cover Photo
+      </h4>
+      <div style="padding: 10px !important;">
+        <div class="col-md-12">
+          <div class="edit-profile-photo">
+            <img class="anImage"
+              [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+              alt="">
+            <div class="change-photo-btn">
+              <div class="photoUpload">
+                <span><i class="fa fa-upload"></i> Upload Photo</span>
+                <input type="file" class="upload" (change)="onFileSelected($event)" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-9 col-md-9">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>Gallery
+      </h4>
+      <div style="padding: 10px !important;">
+        <div class="col-md-12">
+          <ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+              <ngx-dropzone-label></ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </ngx-dropzone>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 </div>

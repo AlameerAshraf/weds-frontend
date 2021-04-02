@@ -12,7 +12,7 @@ import * as COMPONENTS from './app-module-components';
 import { AppConfig, httpService, localStorageService, resources , ValidateService } from './core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
-
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,

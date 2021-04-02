@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 
 @NgModule({
@@ -27,6 +27,7 @@ import * as COMPONENTS from './components';
     ProfileRoutingModule,
     THEME_MODULE,
     NgxSpinnerModule,
+    NgxDropzoneModule
   ],
   providers:[
     NgxSpinnerService,
