@@ -7,6 +7,7 @@ import * as COMPONENTS from './components';
 
 
 import { NGX_SPINNER , THEME_MODULE} from './segments-and-vendors.imports';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,11 @@ import { NGX_SPINNER , THEME_MODULE} from './segments-and-vendors.imports';
   imports: [
     CommonModule,
     SegmentsAndVendorsRoutingModule,
-    THEME_MODULE
+    THEME_MODULE,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAnZPhwhppJByAoyUEzJtF31F0TalEoiYA',
+      libraries: ['places']
+    })
   ]
 })
 export class SegmentsAndVendorsModule { }

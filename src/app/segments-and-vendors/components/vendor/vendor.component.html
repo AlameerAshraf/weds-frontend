@@ -77,10 +77,12 @@
 
 			<div id="listing-location" class="listing-section">
 				<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
-
 				<div id="singleListingMap-container">
-					<div id="singleListingMap" data-latitude="40.70437865245596" data-longitude="-73.98674011230469" data-map-icon="im im-icon-Hamburger"></div>
-					<a href="#" id="streetView">Street View</a>
+          <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="8">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"
+              ></agm-marker>
+
+          </agm-map>
 				</div>
 			</div>
 
