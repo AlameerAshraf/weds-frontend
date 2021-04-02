@@ -19,7 +19,6 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^5.2.2",
     "ngx-spinner": "^10.0.1",
     "ngx-toastr": "^11.3.3",
     "rxjs": "~6.4.0",
