@@ -177,46 +177,34 @@
 </div>
 
 <div class="row margin-bottom-20">
-  <div class="col-lg-3 col-md-3">
+  <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>Cover Photo
+      <h4>Venue Location
       </h4>
-      <div class="row" style="padding: 10px !important; height: 205px !important;">
-        <div class="col-md-12">
-          <div class="edit-profile-photo">
-            <img class="anImage"
-              [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-              alt="">
-            <div class="change-photo-btn">
-              <div class="photoUpload">
-                <span><i class="fa fa-upload"></i> Upload Photo</span>
-                <input type="file" class="upload" (change)="onFileSelected($event)" />
-              </div>
+      <div style="padding: 10px !important;">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Select the date </label>
+            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+            <textarea cols="40" rows="4" placeholder="Your Detailed Address"></textarea>
+          </div>
+
+          <div class="col-md-6">
+            <label>Find the location.</label>
+            <div class="form-group">
+              <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Venue Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+            </div>
+
+            <div>
+              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  ></agm-marker>
+
+              </agm-map>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="col-lg-9 col-md-9">
-    <div class="dashboard-list-box margin-top-0">
-      <h4>Gallery
-      </h4>
-      <div class="row" style="padding: 10px !important;">
-        <div class="col-md-12">
-          <ngx-dropzone (change)="onSelect($event)">
-            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-              <ngx-dropzone-label></ngx-dropzone-label>
-            </ngx-dropzone-image-preview>
-          </ngx-dropzone>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
 </div>

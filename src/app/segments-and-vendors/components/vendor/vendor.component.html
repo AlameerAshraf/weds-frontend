@@ -77,16 +77,9 @@
 
 			<div id="listing-location" class="listing-section">
 				<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
-
-        <div class="form-group">
-          <label>Enter address</label>
-          <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
-
-        </div>
-
 				<div id="singleListingMap-container">
-          <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+          <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="8">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"
               ></agm-marker>
 
           </agm-map>
