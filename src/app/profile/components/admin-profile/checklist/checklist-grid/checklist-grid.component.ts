@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checklist-grid',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChecklistGridComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   pageChange(pageNumber){
 
+  };
+
+  navigateToCreateNewCheklist(){
+    this.router.navigate(['profile/en/admin/checklist-action/new']);
   }
 }

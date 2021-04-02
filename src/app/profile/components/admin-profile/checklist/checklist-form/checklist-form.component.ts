@@ -1,3 +1,5 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChecklistFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService , private router: Router) { }
 
   ngOnInit() {
-  }
+  };
 
+
+  createNewCheckList(){
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+      this.router.navigateByUrl('/profile/en/admin/checklist-defaults');
+    }, 3000);
+  };
+
+  backToRoute(){
+    this.router.navigateByUrl('/profile/en/admin/checklist-defaults');
+  };
 }

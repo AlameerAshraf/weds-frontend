@@ -1,3 +1,4 @@
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { THEME_MODULE } from './../security/security.imports';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,7 +23,11 @@ import * as COMPONENTS from './components';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    THEME_MODULE
+    THEME_MODULE,
+    NgxSpinnerModule
+  ],
+  providers:[
+    NgxSpinnerService
   ]
 })
 export class ProfileModule { }
