@@ -63,6 +63,18 @@ const routes: Routes = [
           {
             path: 'budgeter-action/:actionType',
             component : COMPONENTS.BudgeterFormComponent
+          },
+          {
+            path: 'users-defaults',
+            component: COMPONENTS.UsersGridComponent
+          },
+          {
+            path: 'users-action/:actionType',
+            component : COMPONENTS.UsersFormComponent
+          },
+          {
+            path: 'wedding-websites',
+            component: COMPONENTS.WeddingWebsitesGridComponent
           }
         ]
       }

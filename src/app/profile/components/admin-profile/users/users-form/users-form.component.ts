@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-budgeter-form',
-  templateUrl: './budgeter-form.component.html',
-  styleUrls: ['./budgeter-form.component.scss']
+  selector: 'app-users-form',
+  templateUrl: './users-form.component.html',
+  styleUrls: ['./users-form.component.scss']
 })
-export class BudgeterFormComponent implements OnInit {
+export class UsersFormComponent implements OnInit {
 
   constructor(private spinner: NgxSpinnerService , private router: Router ,
     private toastr: ToastrService) { }
@@ -16,17 +16,19 @@ export class BudgeterFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  createNewBudgeter(){
+
+  createNewUser(){
     this.spinner.show();
 
     setTimeout(() => {
       this.spinner.hide();
       this.toastr.success('Hello world!', 'Toastr fun!');
-      this.router.navigateByUrl('/profile/en/admin/budgeter-defaults');
+      this.router.navigateByUrl('/profile/en/admin/users-defaults');
     }, 3000);
   };
 
   backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/budgeter-defaults');
+    this.router.navigateByUrl('/profile/en/admin/users-defaults');
   };
+
 }

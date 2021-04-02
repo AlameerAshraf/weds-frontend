@@ -22,6 +22,9 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.ChecklistFormComponent,
     COMPONENTS.BudgeterGridComponent,
     COMPONENTS.BudgeterFormComponent,
+    COMPONENTS.UsersGridComponent,
+    COMPONENTS.UsersFormComponent,
+    COMPONENTS.WeddingWebsitesGridComponent,
     COMPONENTS.ProfileDetailsComponent,
   ],
   imports: [
