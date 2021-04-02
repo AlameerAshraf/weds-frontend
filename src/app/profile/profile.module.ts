@@ -24,10 +24,10 @@ import * as COMPONENTS from './components';
     CommonModule,
     ProfileRoutingModule,
     THEME_MODULE,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers:[
-    NgxSpinnerService
+    NgxSpinnerService,
   ]
 })
 export class ProfileModule { }
