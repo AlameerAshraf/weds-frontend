@@ -57,6 +57,14 @@ const routes: Routes = [
         path: 'admin',
         children : [
           {
+            path: 'overview',
+            component: COMPONENTS.AdminOverviewComponent
+          },
+          {
+            path: 'messages',
+            component: COMPONENTS.AdminMessagesComponent
+          },
+          {
             path: 'checklist-defaults',
             component: COMPONENTS.ChecklistGridComponent
           },

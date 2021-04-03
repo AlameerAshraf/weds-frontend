@@ -162,6 +162,26 @@
   ],
   "navigations" : [
     {
+      "menuTitle" : "My Dashboard",
+      "childMenuItem" : [
+        {
+          "title" : "Overview",
+          "icon" : "sl sl-icon-rocket",
+          "url" : "overview",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "Messages",
+          "icon" : "sl sl-icon-envelope-open",
+          "url" : "messages",
+          "child" : [
+          ]
+        }
+      ]
+    },
+    {
       "menuTitle" : "Admin Panel",
       "childMenuItem" : [
         {
@@ -255,26 +275,6 @@
           "icon" : "im im-icon-Male",
           "child" : [
 
-          ]
-        }
-      ]
-    },
-    {
-      "menuTitle" : "My Dashboard",
-      "childMenuItem" : [
-        {
-          "title" : "Overview",
-          "icon" : "sl sl-icon-rocket",
-          "url" : "overview",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Messages",
-          "icon" : "sl sl-icon-envelope-open",
-          "url" : "messages",
-          "child" : [
           ]
         }
       ]

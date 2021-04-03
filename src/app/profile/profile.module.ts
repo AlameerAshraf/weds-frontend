@@ -38,6 +38,8 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.TagsGridComponent,
     COMPONENTS.WeddingDetailsComponent,
     COMPONENTS.BookmarksLovedComponent,
+    COMPONENTS.AdminMessagesComponent,
+    COMPONENTS.AdminOverviewComponent,
   ],
   imports: [
     CommonModule,
