@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 declare const google: any
 
+
 @Component({
   selector: 'app-wedding-website',
   templateUrl: './wedding-website.component.html',

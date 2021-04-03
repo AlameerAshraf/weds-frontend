@@ -172,27 +172,27 @@
             {
               "title" : "Categories",
               "icon" : "sl sl-icon-grid",
-              "url" : "messages"
+              "url" : "categories-defaults"
             },
             {
               "title" : "Areas",
               "icon" : "sl sl-icon-globe",
-              "url" : "messages"
+              "url" : "areas-defaults"
             },
             {
               "title" : "Themes",
               "icon" : "sl sl-icon-docs",
-              "url" : "overview"
+              "url" : "themes-defaults"
             },
             {
               "title" : "Tags",
               "icon" : "sl sl-icon-tag",
-              "url" : "overview"
+              "url" : "tags-defaults"
             },
             {
               "title" : "Offers",
               "icon" : "sl sl-icon-social-dropbox",
-              "url" : "messages"
+              "url" : "offers-defaults"
             },
             {
               "title" : "Events",
@@ -226,7 +226,7 @@
             {
               "title" : "Users",
               "icon" : "sl sl-icon-people",
-              "url" : "messages"
+              "url" : "users-list"
             },
             {
               "title" : "Checklists",
@@ -241,7 +241,7 @@
             {
               "title" : "Wedding websites",
               "icon" : "im im-icon-Heart-2",
-              "url" : "overview"
+              "url" : "wedding-websites"
             }
           ]
         }

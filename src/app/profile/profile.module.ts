@@ -7,6 +7,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
+import { BookmarksLovedComponent } from './components/user-profile/bookmarks-loved/bookmarks-loved.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,18 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.UsersFormComponent,
     COMPONENTS.WeddingWebsitesGridComponent,
     COMPONENTS.ProfileDetailsComponent,
+    COMPONENTS.ThemesFormComponent,
+    COMPONENTS.ThemesGridComponent,
+    COMPONENTS.AreasGridComponent,
+    COMPONENTS.AreasFormComponent,
+    COMPONENTS.CategoriesFormComponent,
+    COMPONENTS.CategoriesGridComponent,
+    COMPONENTS.OffersGridComponent,
+    COMPONENTS.OffersFormComponent,
+    COMPONENTS.TagsFormComponent,
+    COMPONENTS.TagsGridComponent,
+    COMPONENTS.WeddingDetailsComponent,
+    COMPONENTS.BookmarksLovedComponent,
   ],
   imports: [
     CommonModule,

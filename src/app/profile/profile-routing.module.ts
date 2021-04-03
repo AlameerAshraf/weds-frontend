@@ -16,6 +16,14 @@ const routes: Routes = [
             component: COMPONENTS.ProfileDetailsComponent
           },
           {
+            path : 'wedding-info',
+            component: COMPONENTS.WeddingDetailsComponent
+          },
+          {
+            path : 'my-taste',
+            component: COMPONENTS.BookmarksLovedComponent
+          },
+          {
             path: 'overview',
             component: COMPONENTS.OverviewComponent
           },
@@ -40,7 +48,7 @@ const routes: Routes = [
             component: COMPONENTS.EventsComponent
           },
           {
-            path : 'wedding',
+            path : 'wedding-website',
             component: COMPONENTS.WeddingWebsiteComponent
           }
         ]
@@ -65,7 +73,7 @@ const routes: Routes = [
             component : COMPONENTS.BudgeterFormComponent
           },
           {
-            path: 'users-defaults',
+            path: 'users-list',
             component: COMPONENTS.UsersGridComponent
           },
           {
@@ -75,7 +83,47 @@ const routes: Routes = [
           {
             path: 'wedding-websites',
             component: COMPONENTS.WeddingWebsitesGridComponent
-          }
+          },
+          {
+            path: 'themes-defaults',
+            component: COMPONENTS.ThemesGridComponent
+          },
+          {
+            path: 'themes-action/:actionType',
+            component : COMPONENTS.ThemesFormComponent
+          },
+          {
+            path: 'areas-defaults',
+            component: COMPONENTS.AreasGridComponent
+          },
+          {
+            path: 'areas-action/:actionType',
+            component : COMPONENTS.AreasFormComponent
+          },
+          {
+            path: 'categories-defaults',
+            component: COMPONENTS.CategoriesGridComponent
+          },
+          {
+            path: 'categories-action/:actionType',
+            component : COMPONENTS.CategoriesFormComponent
+          },
+          {
+            path: 'offers-defaults',
+            component: COMPONENTS.OffersGridComponent
+          },
+          {
+            path: 'offers-action/:actionType',
+            component : COMPONENTS.OffersFormComponent
+          },
+          {
+            path: 'tags-defaults',
+            component: COMPONENTS.TagsGridComponent
+          },
+          {
+            path: 'tags-action/:actionType',
+            component : COMPONENTS.TagsFormComponent
+          },
         ]
       }
     ]
