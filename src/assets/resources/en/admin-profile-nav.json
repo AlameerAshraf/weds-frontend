@@ -226,7 +226,7 @@
             {
               "title" : "Users",
               "icon" : "sl sl-icon-people",
-              "url" : "messages"
+              "url" : "users-list"
             },
             {
               "title" : "Checklists",
@@ -241,7 +241,7 @@
             {
               "title" : "Wedding websites",
               "icon" : "im im-icon-Heart-2",
-              "url" : "overview"
+              "url" : "wedding-websites"
             }
           ]
         }

@@ -40,7 +40,7 @@ const routes: Routes = [
             component: COMPONENTS.EventsComponent
           },
           {
-            path : 'wedding',
+            path : 'wedding-website',
             component: COMPONENTS.WeddingWebsiteComponent
           }
         ]
@@ -65,7 +65,7 @@ const routes: Routes = [
             component : COMPONENTS.BudgeterFormComponent
           },
           {
-            path: 'users-defaults',
+            path: 'users-list',
             component: COMPONENTS.UsersGridComponent
           },
           {
