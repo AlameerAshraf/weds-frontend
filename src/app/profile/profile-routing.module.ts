@@ -12,6 +12,10 @@ const routes: Routes = [
         path: 'user',
         children: [
           {
+            path: 'my-info',
+            component: COMPONENTS.ProfileDetailsComponent
+          },
+          {
             path: 'overview',
             component: COMPONENTS.OverviewComponent
           },
