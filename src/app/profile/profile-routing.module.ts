@@ -149,7 +149,28 @@ const routes: Routes = [
             component : COMPONENTS.TagsFormComponent
           },
         ]
-      }
+      },
+      {
+        path: 'vendor',
+        children: [
+          {
+            path: 'my-info',
+            component: COMPONENTS.VendorProfileDetailsComponent
+          },
+          {
+            path : 'my-services',
+            component: COMPONENTS.VendorServicesComponent
+          },
+          {
+            path: 'overview',
+            component: COMPONENTS.VendorOverviewComponent
+          },
+          {
+            path: 'messages',
+            component: COMPONENTS.VendorMessagesComponent
+          }
+        ]
+      },
     ]
   }
 ];

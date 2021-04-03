@@ -45,6 +45,10 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.VendorAdminViewComponent,
     COMPONENTS.UserAdminViewComponent,
     COMPONENTS.AdminProfileDetailsComponent,
+    COMPONENTS.VendorProfileDetailsComponent,
+    COMPONENTS.VendorMessagesComponent,
+    COMPONENTS.VendorOverviewComponent,
+    COMPONENTS.VendorServicesComponent,
   ],
   imports: [
     CommonModule,
