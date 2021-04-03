@@ -25,6 +25,7 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.UsersGridComponent,
     COMPONENTS.UsersFormComponent,
     COMPONENTS.WeddingWebsitesGridComponent,
+    COMPONENTS.ProfileDetailsComponent,
     COMPONENTS.ThemesFormComponent,
     COMPONENTS.ThemesGridComponent,
     COMPONENTS.AreasGridComponent,

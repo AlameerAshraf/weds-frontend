@@ -1,1 +1,44 @@
-<p>tags-form works!</p>
+<div class="row">
+    <div class="col-lg-12">
+  
+      <div id="add-listing">
+  
+        <div class="add-listing-section">
+  
+          <div class="add-listing-headline">
+            <h3><i class="sl sl-icon-note"></i> Area information</h3>
+          </div>
+  
+          <div class="row with-forms">
+            <div class="col-md-6">
+              <h5>Name En</h5>
+              <input class="search-field" type="text" value="" />
+            </div>
+  
+            <div class="col-md-6">
+                <h5>Name Ar</h5>
+                <input class="search-field" type="text" value="" />
+            </div>
+          </div>
+  
+  
+          <div class="row with-forms">
+            <div class="col-md-6 margin-top-50">
+                <ul>
+                    <li style="cursor: pointer;" (click)="toggleNote(1)">
+                      <i  style="background-color: rgb(117, 248, 117); color: white; font-size: 25px;"
+                        class="list-box-icon fa fa-check"></i> Hidden
+                    </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+    Cancel <i class="sl sl-icon-close"></i>
+  </a>
+  <a class="button preview" (click)="navigateToTagsDefaults()">Save Changes <i class="sl sl-icon-check"></i></a>
+  

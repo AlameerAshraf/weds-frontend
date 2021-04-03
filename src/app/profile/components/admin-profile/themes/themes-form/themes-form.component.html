@@ -28,7 +28,17 @@
           <div class="row with-forms">
             <div class="col-md-6">
               <h5>Image</h5>
-              <input class="search-field" type="text" value="" />
+              <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                <img class="anImage"
+                  [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                  alt="">
+                <div class="change-photo-btn">
+                  <div class="photoUpload">
+                    <span><i class="fa fa-upload"></i> Upload Photo</span>
+                    <input type="file" class="upload" (change)="onFileSelected($event)" />
+                  </div>
+                </div>
+            </div>
             </div>
           </div>
         </div>

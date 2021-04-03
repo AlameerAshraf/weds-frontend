@@ -16,7 +16,7 @@ export class TagsFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  createNewTag(){
+  navigateToTagsDefaults(){
     this.spinner.show();
 
     setTimeout(() => {

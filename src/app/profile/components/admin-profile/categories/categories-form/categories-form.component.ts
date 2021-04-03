@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CategoriesFormComponent implements OnInit {
 
+  coverPhotoSource="";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
     private toastr: ToastrService) { }
 

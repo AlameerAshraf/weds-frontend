@@ -8,8 +8,12 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './themes-form.component.html',
   styleUrls: ['./themes-form.component.scss']
 })
+
+
+
 export class ThemesFormComponent implements OnInit {
 
+  coverPhotoSource="";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
     private toastr: ToastrService) { }
 
