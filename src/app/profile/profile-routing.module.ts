@@ -20,6 +20,10 @@ const routes: Routes = [
             component: COMPONENTS.WeddingDetailsComponent
           },
           {
+            path : 'my-taste',
+            component: COMPONENTS.BookmarksLovedComponent
+          },
+          {
             path: 'overview',
             component: COMPONENTS.OverviewComponent
           },

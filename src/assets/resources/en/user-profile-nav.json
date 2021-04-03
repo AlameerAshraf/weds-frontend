@@ -248,6 +248,7 @@
         {
           "title" : "Bookmarks & Loves",
           "icon" : "im im-icon-Bookmark",
+          "url" : "my-taste",
           "child" : [
 
           ]
