@@ -16,6 +16,14 @@ const routes: Routes = [
             component: COMPONENTS.ProfileDetailsComponent
           },
           {
+            path : 'wedding-info',
+            component: COMPONENTS.WeddingDetailsComponent
+          },
+          {
+            path : 'my-taste',
+            component: COMPONENTS.BookmarksLovedComponent
+          },
+          {
             path: 'overview',
             component: COMPONENTS.OverviewComponent
           },

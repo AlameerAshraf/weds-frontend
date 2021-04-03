@@ -232,6 +232,7 @@
         {
           "title" : "Wedding Details",
           "icon" : "im im-icon-Suit",
+          "url" : "wedding-info",
           "child" : [
 
           ]
@@ -247,6 +248,7 @@
         {
           "title" : "Bookmarks & Loves",
           "icon" : "im im-icon-Bookmark",
+          "url" : "my-taste",
           "child" : [
 
           ]
