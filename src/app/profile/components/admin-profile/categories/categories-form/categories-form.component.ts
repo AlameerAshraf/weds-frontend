@@ -13,8 +13,7 @@ export class CategoriesFormComponent implements OnInit {
 
   coverPhotoSource="";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
-    private toastr: ToastrService , @Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef) { }
+    private toastr: ToastrService , @Inject(DOCUMENT) private document: any, private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.loadScripts();
