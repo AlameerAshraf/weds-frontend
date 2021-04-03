@@ -226,7 +226,7 @@
             {
               "title" : "Users",
               "icon" : "sl sl-icon-people",
-              "url" : "users-defaults"
+              "url" : "users-list"
             },
             {
               "title" : "Checklists",
