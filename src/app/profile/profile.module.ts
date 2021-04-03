@@ -49,6 +49,8 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.VendorMessagesComponent,
     COMPONENTS.VendorOverviewComponent,
     COMPONENTS.VendorServicesComponent,
+    COMPONENTS.EventsGridComponent,
+    COMPONENTS.EventsFormComponent,
   ],
   imports: [
     CommonModule,
