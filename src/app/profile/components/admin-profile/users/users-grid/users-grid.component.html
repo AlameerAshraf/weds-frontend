@@ -13,7 +13,7 @@
       <div class="add-listing-section">
         <div class="row with-forms">
           <!-- Status -->
-          <div class="col-md-6">
+          <div class="col-md-6 margin-top-20">
             <h5>Role</h5>
             <select class="chosen-select-no-single">
               <option>Select Category</option>
@@ -24,14 +24,14 @@
             </select>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-6 margin-top-20">
             <h5>search </h5>
             <input type="text" placeholder="Enter search critera.">
           </div>
         </div>
         <div class="row with-forms " align="right">
-          <a class="button" (click)="backToRoute()">            Reset          </a>
-          <a class="button" (click)="createNewCheckList()">Filter </a>
+          <a class="button" (click)="backToRoute()"> Search </a>
+          <a class="button" style="background-color:  rgb(233, 80, 80);" (click)="navigateToAddNewUser()"> Reset </a>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
       <h4>
         Users
 
-        <div (click)="navigateToCreateNewCheklist()" style="background-color: #046B69 !important;
+        <div (click)="navigateToAddNewUser()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
               border-radius: 20px;" class="comission-taken">

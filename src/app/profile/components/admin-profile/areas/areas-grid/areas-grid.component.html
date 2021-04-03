@@ -1,0 +1,76 @@
+<div id="titlebar" class="gradient">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Create the Area items.</h2>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="dashboard-list-box margin-top-0">
+        <h4>
+          Default Areas
+  
+          <div
+            (click)="navigateToCreateNewArea()"
+            style="background-color: #046B69 !important;
+              color: white !important;
+              cursor: pointer;
+              border-radius: 20px;"
+              class="comission-taken">
+            <i class="im im-icon-Pencil"></i> &nbsp;
+            <strong style="color: white !important">Create New Area Item</strong>
+          </div>
+        </h4>
+  
+        <div class="col-md-12" style="background-color: white;">
+          <table class="table borderless">
+            <thead>
+              <tr>
+                <th scope="col" width="30%">Theme</th>
+                <th scope="col" width="20%">Order</th>
+                <th scope="col" width="20%">Visible</th>
+                <th scope="col" width="20%">Number of Services</th>
+                <th scope="col" width="5%">Delete</th>
+                <th scope="col" width="5%">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
+                </td>
+                <td>
+                    <p style="font-size: 20px; font-weight: 600;" >1</p>
+                  </td>
+                  <td>
+                    <p style="font-size: 20px; font-weight: 600;" >True</p>
+                  </td>
+                  <td>
+                    <p style="font-size: 20px; font-weight: 600;" >5</p>
+                  </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i></p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+      </weds-paging>
+    </div>
+  </div>
+  
