@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-wedding-details',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeddingDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document: any,
+  private elementRef: ElementRef,) { }
 
   ngOnInit() {
   }
 
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/dropzone.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  };
 }
