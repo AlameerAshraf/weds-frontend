@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,19 +7,31 @@ import { Router } from '@angular/router';
   templateUrl: './categories-grid.component.html',
   styleUrls: ['./categories-grid.component.scss']
 })
-export class CategoriesGridComponent implements OnInit {
+export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, @Inject(DOCUMENT) private document: any,
+    private elementRef: ElementRef) { }
 
   ngOnInit() {
   }
 
-  pageChange(pageNumber){
+  pageChange(pageNumber) {
 
   };
 
-  navigateToCreateNewCategory(){
+  navigateToCreateNewCategory() {
     this.router.navigate(['profile/en/admin/categories-action/new']);
-  }
+  };
 
+
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  };
 }
