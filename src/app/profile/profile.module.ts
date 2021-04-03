@@ -26,6 +26,7 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.UsersFormComponent,
     COMPONENTS.WeddingWebsitesGridComponent,
     COMPONENTS.ProfileDetailsComponent,
+    COMPONENTS.WeddingDetailsComponent,
   ],
   imports: [
     CommonModule,

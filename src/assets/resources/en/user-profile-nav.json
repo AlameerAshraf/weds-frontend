@@ -232,6 +232,7 @@
         {
           "title" : "Wedding Details",
           "icon" : "im im-icon-Suit",
+          "url" : "wedding-info",
           "child" : [
 
           ]
