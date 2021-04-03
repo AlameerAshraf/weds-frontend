@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { THEME_MODULE } from './../security/security.imports';
 import { NgModule } from '@angular/core';
@@ -44,6 +45,7 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     CommonModule,
     ProfileRoutingModule,
+    FormsModule,
     THEME_MODULE,
     NgxSpinnerModule,
     NgxDropzoneModule,
