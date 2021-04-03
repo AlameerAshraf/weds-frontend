@@ -10,13 +10,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class OffersFormComponent implements OnInit {
 
+  coverPhotoSource = "";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
     private toastr: ToastrService) { }
 
   ngOnInit() {
   }
 
-  createNewOffer(){
+  navigateToOffersDefaults(){
     this.spinner.show();
 
     setTimeout(() => {
