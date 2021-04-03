@@ -1,106 +1,107 @@
 <div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Welcome Categories</h2>
-        <span>Search top rated Categories and experts that will make your wedding looks like a carnaval!</span>
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Welcome Categories</h2>
+      <span>Search top rated Categories and experts that will make your wedding looks like a carnaval!</span>
     </div>
   </div>
-  
-  <div class="row">
-    <div class="col-lg-12">
-      <div id="add-listing">
-        <div class="add-listing-section">
-          <div class="row with-forms">
-            <!-- Status -->
-            <div class="col-md-4 margin-top-20">
-              <h5>Parent Menu</h5>
-              <select class="chosen-select-no-single">
-                <option>Select Category</option>
-                <option>Exoensively</option>
-                <option>Affordably</option>
-                <option>cheably</option>
-                <option>Let me plane freely</option>
-              </select>
-            </div>
+</div>
 
-            <div class="col-md-4 margin-top-20">
-                <h5>Layout</h5>
-                <select class="chosen-select-no-single">
-                  <option>Select Category</option>
-                  <option>Exoensively</option>
-                  <option>Affordably</option>
-                  <option>cheably</option>
-                  <option>Let me plane freely</option>
-                </select>
-              </div>
-  
-            <div class="col-md-4 margin-top-20">
-              <h5>search </h5>
-              <input type="text" placeholder="Enter search critera.">
-            </div>
+<div class="row">
+  <div class="col-lg-12">
+    <div id="add-listing">
+      <div class="add-listing-section">
+        <div class="row with-forms">
+          <!-- Status -->
+          <div class="col-md-4 margin-top-20">
+            <h5>Segment</h5>
+            <select class="chosen-select-no-single">
+              <option>Select Main Segment</option>
+              <option>Him</option>
+              <option>Her</option>
+              <option>Wedding</option>
+            </select>
           </div>
-          <div class="row with-forms " align="right">
-            <a class="button" (click)="backToRoute()"> Search </a>
-            <a class="button" style="background-color:  rgb(233, 80, 80);" (click)="navigateToAddNewCategory()"> Reset </a>
+
+          <div class="col-md-4 margin-top-20">
+            <h5>Service Type</h5>
+            <select class="chosen-select-no-single">
+              <option>Select Category</option>
+              <option>Vendor</option>
+              <option>Ring</option>
+              <option>Dress</option>
+            </select>
           </div>
+
+          <div class="col-md-4 margin-top-20">
+            <h5>search </h5>
+            <input type="text" placeholder="Enter any search keyword">
+          </div>
+        </div>
+        <div class="row with-forms" align="right">
+          <a class="button"> <i class="fa fa-search"></i> Search </a>
+          <a class="button" style="background-color:  rgb(233, 80, 80);"> Reset </a>
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <div class="dashboard-list-box with-icons margin-top-20">
-        <h4>
-          Categories
-  
-          <div (click)="navigateToCreateNewCategory()" style="background-color: #046B69 !important;
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box with-icons margin-top-20">
+      <h4>
+        Categories
+
+        <div (click)="navigateToCreateNewCategory()" style="background-color: #046B69 !important;
                 color: white !important;
                 cursor: pointer;
                 border-radius: 20px;" class="comission-taken">
-            <i class="im im-icon-Pencil"></i> &nbsp;
-            <strong style="color: white !important">Add Category</strong>
-          </div>
-        </h4>
-        <div class="col-md-12" style="background-color: white;">
-          <table class="table borderless">
-            <thead>
-              <tr>
-                <th scope="col" width="30%">Category</th>
-                <th scope="col" width="22%">Parent Menu</th>
-                <th scope="col" width="22%">Layout</th>
-                <th scope="col" width="22%">Index</th>
-                <th scope="col" width="2%">Delete</th>
-                <th scope="col" width="2%">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
-                </td>
-                <td>
-                  <p>for_the_wedding</p>
-                </td>
-                <td>
-                  <p>services</p>
-                </td>
-                <td>
-                  <p>1</p>
-                </td>
-                <td class="td-in-table">
-                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i>
-                  </p>
-                </td>
-                <td class="td-in-table">
-                  <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
-                      class="sl sl-icon-pencil"></i></p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">Add Category</strong>
         </div>
+      </h4>
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th scope="col" width="30%">Category</th>
+              <th scope="col" width="22%">Segment</th>
+              <th scope="col" width="22%">Service Type</th>
+              <th scope="col" width="2%">Delete</th>
+              <th scope="col" width="2%">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
+              </td>
+              <td>
+                <p>Her</p>
+              </td>
+              <td>
+                <p>services</p>
+              </td>
+              <td class="td-in-table">
+                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i>
+                </p>
+              </td>
+              <td class="td-in-table">
+                <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
+                    class="sl sl-icon-pencil"></i></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+    </weds-paging>
+  </div>
+</div>

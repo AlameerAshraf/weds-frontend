@@ -15,7 +15,7 @@
       "node_modules/@types"
     ],
     "types": [
-      "googlemaps"
+      "googlemaps" , "jquery"
     ],
     "skipLibCheck": true,
     "lib": [

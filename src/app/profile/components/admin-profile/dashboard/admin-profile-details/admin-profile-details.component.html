@@ -1,0 +1,84 @@
+<div id="titlebar">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>My Profile</h2>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-6 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4 class="gray">Profile Details</h4>
+      <div class="dashboard-list-box-static">
+
+          <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+            <img class="anImage"
+              [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+              alt="">
+            <div class="change-photo-btn">
+              <div class="photoUpload">
+                <span><i class="fa fa-upload"></i> Upload Photo</span>
+                <input type="file" class="upload" (change)="onFileSelected($event)" />
+              </div>
+            </div>
+        </div>
+
+        <div class="my-profile">
+
+          <label>Your Name</label>
+          <input value="Tom Perrin" type="text">
+
+          <label>Email</label>
+          <input value="tom@example.com" type="text">
+
+          <label>Phone</label>
+          <input value="(123) 123-456" type="text">
+
+          <label>Date of birth</label>
+          <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+
+          <label>Gender</label>
+          <select class="chosen-select-no-single">
+            <option label="blank">Perfect Hour</option>
+            <option>New York</option>
+            <option>Los Angeles</option>
+          </select>
+
+          <label >City</label>
+          <input placeholder="City ex. Alexandria" type="text" autocomplete="sd">
+
+          <label>Address</label>
+          <input placeholder="Detailed Adress," [value]="address" type="text">
+
+        </div>
+
+        <button class="button margin-top-15">Save Changes</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Change Password -->
+  <div class="col-lg-6 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4 class="gray">Change Password</h4>
+      <div class="dashboard-list-box-static">
+        <div class="my-profile">
+          <label class="margin-top-0">Current Password</label>
+          <input type="password">
+
+          <label>New Password</label>
+          <input type="password">
+
+          <label>Confirm New Password</label>
+          <input type="password">
+
+          <button class="button margin-top-15">Change Password</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

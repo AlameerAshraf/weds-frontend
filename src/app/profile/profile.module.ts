@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { THEME_MODULE } from './../security/security.imports';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,6 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
-import { BookmarksLovedComponent } from './components/user-profile/bookmarks-loved/bookmarks-loved.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +39,21 @@ import { BookmarksLovedComponent } from './components/user-profile/bookmarks-lov
     COMPONENTS.TagsGridComponent,
     COMPONENTS.WeddingDetailsComponent,
     COMPONENTS.BookmarksLovedComponent,
+    COMPONENTS.AdminMessagesComponent,
+    COMPONENTS.AdminOverviewComponent,
+    COMPONENTS.WebSiteAdminViewComponent,
+    COMPONENTS.VendorAdminViewComponent,
+    COMPONENTS.UserAdminViewComponent,
+    COMPONENTS.AdminProfileDetailsComponent,
+    COMPONENTS.VendorProfileDetailsComponent,
+    COMPONENTS.VendorMessagesComponent,
+    COMPONENTS.VendorOverviewComponent,
+    COMPONENTS.VendorServicesComponent,
   ],
   imports: [
     CommonModule,
     ProfileRoutingModule,
+    FormsModule,
     THEME_MODULE,
     NgxSpinnerModule,
     NgxDropzoneModule,

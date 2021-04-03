@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
+    "@types/jquery": "^3.5.5",
+    "jquery": "^3.6.0",
     "ngx-dropzone": "^3.0.0",
     "ngx-spinner": "^10.0.1",
     "ngx-toastr": "^11.3.3",

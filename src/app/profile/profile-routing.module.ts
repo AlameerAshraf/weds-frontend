@@ -57,6 +57,30 @@ const routes: Routes = [
         path: 'admin',
         children : [
           {
+            path: 'profile-details',
+            component: COMPONENTS.AdminProfileDetailsComponent
+          },
+          {
+            path: 'website-admin',
+            component: COMPONENTS.WebSiteAdminViewComponent
+          },
+          {
+            path: 'vendors-admin',
+            component: COMPONENTS.VendorAdminViewComponent
+          },
+          {
+            path: 'users-admin',
+            component: COMPONENTS.UserAdminViewComponent
+          },
+          {
+            path: 'overview',
+            component: COMPONENTS.AdminOverviewComponent
+          },
+          {
+            path: 'messages',
+            component: COMPONENTS.AdminMessagesComponent
+          },
+          {
             path: 'checklist-defaults',
             component: COMPONENTS.ChecklistGridComponent
           },
@@ -125,7 +149,28 @@ const routes: Routes = [
             component : COMPONENTS.TagsFormComponent
           },
         ]
-      }
+      },
+      {
+        path: 'vendor',
+        children: [
+          {
+            path: 'my-info',
+            component: COMPONENTS.VendorProfileDetailsComponent
+          },
+          {
+            path : 'my-services',
+            component: COMPONENTS.VendorServicesComponent
+          },
+          {
+            path: 'overview',
+            component: COMPONENTS.VendorOverviewComponent
+          },
+          {
+            path: 'messages',
+            component: COMPONENTS.VendorMessagesComponent
+          }
+        ]
+      },
     ]
   }
 ];
