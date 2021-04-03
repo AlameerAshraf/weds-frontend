@@ -57,6 +57,18 @@ const routes: Routes = [
         path: 'admin',
         children : [
           {
+            path: 'website-admin',
+            component: COMPONENTS.WebSiteAdminViewComponent
+          },
+          {
+            path: 'vendors-admin',
+            component: COMPONENTS.VendorAdminViewComponent
+          },
+          {
+            path: 'users-admin',
+            component: COMPONENTS.UserAdminViewComponent
+          },
+          {
             path: 'overview',
             component: COMPONENTS.AdminOverviewComponent
           },

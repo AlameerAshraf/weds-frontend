@@ -41,6 +41,9 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.BookmarksLovedComponent,
     COMPONENTS.AdminMessagesComponent,
     COMPONENTS.AdminOverviewComponent,
+    COMPONENTS.WebSiteAdminViewComponent,
+    COMPONENTS.VendorAdminViewComponent,
+    COMPONENTS.UserAdminViewComponent,
   ],
   imports: [
     CommonModule,

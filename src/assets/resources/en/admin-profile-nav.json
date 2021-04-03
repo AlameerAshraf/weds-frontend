@@ -187,83 +187,20 @@
         {
           "title" : "Website",
           "icon" : "sl sl-icon-screen-desktop",
-          "url" : "messages",
-          "child" : [
-            {
-              "title" : "Categories",
-              "icon" : "sl sl-icon-grid",
-              "url" : "categories-defaults"
-            },
-            {
-              "title" : "Areas",
-              "icon" : "sl sl-icon-globe",
-              "url" : "areas-defaults"
-            },
-            {
-              "title" : "Themes",
-              "icon" : "sl sl-icon-docs",
-              "url" : "themes-defaults"
-            },
-            {
-              "title" : "Tags",
-              "icon" : "sl sl-icon-tag",
-              "url" : "tags-defaults"
-            },
-            {
-              "title" : "Offers",
-              "icon" : "sl sl-icon-social-dropbox",
-              "url" : "offers-defaults"
-            },
-            {
-              "title" : "Events",
-              "icon" : "im im-icon-CD-2",
-              "url" : "messages"
-            }
-          ]
+          "url" : "website-admin",
+          "child" : []
         },
         {
           "title" : "Vendors",
           "icon" : "sl sl-icon-handbag",
-          "url" : "messages",
-          "child" : [
-            {
-              "title" : "Vendors",
-              "icon" : "sl sl-icon-briefcase",
-              "url" : "messages"
-            },
-            {
-              "title" : "Services",
-              "icon" : "sl sl-icon-basket",
-              "url" : "messages"
-            }
-          ]
+          "url" : "vendors-admin",
+          "child" : []
         },
         {
           "title" : "User",
           "icon" : "sl sl-icon-people",
-          "url" : "messages",
-          "child" : [
-            {
-              "title" : "Users",
-              "icon" : "sl sl-icon-people",
-              "url" : "users-list"
-            },
-            {
-              "title" : "Checklists",
-              "icon" : "sl sl-icon-note",
-              "url" : "checklist-defaults"
-            },
-            {
-              "title" : "Budgeters",
-              "icon" : "sl sl-icon-calculator",
-              "url" : "budgeter-defaults"
-            },
-            {
-              "title" : "Wedding websites",
-              "icon" : "im im-icon-Heart-2",
-              "url" : "wedding-websites"
-            }
-          ]
+          "url" : "users-admin",
+          "child" : []
         }
       ]
     },
