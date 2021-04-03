@@ -7,7 +7,6 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
-import { BookmarksLovedComponent } from './components/user-profile/bookmarks-loved/bookmarks-loved.component';
 
 @NgModule({
   declarations: [

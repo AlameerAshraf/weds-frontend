@@ -15,7 +15,7 @@ export class WeddingDetailsComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/dropzone.js'];
+    let scripts = ['assets/scripts/datePickerInitakizer.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');
