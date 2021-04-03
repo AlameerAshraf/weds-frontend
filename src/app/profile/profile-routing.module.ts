@@ -57,6 +57,10 @@ const routes: Routes = [
         path: 'admin',
         children : [
           {
+            path: 'profile-details',
+            component: COMPONENTS.AdminProfileDetailsComponent
+          },
+          {
             path: 'website-admin',
             component: COMPONENTS.WebSiteAdminViewComponent
           },

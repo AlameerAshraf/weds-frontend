@@ -44,6 +44,7 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.WebSiteAdminViewComponent,
     COMPONENTS.VendorAdminViewComponent,
     COMPONENTS.UserAdminViewComponent,
+    COMPONENTS.AdminProfileDetailsComponent,
   ],
   imports: [
     CommonModule,
