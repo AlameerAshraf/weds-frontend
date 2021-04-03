@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-
+declare const google: any
 @Component({
   selector: 'app-profile-details',
   templateUrl: './profile-details.component.html',
@@ -8,11 +8,18 @@ import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 })
 export class ProfileDetailsComponent implements OnInit {
   coverPhotoSource: string | ArrayBuffer = ''
+  latitude: number;
+  longitude: number;
+  zoom: number = 12;
+
+  private geoCoder: any;
+  address: any = "";
 
   constructor(@Inject(DOCUMENT) private document: any,
-  private elementRef: ElementRef,) { }
+  private elementRef: ElementRef) { }
 
   ngOnInit() {
+    this.setCurrentLocation();
   };
 
   onFileSelected(e: any): void {
@@ -24,6 +31,37 @@ export class ProfileDetailsComponent implements OnInit {
       };
       fileReader.readAsDataURL(imageFile);
     }
+  };
+
+  markerDragEnd(e){
+
+  };
+
+  setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+        this.getAddress(this.latitude , this.longitude);
+      });
+    }
+  };
+
+  getAddress(latitude: number, longitude: number) {
+    this.geoCoder = new google.maps.Geocoder;
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 12;
+          this.address = results[0].formatted_address;
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+    });
   };
 
   ngAfterViewInit(): void {
