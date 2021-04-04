@@ -1,6 +1,5 @@
 import { MapsAPILoader } from '@agm/core';
 import { DOCUMENT } from '@angular/common';
-import {} from '@types/googlemaps'
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 declare const google: any
 
@@ -121,7 +120,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/dropzone.js'];
+    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js' , 'assets/scripts/dropzone.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');

@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 declare const google: any
 @Component({
   selector: 'app-profile-details',
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit {
+export class ProfileDetailsComponent implements OnInit, AfterViewInit {
   coverPhotoSource: string | ArrayBuffer = ''
   latitude: number;
   longitude: number;
@@ -65,7 +65,7 @@ export class ProfileDetailsComponent implements OnInit {
   };
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/datePickerInitakizer.js'];
+    let scripts = ['assets/scripts/datePickerInitakizer.js' , 'assets/scripts/custom.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');
