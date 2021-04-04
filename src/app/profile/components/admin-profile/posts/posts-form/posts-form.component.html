@@ -1,6 +1,166 @@
-<div style="background-color: white; font-size: 25px !important;">
-<angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="htmlContent"></angular-editor>
+<div id="titlebar">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Posts</h2>
+        </div>
+    </div>
 </div>
 
-<button (click)="view()">sdsdsd</button>
 
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="dashboard-list-box margin-top-0">
+            <h4 class="gray">Posts Details</h4>
+            <div class="dashboard-list-box-static">
+                <div class="my-profile">
+
+                    <label class="margin-top-0">Title En</label>
+                    <input value="Tom Perrin" type="text">
+
+                    <label>Subtitle En</label>
+                    <input value="tom@example.com" type="text">
+
+                    <label>Tags En List</label>
+                    <input value="(123) 123-456" type="text">
+
+                    <label>Body En</label>
+                    <div style="background-color: white; font-size: 25px !important;">
+                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
+                            [(ngModel)]="htmlContent"></angular-editor>
+                    </div>
+
+                    <label>Body Mobile En</label>
+                    <div style="background-color: white; font-size: 25px !important;">
+                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
+                            [(ngModel)]="htmlContent"></angular-editor>
+                    </div>
+
+                    <label>Meta Description En</label>
+                    <textarea value="(123) 123-456" type="text"></textarea>
+
+                    <label>Category</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Perfect Hour</option>
+                        <option>New York</option>
+                        <option>Los Angeles</option>
+                    </select>
+
+                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                        <img class="anImage"
+                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                            alt="">
+                        <div class="change-photo-btn">
+                            <div class="photoUpload">
+                                <span><i class="fa fa-upload"></i> Featured Video</span>
+                                <input type="file" class="upload" (change)="onFileSelected($event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                        <img class="anImage"
+                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                            alt="">
+                        <div class="change-photo-btn">
+                            <div class="photoUpload">
+                                <span><i class="fa fa-upload"></i> Images</span>
+                                <input type="file" class="upload" (change)="onFileSelected($event)" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkboxes in-row">
+                        <input id="check-a" type="checkbox" name="check">
+                        <label for="check-a">Author Visible</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="col-lg-6 col-md-12">
+        <div class="dashboard-list-box margin-top-0">
+            <h4 class="gray">Posts Details</h4>
+            <div class="dashboard-list-box-static">
+                <div class="my-profile">
+
+                    <label class="margin-top-0">Title Ar</label>
+                    <input value="Tom Perrin" type="text">
+
+                    <label>Subtitle Ar</label>
+                    <input value="tom@example.com" type="text">
+
+                    <label>Tags Ar List</label>
+                    <input value="(123) 123-456" type="text">
+
+                    <label>Body Ar</label>
+                    <div style="background-color: white; font-size: 25px !important;">
+                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
+                            [(ngModel)]="htmlContent"></angular-editor>
+                    </div>
+
+                    <label>Body Mobile Ar</label>
+                    <div style="background-color: white; font-size: 25px !important;">
+                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
+                            [(ngModel)]="htmlContent"></angular-editor>
+                    </div>
+
+                    <label>Meta Description Ar</label>
+                    <textarea value="(123) 123-456" type="text"></textarea>
+
+                    <label>Related Posts</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Perfect Hour</option>
+                        <option>New York</option>
+                        <option>Los Angeles</option>
+                    </select>
+
+                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                        <img class="anImage"
+                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                            alt="">
+                        <div class="change-photo-btn">
+                            <div class="photoUpload">
+                                <span><i class="fa fa-upload"></i> Featured Video</span>
+                                <input type="file" class="upload" (change)="onFileSelected($event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkboxes in-row">
+                        <input id="check-a" type="checkbox" name="check">
+                        <label for="check-a">Make Video for deletion</label>
+                    </div>
+
+                    <label>Reading Time</label>
+                    <input placeholder="City ex. Alexandria" type="text" autocomplete="sd">
+
+                    <label>Scheduled At</label>
+                    <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+
+                    <div class="checkboxes in-row">
+                        <input id="check-a" type="checkbox" name="check">
+                        <label for="check-a">Mark Post for sheduling</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+    Cancel <i class="sl sl-icon-close"></i>
+  </a>
+  <a class="button preview" (click)="navigateToPosts()">Save Changes <i class="sl sl-icon-check"></i></a>
+
+
+
+
+<!--<div style="background-color: white; font-size: 25px !important;">
+    <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="htmlContent">
+    </angular-editor>
+</div>
+
+<button (click)="view()">sdsdsd</button>-->

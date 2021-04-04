@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts-grid',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsGridComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, @Inject(DOCUMENT) private document: any,
+  private elementRef: ElementRef) { }
 
   ngOnInit() {
   }
+  pageChange(pageNumber) {
 
+  };
+
+  navigateToCreateNewPost() {
+    this.router.navigate(['profile/en/admin/posts-action/new']);
+  };
 }
