@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import * as appComponents from './app-components';
+import { CanRouteActivate } from './core';
 
 const routes: Routes = [
   {
@@ -9,12 +10,23 @@ const routes: Routes = [
     component: appComponents.AppComponent,
     children: [
       {
-        path: 'home',
-        component: appComponents.AnonymousHomeComponent
+        path: 'home/anonymous',
+        component: appComponents.AnonymousHomeComponent,
       },
       {
-        path: 'home/app',
-        component: appComponents.AuthorizedHomeComponent
+        path: 'home',
+        component: appComponents.AuthorizedHomeComponent,
+        canActivate: [CanRouteActivate]
+      }
+    ]
+  },
+  {
+    path: '',
+    component: appComponents.AppComponent,
+    children: [
+      {
+        path: '',
+        component: appComponents.AnonymousHomeComponent
       }
     ]
   },
