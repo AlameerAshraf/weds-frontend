@@ -26,7 +26,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: appComponents.AnonymousHomeComponent
+        component: appComponents.AuthorizedHomeComponent,
+        canActivate: [CanRouteActivate]
       }
     ]
   },
