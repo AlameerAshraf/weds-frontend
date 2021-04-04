@@ -12,6 +12,7 @@ import { DOCUMENT } from '@angular/common';
 export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() authorizedUser: boolean = false;
   @Input() urlSegment = ''
+  @Input() type = ''
 
   isLogined = false;
   menuItems = [];

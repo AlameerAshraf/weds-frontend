@@ -18,6 +18,7 @@ export class VendorComponent implements OnInit {
     private elementRef: ElementRef, private localStorage: localStorageService) { }
 
   ngOnInit() {
+    this.checkLoginStatus();
   }
 
 
