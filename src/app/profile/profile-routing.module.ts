@@ -158,7 +158,7 @@ const routes: Routes = [
           },
           {
             path: 'posts',
-            component: COMPONENTS.TagsGridComponent
+            component: COMPONENTS.PostsGridComponent
           },
           {
             path: 'posts-action/:actionType',
