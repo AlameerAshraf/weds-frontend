@@ -72,19 +72,23 @@
 <div class="fullwidth-carousel-container margin-top-25">
   <div class="fullwidth-slick-carousel category-carousel">
 
-    <!-- Item -->
-    <div class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-grid-1.html" class="category-box"
-          data-background-image="images/category-box-01.jpg">
-          <div class="category-box-content">
-            <h3>Hotels</h3>
-            <span>64 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
+    <ng-container *ngFor="let item of allCategories">
+      <div class="fw-carousel-item">
+        <div class="category-box-container">
+          <a class="category-box"
+            [attr.data-background-image]="item.photo">
+            <div class="category-box-content">
+              <h3>{{ item.nameEn }}</h3>
+              <span>54 Seller</span>
+            </div>
+            <span class="category-box-btn">Browse</span>
+          </a>
+        </div>
       </div>
-    </div>
+    </ng-container>
+
+    <!-- Item -->
+
 
     <!-- Item -->
     <div class="fw-carousel-item">

@@ -11,5 +11,8 @@ export class urls {
   // Users ...
   public static get USER_SIGN_UP(): string { return this.BASE_URL + '/users/sign-up' };
   public static get USER_SIGN_IN(): string { return this.BASE_URL + '/users/sign-in' };
-  public static get CHECK_AUTH(): string { return this.BASE_URL + '/users//check-auth' };
+  public static get CHECK_AUTH(): string { return this.BASE_URL + '/users/check-auth' };
+
+  // Admin!
+  public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
 }

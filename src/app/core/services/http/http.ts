@@ -95,8 +95,7 @@ export class httpService  {
       return throwError(Error);
     }
     else if (Error.status === 403) {
-     // window.location.href = `${urls.SSO}${window.location.href}`;
-      return throwError(Error);
+      window.location.href = 'en/home/anonymous'
     }
     else if (Error.status === 401) {
       window.location.href = 'en/home/anonymous'
