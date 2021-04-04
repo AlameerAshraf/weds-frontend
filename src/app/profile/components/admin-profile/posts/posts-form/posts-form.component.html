@@ -1,7 +1,7 @@
 <div id="titlebar">
     <div class="row">
         <div class="col-md-12">
-            <h2>Posts</h2>
+            <h2>Create a new post 📰</h2>
         </div>
     </div>
 </div>
@@ -14,28 +14,22 @@
             <div class="dashboard-list-box-static">
                 <div class="my-profile">
 
-                    <label class="margin-top-0">Title En</label>
+                    <label class="margin-top-0">Title English</label>
                     <input value="Tom Perrin" type="text">
 
-                    <label>Subtitle En</label>
+                    <label>Subtitle English</label>
                     <input value="tom@example.com" type="text">
 
-                    <label>Tags En List</label>
+                    <label>Tags English List</label>
                     <input value="(123) 123-456" type="text">
 
-                    <label>Body En</label>
+                    <label>Body English</label>
                     <div style="background-color: white; font-size: 25px !important;">
                         <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
                             [(ngModel)]="htmlContent"></angular-editor>
                     </div>
 
-                    <label>Body Mobile En</label>
-                    <div style="background-color: white; font-size: 25px !important;">
-                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
-                            [(ngModel)]="htmlContent"></angular-editor>
-                    </div>
-
-                    <label>Meta Description En</label>
+                    <label>Meta Description English</label>
                     <textarea value="(123) 123-456" type="text"></textarea>
 
                     <label>Category</label>
@@ -68,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="checkboxes in-row">
                         <input id="check-a" type="checkbox" name="check">
                         <label for="check-a">Author Visible</label>
@@ -85,28 +79,22 @@
             <div class="dashboard-list-box-static">
                 <div class="my-profile">
 
-                    <label class="margin-top-0">Title Ar</label>
+                    <label class="margin-top-0">Title Arabic</label>
                     <input value="Tom Perrin" type="text">
 
-                    <label>Subtitle Ar</label>
+                    <label>Subtitle Arabic</label>
                     <input value="tom@example.com" type="text">
 
-                    <label>Tags Ar List</label>
+                    <label>Tags Arabic List</label>
                     <input value="(123) 123-456" type="text">
 
-                    <label>Body Ar</label>
+                    <label>Body Arabic</label>
                     <div style="background-color: white; font-size: 25px !important;">
                         <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
                             [(ngModel)]="htmlContent"></angular-editor>
                     </div>
 
-                    <label>Body Mobile Ar</label>
-                    <div style="background-color: white; font-size: 25px !important;">
-                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
-                            [(ngModel)]="htmlContent"></angular-editor>
-                    </div>
-
-                    <label>Meta Description Ar</label>
+                    <label>Meta Description Arabic</label>
                     <textarea value="(123) 123-456" type="text"></textarea>
 
                     <label>Related Posts</label>
@@ -116,33 +104,19 @@
                         <option>Los Angeles</option>
                     </select>
 
-                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                        <img class="anImage"
-                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                            alt="">
-                        <div class="change-photo-btn">
-                            <div class="photoUpload">
-                                <span><i class="fa fa-upload"></i> Featured Video</span>
-                                <input type="file" class="upload" (change)="onFileSelected($event)" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="checkboxes in-row">
-                        <input id="check-a" type="checkbox" name="check">
-                        <label for="check-a">Make Video for deletion</label>
-                    </div>
-
                     <label>Reading Time</label>
                     <input placeholder="City ex. Alexandria" type="text" autocomplete="sd">
+
+                    <br>
+
+                    <div class="checkboxes in-row">
+                      <input id="check-a" type="checkbox" name="check">
+                      <label for="check-a">Mark Post for sheduling</label>
+                    </div>
 
                     <label>Scheduled At</label>
                     <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
 
-                    <div class="checkboxes in-row">
-                        <input id="check-a" type="checkbox" name="check">
-                        <label for="check-a">Mark Post for sheduling</label>
-                    </div>
                 </div>
             </div>
         </div>

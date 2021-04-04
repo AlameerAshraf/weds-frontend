@@ -18,10 +18,12 @@
                         <input type="text" placeholder="Enter search critera.">
                     </div>
                     <div class="col-md-2 margin-top-65">
-                        <a class="button" (click)="backToRoute()"> Search </a>
+                        <a class="button" (click)="backToRoute()"> <i class="fa fa-search"></i> Search </a>
                     </div>
                     <div class="col-md-4 margin-top-65" align=" right">
-                        <a class="button" (click)="backToRoute()"> Published </a>
+                        <a style="background-color: gray !important; color: white !important" class="button" (click)="backToRoute()">
+                          <i class="im im-icon-Thumbs-UpSmiley"></i> Published
+                        </a>
                         <a class="button" (click)="createNewCheckList()"> All </a>
                     </div>
                 </div>
@@ -51,9 +53,10 @@
                             <th scope="col" width="30%">Post</th>
                             <th scope="col" width="20%">Category</th>
                             <th scope="col" width="20%">Author</th>
-                            <th scope="col" width="20%">Published At</th>
-                            <th scope="col" width="5%">Destroy</th>
+                            <th scope="col" width="15%">Published At</th>
+                            <th scope="col" width="5%">Delete</th>
                             <th scope="col" width="5%">Edit</th>
+                            <th scope="col" width="5%">Publish</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,6 +82,10 @@
                                 <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
                                         class="sl sl-icon-pencil"></i></p>
                             </td>
+                            <td class="td-in-table">
+                              <p><i style="color: rgb(80, 233, 144); font-size: 20px; font-weight: 600;"
+                                      class="sl sl-icon-arrow-up-circle"></i></p>
+                          </td>
                         </tr>
                     </tbody>
                 </table>
