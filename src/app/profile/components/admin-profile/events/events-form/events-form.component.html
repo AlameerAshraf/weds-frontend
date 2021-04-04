@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-lg-12">
+
+    <div id="add-listing">
+
+      <div class="add-listing-section">
+
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-note"></i> Event information</h3>
+        </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>Title English</h5>
+            <input class="search-field" type="text" value="" />
+          </div>
+          
+          <div class="col-md-6">
+            <h5>Date</h5>
+            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+          </div>
+        </div>
+
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>Description</h5>
+            <textarea class="search-field" type="text" value=""></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+  Cancel <i class="sl sl-icon-close"></i>
+</a>
+<a class="button preview" (click)="navigateToEventsDefaults()">Save Changes <i class="sl sl-icon-check"></i></a>

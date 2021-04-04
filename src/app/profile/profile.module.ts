@@ -8,6 +8,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,10 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.VendorMessagesComponent,
     COMPONENTS.VendorOverviewComponent,
     COMPONENTS.VendorServicesComponent,
+    COMPONENTS.EventsGridComponent,
+    COMPONENTS.EventsFormComponent,
+    COMPONENTS.PostsGridComponent,
+    COMPONENTS.PostsFormComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +65,8 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAnZPhwhppJByAoyUEzJtF31F0TalEoiYA',
       libraries: ['places']
-    })
+    }),
+    AngularEditorModule
   ],
   providers:[
     NgxSpinnerService,
