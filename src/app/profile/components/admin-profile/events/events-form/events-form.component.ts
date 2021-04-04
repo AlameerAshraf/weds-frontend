@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-vendor-profile-details',
-  templateUrl: './vendor-profile-details.component.html',
-  styleUrls: ['./vendor-profile-details.component.scss']
+  selector: 'app-events-form',
+  templateUrl: './events-form.component.html',
+  styleUrls: ['./events-form.component.scss']
 })
-export class VendorProfileDetailsComponent implements OnInit {
+export class EventsFormComponent implements OnInit {
 
   constructor(private spinner: NgxSpinnerService , private router: Router ,
     private toastr: ToastrService) { }
@@ -16,18 +16,18 @@ export class VendorProfileDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
-  createNewCheckList(){
+  navigateToEventsDefaults() {
     this.spinner.show();
 
     setTimeout(() => {
       this.spinner.hide();
       this.toastr.success('Hello world!', 'Toastr fun!');
-      this.router.navigateByUrl('/profile/en/vendor/checklist-defaults');
+      this.router.navigateByUrl('/profile/en/admin/events-defaults');
     }, 3000);
   };
 
-  backToRoute(){
-    this.router.navigateByUrl('/profile/en/vendor/overview');
+  backToRoute() {
+    this.router.navigateByUrl('/profile/en/admin/events-defaults');
   };
 
 }

@@ -50,6 +50,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     COMPONENTS.VendorMessagesComponent,
     COMPONENTS.VendorOverviewComponent,
     COMPONENTS.VendorServicesComponent,
+    COMPONENTS.EventsGridComponent,
+    COMPONENTS.EventsFormComponent,
     COMPONENTS.PostsGridComponent,
     COMPONENTS.PostsFormComponent,
   ],

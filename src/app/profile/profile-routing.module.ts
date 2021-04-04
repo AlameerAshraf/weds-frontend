@@ -149,6 +149,14 @@ const routes: Routes = [
             component : COMPONENTS.TagsFormComponent
           },
           {
+            path: 'events-defaults',
+            component: COMPONENTS.EventsGridComponent
+          },
+          {
+            path: 'events-action/:actionType',
+            component : COMPONENTS.EventsFormComponent
+          },
+          {
             path: 'posts',
             component: COMPONENTS.TagsGridComponent
           },

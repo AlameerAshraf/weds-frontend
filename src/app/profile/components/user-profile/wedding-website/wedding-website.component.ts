@@ -1,5 +1,6 @@
 import { MapsAPILoader } from '@agm/core';
 import { DOCUMENT } from '@angular/common';
+import {} from '@types/googlemaps'
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 declare const google: any
 
