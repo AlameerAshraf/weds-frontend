@@ -78,6 +78,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.storage.setLocalStorage('weds360#role' , btoa(response.data.info.name));
         this.storage.setLocalStorage('weds360#avatar' , response.data.info.avatar);
         this.storage.setLocalStorage('weds360#email' , btoa(response.data.info.email));
+
+        this.router.navigateByUrl('/en/home');
       } else {
         let errors = errorBuilder.build(response.details);
         if(errors !== undefined)
