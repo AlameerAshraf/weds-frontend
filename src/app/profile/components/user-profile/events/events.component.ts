@@ -26,4 +26,8 @@ export class EventsComponent implements OnInit , AfterViewInit{
   createNewEvent(){
     this.router.navigateByUrl('/profile/en/user/create-event');
   };
+
+  inviteFriends(){
+    this.router.navigateByUrl('/profile/en/user/invite/25');
+  };
 }

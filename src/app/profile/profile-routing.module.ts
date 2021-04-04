@@ -56,6 +56,10 @@ const routes: Routes = [
             component: COMPONENTS.CreateEventComponent
           },
           {
+            path: 'invite/:eventId',
+            component: COMPONENTS.InviteFriendsComponent
+          },
+          {
             path : 'wedding-website',
             component: COMPONENTS.WeddingWebsiteComponent
           }
