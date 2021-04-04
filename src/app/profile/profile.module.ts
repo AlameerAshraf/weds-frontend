@@ -54,6 +54,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     COMPONENTS.EventsFormComponent,
     COMPONENTS.PostsGridComponent,
     COMPONENTS.PostsFormComponent,
+    COMPONENTS.EventDetailsComponent,
+    COMPONENTS.CreateEventComponent,
   ],
   imports: [
     CommonModule,
