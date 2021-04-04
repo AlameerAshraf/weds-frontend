@@ -48,6 +48,10 @@ const routes: Routes = [
             component: COMPONENTS.EventsComponent
           },
           {
+            path: 'event-details/:eventId',
+            component: COMPONENTS.EventDetailsComponent
+          },
+          {
             path : 'wedding-website',
             component: COMPONENTS.WeddingWebsiteComponent
           }
