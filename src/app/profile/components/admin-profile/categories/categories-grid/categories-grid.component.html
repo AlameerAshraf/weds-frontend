@@ -73,15 +73,16 @@
             </tr>
           </thead>
           <tbody>
+            <ng-container *ngFor="let item of categoriesList">
             <tr>
               <td>
-                <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
+                <p>{{ item.nameEn }}</p>
               </td>
               <td>
-                <p>Her</p>
+                <p>{{ item.parentMenu }}</p>
               </td>
               <td>
-                <p>services</p>
+                <p>{{ item.layout }}</p>
               </td>
               <td class="td-in-table">
                 <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i>
@@ -92,6 +93,7 @@
                     class="sl sl-icon-pencil"></i></p>
               </td>
             </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>
