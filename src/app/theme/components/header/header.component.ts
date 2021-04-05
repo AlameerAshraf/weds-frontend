@@ -12,6 +12,7 @@ import { DOCUMENT } from '@angular/common';
 export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() authorizedUser: boolean = false;
   @Input() urlSegment = ''
+  @Input() type = ''
 
   isLogined = false;
   menuItems = [];
@@ -29,18 +30,22 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.loadResources();
+    let currentUserEnc = window.localStorage.getItem("weds360#role");
+    let currentUser = atob(currentUserEnc);
+
+    this.loadResources(currentUser);
     this.checkViewAuthority();
     this.loginURL = `/security/${this.lang}/login`;
   }
 
   /** Use this function at each view to load corrosponding resources! */
-  async loadResources() {
+  async loadResources(currentUserType) {
     let providedlang: any = this.actictedRoute.parent.params;
     let lang = providedlang._value["lang"];
     let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HEADER"]) as any;
+    let dashboardNavs = `${currentUserType.toUpperCase()}_DASHBOARD`;
+    let resData = await this.resources.load(resourceLang, constants.VIEWS[dashboardNavs]) as any;
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
     this.profileLinks = this.profileLinks.concat(resData.res["actions"]);
   };

@@ -9,6 +9,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { VendorDetailsExtraComponent } from './components/vendor-profile/vendor-details-extra/vendor-details-extra.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     COMPONENTS.EventsFormComponent,
     COMPONENTS.PostsGridComponent,
     COMPONENTS.PostsFormComponent,
+    COMPONENTS.EventDetailsComponent,
+    COMPONENTS.CreateEventComponent,
+    COMPONENTS.InviteFriendsComponent,
+    VendorDetailsExtraComponent,
   ],
   imports: [
     CommonModule,

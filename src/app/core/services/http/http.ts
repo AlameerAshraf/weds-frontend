@@ -6,9 +6,9 @@ import { throwError } from "rxjs";
 
 @Injectable()
 export class httpService  {
-  
+
   constructor(private http: HttpClient) {
-    
+
   }
 
 
@@ -32,7 +32,7 @@ export class httpService  {
 
   Post(url: string, params: any = null , entity?: any,headers: headersModel[] = null) {
     var requestUrl = this.GenerateUrl(url, params);
-    var options = this.GenerateOptions(headers); 
+    var options = this.GenerateOptions(headers);
 
     return this.http
       .post(requestUrl, entity )
@@ -75,7 +75,7 @@ export class httpService  {
       } else {
         requestUrl = `${url}?`;
       }
-  
+
       for (const param in params) {
         if (params.hasOwnProperty(param)) {
           const value = params[param];
@@ -95,17 +95,17 @@ export class httpService  {
       return throwError(Error);
     }
     else if (Error.status === 403) {
-     // window.location.href = `${urls.SSO}${window.location.href}`;
-      return throwError(Error);
+      //window.location.href = 'en/home/anonymous'
     }
-    else if (Error.status === 400) {
+    else if (Error.status === 401) {
+      //window.location.href = 'en/home/anonymous'
     }
     else {
       return throwError(Error);
     }
   }
 
-  // Return request's options 
+  // Return request's options
   private GenerateOptions(headers: headersModel[]): HttpHeaders {
     let request_headers = new HttpHeaders();
     if (headers != null) {

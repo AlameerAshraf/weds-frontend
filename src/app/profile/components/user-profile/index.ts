@@ -8,3 +8,6 @@ export * from './wedding-website/wedding-website.component';
 export * from './profile-details/profile-details.component';
 export * from './wedding-details/wedding-details.component';
 export * from './bookmarks-loved/bookmarks-loved.component';
+export * from './event-details/event-details.component';
+export * from './create-event/create-event.component';
+export * from './invite-friends/invite-friends.component';

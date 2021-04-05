@@ -1,3 +1,4 @@
+import { localStorageService } from './../../../core/services/local-storage/local-storage';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 @Component({
@@ -10,13 +11,25 @@ export class VendorComponent implements OnInit {
 
   latitude: number = 23.333;
   longitude: number = 45.655;
+  isAuthed: boolean;
 
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef) { }
+    private elementRef: ElementRef, private localStorage: localStorageService) { }
 
   ngOnInit() {
+    this.checkLoginStatus();
   }
+
+
+  checkLoginStatus(){
+    let isLogined = this.localStorage.getLocalStorage("weds360#data");
+    if(isLogined != undefined || isLogined != ''){
+      this.isAuthed = true;
+    } else {
+      this.isAuthed = false;
+    }
+  };
 
   showCategories(event: any) {
     event.stopPropagation();

@@ -48,6 +48,18 @@ const routes: Routes = [
             component: COMPONENTS.EventsComponent
           },
           {
+            path: 'event-details/:eventId',
+            component: COMPONENTS.EventDetailsComponent
+          },
+          {
+            path: 'create-event',
+            component: COMPONENTS.CreateEventComponent
+          },
+          {
+            path: 'invite/:eventId',
+            component: COMPONENTS.InviteFriendsComponent
+          },
+          {
             path : 'wedding-website',
             component: COMPONENTS.WeddingWebsiteComponent
           }
@@ -158,7 +170,7 @@ const routes: Routes = [
           },
           {
             path: 'posts',
-            component: COMPONENTS.TagsGridComponent
+            component: COMPONENTS.PostsGridComponent
           },
           {
             path: 'posts-action/:actionType',

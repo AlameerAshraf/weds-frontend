@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-posts-form',
   templateUrl: './posts-form.component.html',
@@ -36,7 +40,9 @@ export class PostsFormComponent implements OnInit {
     ]
   };
 
-  constructor() { }
+  coverPhotoSource= "";
+  constructor(private spinner: NgxSpinnerService , private router: Router ,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -44,4 +50,19 @@ export class PostsFormComponent implements OnInit {
   view(){
     console.log(this.htmlContent)
   }
+
+  navigateToPosts(){
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+      this.toastr.success('Hello world!', 'Toastr fun!');
+      this.router.navigateByUrl('/profile/en/admin/posts');
+    }, 3000);
+  };
+
+  backToRoute(){
+    this.router.navigateByUrl('/profile/en/admin/posts');
+  };
+
 }

@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { slideInOutAnimation } from './../../../core/helpers/animations/slideInOutAnimation';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
+import { localStorageService } from 'src/app/core';
 
 @Component({
   selector: 'app-list-of-vendors',
@@ -11,12 +12,23 @@ import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 })
 export class ListOfVendorsComponent implements OnInit {
   isSearchExpanded = false;
+  isAuthed: boolean;
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef, private router: Router) { }
+    private elementRef: ElementRef, private router: Router , private localStorage: localStorageService) { }
 
   ngOnInit() {
+    this.checkLoginStatus();
   }
+
+  checkLoginStatus(){
+    let isLogined = this.localStorage.getLocalStorage("weds360#data");
+    if(isLogined != undefined || isLogined != ''){
+      this.isAuthed = true;
+    } else {
+      this.isAuthed = false;
+    }
+  };
 
   showCategories(event: any) {
     event.stopPropagation();

@@ -1,1 +1,97 @@
-<p>posts-grid works!</p>
+<div id="titlebar" class="gradient">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Welcome to your Posts</h2>
+            <span>Search top rated posts!</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="add-listing">
+            <div class="add-listing-section">
+                <div class="row with-forms">
+
+                    <div class="col-md-6 margin-top-20">
+                        <h5>search </h5>
+                        <input type="text" placeholder="Enter search critera.">
+                    </div>
+                    <div class="col-md-2 margin-top-65">
+                        <a class="button" (click)="backToRoute()"> <i class="fa fa-search"></i> Search </a>
+                    </div>
+                    <div class="col-md-4 margin-top-65" align=" right">
+                        <a style="background-color: gray !important; color: white !important" class="button" (click)="backToRoute()">
+                          <i class="im im-icon-Thumbs-UpSmiley"></i> Published
+                        </a>
+                        <a class="button" (click)="createNewCheckList()"> All </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="dashboard-list-box with-icons margin-top-20">
+            <h4>
+                Posts
+                <div (click)="navigateToCreateNewPost()" style="background-color: #046B69 !important;
+                color: white !important;
+                cursor: pointer;
+                border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">Add Post</strong>
+        </div>
+            </h4>
+            <div class="col-md-12" style="background-color: white;">
+                <table class="table borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col" width="30%">Post</th>
+                            <th scope="col" width="20%">Category</th>
+                            <th scope="col" width="20%">Author</th>
+                            <th scope="col" width="15%">Published At</th>
+                            <th scope="col" width="5%">Delete</th>
+                            <th scope="col" width="5%">Edit</th>
+                            <th scope="col" width="5%">Publish</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of postsList">
+                        <tr>
+                            <td>
+                                <p style="font-size: 20px; font-weight: 600;">{{item.titleEn}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.category}}</p>
+                            </td>
+                            <td>
+                                <p>Arsany.</p>
+                            </td>
+                            <td>
+                                <p>2020.</p>
+                            </td>
+                            <td class="td-in-table">
+                                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
+                                        class="sl sl-icon-trash"></i>
+                                </p>
+                            </td>
+                            <td class="td-in-table">
+                                <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
+                                        class="sl sl-icon-pencil"></i></p>
+                            </td>
+                            <td class="td-in-table">
+                              <p><i style="color: rgb(80, 233, 144); font-size: 20px; font-weight: 600;"
+                                      class="sl sl-icon-arrow-up-circle"></i></p>
+                          </td>
+                        </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,6 @@
+import { responseModel } from './../../core/models/response';
+import { urls } from './../../core/helpers/urls/urls';
+import { httpService } from './../../core/services/http/http';
 import { Component, OnInit } from '@angular/core';
 import { Inject, AfterViewInit, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
@@ -14,14 +17,18 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   // Animation variables!
   startTypingAnimation: boolean = true;
 
+  allCategories = [];
+
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private resources: resources,
+    private http: httpService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
   }
 
 
   ngOnInit() {
+    this.getAllCategories();
   };
 
   /** Use this function at each view to load corrosponding resources! */
@@ -31,6 +38,17 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
     let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
     let resData = await this.resources.load(resourceLang , constants.VIEWS["HOME_LAYOUT"]);
+  };
+
+  getAllCategories(){
+    let allCatesURL = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
+    this.http.Get(allCatesURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.allCategories = response.data;
+      } else {
+        console.log(response.error);
+      }
+    });
   };
 
   ngAfterViewInit(): void {

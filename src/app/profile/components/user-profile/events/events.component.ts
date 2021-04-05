@@ -17,5 +17,17 @@ export class EventsComponent implements OnInit , AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-  }
+  };
+
+  viewEventDetails(){
+    this.router.navigateByUrl('/profile/en/user/event-details/25');
+  };
+
+  createNewEvent(){
+    this.router.navigateByUrl('/profile/en/user/create-event');
+  };
+
+  inviteFriends(){
+    this.router.navigateByUrl('/profile/en/user/invite/25');
+  };
 }
