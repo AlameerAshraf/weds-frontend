@@ -15,4 +15,13 @@ export class urls {
 
   // Admin!
   public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
+  public static get GET_ALL_AREAS(): string { return this.BASE_URL + '/admin/get-all-areas' };
+  public static get GET_ALL_THEMES(): string { return this.BASE_URL + '/admin/get-all-themes'};
+  public static get GET_ALL_TAGS(): string { return this.BASE_URL + '/admin/get-all-tags'};
+  public static get GET_ALL_OFFERS(): string { return this.BASE_URL + '/admin/get-all-offers'};
+  public static get GET_ALL_EVENTS(): string { return this.BASE_URL + '/users/events/get-all-events'};
+  public static get GET_ALL_POSTS(): string { return this.BASE_URL + '/admin/get-all-posts'};
+
+  // Authed ..
+  public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors/:clientRef/:category/:segment' };
 }

@@ -60,12 +60,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <ng-container *ngFor="let item of postsList">
                         <tr>
                             <td>
-                                <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
+                                <p style="font-size: 20px; font-weight: 600;">{{item.titleEn}}</p>
                             </td>
                             <td>
-                                <p>Category.</p>
+                                <p>{{item.category}}</p>
                             </td>
                             <td>
                                 <p>Arsany.</p>
@@ -87,6 +88,7 @@
                                       class="sl sl-icon-arrow-up-circle"></i></p>
                           </td>
                         </tr>
+                        </ng-container>
                     </tbody>
                 </table>
             </div>

@@ -30,14 +30,19 @@
             <thead>
               <tr>
                 <th scope="col" width="29%">Offer</th>
+                <th scope="col" width="29%">Description</th>
                 <th scope="col" width="2%">Delete</th>
                 <th scope="col" width="2%">Edit</th>
               </tr>
             </thead>
             <tbody>
+              <ng-container *ngFor="let item of offersList">
               <tr>
                 <td>
-                  <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
+                  <p style="font-size: 20px; font-weight: 600;">{{ item.titleEn}}</p>
+                </td>
+                <td>
+                  <p style="font-size: 20px; font-weight: 600;">{{ item.descriptionEn}}</p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i></p>
@@ -46,6 +51,7 @@
                   <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
+              </ng-container>
             </tbody>
           </table>
         </div>
