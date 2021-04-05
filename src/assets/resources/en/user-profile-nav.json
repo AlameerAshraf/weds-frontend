@@ -155,8 +155,34 @@
   ],
   "actions" : [
     {
-      "title" : "Logout",
+      "title" : "360 Planner",
+      "url" : "/profile/en/user/checklist",
+      "icon" : "sl sl-icon-magic-wand"
+    },
+    {
+      "title" : "My Account",
+      "url" : "/profile/en/user/overview",
+      "icon" : "sl sl-icon-settings"
+    },
+    {
+      "title" : "My bookmarks",
+      "url" : "/profile/en/user/my-taste",
+      "icon" : "sl sl-icon-heart"
+    },
+    {
+      "title" : "Messages",
+      "url" : "/profile/en/user/messages",
+      "icon" : "sl sl-icon-envelope-open"
+    },
+    {
+      "title" : "English",
       "url" : "",
+      "icon" : "",
+      "hasImage" : "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title" : "Logout",
+      "url" : "/profile/en/user/checklist",
       "icon" : "sl sl-icon-power"
     }
   ],
