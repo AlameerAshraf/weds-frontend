@@ -53,6 +53,8 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
   check(id: any){
     let targetCheckList = this.listOfUsersChecklists.find(x => x._id == id);
     targetCheckList.isChecked = !targetCheckList.isChecked;
+
+    this.updateChecklistItem(id);
   };
 
   createNewChecklist(){
