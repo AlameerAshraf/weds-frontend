@@ -29,7 +29,8 @@ export class urls {
 
   // Budgeter
   public static get CREATE_BUDGETER_ITEM(): string { return this.BASE_URL + '/wedding/create-new-budget-item'};
-
+  public static get GET_ALL_BUDGET_ITEMS(): string { return this.BASE_URL + '/wedding/get-budget-items'};
+  public static get UPDATE_BUDGETER_ITEM(): string { return this.BASE_URL + '/wedding/update-budget-item'};
 
 
   // Authed ..

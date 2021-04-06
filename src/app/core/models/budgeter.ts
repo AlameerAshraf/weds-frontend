@@ -9,4 +9,7 @@ export class budgeter {
     amountSpent?: number;
     note?: string;
   } = { vendorId: "" , amountSpent: 0 , note: "" }
+
+  //UI
+  isNew?: boolean;
 }

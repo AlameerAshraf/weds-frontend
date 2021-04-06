@@ -14,9 +14,10 @@ declare var $: any;
 export class BudgeterComponent implements OnInit {
   budgetItem = "";
 
-  listOfBudgeters : budgeter[] = [
+  listOfBudgeters: budgeter[] = [
   ];
-  newlyCreatedBudgetItem = {
+  newlyCreatedBudgetItem: budgeter = {
+    isNew: true,
     amount: 0,
     description: "",
     name: "",
@@ -43,6 +44,22 @@ export class BudgeterComponent implements OnInit {
   ngOnInit() {
     this.loadScripts();
     this.documentSelectors();
+    this.getAllBudgetItems();
+  };
+
+  getAllBudgetItems(){
+    this.ngxSpinner.show();
+    let budgetItemsURL = `${urls.GET_ALL_BUDGET_ITEMS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+    this.http.Get(budgetItemsURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.listOfBudgeters = response.data as budgeter[];
+        this.loadScripts();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
+      }
+    })
   };
 
   createBudgeterItem(){
@@ -51,7 +68,6 @@ export class BudgeterComponent implements OnInit {
   };
 
   saveBudgeterItem(){
-    console.log(this.newlyCreatedBudgetItem);
     this.ngxSpinner.show();
     let createBudgeterItemURL = `${urls.CREATE_BUDGETER_ITEM}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
@@ -60,6 +76,7 @@ export class BudgeterComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("You have a new budget plan!" , "Wow, You've added a new plane good for you. 🎈");
+        this.getAllBudgetItems();
         this.newlyCreatedBudgetItem = {
           amount: 0,
           description: "",
@@ -75,6 +92,23 @@ export class BudgeterComponent implements OnInit {
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your plan couldn't created on the server!");
+      }
+    });
+  };
+
+  updateBudgeterItem(id: any){
+    this.ngxSpinner.show();
+    let updateBudgeterItemURL = `${urls.UPDATE_BUDGETER_ITEM}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+    let targetBudgter = this.listOfBudgeters.find(x => x._id == id);
+
+    this.http.Post(updateBudgeterItemURL , {} , { "budgetItem" : targetBudgter }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("You have a new budget plan!" , "Wow, we've updated a budgter item.");
+        this.getAllBudgetItems();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.success("Our bad sorry!" , "Ooh Sorry, your plan couldn't created on the server!");
       }
     });
   };

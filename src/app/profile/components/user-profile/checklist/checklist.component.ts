@@ -34,13 +34,16 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
   }
 
   getChecklistsPerUser(){
+    this.ngxSpinner.show();
     let getAllChecklists = `${urls.GET_ALL_CHECKLISTS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
     this.http.Get(getAllChecklists , {}).subscribe((response: responseModel) => {
       if(!response.error){
-        this.listOfUsersChecklists = response.data as checklist[]
+        this.ngxSpinner.hide();
+        this.listOfUsersChecklists = response.data as checklist[];
       }else{
-
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
       }
     })
 
