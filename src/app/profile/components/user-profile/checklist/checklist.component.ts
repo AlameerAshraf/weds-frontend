@@ -16,34 +16,44 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
     isChecked: false,
     note: "",
     title: "",
-    isNew: true
+    isNew: true,
+    _id: "sd"
   };
 
 
-  listOfUsersChecklists: checklist[] = [
-    {
-      id: "12",
-      title: "Hire a planner.",
-      note: "I'm going to hire a planner.",
-      isChecked: false
-    }
-  ];
+  listOfUsersChecklists: checklist[] = [];
+  currentUserEmail: string;
 
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private http: httpService ,
     private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+    this.getChecklistsPerUser();
   }
 
-  toggleNote(id){
+  getChecklistsPerUser(){
+    let getAllChecklists = `${urls.GET_ALL_CHECKLISTS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.http.Get(getAllChecklists , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.listOfUsersChecklists = response.data as checklist[]
+      }else{
+
+      }
+    })
+
+  };
+
+  toggleNote(id: any){
     this.showNote = this.showNote == "" ? id : "";
   };
 
-  check(id){
-    let targetCheckList = this.listOfUsersChecklists.find(x => x.id == id);
+  check(id: any){
+    let targetCheckList = this.listOfUsersChecklists.find(x => x._id == id);
     targetCheckList.isChecked = !targetCheckList.isChecked;
-  }
+  };
 
   createNewChecklist(){
     this.listOfUsersChecklists.push(this.newlyCreatedCheckList);
@@ -51,13 +61,21 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
 
   presisteItemChecklist(){
     this.ngxSpinner.show();
-    let currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
-    let createCheckListURL = `${urls.CREATE_CHECKLIST}/${constants.APP_IDENTITY_FOR_USERS}/${currentUserEmail}`;
+    let createCheckListURL = `${urls.CREATE_CHECKLIST}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
+    delete this.newlyCreatedCheckList["_id"];
     this.http.Post(createCheckListURL , {} , { "checklist" : this.newlyCreatedCheckList } ).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("You have a new checklist item created" , "Wow, Your checklist just created! start the planning! 🎉");
+        this.getChecklistsPerUser();
+        this.newlyCreatedCheckList = {
+          isChecked: false,
+          note: "",
+          title: "",
+          isNew: true,
+          _id: "sd"
+        }
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your checklist couldn't created on the server!");

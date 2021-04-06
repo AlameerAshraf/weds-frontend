@@ -24,19 +24,19 @@
         <ng-container *ngFor="let checkList of listOfUsersChecklists">
           <!-- saved checkLists -->
           <ng-container *ngIf="!checkList.isNew">
-            <li style="cursor: pointer;" (click)="toggleNote(checkList.id)">
-              <i (click)="$event.stopPropagation(); check(checkList.id);"
+            <li style="cursor: pointer;" (click)="toggleNote(checkList._id)">
+              <i (click)="$event.stopPropagation(); check(checkList._id);"
                 [ngClass] = "{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
                 class="list-box-icon fa fa-check"></i>
                 <span style="font-size: 20px;">{{ checkList.title }}</span>
             </li>
 
 
-            <div [ngClass]="{'show': showNote == checkList.id , 'hide' : showNote !== checkList.id }"
-              [@slideInOut]="showNote == checkList.id ? 'in' : 'out'"
+            <div [ngClass]="{'show': showNote == checkList._id , 'hide' : showNote !== checkList._id }"
+              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'"
               id="add-review" class="add-review-box no-margins">
               <label>Note:</label>
-              <textarea cols="40" rows="2"></textarea>
+              <textarea cols="40" rows="2" [value]="checkList.note"></textarea>
 
               <button class="button">Save Note</button>
             </div>
@@ -44,15 +44,15 @@
 
           <!-- new checkLists -->
           <ng-container *ngIf="checkList.isNew">
-            <li style="cursor: pointer;" (click)="toggleNote(checkList.id)">
+            <li style="cursor: pointer;" (click)="toggleNote(checkList._id)">
               <i [ngClass] = "{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
                 class="list-box-icon fa fa-check"></i>
                 <input type="text" style="width: 75%;" [(ngModel)]="newlyCreatedCheckList.title">
             </li>
 
 
-            <div [ngClass]="{'show': showNote == checkList.id , 'hide' : showNote !== checkList.id }"
-              [@slideInOut]="showNote == checkList.id ? 'in' : 'out'"
+            <div [ngClass]="{'show': showNote == checkList._id , 'hide' : showNote !== checkList._id }"
+              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'"
               id="add-review" class="add-review-box no-margins">
               <label>Note:</label>
               <textarea cols="40" rows="2" [(ngModel)]="newlyCreatedCheckList.note"></textarea>
