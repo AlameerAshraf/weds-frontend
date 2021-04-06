@@ -84,6 +84,24 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
 
   };
 
+  updateChecklistItem(id: any){
+    this.ngxSpinner.show();
+    let targetChecklist = this.listOfUsersChecklists.find(x => x._id == id);
+    console.log(targetChecklist)
+
+    let updateChecklistURL = `${urls.UPDATE_CHECKLIST}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+    this.http.Post(updateChecklistURL , {} , { "checklist" :targetChecklist}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("We've updated your note!" , "Amazing you're doing great keep yourself updated, plane each step! 😍");
+        this.getChecklistsPerUser();
+      } else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your checklist couldn't created on the server!");
+      }
+    })
+  }
+
   ngAfterViewInit(): void {
     let scripts = ['assets/scripts/custom.js' , 'assets/scripts/changeLang.js'];
 

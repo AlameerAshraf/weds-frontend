@@ -25,6 +25,7 @@ export class urls {
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
   public static get GET_ALL_CHECKLISTS(): string { return this.BASE_URL + '/wedding/get-checklist'};
+  public static get UPDATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/update-checklist'};
 
 
   // Authed ..

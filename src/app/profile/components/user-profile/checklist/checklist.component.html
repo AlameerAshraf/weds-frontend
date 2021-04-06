@@ -36,9 +36,9 @@
               [@slideInOut]="showNote == checkList._id ? 'in' : 'out'"
               id="add-review" class="add-review-box no-margins">
               <label>Note:</label>
-              <textarea cols="40" rows="2" [value]="checkList.note"></textarea>
+              <textarea cols="40" rows="2" [(ngModel)]="checkList.note"></textarea>
 
-              <button class="button">Save Note</button>
+              <button class="button" (click)="updateChecklistItem(checkList._id)">Update Note</button>
             </div>
           </ng-container>
 
