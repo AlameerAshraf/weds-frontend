@@ -100,7 +100,7 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your checklist couldn't created on the server!");
       }
     })
-  }
+  };
 
   ngAfterViewInit(): void {
     let scripts = ['assets/scripts/custom.js' , 'assets/scripts/changeLang.js'];
