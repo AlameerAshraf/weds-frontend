@@ -155,8 +155,24 @@
   ],
   "actions" : [
     {
-      "title" : "Logout",
+      "title" : "My Account",
+      "url" : "/profile/en/admin/overview",
+      "icon" : "sl sl-icon-settings"
+    },
+    {
+      "title" : "Messages",
+      "url" : "/profile/en/admin/messages",
+      "icon" : "sl sl-icon-envelope-open"
+    },
+    {
+      "title" : "English",
       "url" : "",
+      "icon" : "",
+      "hasImage" : "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title" : "Logout",
+      "url" : "/profile/en/admin/checklist",
       "icon" : "sl sl-icon-power"
     }
   ],

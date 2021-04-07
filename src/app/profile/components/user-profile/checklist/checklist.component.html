@@ -11,41 +11,57 @@
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box with-icons margin-top-20">
       <h4>My CheckList <div
+        (click) = "createNewChecklist()"
         style="background-color: #046B69 !important;
-        color: white !important;
-        cursor: pointer;
-        border-radius: 20px;" class="comission-taken">
+          color: white !important;
+          cursor: pointer;
+          border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
           <strong style="color: white !important">Create checklist</strong>
         </div></h4>
       <ul>
-        <li style="cursor: pointer;" (click)="toggleNote(1)">
-          <i  style="background-color: rgb(117, 248, 117); color: white; font-size: 25px;"
-            class="list-box-icon fa fa-check"></i> Hire
-          a planner
-        </li>
+
+        <ng-container *ngFor="let checkList of listOfUsersChecklists">
+          <!-- saved checkLists -->
+          <ng-container *ngIf="!checkList.isNew">
+            <li style="cursor: pointer;" (click)="toggleNote(checkList._id)">
+              <i (click)="$event.stopPropagation(); check(checkList._id);"
+                [ngClass] = "{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
+                class="list-box-icon fa fa-check"></i>
+                <span style="font-size: 20px;">{{ checkList.title }}</span>
+            </li>
 
 
-        <div [ngClass]="{'show': showNote == 1 , 'hide' : showNote == 0}"
-          [@slideInOut]="showNote == 1 ? 'in' : 'out'"
-          id="add-review" class="add-review-box no-margins">
-          <label>Note:</label>
-          <textarea cols="40" rows="2"></textarea>
+            <div [ngClass]="{'show': showNote == checkList._id , 'hide' : showNote !== checkList._id }"
+              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'"
+              id="add-review" class="add-review-box no-margins">
+              <label>Note:</label>
+              <textarea cols="40" rows="2" [(ngModel)]="checkList.note"></textarea>
 
-          <button class="button">Save Note</button>
-        </div>
+              <button class="button" (click)="updateChecklistItem(checkList._id)">Update Note</button>
+            </div>
+          </ng-container>
 
-        <li>
-          <i style="cursor: pointer;"  style="background-color: gray; color: white; font-size: 25px;"
-            class="list-box-icon fa fa-check"></i>
-          Start looking at wedding attires
-        </li>
+          <!-- new checkLists -->
+          <ng-container *ngIf="checkList.isNew">
+            <li style="cursor: pointer;" (click)="toggleNote(checkList._id)">
+              <i [ngClass] = "{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
+                class="list-box-icon fa fa-check"></i>
+                <input type="text" style="width: 75%;" [(ngModel)]="newlyCreatedCheckList.title">
+            </li>
 
-        <li>
-          <i style="background-color: gray; color: white; font-size: 25px;"
-            class="list-box-icon fa fa-check"></i>
-          Decide on a wedding theme
-        </li>
+
+            <div [ngClass]="{'show': showNote == checkList._id , 'hide' : showNote !== checkList._id }"
+              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'"
+              id="add-review" class="add-review-box no-margins">
+              <label>Note:</label>
+              <textarea cols="40" rows="2" [(ngModel)]="newlyCreatedCheckList.note"></textarea>
+
+              <button class="button" (click)="presisteItemChecklist()">Save Cheklist</button>
+            </div>
+          </ng-container>
+        </ng-container>
+
       </ul>
     </div>
   </div>

@@ -22,6 +22,22 @@ export class urls {
   public static get GET_ALL_EVENTS(): string { return this.BASE_URL + '/users/events/get-all-events'};
   public static get GET_ALL_POSTS(): string { return this.BASE_URL + '/admin/get-all-posts'};
 
+  //Checklists
+  public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
+  public static get GET_ALL_CHECKLISTS(): string { return this.BASE_URL + '/wedding/get-checklist'};
+  public static get UPDATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/update-checklist'};
+
+  // Budgeter
+  public static get CREATE_BUDGETER_ITEM(): string { return this.BASE_URL + '/wedding/create-new-budget-item'};
+  public static get GET_ALL_BUDGET_ITEMS(): string { return this.BASE_URL + '/wedding/get-budget-items'};
+  public static get UPDATE_BUDGETER_ITEM(): string { return this.BASE_URL + '/wedding/update-budget-item'};
+  public static get DELETE_BUDGET_ITEM(): string { return this.BASE_URL + '/wedding/delete-budget-item'};
+
+
+  //Wedding
+  public static get UPDATE_WEDDING_DATA(): string { return this.BASE_URL + '/wedding/update-wedding'};
+
+
   // Authed ..
-  public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors/:clientRef/:category/:segment' };
+  public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
 }

@@ -33,6 +33,15 @@ export class constants {
     }
   };
 
+  public static get SUGGESTED_BUDGET_VALUES(){
+    return {
+      "EXPENSIVELY" : 50000,
+      "AFFORDABLY" : 25000,
+      "CHEAPLY" : 10000,
+      "FREELY" : 0,
+    }
+  };
+
   public static get APP_IDENTITY_FOR_USERS(): string { return  this._config.getConfig("CLIENT_IDENTITY_USERS")};
   public static get APP_IDENTITY_FOR_ADMINS(): string { return  this._config.getConfig("CLIENT_IDENTITY_ADMINS")};
 

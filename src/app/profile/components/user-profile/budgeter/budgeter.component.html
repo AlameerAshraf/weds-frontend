@@ -19,19 +19,27 @@
           <!-- Status -->
           <div class="col-md-6">
             <h5>How would you want to enjoy your weddding?</h5>
-            <select class="chosen-select-no-single">
-              <option>Select Category</option>
-              <option>Exoensively</option>
-              <option>Affordably</option>
-              <option>cheably</option>
-              <option>Let me plane freely</option>
+            <select id="budgetCategory" class="chosen-select-no-single">
+              <option>Select budget level</option>
+              <option value="EXPENSIVELY">Expensively</option>
+              <option value="AFFORDABLY">Affordably</option>
+              <option value="CHEAPLY">Cheaply</option>
+              <option value="FREELY">Let me plane freely</option>
             </select>
           </div>
 
           <div class="col-md-6">
-            <h5>Budget <i class="tip" data-tip-content="sdsdsd"></i></h5>
-            <input type="text" placeholder="Enter the planned budget to prepare your wedding.">
+            <h5>Budget <i class="tip" data-tip-content="This is our suggestion, you can plan your wedding based on your budget."></i></h5>
+            <input id="suggestedBudget" type="text"
+              autocomplete="off" [(ngModel)] = "suggestedBudget"
+              placeholder="Enter the planned budget to prepare your wedding.">
           </div>
+        </div>
+
+        <div class="row" align="right">
+          <a style="margin-top: 0px; padding-top: 5px; padding-bottom: 5px;"
+          (click)="saveBudget()"
+          class="button preview">Save <i class="sl sl-icon-check"></i></a>
         </div>
       </div>
     </div>
@@ -41,15 +49,21 @@
 <div class="row">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box with-icons margin-top-20">
-      <h4>Wedding Budget <div class="comission-taken"> <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong>Add budget</strong>
+      <h4>Wedding Budget <div
+        (click) = "createBudgeterItem()"
+        style="background-color: #046B69 !important;
+          color: white !important;
+          cursor: pointer;
+          border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">Add budget item</strong>
         </div>
       </h4>
       <div class="col-md-12" style="background-color: white;">
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="45%">Plan</th>
+              <th scope="col" width="45%">Plan Item</th>
               <th scope="col" width="25%">Rec.</th>
               <th scope="col" width="25%">Amount</th>
               <th scope="col" width="1%"></th>
@@ -57,49 +71,55 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="text" placeholder="Plan"/></td>
-              <td><input type="text" placeholder="Recommended"/></td>
-              <td><input type="text" placeholder="Amount"/></td>
-              <td class="td-in-table" (click)="openBudgeter(1)">
-                <p><i [class]="budgetItem ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></p>
-              </td>
-              <td class="td-in-table">
-                <p><i class="fa fa-scissors"></i></p>
-              </td>
-            </tr>
-            <tr [ngClass]="{ 'show-div' : budgetItem , 'hide-div' : !budgetItem }" >
-              <td
-                [@slideInOut]="budgetItem  == true ? 'in' : 'out'"
-                colspan="5" style="background-color: #F9F9F9 !important;">
-                <div >
-                  <div class="row with-forms">
-                    <div class="col-md-6">
-                      <h5>Select vendor </h5>
-                      <select class="chosen-select-no-single">
-                        <option style="padding-left: 2px;" label="blank">Select Category</option>
-                        <option style="padding-left: 2px;">Exoensively</option>
-                        <option style="padding-left: 2px;">Affordably</option>
-                        <option style="padding-left: 2px;">cheably</option>
-                        <option style="padding-left: 2px;">Let me plane freely</option>
-                      </select>
+
+            <ng-container *ngFor="let budgeter of listOfBudgeters">
+              <tr>
+                <td><input type="text" placeholder="Plan" [(ngModel)] = "budgeter.name" /></td>
+                <td><input type="number" placeholder="Recommended" [(ngModel)] = "budgeter.amount"/></td>
+                <td><input disabled type="number" placeholder="Amount" [(ngModel)] = "budgeter.vendor.amountSpent"/></td>
+                <td class="td-in-table" (click)="openBudgeter(budgeter._id)">
+                  <p><i [class]="budgetItem == budgeter._id ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></p>
+                </td>
+                <td class="td-in-table" (click)="confirmDeletingBudgetItem(budgeter._id)">
+                  <p><i class="fa fa-scissors"></i></p>
+                </td>
+              </tr>
+
+              <tr [ngClass]="{ 'show-div' : budgetItem == budgeter._id , 'hide-div' : budgetItem !== budgeter._id }" >
+                <td
+                  [@slideInOut]="budgetItem == budgeter._id ? 'in' : 'out'"
+                  colspan="5" style="background-color: #F9F9F9 !important;">
+                  <div>
+                    <div class="row with-forms">
+                      <div class="col-md-6">
+                        <h5>Select vendor </h5>
+                        <select class="chosen-select-no-single">
+                          <option style="padding-left: 2px;" value= "sd">Select Categorssy</option>
+                          <option style="padding-left: 2px;" value ="606b7e6d29485531bcbbb76b">Alameer</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-6">
+                        <h5>Amount to spend</h5>
+                        <input type="number" [(ngModel)] = "budgeter.vendor.amountSpent"
+                        placeholder="Enter the planned budget to prepare your wedding.">
+                      </div>
                     </div>
 
-                    <div class="col-md-6">
-                      <h5>Amount to spend</h5>
-                      <input type="text" placeholder="Enter the planned budget to prepare your wedding.">
+                    <div class="row with-forms">
+                      <div class="col-md-12">
+                        <h5>Notes - things to remember</h5>
+                        <textarea cols="40" rows="3" [(ngModel)] = "budgeter.vendor.note"></textarea>
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="row with-forms">
-                    <div class="col-md-12">
-                      <h5>How would you want to enjoy your weddding?</h5>
-                      <textarea cols="40" rows="3"></textarea>
-                    </div>
+                    <button *ngIf="budgeter.isNew" class="button" (click)="saveBudgeterItem(budgeter._id)">Save Note</button>
+                    <button *ngIf="!budgeter.isNew" class="button" (click)="updateBudgeterItem(budgeter._id)">Update Note</button>
                   </div>
-                </div>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            </ng-container>
+
           </tbody>
         </table>
       </div>
