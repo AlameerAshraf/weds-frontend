@@ -10,3 +10,5 @@ export * from './tags';
 export * from './dashboard';
 export * from './events';
 export * from './posts';
+export * from './vendors';
+export * from './services';
