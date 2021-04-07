@@ -54,6 +54,9 @@ export class BudgeterComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Budget updated" , "You budget has been saved.");
+        this.listOfBudgeters.forEach((anItem) => {
+          anItem.amount = Number(anItem.recommendedPercentage / 100) * Number(this.suggestedBudget);
+        });
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your budget couldn't created on the server!");
