@@ -35,6 +35,7 @@ export class BudgeterComponent implements OnInit {
   budgetCategory = "";
   budgetAmount = "";
   currentUserEmail: string;
+  suggestedBudget: Number;
 
   constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef,
     private http: httpService , private ngxSpinner: NgxSpinnerService , private toastr: ToastrService){
@@ -45,6 +46,19 @@ export class BudgeterComponent implements OnInit {
     this.loadScripts();
     this.documentSelectors();
     this.getAllBudgetItems();
+  };
+
+  saveBudget(){
+    let updateWeddingURL = `${urls.UPDATE_WEDDING_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+    this.http.Post(updateWeddingURL , {} , { "wedding" : { "budget" : this.suggestedBudget } }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Budget updated" , "You budget has been saved.");
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your budget couldn't created on the server!");
+      }
+    });
   };
 
   getAllBudgetItems(){
@@ -145,7 +159,7 @@ export class BudgeterComponent implements OnInit {
   };
 
   plan(amount: Number){
-    console.log(amount)
+    this.suggestedBudget = amount;
   };
 
   documentSelectors(){

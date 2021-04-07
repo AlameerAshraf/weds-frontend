@@ -34,6 +34,10 @@ export class urls {
   public static get DELETE_BUDGET_ITEM(): string { return this.BASE_URL + '/wedding/delete-budget-item'};
 
 
+  //Wedding
+  public static get UPDATE_WEDDING_DATA(): string { return this.BASE_URL + '/wedding/update-wedding'};
+
+
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
 }

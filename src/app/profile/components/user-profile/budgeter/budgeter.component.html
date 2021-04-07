@@ -31,9 +31,15 @@
           <div class="col-md-6">
             <h5>Budget <i class="tip" data-tip-content="This is our suggestion, you can plan your wedding based on your budget."></i></h5>
             <input id="suggestedBudget" type="text"
-              autocomplete="off"
+              autocomplete="off" [(ngModel)] = "suggestedBudget"
               placeholder="Enter the planned budget to prepare your wedding.">
           </div>
+        </div>
+
+        <div class="row" align="right">
+          <a style="margin-top: 0px; padding-top: 5px; padding-bottom: 5px;"
+          (click)="saveBudget()"
+          class="button preview">Save <i class="sl sl-icon-check"></i></a>
         </div>
       </div>
     </div>
