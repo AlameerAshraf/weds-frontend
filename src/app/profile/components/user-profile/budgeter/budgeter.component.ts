@@ -104,7 +104,34 @@ export class BudgeterComponent implements OnInit {
     this.http.Post(updateBudgeterItemURL , {} , { "budgetItem" : targetBudgter }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
-        this.toastr.success("You have a new budget plan!" , "Wow, we've updated a budgter item.");
+        this.toastr.success("You have a new budget plan!" , "Wow, we've updated this budgte item.");
+        this.getAllBudgetItems();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.success("Our bad sorry!" , "Ooh Sorry, your plan couldn't created on the server!");
+      }
+    });
+  };
+
+  confirmDeletingBudgetItem(id: any){
+    var confirmed = confirm("Are you sure you want to cut this part from your budget.");
+    if(confirmed){
+      this.deleteBudgetItem(id);
+    } else {
+      return;
+    }
+  };
+
+  deleteBudgetItem(id: any){
+    this.ngxSpinner.show();
+    let deleteBudgeterItemURL = `${urls.DELETE_BUDGET_ITEM}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+    let targetBudgter = this.listOfBudgeters.find(x => x._id == id);
+
+
+    this.http.Post(deleteBudgeterItemURL , {} , { "budgetItem" : targetBudgter }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("You have a new budget plan!" , "Wow, we've deleted this budgte item.");
         this.getAllBudgetItems();
       } else {
         this.ngxSpinner.hide();

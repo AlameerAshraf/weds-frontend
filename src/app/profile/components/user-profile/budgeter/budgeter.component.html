@@ -74,7 +74,7 @@
                 <td class="td-in-table" (click)="openBudgeter(budgeter._id)">
                   <p><i [class]="budgetItem == budgeter._id ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></p>
                 </td>
-                <td class="td-in-table">
+                <td class="td-in-table" (click)="confirmDeletingBudgetItem(budgeter._id)">
                   <p><i class="fa fa-scissors"></i></p>
                 </td>
               </tr>
