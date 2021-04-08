@@ -36,7 +36,8 @@
                 <div class="inner">
                   <h3 style="font-size: 25px;"> {{ event.name }}
                     <span
-                      style="border-radius: 0px !important; font-size: 17px; background-color: #046B69 !important; color: rgb(255, 255, 255) !important"
+                      [style.background-color]="event.numbersOfDaysToEvent < 10 ? '#6b0404' : '#046B69'"
+                      style="border-radius: 0px !important; font-size: 17px; color: rgb(255, 255, 255) !important"
                       class="booking-status">{{ event.numbersOfDaysToEvent }} Days</span>
                   </h3>
 
