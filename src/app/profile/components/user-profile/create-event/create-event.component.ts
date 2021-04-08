@@ -49,7 +49,7 @@ export class CreateEventComponent implements OnInit {
     this.httpService.Post(createEvenetURL , {}, { "event" : this.newEvent }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
-        this.toastr.success("Weds360 has created the event for you." , "Let's celebrate your event has been created 🎶");
+        this.toastr.success("Weds360 has created the event for you." , "Let's celebrate your event has been created 💥🎉");
         this.router.navigateByUrl('profile/en/user/events');
       } else {
         this.ngxSpinner.hide();
