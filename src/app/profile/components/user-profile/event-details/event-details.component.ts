@@ -10,10 +10,18 @@ import { constants, httpService, urls, responseModel, event } from 'src/app/core
   styleUrls: ['./event-details.component.scss']
 })
 export class EventDetailsComponent implements OnInit {
+  selctedFilter = "";
   currentUserEmail: string;
   eventId: any;
-  anEevent: event;
+  anEevent: event = {};
   allGuests: { status_txt?: string  , status: string , name: string , email: string , phone: string , invitationMessage: string }[] = [];
+  statuses = {
+    "GOING" : 0,
+    "DECLINED" : 0,
+    "NO_RESPONSE" : 0,
+    "INVITED" : 0
+  };
+  originalGuests: { status_txt?: string; status: string; name: string; email: string; phone: string; invitationMessage: string; }[];
 
 
   constructor(private router: Router, private http: httpService, private activatedRoute: ActivatedRoute,
@@ -39,7 +47,9 @@ export class EventDetailsComponent implements OnInit {
         this.getDaysDetails();
 
         this.allGuests = this.anEevent.guestList;
+        this.originalGuests = this.anEevent.guestList;
         this.getStatusText();
+        this.countPerStatus();
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, coludn't load guest list");
@@ -68,5 +78,33 @@ export class EventDetailsComponent implements OnInit {
     this.allGuests.forEach((guest) => {
     guest.status_txt = constants.GUESTS_STATUSES[guest.status];
     })
+  };
+
+  countPerStatus(){
+    this.allGuests.forEach((guest) => {
+      this.statuses.INVITED = this.statuses.INVITED + 1;
+
+      if(guest.status == "GOING")
+        this.statuses.GOING = this.statuses.GOING + 1;
+      if(guest.status == "DECLINED")
+        this.statuses.DECLINED = this.statuses.DECLINED + 1;
+      if(guest.status == "NO_RESPONSE")
+        this.statuses.NO_RESPONSE = this.statuses.NO_RESPONSE + 1;
+    })
+  };
+
+  filter(filter){
+    if(this.selctedFilter == filter){
+      this.selctedFilter = "";
+      this.allGuests = this.originalGuests;
+      return true
+    };
+
+    this.selctedFilter = filter;
+    this.ngxSpinner.show();
+    this.allGuests = this.originalGuests.filter((guest) => {
+      this.ngxSpinner.hide();
+      return guest.status == filter
+    });
   }
 }

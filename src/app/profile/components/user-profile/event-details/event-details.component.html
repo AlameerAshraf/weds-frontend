@@ -13,28 +13,14 @@
 
         <div class="inner-booking-list">
           <h5 style="font-size: 20px;">Guests: </h5> &nbsp;
-          <ul class="booking-list">
-            <li
-              style="font-size: 17px; cursor: pointer;
-                background-color: rgb(140, 212, 112) !important; color: rgb(255, 255, 255) !important"
-              class="highlighted">2 Going</li>
+          <ul class="booking-list" (click)="filter('GOING')">
+            <li [ngClass]="{ 'going-guests-badge' : selctedFilter == 'GOING' , 'NO-guests-badge' : selctedFilter !== 'GOING' }">{{ statuses.GOING }} Going</li>
           </ul>
-          <ul class="booking-list">
-            <li style="font-size: 17px; cursor: pointer;
-              background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-              class="highlighted">2 Declined</li>
+          <ul class="booking-list" (click)="filter('DECLINED')">
+            <li [ngClass]="{ 'declined-guests-badge' : selctedFilter == 'DECLINED' , 'NO-guests-badge' : selctedFilter !== 'DECLINED' }">{{ statuses.DECLINED }} Declined</li>
           </ul>
-          <ul class="booking-list">
-            <li
-              style="font-size: 17px; cursor: pointer;
-                background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-              class="highlighted">2 Invited</li>
-          </ul>
-          <ul class="booking-list">
-            <li
-              style="font-size: 17px; cursor: pointer;
-                background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-              class="highlighted">2 No Response</li>
+          <ul class="booking-list" (click)="filter('NO_RESPONSE')">
+            <li class="NO-guests-badge">{{ statuses.NO_RESPONSE }} No Response</li>
           </ul>
         </div>
 
@@ -67,7 +53,7 @@
               </div>
             </div>
             <div class="buttons-to-right">
-              <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Withdraw invitation </a>
+              <a class="button gray"><i class="sl sl-icon-close"></i> Withdraw invitation </a>
             </div>
           </li>
         </ng-container>
