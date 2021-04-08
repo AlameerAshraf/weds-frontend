@@ -13,4 +13,6 @@ export class event {
   month?: string= "";
   day?:string= "";
   dateText?: string= "";
+  counts?: { "GOING" : number , "DECLINED" : number , "NO_RESPONSE" : number , "INVITED" : number } =
+  { DECLINED: 0 , GOING : 0 , INVITED: 0 , NO_RESPONSE: 0 }
 }

@@ -46,22 +46,22 @@
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(140, 212, 112) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">2 Going</li>
+                        class="highlighted">{{ event.counts.GOING }} Going</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: lightcoral !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">2 Declined</li>
+                        class="highlighted">{{ event.counts.DECLINED }} Declined</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(66, 148, 202) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">2 Invited</li>
+                        class="highlighted">{{ event.counts.INVITED }} Invited</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">2 No Response</li>
+                        class="highlighted">{{ event.counts.NO_RESPONSE }} No Response</li>
                     </ul>
                   </div>
 

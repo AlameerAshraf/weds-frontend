@@ -35,7 +35,7 @@ export class EventsComponent implements OnInit{
         this.ngxSpinner.hide();
 
         this.getDaysDetails();
-        console.log(this.listOfEvents)
+        this.countStatuesForEvents();
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Error loading events data.");
@@ -60,6 +60,24 @@ export class EventsComponent implements OnInit{
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     return diffDays;
+  };
+
+  countStatuesForEvents(){
+    this.listOfEvents.forEach((anEvent) => {
+      anEvent.counts = { DECLINED: 0 , GOING : 0 , INVITED: 0 , NO_RESPONSE: 0 };
+      anEvent.guestList.forEach((guest) => {
+        anEvent.counts.INVITED = anEvent.counts.INVITED + 1;
+
+        if(guest.status == "GOING")
+          anEvent.counts.GOING = anEvent.counts.GOING + 1;
+        if(guest.status == "DECLINED")
+          anEvent.counts.DECLINED = anEvent.counts.DECLINED + 1;
+        if(guest.status == "NO_RESPONSE")
+          anEvent.counts.NO_RESPONSE = anEvent.counts.NO_RESPONSE + 1;
+      })
+    })
+
+    console.log(this.listOfEvents)
   };
 
   viewEventDetails(id: any){
