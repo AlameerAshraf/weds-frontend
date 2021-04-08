@@ -176,6 +176,32 @@ const routes: Routes = [
             path: 'posts-action/:actionType',
             component : COMPONENTS.PostsFormComponent
           },
+          
+          {
+            path: 'vendors-list',
+            component: COMPONENTS.VendorsGridComponent
+          },
+          {
+            path: 'vendors-action/:actionType',
+            component : COMPONENTS.VendorsFormComponent
+          },
+          
+          {
+            path: 'services-defaults',
+            component: COMPONENTS.ServicesGridComponent
+          },
+          {
+            path: 'services-action/:actionType',
+            component : COMPONENTS.ServicesFormComponent
+          },
+          {
+            path: 'services-ring-action/:actionType',
+            component : COMPONENTS.ServicesRingFormComponent
+          },
+          {
+            path: 'services-dress-action/:actionType',
+            component : COMPONENTS.ServicesDressFormComponent
+          },
         ]
       },
       {
@@ -196,7 +222,19 @@ const routes: Routes = [
           {
             path: 'messages',
             component: COMPONENTS.VendorMessagesComponent
-          }
+          },   
+          {
+            path: 'services-action/:actionType',
+            component : COMPONENTS.VendorServicesFormComponent
+          },
+          {
+            path: 'vendor-services-ring-action/:actionType',
+            component : COMPONENTS.VendorServicesRingFormComponent
+          },
+          {
+            path: 'vendor-services-dress-action/:actionType',
+            component : COMPONENTS.VendorServicesDressFormComponent
+          },
         ]
       },
     ]

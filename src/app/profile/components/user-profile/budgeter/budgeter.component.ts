@@ -36,6 +36,8 @@ export class BudgeterComponent implements OnInit {
   budgetAmount = "";
   currentUserEmail: string;
   suggestedBudget: Number;
+  currentBudget: any = 0;
+  showAlarm = false;
 
   constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef,
     private http: httpService , private ngxSpinner: NgxSpinnerService , private toastr: ToastrService){
@@ -54,6 +56,9 @@ export class BudgeterComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Budget updated" , "You budget has been saved.");
+        this.listOfBudgeters.forEach((anItem) => {
+          anItem.amount = Number(anItem.recommendedPercentage / 100) * Number(this.suggestedBudget);
+        });
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your budget couldn't created on the server!");
@@ -68,6 +73,7 @@ export class BudgeterComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.listOfBudgeters = response.data as budgeter[];
+        this.issueAlarm();
         this.loadScripts();
       } else {
         this.ngxSpinner.hide();
@@ -91,6 +97,7 @@ export class BudgeterComponent implements OnInit {
         this.ngxSpinner.hide();
         this.toastr.success("You have a new budget plan!" , "Wow, You've added a new plane good for you. 🎈");
         this.getAllBudgetItems();
+        this.issueAlarm();
         this.newlyCreatedBudgetItem = {
           amount: 0,
           description: "",
@@ -120,6 +127,7 @@ export class BudgeterComponent implements OnInit {
         this.ngxSpinner.hide();
         this.toastr.success("You have a new budget plan!" , "Wow, we've updated this budgte item.");
         this.getAllBudgetItems();
+        this.issueAlarm();
       } else {
         this.ngxSpinner.hide();
         this.toastr.success("Our bad sorry!" , "Ooh Sorry, your plan couldn't created on the server!");
@@ -160,6 +168,16 @@ export class BudgeterComponent implements OnInit {
 
   plan(amount: Number){
     this.suggestedBudget = amount;
+  };
+
+  issueAlarm(){
+    this.listOfBudgeters.forEach((anItem) => {
+      this.currentBudget = this.currentBudget + Number(anItem.vendor.amountSpent);
+    });
+
+    if(this.currentBudget > this.suggestedBudget){
+      this.showAlarm = true;
+    }
   };
 
   documentSelectors(){

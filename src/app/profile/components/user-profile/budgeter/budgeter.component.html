@@ -46,6 +46,15 @@
   </div>
 </div>
 
+<div class="row margin-top-10" *ngIf="showAlarm">
+  <div class="col-md-12">
+    <div class="notification error closeable margin-bottom-5">
+      <p>Hi Alameer, Take care you're <strong> exceeding the planned budget</strong> fine tune 🙄.</p>
+      <a class="close" href="#"></a>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box with-icons margin-top-20">
@@ -75,7 +84,7 @@
             <ng-container *ngFor="let budgeter of listOfBudgeters">
               <tr>
                 <td><input type="text" placeholder="Plan" [(ngModel)] = "budgeter.name" /></td>
-                <td><input type="number" placeholder="Recommended" [(ngModel)] = "budgeter.amount"/></td>
+                <td><input disabled type="number" placeholder="Recommended" [(ngModel)] = "budgeter.amount"/></td>
                 <td><input disabled type="number" placeholder="Amount" [(ngModel)] = "budgeter.vendor.amountSpent"/></td>
                 <td class="td-in-table" (click)="openBudgeter(budgeter._id)">
                   <p><i [class]="budgetItem == budgeter._id ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></p>

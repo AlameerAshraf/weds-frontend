@@ -12,17 +12,24 @@
         <div class="row with-forms">
           <div class="col-md-4">
             <h5>Name</h5>
-            <input class="search-field" type="text" value="" />
+            <input class="search-field" type="text" value="" [(ngModel)] = "newEvent.name" />
           </div>
 
           <div class="col-md-4">
             <h5>Date</h5>
-            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+            <input type="text" id="date-picker" placeholder="Date" [(ngModel)] = "date">
           </div>
 
           <div class="col-md-4">
             <h5>Location</h5>
-            <input class="search-field" type="text" value="" />
+            <input class="search-field" type="text" value="" [(ngModel)] = "newEvent.location" />
+          </div>
+        </div>
+
+        <div class="row with-forms">
+          <div class="col-md-12">
+            <h5>Description</h5>
+            <textarea class="WYSIWYG" name="summary" cols="40" rows="2" spellcheck="false" [(ngModel)] = "newEvent.description"></textarea>
           </div>
         </div>
 
@@ -31,7 +38,7 @@
           <div class="col-md-6">
             <div class="checkboxes in-row">
 
-              <input id="check-a" type="checkbox" name="check">
+              <input id="check-a" type="checkbox" name="check" checked>
               <label for="check-a">Disply on wedding website</label>
             </div>
           </div>
@@ -44,4 +51,4 @@
 <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
   Cancel <i class="sl sl-icon-close"></i>
 </a>
-<a class="button preview" (click)="save()">Save<i class="sl sl-icon-check"></i></a>
+<a class="button preview" (click)="createNewEvent()">Save<i class="sl sl-icon-check"></i></a>

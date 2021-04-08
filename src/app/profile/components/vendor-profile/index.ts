@@ -4,3 +4,6 @@ export * from './vendor-profile-details/vendor-profile-details.component';
 export * from './vendor-services/vendor-services.component';
 export * from './vendor-chat/vendor-chat.component';
 export * from './vendor-details-extra/vendor-details-extra.component';
+export * from './vendor-services-form/vendor-services-form.component';
+export * from './vendor-services-dress-form/vendor-services-dress-form.component';
+export * from './vendor-services-ring-form/vendor-services-ring-form.component';
