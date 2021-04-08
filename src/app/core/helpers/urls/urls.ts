@@ -37,6 +37,9 @@ export class urls {
   //Wedding
   public static get UPDATE_WEDDING_DATA(): string { return this.BASE_URL + '/wedding/update-wedding'};
 
+  //Events
+  public static get CREATE_EVENT(): string { return this.BASE_URL + '/users/events/create-new-event'};
+
 
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };

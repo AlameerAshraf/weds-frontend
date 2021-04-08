@@ -73,6 +73,7 @@ export class BudgeterComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.listOfBudgeters = response.data as budgeter[];
+        this.issueAlarm();
         this.loadScripts();
       } else {
         this.ngxSpinner.hide();
