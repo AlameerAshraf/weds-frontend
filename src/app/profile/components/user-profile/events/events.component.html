@@ -71,11 +71,11 @@
                     </ul>
                   </div>
 
-                  <a style="cursor: pointer;" (click)="viewEventDetails()" class="rate-review popup-with-zoom-anim">
+                  <a style="cursor: pointer;" (click)="viewEventDetails(event._id)" class="rate-review popup-with-zoom-anim">
                     <i class="sl sl-icon-paper-clip"></i> View Details
                   </a>
 
-                  <a style="cursor: pointer;" (click)="inviteFriends()" class="rate-review popup-with-zoom-anim">
+                  <a style="cursor: pointer;" (click)="inviteFriends(event._id)" class="rate-review popup-with-zoom-anim">
                     <i class="im im-icon-Mail-Read"></i> Invite friends
                   </a>
                 </div>
