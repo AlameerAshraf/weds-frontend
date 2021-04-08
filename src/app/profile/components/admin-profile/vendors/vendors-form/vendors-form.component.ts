@@ -8,11 +8,11 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
 declare const google: any
 
 @Component({
-  selector: 'app-vendor-profile-details',
-  templateUrl: './vendor-profile-details.component.html',
-  styleUrls: ['./vendor-profile-details.component.scss']
+  selector: 'app-vendors-form',
+  templateUrl: './vendors-form.component.html',
+  styleUrls: ['./vendors-form.component.scss']
 })
-export class VendorProfileDetailsComponent implements OnInit {
+export class VendorsFormComponent implements OnInit {
   is = false;
   coverPhotoSource: any = '';
 
@@ -148,5 +148,6 @@ export class VendorProfileDetailsComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+
 
 }

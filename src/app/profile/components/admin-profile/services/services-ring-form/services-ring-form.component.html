@@ -1,0 +1,121 @@
+<div id="titlebar">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Ring Details</h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="dashboard-list-box margin-top-0">
+            <div class="dashboard-list-box-static">
+                <div class="my-profile">
+
+                    <label class="margin-top-0">Name En</label>
+                    <input value="Tom Perrin" type="text">
+
+                    <label>Description En</label>
+                    <textarea></textarea>
+
+                    <label>Service</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Select your service</option>
+                        <option>Dress</option>
+                        <option>Ring</option>
+                    </select>
+
+                    <label>Purity</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Select your purity</option>
+                        <option>short</option>
+                        <option>tall</option>
+                    </select>
+
+                    <label>Stone Shape</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Select your stone shape</option>
+                        <option>short</option>
+                        <option>tall</option>
+                    </select>
+
+                    <label>Metal</label>
+                    <input value="metal" type="text">
+
+                    <label>Price (EGP)</label>
+                    <input value="price" type="text">
+
+                    <label>Tags En list</label>
+                    <input value="Tags en" type="text">
+
+                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                        <img class="anImage"
+                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                            alt="">
+                        <div class="change-photo-btn">
+                            <div class="photoUpload">
+                                <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                <input type="file" class="upload" (change)="onFileSelected($event)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+        <div class="dashboard-list-box margin-top-0">
+            <div class="dashboard-list-box-static">
+                <div class="my-profile">
+                    <label class="margin-top-0">Name Ar</label>
+                    <input value="توم" type="text">
+
+                    <label>Description Ar</label>
+                    <textarea></textarea>
+
+                    <label>Category</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Select your category</option>
+                        <option>Him</option>
+                        <option>Her</option>
+                    </select>
+
+                    <label>Clarity</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Select your clarity</option>
+                        <option>Him</option>
+                        <option>Her</option>
+                    </select>
+
+                    <label>Style</label>
+                    <input value="style" type="text">
+
+                    <label>Designer</label>
+                    <input value="designer" type="text">
+
+                    <label>Gender</label>
+                    <select class="chosen-select-no-single">
+                        <option label="blank">Select your gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+
+                    <label>Tags Ar list</label>
+                    <input value="Tags ar" type="text">
+
+                    
+
+                </div>
+            </div>
+        </div>
+        <div align="right">
+            <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+                Cancel <i class="sl sl-icon-close"></i>
+            </a>
+            <a class="button preview" (click)="navigateToServicesForm()">Save Changes <i
+                    class="sl sl-icon-check"></i></a>
+        </div>
+    </div>
+</div>
