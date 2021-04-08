@@ -1,14 +1,14 @@
 <div class="approved-booking">
   <div class="list-box-listing bookings">
     <div class="list-box-listing-img">
-      <p class="calendar">10 <em>April</em></p>
+      <p class="calendar">{{ anEevent.day }} <em> {{ anEevent.month }} </em></p>
     </div>
     <div class="list-box-listing-content">
       <div class="inner">
-        <h3 style="font-size: 25px;">Engagment Day
+        <h3 style="font-size: 25px;">{{ anEevent.name }}
           <span
             style="border-radius: 0px !important; font-size: 17px; background-color: #c40505 !important; color: rgb(255, 255, 255) !important"
-            class="booking-status">18 Day</span>
+            class="booking-status">{{ anEevent.numbersOfDaysToEvent }} Day</span>
         </h3>
 
         <div class="inner-booking-list">
@@ -40,7 +40,7 @@
 
         <div class="inner-booking-list">
           <ul class="booking-list">
-            <li>22/10/2021</li>
+            <li>{{ anEevent.dateText }}</li>
           </ul>
         </div>
       </div>
@@ -54,47 +54,24 @@
       <h4>My Guests</h4>
       <ul>
 
-        <li style="padding-top: 2px !important;">
-          <div class="list-box-listing">
-            <div class="list-box-listing-content">
-              <div class="inner">
-                <h3>Alameer Ashraf Hassan</h3>
-                <span>Congrats, My dear!</span>
+        <ng-container *ngFor="let guest of allGuests">
+          <li style="padding-top: 2px !important;">
+            <div class="list-box-listing">
+              <div class="list-box-listing-content">
+                <div class="inner">
+                  <h3>{{ guest.name }}
+                    <span
+                     [ngClass] = "{ 'going-guests' : guest.status == 'GOING' , 'declined-guests' : guest.status == 'DECLINED' , 'NO-guests' : guest.status == 'NO_RESPONSE' }"> {{ guest.status_txt }} </span></h3>
+                  <span>{{ guest.phone }} - {{ guest.email }}</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="buttons-to-right">
-            <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
-          </div>
-        </li>
+            <div class="buttons-to-right">
+              <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Withdraw invitation </a>
+            </div>
+          </li>
+        </ng-container>
 
-        <li style="padding-top: 2px !important;">
-          <div class="list-box-listing">
-            <div class="list-box-listing-content">
-              <div class="inner">
-                <h3>Alameer Ashraf Hassan</h3>
-                <span>Congrats, My dear!</span>
-              </div>
-            </div>
-          </div>
-          <div class="buttons-to-right">
-            <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
-          </div>
-        </li>
-
-        <li style="padding-top: 2px !important;">
-          <div class="list-box-listing">
-            <div class="list-box-listing-content">
-              <div class="inner">
-                <h3>Alameer Ashraf Hassan</h3>
-                <span>Congrats, My dear!</span>
-              </div>
-            </div>
-          </div>
-          <div class="buttons-to-right">
-            <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
-          </div>
-        </li>
 
       </ul>
     </div>

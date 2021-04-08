@@ -60,7 +60,7 @@ export class EventsComponent implements OnInit{
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     return diffDays;
-  }
+  };
 
   viewEventDetails(id: any){
     this.router.navigateByUrl(`/profile/en/user/event-details/${id}`);
