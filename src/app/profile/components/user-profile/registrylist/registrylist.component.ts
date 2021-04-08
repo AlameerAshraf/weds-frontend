@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { registery } from 'src/app/core';
 
 @Component({
   selector: 'app-registrylist',
@@ -6,13 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registrylist.component.scss']
 })
 export class RegistrylistComponent implements OnInit {
-  private window: any = window;
+  registeryList: registery[] = [];
+  newlyAddedRegistery: registery = {
+    address: "",
+    image: "",
+    isNew: true,
+    note: "",
+    price: "",
+    title: ""
+  }
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  openVerticallyCentered(content) {
+
+  addNewWish(){
+    this.registeryList.push(this.newlyAddedRegistery);
   }
+
 
 }
