@@ -24,121 +24,68 @@
       </h4>
       <ul>
 
-        <li class="approved-booking">
-          <div class="list-box-listing bookings">
-            <div class="list-box-listing-img">
-              <p class="calendar">8 <em>February</em></p>
-            </div>
-            <div class="list-box-listing-content">
-              <div class="inner">
-                <h3 style="font-size: 25px;">Engagment Day
-                  <span
-                    style="border-radius: 0px !important; font-size: 17px; background-color: #046B69 !important; color: rgb(255, 255, 255) !important"
-                    class="booking-status">18 Day</span>
-                </h3>
+        <ng-container *ngFor="let event of listOfEvents">
 
 
-                <div class="inner-booking-list">
-                  <h5 style="font-size: 20px;">Guests: </h5> &nbsp;
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: rgb(140, 212, 112) !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 Going</li>
-                  </ul>
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: lightcoral !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 Declined</li>
-                  </ul>
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: rgb(66, 148, 202) !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 Invited</li>
-                  </ul>
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 No Response</li>
-                  </ul>
+          <li class="approved-booking">
+            <div class="list-box-listing bookings">
+              <div class="list-box-listing-img">
+                <p class="calendar">{{ event.day }} <em> {{ event.month }} </em></p>
+              </div>
+              <div class="list-box-listing-content">
+                <div class="inner">
+                  <h3 style="font-size: 25px;"> {{ event.name }}
+                    <span
+                      style="border-radius: 0px !important; font-size: 17px; background-color: #046B69 !important; color: rgb(255, 255, 255) !important"
+                      class="booking-status">{{ event.numbersOfDaysToEvent }} Days</span>
+                  </h3>
+
+
+                  <div class="inner-booking-list">
+                    <h5 style="font-size: 20px;">Guests: </h5> &nbsp;
+                    <ul class="booking-list">
+                      <li
+                        style="font-size: 17px; background-color: rgb(140, 212, 112) !important; color: rgb(255, 255, 255) !important"
+                        class="highlighted">2 Going</li>
+                    </ul>
+                    <ul class="booking-list">
+                      <li
+                        style="font-size: 17px; background-color: lightcoral !important; color: rgb(255, 255, 255) !important"
+                        class="highlighted">2 Declined</li>
+                    </ul>
+                    <ul class="booking-list">
+                      <li
+                        style="font-size: 17px; background-color: rgb(66, 148, 202) !important; color: rgb(255, 255, 255) !important"
+                        class="highlighted">2 Invited</li>
+                    </ul>
+                    <ul class="booking-list">
+                      <li
+                        style="font-size: 17px; background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
+                        class="highlighted">2 No Response</li>
+                    </ul>
+                  </div>
+
+                  <div class="inner-booking-list">
+                    <ul class="booking-list">
+                      <li>{{ event.dateText }}</li>
+                    </ul>
+                  </div>
+
+                  <a style="cursor: pointer;" (click)="viewEventDetails()" class="rate-review popup-with-zoom-anim">
+                    <i class="sl sl-icon-paper-clip"></i> View Details
+                  </a>
+
+                  <a style="cursor: pointer;" (click)="inviteFriends()" class="rate-review popup-with-zoom-anim">
+                    <i class="im im-icon-Mail-Read"></i> Invite friends
+                  </a>
                 </div>
-
-                <div class="inner-booking-list">
-                  <ul class="booking-list">
-                    <li>22/10/2021</li>
-                  </ul>
-                </div>
-
-                <a style="cursor: pointer;" (click)="viewEventDetails()" class="rate-review popup-with-zoom-anim">
-                  <i class="sl sl-icon-paper-clip"></i> View Details
-                </a>
-
-                <a style="cursor: pointer;" (click)="inviteFriends()" class="rate-review popup-with-zoom-anim">
-                  <i class="im im-icon-Mail-Read"></i> Invite friends
-                </a>
               </div>
             </div>
-          </div>
-        </li>
+          </li>
 
-        <li class="approved-booking">
-          <div class="list-box-listing bookings">
-            <div class="list-box-listing-img">
-              <p class="calendar">10 <em>April</em></p>
-            </div>
-            <div class="list-box-listing-content">
-              <div class="inner">
-                <h3 style="font-size: 25px;">Engagment Day
-                  <span
-                    style="border-radius: 0px !important; font-size: 17px; background-color: #c40505 !important; color: rgb(255, 255, 255) !important"
-                    class="booking-status">18 Day</span>
-                </h3>
 
-                <div class="inner-booking-list margin-bottom-10">
-                  <h5>This is an event when you started this shit!, This is an event when you started this shit!, This
-                    is an event when you started this shit!</h5>
-                </div>
+        </ng-container>
 
-                <div class="inner-booking-list">
-                  <h5 style="font-size: 20px;">Guests: </h5> &nbsp;
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: rgb(140, 212, 112) !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 Going</li>
-                  </ul>
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: lightcoral !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 Declined</li>
-                  </ul>
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: rgb(66, 148, 202) !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 Invited</li>
-                  </ul>
-                  <ul class="booking-list">
-                    <li
-                      style="font-size: 17px; background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-                      class="highlighted">2 No Response</li>
-                  </ul>
-                </div>
-
-                <div class="inner-booking-list">
-                  <ul class="booking-list">
-                    <li>22/10/2021</li>
-                  </ul>
-                </div>
-
-                <a style="cursor: pointer;" (click)="viewEventDetails()" class="rate-review popup-with-zoom-anim">
-                  <i class="sl sl-icon-paper-clip"></i> View Details
-                </a>
-
-                <a style="cursor: pointer;" (click)="inviteFriends()" class="rate-review popup-with-zoom-anim">
-                  <i class="im im-icon-Mail-Read"></i> Invite friends
-                </a>
-              </div>
-            </div>
-          </div>
-        </li>
       </ul>
     </div>
   </div>

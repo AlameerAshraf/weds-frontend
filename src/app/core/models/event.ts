@@ -6,4 +6,10 @@ export class event {
   ownerEmail: string;
   showOnWeddingWebsite: boolean = false;
   guestList: any[]
+
+  //UI
+  numbersOfDaysToEvent?:any;
+  month?: string;
+  day?:string;
+  dateText?: string;
 }

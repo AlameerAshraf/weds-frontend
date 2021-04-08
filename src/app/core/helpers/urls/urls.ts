@@ -39,6 +39,7 @@ export class urls {
 
   //Events
   public static get CREATE_EVENT(): string { return this.BASE_URL + '/users/events/create-new-event'};
+  public static get GET_EVENTS_PER_USER(): string { return this.BASE_URL + '/users/events/get-all-events'};
 
 
   // Authed ..

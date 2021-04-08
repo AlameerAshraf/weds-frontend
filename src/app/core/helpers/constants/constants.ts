@@ -33,6 +33,11 @@ export class constants {
     }
   };
 
+  public static get MONTHS(){
+    return ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+  };
+
   public static get SUGGESTED_BUDGET_VALUES(){
     return {
       "EXPENSIVELY" : 50000,
