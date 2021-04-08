@@ -36,6 +36,14 @@ export class EventsComponent implements OnInit{
 
         this.getDaysDetails();
         this.countStatuesForEvents();
+
+        this.listOfEvents.sort(function(a: any,b:any){
+          let aDate: any = new Date(a.date.split('T')[0]);
+          let bDate: any = new Date(b.date.split('T')[0]);
+
+          return aDate- bDate;
+        });
+
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Error loading events data.");
