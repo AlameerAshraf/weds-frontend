@@ -27,10 +27,8 @@ export class InviteFriendsComponent implements OnInit {
   }
 
   invite(){
-
     this.ngxSpinner.show();
     let invitationURL = `${urls.INVITE_TO_EVENT}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
-    console.log(invitationURL)
 
     this.http.Post(invitationURL , {} , { "invitation" : this.invitation , "eventId" : this.eventId }).subscribe((response: responseModel) => {
       if(!response.error){
