@@ -58,12 +58,12 @@
                 <div class="list-box-listing-img">
                   <div class="edit-profile-photo">
                     <img class="anImage"
-                      [src]="'assets/images/defaults/wedding/cover-photo.png'"
+                      [src]="newlyAddedRegistery.image"
                       alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
                         <span><i class="fa fa-upload"></i> Photo</span>
-                        <input type="file" class="upload"  />
+                        <input type="file" class="upload" (change)="uploadImage($event)"/>
                       </div>
                     </div>
                   </div>
