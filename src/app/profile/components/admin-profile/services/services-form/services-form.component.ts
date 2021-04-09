@@ -8,17 +8,21 @@ import { Router } from '@angular/router';
 })
 export class ServicesFormComponent implements OnInit {
 
+  currentService = "ring";
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  navigateToCreateNewDress(){
+  navigateToCreateNewDress() {
     this.router.navigate(['profile/en/admin/services-dress-action/new']);
   }
 
-  navigateToCreateNewRing(){
+  navigateToCreateNewRing() {
     this.router.navigate(['profile/en/admin/services-ring-action/new']);
   }
 
+  addNewServiceTemplate() {
+    alert("this feature not implamented yet")
+  }
 }

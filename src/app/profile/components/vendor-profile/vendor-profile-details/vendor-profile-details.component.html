@@ -1,3 +1,4 @@
+<!-- Titlebar -->
 <div id="titlebar">
     <div class="row">
         <div class="col-md-12">
@@ -5,202 +6,158 @@
         </div>
     </div>
 </div>
-<div class="row margin-bottom-20">
-    <div class="col-lg-12 col-md-12">
-        <div class="dashboard-list-box margin-top-0">
-            <h4>Basic Information </h4>
-            <div style="padding: 8px !important;">
-                <div class="row">
 
-                    <div class="col-lg-6 col-md-12">
+<div class="row">
+    <div class="col-lg-12">
+        <div id="add-listing">
 
-                        <div class="my-profile">
+            <!-- Section -->
+            <div class="add-listing-section">
 
-                            <label class="margin-top-0">User Name</label>
-                            <input value="Tom Perrin" type="text">
-
-                            <label>Name</label>
-                            <input value="Tom Perrin" type="text">
-
-                            <label>Description</label>
-                            <textarea value="" type="text"></textarea>
-
-                            <label>Short Description</label>
-                            <input type="text" value="">
-
-                            <label>Phone</label>
-                            <input value="(123) 123-456" type="text">
-
-                            <label>Website Url</label>
-                            <input value="www.google.com" type="text">
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-6 col-md-12">
-
-                        <div class="my-profile">
-                            <label class="margin-top-0">Area</label>
-                            <select class="chosen-select-no-single">
-                                <option label="blank">Area</option>
-                                <option>New York</option>
-                                <option>Los Angeles</option>
-                            </select>
-
-                            <label>Name Ar</label>
-                            <input value="توم " type="text">
-
-                            <label>Description Ar</label>
-                            <textarea value="" type="text"></textarea>
-
-                            <label>Short Description Ar</label>
-                            <input type="text" value="">
-
-                            <label>Category</label>
-                            <select class="chosen-select-no-single">
-                                <option label="blank">Category</option>
-                                <option>New York</option>
-                                <option>Los Angeles</option>
-                            </select>
-
-                            <label>Price Range</label>
-                            <select class="chosen-select-no-single">
-                                <option label="blank">Category</option>
-                                <option>New York</option>
-                                <option>Los Angeles</option>
-                            </select>
-                        </div>
-                    </div>
-
+                <!-- Headline -->
+                <div class="add-listing-headline">
+                    <h3><i class="sl sl-icon-doc"></i> Basic Informations</h3>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
+                <div class="col-lg-6 col-md-12">
 
-<div class="row margin-bottom-20">
-    <div class="col-lg-12 col-md-12">
-        <div class="dashboard-list-box margin-top-0">
-            <h4>Address Information
-            </h4>
-            <div style="padding: 10px !important;">
-                <div class="row">
-                    <div class="col-md-5">
-                        <label>Address </label>
-                        <input type="text" placeholder="Address">
-                    </div>
-                    <div class="col-md-4">
-                        <label>Search </label>
-                        <input type="text" placeholder="search">
-                    </div>
+                    <div class="my-profile">
 
-                    <div class="col-md-3">
-                        <label>Guest Count </label>
-                        <input type="text" placeholder="number of guests">
-                    </div>
+                        <label class="margin-top-0">User Name</label>
+                        <input value="Tom Perrin" type="text">
 
-                    <div class="col-md-12">
-                        <div>
-                            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-                                    (dragEnd)="markerDragEnd($event)"></agm-marker>
-                            </agm-map>
-                        </div>
+                        <label>Name</label>
+                        <input value="Tom Perrin" type="text">
+
+                        <label>Description</label>
+                        <textarea value="" type="text"></textarea>
+
+                        <label>Short Description</label>
+                        <input type="text" value="">
+
+                        <label>Phone</label>
+                        <input value="(123) 123-456" type="text">
+
+                        <label>Website Url</label>
+                        <input value="www.google.com" type="text">
+
+                        <label>Tags English List</label>
+                        <input type="text" placeholder="tags english">
                     </div>
                 </div>
+
+
+                <div class="col-lg-6 col-md-12">
+
+                    <div class="my-profile">
+                        <label class="margin-top-0">Area</label>
+                        <select class="chosen-select-no-single">
+                            <option label="blank">Area</option>
+                            <option>New York</option>
+                            <option>Los Angeles</option>
+                        </select>
+
+                        <label>Name Arabic</label>
+                        <input value="توم " type="text">
+
+                        <label>Description Arabic</label>
+                        <textarea value="" type="text"></textarea>
+
+                        <label>Short Description Arabic</label>
+                        <input type="text" value="">
+
+                        <label>Category</label>
+                        <select class="chosen-select-no-single">
+                            <option label="blank">Category</option>
+                            <option>New York</option>
+                            <option>Los Angeles</option>
+                        </select>
+
+                        <label>Price Range</label>
+                        <select class="chosen-select-no-single">
+                            <option label="blank">Price</option>
+                            <option>New York</option>
+                            <option>Los Angeles</option>
+                        </select>
+
+                        
+                        <label>Tags Arabic List </label>
+                        <input type="text" placeholder="tags arabic">
+
+                    </div>
+                </div>
+
+                <!-- Row -->
+                <div class="row with-forms">
+
+
+                </div>
+                <!-- Row / End -->
+
             </div>
-        </div>
-    </div>
-</div>
+            <!-- Section / End -->
 
-<div class="row margin-bottom-20">
-    <div class="col-lg-12 col-md-12">
-        <div class="dashboard-list-box margin-top-0">
-            <h4>Social Information
-            </h4>
-            <div style="padding: 10px !important;">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label>Facebook Url </label>
-                        <input type="text" placeholder="facebook url">
-                    </div>
-                    <div class="col-md-3">
-                        <label>Twitter Url </label>
-                        <input type="text" placeholder="twitter url">
-                    </div>
+            <!-- Section -->
+            <div class="add-listing-section margin-top-45">
 
-                    <div class="col-md-3">
-                        <label>Instagram Url </label>
-                        <input type="text" placeholder="instagram url">
-                    </div>
+                <!-- Headline -->
+                <div class="add-listing-headline">
+                    <h3><i class="sl sl-icon-location"></i> Location</h3>
+                </div>
 
-                    <div class="col-md-3">
-                        <label>Pinterest Url </label>
-                        <input type="text" placeholder="pinterest url">
-                    </div>
+                <div class="submit-section">
 
-                    <div class="col-md-4">
-                        <label>Tags En List</label>
-                        <input type="text" placeholder="tags en">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label>Tags Ar List </label>
-                        <input type="text" placeholder="tags ar">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label>Index </label>
-                        <input type="text" placeholder="index">
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="col-lg-6 col-md-6">
-
-                            <div class="dashboard-list-box margin-top-20">
-                                <h4>Featured Video </h4>
-                                <div class="row" style="padding: 10px !important; height: 205px !important;">
-                                    <div class="col-md-12">
-                                        <div class="edit-profile-photo">
-                                            <img class="anImage"
-                                                [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                                                alt="">
-                                            <div class="change-photo-btn">
-                                                <div class="photoUpload">
-                                                    <span><i class="fa fa-upload"></i> Upload Video</span>
-                                                    <input type="file" class="upload"
-                                                        (change)="onFileSelected($event)" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- Row -->
+                    <div class="row with-forms">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label>Guest Count </label>
+                                <input type="text" placeholder="Address">
+                                <textarea cols="40" rows="2"
+                                    placeholder="Your Detailed Address, write it or let us!"></textarea>
                             </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="checkboxes in-row margin-top-20">
-                                    <input id="check-a" type="checkbox" name="check">
-                                    <label for="check-a">Mark video for deletion</label>
+
+                            <div class="col-md-7">
+                                <label>Search </label>
+                                <input type="text" placeholder="search">
+
+                                <div>
+                                    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                                        <agm-marker [latitude]="latitude" [longitude]="longitude"
+                                            [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                                    </agm-map>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- Row / End -->
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="dashboard-list-box margin-top-20">
-                                <h4>Featured Image </h4>
-                                <div class="row" style="padding: 10px !important; height: 205px !important;">
-                                    <div class="col-md-12">
-                                        <div class="edit-profile-photo">
-                                            <img class="anImage"
-                                                [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                                                alt="">
-                                            <div class="change-photo-btn">
-                                                <div class="photoUpload">
-                                                    <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                                    <input type="file" class="upload"
-                                                        (change)="onFileSelected($event)" />
-                                                </div>
-                                            </div>
-                                        </div>
+                </div>
+            </div>
+            <!-- Section / End -->
+
+
+            <!-- Section -->
+            <div class="add-listing-section margin-top-45">
+
+                <!-- Headline -->
+                <div class="add-listing-headline">
+                    <h3><i class="sl sl-icon-picture"></i> Gallery</h3>
+                </div>
+
+                <!-- Dropzone -->
+
+                <div class="row margin-bottom-20">
+                    <div class="row col-lg-3 col-md-3" style="padding: 10px !important; height: 205px !important;">
+                        <div class="col-md-12">
+                            <div class="edit-profile-photo">
+                                <img class="anImage"
+                                    [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                                    alt="">
+                                <div class="change-photo-btn">
+                                    <div class="photoUpload">
+                                        <span><i class="fa fa-upload"></i> Cover Photo</span>
+                                        <input type="file" class="upload" (change)="onFileSelected($event)" />
                                     </div>
                                 </div>
                             </div>
@@ -208,27 +165,62 @@
                     </div>
 
 
-                    <div class="col-lg-6 col-md-6">
-                        <div class="col-lg-12 col-md-6">
-                            <div class="dashboard-list-box margin-top-20">
-                                <h4>Gallery </h4>
-                                <div class="row" style="padding: 10px !important;">
-                                    <div class="col-md-12">
-                                        <ngx-dropzone (change)="onSelect($event)">
-                                            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-                                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
-                                                *ngFor="let f of files" [file]="f" [removable]="true"
-                                                (removed)="onRemove(f)">
-                                                <ngx-dropzone-label></ngx-dropzone-label>
-                                            </ngx-dropzone-image-preview>
-                                        </ngx-dropzone>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row col-lg-9 col-md-9" style="padding: 10px; padding-right:0% !important;">
+                        <div class="col-md-12">
+                            <ngx-dropzone (change)="onSelect($event)">
+                                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                                    [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                    <ngx-dropzone-label></ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
+                            </ngx-dropzone>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Section / End -->
+
+
+            <!-- Section -->
+            <div class="add-listing-section margin-top-45">
+
+                <!-- Headline -->
+                <div class="add-listing-headline">
+                    <h3><i class="sl sl-icon-docs"></i> Social Details</h3>
+                </div>
+
+                <!-- Row -->
+                <div class="row with-forms">
+
+                    <!-- Phone -->
+                    <div class="col-md-3">
+                        <h5 class="fb-input"><i class="fa fa-facebook-square"></i> Facebook </h5>
+                        <input type="text" placeholder="https://www.facebook.com/">
+                    </div>
+
+                    <!-- Website -->
+                    <div class="col-md-3">
+                        <h5 class="twitter-input"><i class="fa fa-twitter"></i> Twitter </h5>
+                        <input type="text" placeholder="https://www.twitter.com/">
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="col-md-3">
+                        <h5 class="gplus-input" style="color: rgb(83, 14, 148);"><i class="fa fa-instagram"></i> Instagram 
+                        </h5>
+                        <input type="text" placeholder="https://instagram.com">
+                    </div>
+
+                    <div class="col-md-3">
+                        <h5 class="gplus-input" ><i class="fa fa-pinterest"></i> Pinterest 
+                        </h5>
+                        <input type="text" placeholder="https://pinterest.com">
+                    </div>
+
+                </div>
+                <!-- Row / End -->
+            </div>
+            <!-- Section / End -->
         </div>
     </div>
 </div>
