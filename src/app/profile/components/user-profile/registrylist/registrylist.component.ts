@@ -15,7 +15,7 @@ export class RegistrylistComponent implements OnInit {
     note: "",
     price: "",
     title: ""
-  }
+  };
 
   constructor() { }
 
@@ -26,6 +26,4 @@ export class RegistrylistComponent implements OnInit {
   addNewWish(){
     this.registeryList.push(this.newlyAddedRegistery);
   }
-
-
 }
