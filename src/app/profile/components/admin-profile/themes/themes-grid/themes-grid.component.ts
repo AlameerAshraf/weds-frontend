@@ -1,12 +1,10 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel } from './../../../../../core/models/response';
-import { urls } from './../../../../../core/helpers/urls/urls';
-import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { constants, resources, theme, localStorageService , responseModel , urls , httpService } from 'src/app/core';
 
 @Component({
   selector: 'app-themes-grid',
@@ -17,16 +15,19 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  themesList = [];
+  themesList: theme[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
+    private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
+    private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
-    this.loadResources();
+      this.loadResources();
+      this.storage.eraseLocalStorage("weds360#themeOnEdit");
   }
-  
+
   ngOnInit() {
     this.getAllThemes();
   }
@@ -40,29 +41,32 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
   };
 
   getAllThemes() {
+    this.ngxSpinner.show();
     let getAllThemesURL = `${urls.GET_ALL_THEMES}/${constants.APP_IDENTITY_FOR_USERS}`;
-    console.log(getAllThemesURL)
 
     this.http.Get(getAllThemesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-        console.log(response)
-        this.themesList = response.data;
+        this.themesList = response.data as theme[];
+        this.ngxSpinner.hide();
       } else {
-        console.log("error")
-        console.log(response.error);
+        this.ngxSpinner.hide();
       }
     });
+  };
+
+  pageChange(pageNumber: any) {
 
   };
 
-  pageChange(pageNumber) {
-
+  editEntity(id: any){
+    this.router.navigate([`profile/en/admin/themes-action/update`]);
+    let targetTheme = this.themesList.find(x => x._id == id);
+    this.storage.setLocalStorage("weds360#themeOnEdit" , targetTheme);
   };
 
   navigateToCreateNewTheme() {
     this.router.navigate(['profile/en/admin/themes-action/new']);
-  }
-
+  };
 
   ngAfterViewInit(): void {
     this.loadScripts();

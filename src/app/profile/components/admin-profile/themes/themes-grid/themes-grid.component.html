@@ -5,14 +5,14 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="dashboard-list-box margin-top-0">
         <h4>
           Default Themes
-  
+
           <div
             (click)="navigateToCreateNewTheme()"
             style="background-color: #046B69 !important;
@@ -24,31 +24,41 @@
             <strong style="color: white !important">Create New Theme Item</strong>
           </div>
         </h4>
-  
+
         <div class="col-md-12" style="background-color: white;">
           <table class="table borderless">
             <thead>
               <tr>
-                <th scope="col" width="15%">Theme</th>
-                <th scope="col" width="15%">Image</th>
-                <th scope="col" width="2%">Delete</th>
-                <th scope="col" width="2%">Edit</th>
+                <th scope="col" width="30%">Theme Name</th>
+                <th scope="col" width="30%">Image</th>
+                <th scope="col" width="30%">Routing URL</th>
+                <th scope="col" width="5%">Delete</th>
+                <th scope="col" width="5%">Edit</th>
               </tr>
             </thead>
             <tbody>
               <ng-container *ngFor="let item of themesList">
               <tr>
                 <td>
-                  <a href="{{ item.url}}"><p>{{ item.name }}</p></a>
+                  <p>{{ item.name }}</p>
                 </td>
                 <td>
-                  <img src="{{ item.image }}" style="width:300px; height:300px;">
+                  <img src="{{ item.image }}" style="width:150px; height:100px;">
+                </td>
+                <td>
+                  <p>{{ item.url }}</p>
                 </td>
                 <td class="td-in-table">
-                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i></p>
+                  <p>
+                    <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600; cursor: pointer;"
+                      class="sl sl-icon-trash"></i>
+                  </p>
                 </td>
                 <td class="td-in-table">
-                  <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i></p>
+                  <p>
+                    <i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600; cursor: pointer;"
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i>
+                  </p>
                 </td>
               </tr>
               </ng-container>
@@ -58,13 +68,12 @@
       </div>
     </div>
   </div>
-  
+
   <div class="clearfix"></div>
-  
+
   <div class="row">
     <div class="col-md-12">
-      <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+      <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="themesList.length" [maxSize]="5">
       </weds-paging>
     </div>
   </div>
-  
