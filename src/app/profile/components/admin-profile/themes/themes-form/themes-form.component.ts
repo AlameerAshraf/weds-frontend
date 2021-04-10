@@ -26,7 +26,6 @@ export class ThemesFormComponent implements OnInit, AfterViewInit {
     name: "",
     url: ""
   };
-  themeId: any;
 
   constructor(
     private router: Router,
@@ -38,7 +37,6 @@ export class ThemesFormComponent implements OnInit, AfterViewInit {
 
     this.activatedRoute.params.subscribe((params) => {
       this.editingMode = params["actionType"];
-      this.themeId = params["targetId"];
     });
 
   }
@@ -59,7 +57,7 @@ export class ThemesFormComponent implements OnInit, AfterViewInit {
     this.ngxSpinner.show();
     this.theme.url = this.layoutRouting;
 
-    let createURL = `${urls.UPDATE_THEME}/${constants.APP_IDENTITY_FOR_ADMINS}`;
+    let createURL = `${urls.CREATE_THEME}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(createURL , {} , { "theme" : this.theme }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
@@ -67,18 +65,17 @@ export class ThemesFormComponent implements OnInit, AfterViewInit {
         this.router.navigateByUrl('/profile/en/admin/themes-defaults');
       } else {
         this.ngxSpinner.hide();
-        this.toastr.success("Our bad sorry!" , "Ooh Sorry, your theme couldn't created on the server!");
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your theme couldn't created on the server!");
       }
     });
   };
-
 
   updateExistingEntity(){
     this.ngxSpinner.show();
     this.theme.url = this.layoutRouting == "" ? this.theme.url : this.layoutRouting;
 
-    let createURL = `${urls.UPDATE_THEME}/${constants.APP_IDENTITY_FOR_ADMINS}`;
-    this.http.Post(createURL , {} , { "theme" : this.theme }).subscribe((response: responseModel) => {
+    let updateURL = `${urls.UPDATE_THEME}/${constants.APP_IDENTITY_FOR_ADMINS}`;
+    this.http.Post(updateURL , {} , { "theme" : this.theme }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Theme has been saved succesfully" , "A new theme has been created and wedding website will be impacted.");

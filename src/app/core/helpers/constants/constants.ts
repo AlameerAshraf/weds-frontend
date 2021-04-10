@@ -72,9 +72,11 @@ export class constants {
     return {
       "REGISTRY" : "REGISTRY",
       "VENDOR" : "VENDOR",
-      "CATEGORIES" : "CATEGORIES",
+      "CATEGORIES_IMAGES" : "CATEGORIES_IMAGES",
+      "CATEGORIES_ICONS" : "CATEGORIES_ICONS",
       "POSTS" : "POSTS",
-      "THEMES" : "THEMES"
+      "THEMES" : "THEMES",
+      "OFFERS" : "OFFERS",
     }
   };
 
