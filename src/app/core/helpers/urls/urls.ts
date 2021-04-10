@@ -25,6 +25,8 @@ export class urls {
   public static get GET_ALL_OFFERS(): string { return this.BASE_URL + '/admin/get-all-offers'};
   public static get GET_ALL_EVENTS(): string { return this.BASE_URL + '/users/events/get-all-events'};
   public static get GET_ALL_POSTS(): string { return this.BASE_URL + '/admin/get-all-posts'};
+  public static get CREATE_AREA(): string { return this.BASE_URL + '/admin/create-area'};
+  public static get UPDATE_AREA(): string { return this.BASE_URL + '/admin/update-area'};
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};

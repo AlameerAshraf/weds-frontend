@@ -77,6 +77,7 @@ export class constants {
       "POSTS" : "POSTS",
       "THEMES" : "THEMES",
       "OFFERS" : "OFFERS",
+      "AREAS" : "AREAS",
     }
   };
 

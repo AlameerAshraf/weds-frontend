@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MapsAPILoader } from '@agm/core';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
-//import { } from '@types/googlemaps';
+import { } from '@types/googlemaps';
 declare const google: any
 
 @Component({
