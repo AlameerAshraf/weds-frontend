@@ -1,12 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel } from './../../../../../core/models/response';
-import { urls } from './../../../../../core/helpers/urls/urls';
-import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { constants, resources, tag, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+
 
 @Component({
   selector: 'app-tags-grid',
@@ -17,14 +16,17 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  tagsList = [];
+  tagsList: tag[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
+    private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
+    private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
-    this.loadResources();
+      this.loadResources();
+      this.storage.eraseLocalStorage("weds360#tagOnEdit");
   }
 
   ngOnInit() {
@@ -40,16 +42,14 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
   };
 
   getAllTags() {
+    this.ngxSpinner.show();
     let getAllTagsURL = `${urls.GET_ALL_TAGS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    
-
     this.http.Get(getAllTagsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-        
-        this.tagsList = response.data;
+        this.tagsList = response.data as tag[];
+        this.ngxSpinner.hide();
       } else {
-        
-        console.log(response.error);
+        this.ngxSpinner.hide();
       }
     });
 
@@ -57,6 +57,12 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
 
   pageChange(pageNumber){
 
+  };
+
+  editEntity(id: any){
+    this.router.navigate([`profile/en/admin/tags-action/update`]);
+    let targetTheme = this.tagsList.find(x => x._id == id);
+    this.storage.setLocalStorage("weds360#tagOnEdit" , targetTheme);
   };
 
   navigateToCreateNewTag(){

@@ -5,3 +5,5 @@ export * from './event';
 export * from './registery';
 export * from './theme';
 export * from './area';
+export * from './category';
+export * from './tag';

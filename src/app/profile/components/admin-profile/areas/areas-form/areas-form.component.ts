@@ -39,10 +39,10 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.loadScripts();
-    this.initThemeView();
+    this.initAreaView();
   }
 
-  initThemeView(){
+  initAreaView(){
     if(this.editingMode == "update"){
       this.area = this.storage.getLocalStorage("weds360#areaOnEdit");
     }

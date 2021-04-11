@@ -27,6 +27,11 @@ export class urls {
   public static get GET_ALL_POSTS(): string { return this.BASE_URL + '/admin/get-all-posts'};
   public static get CREATE_AREA(): string { return this.BASE_URL + '/admin/create-area'};
   public static get UPDATE_AREA(): string { return this.BASE_URL + '/admin/update-area'};
+  public static get CREATE_CATEGORY(): string { return this.BASE_URL + '/admin/create-new-category'};
+  public static get UPDATE_CATEGORY(): string { return this.BASE_URL + '/admin/update-category'};
+  public static get CREATE_TAG(): string { return this.BASE_URL + '/admin/create-new-tag'};
+  public static get UPDATE_TAG(): string { return this.BASE_URL + '/admin/update-tag'};
+  
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
