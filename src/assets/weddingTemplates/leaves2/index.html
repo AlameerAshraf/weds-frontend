@@ -1,0 +1,174 @@
+<body>
+    <div class="header-background">
+        <div class="leaves bg-img">
+            <img src="themes/leaves2/top-image.png">
+    
+        </div>
+        <div class="boarder-container">
+    
+            <div class="boarder">
+                <p class="text-style-2">Mr & Mrs.</p>
+                <p class="text-style-1">Together with their families
+                </p>
+                <p class="text-style-2 no-margin couple-name-color">
+                    bride and groom name
+                </p>
+    
+                <p class="text-style-1 no-margin">joyfully invite you to
+                </p>
+                <p class="text-style-1 no-margin">
+                    their wedding celebration</p>
+                <p class="text-style-2 no-margin">
+                    wedding date
+                </p>
+                <p class="text-style-1 no-margin">at
+                    wedding location
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="our-story" id="our-story">
+        <div class="secondBoarder"></div>
+        <div class="couple-picture bg-img">
+            <img src="themes/leaves/couple.png">
+        </div>
+        <div class="story-text">
+            <p class="story-headline">Our Story</p>
+            <p class="story-details">
+                wedding story
+            </p>
+    
+        </div>
+    </div>
+
+    <div class="second-our-story">
+        <div class="secondBoarder"></div>
+        <div class="second-couple-picture--container">
+    
+            <div class="second-couple-picture bg-img">
+                <!-- path to cover image -->
+                <img src="">
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="event-details" id="wedding">
+    
+        <p id="event-details-headine">EVENT DETAILS</p>
+        <p id="when-where">When | Where</p>
+    
+        <p class="class text-style-3">
+            wedding date
+        </p>
+        <p class="class text-style-3">Wedding Ceremony:
+            wedding Ceremony date
+        </p>
+        <p class="class text-style-3">Wedding Reception:
+            wedding reception date
+                <p>
+                <p class="class text-style-3">
+                    wedding location
+                </p>
+    
+    </div>
+
+            <!-- Check if user logged in-->
+            <div class="attending">
+                <p id="attending-question">Will you spend this special day with us?</p>
+            
+                <div class="events">
+                    <!-- loop through events-->
+                    <!-- check if event exist and approved to show on the website-->
+                    <div class="event-wrapper">
+                        <div class="event">
+                            <p>event name</p>
+            
+                            <p>event location</p>
+                        </div>
+                        <!-- check if user signed in and allowed guest list and responded guest-->
+                        <!-- button to responed going-->
+            
+                        <!-- button to responed not going-->
+                    </div>
+            
+                </div>
+            </div>
+
+            <script src='https://maps.googleapis.com/maps/api/js?key=<%= google_maps_api_key'></script>
+            <div id="location" style='overflow:hidden;height:440px;width:100%;'>
+                <div id='gmap_canvas' style='height:440px;width:100%;'></div>
+                <div>
+                    <small>
+                        <a href="http://embedgooglemaps.com">embed google maps</a>
+                    </small>
+                </div>
+                <div>
+                    <small>
+                        <a href="http://phplinkdir.com/">add your link</a>
+                    </small>
+                </div>
+                <style>
+                    #gmap_canvas img {
+                        max-width: none !important;
+                        background: none !important;
+                    }
+                </style>
+            </div>
+            
+            <script type='text/javascript'>
+                $(document).ready(function () {
+
+                    var countDownDate = moment(/*wedding cermony start time*/);
+                    // Update the count down every 1 second
+                    var x = setInterval(function () {
+                        // Get today's date and time
+                        var now = Date.now();
+                        // Find the distance between now an the count down date var distance = countDownDate - now;
+                        let distance = countDownDate.diff(now)
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Display the result in the element with id="demo"
+                        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                        // If the count down is finished, write some text
+                        if (distance < 0) {
+                            clearInterval(x);
+                            document.getElementById("countdown").innerHTML = "EXPIRED";
+                        }
+                    }, 1000);
+                    $(".navbar-nav li a.animate").click(($this) => {
+                        $this.preventDefault();
+                        let $target = $this.currentTarget.hash;
+                        $target = $($target).offset();
+                        $("html").animate({
+                            scrollTop: $target.top - 50
+                        }, 1500);
+                    })
+                    function init_map() {
+                        var myOptions = {
+                            zoom: 16,
+                            scrollwheel: false,
+                            navigationControl: false,
+                            center: new google.maps.LatLng(/*lan and lat user enterted*/),
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        };
+                        map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+                        marker = new google.maps.Marker({
+                            map: map,
+                            position: new google.maps.LatLng(/*lan and lat user enterted*/)
+                        });
+                        infowindow = new google.maps.InfoWindow({ /*content: bride and groom name <br> wedding location */ });
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(map, marker);
+                        });
+                        infowindow.open(map, marker);
+                    }
+                    google.maps.event.addDomListener(window, 'load', init_map);
+                });
+            </script>
+</body>
