@@ -7,3 +7,5 @@ export * from './theme';
 export * from './area';
 export * from './category';
 export * from './tag';
+export * from './offer';
+export * from './vendor';

@@ -31,6 +31,8 @@ export class urls {
   public static get UPDATE_CATEGORY(): string { return this.BASE_URL + '/admin/update-category'};
   public static get CREATE_TAG(): string { return this.BASE_URL + '/admin/create-new-tag'};
   public static get UPDATE_TAG(): string { return this.BASE_URL + '/admin/update-tag'};
+  public static get CREATE_OFFER(): string { return this.BASE_URL + '/admin/create-new-offer'};
+  public static get UPDATE_OFFER(): string { return this.BASE_URL + '/admin/update-offer'};
   
 
   //Checklists
@@ -57,6 +59,8 @@ export class urls {
   //Registry
   public static get CREATE_REGISTRY_LIST_ITEM(): string { return this.BASE_URL + '/wedding/add-registry-list'};
 
+  //Vendor
+  public static get GET_ALL_VENDORS(): string { return this.BASE_URL + '/vendors/get-all-vendors'};
 
 
   // Authed ..

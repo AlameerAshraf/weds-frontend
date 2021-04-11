@@ -1,12 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel } from './../../../../../core/models/response';
-import { urls } from './../../../../../core/helpers/urls/urls';
-import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { constants, resources, offer, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+
 
 @Component({
   selector: 'app-offers-grid',
@@ -17,14 +16,17 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  offersList = [];
+  offersList :  offer[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
+    private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
+    private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
+    this.storage.eraseLocalStorage("weds360#offerOnEdit");
   }
 
   ngOnInit() {
@@ -40,16 +42,16 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
   };
 
   getAllOffers() {
+    this.ngxSpinner.show();
     let getAllOffersURL = `${urls.GET_ALL_OFFERS}/${constants.APP_IDENTITY_FOR_USERS}`;
 
 
     this.http.Get(getAllOffersURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-
-        this.offersList = response.data;
+        this.offersList = response.data as offer[];
+        this.ngxSpinner.hide();
       } else {
-
-        console.log(response.error);
+        this.ngxSpinner.hide();
       }
     });
 
@@ -57,6 +59,12 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
 
   pageChange(pageNumber){
 
+  };
+
+  editEntity(id: any){
+    this.router.navigate([`profile/en/admin/offers-action/update`]);
+    let targetTheme = this.offersList.find(x => x._id == id);
+    this.storage.setLocalStorage("weds360#offerOnEdit" , targetTheme);
   };
 
   navigateToCreateNewOffer(){
