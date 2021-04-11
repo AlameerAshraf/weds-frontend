@@ -176,7 +176,7 @@ const routes: Routes = [
             path: 'posts-action/:actionType',
             component : COMPONENTS.PostsFormComponent
           },
-          
+
           {
             path: 'vendors-list',
             component: COMPONENTS.VendorsGridComponent
@@ -185,7 +185,7 @@ const routes: Routes = [
             path: 'vendors-action/:actionType',
             component : COMPONENTS.VendorsFormComponent
           },
-          
+
           {
             path: 'services-defaults',
             component: COMPONENTS.ServicesGridComponent
@@ -222,7 +222,7 @@ const routes: Routes = [
           {
             path: 'messages',
             component: COMPONENTS.VendorMessagesComponent
-          },   
+          },
           {
             path: 'services-action/:actionType',
             component : COMPONENTS.VendorServicesFormComponent

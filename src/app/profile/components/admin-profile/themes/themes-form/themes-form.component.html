@@ -12,14 +12,15 @@
           <div class="row with-forms">
             <div class="col-md-6">
               <h5>Name</h5>
-              <input class="search-field" type="text" value="" />
+              <input class="search-field" type="text" placeholder="Theme Name" [(ngModel)]="theme.name" />
             </div>
 
             <div class="col-md-6">
               <h5>Layout Name</h5>
-              <select class="chosen-select-no-single">
-                <option>User</option>
-                <option>Admin</option>
+              <select id="themesLayouts" class="chosen-select-no-single">
+                <ng-container *ngFor="let themeConstant of themesLayoutLocations">
+                  <option [selected] = "themeConstant.route == theme.url" [value]="themeConstant.route">{{ themeConstant.name }}</option>
+                </ng-container>
               </select>
             </div>
           </div>
@@ -30,12 +31,12 @@
               <h5>Thumbnail Image</h5>
               <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
                 <img class="anImage"
-                  [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                  [src]="theme.image"
                   alt="">
                 <div class="change-photo-btn">
                   <div class="photoUpload">
                     <span><i class="fa fa-upload"></i> Upload Photo</span>
-                    <input type="file" class="upload" />
+                    <input type="file" class="upload" (change)="uploadImage($event)"/>
                   </div>
                 </div>
             </div>
@@ -49,4 +50,5 @@
   <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
     Cancel <i class="sl sl-icon-close"></i>
   </a>
-  <a class="button preview" (click)="navigateToThemesDefaults()">Save Changes <i class="sl sl-icon-check"></i></a>
+  <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
+  <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>

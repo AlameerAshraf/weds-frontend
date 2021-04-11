@@ -55,6 +55,33 @@ export class constants {
     }
   };
 
+  public static get THEMES(){
+    return [
+      {
+        "route" : "spring",
+        "name" : "Spring"
+      },
+      {
+        "route" : "flowers",
+        "name" : "Flowers & Spring"
+      }
+    ]
+  };
+
+  public static get S3_CONTAINERS(){
+    return {
+      "REGISTRY" : "REGISTRY",
+      "VENDOR" : "VENDOR",
+      "CATEGORIES_IMAGES" : "CATEGORIES_IMAGES",
+      "CATEGORIES_ICONS" : "CATEGORIES_ICONS",
+      "POSTS" : "POSTS",
+      "THEMES" : "THEMES",
+      "OFFERS" : "OFFERS",
+    }
+  };
+
+
+
   public static get APP_IDENTITY_FOR_USERS(): string { return  this._config.getConfig("CLIENT_IDENTITY_USERS")};
   public static get APP_IDENTITY_FOR_ADMINS(): string { return  this._config.getConfig("CLIENT_IDENTITY_ADMINS")};
 

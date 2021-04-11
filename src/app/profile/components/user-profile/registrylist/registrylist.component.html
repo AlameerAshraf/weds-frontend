@@ -21,18 +21,60 @@
           <strong style="color: white !important">Add a new wish</strong>
         </div></h4>
       <ul>
-
-
         <ng-container *ngFor="let wish of registeryList">
+
+          <ng-container *ngIf="wish.isNew && wish.editable">
+            <li>
+              <div class="list-box-listing">
+
+                <div class="list-box-listing-img">
+                  <div class="edit-profile-photo">
+                    <img class="anImage"
+                      [src]="onEditRegistry.image"
+                      alt="">
+                    <div class="change-photo-btn">
+                      <div class="photoUpload">
+                        <span><i class="fa fa-upload"></i> Photo</span>
+                        <input type="file" class="upload" (change)="uploadImage($event)"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-box-listing-content">
+                  <div class="inner">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="text" placeholder="Gift Name" [(ngModel)] = "onEditRegistry.title">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" style="width: 50%;" placeholder="Price $" [(ngModel)] = "onEditRegistry.price">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="text" placeholder="From where can they get it" [(ngModel)] = "onEditRegistry.address">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="buttons-to-right">
+                <a class="button gray" (click) = "updateRegistryListItem()"><i class="sl sl-icon-present"></i> Save</a>
+              </div>
+            </li>
+          </ng-container>
+
 
           <ng-container *ngIf="!wish.isNew">
             <li>
               <div class="list-box-listing">
 
-                <div class="list-box-listing-img">
-                  <a href="#">
-                    <img style="min-height: 70px;" src="assets/images/defaults/registry/default.jpg" alt="">
-                  </a>
+                <div style="max-height: 80px !important;" class="list-box-listing-img">
+                  <div class="edit-profile-photo">
+                    <img class="anImage-result"
+                      [src]="wish.image"
+                      alt="">
+                  </div>
                 </div>
 
                 <div class="list-box-listing-content">
@@ -43,27 +85,26 @@
                 </div>
               </div>
               <div class="buttons-to-right">
-                <a class="button edit gray"><i class="sl sl-icon-close"></i> Edit</a>
-                <a href="#" class="button remove gray"><i class="sl sl-icon-close"></i> Delete</a>
+                <a class="button edit gray" (click) = "editWish(wish._id)"><i class="sl sl-icon-close"></i> Edit</a>
+                <a class="button remove gray" (click) = "confirmDeletRegistryItem(wish._id)" ><i class="sl sl-icon-close"></i> Delete</a>
               </div>
             </li>
           </ng-container>
 
 
-
-          <ng-container *ngIf="wish.isNew">
+          <ng-container *ngIf="wish.isNew && !wish.editable">
             <li>
               <div class="list-box-listing">
 
                 <div class="list-box-listing-img">
                   <div class="edit-profile-photo">
                     <img class="anImage"
-                      [src]="'assets/images/defaults/wedding/cover-photo.png'"
+                      [src]="newlyAddedRegistery.image"
                       alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
                         <span><i class="fa fa-upload"></i> Photo</span>
-                        <input type="file" class="upload"  />
+                        <input type="file" class="upload" (change)="uploadImage($event)"/>
                       </div>
                     </div>
                   </div>
@@ -87,17 +128,12 @@
                 </div>
               </div>
               <div class="buttons-to-right">
-                <a class="button gray"><i class="sl sl-icon-present"></i> Save</a>
+                <a class="button gray" (click) = "saveRegistryListItem()"><i class="sl sl-icon-present"></i> Save</a>
               </div>
             </li>
           </ng-container>
 
         </ng-container>
-
-
-
-
-
       </ul>
     </div>
   </div>
