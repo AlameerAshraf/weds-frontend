@@ -6,7 +6,7 @@ export class weddingWebsite {
   preWeddingMaritalCeremony?: Date;
   weddingTime?: string;
   coverImage?: string;
-  profileRouteURL?: string;
+  routeURL?: string;
   story?: string;
   album?: string [];
   isPublished?: boolean = false;

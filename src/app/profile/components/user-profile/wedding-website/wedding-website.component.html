@@ -116,8 +116,16 @@
       <div style="padding: 10px !important;">
         <div class="row">
           <div class="col-md-6">
-            <label>Write a remembale and special URL for your website </label>
-            <input type="text" placeholder="website URL">
+            <label>Write a remembale and special URL for your website
+              <i
+                *ngIf="isRouteAlreadyExists"
+                style="background-color: #d27575;"
+                class="tip" data-tip-content="This route is already selected, try another one!."></i>
+            </label>
+            <input
+              [ngClass] = "{ 'error-text' : isRouteAlreadyExists }"
+              [(ngModel)] = "weddingWebsite.routeURL"
+              type="text" placeholder="website URL" (focusout)="checkWeddingWebsiteRouteUniqness()">
             <textarea [value]="address" cols="40" rows="4" placeholder="Your Detailed Address, write it or let us!"></textarea>
           </div>
 

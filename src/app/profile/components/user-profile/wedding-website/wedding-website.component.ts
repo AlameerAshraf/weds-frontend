@@ -15,7 +15,8 @@ declare const google: any
   styleUrls: ['./wedding-website.component.scss'],
 })
 export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
-  is = false;
+  isRouteAlreadyExists = false;
+  f = "This route is already selected, try another one!."
   coverPhotoSource: any = '';
 
   latitude: number;
@@ -112,6 +113,22 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       }
     });
   };
+
+  checkWeddingWebsiteRouteUniqness(){
+    if(this.weddingWebsite.routeURL == ""){
+      this.isRouteAlreadyExists = false;
+      return;
+    }
+
+    let checkingURL = `${urls.CHECK_WEDDING_WEBSITE_UNIQNESS}/${constants.APP_IDENTITY_FOR_USERS}/${this.weddingWebsite.routeURL}`;
+
+    this.http.Get(checkingURL , {} ).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.isRouteAlreadyExists = response.data.isRouteExisted;
+        this.loadScripts();
+      }
+    });
+  }
 
 
   //#region Address Helper Function..

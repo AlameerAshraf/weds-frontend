@@ -54,6 +54,11 @@ export class urls {
   public static get DELETE_REGISTRY_LIST(): string { return this.BASE_URL + '/wedding/delete-registry-list'};
 
 
+  //Wedding website
+  public static get CHECK_WEDDING_WEBSITE_UNIQNESS(): string { return this.BASE_URL + '/wedding/checking-website-routing-uniqueness'};
+
+
+
 
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
