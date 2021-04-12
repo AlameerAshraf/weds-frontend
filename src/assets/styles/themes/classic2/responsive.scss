@@ -1,0 +1,93 @@
+@media (max-width: 767px) {
+  #registry .registry-title {
+    margin-top: 80px;
+  }
+  #top-section
+  {
+    height: 400px;
+  }
+  .top-image h1
+  {
+    font-size: 40px;
+  }
+  #getting--married--txt,
+  #date--txt
+  {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  .cover-photo
+  {
+    height: 300px;
+  }
+  #wedding--para,
+  #span--css,
+  #wedding--para1
+  {
+    font-size: 16px;
+  }
+  #registry
+  {
+    width: 100%;
+  }
+  .nav-style
+  {
+    left: 0;
+    text-align: center;
+  }
+  #header--para--txt{
+    font-size: 25px;
+  }
+  #para--txt--css{
+    font-size: 18px;
+  }
+  .container--one{
+    width: 100%;
+  }
+  .container--two{
+    width: 100%;
+    top: 1px;
+  }
+  .event{
+    font-size: 19px;
+  }
+  .events .event-wrapper a.going-btn.active, .events
+  .event-wrapper a:focus.active, .events
+  .event-wrapper a:hover.active {
+    font-size: 15px;
+  }
+  .events .event-wrapper a.going-btn,
+  .events .event-wrapper a:focus, .events
+  .event-wrapper a:hover {
+    font-size: 15px;
+  }
+  #registry th{
+    width: 35%;
+    font-size: 25px;
+    text-align: center;
+  }
+}
+@media (max-width: 540px){
+  #registry th{
+    width: 35%;
+    font-size: 13px;
+    text-align: left;
+  }
+}
+@media (max-width: 320px){
+  #registry th{
+    width: 35%;
+    font-size: 10px;
+    text-align: left;
+  }
+  #registry .price{
+    font-size: 16px;
+  }
+}
+
+
+@media (max-width: 767px){
+  .event{
+    font-size: 17px;
+  }
+}

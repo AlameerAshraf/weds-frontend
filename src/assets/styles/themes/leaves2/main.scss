@@ -1,0 +1,903 @@
+.no-margin {
+  margin: 0!important !important;
+}
+
+.add-margin {
+  margin-top: 250px!important;
+}
+/* =================================
+header
+==================================== */
+.bg-img img:first-of-type {
+  display: none;
+}
+
+.bg-img {
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.header-background {
+  width: 100%;
+  height: 800px;
+  background-color: #e1e1e1;
+  position: relative;
+}
+
+.leaves {
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+@media (max-width: 767px) {
+  .header-background {
+    height: 700px;
+  }
+}
+@media (max-width: 767px) {
+  .header-background {
+    height: 600px;
+  }
+}
+
+.boarder-container {
+  background-color: white;
+  width: 35%;
+  height: 600px;
+  margin: auto;
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+.boarder {
+  height: 100%;
+  display: block;
+  margin: auto;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 10px;
+  text-align: center;
+
+  * {
+    z-index: 8;
+  }
+}
+
+.boarder img {
+  width: 19%;
+  height: 75px;
+}
+
+.text-style-1 {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  line-height: 2;
+}
+
+.text-style-2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2;
+  letter-spacing: 8px;
+  color: #88034e;
+  margin-top: 20px !important;
+}
+
+.couple-name-color {
+  color: #c50873;
+}
+/* =================================
+body
+==================================== */
+.couple-picture {
+  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.35);
+  width: 90%;
+  margin: auto;
+  height: 250px;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center !important;
+  border: solid #fff 11px;
+  margin-top: 20px;
+  zoom: 2;
+}
+
+.story-text {
+  text-align: center;
+  width: 90%;
+  margin: 30px auto;
+}
+
+.story-headline {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 2.56;
+  color: #8a0c52;
+  margin-bottom: 0;
+}
+
+.story-details {
+  display: block;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #000000;
+  width: 70%;
+  margin-left: 15%;
+}
+
+.second-couple-picture--container {
+  position: relative;
+  width: 55%;
+  margin: 0 auto;
+  border: solid #fff 40px;
+}
+
+.second-couple-picture--container::after {
+  padding-bottom: 100%;
+  display: block;
+  content: "";
+}
+
+.second-couple-picture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.second-our-story {
+  background-color: #e1e1e1;
+  height: 750px;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-details {
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  text-align: center;
+  color: #c50873;
+}
+@media (max-width:1200px) {
+  .second-our-story {
+    height: 600px;
+  }
+}
+@media (max-width:991px) {
+  .second-our-story {
+    height: 500px;
+  }
+}
+@media (max-width:767px) {
+  .second-our-story {
+    height: 400px;
+  }
+
+  .second-couple-picture--container {
+    width: 60%;
+    border: solid #fff 20px;
+  }
+}
+@media (max-width:575px) {
+  .second-our-story {
+    height: 300px;
+  }
+
+  .second-couple-picture--container {
+    width: 70%;
+    border: solid #fff 15px;
+  }
+}
+@media (max-width:1200px) {
+  .second-our-story {
+    height: 600px;
+  }
+}
+@media (max-width:991px) {
+  .second-our-story {
+    height: 500px;
+  }
+}
+@media (max-width:767px) {
+  .second-our-story {
+    height: 400px;
+  }
+
+  .second-couple-picture--container {
+    width: 60%;
+    border: solid #fff 20px;
+  }
+}
+@media (max-width:575px) {
+  .second-our-story {
+    height: 300px;
+  }
+
+  .second-couple-picture--container {
+    width: 70%;
+    border: solid #fff 15px;
+  }
+}
+
+.event-details {
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  text-align: center;
+  color: #c50873;
+}
+
+#event-details-headine {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 39px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 10.3px;
+  text-align: center;
+  color: #88034e;
+  padding-top: 3%;
+}
+
+#when-where {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 26px;
+  line-height: 2;
+  text-align: center;
+  letter-spacing: 10.3px;
+  color: #c50873;
+  margin-bottom: 5px;
+  padding-top: 5px;
+}
+
+.text-style-3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.attending {
+  width: 100%;
+  background-color: #f3f3f3;
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+#attending-question {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 30px;
+  line-height: 1.26;
+  color: #88034e;
+  padding-top: 5%;
+}
+/* =================================
+bottoms
+==================================== */
+.btn-outline-primary {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #c50873;
+  border-color: #c50873;
+}
+
+.btn-outline-primary:hover {
+  background-color: #c50873;
+  color: #fff;
+}
+/* .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    color: #c50873;
+} */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0;
+  font-family: $font-face;
+}
+
+.page--contain {
+  height: auto;
+}
+
+.bg-img::after {
+  display: none;
+}
+
+.top-image {
+  height: 100vh;
+  position: relative;
+
+  h1 {
+    color: white;
+    position: relative;
+    top: 35%;
+    font-size: 90px;
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+    z-index: 2;
+  }
+}
+
+.bg-img img:first-of-type {
+  display: none;
+}
+
+.toggle--btn {
+  width: 20px;
+}
+
+.toggle-div-btn {
+  display: none;
+}
+
+#navbar {
+  width: 100%;
+  height: 70px;
+  background-color: $primary-color;
+  color: white;
+  position: fixed;
+  top: 0;
+  z-index: 1030;
+  text-align: center;
+  padding-top: 23px;
+}
+
+#link {
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  text-align: center;
+}
+
+.div--Rsvp {
+  width: 29%;
+  height: 31px;
+  background-color: $secondary-color;
+  position: absolute;
+  left: -62%;
+  /* bottom: 11%; */
+  top: 17%;
+}
+
+#RSVP--css {
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  color: #fefefe;
+  text-decoration: none;
+  color: white;
+  padding-left: 21%;
+}
+
+.nav-style {
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+  left: 0;
+}
+
+.background--navbar--style {
+  background-color: transparent;
+  border-color: transparent;
+  z-index: 9999;
+}
+
+.navbar-nav > li {
+  width: 100%;
+}
+
+.link--style,
+.navbar-brand {
+  color: black !important;
+  font-size: 20px;
+}
+
+.navbar-brand {
+  color: $secondary-color !important;
+  font-family: $font-face2;
+  line-height: 2;
+  margin-bottom: 50px;
+}
+
+.link--style {
+  color: $secondary-color !important;
+}
+
+.navbar-fixed-bottom,
+.navbar-fixed-top {
+  position: absolute;
+  width: 200px;
+  height: 0;
+  margin-top: 2%;
+  text-align: left;
+  left: 2%;
+}
+
+#getting--married--txt {
+  font-family: IRNazanin;
+  font-size: 2em;
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fefefe;
+  top: 80%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.txt--header--div {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  top: 79%;
+}
+
+.txt2--header--div {
+  padding: 0;
+  position: relative;
+  top: 80%;
+  margin: 0;
+}
+
+#date--txt {
+  font-family: Lato;
+  font-size: 2.5em;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.93;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  top: 87%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.img--div {
+  text-align: center;
+}
+
+.img--css {
+  height: 100px;
+}
+
+.cover-photo {
+  height: 500px;
+}
+
+.second--div--background {
+  position: relative;
+  background-color: #ffffff;
+  // height: 356px;
+  padding: 5%;
+}
+
+#para--txt--css {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: $primary-color;
+  // position: absolute;
+  width: 50%;
+  margin: 10px auto;
+}
+
+#para--txt--css2 {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: center;
+  color: $primary-color;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 13%;
+}
+
+#header--para--txt {
+  font-family: Lato;
+  font-size: 30px;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  color: $primary-color;
+  // position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.third--background {
+  width: 100%;
+}
+
+.fourth--background {
+  height: 70px;
+  width: 100%;
+  background-color: $primary-color;
+}
+
+.contain-nav-fourth {
+  top: 36%!important;
+}
+
+.fifth--background {
+  background-color: #ffffff;
+  width: 100%;
+  position: relative;
+  padding: 5% 2%;
+}
+
+.thewedding--txt--contain {
+  width: 100%;
+}
+
+.container--one {
+  width: 49%;
+  display: inline-block;
+  top: 40%;
+  margin-top: 2%;
+}
+
+.container--two {
+  width: 49%;
+  display: inline-block;
+  top: 42%;
+  right: 0;
+  margin-top: 2%;
+}
+
+#first--word--txt {
+  font-family: Lato;
+  font-size: 25px;
+  font-weight: 700;
+  font-style: normal;
+  text-align: left;
+  color: $primary-color;
+  padding: 8px;
+}
+
+#wedding--para-color {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 0.93;
+  color: $primary-color;
+}
+
+#span--css {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 0.93;
+  color: $primary-color;
+}
+
+#wedding--para {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+  margin: 0;
+}
+
+#wedding--para1 {
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000000;
+  margin: 0;
+}
+
+.RSVP--btn {
+  position: absolute;
+  margin: 0 auto;
+  padding: 0;
+  top: 20%;
+  background-color: $secondary-color;
+  width: 15%;
+  text-align: center;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 71%;
+}
+
+#btn--txt {
+  font-family: Lato;
+  font-size: 30px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.93;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.sixth--background {
+  width: 100%;
+  height: 362px;
+  background-color: $primary-color;
+}
+
+#header--map--txt {
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.1;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+#para--map--css {
+  font-family: Lato;
+  font-size: 20px;
+  /* font-weight: 300; */
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.6;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+#header1--map--txt {
+  font-family: Lato;
+  font-size: 24px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.42;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 45px;
+}
+
+.seventh--background {
+  position: relative;
+  background-color: #ffffff;
+  width: 100%;
+  height: 600px;
+}
+
+.pic--template {
+  position: relative;
+  top: 28%;
+  height: 594px;
+}
+
+.img--template {
+  width: 100%;
+  text-align: center;
+}
+
+.overlay {
+  position: relative;
+  /* top: -5px; */
+  bottom: 96px;
+  height: 97.5px;
+  width: 100%;
+  opacity: 0;
+  background-color: #ffffff;
+  left: 0;
+  transition: 1s cubic-bezier(0.26, -0.01, 0.58, 1);
+}
+
+.pic--template:hover .overlay {
+  opacity: 0.5;
+}
+
+#overlay--txt {
+  font-family: Lato;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 1px;
+  text-align: left;
+  color: grey;
+  padding-left: 11%;
+  padding-top: 4%;
+}
+
+.events {
+  text-align: center;
+  margin: 5% 0 0;
+  font-size: 25px;
+
+  .event-wrapper {
+    // margin-bottom: 2%;
+    .event {
+      margin-bottom: 2%;
+    }
+
+    a.going-btn,
+    a:focus,
+    a:hover {
+      background-color: transparent;
+      text-decoration: none;
+      padding: 5px;
+      margin-left: 10px;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-family: Lato;
+      color: $secondary-color;
+      border: solid 1px $secondary-color;
+
+      &.active {
+        background-color: $secondary-color;
+        color: white;
+      }
+    }
+  }
+}
+
+#registry {
+  width: 80%;
+  margin: 0 auto;
+
+  .registries-not-added {
+    font-size: 15px;
+    color: $secondary-color;
+    text-align: center;
+    margin: 5% 0;
+  }
+
+  .registry-title {
+    text-align: center;
+    margin: 10% 0 5%;
+    color: $secondary-color;
+    font-weight: bold;
+    font-family: $font-face2;
+    font-size: 40px;
+  }
+
+  thead {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  th {
+    border: none;
+    text-transform: uppercase;
+    color: $secondary-color;
+  }
+
+  td.assign-me {
+    background-color: $primary-color;
+    border: none;
+    width: 10%;
+    text-align: center;
+
+    a {
+      color: white;
+      text-decoration: none;
+      content: '';
+      width: 15px;
+      height: 15px;
+      border: solid 1px $secondary-color;
+      border-radius: 100%;
+      display: inline-block;
+      position: relative;
+      margin-top: 50%;
+
+      &.active,
+      &:hover {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+      }
+
+      &.not-clickable {
+        cursor: default;
+      }
+    }
+  }
+
+  .gift-container {
+    position: relative;
+
+    .left-side,
+    .right-side {
+      display: inline-block;
+    }
+
+    .left-side {
+      height: 100px;
+      width: 100px;
+    }
+
+    .right-side {
+      margin-left: 3%;
+      position: absolute;
+      top: 0;
+
+      .title {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .address {
+        color: #8f8f8f;
+      }
+
+      .notes {
+        color: $primary-color;
+        font-weight: bold;
+        font-size: 12px;
+        margin-top: 5%;
+      }
+    }
+  }
+
+  .price {
+    font-size: 18px;
+  }
+}
+
+#registry th {
+  width: 35%;
+  font-size: 25px;
+  text-align: center;
+}
