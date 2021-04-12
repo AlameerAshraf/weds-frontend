@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, responseModel, theme, urls, weddingWebsite } from 'src/app/core';
+import { constants, httpService, responseModel, theme, urls , weddingWebsite } from 'src/app/core';
 //import { } from '@types/googlemaps';
 declare const google: any
 
@@ -64,15 +64,15 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     let like = document.getElementById(templateId);
     if (!targetTemplate.isThemeSelected) {
       like.classList.add("liked");
-      this.weddingWebsite.themeId = templateId;
+      this.weddingWebsite.themeId = "";
     } else {
       like.classList.remove("liked");
-      this.weddingWebsite.themeId = "";
+      this.weddingWebsite.themeId = templateId;
     }
   };
 
   createNewWebsiteRequest() {
-
+    console.log(this.weddingWebsite)
   };
 
 
