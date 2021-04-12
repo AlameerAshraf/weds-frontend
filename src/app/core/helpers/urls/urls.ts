@@ -58,6 +58,14 @@ export class urls {
 
   //Registry
   public static get CREATE_REGISTRY_LIST_ITEM(): string { return this.BASE_URL + '/wedding/add-registry-list'};
+  public static get GET_REGISTRY_LIST_PER_USER(): string { return this.BASE_URL + '/wedding/get-all-registry-list'};
+  public static get UPDATE_REGISTRY_LIST_PER_USER(): string { return this.BASE_URL + '/wedding/update-registry-list'};
+  public static get DELETE_REGISTRY_LIST(): string { return this.BASE_URL + '/wedding/delete-registry-list'};
+
+
+  //Wedding website
+  public static get CHECK_WEDDING_WEBSITE_UNIQNESS(): string { return this.BASE_URL + '/wedding/checking-website-routing-uniqueness'};
+
 
   //Vendor
   public static get GET_ALL_VENDORS(): string { return this.BASE_URL + '/vendors/get-all-vendors'};

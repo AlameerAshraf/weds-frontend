@@ -15,22 +15,23 @@
       <div style="padding: 8px !important;">
         <div class="row">
 
-          <div class="col-md-3">
-            <div class="fw-carousel-item">
-              <a (click)="selectTemplate($event , 'template1')" class="listing-item-container compact">
-                <div class="listing-item">
-                  <img
-                    src="https://weds360-production.s3.eu-west-1.amazonaws.com/store/theme/1/image/medium-9aa0c8fce8cb5f6e41730cabba6400b3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3XIBZMGBAF2YAFWK%2F20210401%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210401T200131Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=13ece40be72fa7b93a24fd775bf4ec4c60bb8a22f731e8e43557ba7b71e718f6"
-                    alt="">
 
-                  <div class="listing-item-content">
-                    <h3>Save the date theme</h3>
+          <ng-container *ngFor = "let themeTemplate of themesTemplates">
+            <div class="col-md-3">
+              <div class="fw-carousel-item">
+                <a (click)="selectTemplate($event , themeTemplate._id)" class="listing-item-container compact">
+                  <div class="listing-item">
+                    <img [src]="themeTemplate.image" alt="">
+
+                    <div class="listing-item-content">
+                      <h3>{{ themeTemplate.name }}</h3>
+                    </div>
+                    <span [id]="themeTemplate._id" [ngClass]="{ 'liked' : themeTemplate.isThemeSelected }" class="like-icon"></span>
                   </div>
-                  <span id="template1" [ngClass]="{ 'liked' : is }" class="like-icon"></span>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
-          </div>
+          </ng-container>
 
 
         </div>
@@ -42,42 +43,20 @@
 <div class="row margin-bottom-20">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>Pre-wedding marital ceremony
+      <h4>Wedding & Pre-wedding ceremonies
       </h4>
       <div style="padding: 10px !important;">
         <div class="row">
           <div class="col-md-6">
-            <label>Select the date </label>
-            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+            <label>Pre-wedding marital ceremony</label>
+            <input type="datetime-local" placeholder="Date">
           </div>
 
-          <div class="col-md-3">
-            <label>Select perfect hour </label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Hour</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
+          <div class="col-md-6">
+            <label>Wedding Date and time</label>
+            <input type="datetime-local" placeholder="Date">
           </div>
 
-          <div class="col-md-3">
-            <label>More specific</label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Minute</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
-          </div>
         </div>
       </div>
     </div>
@@ -85,51 +64,6 @@
 
 </div>
 
-<div class="row margin-bottom-20">
-  <div class="col-lg-12 col-md-12">
-    <div class="dashboard-list-box margin-top-0">
-      <h4>Wedding date & time
-      </h4>
-      <div style="padding: 10px !important;">
-        <div class="row">
-          <div class="col-md-6">
-            <label>Select the date </label>
-            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
-          </div>
-
-          <div class="col-md-3">
-            <label>Select perfect hour </label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Hour</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
-          </div>
-
-          <div class="col-md-3">
-            <label>More specific</label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Minute</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 <div class="row margin-bottom-20">
   <div class="col-lg-3 col-md-3">
@@ -139,13 +73,11 @@
       <div class="row" style="padding: 10px !important; height: 205px !important;">
         <div class="col-md-12">
           <div class="edit-profile-photo">
-            <img class="anImage"
-              [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-              alt="">
+            <img class="anImage" [src]="weddingWebsite.coverImage" alt="">
             <div class="change-photo-btn">
               <div class="photoUpload">
                 <span><i class="fa fa-upload"></i> Upload Photo</span>
-                <input type="file" class="upload" (change)="onFileSelected($event)" />
+                <input type="file" class="upload" (change)="onCoverPhotoChanged($event)" />
               </div>
             </div>
           </div>
@@ -184,8 +116,16 @@
       <div style="padding: 10px !important;">
         <div class="row">
           <div class="col-md-6">
-            <label>Write a remembale and special URL for your website </label>
-            <input type="text" placeholder="website URL">
+            <label>Write a remembale and special URL for your website
+              <i
+                *ngIf="isRouteAlreadyExists"
+                style="background-color: #d27575;"
+                class="tip" data-tip-content="This route is already selected, try another one!."></i>
+            </label>
+            <input
+              [ngClass] = "{ 'error-text' : isRouteAlreadyExists }"
+              [(ngModel)] = "weddingWebsite.routeURL"
+              type="text" placeholder="website URL" (focusout)="checkWeddingWebsiteRouteUniqness()">
             <textarea [value]="address" cols="40" rows="4" placeholder="Your Detailed Address, write it or let us!"></textarea>
           </div>
 

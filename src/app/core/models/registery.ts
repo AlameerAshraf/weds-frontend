@@ -1,4 +1,5 @@
 export class registery{
+  _id?: string;
   title?: string;
   address?: string;
   price?: string;
@@ -7,4 +8,5 @@ export class registery{
 
   // UI
   isNew?: Boolean = false;
+  editable?: Boolean = false;
 }
