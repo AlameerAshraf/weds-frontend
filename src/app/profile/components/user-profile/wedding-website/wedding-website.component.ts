@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, responseModel, theme, urls } from 'src/app/core';
+import { constants, httpService, responseModel, theme, urls, weddingWebsite } from 'src/app/core';
 //import { } from '@types/googlemaps';
 declare const google: any
 
@@ -31,6 +31,12 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
 
   themesTemplates: theme[] = [];
+  addressDetails: any[] = [];
+  tempAlbumFiles: any[] = [];
+
+  weddingWebsite: weddingWebsite = {
+    coverImage : "assets/images/defaults/wedding/cover-photo.png"
+  }
 
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
@@ -40,6 +46,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.loadScripts();
     this.mapsLoader();
     this.loadThemesTemplates();
   }
@@ -56,8 +63,10 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     let like = document.getElementById(templateId);
     if (!targetTemplate.isThemeSelected) {
       like.classList.add("liked");
+      this.weddingWebsite.themeId = templateId;
     } else {
       like.classList.remove("liked");
+      this.weddingWebsite.themeId = "";
     }
   };
 
@@ -65,17 +74,29 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
   };
 
+
   onCoverPhotoChanged(e: any): void {
+    this.ngxSpinner.show();
+    const formData = new FormData();
     if (e.target.files && e.target.files[0]) {
       const imageFile = e.target.files[0];
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        return this.coverPhotoSource = fileReader.result;
-      };
-      fileReader.readAsDataURL(imageFile);
+
+      formData.append("image", imageFile);
+      formData.append("targetEntity" , constants.S3_CONTAINERS["WEDDING_WEBSITES"]);
+      formData.append("isSlefAssigned" , "true");
+      formData.append("targetUserEmail" , this.currentUserEmail);
+
+      let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
+      this.http.Post(uploadImageURL , {} , formData).subscribe((response: responseModel) => {
+        if(!response.error){
+          this.ngxSpinner.hide();
+          this.weddingWebsite.coverImage = response.data;
+        } else {
+          this.ngxSpinner.hide();
+        }
+      });
     }
   };
-
 
   loadThemesTemplates(){
     this.ngxSpinner.show();
@@ -137,6 +158,8 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
         if (results[0]) {
           this.zoom = 12;
           this.address = results[0].formatted_address;
+          console.log(results[0].address_components)
+          this.addressDetails = results[0].address_components;
         } else {
           window.alert('No results found');
         }
@@ -149,23 +172,59 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
   //#region  DropZone Engine Helper Function..
   onSelect(event: any) {
-    console.log(event);
-    this.files.push(...event.addedFiles);
+    for (const key in event.addedFiles) {
+      this.ngxSpinner.show();
+      const formData = new FormData();
+      const imageFile = event.addedFiles[key];
+
+      formData.append("image", imageFile);
+      formData.append("targetEntity", constants.S3_CONTAINERS["WEDDING_ALBUMS"]);
+      formData.append("isSlefAssigned", "true");
+      formData.append("targetUserEmail", this.currentUserEmail);
+
+      let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
+      this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
+        if (!response.error) {
+          this.ngxSpinner.hide();
+          this.tempAlbumFiles.push({ name: event.addedFiles[key].name , url: response.data });
+          this.files.push(event.addedFiles[key]);
+
+          this.bindTempFilesToWeddingObject();
+          console.log("add" , this.weddingWebsite.album);
+          // this.weddingWebsite.album.push(response.data);
+        } else {
+          this.ngxSpinner.hide();
+        }
+      });
+    }
   };
 
   onRemove(event: any) {
-    console.log(event);
+    console.log(event.name)
+    let targetFileInTemp = this.tempAlbumFiles.findIndex(x => x.name == event.name);
+
     this.files.splice(this.files.indexOf(event), 1);
+    this.tempAlbumFiles.splice(targetFileInTemp, 1);
+
+    this.bindTempFilesToWeddingObject();
+    console.log("remove" , this.weddingWebsite.album);
+  };
+
+  bindTempFilesToWeddingObject(){
+    this.weddingWebsite.album = [];
+    this.tempAlbumFiles.forEach((imge) => {
+      this.weddingWebsite.album.push(imge.url);
+    });
   };
   //#endregion
 
   //#region Loading Proper Helper Function..
   ngAfterViewInit(): void {
-    this.loadScripts();
+    // this.loadScripts();
   };
 
   loadScripts(){
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js', 'assets/scripts/dropzone.js'];
+    let scripts = ['assets/scripts/custom.js', 'assets/scripts/datePickerInitakizer.js'  , 'assets/scripts/dropzone.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');

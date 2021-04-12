@@ -77,6 +77,8 @@ export class constants {
       "POSTS" : "POSTS",
       "THEMES" : "THEMES",
       "OFFERS" : "OFFERS",
+      "WEDDING_WEBSITES" : "WEDDING_WEBSITES",
+      "WEDDING_ALBUMS" : "WEDDING_ALBUMS",
     }
   };
 

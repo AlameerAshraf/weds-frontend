@@ -43,42 +43,20 @@
 <div class="row margin-bottom-20">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>Pre-wedding marital ceremony
+      <h4>Wedding & Pre-wedding ceremonies
       </h4>
       <div style="padding: 10px !important;">
         <div class="row">
           <div class="col-md-6">
-            <label>Select the date </label>
-            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+            <label>Pre-wedding marital ceremony</label>
+            <input type="datetime-local" placeholder="Date">
           </div>
 
-          <div class="col-md-3">
-            <label>Select perfect hour </label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Hour</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
+          <div class="col-md-6">
+            <label>Wedding Date and time</label>
+            <input type="datetime-local" placeholder="Date">
           </div>
 
-          <div class="col-md-3">
-            <label>More specific</label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Minute</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
-          </div>
         </div>
       </div>
     </div>
@@ -86,51 +64,6 @@
 
 </div>
 
-<div class="row margin-bottom-20">
-  <div class="col-lg-12 col-md-12">
-    <div class="dashboard-list-box margin-top-0">
-      <h4>Wedding date & time
-      </h4>
-      <div style="padding: 10px !important;">
-        <div class="row">
-          <div class="col-md-6">
-            <label>Select the date </label>
-            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
-          </div>
-
-          <div class="col-md-3">
-            <label>Select perfect hour </label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Hour</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
-          </div>
-
-          <div class="col-md-3">
-            <label>More specific</label>
-            <select class="chosen-select-no-single">
-              <option label="blank">Perfect Minute</option>
-              <option>New York</option>
-              <option>Los Angeles</option>
-              <option>Chicago</option>
-              <option>Houston</option>
-              <option>Phoenix</option>
-              <option>San Diego</option>
-              <option>Austin</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 <div class="row margin-bottom-20">
   <div class="col-lg-3 col-md-3">
@@ -140,9 +73,7 @@
       <div class="row" style="padding: 10px !important; height: 205px !important;">
         <div class="col-md-12">
           <div class="edit-profile-photo">
-            <img class="anImage"
-              [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-              alt="">
+            <img class="anImage" [src]="weddingWebsite.coverImage" alt="">
             <div class="change-photo-btn">
               <div class="photoUpload">
                 <span><i class="fa fa-upload"></i> Upload Photo</span>
