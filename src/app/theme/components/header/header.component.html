@@ -38,9 +38,9 @@
 
       <!-- Right Side Content / End -->
       <div *ngIf="!isLogined" class="right-side">
-        <div class="header-widget" >
-          <a [routerLink]="loginURL" style="cursor: pointer;" class="sign-in" >
-            <i class="sl sl-icon-login"></i> Sign In
+        <div class="header-widget">
+          <a [routerLink]="loginURL" style="cursor: pointer;" class="sign-in">
+            <i class="sl sl-icon-login"></i> {{labels.SIGN_IN}}
           </a>
         </div>
       </div>
@@ -53,14 +53,14 @@
             <div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt="">
               </span>Hi, Alameer!</div>
             <ul>
-              <ng-container  *ngFor="let link of profileLinks">
+              <ng-container *ngFor="let link of profileLinks">
                 <li *ngIf="!link.hasImage">
                   <a [routerLink]="link.url"><i [class]="link.icon"></i>{{ link.title }}</a>
                 </li>
 
-                  <li *ngIf="link.hasImage">
-                    <a [routerLink]="link.url"> <img style="max-width: 17%;" [src]="link.hasImage"> {{ link.title }}</a>
-                  </li>
+                <li *ngIf="link.hasImage">
+                  <a [routerLink]="link.url"> <img style="max-width: 17%;" [src]="link.hasImage"> {{ link.title }}</a>
+                </li>
               </ng-container>
             </ul>
           </div>
@@ -79,5 +79,3 @@
   </div>
 </header>
 <div class="clearfix"></div>
-
-

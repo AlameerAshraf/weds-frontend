@@ -1,5 +1,11 @@
 {
-    "SEARCH_MAJOUR_TITLE" : "",
-    "SEARCH_SUB_TITLE" : "",
-    "FEATURED_CATEGORIES_TITLE" : ""
+  "SEARCH_MAJOUR_TITLE": "Find Most Amazing",
+  "SEARCH_SUB_TITLE": "Explore top-rated attractions, activities and more",
+  "FEATURED_CATEGORIES_TITLE": "Or browse featured categories:",
+  "LOOKING_FOR": "What are you looking for?",
+  "LOCATION": "Location",
+  "SEARCH": "Search",
+  "POPULAR_CATEGORIES": "Popular Categories",
+  "ALL_CATEGORIES": "All Categories",
+  "SIGN_IN": "Sign In"
 }

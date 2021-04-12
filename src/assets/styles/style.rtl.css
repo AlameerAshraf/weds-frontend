@@ -113,7 +113,7 @@ select {
   font-weight: 500;
   opacity: 1;
   border-radius: 3px;
-  text-align: left;
+  text-align: right;
 }
 
 input:-webkit-autofill:focus,
@@ -239,6 +239,7 @@ img {
 #logo {
   display: inline-block;
   margin-top: 3px;
+  float: left;
 }
 
 #logo img {
@@ -311,13 +312,13 @@ header.fullwidth .container {
 }
 
 .left-side {
-  float: left;
+  float: right;
   width: 65%;
   display: inline-block;
 }
 
 .right-side {
-  float: right;
+  float: left;
   width: 35%;
   display: inline-block;
 }
@@ -339,15 +340,11 @@ header.fullwidth .container {
 
 #logo,
 #navigation {
-  float: left;
-}
-
-#logo {
-  margin-right: 50px;
+  float: right;
 }
 
 .header-widget {
-  text-align: right;
+  text-align: left;
 }
 
 /* ---------------------------------- */
@@ -611,6 +608,7 @@ body #backtotop a {
 #navigation ul a {
   display: block;
   text-decoration: none;
+  text-align: right;
 }
 
 #navigation ul li {
@@ -1447,7 +1445,7 @@ li.mm-vertical.mm-opened > .mm-panel {
 }
 
 .mm-navbar .mm-btn:last-child {
-  text-align: right;
+  text-align: left;
   right: 0;
 }
 
@@ -1810,7 +1808,7 @@ em.mm-counter + a.mm-fullsubopen + span {
 .hamburger {
   padding: 0;
   top: 12px;
-  left: 13px;
+  left: -33px;
   transform: scale(0.67);
   -moz-transform: scale(0.7) translateY(4px);
   position: relative;
@@ -2250,6 +2248,7 @@ body .typed-cursor.typed-cursor--blink.typed-fade-out {
   color: #999;
   padding: 10px;
   background: #fff;
+  text-align: right;
 }
 
 .main-search-input-item.location a:hover {
@@ -2289,6 +2288,7 @@ body .typed-cursor.typed-cursor--blink.typed-fade-out {
 .gray-style.main-search-input input,
 .gray-style.main-search-input input:focus {
   background: #f7f7f7;
+  float: right;
 }
 
 .gray-style .main-search-input-item {
@@ -3220,6 +3220,7 @@ body .pac-container {
   .main-search-input-item,
   .main-search-input-item #autocomplete-input {
     padding: 0 15px;
+    padding-inline-end: 24px;
   }
 }
 
@@ -5530,7 +5531,7 @@ a.button.add-review-btn i {
   display: inline-block;
   top: 50%;
   transform: translateY(-49%);
-  text-align: right;
+  text-align: left;
 }
 
 /* Hosted by widget */
@@ -6118,7 +6119,7 @@ a.mfp-gallery {
 }
 
 .booking-estimated-cost span {
-  text-align: right;
+  text-align: left;
   float: right;
   color: #66676b;
   font-size: 16px;
@@ -7137,7 +7138,7 @@ input#date-picker:hover {
 
 .daterangepicker .drp-buttons {
   clear: both;
-  text-align: right;
+  text-align: left;
   padding: 14px;
   min-height: 63px;
   display: block;
@@ -7348,7 +7349,7 @@ input#date-picker:hover {
   }
   .daterangepicker.rtl {
     direction: rtl;
-    text-align: right;
+    text-align: left;
   }
   .daterangepicker.rtl .drp-calendar.left {
     clear: right;
@@ -7372,7 +7373,7 @@ input#date-picker:hover {
   }
   .daterangepicker.rtl .ranges,
   .daterangepicker.rtl .drp-calendar {
-    text-align: right;
+    text-align: left;
     float: right;
   }
 }
@@ -9815,7 +9816,7 @@ table.basic-table {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: 14px;
-    text-align: right;
+    text-align: left;
   }
 
   table.basic-table td:before {
@@ -10071,7 +10072,7 @@ body .style-2 .trigger a {
 
 #posts-nav li.next-post {
   right: 0;
-  text-align: right;
+  text-align: left;
 }
 
 #posts-nav li.prev-post {
@@ -15616,7 +15617,7 @@ input[type="time"]::-webkit-clear-button {
 }
 
 .pricing-list-item td .fm-close {
-  text-align: right;
+  text-align: left;
 }
 
 .pricing-list-item td .fm-close a {
@@ -16893,7 +16894,7 @@ text-overflow: ellipsis; */
   font-weight: 500;
   color: #999;
   pointer-events: none;
-  text-align: right;
+  text-align: left;
 }
 
 #leaflet-geocode-cont ul li.powered-by-osm strong {
