@@ -59,8 +59,8 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
 
   };
 
-  navigateToCreateNewTheme() {
-    this.router.navigate(['profile/en/admin/themes-action/new']);
+  navigateToCreateNewEvent() {
+    this.router.navigate(['profile/en/admin/events-action/new']);
   }
 
 

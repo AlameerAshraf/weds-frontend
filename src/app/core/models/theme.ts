@@ -3,4 +3,7 @@ export class theme {
   name?: string = "";
   url?: string = "";
   image?: string = "";
+
+  // UI
+  isThemeSelected?: boolean = false;
 };

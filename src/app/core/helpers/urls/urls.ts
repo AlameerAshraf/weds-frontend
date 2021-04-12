@@ -25,6 +25,15 @@ export class urls {
   public static get GET_ALL_OFFERS(): string { return this.BASE_URL + '/admin/get-all-offers'};
   public static get GET_ALL_EVENTS(): string { return this.BASE_URL + '/users/events/get-all-events'};
   public static get GET_ALL_POSTS(): string { return this.BASE_URL + '/admin/get-all-posts'};
+  public static get CREATE_AREA(): string { return this.BASE_URL + '/admin/create-area'};
+  public static get UPDATE_AREA(): string { return this.BASE_URL + '/admin/update-area'};
+  public static get CREATE_CATEGORY(): string { return this.BASE_URL + '/admin/create-new-category'};
+  public static get UPDATE_CATEGORY(): string { return this.BASE_URL + '/admin/update-category'};
+  public static get CREATE_TAG(): string { return this.BASE_URL + '/admin/create-new-tag'};
+  public static get UPDATE_TAG(): string { return this.BASE_URL + '/admin/update-tag'};
+  public static get CREATE_OFFER(): string { return this.BASE_URL + '/admin/create-new-offer'};
+  public static get UPDATE_OFFER(): string { return this.BASE_URL + '/admin/update-offer'};
+  
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
@@ -53,6 +62,13 @@ export class urls {
   public static get UPDATE_REGISTRY_LIST_PER_USER(): string { return this.BASE_URL + '/wedding/update-registry-list'};
   public static get DELETE_REGISTRY_LIST(): string { return this.BASE_URL + '/wedding/delete-registry-list'};
 
+
+  //Wedding website
+  public static get CHECK_WEDDING_WEBSITE_UNIQNESS(): string { return this.BASE_URL + '/wedding/checking-website-routing-uniqueness'};
+
+
+  //Vendor
+  public static get GET_ALL_VENDORS(): string { return this.BASE_URL + '/vendors/get-all-vendors'};
 
 
   // Authed ..

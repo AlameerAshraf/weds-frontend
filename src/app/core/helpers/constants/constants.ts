@@ -68,6 +68,56 @@ export class constants {
     ]
   };
 
+  public static get SEGMENTS(){
+    return [
+      {
+        "segment" : "HIM",
+        "name" : "Him"
+      },
+      {
+        "segment" : "HER",
+        "name" : "Her"
+      },
+      {
+        "segment" : "WEDDING",
+        "name" : "Wedding"
+      },
+      {
+        "segment" : "PHOTOS",
+        "name" : "Photos"
+      },
+      {
+        "segment" : "POSTS",
+        "name" : "Posts"
+      }
+    ]
+  };
+
+  public static get LAYOUTS(){
+    return [
+      {
+        "layout" : "DRESSES",
+        "name" : "Dress"
+      },
+      {
+        "layout" : "RINGS",
+        "name" : "Ring"
+      },
+      {
+        "layout" : "SERVICES",
+        "name" : "Service"
+      },
+      {
+        "layout" : "PHOTOS",
+        "name" : "Photos"
+      },
+      {
+        "layout" : "POSTS",
+        "name" : "Posts"
+      }
+    ]
+  };
+
   public static get S3_CONTAINERS(){
     return {
       "REGISTRY" : "REGISTRY",
@@ -77,6 +127,9 @@ export class constants {
       "POSTS" : "POSTS",
       "THEMES" : "THEMES",
       "OFFERS" : "OFFERS",
+      "AREAS" : "AREAS",
+      "WEDDING_WEBSITES" : "WEDDING_WEBSITES",
+      "WEDDING_ALBUMS" : "WEDDING_ALBUMS",
     }
   };
 

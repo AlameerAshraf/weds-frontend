@@ -27,7 +27,7 @@
           <thead>
             <tr>
               <th scope="col" width="45%">Area Name</th>
-              <th scope="col" width="45%">Visible</th>
+              <th scope="col" width="45%">Hidden</th>
               <th scope="col" width="5%">Delete</th>
               <th scope="col" width="5%">Edit</th>
             </tr>
@@ -55,29 +55,10 @@
               </td>
               <td class="td-in-table">
                 <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
-                    class="sl sl-icon-pencil"></i></p>
+                  (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
               </td>
             </tr>
             </ng-container>
-            <!-- <tr>
-              <td>
-                <p style="font-size: 20px; font-weight: 600;">Cairo</p>
-              </td>
-              <td>
-                <p style="display: -webkit-inline-box;margin-bottom: 0px;">
-                  <span class="dot" style="background-color: green;"></span> &nbsp;
-                  <label style="color: green; font-size: 20px; font-weight: 600;"> Active </label>
-                </p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i>
-                </p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
-                    class="sl sl-icon-pencil"></i></p>
-              </td>
-            </tr> -->
           </tbody>
         </table>
       </div>
@@ -89,7 +70,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="areasList.length" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

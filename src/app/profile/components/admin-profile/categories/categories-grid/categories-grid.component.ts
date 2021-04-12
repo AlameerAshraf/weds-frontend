@@ -1,12 +1,12 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel } from './../../../../../core/models/response';
-import { urls } from './../../../../../core/helpers/urls/urls';
-import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources } from 'src/app/core';
+import { constants, resources, category, localStorageService , responseModel , urls , httpService } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+declare var $: any;
+
 @Component({
   selector: 'app-categories-grid',
   templateUrl: './categories-grid.component.html',
@@ -15,20 +15,38 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
+    that = this;
+    layout = "";
+  parentMenu = "";
 
-  categoriesList = [];
+  categoriesList: category[] = [];
+  categoriesSegments = constants.SEGMENTS;
+  categoriesLayouts = constants.LAYOUTS;
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
+    private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
+    private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
-    this.loadResources();
+      this.loadResources();
+      this.storage.eraseLocalStorage("weds360#categoryOnEdit");
   }
 
   ngOnInit() {
     this.getAllCategories();
+    this.documentSelectors();
   }
+
+  documentSelectors() {
+    $("#categoriesLayouts").change({ angularThis: this.that }, function (e, params) {
+      e.data.angularThis.layout = $("#categoriesLayouts").chosen().val();
+    });
+    $("#categoriesSegments").change({ angularThis: this.that }, function (e, params) {
+      e.data.angularThis.parentMenu = $("#categoriesSegments").chosen().val();
+    });
+  };
 
   async loadResources() {
     let providedlang: any = this.actictedRoute.parent.params;
@@ -39,17 +57,16 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
   };
 
   getAllCategories() {
+    this.ngxSpinner.show();
     let getAllCategoriesURL = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
-    console.log(getAllCategoriesURL)
 
     this.http.Get(getAllCategoriesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-        console.log(response)
-        this.categoriesList = response.data;
+        this.categoriesList = response.data as category[];
+        this.ngxSpinner.hide();
       } else {
-        console.log("error")
-        console.log(response.error);
-      }
+        this.ngxSpinner.hide();
+      }      
     });
 
   };
@@ -58,12 +75,22 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
   };
 
+  editEntity(id: any){
+    this.router.navigate([`profile/en/admin/categories-action/update`]);
+    let targetTheme = this.categoriesList.find(x => x._id == id);
+    this.storage.setLocalStorage("weds360#categoryOnEdit" , targetTheme);
+  };
+
   navigateToCreateNewCategory() {
     this.router.navigate(['profile/en/admin/categories-action/new']);
   };
 
 
   ngAfterViewInit(): void {
+    this.loadScripts();
+  };
+
+  loadScripts() {
     let scripts = ['assets/scripts/custom.js'];
 
     scripts.forEach(element => {
