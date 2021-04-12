@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class VendorServicesFormComponent implements OnInit {
 
+  currentService = "dress";
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -19,6 +20,10 @@ export class VendorServicesFormComponent implements OnInit {
 
   navigateToCreateNewRing(){
     this.router.navigate(['profile/en/vendor/vendor-services-ring-action/new']);
+  }
+
+  addNewServiceTemplate(){
+    alert("this feature not implamented yet")
   }
 
 }
