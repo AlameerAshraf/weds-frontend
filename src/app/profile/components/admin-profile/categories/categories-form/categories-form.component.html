@@ -12,41 +12,48 @@
         <div class="row with-forms">
           <div class="col-md-6">
             <h5>Name English</h5>
-            <input class="search-field" type="text" value="" />
+            <input class="search-field" type="text" placeholder="Category English Name" [(ngModel)]="category.nameEn" />
           </div>
 
           <div class="col-md-6">
             <h5>Name Arabic</h5>
-            <input class="search-field" type="text" value="" />
+            <input class="search-field" type="text" placeholder="Category Arabic Name" [(ngModel)]="category.nameAr" />
           </div>
         </div>
 
         <div class="row with-forms">
           <div class="col-md-6">
             <h5>Description English</h5>
-            <textarea class="search-field" type="text" value=""></textarea>
+            <textarea class="search-field" type="text" placeholder="Description English"
+              [(ngModel)]="category.descriptionEn"></textarea>
           </div>
 
           <div class="col-md-6">
             <h5>Description Arabic</h5>
-            <textarea class="search-field" type="text" value=""></textarea>
+            <textarea class="search-field" type="text" placeholder="Description Arabic"
+              [(ngModel)]="category.descriptionAr"></textarea>
           </div>
         </div>
 
         <div class="row with-forms">
           <div class="col-md-6">
             <h5>Segment</h5>
-            <select class="chosen-select-no-single">
-              <option>User</option>
-              <option>Admin</option>
+            <select id="categoriesSegments" class="chosen-select-no-single">
+              <ng-container *ngFor="let categorySegment of categoriesSegments">
+                <option [selected]="categorySegment.segment == category.parentMenu"
+                  [value]="categorySegment.segment">
+                  {{ categorySegment.name }}</option>
+              </ng-container>
             </select>
           </div>
 
           <div class="col-md-6">
             <h5>Layout Name</h5>
-            <select class="chosen-select-no-single">
-              <option>User</option>
-              <option>Admin</option>
+            <select id="categoriesLayouts" class="chosen-select-no-single">
+              <ng-container *ngFor="let categoryLayout of categoriesLayouts">
+                <option [selected]="categoryLayout.layout == category.layout" [value]="categoryLayout.layout">{{
+                  categoryLayout.name }}</option>
+              </ng-container>
             </select>
           </div>
         </div>
@@ -55,13 +62,11 @@
           <div class="col-md-6">
             <h5>Image</h5>
             <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-              <img class="anImage"
-                [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                alt="">
+              <img class="anImage" [src]="category.photo" alt="">
               <div class="change-photo-btn">
                 <div class="photoUpload">
                   <span><i class="fa fa-upload"></i> Upload Photo</span>
-                  <input type="file" class="upload"/>
+                  <input type="file" class="upload" (change)="uploadImage($event,'photo')" />
                 </div>
               </div>
             </div>
@@ -70,13 +75,11 @@
           <div class="col-md-6">
             <h5>Icon</h5>
             <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-              <img class="anImage"
-                [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                alt="">
+              <img class="anImage" [src]="category.icon" alt="">
               <div class="change-photo-btn">
                 <div class="photoUpload">
                   <span><i class="fa fa-upload"></i> Upload Photo</span>
-                  <input type="file" class="upload"/>
+                  <input type="file" class="upload" (change)="uploadImage($event,'icon')" />
                 </div>
               </div>
             </div>
@@ -90,4 +93,7 @@
 <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
   Cancel <i class="sl sl-icon-close"></i>
 </a>
-<a class="button preview" (click)="navigateToCategorIesDefaults()">Save Changes <i class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
+    class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i
+    class="sl sl-icon-check"></i></a>

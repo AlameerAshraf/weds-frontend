@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { responseModel } from './../../../../../core/models/response';
 import { urls } from './../../../../../core/helpers/urls/urls';
 import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources } from 'src/app/core';
+import { constants, resources,area,localStorageService } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -16,18 +16,19 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  areasList = [];
+  areasList : area[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
+    private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
+    this.storage.eraseLocalStorage("weds360#areaOnEdit");
   }
 
   ngOnInit() {
-    //this.loadScripts();
     this.getAllAreas();
   }
 
@@ -56,8 +57,14 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
   };
 
 
-  pageChange(pageNumber) {
+  pageChange(pageNumber: any) {
 
+  };
+
+  editEntity(id: any){
+    this.router.navigate([`profile/en/admin/areas-action/update`]);
+    let targetTheme = this.areasList.find(x => x._id == id);
+    this.storage.setLocalStorage("weds360#areaOnEdit" , targetTheme);
   };
 
   navigateToCreateNewArea() {
@@ -65,14 +72,7 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/typedwords.js', 'assets/scripts/custom.js'];
-
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
-    });
+    this.loadScripts();
   };
 
   loadScripts() {

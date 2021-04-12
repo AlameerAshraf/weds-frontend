@@ -15,21 +15,22 @@
           <!-- Status -->
           <div class="col-md-4 margin-top-20">
             <h5>Segment</h5>
-            <select class="chosen-select-no-single">
-              <option>Select Main Segment</option>
-              <option>Him</option>
-              <option>Her</option>
-              <option>Wedding</option>
+            <select id="categoriesSegments" class="chosen-select-no-single">
+              <ng-container *ngFor="let categorySegment of categoriesSegments">
+                <option [selected]="categorySegment.segment == parentMenu"
+                  [value]="categorySegment.segment">
+                  {{ categorySegment.name }}</option>
+              </ng-container>
             </select>
           </div>
 
           <div class="col-md-4 margin-top-20">
             <h5>Service Type</h5>
-            <select class="chosen-select-no-single">
-              <option>Select Category</option>
-              <option>Vendor</option>
-              <option>Ring</option>
-              <option>Dress</option>
+            <select id="categoriesLayouts" class="chosen-select-no-single">
+              <ng-container *ngFor="let categoryLayout of categoriesLayouts">
+                <option [selected]="categoryLayout.layout == layout" [value]="categoryLayout.layout">{{
+                  categoryLayout.name }}</option>
+              </ng-container>
             </select>
           </div>
 
@@ -90,7 +91,7 @@
               </td>
               <td class="td-in-table">
                 <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
-                    class="sl sl-icon-pencil"></i></p>
+                  (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
               </td>
             </tr>
             </ng-container>
@@ -103,7 +104,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="categoriesList.length" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

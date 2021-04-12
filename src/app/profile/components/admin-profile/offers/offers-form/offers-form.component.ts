@@ -1,8 +1,10 @@
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
+import { offer,vendor, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+declare var $: any;
 
 @Component({
   selector: 'app-offers-form',
@@ -11,26 +13,125 @@ import { DOCUMENT } from '@angular/common';
 })
 export class OffersFormComponent implements OnInit, AfterViewInit {
 
-  coverPhotoSource = "";
-  constructor(private spinner: NgxSpinnerService, private router: Router,
-    @Inject(DOCUMENT) private document: any, private elementRef: ElementRef,
-    private toastr: ToastrService) { }
+  editingMode = "new";
+  that = this;
+  vendor = "";
+
+  currentUserEmail: string;
+  offersVendors : any; 
+  offer: offer = {
+    image: "assets/images/defaults/wedding/cover-photo.png",
+    descriptionAr: "",
+    descriptionEn: "",
+    residesIn: "",
+    titleAr: "",
+    titleEn: "",
+    vendor: ""
+  };
+
+  constructor(private ngxSpinner: NgxSpinnerService, private router: Router,
+    @Inject(DOCUMENT) private document: any,private activatedRoute: ActivatedRoute,
+     private elementRef: ElementRef,private storage: localStorageService,
+     private http: httpService,    private toastr: ToastrService) {
+      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+
+      this.activatedRoute.params.subscribe((params) => {
+        this.editingMode = params["actionType"];
+      });
+     }
 
   ngOnInit() {
     this.loadScripts();
-    // $("#selectId").change(function(e, params){
-    //   console.log($("#selectId").chosen().val())
-    //  });
+    this.initOfferView();
+    this.loadOffersVendor();
+    this.documentSelectors();
   }
 
-  navigateToOffersDefaults() {
-    this.spinner.show();
+  loadOffersVendor(){
+    this.ngxSpinner.show();
+    let getAllOffersVendorsURL = `${urls.GET_ALL_VENDORS}/${constants.APP_IDENTITY_FOR_USERS}`;
 
-    setTimeout(() => {
-      this.spinner.hide();
-      this.toastr.success('Hello world!', 'Toastr fun!');
-      this.router.navigateByUrl('/profile/en/admin/offers-defaults');
-    }, 3000);
+    this.http.Get(getAllOffersVendorsURL, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.offersVendors = response.data as vendor[];
+        this.ngxSpinner.hide();
+      } else {
+        this.ngxSpinner.hide();
+      }
+    });
+  };
+
+  initOfferView(){
+    if(this.editingMode == "update"){
+      this.offer = this.storage.getLocalStorage("weds360#offerOnEdit");
+    }
+  };
+
+  createNewEntity(){
+    this.ngxSpinner.show();
+    this.offer.vendor = this.vendor;
+console.log(this.vendor)
+    let createURL = `${urls.CREATE_OFFER}/${constants.APP_IDENTITY_FOR_ADMINS}`;
+    this.http.Post(createURL , {} , { "offer" : this.offer }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Offer has been saved succesfully" , "Offer has been updated, Bingo!");
+        this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your offer couldn't created on the server!");
+      }
+    });
+  };
+
+  updateExistingEntity(){
+    this.ngxSpinner.show();
+    this.offer.vendor = this.vendor == "" ? this.offer.vendor : this.vendor;
+
+    let updateURL = `${urls.UPDATE_OFFER}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.offer._id}`;
+    this.http.Post(updateURL , {} , { "offer" : this.offer }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Offer has been saved succesfully" , "A new offer has been updated and wedding website will be impacted.");
+        this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+      } else {
+        console.log(response)
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your offer couldn't created on the server!");
+      }
+    });
+  };
+
+  uploadImage(e: any): void {
+    this.ngxSpinner.show();
+    const formData = new FormData();
+    if (e.target.files && e.target.files[0]) {
+      const imageFile = e.target.files[0];
+
+      formData.append("image", imageFile);
+      formData.append("targetEntity" , constants.S3_CONTAINERS["OFFERS"]);
+      formData.append("isSlefAssigned" , "false");
+      formData.append("targetUserEmail" , this.currentUserEmail);
+
+      let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
+      this.http.Post(uploadImageURL , {} , formData).subscribe((response: responseModel) => {
+        if(!response.error){
+          this.ngxSpinner.hide();
+          this.offer.image = response.data;
+        } else {
+          this.ngxSpinner.hide();
+        }
+      });
+    }
+  };
+
+  documentSelectors(){
+    $("#offerVendors").change({ angularThis: this.that } ,function(e, params){
+      e.data.angularThis.vendor = $("#offerVendors").chosen().val();
+    });
+    $("#offersResides").change({ angularThis: this.that } ,function(e, params){
+      e.data.angularThis.layoutRouting = $("#offersResides").chosen().val();
+    });
   };
 
   backToRoute() {
