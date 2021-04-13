@@ -4,7 +4,7 @@ export class weddingWebsite {
   themeId?: string;
   themeName?: string;
   preWeddingMaritalCeremony?: Date;
-  weddingTime?: string;
+  weddingTime?: Date;
   coverImage?: string;
   routeURL?: string;
   story?: string;

@@ -13,13 +13,10 @@
       <h4>
         Default Checklists
 
-        <div
-          (click)="navigateToCreateNewCheklist()"
-          style="background-color: #046B69 !important;
+        <div (click)="navigateToCreateNewCheklist()" style="background-color: #046B69 !important;
             color: white !important;
             cursor: pointer;
-            border-radius: 20px;"
-            class="comission-taken">
+            border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
           <strong style="color: white !important">Create New Checklist Item</strong>
         </div>
@@ -36,20 +33,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
-              </td>
-              <td>
-                <p>It’s good to keep all your wedding planning documents in one place by staying organized. Time to pull a Monica Geller.</p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i></p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i></p>
-              </td>
-            </tr>
+            <ng-container *ngFor="let item of checkLists">
+              <tr>
+                <td>
+                  <p>{{item.title}}</p>
+                </td>
+                <td>
+                  <p>{{item.note}}</p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
+                      class="sl sl-icon-trash"></i></p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                </td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>
@@ -61,7 +62,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="checkLists.length" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

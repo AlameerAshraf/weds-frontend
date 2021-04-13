@@ -1,12 +1,11 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel } from './../../../../../core/models/response';
-import { urls } from './../../../../../core/helpers/urls/urls';
-import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { constants, resources, event, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+
 
 @Component({
   selector: 'app-events-grid',
@@ -17,14 +16,20 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  eventsList = [];
+  eventsList: event[] = [];
+  currentUserEmail: string;
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
+    private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
+    private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
+      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+
     this.loadResources();
+    this.storage.eraseLocalStorage("weds360#eventOnEdit");
   }
 
   ngOnInit() {
@@ -40,19 +45,25 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
   };
 
   getAllEvents() {
-    let getAllEventsURL = `${urls.GET_ALL_EVENTS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    console.log(getAllEventsURL)
+    this.ngxSpinner.show();
+    let getAllEventsURL = `${urls.GET_ALL_EVENTS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
     this.http.Get(getAllEventsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-        console.log(response)
         this.eventsList = response.data;
+        this.ngxSpinner.hide();
       } else {
-        console.log("error")
-        console.log(response.error);
+        this.ngxSpinner.hide();
       }
     });
 
+  };
+
+
+  editEntity(id: any){
+    this.router.navigate([`profile/en/admin/events-action/update`]);
+    let targetTheme = this.eventsList.find(x => x._id == id);
+    this.storage.setLocalStorage("weds360#eventOnEdit" , targetTheme);
   };
 
   pageChange(pageNumber) {

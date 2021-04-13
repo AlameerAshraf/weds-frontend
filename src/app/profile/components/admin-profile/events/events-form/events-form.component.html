@@ -12,20 +12,24 @@
         <div class="row with-forms">
           <div class="col-md-6">
             <h5>Title English</h5>
-            <input class="search-field" type="text" value="" />
+            <input class="search-field" type="text" placeholder="Event English Name" [(ngModel)]="event.nameEn" />
           </div>
 
           <div class="col-md-6">
             <h5>Title Arabic</h5>
-            <input class="search-field" type="text" value="" />
+            <input class="search-field" type="text" placeholder="Event Arabic Name" [(ngModel)]="event.nameAr" />
           </div>
         </div>
 
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Description</h5>
-            <textarea class="search-field" type="text" value=""></textarea>
+            <h5>Description English</h5>
+            <textarea class="search-field" type="text" placeholder="Event English Description" [(ngModel)]="event.descriptionEn"></textarea>
+          </div>
+          <div class="col-md-6">
+            <h5>Description Arabic</h5>
+            <textarea class="search-field" type="text" placeholder="Event Arabic Description" [(ngModel)]="event.descriptionAr"></textarea>
           </div>
         </div>
       </div>
@@ -36,4 +40,5 @@
 <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
   Cancel <i class="sl sl-icon-close"></i>
 </a>
-<a class="button preview" (click)="navigateToEventsDefaults()">Save Changes <i class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
+  <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>
