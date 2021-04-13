@@ -9,4 +9,5 @@ export * from './category';
 export * from './tag';
 export * from './offer';
 export * from './vendor';
+export * from './user';
 export * from './wedding-website';

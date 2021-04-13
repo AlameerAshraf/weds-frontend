@@ -14,6 +14,9 @@ export class urls {
   public static get USER_SIGN_UP(): string { return this.BASE_URL + '/users/sign-up' };
   public static get USER_SIGN_IN(): string { return this.BASE_URL + '/users/sign-in' };
   public static get CHECK_AUTH(): string { return this.BASE_URL + '/users/check-auth' };
+  public static get GET_ALL_USERS(): string { return this.BASE_URL + '/users/get-all-users'};
+  public static get CREATE_USER(): string { return this.BASE_URL + '/users/sign-up'};
+  public static get UPDATE_USER(): string { return this.BASE_URL + '/users/update-user-personal-info'};
 
   // Admin!
   public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
@@ -33,7 +36,12 @@ export class urls {
   public static get UPDATE_TAG(): string { return this.BASE_URL + '/admin/update-tag'};
   public static get CREATE_OFFER(): string { return this.BASE_URL + '/admin/create-new-offer'};
   public static get UPDATE_OFFER(): string { return this.BASE_URL + '/admin/update-offer'};
-  
+  public static get CREATE_CHECKLIST_ADMIN(): string { return this.BASE_URL + '/admin/create-check-list-item'};
+  public static get UPDATE_CHECKLIST_ADMIN(): string { return this.BASE_URL + '/admin/update-check-list-item'};
+  public static get GET_ALL_CHECKLISTS_ADMIN(): string { return this.BASE_URL + '/admin/get-all-check-list-items'};
+  public static get CREATE_BUDGETER_ADMIN(): string { return this.BASE_URL + '/admin/create-default-budgeter'};
+  public static get UPDATE_BUDGETER_ADMIN(): string { return this.BASE_URL + '/admin/update-default-budgeter'};
+  public static get GET_ALL_BUDGETER_ADMIN(): string { return this.BASE_URL + '/admin/get-all-default-budgeters'};
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
@@ -48,12 +56,14 @@ export class urls {
 
   //Wedding
   public static get UPDATE_WEDDING_DATA(): string { return this.BASE_URL + '/wedding/update-wedding'};
+  public static get GET_ALL_WEDDING_LIST(): string { return this.BASE_URL + '/wedding/get-all-wedding-list'};
 
   //Events
   public static get CREATE_EVENT(): string { return this.BASE_URL + '/users/events/create-new-event'};
   public static get GET_EVENTS_PER_USER(): string { return this.BASE_URL + '/users/events/get-all-events'};
   public static get INVITE_TO_EVENT(): string { return this.BASE_URL + '/users/events/invite'};
   public static get GET_GUEST_list_PER_EVENT(): string { return this.BASE_URL + '/users/events/get-all-guests'};
+  public static get UPDATE_EVENT(): string { return this.BASE_URL + '/users/events/update-event'};
 
 
   //Registry
@@ -73,4 +83,6 @@ export class urls {
 
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
+  
+
 }

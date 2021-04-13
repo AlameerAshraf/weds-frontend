@@ -1,9 +1,13 @@
 export class budgeter {
   _id?: string;
-  name: string;
-  description: string;
-  recommendedPercentage: number;
-  amount: number;
+  name?: string;
+  nameEn?: string;
+  nameAr?: string;
+  description?: string;
+  descriptionEn?: string;
+  descriptionAr?: string;
+  recommendedPercentage?: number;
+  amount?: number;
   vendor?: {
     vendorId?: string;
     amountSpent?: number;
