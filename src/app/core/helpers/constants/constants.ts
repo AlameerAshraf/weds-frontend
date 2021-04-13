@@ -128,6 +128,8 @@ export class constants {
       "THEMES" : "THEMES",
       "OFFERS" : "OFFERS",
       "AREAS" : "AREAS",
+      "WEDDING_WEBSITES" : "WEDDING_WEBSITES",
+      "WEDDING_ALBUMS" : "WEDDING_ALBUMS",
     }
   };
 

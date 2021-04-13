@@ -10,4 +10,4 @@ export * from './tag';
 export * from './offer';
 export * from './vendor';
 export * from './user';
-export * from './weddingWebsite';
+export * from './wedding-website';
