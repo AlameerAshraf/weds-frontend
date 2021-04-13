@@ -15,12 +15,10 @@
           <!-- Status -->
           <div class="col-md-6 margin-top-20">
             <h5>Role</h5>
-            <select class="chosen-select-no-single">
-              <option>Select Category</option>
-              <option>Exoensively</option>
-              <option>Affordably</option>
-              <option>cheably</option>
-              <option>Let me plane freely</option>
+            <select id="userRolesDropDown" class="chosen-select-no-single">
+              <ng-container *ngFor="let userRole of userRoles">
+                <option  [value]="userRole">{{ userRole }}</option>
+              </ng-container>
             </select>
           </div>
 
@@ -57,19 +55,19 @@
           <thead>
             <tr>
               <th scope="col" width="29%">User</th>
-              <th scope="col" width="68%">Description</th>
+              <th scope="col" width="68%">Role</th>
               <th scope="col" width="2%">Delete</th>
               <th scope="col" width="2%">Edit</th>
             </tr>
           </thead>
           <tbody>
+            <ng-container *ngFor="let item of usersList">
             <tr>
               <td>
-                <p style="font-size: 20px; font-weight: 600;">CREATE A WEDDING BINDER</p>
+                <p >{{ item.name }}</p>
               </td>
               <td>
-                <p>It’s good to keep all your wedding planning documents in one place by staying organized. Time to pull
-                  a Monica Geller.</p>
+                <p>{{ item.role }}</p>
               </td>
               <td class="td-in-table">
                 <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i>
@@ -77,12 +75,22 @@
               </td>
               <td class="td-in-table">
                 <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
-                    class="sl sl-icon-pencil"></i></p>
+                  (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
               </td>
             </tr>
+          </ng-container>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="usersList.length" [maxSize]="5">
+    </weds-paging>
   </div>
 </div>
