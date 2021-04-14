@@ -16,7 +16,7 @@ declare const google: any
 })
 export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   isRouteAlreadyExists = false;
-  f = "This route is already selected, try another one!."
+  saveDisabled = true;
   coverPhotoSource: any = '';
 
   latitude: number;
@@ -47,6 +47,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.loadScripts();
     this.mapsLoader();
     this.loadThemesTemplates();
@@ -70,11 +71,6 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       this.weddingWebsite.themeId = templateId;
     }
   };
-
-  createNewWebsiteRequest() {
-    console.log(this.weddingWebsite)
-  };
-
 
   onCoverPhotoChanged(e: any): void {
     this.ngxSpinner.show();
@@ -117,6 +113,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   checkWeddingWebsiteRouteUniqness(){
     if(this.weddingWebsite.routeURL == ""){
       this.isRouteAlreadyExists = false;
+      this.saveDisabled = true;
       return;
     }
 
@@ -125,10 +122,32 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     this.http.Get(checkingURL , {} ).subscribe((response: responseModel) => {
       if(!response.error){
         this.isRouteAlreadyExists = response.data.isRouteExisted;
+        this.saveDisabled = this.isRouteAlreadyExists;
         this.loadScripts();
       }
     });
-  }
+  };
+
+  validateWeddingWebsiteDataBeforeSave(){
+    if(this.weddingWebsite.themeId != "" && this.weddingWebsite.preWeddingMaritalCeremony != ""
+      && this.weddingWebsite.weddingTime != "" && this.weddingWebsite.routeURL == ""){
+        return false;
+      } else {
+        return true;
+      }
+  };
+
+  createNewWebsiteRequest() {
+    if(!this.saveDisabled){
+      console.log(this.weddingWebsite)
+    } else {
+      if(this.validateWeddingWebsiteDataBeforeSave()){
+
+      } else {
+
+      }
+    }
+  };
 
 
   //#region Address Helper Function..
