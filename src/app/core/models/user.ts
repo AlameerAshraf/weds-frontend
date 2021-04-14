@@ -9,4 +9,6 @@ export class user {
   isActive?: Boolean = true;
   isEmailConfirmed?: Boolean = false;
   isAccountLocked?: Boolean = false;
+  password?: string = "";
+  accountSource?: string = "";
 };
