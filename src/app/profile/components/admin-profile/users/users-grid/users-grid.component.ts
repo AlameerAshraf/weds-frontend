@@ -17,7 +17,7 @@ export class UsersGridComponent implements OnInit {
 
   usersList: user[] = [];
 
-  userRoles = constants.USER_ROLES;
+  userRoles = constants.USER_ROLES_LIST;
 
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,

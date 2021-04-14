@@ -152,4 +152,5 @@
 <a style="background-color: #F91942 !important;" class="button preview">
   Cancel <i class="sl sl-icon-close"></i>
 </a>
-<a class="button preview" (click)="createNewWebsiteRequest()">Save Changes <i class="sl sl-icon-check"></i></a>
+<a class="button preview" [ngClass] = "{ 'disabled' : saveDisabled }"
+  (click)="createNewWebsiteRequest()">Save Changes <i class="sl sl-icon-check"></i></a>

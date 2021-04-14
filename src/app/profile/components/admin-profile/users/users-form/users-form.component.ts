@@ -12,7 +12,7 @@ declare var $: any;
   templateUrl: './users-form.component.html',
   styleUrls: ['./users-form.component.scss']
 })
-export class UsersFormComponent implements OnInit {
+export class UsersFormComponent implements OnInit, AfterViewInit {
 
   date = "";
 
@@ -21,10 +21,12 @@ export class UsersFormComponent implements OnInit {
   userRoleSelected = "";
 
   currentUserEmail: string;
-  userRoles = constants.USER_ROLES;
-    
+  userRoles = constants.USER_ROLES_LIST;
+
   user: user = {
     age: "",
+    password: "Weds360user**",
+    accountSource: "WEDS360",
     name: "",
     dateOfBirth: new Date,
     email: "",
@@ -54,7 +56,6 @@ export class UsersFormComponent implements OnInit {
   }
 
   initUserView() {
-    console.log(this.userRoles);
     if (this.editingMode == "update") {
       this.user = this.storage.getLocalStorage("weds360#userOnEdit");
     }
@@ -63,10 +64,8 @@ export class UsersFormComponent implements OnInit {
   createNewEntity() {
     this.ngxSpinner.show();
     let dateValue: any = document.getElementById("date-picker");
-    this.user.dateOfBirth = new Date(dateValue.value);
-    var diff = (new Date().getTime() - this.user.dateOfBirth.getTime()) / 1000;
-    diff /= (60 * 60 * 24);
-    this.user.age = Math.abs(Math.round(diff / 365.25)).toString();
+    this.user.role = this.userRoleSelected;
+    this.calculateAge(dateValue);
 
     let createURL = `${urls.CREATE_USER}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(createURL, {}, { "user": this.user }).subscribe((response: responseModel) => {
@@ -84,10 +83,8 @@ export class UsersFormComponent implements OnInit {
   updateExistingEntity() {
     this.ngxSpinner.show();
     let dateValue: any = document.getElementById("date-picker");
-    this.user.dateOfBirth = new Date(dateValue.value);
-    var diff = (new Date().getTime() - this.user.dateOfBirth.getTime()) / 1000;
-    diff /= (60 * 60 * 24);
-    this.user.age = Math.abs(Math.round(diff / 365.25)).toString();
+    this.calculateAge(dateValue);
+    this.user.role = this.userRoleSelected;
 
     let updateURL = `${urls.UPDATE_USER}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.user._id}`;
     this.http.Post(updateURL, {}, { "user": this.user }).subscribe((response: responseModel) => {
@@ -109,19 +106,19 @@ export class UsersFormComponent implements OnInit {
     });
   };
 
+  calculateAge(dateValue){
+    this.user.dateOfBirth = new Date(dateValue.value);
+    var diff = (new Date().getTime() - this.user.dateOfBirth.getTime()) / 1000;
+    diff /= (60 * 60 * 24);
+    this.user.age = Math.abs(Math.round(diff / 365.25)).toString();
+  }
+
   backToRoute() {
     this.router.navigateByUrl('/profile/en/admin/users-list');
   };
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js'];
-
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
-    });
+    //this.loadScripts();
   };
 
   loadScripts() {

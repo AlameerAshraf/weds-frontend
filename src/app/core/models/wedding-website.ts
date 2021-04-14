@@ -3,8 +3,8 @@
 export class weddingWebsite {
   themeId?: string;
   themeName?: string;
-  preWeddingMaritalCeremony?: Date;
-  weddingTime?: Date;
+  preWeddingMaritalCeremony?: string;
+  weddingTime?: string;
   coverImage?: string;
   routeURL?: string;
   story?: string;

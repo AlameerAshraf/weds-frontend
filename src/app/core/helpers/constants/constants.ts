@@ -30,8 +30,23 @@ export class constants {
       "USER" : "USER",
       "ADMIN" : "ADMIN",
       "VENDOR" : "VENDOR",
-    }
+    };
   };
+
+  public static get USER_ROLES_LIST (){
+
+    return [
+      {
+        "name" : "USER",
+      },
+      {
+        "name" : "ADMIN"
+      },
+      {
+        "name" : "VENDOR"
+      }
+    ]
+  }
 
   public static get MONTHS(){
     return ["January", "February", "March", "April", "May", "June",

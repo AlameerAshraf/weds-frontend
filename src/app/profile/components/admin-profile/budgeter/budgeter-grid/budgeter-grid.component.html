@@ -29,8 +29,10 @@
           <table class="table borderless">
             <thead>
               <tr>
-                <th scope="col" width="29%">Budgeter</th>
-                <th scope="col" width="68%">Description</th>
+                <th scope="col" width="15%">English Name</th>
+                <th scope="col" width="15%">Arabic Name</th>
+                <th scope="col" width="33%">Description English</th>
+                <th scope="col" width="33%">Description Arabic</th>
                 <th scope="col" width="2%">Delete</th>
                 <th scope="col" width="2%">Edit</th>
               </tr>
@@ -39,16 +41,22 @@
               <ng-container *ngFor="let item of budgetersList">
               <tr>
                 <td>
-                  <p >{{item.name}}</p>
+                  <p >{{item.nameEn}}</p>
                 </td>
                 <td>
-                  <p>{{item.description}}</p>
+                  <p >{{item.nameAr}}</p>
+                </td>
+                <td>
+                  <p>{{item.descriptionEn}}</p>
+                </td>
+                <td>
+                  <p>{{item.descriptionAr}}</p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
-                  <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
+                  <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
                     (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
