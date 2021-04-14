@@ -25,11 +25,11 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
     isHidden:false
   };
 
-  constructor(private spinner: NgxSpinnerService , private router: Router,
-    @Inject(DOCUMENT) private document: any, private elementRef: ElementRef,
+  constructor( private router: Router, @Inject(DOCUMENT) private document: any, 
+  private elementRef: ElementRef,private ngxSpinner: NgxSpinnerService,
     private toastr: ToastrService,private activatedRoute: ActivatedRoute,
     private storage: localStorageService,private http: httpService,
-    private ngxSpinner: NgxSpinnerService) { 
+    ) { 
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
     this.activatedRoute.params.subscribe((params) => {

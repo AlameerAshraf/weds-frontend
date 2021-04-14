@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { constants, resources, theme, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-themes-grid',
@@ -21,7 +22,7 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
     private router: Router,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,
+    private http: httpService,private toastr: ToastrService,
     private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
       this.loadResources();
@@ -62,6 +63,22 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
     this.router.navigate([`profile/en/admin/themes-action/update`]);
     let targetTheme = this.themesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#themeOnEdit" , targetTheme);
+  };
+
+  deleteEntity(id: any){
+    this.ngxSpinner.show();
+
+    let deleteURL = `${urls.DELETE_THEME}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
+    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Theme has been deleted succesfully" , "An theme has been deleted and wedding website will be impacted.");
+        this.getAllThemes();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your theme couldn't deleted on the server!");
+      }
+    });
   };
 
   navigateToCreateNewTheme() {

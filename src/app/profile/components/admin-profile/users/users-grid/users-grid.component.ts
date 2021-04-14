@@ -5,6 +5,7 @@ import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/c
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { constants, resources, user, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users-grid',
@@ -23,7 +24,7 @@ export class UsersGridComponent implements OnInit {
   private router: Router,
   private storage: localStorageService,
   private elementRef: ElementRef, private resources: resources,
-  private http: httpService,
+  private http: httpService,private toastr: ToastrService,
   private ngxSpinner: NgxSpinnerService,
   private actictedRoute: ActivatedRoute) {
     this.loadResources();
@@ -64,6 +65,22 @@ getAllUsers() {
     this.router.navigate([`profile/en/admin/users-action/update`]);
     let targetItem = this.usersList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#userOnEdit" , targetItem);
+  };
+
+  deleteEntity(email: any){
+    this.ngxSpinner.show();
+
+    let deleteURL = `${urls.DELETE_USER}/${constants.APP_IDENTITY_FOR_ADMINS}`;
+    this.http.Post(deleteURL , {} , {"userEmail" : email }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("User has been deleted succesfully" , "An user has been deleted and wedding website will be impacted.");
+        this.getAllUsers();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your user couldn't deleted on the server!");
+      }
+    });
   };
 
   navigateToAddNewUser(){
