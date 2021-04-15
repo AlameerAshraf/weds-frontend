@@ -173,10 +173,10 @@
 
                     <div class="row col-lg-9 col-md-9" style="padding: 10px; padding-right:0% !important;">
                         <div class="col-md-12">
-                            <ngx-dropzone (change)="onSelect($event)">
+                            <ngx-dropzone >
                                 <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
                                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
-                                    [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                    [file]="f" [removable]="true" >
                                     <ngx-dropzone-label></ngx-dropzone-label>
                                 </ngx-dropzone-image-preview>
                             </ngx-dropzone>
@@ -234,8 +234,5 @@
 
 
 <div align="right">
-    <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-        Cancel <i class="sl sl-icon-close"></i>
-    </a>
-    <a class="button preview" (click)="createNewCheckList()">Save Changes <i class="sl sl-icon-check"></i></a>
+    <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
 </div>
