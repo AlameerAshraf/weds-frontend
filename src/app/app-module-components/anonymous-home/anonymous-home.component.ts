@@ -76,7 +76,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   getFeaturedCategories() {
     let featuredCatesURL = `${urls.GET_FEATURED_VENDORS}/${constants.APP_IDENTITY_FOR_USERS}clientRef/:category/:segment`;
     this.http.Get(featuredCatesURL, {}).subscribe((response: responseModel) => {
-      console.log("featured categories", response);
+      console.log("]]", response);
       if (!response.error) {
         this.featuredCategories = response.data;
       } else {
