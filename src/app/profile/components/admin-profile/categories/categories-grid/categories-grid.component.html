@@ -74,8 +74,8 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of categoriesList">
-            <tr>
+            <ng-container  *ngFor="let item of categoriesList">
+            <tr *ngIf="item.isRemoved == false">
               <td>
                 <p>{{ item.nameEn }}</p>
               </td>
@@ -86,7 +86,8 @@
                 <p>{{ item.layout }}</p>
               </td>
               <td class="td-in-table">
-                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-trash"></i>
+                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
+                  (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
                 </p>
               </td>
               <td class="td-in-table">

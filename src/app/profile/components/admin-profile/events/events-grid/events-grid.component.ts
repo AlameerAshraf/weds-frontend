@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { constants, resources, event, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
     private router: Router,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,
+    private http: httpService,private toastr: ToastrService,
     private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
@@ -64,6 +65,22 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
     this.router.navigate([`profile/en/admin/events-action/update`]);
     let targetTheme = this.eventsList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#eventOnEdit" , targetTheme);
+  };
+
+  deleteEntity(id: any){
+    this.ngxSpinner.show();
+
+    let deleteURL = `${urls.DELETE_EVENT}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
+    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Event has been deleted succesfully" , "An event has been deleted and wedding website will be impacted.");
+        this.getAllEvents();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your event couldn't deleted on the server!");
+      }
+    });
   };
 
   pageChange(pageNumber) {

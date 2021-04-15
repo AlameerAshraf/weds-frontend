@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { constants, resources, budgeter, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class BudgeterGridComponent implements OnInit {
   private router: Router,
   private storage: localStorageService,
   private elementRef: ElementRef, private resources: resources,
-  private http: httpService,
+  private http: httpService,private toastr: ToastrService,
   private ngxSpinner: NgxSpinnerService,
   private actictedRoute: ActivatedRoute) {
     this.loadResources();
@@ -65,6 +66,22 @@ export class BudgeterGridComponent implements OnInit {
     this.router.navigate([`profile/en/admin/budgeter-action/update`]);
     let targetTheme = this.budgetersList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#budgeterOnEdit" , targetTheme);
+  };
+
+  deleteEntity(id: any){
+    this.ngxSpinner.show();
+
+    let deleteURL = `${urls.DELETE_BUDGETER_ADMIN}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
+    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Budgeter has been deleted succesfully" , "A budgeter has been deleted and wedding website will be impacted.");
+        this.getAllBudgeters();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your budgeter couldn't deleted on the server!");
+      }
+    });
   };
 
   navigateToCreateNewBudgeter(){

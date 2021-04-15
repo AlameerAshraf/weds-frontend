@@ -7,6 +7,9 @@ import { httpService } from '../../../../../core/services/http/http';
 import { constants, resources,area,localStorageService } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-areas-grid',
   templateUrl: './areas-grid.component.html',
@@ -19,10 +22,10 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
   areasList : area[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private router: Router,
+    private router: Router,private ngxSpinner: NgxSpinnerService,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,
+    private http: httpService,private toastr: ToastrService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
     this.storage.eraseLocalStorage("weds360#areaOnEdit");
@@ -65,6 +68,22 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
     this.router.navigate([`profile/en/admin/areas-action/update`]);
     let targetTheme = this.areasList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#areaOnEdit" , targetTheme);
+  };
+
+  deleteEntity(id: any){
+    this.ngxSpinner.show();
+
+    let deleteURL = `${urls.DELETE_AREA}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
+    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Area has been deleted succesfully" , "An area has been deleted and wedding website will be impacted.");
+        this.getAllAreas();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your area couldn't deleted on the server!");
+      }
+    });
   };
 
   navigateToCreateNewArea() {

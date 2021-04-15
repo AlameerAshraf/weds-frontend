@@ -42,8 +42,8 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.loadScripts();
-    this.initOfferView();
     this.loadOffersVendor();
+    this.initOfferView();
     this.documentSelectors();
   }
 
@@ -70,7 +70,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   createNewEntity(){
     this.ngxSpinner.show();
     this.offer.vendor = this.vendor;
-console.log(this.vendor)
+
     let createURL = `${urls.CREATE_OFFER}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(createURL , {} , { "offer" : this.offer }).subscribe((response: responseModel) => {
       if(!response.error){
