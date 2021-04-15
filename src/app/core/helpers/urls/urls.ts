@@ -17,6 +17,7 @@ export class urls {
   public static get GET_ALL_USERS(): string { return this.BASE_URL + '/users/get-all-users'};
   public static get CREATE_USER(): string { return this.BASE_URL + '/users/sign-up'};
   public static get UPDATE_USER(): string { return this.BASE_URL + '/users/update-user-personal-info'};
+  public static get DELETE_USER(): string { return this.BASE_URL + '/users/delete-user'};
 
   // Admin!
   public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
@@ -42,6 +43,13 @@ export class urls {
   public static get CREATE_BUDGETER_ADMIN(): string { return this.BASE_URL + '/admin/create-default-budgeter'};
   public static get UPDATE_BUDGETER_ADMIN(): string { return this.BASE_URL + '/admin/update-default-budgeter'};
   public static get GET_ALL_BUDGETER_ADMIN(): string { return this.BASE_URL + '/admin/get-all-default-budgeters'};
+  public static get DELETE_AREA(): string { return this.BASE_URL + '/admin/delete-area'};
+  public static get DELETE_BUDGETER_ADMIN(): string { return this.BASE_URL + '/admin/delete-default-budgeter'};
+  public static get DELETE_CATEGORY(): string { return this.BASE_URL + '/admin/delete-category'};
+  public static get DELETE_THEME(): string { return this.BASE_URL + '/admin/delete-theme'};
+  public static get DELETE_TAG(): string { return this.BASE_URL + '/admin/delete-tag'};
+  public static get DELETE_OFFER(): string { return this.BASE_URL + '/admin/delete-offer'};
+  public static get DELETE_CHECKLIST_ADMIN(): string { return this.BASE_URL + '/admin/delete-check-list-item'};
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
@@ -64,6 +72,7 @@ export class urls {
   public static get INVITE_TO_EVENT(): string { return this.BASE_URL + '/users/events/invite'};
   public static get GET_GUEST_list_PER_EVENT(): string { return this.BASE_URL + '/users/events/get-all-guests'};
   public static get UPDATE_EVENT(): string { return this.BASE_URL + '/users/events/update-event'};
+  public static get DELETE_EVENT(): string { return this.BASE_URL + '/users/events/delete-event'};
 
 
   //Registry

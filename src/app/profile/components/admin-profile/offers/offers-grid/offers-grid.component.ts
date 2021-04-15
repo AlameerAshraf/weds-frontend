@@ -5,6 +5,7 @@ import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { constants, resources, offer, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     private router: Router,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,
+    private http: httpService,private toastr: ToastrService,
     private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
@@ -65,6 +66,22 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     this.router.navigate([`profile/en/admin/offers-action/update`]);
     let targetTheme = this.offersList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#offerOnEdit" , targetTheme);
+  };
+
+  deleteEntity(id: any){
+    this.ngxSpinner.show();
+
+    let deleteURL = `${urls.DELETE_OFFER}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
+    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Offer has been deleted succesfully" , "An offer has been deleted and wedding website will be impacted.");
+        this.getAllOffers();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your offer couldn't deleted on the server!");
+      }
+    });
   };
 
   navigateToCreateNewOffer(){

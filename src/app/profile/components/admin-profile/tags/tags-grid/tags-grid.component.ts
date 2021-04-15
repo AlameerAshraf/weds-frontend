@@ -5,6 +5,7 @@ import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { constants, resources, tag, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
     private router: Router,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,
+    private http: httpService,private toastr: ToastrService,
     private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
       this.loadResources();
@@ -63,6 +64,22 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
     this.router.navigate([`profile/en/admin/tags-action/update`]);
     let targetTheme = this.tagsList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#tagOnEdit" , targetTheme);
+  };
+
+  deleteEntity(id: any){
+    this.ngxSpinner.show();
+
+    let deleteURL = `${urls.DELETE_TAG}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
+    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Tag has been deleted succesfully" , "An tag has been deleted and wedding website will be impacted.");
+        this.getAllTags();
+      } else {
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your tag couldn't deleted on the server!");
+      }
+    });
   };
 
   navigateToCreateNewTag(){
