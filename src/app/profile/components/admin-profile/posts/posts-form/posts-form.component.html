@@ -25,8 +25,8 @@
 
                     <label>Body English</label>
                     <div style="background-color: white; font-size: 25px !important;">
-                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
-                            [(ngModel)]="htmlContent"></angular-editor>
+                        <!-- <angular-editor id="editor2" [placeholder]="'Enter text here...'" [config]="editorConfig"
+                            ></angular-editor> -->
                     </div>
 
                     <label>Meta Description English</label>
@@ -46,7 +46,7 @@
                         <div class="change-photo-btn">
                             <div class="photoUpload">
                                 <span><i class="fa fa-upload"></i> Featured Video</span>
-                                <input type="file" class="upload" (change)="onFileSelected($event)" />
+                                <input type="file" class="upload" />
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                         <div class="change-photo-btn">
                             <div class="photoUpload">
                                 <span><i class="fa fa-upload"></i> Images</span>
-                                <input type="file" class="upload" (change)="onFileSelected($event)" />
+                                <input type="file" class="upload"/>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
 </div>
 
 
-<a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+<a style="background-color: #F91942 !important;" class="button preview" (click)="view()">
     Cancel <i class="sl sl-icon-close"></i>
   </a>
   <a class="button preview" (click)="navigateToPosts()">Save Changes <i class="sl sl-icon-check"></i></a>

@@ -6,6 +6,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 //import { } from '@types/googlemaps';
 declare const google: any
+declare var $
 
 @Component({
   selector: 'app-vendor-profile-details',
@@ -20,6 +21,9 @@ export class VendorProfileDetailsComponent implements OnInit {
   longitude: number;
   zoom: number;
   address: any;
+  tagsAr;
+  that = this;
+
   @ViewChild('search', { static: true }) public searchElementRef: ElementRef;
 
   files: File[] = [];
@@ -34,21 +38,32 @@ export class VendorProfileDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.mapsLoader();
+    this.documentSelectors();
   }
 
   createNewCheckList(){
-    this.spinner.show();
+    console.log(this.tagsAr)
+    // this.spinner.show();
 
-    setTimeout(() => {
-      this.spinner.hide();
-      this.toastr.success('Hello world!', 'Toastr fun!');
-      this.router.navigateByUrl('/profile/en/vendor/checklist-defaults');
-    }, 3000);
+    // setTimeout(() => {
+    //   this.spinner.hide();
+    //   this.toastr.success('Hello world!', 'Toastr fun!');
+    //   this.router.navigateByUrl('/profile/en/vendor/checklist-defaults');
+    // }, 3000);
   };
 
   backToRoute(){
     this.router.navigateByUrl('/profile/en/vendor/overview');
   };
+
+  documentSelectors(){
+    $("#tagsAr").change({ angularThis: this.that } ,function(e, params){
+      var suggestedBudgetElement: any = document.getElementById("suggestedBudget");
+
+      e.data.angularThis.tagsAr = $("#tagsAr").chosen().val();
+    });
+  };
+
 
   selectTemplate(e: any) {
     e.preventDefault();
@@ -60,6 +75,10 @@ export class VendorProfileDetailsComponent implements OnInit {
       like.classList.remove("liked");
     }
   };
+
+
+  //#region Maps Helpers..
+
 
   onFileSelected(e: any): void {
     if (e.target.files && e.target.files[0]) {
@@ -124,6 +143,7 @@ export class VendorProfileDetailsComponent implements OnInit {
     });
   };
 
+  //#endregion
   onSelect(event : any) {
     console.log(event);
     this.files.push(...event.addedFiles);

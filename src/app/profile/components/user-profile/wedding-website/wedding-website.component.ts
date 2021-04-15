@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { constants, httpService, responseModel, theme, urls , weddingWebsite } from 'src/app/core';
-import { } from '@types/googlemaps';
+// import { } from '@types/googlemaps';
 declare const google: any
 
 
