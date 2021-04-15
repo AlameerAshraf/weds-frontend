@@ -1,5 +1,5 @@
 {
-  "menu" : [
+  "menu": [
     {
       "name": "360 Planner",
       "url": "",
@@ -153,37 +153,42 @@
       ]
     }
   ],
-  "actions" : [
+  "actions": [
     {
-      "title" : "360 Planner",
-      "url" : "",
-      "icon" : "sl sl-icon-magic-wand"
+      "title": "360 Planner",
+      "url": "",
+      "icon": "sl sl-icon-magic-wand"
     },
     {
-      "title" : "My Account",
-      "url" : "",
-      "icon" : "sl sl-icon-settings"
+      "title": "My Account",
+      "url": "",
+      "icon": "sl sl-icon-settings"
     },
     {
-      "title" : "My bookmarks",
-      "url" : "",
-      "icon" : "sl sl-icon-heart"
+      "title": "My bookmarks",
+      "url": "",
+      "icon": "sl sl-icon-heart"
     },
     {
-      "title" : "Messages",
-      "url" : "",
-      "icon" : "sl sl-icon-envelope-open"
+      "title": "Messages",
+      "url": "",
+      "icon": "sl sl-icon-envelope-open"
     },
     {
-      "title" : "English",
-      "url" : "",
-      "icon" : "",
-      "hasImage" : "assets/images/defaults/flags/en.png"
+      "title": "English",
+      "url": "",
+      "icon": "",
+      "hasImage": "assets/images/defaults/flags/en.png"
     },
     {
-      "title" : "Logout",
-      "url" : "",
-      "icon" : "sl sl-icon-power"
+      "title": "تسجيل الخروج",
+      "url": "",
+      "icon": "sl sl-icon-power"
+    },
+    {
+      "title": "تسجيل الدخول",
+      "url": "",
+      "icon": "sl sl-icon-power"
     }
   ]
 }

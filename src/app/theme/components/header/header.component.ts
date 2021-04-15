@@ -29,8 +29,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   // Languge!
   loginURL: string;
   langChangerURL: string;
-  //labels
-  labels: any = {};
 
   constructor(
     private actictedRoute: ActivatedRoute,
@@ -55,17 +53,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     let lang = providedlang._value["lang"];
     let resourceLang = (this.lang =
       lang == null || lang == undefined ? environment.defaultLang : lang);
-
     let dashboardNavs = `${currentUserType.toUpperCase()}_DASHBOARD`;
+
     let resData = (await this.resources.load(
       resourceLang,
       constants.VIEWS[dashboardNavs]
     )) as any;
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
     this.profileLinks = this.profileLinks.concat(resData.res["actions"]);
-    if (!resData.error) {
-      this.labels = resData.res;
-    }
+    console.log("-----------");
+    console.log("profilelinks", this.profileLinks);
+    console.log("-----------");
   }
 
   checkViewAuthority() {
