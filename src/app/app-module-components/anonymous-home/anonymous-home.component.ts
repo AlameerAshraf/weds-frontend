@@ -7,6 +7,7 @@ import { DOCUMENT } from "@angular/common";
 import { constants, resources } from "src/app/core";
 import { environment } from "../../../environments/environment";
 import { ActivatedRoute } from "@angular/router";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-home",
@@ -18,8 +19,12 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   startTypingAnimation: boolean = true;
 
   allCategories = [];
+  featuredCategories = [];
   //labels
   labels: any = {};
+  lang: string;
+  searchForm: FormGroup;
+  submitted: boolean = false;
   constructor(
     @Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef,
@@ -32,6 +37,12 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getAllCategories();
+    this.getFeaturedCategories();
+    this.searchForm = new FormGroup({
+      category: new FormControl("-1"),
+      lookingFor: new FormControl(""),
+      location: new FormControl(""),
+    });
   }
 
   /** Use this function at each view to load corrosponding resources! */
@@ -40,6 +51,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
     let lang = providedlang._value["lang"];
     let resourceLang =
       lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
 
     let resData = (await this.resources.load(
       resourceLang,
@@ -53,7 +65,6 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   getAllCategories() {
     let allCatesURL = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
-    debugger;
     this.http.Get(allCatesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allCategories = response.data;
@@ -62,7 +73,17 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
+  getFeaturedCategories() {
+    let featuredCatesURL = `${urls.GET_FEATURED_VENDORS}/${constants.APP_IDENTITY_FOR_USERS}clientRef/:category/:segment`;
+    this.http.Get(featuredCatesURL, {}).subscribe((response: responseModel) => {
+      console.log("featured categories", response);
+      if (!response.error) {
+        this.featuredCategories = response.data;
+      } else {
+        console.log(response.error);
+      }
+    });
+  }
   ngAfterViewInit(): void {
     let scripts = ["assets/scripts/typedwords.js", "assets/scripts/custom.js"];
 
@@ -72,5 +93,12 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
+  }
+  onFormSubmit(event: Event) {
+    event.preventDefault();
+    this.submitted = true;
+    const formValues = this.searchForm.getRawValue();
+    console.log("search form values", formValues);
+    //to do some search
   }
 }
