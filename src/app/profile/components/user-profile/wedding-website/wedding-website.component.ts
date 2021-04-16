@@ -117,7 +117,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   checkWeddingWebsiteRouteUniqness(){
-    if(this.weddingWebsite.routeURL == ""){
+    if(this.weddingWebsite.routeURL == "" || this.weddingWebsite.routeURL.includes(" ")){
       this.isRouteAlreadyExists = false;
       this.saveDisabled = true;
       return;
@@ -135,10 +135,9 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   validateWeddingWebsiteDataBeforeSave(){
-    debugger
     this.themeIdValid = this.weddingWebsite.themeId == "" ? false : true;
     this.weddingTimeValid = this.weddingWebsite.weddingTime == "" ? false : true;
-    this.routeURLValid = this.weddingWebsite.routeURL == "" ? false : true;
+    this.routeURLValid = (this.weddingWebsite.routeURL == "" || this.weddingWebsite.routeURL.includes(" ")) ? false : true;
 
     return this.themeIdValid && this.weddingTimeValid && this.routeURLValid;
 
@@ -147,11 +146,26 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   createNewWebsiteRequest() {
     if(!this.saveDisabled){
       if(this.validateWeddingWebsiteDataBeforeSave()){
-
+        this.saveWebsiteRequest();
       } else {
-
+        this.toastr.error("Some fields need your attention" , "Give us all the details to make this night joyful.");
       }
     }
+  };
+
+  saveWebsiteRequest(){
+    this.ngxSpinner.show();
+    let weddingWebsiteCreationURL = `${urls.CREATE_WEDDING_WEBSITE}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.http.Post(weddingWebsiteCreationURL , {} , { "weddingWebsite" : this.weddingWebsite }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Your website request has been created!" , "Isn't it amazing, your wedding website awaiting the approval! 🎉 few steps to celebrate.");
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your website.");
+      }
+    })
   };
 
 
@@ -200,7 +214,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
           this.zoom = 12;
           this.address = results[0].formatted_address;
           console.log(results[0].address_components)
-          this.addressDetails = results[0].address_components;
+          this.weddingWebsite.addressDetails = results[0].address_components;
         } else {
           window.alert('No results found');
         }
