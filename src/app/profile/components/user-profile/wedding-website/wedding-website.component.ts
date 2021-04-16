@@ -38,6 +38,9 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   weddingWebsite: weddingWebsite = {
     coverImage : "assets/images/defaults/wedding/cover-photo.png"
   }
+  themeIdValid: boolean;
+  weddingTimeValid: boolean;
+  routeURLValid: boolean;
 
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
@@ -57,18 +60,21 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     e.preventDefault();
 
     this.themesTemplates.forEach((aTheme) => {
-      aTheme.isThemeSelected = false;
+      if(aTheme._id != templateId){
+        aTheme.isThemeSelected = false;
+      }
     });
 
     let targetTemplate = this.themesTemplates.find(x => x._id == templateId);
     targetTemplate.isThemeSelected = !targetTemplate.isThemeSelected;
     let like = document.getElementById(templateId);
-    if (!targetTemplate.isThemeSelected) {
+
+    if (targetTemplate.isThemeSelected) {
       like.classList.add("liked");
-      this.weddingWebsite.themeId = "";
+      this.weddingWebsite.themeId = templateId
     } else {
       like.classList.remove("liked");
-      this.weddingWebsite.themeId = templateId;
+      this.weddingWebsite.themeId = "";
     }
   };
 
@@ -129,18 +135,17 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   validateWeddingWebsiteDataBeforeSave(){
-    if(this.weddingWebsite.themeId != "" && this.weddingWebsite.preWeddingMaritalCeremony != ""
-      && this.weddingWebsite.weddingTime != "" && this.weddingWebsite.routeURL == ""){
-        return false;
-      } else {
-        return true;
-      }
+    debugger
+    this.themeIdValid = this.weddingWebsite.themeId == "" ? false : true;
+    this.weddingTimeValid = this.weddingWebsite.weddingTime == "" ? false : true;
+    this.routeURLValid = this.weddingWebsite.routeURL == "" ? false : true;
+
+    return this.themeIdValid && this.weddingTimeValid && this.routeURLValid;
+
   };
 
   createNewWebsiteRequest() {
     if(!this.saveDisabled){
-      console.log(this.weddingWebsite)
-    } else {
       if(this.validateWeddingWebsiteDataBeforeSave()){
 
       } else {
