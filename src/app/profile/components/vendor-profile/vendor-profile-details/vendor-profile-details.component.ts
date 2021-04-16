@@ -6,6 +6,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 //import { } from '@types/googlemaps';
 declare const google: any
+declare var $
 
 @Component({
   selector: 'app-vendor-profile-details',
@@ -20,6 +21,9 @@ export class VendorProfileDetailsComponent implements OnInit {
   longitude: number;
   zoom: number;
   address: any;
+  tagsAr;
+  that = this;
+
   @ViewChild('search', { static: true }) public searchElementRef: ElementRef;
 
   files: File[] = [];
@@ -34,33 +38,24 @@ export class VendorProfileDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.mapsLoader();
-  }
-
-  createNewCheckList(){
-    this.spinner.show();
-
-    setTimeout(() => {
-      this.spinner.hide();
-      this.toastr.success('Hello world!', 'Toastr fun!');
-      this.router.navigateByUrl('/profile/en/vendor/checklist-defaults');
-    }, 3000);
+    this.documentSelectors();
   };
 
-  backToRoute(){
-    this.router.navigateByUrl('/profile/en/vendor/overview');
+  // Editors as advanced descriptions from posts page.
+  // Add multi selectors for tags ar, en
+  // Load all tags bind to multi selector.
+  //
+
+  documentSelectors(){
+    $("#tagsAr").change({ angularThis: this.that } ,function(e, params){
+      var suggestedBudgetElement: any = document.getElementById("suggestedBudget");
+
+      e.data.angularThis.tagsAr = $("#tagsAr").chosen().val();
+    });
   };
 
-  selectTemplate(e: any) {
-    e.preventDefault();
-    this.is = !this.is;
-    let like = document.getElementById('template1');
-    if (!this.is) {
-      like.classList.add("liked");
-    } else {
-      like.classList.remove("liked");
-    }
-  };
 
+  //#region Maps Helpers..
   onFileSelected(e: any): void {
     if (e.target.files && e.target.files[0]) {
       const imageFile = e.target.files[0];
@@ -124,21 +119,15 @@ export class VendorProfileDetailsComponent implements OnInit {
     });
   };
 
-  onSelect(event : any) {
-    console.log(event);
-    this.files.push(...event.addedFiles);
-  };
+  //#endregion
 
-  onRemove(event: any) {
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
-  };
-
-  createNewWebsiteRequest(){
-
-  };
-
+  //#region  Scripts Loading helpers..
   ngAfterViewInit(): void {
+    this.loadScripts();
+  };
+
+
+  loadScripts(){
     let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js' , 'assets/scripts/dropzone.js'];
 
     scripts.forEach(element => {
@@ -149,4 +138,5 @@ export class VendorProfileDetailsComponent implements OnInit {
     });
   };
 
+  //#endregion
 }

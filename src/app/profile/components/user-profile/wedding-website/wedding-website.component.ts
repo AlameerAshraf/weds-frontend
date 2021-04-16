@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { constants, httpService, responseModel, theme, urls , weddingWebsite } from 'src/app/core';
-import { } from '@types/googlemaps';
+// import { } from '@types/googlemaps';
 declare const google: any
 
 
@@ -38,6 +38,9 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   weddingWebsite: weddingWebsite = {
     coverImage : "assets/images/defaults/wedding/cover-photo.png"
   }
+  themeIdValid: boolean;
+  weddingTimeValid: boolean;
+  routeURLValid: boolean;
 
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
@@ -51,26 +54,62 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     this.loadScripts();
     this.mapsLoader();
     this.loadThemesTemplates();
+    this.getCurrentWeddingWebsiteDetails();
   }
+
+  getCurrentWeddingWebsiteDetails(){
+    this.ngxSpinner.show();
+    let websiteDetialsURL = `${urls.GET_WEDDING_WEBSITE_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.http.Get(websiteDetialsURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        let savedweddingWebsite = response.data as weddingWebsite;
+
+        if(savedweddingWebsite.requestIssued){
+          this.weddingWebsite = savedweddingWebsite;
+          this.setSelectedTemplate(this.weddingWebsite.themeId);
+
+          // This function converts the imge URL to a file object!
+          // Loading the images from the s3 bucket
+          // Note I configured the s3 bucket by allowing the cors-origin for localhost
+          this.weddingWebsite.album.forEach(async (anImage) => {
+            let imageFile = await this.convertURLtoFile(anImage);
+            this.files.push(imageFile);
+            this.tempAlbumFiles.push({ name: imageFile.name , url: anImage });
+          })
+        }
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your website details.");
+      }
+    });
+  };
 
   selectTemplate(e: any , templateId) {
     e.preventDefault();
+    this.setSelectedTemplate(templateId);
+  };
 
+  setSelectedTemplate(templateId){
     this.themesTemplates.forEach((aTheme) => {
-      aTheme.isThemeSelected = false;
+      if(aTheme._id != templateId){
+        aTheme.isThemeSelected = false;
+      }
     });
 
     let targetTemplate = this.themesTemplates.find(x => x._id == templateId);
     targetTemplate.isThemeSelected = !targetTemplate.isThemeSelected;
     let like = document.getElementById(templateId);
-    if (!targetTemplate.isThemeSelected) {
+
+    if (targetTemplate.isThemeSelected) {
       like.classList.add("liked");
-      this.weddingWebsite.themeId = "";
+      this.weddingWebsite.themeId = templateId
     } else {
       like.classList.remove("liked");
-      this.weddingWebsite.themeId = templateId;
+      this.weddingWebsite.themeId = "";
     }
-  };
+  }
 
   onCoverPhotoChanged(e: any): void {
     this.ngxSpinner.show();
@@ -111,7 +150,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   checkWeddingWebsiteRouteUniqness(){
-    if(this.weddingWebsite.routeURL == ""){
+    if(this.weddingWebsite.routeURL == "" || this.weddingWebsite.routeURL.includes(" ")){
       this.isRouteAlreadyExists = false;
       this.saveDisabled = true;
       return;
@@ -129,24 +168,38 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   validateWeddingWebsiteDataBeforeSave(){
-    if(this.weddingWebsite.themeId != "" && this.weddingWebsite.preWeddingMaritalCeremony != ""
-      && this.weddingWebsite.weddingTime != "" && this.weddingWebsite.routeURL == ""){
-        return false;
-      } else {
-        return true;
-      }
+    this.themeIdValid = this.weddingWebsite.themeId == "" ? false : true;
+    this.weddingTimeValid = this.weddingWebsite.weddingTime == "" ? false : true;
+    this.routeURLValid = (this.weddingWebsite.routeURL == "" || this.weddingWebsite.routeURL.includes(" ")) ? false : true;
+
+    return this.themeIdValid && this.weddingTimeValid && this.routeURLValid;
+
   };
 
   createNewWebsiteRequest() {
     if(!this.saveDisabled){
-      console.log(this.weddingWebsite)
-    } else {
       if(this.validateWeddingWebsiteDataBeforeSave()){
-
+        this.weddingWebsite.requestIssued = true;
+        this.saveWebsiteRequest();
       } else {
-
+        this.toastr.error("Some fields need your attention" , "Give us all the details to make this night joyful.");
       }
     }
+  };
+
+  saveWebsiteRequest(){
+    this.ngxSpinner.show();
+    let weddingWebsiteCreationURL = `${urls.CREATE_WEDDING_WEBSITE}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.http.Post(weddingWebsiteCreationURL , {} , { "weddingWebsite" : this.weddingWebsite }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.toastr.success("Your website request has been created!" , "Isn't it amazing, your wedding website awaiting the approval! 🎉 few steps to celebrate.");
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your website.");
+      }
+    })
   };
 
 
@@ -195,7 +248,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
           this.zoom = 12;
           this.address = results[0].formatted_address;
           console.log(results[0].address_components)
-          this.addressDetails = results[0].address_components;
+          this.weddingWebsite.addressDetails = results[0].address_components;
         } else {
           window.alert('No results found');
         }
@@ -252,6 +305,17 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       this.weddingWebsite.album.push(imge.url);
     });
   };
+
+  async convertURLtoFile(image){
+    // image = "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png";
+    let response = await fetch(image);
+    let data = await response.blob();
+    let metadata = {
+      type: `image/${image.split('.').pop()}`
+    };
+
+    return new File([data], image.split('/').pop() , metadata);
+  }
   //#endregion
 
   //#region Loading Proper Helper Function..
