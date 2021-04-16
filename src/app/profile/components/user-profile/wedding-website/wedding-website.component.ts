@@ -36,7 +36,13 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   tempAlbumFiles: any[] = [];
 
   weddingWebsite: weddingWebsite = {
-    coverImage : "assets/images/defaults/wedding/cover-photo.png"
+    coverImage : "assets/images/defaults/wedding/cover-photo.png",
+    location: {
+      venue: "",
+      address: "",
+      latitude: 0,
+      longtitude: 0,
+    }
   }
   themeIdValid: boolean;
   weddingTimeValid: boolean;
@@ -68,7 +74,6 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
         if(savedweddingWebsite.requestIssued){
           this.weddingWebsite = savedweddingWebsite;
-          this.setSelectedTemplate(this.weddingWebsite.themeId);
 
           // This function converts the imge URL to a file object!
           // Loading the images from the s3 bucket
@@ -77,7 +82,14 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
             let imageFile = await this.convertURLtoFile(anImage);
             this.files.push(imageFile);
             this.tempAlbumFiles.push({ name: imageFile.name , url: anImage });
-          })
+          });
+          this.setSelectedTemplate(this.weddingWebsite.themeId);
+          this.latitude = this.weddingWebsite.location.latitude;
+          this.longitude = this.weddingWebsite.location.longtitude;
+          this.zoom = 12;
+          this.address = this.weddingWebsite.location.address;
+        } else {
+          this.setCurrentLocation();
         }
       }else{
         this.ngxSpinner.hide();
@@ -206,7 +218,6 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   //#region Address Helper Function..
   mapsLoader() {
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
       autocomplete.addListener("place_changed", () => {
@@ -215,8 +226,8 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
+          this.latitude = this.weddingWebsite.location.latitude = place.geometry.location.lat();
+          this.longitude = this.weddingWebsite.location.longtitude = place.geometry.location.lng();
           this.getAddress(this.latitude, this.longitude);
           this.zoom = 12;
         });
@@ -225,19 +236,34 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
+    if('geolocation' in navigator){
+      navigator.geolocation.getCurrentPosition((locationInfo) => {
+        this.latitude = this.weddingWebsite.location.latitude = locationInfo.coords.latitude;
+        this.longitude = this.weddingWebsite.location.longtitude = locationInfo.coords.longitude;
+
         this.zoom = 12;
         this.getAddress(this.latitude, this.longitude);
-      });
+      }, (err) => {
+        console.log(err);
+
+        this.latitude = this.weddingWebsite.location.latitude = 30.0444;
+        this.longitude = this.weddingWebsite.location.longtitude = 31.2357;
+
+        this.zoom = 12;
+        this.getAddress(this.latitude, this.longitude);
+      })
+    } else {
+      this.latitude = this.weddingWebsite.location.latitude = 30.0444;
+      this.longitude = this.weddingWebsite.location.longtitude = 31.2357;
+
+      this.zoom = 12;
+      this.getAddress(this.latitude, this.longitude);
     }
   };
 
   markerDragEnd(e: any) {
-    this.latitude = e.coords.lat;
-    this.longitude = e.coords.lng;
+    this.latitude = this.weddingWebsite.location.latitude = e.coords.lat;
+    this.longitude = this.weddingWebsite.location.longtitude = e.coords.lng;
     this.getAddress(this.latitude, this.longitude);
   };
 
@@ -246,9 +272,8 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 12;
-          this.address = results[0].formatted_address;
-          console.log(results[0].address_components)
-          this.weddingWebsite.addressDetails = results[0].address_components;
+          this.address = this.weddingWebsite.location.address = results[0].formatted_address;
+          // this.weddingWebsite.addressDetails = results[0].address_components;
         } else {
           window.alert('No results found');
         }

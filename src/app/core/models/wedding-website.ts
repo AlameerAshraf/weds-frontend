@@ -16,10 +16,10 @@ export class weddingWebsite {
     address: string;
     latitude: number;
     longtitude: number;
-    country: string;
-    city: string;
-    area: string;
-    street: string;
+    country?: string;
+    city?: string;
+    area?: string;
+    street?: string;
   };
   addressDetails ?:any[] = [];
 }
