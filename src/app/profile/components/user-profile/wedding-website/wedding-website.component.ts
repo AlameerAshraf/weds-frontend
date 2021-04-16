@@ -54,11 +54,44 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     this.loadScripts();
     this.mapsLoader();
     this.loadThemesTemplates();
+    this.getCurrentWeddingWebsiteDetails();
   }
+
+  getCurrentWeddingWebsiteDetails(){
+    this.ngxSpinner.show();
+    let websiteDetialsURL = `${urls.GET_WEDDING_WEBSITE_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.http.Get(websiteDetialsURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        let savedweddingWebsite = response.data as weddingWebsite;
+
+        if(savedweddingWebsite.requestIssued){
+          this.weddingWebsite = savedweddingWebsite;
+          this.setSelectedTemplate(this.weddingWebsite.themeId);
+
+          // This function converts the imge URL to a file object!
+          // Loading the images from the s3 bucket
+          // Note I configured the s3 bucket by allowing the cors-origin for localhost
+          this.weddingWebsite.album.forEach(async (anImage) => {
+            let imageFile = await this.convertURLtoFile(anImage);
+            this.files.push(imageFile);
+            this.tempAlbumFiles.push({ name: imageFile.name , url: anImage });
+          })
+        }
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your website details.");
+      }
+    });
+  };
 
   selectTemplate(e: any , templateId) {
     e.preventDefault();
+    this.setSelectedTemplate(templateId);
+  };
 
+  setSelectedTemplate(templateId){
     this.themesTemplates.forEach((aTheme) => {
       if(aTheme._id != templateId){
         aTheme.isThemeSelected = false;
@@ -76,7 +109,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       like.classList.remove("liked");
       this.weddingWebsite.themeId = "";
     }
-  };
+  }
 
   onCoverPhotoChanged(e: any): void {
     this.ngxSpinner.show();
@@ -146,6 +179,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   createNewWebsiteRequest() {
     if(!this.saveDisabled){
       if(this.validateWeddingWebsiteDataBeforeSave()){
+        this.weddingWebsite.requestIssued = true;
         this.saveWebsiteRequest();
       } else {
         this.toastr.error("Some fields need your attention" , "Give us all the details to make this night joyful.");
@@ -271,6 +305,17 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       this.weddingWebsite.album.push(imge.url);
     });
   };
+
+  async convertURLtoFile(image){
+    // image = "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png";
+    let response = await fetch(image);
+    let data = await response.blob();
+    let metadata = {
+      type: `image/${image.split('.').pop()}`
+    };
+
+    return new File([data], image.split('/').pop() , metadata);
+  }
   //#endregion
 
   //#region Loading Proper Helper Function..
