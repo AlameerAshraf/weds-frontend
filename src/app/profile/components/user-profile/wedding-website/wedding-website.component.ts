@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, responseModel, theme, urls , weddingWebsite } from 'src/app/core';
+import { constants, httpService, responseModel, theme, urls, weddingWebsite, localStorageService } from 'src/app/core';
 // import { } from '@types/googlemaps';
 declare const google: any
 
@@ -51,7 +51,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, private router: Router, private http: httpService,
-    private ngxSpinner: NgxSpinnerService, private toastr: ToastrService) {
+    private ngxSpinner: NgxSpinnerService, private toastr: ToastrService, private storage: localStorageService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
 
@@ -74,6 +74,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
         if(savedweddingWebsite.requestIssued){
           this.weddingWebsite = savedweddingWebsite;
+          this.storage.setLocalStorage("weds360#mysite" , this.weddingWebsite);
 
           // This function converts the imge URL to a file object!
           // Loading the images from the s3 bucket
@@ -88,6 +89,8 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
           this.longitude = this.weddingWebsite.location.longtitude;
           this.zoom = 12;
           this.address = this.weddingWebsite.location.address;
+
+          this.router.navigateByUrl('profile/en/user/wedding-website-status');
         } else {
           this.setCurrentLocation();
         }
