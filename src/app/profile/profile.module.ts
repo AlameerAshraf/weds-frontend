@@ -70,6 +70,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     COMPONENTS.ServicesDressFormComponent,
     COMPONENTS.VendorServicesRingFormComponent,
     COMPONENTS.VendorServicesDressFormComponent,
+    COMPONENTS.SiteStatusComponent,
   ],
   imports: [
     CommonModule,

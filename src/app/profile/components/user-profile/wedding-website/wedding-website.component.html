@@ -16,7 +16,7 @@
         <div class="row">
 
 
-          <ng-container *ngFor = "let themeTemplate of themesTemplates">
+          <ng-container *ngFor="let themeTemplate of themesTemplates">
             <div class="col-md-3">
               <div class="fw-carousel-item">
                 <a (click)="selectTemplate($event , themeTemplate._id)" class="listing-item-container compact">
@@ -26,7 +26,8 @@
                     <div class="listing-item-content">
                       <h3>{{ themeTemplate.name }}</h3>
                     </div>
-                    <span [id]="themeTemplate._id" [ngClass]="{ 'liked' : themeTemplate.isThemeSelected }" class="like-icon"></span>
+                    <span [id]="themeTemplate._id" [ngClass]="{ 'liked' : themeTemplate.isThemeSelected }"
+                      class="like-icon"></span>
                   </div>
                 </a>
               </div>
@@ -49,12 +50,12 @@
         <div class="row">
           <div class="col-md-6">
             <label>Pre-wedding marital ceremony</label>
-            <input type="datetime-local" placeholder="Date" [(ngModel)] = "weddingWebsite.preWeddingMaritalCeremony">
+            <input type="datetime-local" placeholder="Date" [(ngModel)]="weddingWebsite.preWeddingMaritalCeremony">
           </div>
 
           <div class="col-md-6">
             <label>Wedding Date and time</label>
-            <input type="datetime-local" placeholder="Date" [(ngModel)] = "weddingWebsite.weddingTime">
+            <input type="datetime-local" placeholder="Date" [(ngModel)]="weddingWebsite.weddingTime">
           </div>
 
         </div>
@@ -92,9 +93,10 @@
       </h4>
       <div class="row" style="padding: 10px !important;">
         <div class="col-md-12">
-          <ngx-dropzone  #nationalDropZone (change)="onSelect($event)">
+          <ngx-dropzone #nationalDropZone (change)="onSelect($event)">
             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-            <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+              [removable]="true" (removed)="onRemove(f)">
               <ngx-dropzone-label></ngx-dropzone-label>
             </ngx-dropzone-image-preview>
           </ngx-dropzone>
@@ -117,28 +119,27 @@
         <div class="row">
           <div class="col-md-6">
             <label>Write a remembale and special URL for your website
-              <i
-                *ngIf="isRouteAlreadyExists"
-                style="background-color: #d27575;"
-                class="tip" data-tip-content="This route is already selected, try another one!."></i>
+              <i *ngIf="isRouteAlreadyExists" style="background-color: #d27575;" class="tip"
+                data-tip-content="This route is already selected, try another one!."></i>
             </label>
-            <input
-              [ngClass] = "{ 'error-text' : isRouteAlreadyExists }"
-              [(ngModel)] = "weddingWebsite.routeURL"
-              type="text" placeholder="website URL" (focusout)="checkWeddingWebsiteRouteUniqness()">
-            <textarea [value]="address" cols="40" rows="4" placeholder="Your Detailed Address, write it or let us!"></textarea>
+            <input [ngClass]="{ 'error-text' : isRouteAlreadyExists }" [(ngModel)]="weddingWebsite.routeURL" type="text"
+              placeholder="website URL" (focusout)="checkWeddingWebsiteRouteUniqness()">
+            <textarea [value]="address" cols="40" rows="4"
+              placeholder="Your Detailed Address, write it or let us!"></textarea>
           </div>
 
           <div class="col-md-6">
             <label>Your venue location details</label>
             <div class="form-group">
-              <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Venue Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+              <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                placeholder="Search Venue Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                type="text" #search>
             </div>
 
             <div>
               <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"
-                  ></agm-marker>
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  (dragEnd)="markerDragEnd($event)"></agm-marker>
               </agm-map>
             </div>
           </div>
@@ -152,5 +153,5 @@
 <a style="background-color: #F91942 !important;" class="button preview">
   Cancel <i class="sl sl-icon-close"></i>
 </a>
-<a class="button preview" [ngClass] = "{ 'disabled' : saveDisabled }"
-  (click)="createNewWebsiteRequest()">Save Changes <i class="sl sl-icon-check"></i></a>
+<a class="button preview" [ngClass]="{ 'disabled' : saveDisabled }" (click)="createNewWebsiteRequest()">Save Changes <i
+    class="sl sl-icon-check"></i></a>

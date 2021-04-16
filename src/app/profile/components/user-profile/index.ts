@@ -12,3 +12,4 @@ export * from './event-details/event-details.component';
 export * from './create-event/create-event.component';
 export * from './invite-friends/invite-friends.component';
 export * from './user-chat/user-chat.component';
+export * from './wedding-website/site-status/site-status.component';

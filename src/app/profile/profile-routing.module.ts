@@ -62,6 +62,10 @@ const routes: Routes = [
           {
             path : 'wedding-website',
             component: COMPONENTS.WeddingWebsiteComponent
+          },
+          {
+            path : 'wedding-website-status',
+            component: COMPONENTS.SiteStatusComponent
           }
         ]
       },
