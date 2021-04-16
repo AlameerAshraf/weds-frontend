@@ -66,6 +66,7 @@ export class urls {
   public static get UPDATE_WEDDING_DATA(): string { return this.BASE_URL + '/wedding/update-wedding'};
   public static get GET_ALL_WEDDING_LIST(): string { return this.BASE_URL + '/wedding/get-all-wedding-website-requests'};
   public static get CREATE_WEDDING_WEBSITE(): string { return this.BASE_URL + '/wedding/create-weedding-website'};
+  public static get GET_WEDDING_WEBSITE_DETAILS(): string { return this.BASE_URL + '/wedding/get-weedding-website-details'};
 
   //Events
   public static get CREATE_EVENT(): string { return this.BASE_URL + '/users/events/create-new-event'};

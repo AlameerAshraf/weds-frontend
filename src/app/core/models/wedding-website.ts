@@ -1,6 +1,7 @@
 
 
 export class weddingWebsite {
+  requestIssued?: boolean = false;
   themeId?: string;
   themeName?: string;
   preWeddingMaritalCeremony?: string;
