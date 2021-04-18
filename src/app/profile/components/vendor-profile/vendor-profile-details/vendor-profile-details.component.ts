@@ -1,3 +1,4 @@
+import { httpService } from 'src/app/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -30,16 +31,28 @@ export class VendorProfileDetailsComponent implements OnInit {
 
   private geoCoder: any;
 
+  listOfThings : any[] = [];
+
 
   constructor(private spinner: NgxSpinnerService , private router: Router ,
     private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
+    private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader, private http: httpService,
     private ngZone: NgZone) { }
 
   ngOnInit() {
     this.mapsLoader();
+    this.getThings();
+
+    this.loadScripts();
     this.documentSelectors();
   };
+
+  getThings(){
+    this.http.Get("https://jsonplaceholder.typicode.com/todos" , {}).subscribe((res) => {
+      this.listOfThings =  res as any;
+
+    })
+  }
 
   // Editors as advanced descriptions from posts page.
   // Add multi selectors for tags ar, en
