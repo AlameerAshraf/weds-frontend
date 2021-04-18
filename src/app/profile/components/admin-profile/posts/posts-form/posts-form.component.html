@@ -1,140 +1,208 @@
 <div id="titlebar">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Create a new post 📰</h2>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Create a new post </h2>
     </div>
+  </div>
 </div>
-
 
 <div class="row">
-    <div class="col-lg-6 col-md-12">
-        <div class="dashboard-list-box margin-top-0">
-            <h4 class="gray">Posts Details</h4>
-            <div class="dashboard-list-box-static">
-                <div class="my-profile">
+  <div class="col-lg-12">
+    <div id="add-listing">
 
-                    <label class="margin-top-0">Title English</label>
-                    <input value="Tom Perrin" type="text">
-
-                    <label>Subtitle English</label>
-                    <input value="tom@example.com" type="text">
-
-                    <label>Tags English List</label>
-                    <input value="(123) 123-456" type="text">
-
-                    <label>Body English</label>
-                    <div style="background-color: white; font-size: 25px !important;">
-                        <!-- <angular-editor id="editor2" [placeholder]="'Enter text here...'" [config]="editorConfig"
-                            ></angular-editor> -->
-                    </div>
-
-                    <label>Meta Description English</label>
-                    <textarea value="(123) 123-456" type="text"></textarea>
-
-                    <label>Category</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Perfect Hour</option>
-                        <option>New York</option>
-                        <option>Los Angeles</option>
-                    </select>
-
-                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                        <img class="anImage"
-                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                            alt="">
-                        <div class="change-photo-btn">
-                            <div class="photoUpload">
-                                <span><i class="fa fa-upload"></i> Featured Video</span>
-                                <input type="file" class="upload" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                        <img class="anImage"
-                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                            alt="">
-                        <div class="change-photo-btn">
-                            <div class="photoUpload">
-                                <span><i class="fa fa-upload"></i> Images</span>
-                                <input type="file" class="upload"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="checkboxes in-row">
-                        <input id="check-a" type="checkbox" name="check">
-                        <label for="check-a">Author Visible</label>
-                    </div>
-                </div>
-            </div>
+      <!-- Basic info -->
+      <div class="add-listing-section">
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-doc"></i> Basic Article Informations</h3>
         </div>
-    </div>
 
-    <!-- Change Password -->
-    <div class="col-lg-6 col-md-12">
-        <div class="dashboard-list-box margin-top-0">
-            <h4 class="gray">Posts Details</h4>
-            <div class="dashboard-list-box-static">
-                <div class="my-profile">
+        <div class="col-lg-6 col-md-12">
+          <div class="my-profile">
+            <label class="margin-top-0">Title English</label>
+            <input value="Tom Perrin" type="text">
 
-                    <label class="margin-top-0">Title Arabic</label>
-                    <input value="Tom Perrin" type="text">
+            <label>Subtitle English</label>
+            <input value="Tom Perrin" type="text">
 
-                    <label>Subtitle Arabic</label>
-                    <input value="tom@example.com" type="text">
-
-                    <label>Tags Arabic List</label>
-                    <input value="(123) 123-456" type="text">
-
-                    <label>Body Arabic</label>
-                    <div style="background-color: white; font-size: 25px !important;">
-                        <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
-                            [(ngModel)]="htmlContent"></angular-editor>
-                    </div>
-
-                    <label>Meta Description Arabic</label>
-                    <textarea value="(123) 123-456" type="text"></textarea>
-
-                    <label>Related Posts</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Perfect Hour</option>
-                        <option>New York</option>
-                        <option>Los Angeles</option>
-                    </select>
-
-                    <label>Reading Time</label>
-                    <input placeholder="City ex. Alexandria" type="text" autocomplete="sd">
-
-                    <br>
-
-                    <div class="checkboxes in-row">
-                      <input id="check-a" type="checkbox" name="check">
-                      <label for="check-a">Mark Post for sheduling</label>
-                    </div>
-
-                    <label>Scheduled At</label>
-                    <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
-
-                </div>
-            </div>
+            <label>Meta Description English</label>
+            <textarea value="" type="text" cols="1" rows="0"></textarea>
+          </div>
         </div>
+
+        <div class="col-lg-6 col-md-12">
+          <div class="my-profile">
+            <label class="margin-top-0">Title Arabic</label>
+            <input value="Tom Perrin" type="text">
+
+            <label>Subtitle Arabic</label>
+            <input value="Tom Perrin" type="text">
+
+            <label>Meta Description Arabic</label>
+            <textarea value="" type="text" cols="2" rows="1"></textarea>
+          </div>
+        </div>
+
+        <div class="row with-forms" align="right">
+          <a class="button" (click) = "scrollToElement(postContent)">Next - Post Content &nbsp; <i class="sl sl-icon-arrow-down"></i></a>
+        </div>
+      </div>
+
+      <!-- Content info -->
+      <div class="add-listing-section margin-top-20"  #postContent>
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-note"></i> Article Content</h3>
+        </div>
+
+        <div class="submit-section">
+          <div class="row with-forms">
+            <div class="row">
+              <div class="my-profile">
+                <label class="margin-top-0">English Content</label>
+              </div>
+              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="htmlEnglishContent" [init]="tinymceInit">
+              </editor>
+            </div>
+
+            <div class="row margin-top-30">
+              <div class="my-profile">
+                <label class="margin-top-0">Arabic Content</label>
+              </div>
+              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="htmlArabicContent" [init]="tinymceInit">
+              </editor>
+            </div>
+          </div>
+        </div>
+
+        <div class="row with-forms margin-top-20" align="right">
+          <a class="button" (click) = "scrollToElement(detaildInfo)">Next - Identification Details &nbsp; <i class="sl sl-icon-arrow-down"></i></a>
+        </div>
+      </div>
+
+
+      <!-- Detaild Info -->
+      <div class="add-listing-section margin-top-20" #detaildInfo>
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-doc"></i> Basic Article Informations</h3>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="my-profile">
+            <label class="margin-top-0">Tags English</label>
+            <input value="Tom Perrin" type="text">
+
+            <label>Category</label>
+            <select class="chosen-select-no-single">
+                <option label="blank">Perfect Hour</option>
+                <option>New York</option>
+                <option>Los Angeles</option>
+            </select>
+
+            <div class="checkboxes in-row margin-top-30">
+              <input id="check-a" type="checkbox" name="check">
+              <label for="check-a">Show Author Name & Details</label>
+              <p>This will make your name visible on the blogs view for users.</p>
+          </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+          <div class="my-profile">
+            <label class="margin-top-0">Tags Arabic</label>
+            <input value="Tom Perrin" type="text">
+
+            <label>Reading Time</label>
+            <input value="Tom Perrin" type="text">
+
+            <label>Publish Secheduled At</label>
+            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12">
+          <div class="my-profile">
+            <label class="margin-top-0">Related Posts</label>
+            <input value="Tom Perrin" type="text">
+        </div>
+      </div>
+        <div class="row with-forms" align="right">
+          <a class="button" (click) = "scrollToElement(media)">Next - Images & Media &nbsp; <i class="sl sl-icon-arrow-down"></i></a>
+        </div>
+      </div>
+
+
+      <!-- Section -->
+      <div class="add-listing-section margin-top-20" #media>
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-picture"></i> Gallery
+          </h3>
+        </div>
+
+        <div class="row margin-bottom-20">
+          <div class="row col-lg-3 col-md-3">
+            <div class="my-profile">
+              <label class="margin-top-0">Select a featured image</label>
+              <a class="button" (click) ="getImage()" id="photoCliker">
+                Upload Cover Photo
+              </a>
+              <input style="display: none;" id="upImage" type="file" (change)="uploadCoverPhoto($event)">
+
+
+              <label class="margin-top-10">Select a featured video</label>
+              <a class="button" (click) ="getVideo()" id="videoClicker">
+                Upload Cover Photo
+              </a>
+              <input style="display: none;" id="upVideo" type="file" (change)="uploadVideo($event)">
+            </div>
+          </div>
+
+          <div class="row col-lg-9 col-md-9">
+            <ng-container *ngIf="images.length == 0">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-3" align="center">
+                <img src="assets/images/errors/nothing-found.png">
+                <span>Post has no images.</span>
+                <p style="cursor: pointer;" (click)="addImage()">
+                  <i class="sl sl-icon-camera"></i>
+                  Attach an image
+                </p>
+              </div>
+              <div class="col-lg-3"></div>
+            </ng-container>
+
+            <ng-container *ngIf="images.length > 0">
+              <p style="cursor: pointer;" (click)="addImage()">
+                <i class="sl sl-icon-camera"></i>
+                Attach an image
+              </p>
+              <ng-container *ngFor="let image of images">
+                <div class="col-md-3">
+                  <div class="edit-profile-photo" style="margin-bottom: 10px;">
+                    <img class="anImage"
+                      [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource" alt="">
+                    <div class="change-photo-btn">
+                      <div class="photoUpload">
+                        <span><i class="fa fa-upload"></i> Cover Photo</span>
+                        <input type="file" class="upload" />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <input type="text" placeholder="English Desc" style="margin-bottom: 2px;">
+                    <input type="text" placeholder="Arabic Desc" style="margin-bottom: 5px;">
+                  </div>
+                </div>
+              </ng-container>
+
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 
-<a style="background-color: #F91942 !important;" class="button preview" (click)="view()">
-    Cancel <i class="sl sl-icon-close"></i>
-  </a>
-  <a class="button preview" (click)="navigateToPosts()">Save Changes <i class="sl sl-icon-check"></i></a>
 
-
-
-
-<!--<div style="background-color: white; font-size: 25px !important;">
-    <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="htmlContent">
-    </angular-editor>
+<div align="right">
+  <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
 </div>
-
-<button (click)="view()">sdsdsd</button>-->

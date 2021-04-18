@@ -84,10 +84,9 @@
                         <label>Tags Arabic List </label>
                         <!-- <input type="text" placeholder="tags arabic"> -->
                         <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-                          <option>Item 1</option>
-                          <option selected = "true">Item 2</option>
-                          <option>Item 3</option>
-                          <option>Item 4</option>
+                          <option *ngFor="let thing of listOfThings">
+                            {{ thing.title }}
+                          </option>
                         </select>
 
                     </div>
