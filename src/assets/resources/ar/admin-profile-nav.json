@@ -77,7 +77,7 @@
           "url": ""
         },
         {
-          "name": "صالون الحلاقة",
+          "name": "صالون الرجال",
           "url": ""
         },
         {
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "name": "المعرض",
+      "name": "الاستديو",
       "url": "",
       "child": [
         {
@@ -155,8 +155,24 @@
   ],
   "actions": [
     {
-      "title": "تسجيل خروج",
+      "title": "حسابي",
+      "url": "/profile/ar/admin/overview",
+      "icon": "sl sl-icon-settings"
+    },
+    {
+      "title": "رسائل",
+      "url": "/profile/ar/admin/messages",
+      "icon": "sl sl-icon-envelope-open"
+    },
+    {
+      "title": "English",
       "url": "",
+      "icon": "",
+      "hasImage": "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title": "تسجيل خروج",
+      "url": "/profile/ar/admin/checklist",
       "icon": "sl sl-icon-power"
     }
   ],
@@ -167,46 +183,47 @@
         {
           "title": "نظرة عامة",
           "icon": "sl sl-icon-rocket",
+          "url": "overview",
+          "child": []
+        },
+        {
+          "title": "الرسائل",
+          "icon": "sl sl-icon-envelope-open",
+          "url": "messages",
           "child": []
         }
       ]
     },
     {
-      "menuTitle": "مخطط 360",
+      "menuTitle": "لوحة المسؤول",
       "childMenuItem": [
         {
-          "title": "قائمة تحقق",
-          "icon": "sl sl-icon-rocket",
+          "title": "الموقع إلكتروني",
+          "icon": "sl sl-icon-screen-desktop",
+          "url": "website-admin",
           "child": []
         },
         {
-          "title": "الميزانية",
-          "icon": "",
+          "title": "الباعة والموردين",
+          "icon": "sl sl-icon-handbag",
+          "url": "vendors-admin",
           "child": []
         },
         {
-          "title": "الأحداث وقائمة الضيوف",
-          "icon": "",
-          "child": []
-        },
-        {
-          "title": "قائمة التسجيل",
-          "icon": "",
-          "child": []
-        },
-        {
-          "title": "موقع الزفاف",
-          "icon": "",
+          "title": "المستخدم",
+          "icon": "sl sl-icon-people",
+          "url": "users-admin",
           "child": []
         }
       ]
     },
     {
-      "menuTitle": "رسائلي",
+      "menuTitle": "معلومات الحساب",
       "childMenuItem": [
         {
-          "title": "رسائل",
-          "icon": "",
+          "title": "تفاصيل شخصية",
+          "icon": "im im-icon-Male",
+          "url": "profile-details",
           "child": []
         }
       ]

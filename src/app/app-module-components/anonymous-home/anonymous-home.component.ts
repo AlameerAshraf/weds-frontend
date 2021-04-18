@@ -37,7 +37,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getAllCategories();
-    this.getFeaturedCategories();
+    //  this.getFeaturedCategories();
     this.searchForm = new FormGroup({
       category: new FormControl("-1"),
       lookingFor: new FormControl(""),
