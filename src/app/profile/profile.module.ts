@@ -1,3 +1,4 @@
+import { LookupsService } from './../core/helpers/lookups/lookups.service';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { THEME_MODULE } from './../security/security.imports';
@@ -87,6 +88,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
   ],
   providers:[
     NgxSpinnerService,
+    LookupsService
   ]
 })
 export class ProfileModule { }
