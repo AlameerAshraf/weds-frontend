@@ -35,6 +35,36 @@
       ]
     },
     {
+      "name": "Her",
+      "url": "",
+      "child": [
+        {
+          "name": "Designers",
+          "url": ""
+        },
+        {
+          "name": "Bridal Boutique",
+          "url": ""
+        },
+        {
+          "name": "Wedding Dresses",
+          "url": ""
+        },
+        {
+          "name": "Rings",
+          "url": ""
+        },
+        {
+          "name": "Makeup Artists",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": "segment/ar/her"
+        }
+      ]
+    },
+    {
       "name": "لها",
       "url": "",
       "child": [
@@ -56,36 +86,6 @@
         },
         {
           "name": "ميكاب ارتيست",
-          "url": ""
-        },
-        {
-          "name": "المزيد",
-          "url": "segment/ar/her"
-        }
-      ]
-    },
-    {
-      "name": "له",
-      "url": "",
-      "child": [
-        {
-          "name": "البدل",
-          "url": ""
-        },
-        {
-          "name": "صحة",
-          "url": ""
-        },
-        {
-          "name": "صالون الحلاقة",
-          "url": ""
-        },
-        {
-          "name": "اللياقة البدنية",
-          "url": ""
-        },
-        {
-          "name": "المزيد",
           "url": ""
         }
       ]
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "name": "المعرض",
+      "name": "الاستديو",
       "url": "",
       "child": [
         {
@@ -155,8 +155,24 @@
   ],
   "actions": [
     {
-      "title": "تسجيل خروج",
+      "title": "حسابي",
+      "url": "/profile/ar/vendor/overview",
+      "icon": "sl sl-icon-settings"
+    },
+    {
+      "title": "رسائل",
+      "url": "/profile/ar/vendor/messages",
+      "icon": "sl sl-icon-envelope-open"
+    },
+    {
+      "title": "English",
       "url": "",
+      "icon": "",
+      "hasImage": "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title": "تسجيل خروج",
+      "url": "/profile/ar/vendor/checklist",
       "icon": "sl sl-icon-power"
     }
   ],
@@ -167,46 +183,30 @@
         {
           "title": "نظرة عامة",
           "icon": "sl sl-icon-rocket",
+          "url": "overview",
+          "child": []
+        },
+        {
+          "title": "الرسائل",
+          "icon": "sl sl-icon-envelope-open",
+          "url": "messages",
+          "child": []
+        },
+        {
+          "title": "الخدمات",
+          "icon": "sl sl-icon-basket",
+          "url": "my-services",
           "child": []
         }
       ]
     },
     {
-      "menuTitle": "مخطط 360",
+      "menuTitle": "معلومات الحساب",
       "childMenuItem": [
         {
-          "title": "قائمة تحقق",
-          "icon": "sl sl-icon-rocket",
-          "child": []
-        },
-        {
-          "title": "الميزانية",
-          "icon": "",
-          "child": []
-        },
-        {
-          "title": "الأحداث وقائمة الضيوف",
-          "icon": "",
-          "child": []
-        },
-        {
-          "title": "قائمة التسجيل",
-          "icon": "",
-          "child": []
-        },
-        {
-          "title": "موقع الزفاف",
-          "icon": "",
-          "child": []
-        }
-      ]
-    },
-    {
-      "menuTitle": "رسائلي",
-      "childMenuItem": [
-        {
-          "title": "رسائل",
-          "icon": "",
+          "title": "تفاصيل شخصية",
+          "icon": "im im-icon-Male",
+          "url": "my-info",
           "child": []
         }
       ]

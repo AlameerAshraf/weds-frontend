@@ -40,7 +40,7 @@
       <div *ngIf="!isLogined" class="right-side">
         <div class="header-widget">
           <a [routerLink]="loginURL" style="cursor: pointer;" class="sign-in">
-            <i class="sl sl-icon-login"></i> SIGN_IN
+            <i class="sl sl-icon-login"></i> {{lang==='ar'?'تسجيل الدخول':'Sign in'}}
           </a>
         </div>
       </div>

@@ -1,153 +1,153 @@
 {
   "menu": [
     {
-      "name": "360 Planner",
+      "name": "360 بلانر",
       "url": "",
       "child": [
         {
-          "name": "Check List",
+          "name": "قائمة تحقق",
           "url": ""
         },
         {
-          "name": "Budgeter",
+          "name": "الميزانية",
           "url": ""
         },
         {
-          "name": "Registry List",
+          "name": "قائمة التسجيل",
           "url": ""
         },
         {
-          "name": "Guest List",
+          "name": "قائمة الضيوف",
           "url": ""
         },
         {
-          "name": "Wedding Website",
+          "name": "موقع الزفاف",
           "url": ""
         },
         {
-          "name": "Couple Website",
+          "name": "موقع الزوجين",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Her",
+      "name": "لها",
       "url": "",
       "child": [
         {
-          "name": "Designers",
+          "name": "المصممين",
           "url": ""
         },
         {
-          "name": "Bridal Boutique",
+          "name": "بوكية الزفاف",
           "url": ""
         },
         {
-          "name": "Wedding Dresses",
+          "name": "فساتين زفاف",
           "url": ""
         },
         {
-          "name": "Rings",
+          "name": "خواتم",
           "url": ""
         },
         {
-          "name": "Makeup Artists",
+          "name": "ميكاب ارتيست",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": "segment/ar/her"
         }
       ]
     },
     {
-      "name": "Him",
+      "name": "له",
       "url": "",
       "child": [
         {
-          "name": "Suits",
+          "name": "البدل",
           "url": ""
         },
         {
-          "name": "Health",
+          "name": "صحة",
           "url": ""
         },
         {
-          "name": "Men's Grooming",
+          "name": "صالون الحلاقة",
           "url": ""
         },
         {
-          "name": "Fitness",
+          "name": "اللياقة البدنية",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "The Wedding",
+      "name": "الزفاف",
       "url": "",
       "child": [
         {
-          "name": "Venues",
+          "name": "الأماكن",
           "url": ""
         },
         {
-          "name": "Outdoor Wedding Venues",
+          "name": "قاعات أفراح خارجية",
           "url": ""
         },
         {
-          "name": "Videographers",
+          "name": "مصوري الفيديو",
           "url": ""
         },
         {
-          "name": "Photographers",
+          "name": "المصورين",
           "url": ""
         },
         {
-          "name": "DJs",
+          "name": "دي جي",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Gallery",
+      "name": "المعرض",
       "url": "",
       "child": [
         {
-          "name": "Wedding Ideas",
+          "name": "أفكار الزفاف",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Ideas & More",
+      "name": "أفكار والمزيد",
       "url": "",
       "child": [
         {
-          "name": "Tips & Etiquette",
+          "name": "نصائح وآداب",
           "url": ""
         },
         {
-          "name": "Wedding Of The Week",
+          "name": "زفاف الأسبوع",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
@@ -155,22 +155,22 @@
   ],
   "actions": [
     {
-      "title": "360 Planner",
+      "title": "360 بلانر",
       "url": "",
       "icon": "sl sl-icon-magic-wand"
     },
     {
-      "title": "My Account",
+      "title": "حسابي",
       "url": "",
       "icon": "sl sl-icon-settings"
     },
     {
-      "title": "My bookmarks",
+      "title": "المفضلة لدي",
       "url": "",
       "icon": "sl sl-icon-heart"
     },
     {
-      "title": "Messages",
+      "title": "الرسائل",
       "url": "",
       "icon": "sl sl-icon-envelope-open"
     },
