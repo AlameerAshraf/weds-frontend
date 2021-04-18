@@ -10604,7 +10604,7 @@ body .notification strong {
 .notification.notice .close {
   padding: 0px 9px;
   position: absolute;
-  right: 0;
+  left: 43px;
   top: 22px;
   display: block;
   height: 8px;
