@@ -10,6 +10,7 @@ export class constants {
       HOME_LAYOUT: "home",
       LOGIN: "login",
       HEADER: "menu-items",
+      OVERVIEW: "overview",
       USER_DASHBOARD: "user-profile-nav",
       ADMIN_DASHBOARD: "admin-profile-nav",
       VENDOR_DASHBOARD: "vendor-profile-nav",
