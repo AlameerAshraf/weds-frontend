@@ -19,26 +19,26 @@
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
             <label class="margin-top-0">Title English</label>
-            <input value="Tom Perrin" type="text">
+            <input value="Tom Perrin" type="text" [(ngModel)] = "post.titleEn" placeholder="Title in English">
 
             <label>Subtitle English</label>
-            <input value="Tom Perrin" type="text">
+            <input value="Tom Perrin" type="text" [(ngModel)] = "post.subtitleEn" placeholder="Subtitle in English">
 
             <label>Meta Description English</label>
-            <textarea value="" type="text" cols="1" rows="0"></textarea>
+            <textarea value="" type="text" cols="1" rows="0" [(ngModel)] = "post.metaDescriptionEn" placeholder="Meta Description in English"></textarea>
           </div>
         </div>
 
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
             <label class="margin-top-0">Title Arabic</label>
-            <input value="Tom Perrin" type="text">
+            <input value="Tom Perrin" type="text" [(ngModel)] = "post.titleAr" placeholder="Title in Arabic" >
 
             <label>Subtitle Arabic</label>
-            <input value="Tom Perrin" type="text">
+            <input value="Tom Perrin" type="text" [(ngModel)] = "post.subtitleAr" placeholder="Subtitle in Arabic">
 
             <label>Meta Description Arabic</label>
-            <textarea value="" type="text" cols="2" rows="1"></textarea>
+            <textarea value="" type="text" cols="2" rows="1" [(ngModel)] = "post.metaDescriptionAr" placeholder="Meta Description in Arabic"s></textarea>
           </div>
         </div>
 
@@ -59,7 +59,8 @@
               <div class="my-profile">
                 <label class="margin-top-0">English Content</label>
               </div>
-              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="htmlEnglishContent" [init]="tinymceInit">
+              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentAr"
+                [init]="tinymceInit">
               </editor>
             </div>
 
@@ -67,7 +68,8 @@
               <div class="my-profile">
                 <label class="margin-top-0">Arabic Content</label>
               </div>
-              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="htmlArabicContent" [init]="tinymceInit">
+              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentEn"
+                [init]="tinymceInit">
               </editor>
             </div>
           </div>
@@ -87,7 +89,11 @@
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
             <label class="margin-top-0">Tags English</label>
-            <input value="Tom Perrin" type="text">
+            <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+              <option *ngFor="let tag of tagsEnglish" [value]="tag._id">
+                {{ tag.name }}
+              </option>
+            </select>
 
             <label>Category</label>
             <select class="chosen-select-no-single">
@@ -107,13 +113,17 @@
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
             <label class="margin-top-0">Tags Arabic</label>
-            <input value="Tom Perrin" type="text">
+            <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+              <option *ngFor="let tag of tagsArabic" [value]="tag._id">
+                {{ tag.name }}
+              </option>
+            </select>
 
-            <label>Reading Time</label>
-            <input value="Tom Perrin" type="text">
+            <label>Reading Time In Mins</label>
+            <input value="5 Mins" type="number" [(ngModel)]="post.readingTime">
 
             <label>Publish Secheduled At</label>
-            <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+            <input type="date" placeholder="Secheduled At">
           </div>
         </div>
 
@@ -140,22 +150,32 @@
           <div class="row col-lg-3 col-md-3">
             <div class="my-profile">
               <label class="margin-top-0">Select a featured image</label>
-              <a class="button" (click) ="getImage()" id="photoCliker">
-                Upload Cover Photo
+              <a class="button" [ngClass]= "{ 'pending' : post.featuredImage == '' , 'success' : post.featuredImage != '' }"
+                (click) ="getImage()" id="photoCliker">
+                <span *ngIf="post.featuredImage == ''">Upload Cover Photo</span>
+                <span *ngIf="post.featuredImage !== ''">
+                  <i class="sl sl-icon-check"></i>
+                  Cover photo uploaded
+                </span>
               </a>
               <input style="display: none;" id="upImage" type="file" (change)="uploadCoverPhoto($event)">
 
 
               <label class="margin-top-10">Select a featured video</label>
-              <a class="button" (click) ="getVideo()" id="videoClicker">
-                Upload Cover Photo
+              <a class="button" [ngClass]= "{ 'pending' : post.featuredVideo == '' , 'success' : post.featuredVideo != '' }"
+                (click) ="getVideo()" id="videoClicker">
+                <span *ngIf="post.featuredVideo == ''">Upload video</span>
+                <span *ngIf="post.featuredVideo !== ''">
+                  <i class="sl sl-icon-check"></i>
+                  Video uploaded
+                </span>
               </a>
               <input style="display: none;" id="upVideo" type="file" (change)="uploadVideo($event)">
             </div>
           </div>
 
           <div class="row col-lg-9 col-md-9">
-            <ng-container *ngIf="images.length == 0">
+            <ng-container *ngIf="post.images.length == 0">
               <div class="col-lg-3"></div>
               <div class="col-lg-3" align="center">
                 <img src="assets/images/errors/nothing-found.png">
@@ -168,26 +188,25 @@
               <div class="col-lg-3"></div>
             </ng-container>
 
-            <ng-container *ngIf="images.length > 0">
+            <ng-container *ngIf="post.images.length > 0">
               <p style="cursor: pointer;" (click)="addImage()">
                 <i class="sl sl-icon-camera"></i>
                 Attach an image
               </p>
-              <ng-container *ngFor="let image of images">
+              <ng-container *ngFor="let image of post.images">
                 <div class="col-md-3">
                   <div class="edit-profile-photo" style="margin-bottom: 10px;">
-                    <img class="anImage"
-                      [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource" alt="">
+                    <img class="anImage" [src]="image.url" alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
-                        <span><i class="fa fa-upload"></i> Cover Photo</span>
+                        <span><i class="fa fa-upload"></i> Upload Photo</span>
                         <input type="file" class="upload" />
                       </div>
                     </div>
                   </div>
                   <div>
-                    <input type="text" placeholder="English Desc" style="margin-bottom: 2px;">
-                    <input type="text" placeholder="Arabic Desc" style="margin-bottom: 5px;">
+                    <input type="text" placeholder="Arabic Desc" style="margin-bottom: 2px;" [(ngModel)]="image.arabicDesc">
+                    <input type="text" placeholder="English Desc" style="margin-bottom: 5px;" [(ngModel)]="image.englishDesc">
                   </div>
                 </div>
               </ng-container>
@@ -204,5 +223,5 @@
 
 
 <div align="right">
-  <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
+  <a class="button preview" (click)="createPost()">Save Changes <i class="sl sl-icon-check"></i></a>
 </div>
