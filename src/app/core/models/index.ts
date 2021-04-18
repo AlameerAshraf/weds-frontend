@@ -11,3 +11,4 @@ export * from './offer';
 export * from './vendor';
 export * from './user';
 export * from './wedding-website';
+export * from './post';
