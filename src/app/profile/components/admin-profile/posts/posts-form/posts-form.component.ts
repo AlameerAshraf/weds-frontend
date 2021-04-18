@@ -10,52 +10,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./posts-form.component.scss']
 })
 export class PostsFormComponent implements OnInit {
-  htmlContent;
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-      spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: '0',
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: 'Enter text here...',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        {class: 'arial', name: 'Arial'},
-        {class: 'times-new-roman', name: 'Times New Roman'},
-        {class: 'calibri', name: 'Calibri'},
-        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-      ],
-      customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: false,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
-};
+  images: any[] = []
+
+
+  htmlEnglishContent: any = "";
+  htmlArabicContent: any = "";
 
   coverPhotoSource= "";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
@@ -65,7 +24,7 @@ export class PostsFormComponent implements OnInit {
   }
 
   view(){
-    console.log(this.htmlContent)
+    console.log(this.htmlEnglishContent)
   }
 
   navigateToPosts(){
@@ -82,4 +41,51 @@ export class PostsFormComponent implements OnInit {
     this.router.navigateByUrl('/profile/en/admin/posts');
   };
 
+  tinymceInit = {
+    height : "300",
+    plugins : [
+      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+      "searchreplace visualblocks visualchars code fullscreen",
+      "insertdatetime media nonbreaking save table contextmenu directionality",
+      "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar : 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent ',
+    image_advtab : false,
+    images_upload_handler: this.example_image_upload_handler,
+  }
+
+  example_image_upload_handler(blobInfo, success, failure, progress){
+    console.log('file', blobInfo.blob(), blobInfo.filename())
+  }
+
+
+  //#region Helper Methods ..
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  };
+
+  getImage() {
+    document.getElementById("upImage").click();
+  };
+
+  getVideo() {
+    document.getElementById("upVideo").click();
+  };
+
+  uploadCoverPhoto(e: any) {
+    const imageFile = e.target.files[0]
+    var fileName = imageFile.name.split("\\");
+    document.getElementById("photoCliker").innerHTML = `Cover Photo is: ${fileName[fileName.length - 1]}`;
+  };
+
+  uploadVideo(e: any) {
+    const imageFile = e.target.files[0]
+    var fileName = imageFile.name.split("\\");
+    document.getElementById("videoClicker").innerHTML = `Uploaded video is: ${fileName[fileName.length - 1]}`;
+  };
+
+  addImage(){
+    this.images.push("sd")
+  };
+  //#endregion
 }
