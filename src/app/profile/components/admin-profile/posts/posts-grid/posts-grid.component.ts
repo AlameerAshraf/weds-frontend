@@ -59,8 +59,8 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
   };
 
-  navigateToCreateNewTheme() {
-    this.router.navigate(['profile/en/admin/themes-action/new']);
+  navigateToCreateNewPost() {
+    this.router.navigate(['profile/en/admin/posts-action/new']);
   }
 
 
