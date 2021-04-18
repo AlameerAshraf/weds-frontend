@@ -1,72 +1,64 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit, ElementRef, Inject } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { post , LookupsService, responseModel, urls, constants , httpService } from 'src/app/core';
+import { DOCUMENT } from '@angular/common';
+declare var $;
 
 @Component({
   selector: 'app-posts-form',
   templateUrl: './posts-form.component.html',
   styleUrls: ['./posts-form.component.scss']
 })
-export class PostsFormComponent implements OnInit {
-  htmlContent;
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-      spellcheck: true,
-      height: 'auto',
-      minHeight: '0',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: '0',
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: 'Enter text here...',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        {class: 'arial', name: 'Arial'},
-        {class: 'times-new-roman', name: 'Times New Roman'},
-        {class: 'calibri', name: 'Calibri'},
-        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-      ],
-      customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
+export class PostsFormComponent implements OnInit, AfterViewInit {
+  that = this;
+  htmlEnglishContent: any = "";
+  htmlArabicContent: any = "";
+
+  post: post = new post();
+
+  tinymceInit = {
+    height : "400",
+    plugins : [
+      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+      "searchreplace visualblocks visualchars code fullscreen",
+      "insertdatetime media nonbreaking save table directionality",
+      "emoticons template paste textpattern"
     ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: false,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
-};
+    toolbar : 'formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | image emoticons',
+    image_advtab : false,
+    images_upload_handler: this.tiny_image_upload_handler.bind(this),
+  };
 
-  coverPhotoSource= "";
-  constructor(private spinner: NgxSpinnerService , private router: Router ,
-    private toastr: ToastrService) { }
+  tagsEnglish: any;
+  tagsArabic: any;
+  currentUserEmail: string;
+  constructor(private spinner: NgxSpinnerService ,private router: Router,
+    private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
+    private elementRef: ElementRef, private lookupsService: LookupsService,
+    private http: httpService) {
+      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+    }
 
-  ngOnInit() {
+
+  async ngOnInit() {
+    this.spinner.show();
+    await this.getLookups();
+    this.spinner.hide();
+
+
+    this.loadScripts();
+    this.documentSelectors();
   }
 
   view(){
-    console.log(this.htmlContent)
-  }
+    console.log(this.htmlEnglishContent)
+  };
+
+  createPost(){
+    console.log(this.post)
+  };
 
   navigateToPosts(){
     this.spinner.show();
@@ -82,4 +74,111 @@ export class PostsFormComponent implements OnInit {
     this.router.navigateByUrl('/profile/en/admin/posts');
   };
 
+
+  async getLookups(){
+    let allTags = (await this.lookupsService.getTags()) as responseModel;
+    this.tagsArabic = allTags.data.filter((tag: any) => {
+      return tag.langauge == "Ar";
+    });
+
+    this.tagsEnglish = allTags.data.filter((tag: any) => {
+      return tag.langauge == "En";
+    });
+  };
+
+
+
+  tiny_image_upload_handler(blobInfo, success, failure, progress) {
+    const imageFile = blobInfo.blob();
+    this.uploadPhoto(imageFile , success , failure);
+  };
+
+  uploadPhoto(file , success, failuer){
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("targetEntity", "POSTS");
+    formData.append("isSlefAssigned", "false");
+    formData.append("targetUserEmail", this.currentUserEmail);
+
+    let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_ADMINS}`;
+    this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.spinner.hide();
+        success(response.data)
+      } else {
+        this.spinner.hide();
+        failuer(response.error);
+      }
+    });
+  };
+
+
+  //#region Helper Methods ..
+  documentSelectors(){
+    $("#tagsAr").change({ angularThis: this.that } ,function(e, params){
+      e.data.angularThis.post.tagsAr = $("#tagsAr").chosen().val();
+    });
+
+    $("#tagsEn").change({ angularThis: this.that } ,function(e, params){
+      e.data.angularThis.post.tagsEn = $("#tagsEn").chosen().val();
+    });
+  };
+
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  };
+
+  getImage() {
+    document.getElementById("upImage").click();
+  };
+
+  getVideo() {
+    document.getElementById("upVideo").click();
+  };
+
+  uploadCoverPhoto(e: any) {
+    this.spinner.show();
+    const imageFile = e.target.files[0]
+    this.uploadPhoto(imageFile , (url: any) =>{
+      this.spinner.hide();
+      this.post.featuredImage = url;
+    } , (err) => {
+      this.spinner.hide();
+      this.post.featuredImage = "";
+    })
+  };
+
+  uploadVideo(e: any) {
+    this.spinner.show();
+    const imageFile = e.target.files[0];
+    this.uploadPhoto(imageFile , (url: any) =>{
+      this.spinner.hide();
+      this.post.featuredVideo = url;
+    } , (err) => {
+      this.spinner.hide();
+      this.post.featuredVideo = "";
+    })
+  };
+
+  addImage(){
+    this.post.images.push({ url: "" , arabicDesc: "ar" , englishDesc: "en" })
+  };
+  //#endregion
+
+  //#region Scripts Helpers
+  ngAfterViewInit(): void {
+    this.loadScripts()
+  };
+
+  loadScripts(){
+    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js' , 'assets/scripts/dropzone.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  }
+  //#endregion
 }

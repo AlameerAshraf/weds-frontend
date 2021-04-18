@@ -1,3 +1,4 @@
+import { httpService } from 'src/app/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { MapsAPILoader } from '@agm/core';
@@ -9,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { vendor, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
 
 declare const google: any
-declare var $
+declare var $;
 
 @Component({
   selector: 'app-vendor-profile-details',
@@ -151,6 +152,8 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.loadVendorDropdowns();
 
     this.initVendorView();
+    this.getThings();
+
     this.loadScripts();
     this.documentSelectors();
   };
@@ -202,6 +205,17 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
     }
   };
+  getThings(){
+    this.http.Get("https://jsonplaceholder.typicode.com/todos" , {}).subscribe((res) => {
+      this.listOfThings =  res as any;
+
+    })
+  }
+
+  // Editors as advanced descriptions from posts page.
+  // Add multi selectors for tags ar, en
+  // Load all tags bind to multi selector.
+  //
 
   documentSelectors() {
     $("#tagsAr").change({ angularThis: this.that }, function (e, params) {

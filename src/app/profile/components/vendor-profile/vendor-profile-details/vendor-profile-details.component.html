@@ -51,7 +51,7 @@
                         <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
                             <option disabled></option>
                             <option *ngFor="let tagEn of tagsEn"  [value]="tagEn._id">{{tagEn.name}}</option>
-                          </select>                        
+                          </select>
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@
                                 <option [selected] = "vendor.area.includes(area._id)" [value]="area._id">{{ area.nameEn }}</option>
                             </ng-container>
                           </select>
-                        
+
                         <label>Name Arabic</label>
                         <input value="توم " type="text" placeholder="User Name" [(ngModel)]="vendor.nameAr">
 
@@ -102,16 +102,10 @@
                         <label>Tags Arabic List </label>
                         <!-- <input type="text" placeholder="tags arabic"> -->
                         <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-                            <option *ngFor="let tagAr of tagsAr">
-                              {{ tagAr.name }}
-                            </option>
-                          </select>
-                        <!--<select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-                            <option label="Select Tag">Select Area</option>
-                            <ng-container  *ngFor="let tagAr of tagsAr">
-                                <option>{{ tagAr.name }}</option>
-                            </ng-container>
-                          </select> -->
+                          <option *ngFor="let thing of listOfThings">
+                            {{ thing.title }}
+                          </option>
+                        </select>
 
                     </div>
                 </div>
