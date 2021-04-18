@@ -24,25 +24,34 @@
                     <div class="my-profile">
 
                         <label class="margin-top-0">User Name</label>
-                        <input value="Tom Perrin" type="text">
+                        <input value="Tom Perrin" type="text" placeholder="User Name" [(ngModel)]="vendor.nameEn">
 
-                        <label>Name</label>
-                        <input value="Tom Perrin" type="text">
+                        <label>Name English</label>
+                        <input value="Tom Perrin" type="text" placeholder="User Name" [(ngModel)]="vendor.nameEn">
 
-                        <label>Description</label>
-                        <textarea value="" type="text"></textarea>
+                        <label>Description English</label>
+                        <textarea value="" type="text" placeholder="User Name" [(ngModel)]="vendor.descriptionEn"></textarea>
 
-                        <label>Short Description</label>
-                        <input type="text" value="">
+                        <label>Advanced Description English</label>
+                        <div style="background-color: white; font-size: 25px !important;">
+                            <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
+                                [(ngModel)]="htmlContentEnglish"></angular-editor>
+                        </div>
+
+                        <label>Short Description English</label>
+                        <input type="text" value="" placeholder="User Name" [(ngModel)]="vendor.shortDescriptionEn">
 
                         <label>Phone</label>
-                        <input value="(123) 123-456" type="text">
+                        <input value="(123) 123-456" type="text" placeholder="User Name" [(ngModel)]="vendor.nameEn">
 
                         <label>Website Url</label>
-                        <input value="www.google.com" type="text">
+                        <input value="www.google.com" type="text" placeholder="User Name" [(ngModel)]="vendor.websiteURL">
 
                         <label>Tags English List</label>
-                        <input type="text" placeholder="tags english">
+                        <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                            <option disabled></option>
+                            <option *ngFor="let tagEn of tagsEn"  [value]="tagEn._id">{{tagEn.name}}</option>
+                          </select>                        
                     </div>
                 </div>
 
@@ -51,44 +60,53 @@
 
                     <div class="my-profile">
                         <label class="margin-top-0">Area</label>
-                        <select class="chosen-select-no-single">
-                            <option label="blank">Area</option>
-                            <option>New York</option>
-                            <option>Los Angeles</option>
-                        </select>
-
+                        <select id="areas" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                            <option label="Select Area">Select Area</option>
+                            <ng-container  *ngFor="let area of areas">
+                                <option [selected] = "vendor.area.includes(area._id)" [value]="area._id">{{ area.nameEn }}</option>
+                            </ng-container>
+                          </select>
+                        
                         <label>Name Arabic</label>
-                        <input value="توم " type="text">
+                        <input value="توم " type="text" placeholder="User Name" [(ngModel)]="vendor.nameAr">
 
                         <label>Description Arabic</label>
-                        <textarea value="" type="text"></textarea>
+                        <textarea value="" type="text" placeholder="User Name" [(ngModel)]="vendor.descriptionAr"></textarea>
+
+                        <label>Advanced Description Arabic</label>
+                        <div style="background-color: white; font-size: 25px !important;">
+                            <angular-editor id="editor" [placeholder]="'Enter text here...'" [config]="editorConfig"
+                                [(ngModel)]="htmlContentArabic"></angular-editor>
+                        </div>
 
                         <label>Short Description Arabic</label>
-                        <input type="text" value="">
+                        <input type="text" value="" placeholder="User Name" [(ngModel)]="vendor.shortDescriptionAr">
 
                         <label>Category</label>
-                        <select class="chosen-select-no-single">
-                            <option label="blank">Category</option>
-                            <option>New York</option>
-                            <option>Los Angeles</option>
+                        <select id="categories" class="chosen-select-no-single">
+                            <option label="Select Category">Select Category</option>
+                            <ng-container  *ngFor="let category of categories">
+                            <option [selected] = "category._id === vendor.category" [value]="category._id">{{ category.nameEn }}</option>
+                        </ng-container>
                         </select>
 
                         <label>Price Range</label>
                         <select class="chosen-select-no-single">
-                            <option label="blank">Price</option>
-                            <option>New York</option>
-                            <option>Los Angeles</option>
+                            <option label="Select Price">Select Price </option>
+                            <ng-container  *ngFor="let priceRange of priceRanges">
+                            <option [selected] = "priceRange.price_range === vendor.priceRange" [value]="priceRange.price_range">{{ priceRange.name }}</option>
+                        </ng-container>
                         </select>
 
 
                         <label>Tags Arabic List </label>
                         <!-- <input type="text" placeholder="tags arabic"> -->
                         <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-                          <option>Item 1</option>
-                          <option selected = "true">Item 2</option>
-                          <option>Item 3</option>
-                          <option>Item 4</option>
-                        </select>
+                            <option label="Select Tag">Select Area</option>
+                            <ng-container  *ngFor="let tagAr of tagsAr">
+                                <option>{{ tagAr.name }}</option>
+                            </ng-container>
+                          </select> 
 
                     </div>
                 </div>
@@ -118,9 +136,9 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <label>Guest Count </label>
-                                <input type="text" placeholder="Address">
+                                <input type="text" placeholder="Address" placeholder="User Name" [(ngModel)]="vendor.location.guestCount">
                                 <textarea cols="40" rows="2"
-                                    placeholder="Your Detailed Address, write it or let us!"></textarea>
+                                    placeholder="Your Detailed Address, write it or let us!" [(ngModel)]="vendor.location.typedAddress"></textarea>
                             </div>
 
                             <div class="col-md-7">
@@ -201,26 +219,26 @@
                     <!-- Phone -->
                     <div class="col-md-3">
                         <h5 class="fb-input"><i class="fa fa-facebook-square"></i> Facebook </h5>
-                        <input type="text" placeholder="https://www.facebook.com/">
+                        <input type="text" placeholder="https://www.facebook.com/"  [(ngModel)]="facebookUrl">
                     </div>
 
                     <!-- Website -->
                     <div class="col-md-3">
                         <h5 class="twitter-input"><i class="fa fa-twitter"></i> Twitter </h5>
-                        <input type="text" placeholder="https://www.twitter.com/">
+                        <input type="text" placeholder="https://www.twitter.com/" [(ngModel)]="twitterUrl">
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-md-3">
                         <h5 class="gplus-input" style="color: rgb(83, 14, 148);"><i class="fa fa-instagram"></i> Instagram
                         </h5>
-                        <input type="text" placeholder="https://instagram.com">
+                        <input type="text" placeholder="https://instagram.com" [(ngModel)]="instagramUrl">
                     </div>
 
                     <div class="col-md-3">
                         <h5 class="gplus-input" ><i class="fa fa-pinterest"></i> Pinterest
                         </h5>
-                        <input type="text" placeholder="https://pinterest.com">
+                        <input type="text" placeholder="https://pinterest.com" [(ngModel)]="pinterestUrl">
                     </div>
 
                 </div>
