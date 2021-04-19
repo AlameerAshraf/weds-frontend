@@ -1,4 +1,9 @@
 {
   "MANAGE_WEBSITE_DATA": "Manage & control website default data",
-  "CATEGORIES": "Categories"
+  "CATEGORIES": "Categories",
+  "AREAS": "Areas",
+  "THEMES": "Themes",
+  "TAGS": "Tags",
+  "OFFERS": "Offers",
+  "POSTS": "Posts"
 }
