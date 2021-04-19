@@ -1,35 +1,35 @@
 {
   "menu": [
     {
-      "name": "360 Planner",
+      "name": "أجندة الفرح",
       "url": "",
       "child": [
         {
-          "name": "Check List",
+          "name": "جدول المهام",
           "url": ""
         },
         {
-          "name": "Budgeter",
+          "name": "تكاليف الفرح",
           "url": ""
         },
         {
-          "name": "Registry List",
+          "name": "هدايا الفرح",
           "url": ""
         },
         {
-          "name": "Guest List",
+          "name": "قائمة الضيوف",
           "url": ""
         },
         {
-          "name": "Wedding Website",
+          "name": "موقع الزفاف",
           "url": ""
         },
         {
-          "name": "Couple Website",
+          "name": "موقع الزوجين",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
@@ -65,89 +65,89 @@
       ]
     },
     {
-      "name": "Him",
+      "name": "لها",
       "url": "",
       "child": [
         {
-          "name": "Suits",
+          "name": "المصممين",
           "url": ""
         },
         {
-          "name": "Health",
+          "name": "بوكية الزفاف",
           "url": ""
         },
         {
-          "name": "Men's Grooming",
+          "name": "فساتين زفاف",
           "url": ""
         },
         {
-          "name": "Fitness",
+          "name": "خواتم",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "ميكاب ارتيست",
           "url": ""
         }
       ]
     },
     {
-      "name": "The Wedding",
+      "name": "الزفاف",
       "url": "",
       "child": [
         {
-          "name": "Venues",
+          "name": "الأماكن",
           "url": ""
         },
         {
-          "name": "Outdoor Wedding Venues",
+          "name": "قاعات أفراح خارجية",
           "url": ""
         },
         {
-          "name": "Videographers",
+          "name": "مصوري الفيديو",
           "url": ""
         },
         {
-          "name": "Photographers",
+          "name": "المصورين",
           "url": ""
         },
         {
-          "name": "DJs",
+          "name": "دي جي",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Gallery",
+      "name": "الاستديو",
       "url": "",
       "child": [
         {
-          "name": "Wedding Ideas",
+          "name": "أفكار الزفاف",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Ideas & More",
+      "name": "أفكار والمزيد",
       "url": "",
       "child": [
         {
-          "name": "Tips & Etiquette",
+          "name": "نصائح وآداب",
           "url": ""
         },
         {
-          "name": "Wedding Of The Week",
+          "name": "زفاف الأسبوع",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
@@ -155,13 +155,13 @@
   ],
   "actions": [
     {
-      "title": "My Account",
-      "url": "/profile/en/vendor/overview",
+      "title": "حسابي",
+      "url": "/profile/ar/vendor/overview",
       "icon": "sl sl-icon-settings"
     },
     {
-      "title": "Messages",
-      "url": "/profile/en/vendor/messages",
+      "title": "رسائل",
+      "url": "/profile/ar/vendor/messages",
       "icon": "sl sl-icon-envelope-open"
     },
     {
@@ -171,29 +171,29 @@
       "hasImage": "assets/images/defaults/flags/en.png"
     },
     {
-      "title": "Logout",
-      "url": "/profile/en/vendor/checklist",
+      "title": "تسجيل خروج",
+      "url": "/profile/ar/vendor/checklist",
       "icon": "sl sl-icon-power"
     }
   ],
   "navigations": [
     {
-      "menuTitle": "My Dashboard",
+      "menuTitle": "لوحة التحكم",
       "childMenuItem": [
         {
-          "title": "Overview",
+          "title": "نظرة عامة",
           "icon": "sl sl-icon-rocket",
           "url": "overview",
           "child": []
         },
         {
-          "title": "Messages",
+          "title": "الرسائل",
           "icon": "sl sl-icon-envelope-open",
           "url": "messages",
           "child": []
         },
         {
-          "title": "Services",
+          "title": "الخدمات",
           "icon": "sl sl-icon-basket",
           "url": "my-services",
           "child": []
@@ -201,10 +201,10 @@
       ]
     },
     {
-      "menuTitle": "Account & Info",
+      "menuTitle": "معلومات الحساب",
       "childMenuItem": [
         {
-          "title": "Personal Details",
+          "title": "تفاصيل شخصية",
           "icon": "im im-icon-Male",
           "url": "my-info",
           "child": []

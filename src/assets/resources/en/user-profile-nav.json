@@ -1,5 +1,5 @@
 {
-  "menu" : [
+  "menu": [
     {
       "name": "360 Planner",
       "url": "",
@@ -153,131 +153,61 @@
       ]
     }
   ],
-  "actions" : [
+  "actions": [
     {
-      "title" : "360 Planner",
-      "url" : "/profile/en/user/checklist",
-      "icon" : "sl sl-icon-magic-wand"
-    },
-    {
-      "title" : "My Account",
-      "url" : "/profile/en/user/overview",
-      "icon" : "sl sl-icon-settings"
-    },
-    {
-      "title" : "My bookmarks",
-      "url" : "/profile/en/user/my-taste",
-      "icon" : "sl sl-icon-heart"
-    },
-    {
-      "title" : "Messages",
-      "url" : "/profile/en/user/messages",
-      "icon" : "sl sl-icon-envelope-open"
-    },
-    {
-      "title" : "English",
-      "url" : "",
-      "icon" : "",
-      "hasImage" : "assets/images/defaults/flags/en.png"
-    },
-    {
-      "title" : "Logout",
-      "url" : "/profile/en/user/checklist",
-      "icon" : "sl sl-icon-power"
+      "title": "Logout",
+      "url": "",
+      "icon": "sl sl-icon-power"
     }
   ],
-  "navigations" : [
+  "navigations": [
     {
-      "menuTitle" : "My Dashboard",
-      "childMenuItem" : [
+      "menuTitle": "My Dashboard",
+      "childMenuItem": [
         {
-          "title" : "Overview",
-          "icon" : "sl sl-icon-rocket",
-          "url" : "overview",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Messages",
-          "icon" : "sl sl-icon-envelope-open",
-          "url" : "messages",
-          "child" : [
-          ]
+          "title": "Overview",
+          "icon": "sl sl-icon-rocket",
+          "child": []
         }
       ]
     },
     {
-      "menuTitle" : "360Planner",
-      "childMenuItem" : [
+      "menuTitle": "360Planner",
+      "childMenuItem": [
         {
-          "title" : "Check List",
-          "icon" : "im im-icon-Check",
-          "url" : "checklist",
-          "child" : [
-
-          ]
+          "title": "Check List",
+          "icon": "sl sl-icon-rocket",
+          "child": []
         },
         {
-          "title" : "Budgeter",
-          "icon" : "im im-icon-Calculator-2",
-          "url" : "budgeter",
-          "child" : [
-
-          ]
+          "title": "Budgeter",
+          "icon": "",
+          "child": []
         },
         {
-          "title" : "Events & Guest List",
-          "icon" : "im im-icon-CD-2",
-          "url" : "events",
-          "child" : [
-
-          ]
+          "title": "Events & Guest List",
+          "icon": "",
+          "child": []
         },
         {
-          "title" : "Registery List",
-          "icon" : "im im-icon-Gift-Box",
-          "url" : "registery",
-          "child" : [
-
-          ]
+          "title": "Registry List",
+          "icon": "",
+          "child": []
         },
         {
-          "title" : "Wedding website",
-          "icon" : "im im-icon-Touch-Window",
-          "url" : "wedding-website",
-          "child" : [
-
-          ]
+          "title": "Wedding website",
+          "icon": "",
+          "child": []
         }
       ]
     },
     {
-      "menuTitle" : "Account & Info",
-      "childMenuItem" : [
+      "menuTitle": "My Messages",
+      "childMenuItem": [
         {
-          "title" : "Wedding Details",
-          "icon" : "im im-icon-Suit",
-          "url" : "wedding-info",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Personal Details",
-          "icon" : "im im-icon-Male",
-          "url" : "my-info",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Bookmarks & Loves",
-          "icon" : "im im-icon-Bookmark",
-          "url" : "my-taste",
-          "child" : [
-
-          ]
+          "title": "Messages",
+          "icon": "",
+          "child": []
         }
       ]
     }

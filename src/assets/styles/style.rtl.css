@@ -79,8 +79,7 @@
 @import url("bootstrap-grid.css"); /* Default Reset, Typography, Forms, Responsive Grid etc. */
 @import url("icons.css"); /* Webfont Icons: FontAwesome, Line, Simple Line */
 @import url("../plugins/revolutionslider.css"); /* Revolution Slider Style Sheets */
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:500,600,700");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap");
 
 /* ------------------------------------------------------------------- */
 /*  02. Layout Components
@@ -113,7 +112,7 @@ select {
   font-weight: 500;
   opacity: 1;
   border-radius: 3px;
-  text-align: left;
+  text-align: right;
 }
 
 input:-webkit-autofill:focus,
@@ -239,6 +238,7 @@ img {
 #logo {
   display: inline-block;
   margin-top: 3px;
+  float: left;
 }
 
 #logo img {
@@ -251,6 +251,7 @@ img {
 img.footer-logo {
   max-height: 38px;
   width: auto;
+  float: right;
 }
 
 #header {
@@ -311,13 +312,13 @@ header.fullwidth .container {
 }
 
 .left-side {
-  float: left;
+  float: right;
   width: 65%;
   display: inline-block;
 }
 
 .right-side {
-  float: right;
+  float: left;
   width: 35%;
   display: inline-block;
 }
@@ -339,15 +340,11 @@ header.fullwidth .container {
 
 #logo,
 #navigation {
-  float: left;
-}
-
-#logo {
-  margin-right: 50px;
+  float: right;
 }
 
 .header-widget {
-  text-align: right;
+  text-align: left;
 }
 
 /* ---------------------------------- */
@@ -476,7 +473,7 @@ header.fullwidth .container {
   font-size: 20px;
   content: "\f105";
   position: absolute;
-  left: 0;
+  left: 13rem;
   top: -2px;
   padding: 0 7px 0 0;
   color: #ccc;
@@ -491,6 +488,8 @@ header.fullwidth .container {
   padding: 40px 0;
   display: inline-block;
   width: 100%;
+  direction: rtl;
+  text-align: right;
 }
 
 #footer.alt .copyrights {
@@ -611,6 +610,7 @@ body #backtotop a {
 #navigation ul a {
   display: block;
   text-decoration: none;
+  text-align: right;
 }
 
 #navigation ul li {
@@ -1447,7 +1447,7 @@ li.mm-vertical.mm-opened > .mm-panel {
 }
 
 .mm-navbar .mm-btn:last-child {
-  text-align: right;
+  text-align: left;
   right: 0;
 }
 
@@ -1810,7 +1810,7 @@ em.mm-counter + a.mm-fullsubopen + span {
 .hamburger {
   padding: 0;
   top: 12px;
-  left: 13px;
+  left: -33px;
   transform: scale(0.67);
   -moz-transform: scale(0.7) translateY(4px);
   position: relative;
@@ -2250,6 +2250,7 @@ body .typed-cursor.typed-cursor--blink.typed-fade-out {
   color: #999;
   padding: 10px;
   background: #fff;
+  text-align: right;
 }
 
 .main-search-input-item.location a:hover {
@@ -2289,6 +2290,7 @@ body .typed-cursor.typed-cursor--blink.typed-fade-out {
 .gray-style.main-search-input input,
 .gray-style.main-search-input input:focus {
   background: #f7f7f7;
+  float: right;
 }
 
 .gray-style .main-search-input-item {
@@ -3172,7 +3174,8 @@ body .pac-container {
   border-top: none;
   box-sizing: content-box;
   margin-top: -2px;
-  font-family: "Raleway";
+  font-family: "Cairo", sans-serif;
+  text-align: right;
 }
 
 /* Autocomplete for homepage */
@@ -3220,6 +3223,7 @@ body .pac-container {
   .main-search-input-item,
   .main-search-input-item #autocomplete-input {
     padding: 0 15px;
+    padding-inline-start: 24px;
   }
 }
 
@@ -4980,8 +4984,7 @@ button.fs-map-btn.button {
 }
 
 .coupon-code {
-  font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  font-family: "Cairo", sans-serif;
   font-weight: 500;
   color: #fff;
   font-size: 18px;
@@ -5530,7 +5533,7 @@ a.button.add-review-btn i {
   display: inline-block;
   top: 50%;
   transform: translateY(-49%);
-  text-align: right;
+  text-align: left;
 }
 
 /* Hosted by widget */
@@ -6118,7 +6121,7 @@ a.mfp-gallery {
 }
 
 .booking-estimated-cost span {
-  text-align: right;
+  text-align: left;
   float: right;
   color: #66676b;
   font-size: 16px;
@@ -7137,7 +7140,7 @@ input#date-picker:hover {
 
 .daterangepicker .drp-buttons {
   clear: both;
-  text-align: right;
+  text-align: left;
   padding: 14px;
   min-height: 63px;
   display: block;
@@ -7348,7 +7351,7 @@ input#date-picker:hover {
   }
   .daterangepicker.rtl {
     direction: rtl;
-    text-align: right;
+    text-align: left;
   }
   .daterangepicker.rtl .drp-calendar.left {
     clear: right;
@@ -7372,7 +7375,7 @@ input#date-picker:hover {
   }
   .daterangepicker.rtl .ranges,
   .daterangepicker.rtl .drp-calendar {
-    text-align: right;
+    text-align: left;
     float: right;
   }
 }
@@ -9815,7 +9818,7 @@ table.basic-table {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: 14px;
-    text-align: right;
+    text-align: left;
   }
 
   table.basic-table td:before {
@@ -10071,7 +10074,7 @@ body .style-2 .trigger a {
 
 #posts-nav li.next-post {
   right: 0;
-  text-align: right;
+  text-align: left;
 }
 
 #posts-nav li.prev-post {
@@ -10542,6 +10545,8 @@ mark {
 
 .notification.error {
   background-color: #ffe9e9;
+  direction: rtl;
+  text-align: right;
 }
 .notification.error,
 .notification.error a,
@@ -10599,7 +10604,7 @@ body .notification strong {
 .notification.notice .close {
   padding: 0px 9px;
   position: absolute;
-  right: 0;
+  left: 43px;
   top: 22px;
   display: block;
   height: 8px;
@@ -12556,6 +12561,7 @@ body .notification strong {
 #top-bar ul.social-icons {
   margin: 0;
   padding: 0;
+  float: right;
 }
 
 .listing-share .social-icons li a,
@@ -13288,14 +13294,15 @@ span.like-icon {
 ------------------------------------- */
 .categories-boxes-container {
   width: calc(100% + 20px);
-  left: -20px;
+  right: -20px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  direction: rtl;
 }
 
 .category-small-box {
-  float: left;
+  float: right;
   background-color: #f2f2f2;
   border-radius: 4px;
   margin: 20px 0 0 20px;
@@ -13622,6 +13629,8 @@ span.like-icon {
   position: relative;
   display: block;
   padding: 10px 0 25px 0;
+  /* directi  on: rtl; */
+  text-align: right;
 }
 
 .messages-container-inner .messages-inbox ul::-webkit-scrollbar {
@@ -13677,8 +13686,9 @@ header.fullwidth.dashboard .container {
   padding: 40px 0;
   margin: 0;
   display: block;
-  text-align: left;
+  text-align: right;
   border: none;
+  direction: rtl;
 }
 
 .dashboard #logo a {
@@ -13739,8 +13749,9 @@ a.dashboard-responsive-nav-trigger {
 }
 
 .dashboard-nav ul li a i {
-  padding-right: 8px;
+  padding-left: 8px;
   width: 20px;
+  float: right;
 }
 
 .dashboard-nav ul li a:hover {
@@ -13863,6 +13874,8 @@ a.dashboard-responsive-nav-trigger {
   display: block;
   background-color: transparent;
   background: transparent;
+  direction: rtl;
+  text-align: right;
 }
 
 #dashboard #titlebar h2 {
@@ -13987,6 +14000,8 @@ a.dashboard-responsive-nav-trigger {
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   background-color: #fff;
+  text-align: right;
+  direction: rtl;
 }
 
 .messages-headline {
@@ -14065,13 +14080,13 @@ a.dashboard-responsive-nav-trigger {
 
 .messages-inbox .message-avatar {
   position: absolute;
-  left: 30px;
+  right: 30px;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .messages-inbox .message-by {
-  margin-left: 85px;
+  margin-right: 85px;
   font-size: 15px;
   color: #666;
 }
@@ -14086,10 +14101,12 @@ a.dashboard-responsive-nav-trigger {
 .message-by-headline h5,
 .message-by-headline span {
   display: inline-block;
+  direction: rtl;
+  /* text-align: right; */
 }
 
 .message-by-headline span {
-  float: right;
+  float: left;
   color: #888;
   font-size: 14px;
 }
@@ -14283,6 +14300,8 @@ a.dashboard-responsive-nav-trigger {
   margin: 30px 0 0 0;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
   border-radius: 4px;
+  direction: rtl;
+  text-align: right;
 }
 
 /* Button */
@@ -14343,7 +14362,7 @@ a.dashboard-responsive-nav-trigger {
 }*/
 
 .dashboard-list-box.with-icons ul li {
-  padding-left: 87px;
+  padding-right: 87px;
 }
 
 .dashboard-list-box ul li:last-child {
@@ -14370,7 +14389,7 @@ a.dashboard-responsive-nav-trigger {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 30px;
+  right: 30px;
 }
 
 .dashboard-list-box ul li:hover i.list-box-icon {
@@ -15616,7 +15635,7 @@ input[type="time"]::-webkit-clear-button {
 }
 
 .pricing-list-item td .fm-close {
-  text-align: right;
+  text-align: left;
 }
 
 .pricing-list-item td .fm-close a {
@@ -16893,7 +16912,7 @@ text-overflow: ellipsis; */
   font-weight: 500;
   color: #999;
   pointer-events: none;
-  text-align: right;
+  text-align: left;
 }
 
 #leaflet-geocode-cont ul li.powered-by-osm strong {
@@ -19522,11 +19541,13 @@ button,
 .map-box div,
 .numerical-rating .rating-counter,
 body .menu-responsive i.menu-trigger:after {
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  font-family: "Cairo", sans-serif;
   text-transform: none;
+  /* direction:rtl; */
 }
-
+.rtl {
+  direction: rtl;
+}
 /* Headlines */
 h1,
 h2,
@@ -20610,6 +20631,7 @@ h4 span.headline-detail {
     max-height: 0;
     padding: 0;
     transition: all 0.3s;
+    direction: rtl;
   }
 
   .dashboard-nav.active ul,
@@ -20652,6 +20674,7 @@ h4 span.headline-detail {
   }
   .main-search-inner {
     transform: translate(0, -51%);
+    direction: rtl;
   }
 
   /* Trigger */
