@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { constants, resources } from "src/app/core";
 import { environment } from "src/environments/environment";
 
@@ -12,13 +11,12 @@ export class OverviewComponent implements OnInit {
   lang: string;
   labels: any = {};
   confirmAccount: string;
-  constructor(private resources: resources, private route: ActivatedRoute) {
+  constructor(private resources: resources) {
     this.loadResources();
   }
 
   ngOnInit() {}
   formatRequiredFieldToHTML() {
-    debugger;
     const label = this.labels.EMAIL_SENT;
     const labelArr = label.split("-", 2);
     this.confirmAccount = `${labelArr[0] || ""} <strong class="text-maranth">${
@@ -27,7 +25,6 @@ export class OverviewComponent implements OnInit {
     //we've sent you an email confirmation <strong>Confirm your account</strong> now!</p>
   }
   async loadResources() {
-    debugger;
     let lang =
       window.location.href.toString().toLowerCase().indexOf("ar") > -1
         ? "ar"

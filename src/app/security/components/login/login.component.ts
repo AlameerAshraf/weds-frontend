@@ -1,14 +1,3 @@
-import {
-  httpService,
-  resources,
-  urls,
-  constants,
-  responseModel,
-  errorBuilder,
-  localStorageService,
-} from "./../../../core";
-import { helper } from "./helper/helper";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { DOCUMENT } from "@angular/common";
 import {
   AfterViewInit,
@@ -17,10 +6,20 @@ import {
   Inject,
   OnInit,
 } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
-import { Console } from "console";
+import {
+  constants,
+  errorBuilder,
+  httpService,
+  localStorageService,
+  resources,
+  responseModel,
+  urls,
+} from "./../../../core";
+import { helper } from "./helper/helper";
 
 @Component({
   selector: "app-login",
