@@ -1,1 +1,9 @@
-{ "MANAGE_WEBSITE_DATA": "التحكم في بيانات الموقع", "CATEGORIES": "الفئات" }
+{
+  "MANAGE_WEBSITE_DATA": "التحكم في بيانات الموقع",
+  "CATEGORIES": "الفئات",
+  "AREAS": "الاماكن",
+  "THEMES": "قوالب الموقع",
+  "TAGS": "العلامات",
+  "OFFERS": "العروض",
+  "POSTS": "المدونة"
+}
