@@ -1,7 +1,9 @@
 export class vendor {
     _id?: string;
+    username?: string = "";
     nameEn?: string = "";
     nameAr?: string = "";
+    phone?: string ="";
     priceRange?: string = "";
     shortDescriptionAr?: string = "";
     shortDescriptionEn?: string = "";
@@ -20,32 +22,16 @@ export class vendor {
         guestCount?: number
     };
     order?: number = 0;
-    arTags: [string];
-    enTags: [string];
-    gallery: [];
+    arTags: [];
+    enTags: [];
+    gallery: any[] = [];
     isFeatured?: Boolean = false;
     featuredImage?: string = "";
     featuredVideo?: string = "";
     numberOfBookmarks?: number = 0;
     numberOfLoves?: number = 0;
-    ranks: [
-        {
-            user?: string
-            criteria?: string
-            value?: number
-        }
-    ];
-    comments: [{
-        userEmail?: string
-        body?: string
-        likes?: number
-        date?: Date
-    }];
+    ranks: { user?: string, criteria?: string, value?: number }[] = [];
+    comments: { userEmail?: string, body?: string, likes?: number, date?: Date }[] = [];
     services: [];
-    social : [
-        {
-          source?: string
-          url ?: string
-        }
-      ];
+    social: { source?: string, url?: string }[] = [];
 };

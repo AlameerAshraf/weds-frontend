@@ -1,13 +1,11 @@
-import { httpService } from 'src/app/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { MapsAPILoader } from '@agm/core';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 //import { } from '@types/googlemaps';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Router, ActivatedRoute } from '@angular/router';
-import { vendor, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
 
 declare const google: any
 declare var $;
@@ -19,51 +17,6 @@ declare var $;
 })
 export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: 'auto',
-    minHeight: '0',
-    maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    placeholder: 'Enter text here...',
-    defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '',
-    fonts: [
-      { class: 'arial', name: 'Arial' },
-      { class: 'times-new-roman', name: 'Times New Roman' },
-      { class: 'calibri', name: 'Calibri' },
-      { class: 'comic-sans-ms', name: 'Comic Sans MS' }
-    ],
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    uploadUrl: 'v1/image',
-    uploadWithCredentials: false,
-    sanitize: false,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
-  };
 
   is = false;
   coverPhotoSource: any = '';
@@ -82,10 +35,9 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   facebookUrl;
   categories;
   areas;
-  category;
-  area;
   priceRanges = constants.PRICE_RANGE;
-  priceRange;
+  segments = constants.SEGMENTS;
+  tempAlbumFiles: any[] = [];
   that = this;
 
   @ViewChild('search', { static: true }) public searchElementRef: ElementRef;
@@ -100,6 +52,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   currentUserEmail: string;
   vendor: vendor = {
     featuredImage: "assets/images/defaults/wedding/cover-photo.png",
+    username: "",
     nameAr: "",
     nameEn: "",
     websiteURL: "",
@@ -125,12 +78,12 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     featuredVideo: "",
     arTags: [],
     enTags: [],
-    comments: [{}],
+    comments: [],
     services: [],
     area: [],
     gallery: [],
-    ranks: [{}],
-    social: [{}],
+    ranks: [],
+    social: [],
   };
 
 
@@ -138,7 +91,8 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService, @Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
     private http: httpService, private activatedRoute: ActivatedRoute,
-    private storage: localStorageService, private ngxSpinner: NgxSpinnerService) {
+    private storage: localStorageService, private ngxSpinner: NgxSpinnerService,
+    private lookupsService: LookupsService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
     this.activatedRoute.params.subscribe((params) => {
@@ -146,121 +100,89 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit() {
-
+  async ngOnInit() {
     this.mapsLoader();
-    this.loadVendorDropdowns();
-
+    await this.getLookups();
     this.initVendorView();
-    this.getThings();
-
     this.loadScripts();
     this.documentSelectors();
   };
 
-  loadVendorDropdowns() {
-    this.ngxSpinner.show();
-    let categories = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
-
-    this.http.Get(categories, {}).subscribe((response: responseModel) => {
-      if (!response.error) {
-        this.categories = response.data as vendor[];
-      } else {
-      }
+  async getLookups() {
+    let allTags = (await this.lookupsService.getTags()) as responseModel;
+    this.tagsAr = allTags.data.filter((tag: any) => {
+      return tag.langauge == "Ar";
     });
 
-    // let areas = `${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}`;
-
-    // this.http.Get(areas, {}).subscribe((response: responseModel) => {
-    //   if (!response.error) {
-    //     this.areas = response.data as vendor[];
-    //   } else {
-    //   }
-    // });
-
-    let tags = `${urls.GET_ALL_TAGS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(tags, {}).subscribe((response: responseModel) => {
-      if (!response.error) {
-        for (let i = 0; i < response.data.length; i++) {
-
-          if (response.data[i].langauge == "Ar")
-            this.tagsAr.push(response.data[i])
-          else
-            this.tagsEn.push(response.data[i])
-
-
-
-        }
-        console.log(this.tagsEn)
-        this.ngxSpinner.hide();
-      } else {
-        this.ngxSpinner.hide();
-      }
+    this.tagsEn = allTags.data.filter((tag: any) => {
+      return tag.langauge == "En";
     });
 
+    this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
+    this.areas = ((await this.lookupsService.getAreas()) as responseModel).data;
   };
+
 
   initVendorView() {
     if (this.editingMode == "update") {
       this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
     }
   };
-  getThings(){
-    this.http.Get("https://jsonplaceholder.typicode.com/todos" , {}).subscribe((res) => {
-      this.listOfThings =  res as any;
-
-    })
-  }
-
-  // Editors as advanced descriptions from posts page.
-  // Add multi selectors for tags ar, en
-  // Load all tags bind to multi selector.
-  //
 
   documentSelectors() {
     $("#tagsAr").change({ angularThis: this.that }, function (e, params) {
       var suggestedBudgetElement: any = document.getElementById("tagsAr");
 
-      e.data.angularThis.tagsAr = $("#tagsAr").chosen().val();
+      e.data.angularThis.vendor.arTags = $("#tagsAr").chosen().val();
     });
 
     $("#tagsEn").change({ angularThis: this.that }, function (e, params) {
       var suggestedBudgetElement: any = document.getElementById("tagsEn");
 
-      e.data.angularThis.tagsEn = $("#tagsEn").chosen().val();
+      e.data.angularThis.vendor.enTags = $("#tagsEn").chosen().val();
     });
 
     $("#priceRanges").change({ angularThis: this.that }, function (e, params) {
-      e.data.angularThis.priceRange = $("#priceRanges").chosen().val();
+      e.data.angularThis.vendor.priceRange = $("#priceRanges").chosen().val();
     });
+
     $("#areas").change({ angularThis: this.that }, function (e, params) {
-      e.data.angularThis.area = $("#areas").chosen().val();
+      e.data.angularThis.vendor.area = $("#areas").chosen().val();
     });
+
     $("#categories").change({ angularThis: this.that }, function (e, params) {
-      e.data.angularThis.category = $("#categories").chosen().val();
+      e.data.angularThis.vendor.category = $("#categories").chosen().val();
+    });
+
+    $("#segments").change({ angularThis: this.that }, function (e, params) {
+      e.data.angularThis.vendor.segment = $("#segments").chosen().val();
     });
   };
 
   createNewEntity() {
     this.ngxSpinner.show();
-    this.vendor.area = this.area;
-    this.vendor.priceRange = this.priceRange;
-    this.vendor.category = this.category;
-    this.vendor.area = this.area;
-    this.vendor.descriptionURLAr = this.htmlContentArabic;
-    this.vendor.descriptionURLEn = this.htmlContentEnglish;
-    this.vendor.arTags = this.tagsAr;
-    this.vendor.enTags = this.tagsEn;
     this.vendor.location.latitude = this.latitude.toString();
     this.vendor.location.longtitude = this.longitude.toString();
     if (this.facebookUrl != "")
-      this.vendor.social.push(this.facebookUrl);
+      this.vendor.social.push({
+        source: "facebook",
+        url: this.facebookUrl
+      });
     if (this.twitterUrl != "")
-      this.vendor.social.push(this.twitterUrl);
+      this.vendor.social.push({
+        source: "twitter",
+        url: this.twitterUrl
+      });
     if (this.instagramUrl != "")
-      this.vendor.social.push(this.instagramUrl);
+      this.vendor.social.push({
+        source: "instagram",
+        url: this.instagramUrl
+      });
     if (this.pinterestUrl != "")
-      this.vendor.social.push(this.pinterestUrl);
+      this.vendor.social.push({
+        source: "pinterest",
+        url: this.pinterestUrl
+      });
 
     let createURL = `${urls.CREATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`;
     this.http.Post(createURL, {}, { "vendor": this.vendor }).subscribe((response: responseModel) => {
@@ -277,25 +199,28 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
   updateExistingEntity() {
     this.ngxSpinner.show();
-
-    this.vendor.area = this.area;
-    this.vendor.priceRange = this.priceRange;
-    this.vendor.category = this.category;
-    this.vendor.area = this.area;
-    this.vendor.descriptionURLAr = this.htmlContentArabic;
-    this.vendor.descriptionURLEn = this.htmlContentEnglish;
-    this.vendor.arTags = this.tagsAr;
-    this.vendor.enTags = this.tagsEn;
     this.vendor.location.latitude = this.latitude.toString();
     this.vendor.location.longtitude = this.longitude.toString();
     if (this.facebookUrl != "")
-      this.vendor.social.push(this.facebookUrl);
+      this.vendor.social.push({
+        source: "facebook",
+        url: this.facebookUrl
+      });
     if (this.twitterUrl != "")
-      this.vendor.social.push(this.twitterUrl);
+      this.vendor.social.push({
+        source: "twitter",
+        url: this.twitterUrl
+      });
     if (this.instagramUrl != "")
-      this.vendor.social.push(this.instagramUrl);
+      this.vendor.social.push({
+        source: "instagram",
+        url: this.instagramUrl
+      });
     if (this.pinterestUrl != "")
-      this.vendor.social.push(this.pinterestUrl);
+      this.vendor.social.push({
+        source: "pinterest",
+        url: this.pinterestUrl
+      });
 
     let updateURL = `${urls.UPDATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(updateURL, {}, { "vendor": this.vendor }).subscribe((response: responseModel) => {
@@ -318,7 +243,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
       formData.append("image", imageFile);
       formData.append("targetEntity", constants.S3_CONTAINERS["VENDOR"]);
-      formData.append("isSlefAssigned", "false");
+      formData.append("isSlefAssigned", "true");
       formData.append("targetUserEmail", this.currentUserEmail);
 
       let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
@@ -367,14 +292,36 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
   setCurrentLocation() {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
+      navigator.geolocation.getCurrentPosition((locationInfo) => {
+        if (this.vendor.location.latitude != undefined && this.vendor.location.longtitude != undefined) {
+          this.latitude = parseFloat(this.vendor.location.latitude);
+          this.longitude = parseFloat(this.vendor.location.longtitude);
+        }
+        else {
+          this.latitude = locationInfo.coords.latitude;
+          this.longitude = locationInfo.coords.longitude;
+        }
+
         this.zoom = 12;
         this.getAddress(this.latitude, this.longitude);
-      });
+      }, (err) => {
+        console.log(err);
+
+        this.latitude = 30.0444;
+        this.longitude = 31.2357;
+
+        this.zoom = 12;
+        this.getAddress(this.latitude, this.longitude);
+      })
+    } else {
+      this.latitude = 30.0444;
+      this.longitude = 31.2357;
+
+      this.zoom = 12;
+      this.getAddress(this.latitude, this.longitude);
     }
   };
+
 
   markerDragEnd(e: any) {
     this.latitude = e.coords.lat;
@@ -387,7 +334,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 12;
-          this.address = results[0].formatted_address;
+          this.vendor.location.typedAddress = results[0].formatted_address;
         } else {
           window.alert('No results found');
         }
@@ -419,4 +366,97 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   };
 
   //#endregion
+
+
+  //#region  DropZone Engine Helper Function..
+  onSelect(event: any) {
+    for (const key in event.addedFiles) {
+      this.ngxSpinner.show();
+      const formData = new FormData();
+      const imageFile = event.addedFiles[key];
+
+      formData.append("image", imageFile);
+      formData.append("targetEntity", constants.S3_CONTAINERS["VENDOR_ALBUMS"]);
+      formData.append("isSlefAssigned", "true");
+      formData.append("targetUserEmail", this.currentUserEmail);
+
+      let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
+      this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
+        if (!response.error) {
+          this.ngxSpinner.hide();
+          this.tempAlbumFiles.push({ name: event.addedFiles[key].name, url: response.data });
+          this.files.push(event.addedFiles[key]);
+
+          this.bindTempFilesToWeddingObject();
+          console.log("add", this.vendor.gallery);
+          // this.weddingWebsite.album.push(response.data);
+        } else {
+          this.ngxSpinner.hide();
+        }
+      });
+    }
+  };
+
+  onRemove(event: any) {
+    console.log(event.name)
+    let targetFileInTemp = this.tempAlbumFiles.findIndex(x => x.name == event.name);
+
+    this.files.splice(this.files.indexOf(event), 1);
+    this.tempAlbumFiles.splice(targetFileInTemp, 1);
+
+    this.bindTempFilesToWeddingObject();
+  };
+
+  bindTempFilesToWeddingObject() {
+    this.vendor.gallery = [];
+    this.tempAlbumFiles.forEach((imge) => {
+      this.vendor.gallery.push(imge.url);
+    });
+  };
+
+  async convertURLtoFile(image) {
+    // image = "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png";
+    let response = await fetch(image);
+    let data = await response.blob();
+    let metadata = {
+      type: `image/${image.split('.').pop()}`
+    };
+
+    return new File([data], image.split('/').pop(), metadata);
+  }
+  //#endregion
+
+  enTagsContainsTag(tagId) {
+    return this.vendor.enTags.some(entry => entry === tagId);
+  }
+
+  arTagsContainsTag(tagId) {
+    return this.vendor.arTags.some(entry => entry === tagId);
+  }
+
+  areasContainsArea(areaId) {
+    return this.vendor.area.some(entry => entry === areaId);
+  }
+
+  mapData() {
+    this.latitude = parseInt(this.vendor.location.latitude);
+    this.longitude = parseInt(this.vendor.location.longtitude);
+  }
+
+  socailMediaData() {
+    this.facebookUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "facebook";
+    })[0].url;
+    this.twitterUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "twitter";
+    })[0].url;
+    this.instagramUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "instagram";
+    })[0].url;
+    this.pinterestUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "pinterest";
+    })[0].url;
+  }
+
+
 }

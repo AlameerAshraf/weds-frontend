@@ -173,6 +173,7 @@ export class constants {
       "AREAS" : "AREAS",
       "WEDDING_WEBSITES" : "WEDDING_WEBSITES",
       "WEDDING_ALBUMS" : "WEDDING_ALBUMS",
+      "VENDOR_ALBUMS" : "VENDOR_ALBUMS",
     }
   };
 
