@@ -35,7 +35,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   tagsArabic: any;
   categories: category[] = [];
   currentUserEmail: string;
-  constructor(private spinner: NgxSpinnerService ,private router: Router,
+  constructor(private spinner: NgxSpinnerService, private router: Router,
     private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private lookupsService: LookupsService,
     private http: httpService) {
@@ -71,6 +71,10 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     });
   };
 
+  loadPost(){
+
+  };
+
 
   backToRoute(){
     this.router.navigateByUrl('/profile/en/admin/posts');
@@ -89,7 +93,6 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       return tag.langauge == "En";
     });
   };
-
 
 
   tiny_image_upload_handler(blobInfo, success, failure, progress) {
@@ -125,6 +128,10 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
     $("#tagsEn").change({ angularThis: this.that } ,function(e, params){
       e.data.angularThis.post.tagsEn = $("#tagsEn").chosen().val();
+    });
+
+    $("#cats").change({ angularThis: this.that } ,function(e, params){
+      e.data.angularThis.post.category = $("#cats").chosen().val();
     });
   };
 
@@ -163,16 +170,9 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       this.post.featuredVideo = "";
     })
   };
+  //#endregion
 
-  addImage(){
-    this.post.images.push({
-      id: this.makeid(10),
-      url: "assets/images/defaults/wedding/cover-photo.png" ,
-      arabicDesc: "Arabic Desc." ,
-      englishDesc: "English Desc."
-    })
-  };
-
+  //#region Blogs Gallery
   uploadImagePhoto(e: any , imageId: any){
     this.spinner.show();
     const imageFile = e.target.files[0];
@@ -195,7 +195,21 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
     }
     return result.join('');
-  }
+  };
+
+  addImage(){
+    this.post.images.push({
+      id: this.makeid(10),
+      url: "assets/images/defaults/wedding/cover-photo.png" ,
+      arabicDesc: "Arabic Desc." ,
+      englishDesc: "English Desc."
+    })
+  };
+
+  removeImage(id: any){
+    let targetImageIndex = this.post.images.indexOf(this.post.images.find(x => x.id == id));
+    this.post.images.splice(targetImageIndex , 1);
+  };
   //#endregion
 
   //#region Scripts Helpers

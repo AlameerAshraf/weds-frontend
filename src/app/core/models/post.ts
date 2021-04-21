@@ -21,4 +21,7 @@ export class post {
   readingTime?: number;
   relatedPosts?: any[] = [];
   images?: { id:string; url: string , arabicDesc: string, englishDesc: string }[] = [];
+  publishedAt?: string;
+  authorName?: string;
+  categoryName?: string;
 }

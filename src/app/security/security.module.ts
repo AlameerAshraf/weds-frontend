@@ -7,13 +7,14 @@ import { SecurityRoutingModule } from './security-routing.module';
 import * as COMPONENTS from './components';
 import { THEME_MODULE , NGX_SPINNER } from './security.imports';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { constants } from '../core';
+
 import {
   GoogleLoginProvider,
   FacebookLoginProvider,
   SocialAuthServiceConfig,
   SocialAuthService,
 } from 'angularx-social-login';
-import { AppConfig, constants } from '../core';
 
 export function socialConfigs() {
   return {
@@ -25,7 +26,7 @@ export function socialConfigs() {
       },
       {
         id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider('288837749468586')
+        provider: new FacebookLoginProvider(constants.FACEBOOK_APP_ID)
       }
     ]
   }
