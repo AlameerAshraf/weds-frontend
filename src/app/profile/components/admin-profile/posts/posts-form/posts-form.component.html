@@ -59,7 +59,7 @@
               <div class="my-profile">
                 <label class="margin-top-0">English Content</label>
               </div>
-              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentAr"
+              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentEn"
                 [init]="tinymceInit">
               </editor>
             </div>
@@ -68,7 +68,7 @@
               <div class="my-profile">
                 <label class="margin-top-0">Arabic Content</label>
               </div>
-              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentEn"
+              <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentAr"
                 [init]="tinymceInit">
               </editor>
             </div>
@@ -96,14 +96,15 @@
             </select>
 
             <label>Category</label>
-            <select class="chosen-select-no-single">
-                <option label="blank">Perfect Hour</option>
-                <option>New York</option>
-                <option>Los Angeles</option>
+            <select id="cats" class="chosen-select-no-single">
+                <option label="blank">Select category</option>
+                <option *ngFor="let cat of categories" [value] = "cat._id">
+                  {{ cat.nameEn }}
+                </option>
             </select>
 
             <div class="checkboxes in-row margin-top-30">
-              <input id="check-a" type="checkbox" name="check">
+              <input id="check-a" type="checkbox" name="check" [(ngModel)]="post.isAuthorVisible">
               <label for="check-a">Show Author Name & Details</label>
               <p>This will make your name visible on the blogs view for users.</p>
           </div>
@@ -123,14 +124,18 @@
             <input value="5 Mins" type="number" [(ngModel)]="post.readingTime">
 
             <label>Publish Secheduled At</label>
-            <input type="date" placeholder="Secheduled At">
+            <input type="date" placeholder="Secheduled At" [(ngModel)]="post.scheduledAt">
           </div>
         </div>
 
         <div class="col-lg-12 col-md-12">
-          <div class="my-profile">
+          <div class="my-profile margin-bottom-20">
             <label class="margin-top-0">Related Posts</label>
-            <input value="Tom Perrin" type="text">
+            <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+              <option *ngFor="let tag of tagsArabic" [value]="tag._id">
+                {{ tag.name }}
+              </option>
+            </select>
         </div>
       </div>
         <div class="row with-forms" align="right">
@@ -195,12 +200,13 @@
               </p>
               <ng-container *ngFor="let image of post.images">
                 <div class="col-md-3">
+                  <span><i style="cursor: pointer;" (click)="removeImage(image.id)" class="fa fa-close"></i></span>
                   <div class="edit-profile-photo" style="margin-bottom: 10px;">
                     <img class="anImage" [src]="image.url" alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
                         <span><i class="fa fa-upload"></i> Upload Photo</span>
-                        <input type="file" class="upload" />
+                        <input type="file" class="upload" (change)="uploadImagePhoto($event , image.id)"/>
                       </div>
                     </div>
                   </div>

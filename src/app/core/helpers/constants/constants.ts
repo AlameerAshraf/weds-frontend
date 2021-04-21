@@ -189,4 +189,8 @@ export class constants {
   public static get LOGGED_IN_USER(): string { return  this._config.getConst("LOGGED_IN_USER")};
   public static get LOGGED_IN_USER_ROLES(): string { return  this._config.getConst("LOGGED_IN_USER_ROLES")};
   public static get BASE_URL(): string { return  this._config.getConfig("BASE_URL")};
+
+  public static get FACEBOOK_APP_ID(): string { return  this._config.getConfig("FACEBOOK_OAUTH_APP_ID_DEBUGE")};
+  public static get GOOGLE_CLIENT_ID(): string { return  this._config.getConfig("GOOGLE_OAUTH_CLIENT_ID")};
+
 }

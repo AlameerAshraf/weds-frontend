@@ -20,5 +20,8 @@ export class post {
   metaDescriptionAr?: string;
   readingTime?: number;
   relatedPosts?: any[] = [];
-  images?: { url: string , arabicDesc: string, englishDesc: string }[] = [];
+  images?: { id:string; url: string , arabicDesc: string, englishDesc: string }[] = [];
+  publishedAt?: string;
+  authorName?: string;
+  categoryName?: string;
 }
