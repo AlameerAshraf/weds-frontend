@@ -95,9 +95,9 @@
 
                 <div class="main-search-input-item">
                   <ul class="social-icons color rounded icons-ul">
-                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                    <li style="cursor: pointer;" (click)="signInWithFB()"><a class="facebook"><i class="icon-facebook"></i></a></li>
+                    <!-- <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li> -->
+                    <li style="cursor: pointer;" (click)="signInWithGoogle()"><a class="gplus" ><i class="icon-gplus"></i></a></li>
                   </ul>
 
                   <span (click)="helpers.navigateToRegister()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
