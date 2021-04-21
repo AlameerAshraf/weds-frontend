@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, ElementRef, Inject
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { post , LookupsService, responseModel, urls, constants , httpService } from 'src/app/core';
+import { post , LookupsService, responseModel, urls, constants , httpService, category } from 'src/app/core';
 import { DOCUMENT } from '@angular/common';
 declare var $;
 
@@ -33,6 +33,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
   tagsEnglish: any;
   tagsArabic: any;
+  categories: category[] = [];
   currentUserEmail: string;
   constructor(private spinner: NgxSpinnerService ,private router: Router,
     private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
@@ -52,23 +53,24 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     this.documentSelectors();
   }
 
-  view(){
-    console.log(this.htmlEnglishContent)
-  };
-
   createPost(){
-    console.log(this.post)
-  };
-
-  navigateToPosts(){
     this.spinner.show();
 
-    setTimeout(() => {
-      this.spinner.hide();
-      this.toastr.success('Hello world!', 'Toastr fun!');
-      this.router.navigateByUrl('/profile/en/admin/posts');
-    }, 3000);
+    // Set user email as author!
+    this.post.author = this.currentUserEmail;
+    let createNewPostURL = `${urls.CREATE_POST}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`;
+    this.http.Post(createNewPostURL , {} , { "post" : this.post }).subscribe((response: responseModel) =>{
+      if(!response.error){
+        this.spinner.hide();
+        this.toastr.success("Gooood!" , "Amazing words catch hearts before eyes, post has been added successfully 💕");
+        // this.router.navigateByUrl('/profile/en/admin/posts');
+      }else{
+        this.spinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
+      }
+    });
   };
+
 
   backToRoute(){
     this.router.navigateByUrl('/profile/en/admin/posts');
@@ -77,6 +79,8 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
   async getLookups(){
     let allTags = (await this.lookupsService.getTags()) as responseModel;
+    let allCats = (await this.lookupsService.getCategories()) as responseModel;
+    this.categories = allCats.data;
     this.tagsArabic = allTags.data.filter((tag: any) => {
       return tag.langauge == "Ar";
     });
@@ -161,8 +165,37 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   };
 
   addImage(){
-    this.post.images.push({ url: "" , arabicDesc: "ar" , englishDesc: "en" })
+    this.post.images.push({
+      id: this.makeid(10),
+      url: "assets/images/defaults/wedding/cover-photo.png" ,
+      arabicDesc: "Arabic Desc." ,
+      englishDesc: "English Desc."
+    })
   };
+
+  uploadImagePhoto(e: any , imageId: any){
+    this.spinner.show();
+    const imageFile = e.target.files[0];
+    let slectedImage = this.post.images.find(x => x.id == imageId);
+    this.uploadPhoto(imageFile , (url: any) =>{
+      this.spinner.hide();
+      slectedImage.url = url;
+    } , (err: any) => {
+      this.spinner.hide();
+      console.log(err);
+      slectedImage.url = "";
+    })
+  };
+
+  makeid(length: any) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+  }
   //#endregion
 
   //#region Scripts Helpers
