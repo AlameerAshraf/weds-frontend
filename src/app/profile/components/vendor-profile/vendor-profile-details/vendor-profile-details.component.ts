@@ -101,11 +101,12 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
-    this.mapsLoader();
     await this.getLookups();
     this.initVendorView();
+    this.mapsLoader();
     this.loadScripts();
     this.documentSelectors();
+    this.socailMediaData();
   };
 
   async getLookups() {
@@ -126,6 +127,16 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   initVendorView() {
     if (this.editingMode == "update") {
       this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
+      // This function converts the imge URL to a file object!
+      // Loading the images from the s3 bucket
+      // Note I configured the s3 bucket by allowing the cors-origin for localhost
+      this.mapData();
+
+      this.vendor.gallery.forEach(async (anImage) => {
+        let imageFile = await this.convertURLtoFile(anImage);
+        this.files.push(imageFile);
+        this.tempAlbumFiles.push({ name: imageFile.name, url: anImage });
+      })
     }
   };
 
@@ -293,7 +304,8 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((locationInfo) => {
-        if (this.vendor.location.latitude != undefined && this.vendor.location.longtitude != undefined) {
+        if ((this.vendor.location.latitude != undefined && this.vendor.location.latitude != "")
+        && (this.vendor.location.longtitude != undefined && this.vendor.location.longtitude != "")) {
           this.latitude = parseFloat(this.vendor.location.latitude);
           this.longitude = parseFloat(this.vendor.location.longtitude);
         }
@@ -439,8 +451,8 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   }
 
   mapData() {
-    this.latitude = parseInt(this.vendor.location.latitude);
-    this.longitude = parseInt(this.vendor.location.longtitude);
+    this.latitude = parseFloat(this.vendor.location.latitude);
+    this.longitude = parseFloat(this.vendor.location.longtitude);
   }
 
   socailMediaData() {
