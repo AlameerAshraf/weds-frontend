@@ -11,6 +11,9 @@ export class httpService  {
 
   }
 
+  Fetch(url: string, params: any = null ,  headers: headersModel[] = null) {
+    return this.http.get(url , { responseType: 'text' });
+  }
 
   Get(url: string, params: any = null ,  headers: headersModel[] = null) {
     var requestUrl = this.GenerateUrl(url, params);

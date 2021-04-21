@@ -13,4 +13,8 @@ export class LookupsService {
   async getTags(){
     return this.httpService.Get(`${urls.GET_ALL_TAGS}/${constants.APP_IDENTITY_FOR_USERS}` , {} ).toPromise();
   };
+
+  async getCategories(){
+    return this.httpService.Get(`${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}` , {} ).toPromise();
+  };
 }
