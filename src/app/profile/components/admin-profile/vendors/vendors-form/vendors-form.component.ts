@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 //import { } from '@types/googlemaps';
 import { Router, ActivatedRoute } from '@angular/router';
-import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, area } from 'src/app/core';
 declare const google: any
 declare var $;
 
@@ -15,25 +15,27 @@ declare var $;
   styleUrls: ['./vendors-form.component.scss']
 })
 export class VendorsFormComponent implements OnInit {
+  @ViewChild('search', { static: true }) public searchElementRef: ElementRef;
+
   is = false;
   coverPhotoSource: any = '';
   latitude: number;
   longitude: number;
   zoom: number;
   address: any;
-  @ViewChild('search', { static: true }) public searchElementRef: ElementRef;
   files: File[] = [];
   private geoCoder: any;
-  tagsAr: string[] = [];
-  tagsEn: string[] = [];
-  htmlContentEnglish;
-  htmlContentArabic;
-  pinterestUrl;
-  instagramUrl;
-  twitterUrl;
-  facebookUrl;
-  categories;
-  areas;
+  tagsAr: tag[] = [];
+  tagsEn: tag[] = [];
+  htmlContentEnglish: any;
+  htmlContentArabic: any;
+  pinterestUrl: any;
+  instagramUrl: any;
+  twitterUrl: any;
+  facebookUrl: any;
+
+  categories: category[] = [];
+  areas: area[] = [];
   priceRanges = constants.PRICE_RANGE;
   segments = constants.SEGMENTS;
   tempAlbumFiles: any[] = [];
