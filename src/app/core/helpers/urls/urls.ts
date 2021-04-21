@@ -91,7 +91,11 @@ export class urls {
 
   //Vendor
   public static get GET_ALL_VENDORS(): string { return this.BASE_URL + '/vendors/get-all-vendors'};
-
+  public static get CREATE_VENDOR(): string { return this.BASE_URL + '/vendors/create-new-vendor'};
+  public static get UPDATE_VENDOR(): string { return this.BASE_URL + '/vendors/update-vendor'};
+  public static get DELETE_VENDOR(): string { return this.BASE_URL + '/vendors/delete-vendor'};  
+  public static get GET_ALL_VENDOR_SERVICES(): string { return this.BASE_URL + '/vendors/get-all-vendor-services'};
+  
 
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
