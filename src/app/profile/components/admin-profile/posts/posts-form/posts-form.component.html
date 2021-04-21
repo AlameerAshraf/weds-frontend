@@ -96,7 +96,7 @@
             </select>
 
             <label>Category</label>
-            <select class="chosen-select-no-single">
+            <select id="cats" class="chosen-select-no-single">
                 <option label="blank">Select category</option>
                 <option *ngFor="let cat of categories" [value] = "cat._id">
                   {{ cat.nameEn }}
@@ -200,6 +200,7 @@
               </p>
               <ng-container *ngFor="let image of post.images">
                 <div class="col-md-3">
+                  <span><i style="cursor: pointer;" (click)="removeImage(image.id)" class="fa fa-close"></i></span>
                   <div class="edit-profile-photo" style="margin-bottom: 10px;">
                     <img class="anImage" [src]="image.url" alt="">
                     <div class="change-photo-btn">
