@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   translated: any = {};
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
+  private OAuth: SocialAuthService,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
     private storage: localStorageService, private spinner: NgxSpinnerService,
     private resources: resources, private formBuilder: FormBuilder, private http: httpService) { }
@@ -38,6 +40,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     let resourcesData = await this.helpers.loadResources();
     this.lang = resourcesData.lang;
     this.translated = resourcesData.translatedObject;
+
+    this.OAuth.authState.subscribe((user) => {
+      console.log(user)
+    });
   };
 
   /** Form functions */
@@ -51,7 +57,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     return this.loginForm.controls;
   };
 
-  /** toggle password. */
+  /** toggle pauthssword. */
   togglePassword() {
     this.passwordHidden = !this.passwordHidden;
   };
@@ -89,6 +95,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
       }
     })
   };
+
+  signInWithFB(): void {
+    this.OAuth.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithGoogle(): void {
+    this.OAuth.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
 
   //#region Binding scripts to the component.
   ngAfterViewInit(): void {
