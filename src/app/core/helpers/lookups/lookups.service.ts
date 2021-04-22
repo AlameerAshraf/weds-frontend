@@ -21,4 +21,8 @@ export class LookupsService {
   async getAreas(){
     return this.httpService.Get(`${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}` , {} ).toPromise();
   };
+
+  async getPostsAsLookups(){
+    return this.httpService.Get(`${urls.GET_ALL_POSTS_AS_LOOKUPS}/${constants.APP_IDENTITY_FOR_USERS}` , {} ).toPromise();
+  };
 }

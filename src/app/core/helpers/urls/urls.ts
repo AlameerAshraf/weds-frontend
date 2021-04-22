@@ -52,6 +52,7 @@ export class urls {
   public static get DELETE_CHECKLIST_ADMIN(): string { return this.BASE_URL + '/admin/delete-check-list-item'};
   public static get CREATE_POST(): string { return this.BASE_URL + '/admin/create-post'};
   public static get UPDATE_POST(): string { return this.BASE_URL + '/admin/update-post'};
+  public static get GET_ALL_POSTS_AS_LOOKUPS(): string { return this.BASE_URL + '/admin/get-all-posts-as-lookups'};
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
