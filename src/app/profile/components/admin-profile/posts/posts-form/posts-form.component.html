@@ -90,7 +90,7 @@
           <div class="my-profile">
             <label class="margin-top-0">Tags English</label>
             <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-              <option *ngFor="let tag of tagsEnglish" [value]="tag._id">
+              <option *ngFor="let tag of tagsEnglish" [selected]="tagsBinder(tag._id , 'en')" [value]="tag._id">
                 {{ tag.name }}
               </option>
             </select>
@@ -98,7 +98,7 @@
             <label>Category</label>
             <select id="cats" class="chosen-select-no-single">
                 <option label="blank">Select category</option>
-                <option *ngFor="let cat of categories" [value] = "cat._id">
+                <option  *ngFor="let cat of categories"  [selected]="cat._id == post.category" [value] = "cat._id">
                   {{ cat.nameEn }}
                 </option>
             </select>
@@ -115,7 +115,7 @@
           <div class="my-profile">
             <label class="margin-top-0">Tags Arabic</label>
             <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-              <option *ngFor="let tag of tagsArabic" [value]="tag._id">
+              <option *ngFor="let tag of tagsArabic" [selected]="tagsBinder(tag._id , 'ar')" [value]="tag._id">
                 {{ tag.name }}
               </option>
             </select>
@@ -228,6 +228,10 @@
 
 
 
-<div align="right">
+<div align="right" *ngIf="editingMode == 'new'">
   <a class="button preview" (click)="createPost()">Save Changes <i class="sl sl-icon-check"></i></a>
+</div>
+
+<div align="right" *ngIf="editingMode == 'update'">
+  <a class="button preview" (click)="updatePost()">Update Changes <i class="sl sl-icon-check"></i></a>
 </div>

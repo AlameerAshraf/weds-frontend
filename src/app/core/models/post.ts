@@ -11,7 +11,7 @@ export class post {
   tagsAr?: any[] = [];
   isAuthorVisible?: boolean = false;
   author?: string;
-  scheduledAt?: Date;
+  scheduledAt?: string;
   isScheduledPost?: boolean = false;
   featuredImage?: string = "";
   featuredVideo?: string = "";

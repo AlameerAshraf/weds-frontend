@@ -83,10 +83,32 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     });
   };
 
+  updatePost(){
+    this.spinner.show();
+
+    // Set user email as author!
+    this.post.author = this.currentUserEmail;
+    this.post.isPublished = this.post.scheduledAt == undefined ? true : false;
+    this.post.isScheduledPost = this.post.scheduledAt == undefined ? false : true;
+
+    let updatePostURL = `${urls.UPDATE_POST}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.post._id}`;
+    this.http.Post(updatePostURL , {} , { "post" : this.post }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.spinner.hide();
+        this.toastr.success("Gooood!" , "Amazing Post has been updated successfully 💕");
+        // this.router.navigateByUrl('/profile/en/admin/posts');
+      }else{
+        this.spinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
+      }
+    });
+  };
+
   async loadPost(){
     if(this.editingMode == "update"){
       this.post = this.storage.getLocalStorage("weds360#postOnEdit");
       this.spinner.show();
+      this.post.scheduledAt = this.post.scheduledAt.toString().split('T')[0];
       this.post.bodyContentEn = await this.fetchEdiedPosts(this.post.bodyEnURL);
       this.post.bodyContentAr = await this.fetchEdiedPosts(this.post.bodyArURL);
       this.spinner.hide();
@@ -139,10 +161,17 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
   fetchEdiedPosts(postFileUrl: any){
     return this.http.Fetch(postFileUrl).toPromise()
-  }
+  };
 
 
   //#region Helper Methods ..
+  tagsBinder(tagId , lang) {
+    if(lang == "ar")
+      return this.post.tagsAr.some(entry => entry === tagId);
+    else if (lang == "en")
+      return this.post.tagsEn.some(entry => entry === tagId);
+  };
+
   documentSelectors(){
     $("#tagsAr").change({ angularThis: this.that } ,function(e, params){
       e.data.angularThis.post.tagsAr = $("#tagsAr").chosen().val();

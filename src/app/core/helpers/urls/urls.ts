@@ -51,6 +51,7 @@ export class urls {
   public static get DELETE_OFFER(): string { return this.BASE_URL + '/admin/delete-offer'};
   public static get DELETE_CHECKLIST_ADMIN(): string { return this.BASE_URL + '/admin/delete-check-list-item'};
   public static get CREATE_POST(): string { return this.BASE_URL + '/admin/create-post'};
+  public static get UPDATE_POST(): string { return this.BASE_URL + '/admin/update-post'};
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist'};
@@ -93,9 +94,9 @@ export class urls {
   public static get GET_ALL_VENDORS(): string { return this.BASE_URL + '/vendors/get-all-vendors'};
   public static get CREATE_VENDOR(): string { return this.BASE_URL + '/vendors/create-new-vendor'};
   public static get UPDATE_VENDOR(): string { return this.BASE_URL + '/vendors/update-vendor'};
-  public static get DELETE_VENDOR(): string { return this.BASE_URL + '/vendors/delete-vendor'};  
+  public static get DELETE_VENDOR(): string { return this.BASE_URL + '/vendors/delete-vendor'};
   public static get GET_ALL_VENDOR_SERVICES(): string { return this.BASE_URL + '/vendors/get-all-vendor-services'};
-  
+
 
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
