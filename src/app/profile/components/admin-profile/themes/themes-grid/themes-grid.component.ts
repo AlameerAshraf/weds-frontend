@@ -60,9 +60,9 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/themes-action/update`]);
     let targetTheme = this.themesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#themeOnEdit" , targetTheme);
+    this.router.navigate([`profile/en/admin/themes-action/update`]);
   };
 
   deleteEntity(id: any){
