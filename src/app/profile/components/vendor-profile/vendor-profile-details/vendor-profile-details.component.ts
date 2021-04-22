@@ -101,7 +101,10 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
-    await this.getLookups();
+    this.ngxSpinner.show();
+    let tempVar = await this.getLookups();
+    this.ngxSpinner.hide();
+
     this.initVendorView();
     this.loadUser();
     this.mapsLoader();
@@ -462,10 +465,13 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   //#endregion
 
   //#region  Scripts Loading helpers..
-    ngAfterViewInit(): void {
+    async ngAfterViewInit() {
+      this.ngxSpinner.show();
+      let tempVar = await this.getLookups();
+      this.ngxSpinner.hide();
+
       this.loadScripts();
       this.documentSelectors();
-
     };
 
 
