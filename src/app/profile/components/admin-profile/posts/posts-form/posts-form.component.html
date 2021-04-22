@@ -131,9 +131,9 @@
         <div class="col-lg-12 col-md-12">
           <div class="my-profile margin-bottom-20">
             <label class="margin-top-0">Related Posts</label>
-            <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-              <option *ngFor="let tag of tagsArabic" [value]="tag._id">
-                {{ tag.name }}
+            <select id="relatedPosts" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+              <option *ngFor="let possiblePost of posts" [selected]="relatedPostsBinder(possiblePost._id)" [value]="possiblePost._id">
+                {{ possiblePost.titleEn }}
               </option>
             </select>
         </div>
