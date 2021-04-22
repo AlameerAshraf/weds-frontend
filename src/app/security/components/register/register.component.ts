@@ -89,7 +89,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   //** Prepare all needed data from the current form! */
   async getFormData(){
-    debugger
     let geoLocationData: any = await this.getGeoLocationInfo();
     let formData = this.registerForm.value;
     let accountSource = { accountSource : constants.ACCOUNT_SOURCES.WEDS360 };

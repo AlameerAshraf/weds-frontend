@@ -1,5 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { constants, httpService, responseModel, urls } from 'src/app/core';
 declare const google: any
 @Component({
   selector: 'app-profile-details',
@@ -14,12 +17,31 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
 
   private geoCoder: any;
   address: any = "";
+  currentUserEmail: string;
 
   constructor(@Inject(DOCUMENT) private document: any,
-  private elementRef: ElementRef) { }
+    private elementRef: ElementRef, private http: httpService ,
+    private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
+      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+    }
 
   ngOnInit() {
     this.setCurrentLocation();
+    this.loadUser();
+  };
+
+  loadUser(){
+    let loadUserURL = `${urls.GET_USER_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.http.Get(loadUserURL , { "role" : atob(window.localStorage.getItem("weds360#role")) }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        console.log(response)
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
+      }
+    });
   };
 
   onFileSelected(e: any): void {
@@ -33,6 +55,8 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
     }
   };
 
+
+  //#region Adress Helper..
   markerDragEnd(e){
 
   };
@@ -63,8 +87,14 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
       }
     });
   };
+  //#endregion
 
+  //#region scripts helpers.
   ngAfterViewInit(): void {
+    this.loadScripts();
+  };
+
+  loadScripts(){
     let scripts = ['assets/scripts/datePickerInitakizer.js' , 'assets/scripts/custom.js'];
 
     scripts.forEach(element => {
@@ -74,4 +104,5 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  //#endregion
 }

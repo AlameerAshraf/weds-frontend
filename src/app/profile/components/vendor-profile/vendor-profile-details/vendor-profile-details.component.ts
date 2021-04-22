@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 //import { } from '@types/googlemaps';
 import { Router, ActivatedRoute } from '@angular/router';
-import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag } from 'src/app/core';
 
 declare const google: any
 declare var $;
@@ -25,8 +25,8 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   longitude: number;
   zoom: number;
   address: any;
-  tagsAr: string[] = [];
-  tagsEn: string[] = [];
+  tagsAr: tag[] = [];
+  tagsEn: tag[] = [];
   htmlContentEnglish;
   htmlContentArabic;
   pinterestUrl;
@@ -103,6 +103,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   async ngOnInit() {
     await this.getLookups();
     this.initVendorView();
+    this.loadUser();
     this.mapsLoader();
     this.loadScripts();
     this.documentSelectors();
@@ -123,6 +124,18 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.areas = ((await this.lookupsService.getAreas()) as responseModel).data;
   };
 
+  loadUser(){
+    let loadUserURL = `${urls.GET_USER_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+    this.http.Get(loadUserURL , { "role" : atob(window.localStorage.getItem("weds360#role")) }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.vendor = response.data.vendorRefrence;
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
+      }
+    });
+  };
 
   initVendorView() {
     if (this.editingMode == "update") {
@@ -358,29 +371,39 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
   //#endregion
 
-  //#region  Scripts Loading helpers..
-  ngAfterViewInit(): void {
-    this.loadScripts();
-    this.documentSelectors();
-
-  };
-
-
-  loadScripts() {
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js', 'assets/scripts/dropzone.js'];
-
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
-    });
-  };
-
-  //#endregion
-
-
   //#region  DropZone Engine Helper Function..
+
+  enTagsContainsTag(tagId: any) {
+    return this.vendor.enTags.some(entry => entry === tagId);
+  }
+
+  arTagsContainsTag(tagId: any) {
+    return this.vendor.arTags.some(entry => entry === tagId);
+  }
+
+  areasContainsArea(areaId: any) {
+    return this.vendor.area.some(entry => entry === areaId);
+  }
+
+  mapData() {
+    this.latitude = parseFloat(this.vendor.location.latitude);
+    this.longitude = parseFloat(this.vendor.location.longtitude);
+  }
+
+  socailMediaData() {
+    this.facebookUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "facebook";
+    })[0].url;
+    this.twitterUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "twitter";
+    })[0].url;
+    this.instagramUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "instagram";
+    })[0].url;
+    this.pinterestUrl = this.vendor.social.filter((social: any) => {
+      return social.source == "pinterest";
+    })[0].url;
+  }
   onSelect(event: any) {
     for (const key in event.addedFiles) {
       this.ngxSpinner.show();
@@ -438,37 +461,24 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   }
   //#endregion
 
-  enTagsContainsTag(tagId) {
-    return this.vendor.enTags.some(entry => entry === tagId);
-  }
+  //#region  Scripts Loading helpers..
+    ngAfterViewInit(): void {
+      this.loadScripts();
+      this.documentSelectors();
 
-  arTagsContainsTag(tagId) {
-    return this.vendor.arTags.some(entry => entry === tagId);
-  }
-
-  areasContainsArea(areaId) {
-    return this.vendor.area.some(entry => entry === areaId);
-  }
-
-  mapData() {
-    this.latitude = parseFloat(this.vendor.location.latitude);
-    this.longitude = parseFloat(this.vendor.location.longtitude);
-  }
-
-  socailMediaData() {
-    this.facebookUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "facebook";
-    })[0].url;
-    this.twitterUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "twitter";
-    })[0].url;
-    this.instagramUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "instagram";
-    })[0].url;
-    this.pinterestUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "pinterest";
-    })[0].url;
-  }
+    };
 
 
+    loadScripts() {
+      let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js', 'assets/scripts/dropzone.js'];
+
+      scripts.forEach(element => {
+        const s = this.document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = element;
+        this.elementRef.nativeElement.appendChild(s);
+      });
+    };
+
+  //#endregion
 }

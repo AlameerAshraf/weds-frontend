@@ -15,6 +15,7 @@ export class urls {
   public static get USER_SIGN_IN(): string { return this.BASE_URL + '/users/sign-in' };
   public static get CHECK_AUTH(): string { return this.BASE_URL + '/users/check-auth' };
   public static get GET_ALL_USERS(): string { return this.BASE_URL + '/users/get-all-users'};
+  public static get GET_USER_DATA(): string { return this.BASE_URL + '/users/get-user'};
   public static get CREATE_USER(): string { return this.BASE_URL + '/users/sign-up'};
   public static get UPDATE_USER(): string { return this.BASE_URL + '/users/update-user-personal-info'};
   public static get DELETE_USER(): string { return this.BASE_URL + '/users/delete-user'};

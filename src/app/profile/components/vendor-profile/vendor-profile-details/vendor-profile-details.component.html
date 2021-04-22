@@ -35,7 +35,7 @@
 
                         <label>Advanced Description English</label>
                         <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx"
-                            [(ngModel)]="vendor.descriptionURLEn" [init]="tinymceInit"
+                            [(ngModel)]="vendor.descriptionURLEn"
                             placeholder="Advanced Description English">
                         </editor>
 
@@ -87,7 +87,7 @@
 
                         <label>Advanced Description Arabic</label>
                         <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx"
-                            [(ngModel)]="vendor.descriptionURLAr" [init]="tinymceInit"
+                            [(ngModel)]="vendor.descriptionURLAr"
                             placeholder="Advanced Description Arabic">
                         </editor>
 
@@ -157,7 +157,9 @@
 
                             <div class="col-md-7">
                                 <label>Search </label>
-                                <input type="text" placeholder="search">
+                                <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                                placeholder="Search Venue Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                                type="text" #search>
 
                                 <div>
                                     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
