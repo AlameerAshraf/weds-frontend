@@ -108,6 +108,34 @@ export class constants {
     ]
   };
 
+
+  public static get PRICE_RANGE(){
+    return [
+      {
+        "price_range" : "UNSPECIFIED",
+        "name" : "UnSpecified"
+      },
+      {
+        "price_range" : "INEXPENSIVE",
+        "name" : "InExpensive"
+      },
+      {
+        "price_range" : "AFFORDABLE",
+        "name" : "Affordable"
+      },
+      {
+        "price_range" : "MODERATE",
+        "name" : "Moderate"
+      },
+      {
+        "price_range" : "EXPENSIVE",
+        "name" : "Expensive"
+      }
+    ]
+  };
+
+
+
   public static get LAYOUTS(){
     return [
       {
@@ -145,6 +173,7 @@ export class constants {
       "AREAS" : "AREAS",
       "WEDDING_WEBSITES" : "WEDDING_WEBSITES",
       "WEDDING_ALBUMS" : "WEDDING_ALBUMS",
+      "VENDOR_ALBUMS" : "VENDOR_ALBUMS",
     }
   };
 

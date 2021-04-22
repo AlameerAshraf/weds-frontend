@@ -7,27 +7,30 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-12">
-    <div id="add-listing">
-      <div class="add-listing-section">
-        <div class="row with-forms">
-
-          <div class="col-md-6 margin-top-20">
-            <h5>search </h5>
-            <input type="text" placeholder="Enter search critera.">
-          </div>
-          <div class="col-md-2 margin-top-65">
-            <a class="button"> <i class="fa fa-search"></i> Search </a>
-          </div>
-          <div class="col-md-4 margin-top-65" align=" right">
-            <a style="background-color: gray !important; color: white !important" class="button">
-              <i class="im im-icon-Thumbs-UpSmiley"></i> Published
-            </a>
-            <a class="button"> All </a>
-          </div>
+<div class="style-2">
+  <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
+    <span class="trigger">
+      <a href="#" style="font-size: 25px !important">
+        <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in posts
+        <i class="sl sl-icon-plus"></i>
+      </a>
+    </span>
+    <div class="toggle-container" style="padding-bottom: 0px !important; ">
+      <div class="row with-forms">
+        <div class="col-md-3">
+          <input type="text" placeholder="Enter search critera.">
         </div>
-
+        <div class="col-md-3">
+          <select id="cats" class="chosen-select-no-single">
+            <option label="blank">Select category</option>
+            <option>
+              Search based on ...
+            </option>
+        </select>
+        </div>
+        <div class="col-md-3">
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i> Reset </a>
+        </div>
       </div>
     </div>
   </div>
@@ -55,7 +58,7 @@
               <th scope="col" width="15%">Author</th>
               <th scope="col" width="20%">Published At</th>
               <th scope="col" width="15%">Status</th>
-              <th scope="col" width="5%">Delete</th>
+              <th scope="col" width="5%">Actions</th>
               <th scope="col" width="5%">Edit</th>
             </tr>
           </thead>
@@ -63,7 +66,7 @@
             <ng-container *ngFor="let item of postsList">
               <tr>
                 <td>
-                  <p style="font-size: 20px; font-weight: 600;">{{item.titleEn}}</p>
+                  <p style="font-size: 20px; font-weight: 600; overflow:hidden !important;">{{item.titleEn}}</p>
                 </td>
                 <td>
                   <p> {{ item.categoryName }} </p>
@@ -75,15 +78,46 @@
                   <p> {{ item.publishedAt }} </p>
                 </td>
                 <td>
-                  <p> {{ item.publishedAt }} </p>
+                  <ng-container *ngIf="item.isPublished">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: green;"></span> &nbsp;
+                      <label style="color: green; font-size: 15px; font-weight: 600;"> Published </label>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="!item.isPublished">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: rgb(214, 148, 4);"></span> &nbsp;
+                      <label style="color: rgb(214, 148, 4); font-size: 15px; font-weight: 600;"> Scheduled </label>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="item.isRemoved">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: rgb(248, 54, 54);"></span> &nbsp;
+                      <label style="color: rgb(248, 54, 54); font-size: 15px; font-weight: 600;"> Revoked </label>
+                    </p>
+                  </ng-container>
                 </td>
-                <td class="td-in-table">
-                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
-                      class="sl sl-icon-trash"></i>
+                <td class="td-in-table" style="cursor: pointer;">
+                  <ng-container *ngIf="!item.isPublished">
+                    <p class="tooltip">
+                      <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload"></i>
+                      <span class="tooltiptext">Force publish</span>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="item.isPublished">
+                    <p class="tooltip">
+                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-download"></i>
+                      <span class="tooltiptext">Revoke publish</span>
+                    </p>
+                  </ng-container>
+                </td>
+                <td class="td-in-table" style="cursor: pointer;">
+                  <p (click) = "navigateToUpdatePost(item._id)">
+                    <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i>
                   </p>
-                </td>
-                <td class="td-in-table">
-                  <p><i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
             </ng-container>
