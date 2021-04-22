@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, ElementRef, Inject } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { post , LookupsService, responseModel, urls, constants , httpService, category } from 'src/app/core';
+import { post, LookupsService, responseModel, urls, constants, httpService, category, localStorageService } from 'src/app/core';
 import { DOCUMENT } from '@angular/common';
 declare var $;
 
@@ -35,11 +35,18 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   tagsArabic: any;
   categories: category[] = [];
   currentUserEmail: string;
+  editingMode: any;
+
   constructor(private spinner: NgxSpinnerService, private router: Router,
+    private activatedRoute: ActivatedRoute, private storage: localStorageService,
     private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private lookupsService: LookupsService,
     private http: httpService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+
+      this.activatedRoute.params.subscribe((params) => {
+        this.editingMode = params["actionType"];
+      });
     }
 
 
@@ -51,6 +58,8 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
     this.loadScripts();
     this.documentSelectors();
+
+    this.loadPost();
   }
 
   createPost(){
@@ -58,6 +67,9 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
     // Set user email as author!
     this.post.author = this.currentUserEmail;
+    this.post.isPublished = this.post.scheduledAt == undefined ? true : false;
+    this.post.isScheduledPost = this.post.scheduledAt == undefined ? false : true;
+
     let createNewPostURL = `${urls.CREATE_POST}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`;
     this.http.Post(createNewPostURL , {} , { "post" : this.post }).subscribe((response: responseModel) =>{
       if(!response.error){
@@ -71,8 +83,14 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     });
   };
 
-  loadPost(){
-
+  async loadPost(){
+    if(this.editingMode == "update"){
+      this.post = this.storage.getLocalStorage("weds360#postOnEdit");
+      this.spinner.show();
+      this.post.bodyContentEn = await this.fetchEdiedPosts(this.post.bodyEnURL);
+      this.post.bodyContentAr = await this.fetchEdiedPosts(this.post.bodyArURL);
+      this.spinner.hide();
+    }
   };
 
 
@@ -118,6 +136,10 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       }
     });
   };
+
+  fetchEdiedPosts(postFileUrl: any){
+    return this.http.Fetch(postFileUrl).toPromise()
+  }
 
 
   //#region Helper Methods ..

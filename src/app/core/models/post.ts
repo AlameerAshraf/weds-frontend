@@ -1,6 +1,7 @@
 
 
 export class post {
+  _id?: string;
   titleEn?: string;
   titleAr?: string;
   subtitleEn?: string;
@@ -16,6 +17,8 @@ export class post {
   featuredVideo?: string = "";
   bodyContentEn?: string;
   bodyContentAr?: string;
+  bodyArURL?: string;
+  bodyEnURL?: string;
   metaDescriptionEn?: string;
   metaDescriptionAr?: string;
   readingTime?: number;
@@ -24,4 +27,6 @@ export class post {
   publishedAt?: string;
   authorName?: string;
   categoryName?: string;
+  isPublished?: boolean = false;
+  isRemoved?: boolean = false;
 }
