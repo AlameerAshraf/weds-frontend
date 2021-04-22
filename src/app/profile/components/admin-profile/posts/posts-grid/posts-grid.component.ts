@@ -1,10 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel } from './../../../../../core/models/response';
-import { urls } from './../../../../../core/helpers/urls/urls';
-import { httpService } from '../../../../../core/services/http/http';
-import { constants, post, resources } from 'src/app/core';
+import { responseModel , urls , httpService , constants, localStorageService, post, resources } from './../../../../../core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -27,6 +24,7 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
     private http: httpService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
+    private storage: localStorageService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
   }
@@ -64,7 +62,13 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
   navigateToCreateNewPost() {
     this.router.navigate(['profile/en/admin/posts-action/new']);
-  }
+  };
+
+  navigateToUpdatePost(postId: any){
+    let targetPost = this.postsList.find(x => x._id == postId);
+    this.storage.setLocalStorage("weds360#postOnEdit" , targetPost);
+    this.router.navigate([`profile/en/admin/posts-action/update`]);
+  };
 
 
   //#region Scripts loader
