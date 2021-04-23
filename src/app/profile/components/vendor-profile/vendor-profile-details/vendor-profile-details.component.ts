@@ -10,7 +10,7 @@ declare const google: any
 declare var $;
 
 @Component({
-  selector: 'app-vendor-profile-details',
+  selector: 'app-vendor-profile-details' ,
   templateUrl: './vendor-profile-details.component.html',
   styleUrls: ['./vendor-profile-details.component.scss']
 })
