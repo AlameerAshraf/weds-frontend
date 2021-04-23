@@ -27,6 +27,7 @@ export class VendorsFormComponent implements OnInit {
   private geoCoder: any;
   tagsAr: tag[] = [];
   tagsEn: tag[] = [];
+  socialArray: any[] = [];
   htmlContentEnglish: any;
   htmlContentArabic: any;
   pinterestUrl: any;
@@ -98,12 +99,12 @@ export class VendorsFormComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.getLookups();
+    this.ngxSpinner.show();
+    let tempVar = await this.getLookups();
+    this.ngxSpinner.hide();
     this.initVendorView();
-    this.mapsLoader();
     this.loadScripts();
     this.documentSelectors();
-    this.socailMediaData();
   }
 
   backToRoute() {
@@ -127,18 +128,20 @@ export class VendorsFormComponent implements OnInit {
   initVendorView() {
     if (this.editingMode == "update") {
       this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
-      // This function converts the imge URL to a file object!
-      // Loading the images from the s3 bucket
-      // Note I configured the s3 bucket by allowing the cors-origin for localhost
       this.mapData();
-
-      this.vendor.gallery.forEach(async (anImage) => {
-        let imageFile = await this.convertURLtoFile(anImage);
-        this.files.push(imageFile);
-        this.tempAlbumFiles.push({ name: imageFile.name, url: anImage });
-      })
+      this.loadGalleryPhotos();
+      this.mapsLoader();
+      this.socailMediaData();
     }
   };
+
+  loadGalleryPhotos() {
+    this.vendor.gallery.forEach(async (anImage) => {
+      let imageFile = await this.convertURLtoFile(anImage);
+      this.files.push(imageFile);
+      this.tempAlbumFiles.push({ name: imageFile.name, url: anImage });
+    })
+  }
 
   documentSelectors() {
     $("#tagsAr").change({ angularThis: this.that }, function (e, params) {
@@ -213,25 +216,27 @@ export class VendorsFormComponent implements OnInit {
     this.vendor.location.latitude = this.latitude.toString();
     this.vendor.location.longtitude = this.longitude.toString();
     if (this.facebookUrl != "")
-      this.vendor.social.push({
+      this.socialArray.push({
         source: "facebook",
         url: this.facebookUrl
       });
     if (this.twitterUrl != "")
-      this.vendor.social.push({
+      this.socialArray.push({
         source: "twitter",
         url: this.twitterUrl
       });
     if (this.instagramUrl != "")
-      this.vendor.social.push({
+      this.socialArray.push({
         source: "instagram",
         url: this.instagramUrl
       });
     if (this.pinterestUrl != "")
-      this.vendor.social.push({
+      this.socialArray.push({
         source: "pinterest",
         url: this.pinterestUrl
       });
+
+    this.vendor.social = this.socialArray;
 
     let updateURL = `${urls.UPDATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(updateURL, {}, { "vendor": this.vendor }).subscribe((response: responseModel) => {
@@ -303,7 +308,6 @@ export class VendorsFormComponent implements OnInit {
   setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((locationInfo) => {
-        debugger
         if ((this.vendor.location.latitude != undefined && this.vendor.location.latitude != "")
           && (this.vendor.location.longtitude != undefined && this.vendor.location.longtitude != "")) {
           this.latitude = parseFloat(this.vendor.location.latitude);
@@ -355,7 +359,11 @@ export class VendorsFormComponent implements OnInit {
     });
   };
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit() {
+    this.ngxSpinner.show();
+    let tempVar = await this.getLookups();
+    this.ngxSpinner.hide();
+
     this.loadScripts();
     this.documentSelectors();
 
@@ -441,12 +449,16 @@ export class VendorsFormComponent implements OnInit {
   }
 
   mapData() {
-    debugger
     this.latitude = parseFloat(this.vendor.location.latitude);
     this.longitude = parseFloat(this.vendor.location.longtitude);
   }
 
   socailMediaData() {
+    this.facebookUrl= this.vendor.social.filter(social => {
+      
+      return social["source"] == "facebook" ? social.url :""
+    });
+    console.log(this.facebookUrl)
     this.facebookUrl = this.vendor.social.filter((social: any) => {
       return social.source == "facebook";
     })[0].url;
