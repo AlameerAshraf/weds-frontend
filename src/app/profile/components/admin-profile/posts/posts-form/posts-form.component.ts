@@ -44,6 +44,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private lookupsService: LookupsService,
     private http: httpService) {
+      window.scrollTo(0 , 0);
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
       this.activatedRoute.params.subscribe((params) => {
