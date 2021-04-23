@@ -4,7 +4,7 @@ import { MapsAPILoader } from '@agm/core';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag } from 'src/app/core';
+import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, area } from 'src/app/core';
 
 declare const google: any
 declare var $;
@@ -27,14 +27,14 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   tagsAr: tag[] = [];
   tagsEn: tag[] = [];
   socialArray: any[] = [];
-  htmlContentEnglish;
-  htmlContentArabic;
-  pinterestUrl;
-  instagramUrl;
-  twitterUrl;
-  facebookUrl;
-  categories;
-  areas;
+  htmlContentEnglish: any  = "";
+  htmlContentArabic  = "";
+  pinterestUrl  = "";
+  instagramUrl  = "";
+  twitterUrl = "";
+  facebookUrl  = "";
+  categories: category[] = [];
+  areas: area[] = [];
   priceRanges = constants.PRICE_RANGE;
   segments = constants.SEGMENTS;
   tempAlbumFiles: any[] = [];
@@ -101,12 +101,11 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
+    this.initSocialValues();
     this.ngxSpinner.show();
     let tempVar = await this.getLookups();
     this.ngxSpinner.hide();
-
     this.loadUser();
-
     this.loadScripts();
     this.documentSelectors();
   };
@@ -410,6 +409,27 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     };
 
     return new File([data], image.split('/').pop(), metadata);
+  };
+
+  initSocialValues() {
+    this.vendor.social = [
+      {
+        source: "facebook",
+        url: this.facebookUrl
+      },
+      {
+        source: "instagram",
+        url: this.instagramUrl
+      },
+      {
+        source: "twitter",
+        url: this.twitterUrl
+      },
+      {
+        source: "pinterest",
+        url: this.pinterestUrl
+      }
+    ]
   }
   //#endregion
 
