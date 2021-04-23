@@ -4,6 +4,7 @@ export class vendor {
     nameEn?: string = "";
     nameAr?: string = "";
     phone?: string ="";
+    email?: string = "";
     priceRange?: string = "";
     shortDescriptionAr?: string = "";
     shortDescriptionEn?: string = "";
