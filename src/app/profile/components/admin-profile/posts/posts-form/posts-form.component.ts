@@ -111,7 +111,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       this.spinner.show();
       this.fetchEdiedPosts(this.post.bodyEnURL , "en");
       this.fetchEdiedPosts(this.post.bodyArURL, "ar");
-      this.post.scheduledAt = this.post.scheduledAt.toString().split('T')[0];
+      // this.post.scheduledAt = this.post.scheduledAt.toString().split('T')[0];
       this.spinner.hide();
     }
   };
