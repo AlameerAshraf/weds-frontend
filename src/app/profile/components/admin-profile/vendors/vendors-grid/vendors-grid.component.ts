@@ -77,6 +77,10 @@ export class VendorsGridComponent implements OnInit {
     });
   };
 
+  publishVendor(id: any){
+    
+  }
+
   pageChange(pageNumber){
 
   };
