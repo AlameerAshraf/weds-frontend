@@ -1,4 +1,15 @@
 .anImage {
-    max-width: 250px !important;
-    max-height: 200px !important;
-  }
+  max-width: 180px !important;
+  max-height: 130px !important;
+}
+
+.pending{
+  background-color: rgb(119, 119, 119) !important;
+  color: white !important;
+}
+
+.success{
+  background-color: rgb(57, 201, 14) !important;
+  color: white !important;
+}
+

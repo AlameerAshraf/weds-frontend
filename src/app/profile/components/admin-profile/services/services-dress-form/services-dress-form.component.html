@@ -1,96 +1,114 @@
-
-
-
 <div class="row">
-    <div class="col-lg-6 col-md-12">
-            <div class="dashboard-list-box-static">
+  <div class="col-lg-12">
+    <div id="add-listing">
+      <div class="add-listing-section">
+        <div class="add-listing-headline" style="padding: 25px;">
+          <h3><i class="im im-icon-Dress"></i> New dress</h3>
+        </div>
+
+        <div class="row with-forms">
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="dashboard-list-box-static" style="padding: 0px;">
                 <div class="my-profile">
 
-                    <label class="margin-top-0">Name En</label>
-                    <input value="Tom Perrin" type="text">
+                  <label class="margin-top-0">Name English</label>
+                  <input value="Tom Perrin" type="text">
 
-                    <label>Description En</label>
-                    <textarea></textarea>
+                  <label>Description English</label>
+                  <textarea></textarea>
 
-                    <label>Service</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Select your service</option>
-                        <option>Dress</option>
-                        <option>Ring</option>
-                    </select>
+                  <label>Service</label>
+                  <select class="chosen-select-no-single">
+                    <option label="blank">Select your service</option>
+                    <option>Dress</option>
+                    <option>Ring</option>
+                  </select>
 
-                    <label>Dress cut</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Select your dress cut</option>
-                        <option>short</option>
-                        <option>tall</option>
-                    </select>
+                  <label>Dress cut</label>
+                  <select class="chosen-select-no-single">
+                    <option label="blank">Select your dress cut</option>
+                    <option>short</option>
+                    <option>tall</option>
+                  </select>
 
-                    <label>Train length</label>
-                    <input value="length" type="text">
+                  <label>Train length</label>
+                  <input value="length" type="text">
 
-                    <label>Silhouette</label>
-                    <input value="length" type="text">
+                  <label>Silhouette</label>
+                  <input value="length" type="text">
 
-                    <label>Color</label>
-                    <input value="color" type="text">
+                  <label>Color</label>
+                  <input value="color" type="text">
 
-                    <label>Price (EGP)</label>
-                    <input value="price" type="text">
+                  <label>Price (EGP)</label>
+                  <input value="price" type="text">
 
-                    <label>Tags En list</label>
-                    <input value="Tags en" type="text">
+                  <label>Tags En list</label>
+                  <input value="Tags en" type="text">
 
-                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                        <img class="anImage"
-                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                            alt="">
-                        <div class="change-photo-btn">
-                            <div class="photoUpload">
-                                <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                <input type="file" class="upload" (change)="onFileSelected($event)" />
-                            </div>
-                        </div>
+                  <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                    <img class="anImage"
+                      [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                      alt="">
+                    <div class="change-photo-btn">
+                      <div class="photoUpload">
+                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                        <input type="file" class="upload" />
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-    </div>
 
-    <div class="col-lg-6 col-md-12">
-            <div class="dashboard-list-box-static">
+            <div class="col-lg-6 col-md-12">
+              <div class="dashboard-list-box-static" style="padding: 0px;">
                 <div class="my-profile">
-                    <label class="margin-top-0">Name Ar</label>
-                    <input value="توم" type="text">
+                  <label class="margin-top-0">Name Arabic</label>
+                  <input value="توم" type="text">
 
-                    <label>Description Ar</label>
-                    <textarea></textarea>
+                  <label>Description Arabic</label>
+                  <textarea></textarea>
 
-                    <label>Category</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Select your category</option>
-                        <option>Him</option>
-                        <option>Her</option>
-                    </select>
+                  <label>Category</label>
+                  <select class="chosen-select-no-single">
+                    <option label="blank">Select your category</option>
+                    <option>Him</option>
+                    <option>Her</option>
+                  </select>
 
-                    <label>Dress Length</label>
-                    <input value="dress length" type="text">
+                  <label>Dress Length</label>
+                  <input value="dress length" type="text">
 
-                    <label>Waist style</label>
-                    <input value="waist style" type="text">
+                  <label>Waist style</label>
+                  <input value="waist style" type="text">
 
-                    <label>Style</label>
-                    <input value="style" type="text">
+                  <label>Style</label>
+                  <input value="style" type="text">
 
-                    <label>Size</label>
-                    <input value="size" type="text">
+                  <label>Size</label>
+                  <input value="size" type="text">
 
-                    <label>Neckline</label>
-                    <input value="neckline" type="text">
+                  <label>Neckline</label>
+                  <input value="neckline" type="text">
 
-                    <label>Tags Ar list</label>
-                    <input value="Tags ar" type="text">
+                  <label>Tags Ar list</label>
+                  <input value="Tags ar" type="text">
 
                 </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div align="right">
+        <a style="background-color: #F91942 !important;" class="button preview">
+          Cancel <i class="sl sl-icon-close"></i>
+        </a>
+        <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
+      </div>
     </div>
+  </div>
 </div>

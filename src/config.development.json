@@ -2,5 +2,10 @@
     "BASE_URL" : "http://localhost:3255/api/v1",
     "CLIENT_IDENTITY_USERS" : "6PpzNsnEz+5RTZxR0aeQidBSMsTnBKfkNAtdf22s9Fo=",
     "CLIENT_IDENTITY_ADMINS" : "O+PDBSBiQcrTA0AyU8+Vz7CVneY26Xs6KPMPRYTAzYg=",
-    "SERVER_URL" : "http://localhost:3255"
+    "SERVER_URL" : "http://localhost:3255",
+    "GOOGLE_OAUTH_CLIENT_ID" : "954949359394-vqlv59fgg56gov5vnh0c3e7tmla1dbgb.apps.googleusercontent.com",
+    "GOOGLE_OAUTH_CLIENT_SECRET" : "1YXcT6Z-8zsji338HYeUPdQp",
+    "FACEBOOK_OAUTH_APP_ID" : "1529708933884318",
+    "FACEBOOK_OAUTH_APP_ID_DEBUGE" : "288837749468586",
+    "FACEBOOK_OAUTH_APP_SECRET" : "c8c0e63cfa3495e56cf9139205b5a29a"
 }

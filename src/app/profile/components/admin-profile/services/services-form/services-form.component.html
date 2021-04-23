@@ -1,75 +1,36 @@
-
 <div id="titlebar">
   <div class="row">
-      <div class="col-md-12">
-          <h2>Service Details</h2>
-      </div>
+    <div class="col-md-12">
+      <h2>Add a new service for any vendor</h2>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-12">
-      <div id="add-listing">
+<div class="row with-forms">
+  <div class="col-md-6">
+    <a class="button modfied-btn"
+      [ngClass] = "{ 'selected': selectedLayout == 'ring' , 'not-selected' : selectedLayout != 'ring' }"
+      (click)="selectTemplate('ring')">
+      <i class="im im-icon-Heart-2"></i> Ring
+    </a>
 
-          <!-- Section -->
-          <div class="add-listing-section">
 
-              <!-- Headline -->
-              <div class="add-listing-headline">
-                  <h3><i class="sl sl-icon-doc"></i> Service</h3>
-              </div>
-
-              <!-- Row -->
-              <div class="row with-forms">
-                <div class="col-md-6">
-                  <label>Select service </label>
-                  <select class="chosen-select-no-single">
-                    <option label="Service">Service</option>
-                    <option >Ring</option>
-                    <option>Dress</option>
-                  </select>
-                </div>
-
-                <div class="col-md-4 margin-top-35" align="right">
-                  <a class="button" (click)="addNewServiceTemplate()">Add new service template <i class="sl sl-icon-check"></i></a>
-                </div>
-              </div>
-              <!-- Row / End -->              
-          </div>
-
-          
-      </div>
+    <a class="button modfied-btn"
+      [ngClass] = "{ 'selected': selectedLayout == 'dress' , 'not-selected' : selectedLayout != 'dress' }"
+      (click)="selectTemplate('dress')">
+      <i class="im im-icon-Dress"></i> Dress
+    </a>
+    <a class="button modfied-btn" (click)="addNewServiceTemplate()">
+      <i class="im im-icon-Add"></i> Add new service template
+    </a>
   </div>
 </div>
 
+<br>
 
-<div class="row margin-top-45">
-  <div class="col-lg-12">
-      <div id="add-listing">
 
-          <!-- Section -->
-          <div class="add-listing-section">
 
-              <!-- Headline -->
-              <div class="add-listing-headline">
-                  <h3><i class="sl sl-icon-doc"></i> Service</h3>
-              </div>
 
-              <!-- Row -->
-              <div class="row with-forms">
-                <app-services-ring-form *ngIf="currentService == 'ring'"></app-services-ring-form>
-                <app-services-dress-form *ngIf="currentService == 'dress'"></app-services-dress-form>
-              </div>
-              <!-- Row / End -->              
-          </div>
 
-          <div align="right">
-            <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-                Cancel <i class="sl sl-icon-close"></i>
-            </a>
-            <a class="button preview" (click)="navigateToServicesForm()">Save Changes <i
-                    class="sl sl-icon-check"></i></a>
-        </div>
-      </div>
-  </div>
-</div>  
+<app-services-ring-form *ngIf="selectedLayout == 'ring'"></app-services-ring-form>
+<app-services-dress-form *ngIf="selectedLayout == 'dress'"></app-services-dress-form>

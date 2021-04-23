@@ -2,7 +2,7 @@
 <div id="titlebar">
     <div class="row">
         <div class="col-md-12">
-            <h2>My Profile</h2>
+            <h2>Vendor Form</h2>
         </div>
     </div>
 </div>
@@ -24,25 +24,46 @@
                     <div class="my-profile">
 
                         <label class="margin-top-0">User Name</label>
-                        <input value="Tom Perrin" type="text">
+                        <input value="Tom Perrin" type="text" placeholder="User Name" [(ngModel)]="vendor.username">
 
-                        <label>Name</label>
-                        <input value="Tom Perrin" type="text">
+                        <label>Name English</label>
+                        <input value="Tom Perrin" type="text" placeholder="Name English" [(ngModel)]="vendor.nameEn">
 
-                        <label>Description</label>
-                        <textarea value="" type="text"></textarea>
+                        <label>Description English</label>
+                        <textarea value="" type="text" placeholder="Description English"
+                            [(ngModel)]="vendor.descriptionEn"></textarea>
 
-                        <label>Short Description</label>
-                        <input type="text" value="">
+                        <label>Advanced Description English</label>
+                        <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx"
+                            [(ngModel)]="vendor.descriptionURLEn" placeholder="Advanced Description English">
+                        </editor>
 
-                        <label>Phone</label>
-                        <input value="(123) 123-456" type="text">
+                        <label>Short Description English</label>
+                        <input type="text" value="" placeholder="Short Description English"
+                            [(ngModel)]="vendor.shortDescriptionEn">
+
+                        <label>segment</label>
+                        <select id="segments" class="chosen-select-no-single">
+                            <option label="Select Segment">Select Segment</option>
+                            <ng-container *ngFor="let segment of segments">
+                                <option [selected]="segment.segment == vendor.segment" [value]="segment.segment">
+                                    {{ segment.name }}</option>
+                            </ng-container>
+                        </select>
 
                         <label>Website Url</label>
-                        <input value="www.google.com" type="text">
+                        <input value="" type="text" placeholder="Website Url" [(ngModel)]="vendor.websiteURL">
 
                         <label>Tags English List</label>
-                        <input type="text" placeholder="tags english">
+                        <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                            <option *ngFor="let tag of tagsEn" [selected]="enTagsContainsTag(tag._id)"
+                                [value]="tag._id">
+                                {{ tag.name }}
+                            </option>
+                        </select>
+
+                        <label>Phone</label>
+                        <input value="" type="text" placeholder="Phone" [(ngModel)]="vendor.phone">
                     </div>
                 </div>
 
@@ -51,39 +72,56 @@
 
                     <div class="my-profile">
                         <label class="margin-top-0">Area</label>
-                        <select class="chosen-select-no-single">
-                            <option label="blank">Area</option>
-                            <option>New York</option>
-                            <option>Los Angeles</option>
+                        <select id="areas" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                            <option *ngFor="let area of areas" [selected]="areasContainsArea(area._id)"
+                                [value]="area._id">
+                                {{ area.nameEn }}
+                            </option>
                         </select>
 
                         <label>Name Arabic</label>
-                        <input value="توم " type="text">
+                        <input value="" type="text" placeholder="Name Arabic" [(ngModel)]="vendor.nameAr">
 
                         <label>Description Arabic</label>
-                        <textarea value="" type="text"></textarea>
+                        <textarea value="" type="text" placeholder="Description Arabic"
+                            [(ngModel)]="vendor.descriptionAr"></textarea>
+
+                        <label>Advanced Description Arabic</label>
+                        <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx"
+                            [(ngModel)]="vendor.descriptionURLAr" placeholder="Advanced Description Arabic">
+                        </editor>
 
                         <label>Short Description Arabic</label>
-                        <input type="text" value="">
+                        <input type="text" value="" placeholder="Short Description Arabic"
+                            [(ngModel)]="vendor.shortDescriptionAr">
 
                         <label>Category</label>
-                        <select class="chosen-select-no-single">
-                            <option label="blank">Category</option>
-                            <option>New York</option>
-                            <option>Los Angeles</option>
+                        <select id="categories" class="chosen-select-no-single">
+                            <option label="Select Category">Select Category</option>
+                            <ng-container *ngFor="let category of categories">
+                                <option [selected]="category._id == vendor.category" [value]="category._id">{{
+                                    category.nameEn }}</option>
+                            </ng-container>
                         </select>
 
                         <label>Price Range</label>
-                        <select class="chosen-select-no-single">
-                            <option label="blank">Price</option>
-                            <option>New York</option>
-                            <option>Los Angeles</option>
+                        <select id="priceRanges" class="chosen-select-no-single">
+                            <option label="Select Price">Select Price </option>
+                            <ng-container *ngFor="let priceRange of priceRanges">
+                                <option [selected]="priceRange.price_range == vendor.priceRange"
+                                    [value]="priceRange.price_range">{{ priceRange.name }}</option>
+                            </ng-container>
                         </select>
 
-                        
-                        <label>Tags Arabic List </label>
-                        <input type="text" placeholder="tags arabic">
 
+                        <label>Tags Arabic List </label>
+                        <!-- <input type="text" placeholder="tags arabic"> -->
+                        <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                            <option *ngFor="let tag of tagsAr" [selected]="arTagsContainsTag(tag._id)"
+                                [value]="tag._id">
+                                {{ tag.name }}
+                            </option>
+                        </select>
                     </div>
                 </div>
 
@@ -112,14 +150,17 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <label>Guest Count </label>
-                                <input type="text" placeholder="Address">
-                                <textarea cols="40" rows="2"
-                                    placeholder="Your Detailed Address, write it or let us!"></textarea>
+                                <input type="text" placeholder="Address" placeholder="Guest Count"
+                                    [(ngModel)]="vendor.location.guestCount">
+                                <textarea cols="40" rows="2" placeholder="Your Detailed Address, write it or let us!"
+                                    [(ngModel)]="vendor.location.typedAddress"></textarea>
                             </div>
 
                             <div class="col-md-7">
                                 <label>Search </label>
-                                <input type="text" placeholder="search">
+                                <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                                    placeholder="Search Venue Nearest Location" autocorrect="off" autocapitalize="off"
+                                    spellcheck="off" type="text" #search>
 
                                 <div>
                                     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
@@ -151,13 +192,11 @@
                     <div class="row col-lg-3 col-md-3" style="padding: 10px !important; height: 205px !important;">
                         <div class="col-md-12">
                             <div class="edit-profile-photo">
-                                <img class="anImage"
-                                    [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                                    alt="">
+                                <img class="anImage" [src]="vendor.featuredImage" alt="">
                                 <div class="change-photo-btn">
                                     <div class="photoUpload">
                                         <span><i class="fa fa-upload"></i> Cover Photo</span>
-                                        <input type="file" class="upload" (change)="onFileSelected($event)" />
+                                        <input type="file" class="upload" (change)="uploadImage($event)" />
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +206,7 @@
 
                     <div class="row col-lg-9 col-md-9" style="padding: 10px; padding-right:0% !important;">
                         <div class="col-md-12">
-                            <ngx-dropzone (change)="onSelect($event)">
+                            <ngx-dropzone #nationalDropZone (change)="onSelect($event)">
                                 <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
                                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
                                     [file]="f" [removable]="true" (removed)="onRemove(f)">
@@ -195,26 +234,27 @@
                     <!-- Phone -->
                     <div class="col-md-3">
                         <h5 class="fb-input"><i class="fa fa-facebook-square"></i> Facebook </h5>
-                        <input type="text" placeholder="https://www.facebook.com/">
+                        <input type="text" placeholder="https://www.facebook.com/" [(ngModel)]="facebookUrl">
                     </div>
 
                     <!-- Website -->
                     <div class="col-md-3">
                         <h5 class="twitter-input"><i class="fa fa-twitter"></i> Twitter </h5>
-                        <input type="text" placeholder="https://www.twitter.com/">
+                        <input type="text" placeholder="https://www.twitter.com/" [(ngModel)]="twitterUrl">
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-md-3">
-                        <h5 class="gplus-input" style="color: rgb(83, 14, 148);"><i class="fa fa-instagram"></i> Instagram 
+                        <h5 class="gplus-input" style="color: rgb(83, 14, 148);"><i class="fa fa-instagram"></i>
+                            Instagram
                         </h5>
-                        <input type="text" placeholder="https://instagram.com">
+                        <input type="text" placeholder="https://instagram.com" [(ngModel)]="instagramUrl">
                     </div>
 
                     <div class="col-md-3">
-                        <h5 class="gplus-input" ><i class="fa fa-pinterest"></i> Pinterest 
+                        <h5 class="gplus-input"><i class="fa fa-pinterest"></i> Pinterest
                         </h5>
-                        <input type="text" placeholder="https://pinterest.com">
+                        <input type="text" placeholder="https://pinterest.com" [(ngModel)]="pinterestUrl">
                     </div>
 
                 </div>
@@ -231,5 +271,8 @@
     <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
         Cancel <i class="sl sl-icon-close"></i>
     </a>
-    <a class="button preview" (click)="createNewCheckList()">Save Changes <i class="sl sl-icon-check"></i></a>
+    <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
+            class="sl sl-icon-check"></i></a>
+    <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i
+            class="sl sl-icon-check"></i></a>
 </div>

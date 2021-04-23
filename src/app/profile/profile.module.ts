@@ -1,3 +1,4 @@
+import { LookupsService } from './../core/helpers/lookups/lookups.service';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { THEME_MODULE } from './../security/security.imports';
@@ -8,7 +9,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
-import { AngularEditorModule } from '@kolkov/angular-editor';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -83,10 +84,11 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
       apiKey: 'AIzaSyAnZPhwhppJByAoyUEzJtF31F0TalEoiYA',
       libraries: ['places']
     }),
-    AngularEditorModule
+    EditorModule
   ],
   providers:[
     NgxSpinnerService,
+    LookupsService
   ]
 })
 export class ProfileModule { }

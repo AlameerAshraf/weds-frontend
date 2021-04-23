@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { ring, vendorService } from 'src/app/core';
 
 
 @Component({
@@ -10,7 +11,9 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
   templateUrl: './services-ring-form.component.html',
   styleUrls: ['./services-ring-form.component.scss']
 })
-export class ServicesRingFormComponent implements OnInit {
+export class ServicesRingFormComponent implements OnInit, AfterViewInit {
+  ring = new ring();
+  service =  new vendorService();
 
   coverPhotoSource="";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
@@ -18,6 +21,12 @@ export class ServicesRingFormComponent implements OnInit {
     private elementRef: ElementRef) { }
 
   ngOnInit() {
+    this.loadScripts();
+  }
+
+  createRing(){
+    this.service.attributes = this.ring;
+    console.log(this.service);
   }
 
   navigateToServicesForm(){
@@ -33,5 +42,22 @@ export class ServicesRingFormComponent implements OnInit {
   backToRoute(){
     this.router.navigateByUrl('/profile/en/admin/services-action/new');
   };
+
+  //#region load scripts
+  ngAfterViewInit(): void {
+    this.loadScripts();
+  };
+
+  loadScripts(){
+    let scripts = ['assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  }
+  //#endregion
 
 }

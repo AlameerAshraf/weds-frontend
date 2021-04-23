@@ -1,12 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel } from './../../../../../core/models/response';
-import { urls } from './../../../../../core/helpers/urls/urls';
-import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources } from 'src/app/core';
+import { responseModel , urls , httpService , constants, localStorageService, post, resources } from './../../../../../core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-posts-grid',
@@ -17,12 +16,15 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  postsList = [];
+  postsList : post[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private storage: localStorageService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
   }
@@ -40,16 +42,15 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
   };
 
   getAllPosts() {
+    this.spinner.show();
     let getAllPostsURL = `${urls.GET_ALL_POSTS}/${constants.APP_IDENTITY_FOR_USERS}`;
-
-
     this.http.Get(getAllPostsURL, {}).subscribe((response: responseModel) => {
-      if (!response.error) {
-
-        this.postsList = response.data;
-      } else {
-
-        console.log(response.error);
+      if(!response.error){
+        this.spinner.hide();
+        this.postsList = response.data as post[];
+      }else{
+        this.spinner.hide();
+        this.toastr.error("Our bad sorry!" , "Error loading data from the server, try again later!");
       }
     });
 
@@ -59,11 +60,18 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
   };
 
-  navigateToCreateNewTheme() {
-    this.router.navigate(['profile/en/admin/themes-action/new']);
-  }
+  navigateToCreateNewPost() {
+    this.router.navigate(['profile/en/admin/posts-action/new']);
+  };
+
+  navigateToUpdatePost(postId: any){
+    let targetPost = this.postsList.find(x => x._id == postId);
+    this.storage.setLocalStorage("weds360#postOnEdit" , targetPost);
+    this.router.navigate([`profile/en/admin/posts-action/update`]);
+  };
 
 
+  //#region Scripts loader
   ngAfterViewInit(): void {
     this.loadScripts();
   };
@@ -78,4 +86,5 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  //#endregion
 }

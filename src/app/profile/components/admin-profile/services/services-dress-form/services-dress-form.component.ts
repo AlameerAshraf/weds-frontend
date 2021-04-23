@@ -9,7 +9,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
   templateUrl: './services-dress-form.component.html',
   styleUrls: ['./services-dress-form.component.scss']
 })
-export class ServicesDressFormComponent implements OnInit {
+export class ServicesDressFormComponent implements OnInit, AfterViewInit {
 
   coverPhotoSource="";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
@@ -17,6 +17,7 @@ export class ServicesDressFormComponent implements OnInit {
     private elementRef: ElementRef ) { }
 
   ngOnInit() {
+    this.loadScripts();
   }
 
   navigateToServicesForm(){
@@ -32,5 +33,22 @@ export class ServicesDressFormComponent implements OnInit {
   backToRoute(){
     this.router.navigateByUrl('/profile/en/admin/services-action/new');
   };
+
+    //#region Script loaders Helpers..
+    ngAfterViewInit(): void {
+      this.loadScripts();
+    };
+
+    loadScripts(){
+      let scripts = ['assets/scripts/custom.js'];
+
+      scripts.forEach(element => {
+        const s = this.document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = element;
+        this.elementRef.nativeElement.appendChild(s);
+      });
+    }
+    //#endregion
 
 }
