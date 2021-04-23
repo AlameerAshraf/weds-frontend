@@ -1,8 +1,14 @@
-table{
+table {
   table-layout: fixed;
 }
-td { text-align: center;  white-space:nowrap; text-overflow:ellipsis !important;}
-th { text-align: center; }
+td {
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
+}
+th {
+  text-align: center;
+}
 
 .dot {
   height: 10px;
@@ -11,7 +17,6 @@ th { text-align: center; }
   border-radius: 50%;
   display: inline-block;
 }
-
 
 /* Tooltip container */
 .tooltip {
@@ -44,8 +49,12 @@ th { text-align: center; }
   opacity: 1;
 }
 
-.modfied-btn{
+.modfied-btn {
   padding-bottom: 5px !important;
   padding-top: 5px !important;
   margin-top: 13px !important;
+}
+.searchBoxRTL {
+  float: right !important;
+  direction: rtl !important;
 }

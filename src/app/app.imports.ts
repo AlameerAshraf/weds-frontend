@@ -1,8 +1,8 @@
-import * as appComponents from './app-components';
-import { ThemeModule } from './theme/theme.module';
+import * as appComponents from "./app-components";
+import { ThemeModule } from "./theme/theme.module";
 
 export const COMPONENTS = {
-    ...appComponents
+  ...appComponents,
 };
 
 import { NgxSpinnerModule } from "ngx-spinner";

@@ -1,0 +1,22 @@
+{
+  "OFFERS": "Create the offers items",
+  "OFFER": " Offer ",
+  "ADD_OFFER": " Create Offer ",
+  "DEFAULT_OFFERS": " Default  Offers ",
+  "OFFER_INFO": " Offer information  ",
+  "IMAGE": "Image",
+  "VENDOR": "Vendor",
+  "SHOWS_IN": "Resides In - The page this offer will be shown in  ",
+  "TITLE_ENGLISH": "Title English ",
+  "TITLE_ARABIC": "Title Arabic  ",
+  "DESCRIPTION_ENGLISH": " Description English  ",
+  "DESCRIPTION_ARABIC": " Description Arabic  ",
+  "UPLOAD_PHOTO": "Upload Photo",
+  "DESCRIPTION": "Description",
+
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
+}

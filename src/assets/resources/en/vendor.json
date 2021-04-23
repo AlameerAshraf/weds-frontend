@@ -1,0 +1,40 @@
+{
+  "VENDOR_TITLE": " Vendors  ",
+  "ADD_VENDOR": " Add New Vendor    ",
+  "DEFAULT_VENDORS": " All Vendors  ",
+  "VENDORS": "Vendors",
+  "VENDOR": "Vendor",
+  "NAME_ENGLISH": "English Name",
+  "NAME": "Name",
+  "EMAIL": "Email",
+
+  "NAME_ARABIC": "Arabic Name",
+  "SHORT_DESC_ENGLISH": "Short Description English",
+  "SHORT_DESC_ARABIC": " Short Description Arabic      ",
+  "DESC_ENGLISH": "English Description",
+  "DESC_ARABIC": "Arabic Description",
+  "TAG_ENGLISH": "Tags English",
+  "TAG_ARABIC": "Tags Arabic",
+  "CATEGORY": "Category",
+  "PHONE": "Phone",
+  "WEB_URL": "Website Url  ",
+  "PRICE_RANGE": "Price Range",
+
+  "LOCATION": "Location ",
+  "ADDRESS": " Address",
+  "ADDRESS_DETAIL": "  Write Detailed Address",
+  "SEARCH": "Search ",
+
+  "SOCIAL_DETAILS": " Social Details  ",
+
+  "GALLERY": "Gallery",
+  "UPLOAD_COVER_PHOTO": " Cover Photo",
+  "UPLOAD_PHOTO": "Upload Photo",
+  "VENDOR_INFO": " Basic Information",
+  "USER_NAME": " User Name  ",
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
+}

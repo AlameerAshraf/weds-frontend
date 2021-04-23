@@ -1,43 +1,40 @@
-<div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Create the themes items.</h2>
-      </div>
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{labels.THEMES}}</h2>
     </div>
   </div>
+</div>
 
 
-  <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <div class="dashboard-list-box margin-top-0">
-        <h4>
-          Default Themes
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>
+        {{labels.DEFAULT_THEMES}}
 
-          <div
-            (click)="navigateToCreateNewTheme()"
-            style="background-color: #046B69 !important;
+        <div (click)="navigateToCreateNewTheme()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
-              border-radius: 20px;"
-              class="comission-taken">
-            <i class="im im-icon-Pencil"></i> &nbsp;
-            <strong style="color: white !important">Create New Theme Item</strong>
-          </div>
-        </h4>
+              border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">{{labels.ADD_THEME}}</strong>
+        </div>
+      </h4>
 
-        <div class="col-md-12" style="background-color: white;">
-          <table class="table borderless">
-            <thead>
-              <tr>
-                <th scope="col" width="30%">Theme Name</th>
-                <th scope="col" width="30%">Image</th>
-                <th scope="col" width="30%">Routing URL</th>
-                <th scope="col" width="5%">Delete</th>
-                <th scope="col" width="5%">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of themesList">
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.NAME}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.IMAGE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.URL}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of themesList">
               <tr>
                 <td>
                   <p>{{ item.name }}</p>
@@ -51,7 +48,7 @@
                 <td class="td-in-table">
                   <p>
                     <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600; cursor: pointer;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
                   </p>
                 </td>
                 <td class="td-in-table">
@@ -61,19 +58,19 @@
                   </p>
                 </td>
               </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </div>
+            </ng-container>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="clearfix"></div>
+<div class="clearfix"></div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="themesList.length" [maxSize]="5">
-      </weds-paging>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="themesList.length" [maxSize]="5">
+    </weds-paging>
   </div>
+</div>

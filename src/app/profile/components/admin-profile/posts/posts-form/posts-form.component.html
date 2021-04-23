@@ -1,54 +1,57 @@
-<div id="titlebar">
+<div id="titlebar" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
-      <h2>Create a new post </h2>
+      <h2>{{labels.ADD_POST}} </h2>
     </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12">
     <div id="add-listing">
 
       <!-- Basic info -->
       <div class="add-listing-section">
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-doc"></i> Basic Article Informations</h3>
+          <h3><i class="sl sl-icon-doc"></i> {{labels.POST_INFO}}</h3>
         </div>
 
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
-            <label class="margin-top-0">Title English</label>
-            <input value="Tom Perrin" type="text" [(ngModel)] = "post.titleEn" placeholder="Title in English">
+            <label class="margin-top-0">{{labels.TITLE_ENGLISH}}</label>
+            <input value="Tom Perrin" type="text" [(ngModel)]="post.titleEn" [placeholder]="labels.TITLE_ENGLISH">
 
-            <label>Subtitle English</label>
-            <input value="Tom Perrin" type="text" [(ngModel)] = "post.subtitleEn" placeholder="Subtitle in English">
+            <label>{{labels.SUBTITLE_ENGLISH}}</label>
+            <input value="Tom Perrin" type="text" [(ngModel)]="post.subtitleEn" [placeholder]="labels.SUBTITLE_ENGLISH">
 
             <label>Meta Description English</label>
-            <textarea value="" type="text" cols="1" rows="0" [(ngModel)] = "post.metaDescriptionEn" placeholder="Meta Description in English"></textarea>
+            <textarea value="" type="text" cols="1" rows="0" [(ngModel)]="post.metaDescriptionEn"
+              placeholder="Meta Description in English"></textarea>
           </div>
         </div>
 
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
             <label class="margin-top-0">Title Arabic</label>
-            <input value="Tom Perrin" type="text" [(ngModel)] = "post.titleAr" placeholder="Title in Arabic" >
+            <input value="Tom Perrin" type="text" [(ngModel)]="post.titleAr" placeholder="Title in Arabic">
 
             <label>Subtitle Arabic</label>
-            <input value="Tom Perrin" type="text" [(ngModel)] = "post.subtitleAr" placeholder="Subtitle in Arabic">
+            <input value="Tom Perrin" type="text" [(ngModel)]="post.subtitleAr" placeholder="Subtitle in Arabic">
 
             <label>Meta Description Arabic</label>
-            <textarea value="" type="text" cols="2" rows="1" [(ngModel)] = "post.metaDescriptionAr" placeholder="Meta Description in Arabic"s></textarea>
+            <textarea value="" type="text" cols="2" rows="1" [(ngModel)]="post.metaDescriptionAr"
+              placeholder="Meta Description in Arabic" s></textarea>
           </div>
         </div>
 
-        <div class="row with-forms" align="right">
-          <a class="button" (click) = "scrollToElement(postContent)">Next - Post Content &nbsp; <i class="sl sl-icon-arrow-down"></i></a>
+        <div class="row with-forms" [align]="lang==='ar'?'left':'right'">
+          <a class="button" (click)="scrollToElement(postContent)">Next - Post Content &nbsp; <i
+              class="sl sl-icon-arrow-down"></i></a>
         </div>
       </div>
 
       <!-- Content info -->
-      <div class="add-listing-section margin-top-20"  #postContent>
+      <div class="add-listing-section margin-top-20" #postContent>
         <div class="add-listing-headline">
           <h3><i class="sl sl-icon-note"></i> Article Content</h3>
         </div>
@@ -75,8 +78,9 @@
           </div>
         </div>
 
-        <div class="row with-forms margin-top-20" align="right">
-          <a class="button" (click) = "scrollToElement(detaildInfo)">Next - Identification Details &nbsp; <i class="sl sl-icon-arrow-down"></i></a>
+        <div class="row with-forms margin-top-20" [align]="lang==='ar'?'left':'right'">
+          <a class="button" (click)="scrollToElement(detaildInfo)">Next - Identification Details &nbsp; <i
+              class="sl sl-icon-arrow-down"></i></a>
         </div>
       </div>
 
@@ -97,17 +101,17 @@
 
             <label>Category</label>
             <select id="cats" class="chosen-select-no-single">
-                <option label="blank">Select category</option>
-                <option  *ngFor="let cat of categories"  [selected]="cat._id == post.category" [value] = "cat._id">
-                  {{ cat.nameEn }}
-                </option>
+              <option label="blank">Select category</option>
+              <option *ngFor="let cat of categories" [selected]="cat._id == post.category" [value]="cat._id">
+                {{ cat.nameEn }}
+              </option>
             </select>
 
             <div class="checkboxes in-row margin-top-30">
               <input id="check-a" type="checkbox" name="check" [(ngModel)]="post.isAuthorVisible">
               <label for="check-a">Show Author Name & Details</label>
               <p>This will make your name visible on the blogs view for users.</p>
-          </div>
+            </div>
           </div>
         </div>
 
@@ -132,14 +136,16 @@
           <div class="my-profile margin-bottom-20">
             <label class="margin-top-0">Related Posts</label>
             <select id="relatedPosts" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-              <option *ngFor="let possiblePost of posts" [selected]="relatedPostsBinder(possiblePost._id)" [value]="possiblePost._id">
+              <option *ngFor="let possiblePost of posts" [selected]="relatedPostsBinder(possiblePost._id)"
+                [value]="possiblePost._id">
                 {{ possiblePost.titleEn }}
               </option>
             </select>
+          </div>
         </div>
-      </div>
-        <div class="row with-forms" align="right">
-          <a class="button" (click) = "scrollToElement(media)">Next - Images & Media &nbsp; <i class="sl sl-icon-arrow-down"></i></a>
+        <div class="row with-forms" [align]="lang==='ar'?'left':'right'">
+          <a class="button" (click)="scrollToElement(media)">Next - Images & Media &nbsp; <i
+              class="sl sl-icon-arrow-down"></i></a>
         </div>
       </div>
 
@@ -155,8 +161,9 @@
           <div class="row col-lg-3 col-md-3">
             <div class="my-profile">
               <label class="margin-top-0">Select a featured image</label>
-              <a class="button" [ngClass]= "{ 'pending' : post.featuredImage == '' , 'success' : post.featuredImage != '' }"
-                (click) ="getImage()" id="photoCliker">
+              <a class="button"
+                [ngClass]="{ 'pending' : post.featuredImage == '' , 'success' : post.featuredImage != '' }"
+                (click)="getImage()" id="photoCliker">
                 <span *ngIf="post.featuredImage == ''">Upload Cover Photo</span>
                 <span *ngIf="post.featuredImage !== ''">
                   <i class="sl sl-icon-check"></i>
@@ -167,8 +174,9 @@
 
 
               <label class="margin-top-10">Select a featured video</label>
-              <a class="button" [ngClass]= "{ 'pending' : post.featuredVideo == '' , 'success' : post.featuredVideo != '' }"
-                (click) ="getVideo()" id="videoClicker">
+              <a class="button"
+                [ngClass]="{ 'pending' : post.featuredVideo == '' , 'success' : post.featuredVideo != '' }"
+                (click)="getVideo()" id="videoClicker">
                 <span *ngIf="post.featuredVideo == ''">Upload video</span>
                 <span *ngIf="post.featuredVideo !== ''">
                   <i class="sl sl-icon-check"></i>
@@ -206,13 +214,15 @@
                     <div class="change-photo-btn">
                       <div class="photoUpload">
                         <span><i class="fa fa-upload"></i> Upload Photo</span>
-                        <input type="file" class="upload" (change)="uploadImagePhoto($event , image.id)"/>
+                        <input type="file" class="upload" (change)="uploadImagePhoto($event , image.id)" />
                       </div>
                     </div>
                   </div>
                   <div>
-                    <input type="text" placeholder="Arabic Desc" style="margin-bottom: 2px;" [(ngModel)]="image.arabicDesc">
-                    <input type="text" placeholder="English Desc" style="margin-bottom: 5px;" [(ngModel)]="image.englishDesc">
+                    <input type="text" placeholder="Arabic Desc" style="margin-bottom: 2px;"
+                      [(ngModel)]="image.arabicDesc">
+                    <input type="text" placeholder="English Desc" style="margin-bottom: 5px;"
+                      [(ngModel)]="image.englishDesc">
                   </div>
                 </div>
               </ng-container>
@@ -228,10 +238,10 @@
 
 
 
-<div align="right" *ngIf="editingMode == 'new'">
+<div [align]="lang==='ar'?'left':'right'" *ngIf="editingMode == 'new'">
   <a class="button preview" (click)="createPost()">Save Changes <i class="sl sl-icon-check"></i></a>
 </div>
 
-<div align="right" *ngIf="editingMode == 'update'">
+<div [align]="lang==='ar'?'left':'right'" *ngIf="editingMode == 'update'">
   <a class="button preview" (click)="updatePost()">Update Changes <i class="sl sl-icon-check"></i></a>
 </div>

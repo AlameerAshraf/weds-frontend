@@ -1,18 +1,17 @@
 <div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Vendors List.</h2>
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Vendors List.</h2>
     </div>
   </div>
-  
-  
+
+
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="dashboard-list-box margin-top-0">
         <h4>
           Vendors List
-  
+
           <div
             (click)="navigateToCreateNewVendor()"
             style="background-color: #046B69 !important;
@@ -24,7 +23,7 @@
             <strong style="color: white !important">Create New Vendor</strong>
           </div>
         </h4>
-  
+
         <div class="col-md-12" style="background-color: white;">
           <table class="table borderless">
             <thead>
@@ -42,13 +41,13 @@
               <ng-container *ngFor="let item of vendorsList">
               <tr>
                 <td>
-                  <p >{{ item.nameEn }}</p>
+                  <p>{{ item.nameEn }}</p>
                 </td>
                 <td>
-                  <p >{{ item.email }}</p>
-                </td>                
+                  <p>{{ item.email }}</p>
+                </td>
                 <td>
-                  <p >{{ item.phone }}</p>
+                  <p>{{ item.phone }}</p>
                 </td>
                 <td>
                   <ng-container *ngIf="item.isPublished">
@@ -68,7 +67,7 @@
                 <td class="td-in-table" style="cursor: pointer;">
                   <ng-container *ngIf="!item.isPublished">
                     <p class="tooltip">
-                      <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload" 
+                      <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload"
                       (click)="publishVendor(item._id)"></i>
                       <span class="tooltiptext">Force publish</span>
                     </p>
@@ -84,27 +83,26 @@
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                    (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
             </ng-container>
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
-  <div class="clearfix"></div>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="vendorsList.length" [maxSize]="5">
-      </weds-paging>
-    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="vendorsList.length" [maxSize]="5">
+    </weds-paging>
   </div>
-  
+</div>

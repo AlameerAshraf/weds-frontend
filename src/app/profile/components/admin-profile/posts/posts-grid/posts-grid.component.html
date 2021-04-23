@@ -1,42 +1,43 @@
-<div id="titlebar" class="gradient">
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
-      <h2>Welcome to your Posts</h2>
-      <span>Search top rated posts!</span>
+      <h2>{{labels.POSTS}}</h2>
+      <span>{{labels.POSTS_SUBTITLE}}</span>
     </div>
   </div>
 </div>
 
-<div class="style-2">
+<div class="style-2" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
     <span class="trigger">
       <a href="#" style="font-size: 25px !important">
-        <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in posts
+        <i style="font-size: 25px !important" class="fa fa-filter"></i> {{labels.FILTER_POSTS}}
         <i class="sl sl-icon-plus"></i>
       </a>
     </span>
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
         <div class="col-md-3">
-          <input type="text" placeholder="Enter search critera.">
+          <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER">
         </div>
         <div class="col-md-3">
           <select id="cats" class="chosen-select-no-single">
-            <option label="blank">Select category</option>
+            <option label="blank">{{labels.SELECT_CATEGORY}}</option>
             <option>
               Search based on ...
             </option>
-        </select>
+          </select>
         </div>
         <div class="col-md-3">
-          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i> Reset </a>
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
+            {{labels.RESET }} </a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box with-icons margin-top-20">
       <h4>
@@ -46,20 +47,20 @@
                 cursor: pointer;
                 border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Add Post</strong>
+          <strong style="color: white !important">{{labels.ADD_POST}}</strong>
         </div>
       </h4>
       <div class="col-md-12" style="background-color: white;">
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="30%">Post</th>
-              <th scope="col" width="20%">Category</th>
-              <th scope="col" width="15%">Author</th>
-              <th scope="col" width="20%">Published At</th>
-              <th scope="col" width="15%">Status</th>
-              <th scope="col" width="5%">Act.</th>
-              <th scope="col" width="5%">Edit</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.POST}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.CATEGORY}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.AUTHOR}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.PUBLISHED_AT}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.STATUS}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.ACTION}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
             </tr>
           </thead>
           <tbody>
@@ -81,21 +82,23 @@
                   <ng-container *ngIf="item.isPublished">
                     <p style="display: -webkit-inline-box;margin-bottom: 0px;">
                       <span class="dot" style="background-color: green;"></span> &nbsp;
-                      <label style="color: green; font-size: 15px; font-weight: 600;"> Published </label>
+                      <label style="color: green; font-size: 15px; font-weight: 600;"> {{labels.PUBLISHED}} </label>
                     </p>
                   </ng-container>
 
                   <ng-container *ngIf="!item.isPublished">
                     <p style="display: -webkit-inline-box;margin-bottom: 0px;">
                       <span class="dot" style="background-color: rgb(214, 148, 4);"></span> &nbsp;
-                      <label style="color: rgb(214, 148, 4); font-size: 15px; font-weight: 600;"> Scheduled </label>
+                      <label style="color: rgb(214, 148, 4); font-size: 15px; font-weight: 600;"> {{labels.SCHEDULED}}
+                      </label>
                     </p>
                   </ng-container>
 
                   <ng-container *ngIf="item.isRemoved">
                     <p style="display: -webkit-inline-box;margin-bottom: 0px;">
                       <span class="dot" style="background-color: rgb(248, 54, 54);"></span> &nbsp;
-                      <label style="color: rgb(248, 54, 54); font-size: 15px; font-weight: 600;"> Revoked </label>
+                      <label style="color: rgb(248, 54, 54); font-size: 15px; font-weight: 600;"> {{labels.REVOKED}}
+                      </label>
                     </p>
                   </ng-container>
                 </td>
@@ -103,19 +106,20 @@
                   <ng-container *ngIf="!item.isPublished">
                     <p class="tooltip">
                       <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload"></i>
-                      <span class="tooltiptext">Force publish</span>
+                      <span class="tooltiptext">{{labels.FORCE_PUBLISH}}</span>
                     </p>
                   </ng-container>
 
                   <ng-container *ngIf="item.isPublished">
                     <p class="tooltip">
-                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-download"></i>
-                      <span class="tooltiptext">Revoke publish</span>
+                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
+                        class="sl sl-icon-cloud-download"></i>
+                      <span class="tooltiptext">{{labels.REVOKE_PUBLISH}}</span>
                     </p>
                   </ng-container>
                 </td>
                 <td class="td-in-table" style="cursor: pointer;">
-                  <p (click) = "navigateToUpdatePost(item._id)">
+                  <p (click)="navigateToUpdatePost(item._id)">
                     <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i>
                   </p>
                 </td>

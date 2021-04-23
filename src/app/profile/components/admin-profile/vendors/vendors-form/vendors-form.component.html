@@ -267,12 +267,12 @@
 
 
 
-<div align="right">
+<div [align]="lang==='ar'?'left':'right'">
     <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-        Cancel <i class="sl sl-icon-close"></i>
+        {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
     </a>
-    <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
+    <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
             class="sl sl-icon-check"></i></a>
-    <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i
+    <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
             class="sl sl-icon-check"></i></a>
 </div>

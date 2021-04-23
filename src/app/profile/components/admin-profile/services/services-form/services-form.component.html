@@ -1,4 +1,4 @@
-<div id="titlebar">
+<div id="titlebar" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
       <h2>Add a new service for any vendor</h2>
@@ -6,17 +6,17 @@
   </div>
 </div>
 
-<div class="row with-forms">
+<div class="row with-forms" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-md-6">
     <a class="button modfied-btn"
-      [ngClass] = "{ 'selected': selectedLayout == 'ring' , 'not-selected' : selectedLayout != 'ring' }"
+      [ngClass]="{ 'selected': selectedLayout == 'ring' , 'not-selected' : selectedLayout != 'ring' }"
       (click)="selectTemplate('ring')">
       <i class="im im-icon-Heart-2"></i> Ring
     </a>
 
 
     <a class="button modfied-btn"
-      [ngClass] = "{ 'selected': selectedLayout == 'dress' , 'not-selected' : selectedLayout != 'dress' }"
+      [ngClass]="{ 'selected': selectedLayout == 'dress' , 'not-selected' : selectedLayout != 'dress' }"
       (click)="selectTemplate('dress')">
       <i class="im im-icon-Dress"></i> Dress
     </a>

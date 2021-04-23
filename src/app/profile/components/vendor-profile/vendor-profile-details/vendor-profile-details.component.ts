@@ -1,12 +1,32 @@
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { MapsAPILoader } from '@agm/core';
-import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, area } from 'src/app/core';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+import { MapsAPILoader } from "@agm/core";
+import { DOCUMENT } from "@angular/common";
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  AfterViewInit,
+  Inject,
+  ElementRef,
+  NgZone,
+  ViewChild,
+} from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import {
+  vendor,
+  LookupsService,
+  constants,
+  urls,
+  httpService,
+  responseModel,
+  localStorageService,
+  tag,
+  category,
+  area,
+} from "src/app/core";
 
-declare const google: any
+declare const google: any;
 declare var $;
 
 @Component({
@@ -15,10 +35,8 @@ declare var $;
   styleUrls: ['./vendor-profile-details.component.scss']
 })
 export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
-
-
   is = false;
-  coverPhotoSource: any = '';
+  coverPhotoSource: any = "";
 
   latitude: number;
   longitude: number;
@@ -27,12 +45,12 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   tagsAr: tag[] = [];
   tagsEn: tag[] = [];
   socialArray: any[] = [];
-  htmlContentEnglish: any  = "";
-  htmlContentArabic  = "";
-  pinterestUrl  = "";
-  instagramUrl  = "";
+  htmlContentEnglish: any = "";
+  htmlContentArabic = "";
+  pinterestUrl = "";
+  instagramUrl = "";
   twitterUrl = "";
-  facebookUrl  = "";
+  facebookUrl = "";
   categories: category[] = [];
   areas: area[] = [];
   priceRanges = constants.PRICE_RANGE;
@@ -40,7 +58,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   tempAlbumFiles: any[] = [];
   that = this;
 
-  @ViewChild('search', { static: true }) public searchElementRef: ElementRef;
+  @ViewChild("search", { static: true }) public searchElementRef: ElementRef;
 
   files: File[] = [];
 
@@ -86,13 +104,19 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     social: [],
   };
 
-
-  constructor(private router: Router, private ngZone: NgZone,
-    private toastr: ToastrService, @Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
-    private http: httpService, private activatedRoute: ActivatedRoute,
-    private storage: localStorageService, private ngxSpinner: NgxSpinnerService,
-    private lookupsService: LookupsService) {
+  constructor(
+    private router: Router,
+    private ngZone: NgZone,
+    private toastr: ToastrService,
+    @Inject(DOCUMENT) private document: any,
+    private elementRef: ElementRef,
+    private mapsAPILoader: MapsAPILoader,
+    private http: httpService,
+    private activatedRoute: ActivatedRoute,
+    private storage: localStorageService,
+    private ngxSpinner: NgxSpinnerService,
+    private lookupsService: LookupsService
+  ) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
     this.activatedRoute.params.subscribe((params) => {
@@ -107,7 +131,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.loadUser();
     this.loadScripts();
     this.documentSelectors();
-  };
+  }
 
   async getLookups() {
     let allTags = (await this.lookupsService.getTags()) as responseModel;
@@ -121,30 +145,37 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
     this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
     this.areas = ((await this.lookupsService.getAreas()) as responseModel).data;
-  };
+  }
 
   loadUser() {
     let loadUserURL = `${urls.GET_USER_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
-    this.http.Get(loadUserURL, { "role": atob(window.localStorage.getItem("weds360#role")) }).subscribe((response: responseModel) => {
-      if (!response.error) {
-        this.ngxSpinner.hide();
-        this.vendor = response.data.vendorRefrence;
-        this.mapData();
-        this.loadGalleryPhotos();
-        this.socailMediaData();
-      } else {
-        this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!", "My bad, server couldn't load your budegeters.");
-      }
-    });
-  };
+    this.http
+      .Get(loadUserURL, {
+        role: atob(window.localStorage.getItem("weds360#role")),
+      })
+      .subscribe((response: responseModel) => {
+        if (!response.error) {
+          this.ngxSpinner.hide();
+          this.vendor = response.data.vendorRefrence;
+          this.mapData();
+          this.loadGalleryPhotos();
+          this.socailMediaData();
+        } else {
+          this.ngxSpinner.hide();
+          this.toastr.error(
+            "Our bad sorry!",
+            "My bad, server couldn't load your budegeters."
+          );
+        }
+      });
+  }
 
   loadGalleryPhotos() {
     this.vendor.gallery.forEach(async (anImage) => {
       let imageFile = await this.convertURLtoFile(anImage);
       this.files.push(imageFile);
       this.tempAlbumFiles.push({ name: imageFile.name, url: anImage });
-    })
+    });
   }
 
   documentSelectors() {
@@ -175,7 +206,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     $("#segments").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.vendor.segment = $("#segments").chosen().val();
     });
-  };
+  }
 
   updateExistingEntity() {
     this.ngxSpinner.show();
@@ -193,17 +224,25 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       this.vendor.social = this.socialArray;
 
     let updateURL = `${urls.UPDATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}`;
-    this.http.Post(updateURL, {}, { "vendor": this.vendor }).subscribe((response: responseModel) => {
-      if (!response.error) {
-        this.ngxSpinner.hide();
-        this.toastr.success("Vendor has been saved succesfully", "Vendor has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/vendor/overview');
-      } else {
-        this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!", "Ooh Sorry, your vendor couldn't created on the server!");
-      }
-    });
-  };
+    this.http
+      .Post(updateURL, {}, { vendor: this.vendor })
+      .subscribe((response: responseModel) => {
+        if (!response.error) {
+          this.ngxSpinner.hide();
+          this.toastr.success(
+            "Vendor has been saved succesfully",
+            "Vendor has been updated, Bingo!"
+          );
+          this.router.navigateByUrl("/profile/en/vendor/overview");
+        } else {
+          this.ngxSpinner.hide();
+          this.toastr.error(
+            "Our bad sorry!",
+            "Ooh Sorry, your vendor couldn't created on the server!"
+          );
+        }
+      });
+  }
 
   uploadImage(e: any): void {
     this.ngxSpinner.show();
@@ -217,42 +256,45 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       formData.append("targetUserEmail", this.currentUserEmail);
 
       let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
-      this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
-        if (!response.error) {
-          this.ngxSpinner.hide();
-          this.vendor.featuredImage = response.data;
-        } else {
-          this.ngxSpinner.hide();
-        }
-      });
+      this.http
+        .Post(uploadImageURL, {}, formData)
+        .subscribe((response: responseModel) => {
+          if (!response.error) {
+            this.ngxSpinner.hide();
+            this.vendor.featuredImage = response.data;
+          } else {
+            this.ngxSpinner.hide();
+          }
+        });
     }
-  };
+  }
 
   enTagsContainsTag(tagId: any) {
-    return this.vendor.enTags.some(entry => entry === tagId);
+    return this.vendor.enTags.some((entry) => entry === tagId);
   }
 
   arTagsContainsTag(tagId: any) {
-    return this.vendor.arTags.some(entry => entry === tagId);
+    return this.vendor.arTags.some((entry) => entry === tagId);
   }
 
   areasContainsArea(areaId: any) {
-    return this.vendor.area.some(entry => entry === areaId);
-  };
+    return this.vendor.area.some((entry) => entry === areaId);
+  }
 
   mapData() {
     this.latitude = parseFloat(this.vendor.location.latitude);
     this.longitude = parseFloat(this.vendor.location.longtitude);
-  };
-
+  }
 
   //#region Maps Helpers..
   mapsLoader() {
     alert("Map loaded");
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+      this.geoCoder = new google.maps.Geocoder();
+      let autocomplete = new google.maps.places.Autocomplete(
+        this.searchElementRef.nativeElement
+      );
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
@@ -266,32 +308,38 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
         });
       });
     });
-  };
+  }
 
   setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((locationInfo) => {
-        if ((this.vendor.location.latitude != undefined && this.vendor.location.latitude != "")
-          && (this.vendor.location.longtitude != undefined && this.vendor.location.longtitude != "")) {
-          this.latitude = parseFloat(this.vendor.location.latitude);
-          this.longitude = parseFloat(this.vendor.location.longtitude);
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (locationInfo) => {
+          if (
+            this.vendor.location.latitude != undefined &&
+            this.vendor.location.latitude != "" &&
+            this.vendor.location.longtitude != undefined &&
+            this.vendor.location.longtitude != ""
+          ) {
+            this.latitude = parseFloat(this.vendor.location.latitude);
+            this.longitude = parseFloat(this.vendor.location.longtitude);
+          } else {
+            this.latitude = locationInfo.coords.latitude;
+            this.longitude = locationInfo.coords.longitude;
+          }
+
+          this.zoom = 12;
+          this.getAddress(this.latitude, this.longitude);
+        },
+        (err) => {
+          console.log(err);
+
+          this.latitude = 30.0444;
+          this.longitude = 31.2357;
+
+          this.zoom = 12;
+          this.getAddress(this.latitude, this.longitude);
         }
-        else {
-          this.latitude = locationInfo.coords.latitude;
-          this.longitude = locationInfo.coords.longitude;
-        }
-
-        this.zoom = 12;
-        this.getAddress(this.latitude, this.longitude);
-      }, (err) => {
-        console.log(err);
-
-        this.latitude = 30.0444;
-        this.longitude = 31.2357;
-
-        this.zoom = 12;
-        this.getAddress(this.latitude, this.longitude);
-      })
+      );
     } else {
       this.latitude = 30.0444;
       this.longitude = 31.2357;
@@ -299,28 +347,31 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       this.zoom = 12;
       this.getAddress(this.latitude, this.longitude);
     }
-  };
+  }
 
   markerDragEnd(e: any) {
     this.latitude = e.coords.lat;
     this.longitude = e.coords.lng;
     this.getAddress(this.latitude, this.longitude);
-  };
+  }
 
   getAddress(latitude: number, longitude: number) {
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-      if (status === 'OK') {
-        if (results[0]) {
-          this.zoom = 12;
-          this.vendor.location.typedAddress = results[0].formatted_address;
+    this.geoCoder.geocode(
+      { location: { lat: latitude, lng: longitude } },
+      (results, status) => {
+        if (status === "OK") {
+          if (results[0]) {
+            this.zoom = 12;
+            this.vendor.location.typedAddress = results[0].formatted_address;
+          } else {
+            window.alert("No results found");
+          }
         } else {
-          window.alert('No results found');
+          window.alert("Geocoder failed due to: " + status);
         }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
       }
-    });
-  };
+    );
+  }
   //#endregion
 
   //#region  DropZone Engine Helper Function..
@@ -344,45 +395,52 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       formData.append("targetUserEmail", this.currentUserEmail);
 
       let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
-      this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
-        if (!response.error) {
-          this.ngxSpinner.hide();
-          this.tempAlbumFiles.push({ name: event.addedFiles[key].name, url: response.data });
-          this.files.push(event.addedFiles[key]);
+      this.http
+        .Post(uploadImageURL, {}, formData)
+        .subscribe((response: responseModel) => {
+          if (!response.error) {
+            this.ngxSpinner.hide();
+            this.tempAlbumFiles.push({
+              name: event.addedFiles[key].name,
+              url: response.data,
+            });
+            this.files.push(event.addedFiles[key]);
 
-          this.bindTempFilesToWeddingObject();
-          console.log("add", this.vendor.gallery);
-          // this.weddingWebsite.album.push(response.data);
-        } else {
-          this.ngxSpinner.hide();
-        }
-      });
+            this.bindTempFilesToWeddingObject();
+            console.log("add", this.vendor.gallery);
+            // this.weddingWebsite.album.push(response.data);
+          } else {
+            this.ngxSpinner.hide();
+          }
+        });
     }
-  };
+  }
 
   onRemove(event: any) {
-    console.log(event.name)
-    let targetFileInTemp = this.tempAlbumFiles.findIndex(x => x.name == event.name);
+    console.log(event.name);
+    let targetFileInTemp = this.tempAlbumFiles.findIndex(
+      (x) => x.name == event.name
+    );
 
     this.files.splice(this.files.indexOf(event), 1);
     this.tempAlbumFiles.splice(targetFileInTemp, 1);
 
     this.bindTempFilesToWeddingObject();
-  };
+  }
 
   bindTempFilesToWeddingObject() {
     this.vendor.gallery = [];
     this.tempAlbumFiles.forEach((imge) => {
       this.vendor.gallery.push(imge.url);
     });
-  };
+  }
 
   async convertURLtoFile(image) {
     // image = "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png";
     let response = await fetch(image);
     let data = await response.blob();
     let metadata = {
-      type: `image/${image.split('.').pop()}`
+      type: `image/${image.split(".").pop()}`,
     };
 
     return new File([data], image.split('/').pop(), metadata);
@@ -398,19 +456,22 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
     this.loadScripts();
     this.documentSelectors();
-  };
-
+  }
 
   loadScripts() {
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js', 'assets/scripts/dropzone.js'];
+    let scripts = [
+      "assets/scripts/datePickerInitakizer.js",
+      "assets/scripts/custom.js",
+      "assets/scripts/dropzone.js",
+    ];
 
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
+    scripts.forEach((element) => {
+      const s = this.document.createElement("script");
+      s.type = "text/javascript";
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
-  };
+  }
 
   //#endregion
 }

@@ -1,227 +1,213 @@
 {
-  "menu" : [
+  "menu": [
     {
-      "name": "360 Planner",
+      "name": "أجندة الفرح",
       "url": "",
       "child": [
         {
-          "name": "Check List",
+          "name": "جدول المهام",
           "url": ""
         },
         {
-          "name": "Budgeter",
+          "name": "تكاليف الفرح",
           "url": ""
         },
         {
-          "name": "Registry List",
+          "name": "هدايا الفرح",
           "url": ""
         },
         {
-          "name": "Guest List",
+          "name": "قائمة الضيوف",
           "url": ""
         },
         {
-          "name": "Wedding Website",
+          "name": "موقع الزفاف",
           "url": ""
         },
         {
-          "name": "Couple Website",
+          "name": "موقع الزوجين",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Her",
+      "name": "لها",
       "url": "",
       "child": [
         {
-          "name": "Designers",
+          "name": "المصممين",
           "url": ""
         },
         {
-          "name": "Bridal Boutique",
+          "name": "بوكية الزفاف",
           "url": ""
         },
         {
-          "name": "Wedding Dresses",
+          "name": "فساتين زفاف",
           "url": ""
         },
         {
-          "name": "Rings",
+          "name": "خواتم",
           "url": ""
         },
         {
-          "name": "Makeup Artists",
+          "name": "ميكاب ارتيست",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": "segment/ar/her"
         }
       ]
     },
     {
-      "name": "Him",
+      "name": "له",
       "url": "",
       "child": [
         {
-          "name": "Suits",
+          "name": "البدل",
           "url": ""
         },
         {
-          "name": "Health",
+          "name": "صحة",
           "url": ""
         },
         {
-          "name": "Men's Grooming",
+          "name": "صالون الحلاقة",
           "url": ""
         },
         {
-          "name": "Fitness",
+          "name": "اللياقة البدنية",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "The Wedding",
+      "name": "الزفاف",
       "url": "",
       "child": [
         {
-          "name": "Venues",
+          "name": "الأماكن",
           "url": ""
         },
         {
-          "name": "Outdoor Wedding Venues",
+          "name": "قاعات أفراح خارجية",
           "url": ""
         },
         {
-          "name": "Videographers",
+          "name": "مصوري الفيديو",
           "url": ""
         },
         {
-          "name": "Photographers",
+          "name": "المصورين",
           "url": ""
         },
         {
-          "name": "DJs",
+          "name": "دي جي",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Gallery",
+      "name": "المعرض",
       "url": "",
       "child": [
         {
-          "name": "Wedding Ideas",
+          "name": "أفكار الزفاف",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Ideas & More",
+      "name": "أفكار والمزيد",
       "url": "",
       "child": [
         {
-          "name": "Tips & Etiquette",
+          "name": "نصائح وآداب",
           "url": ""
         },
         {
-          "name": "Wedding Of The Week",
+          "name": "زفاف الأسبوع",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     }
   ],
-  "actions" : [
+  "actions": [
     {
-      "title" : "Logout",
-      "url" : "",
-      "icon" : "sl sl-icon-power"
+      "title": "تسجيل خروج",
+      "url": "",
+      "icon": "sl sl-icon-power"
     }
   ],
-  "navigations" : [
+  "navigations": [
     {
-      "menuTitle" : "My Dashboard",
-      "childMenuItem" : [
+      "menuTitle": "لوحة التحكم",
+      "childMenuItem": [
         {
-          "title" : "Overview",
-          "icon" : "sl sl-icon-rocket",
-          "child" : [
-
-          ]
+          "title": "نظرة عامة",
+          "icon": "sl sl-icon-rocket",
+          "child": []
         }
       ]
     },
     {
-      "menuTitle" : "360Planner",
-      "childMenuItem" : [
+      "menuTitle": "أجندة الفرح",
+      "childMenuItem": [
         {
-          "title" : "Check List",
-          "icon" : "sl sl-icon-rocket",
-          "child" : [
-
-          ]
+          "title": "جدول المهام",
+          "icon": "sl sl-icon-rocket",
+          "child": []
         },
         {
-          "title" : "Budgeter",
-          "icon" : "",
-          "child" : [
-
-          ]
+          "title": "تكاليف الفرح",
+          "icon": "",
+          "child": []
         },
         {
-          "title" : "Events & Guest List",
-          "icon" : "",
-          "child" : [
-
-          ]
+          "title": "المعازيم و المناسبات",
+          "icon": "",
+          "child": []
         },
         {
-          "title" : "Registery List",
-          "icon" : "",
-          "child" : [
-
-          ]
+          "title": "هدايا الفرح",
+          "icon": "",
+          "child": []
         },
         {
-          "title" : "Wedding website",
-          "icon" : "",
-          "child" : [
-
-          ]
+          "title": "موقع الزفاف",
+          "icon": "",
+          "child": []
         }
       ]
     },
     {
-      "menuTitle" : "My Messages",
-      "childMenuItem" : [
+      "menuTitle": "رسائلي",
+      "childMenuItem": [
         {
-          "title" : "Messages",
-          "icon" : "",
-          "child" : [
-
-          ]
+          "title": "رسائل",
+          "icon": "",
+          "child": []
         }
       ]
     }
