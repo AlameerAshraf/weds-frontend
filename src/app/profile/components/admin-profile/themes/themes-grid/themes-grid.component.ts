@@ -85,7 +85,7 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
   pageChange(pageNumber: any) {}
 
   editEntity(id: any) {
-    this.router.navigate([`profile${this.lang}admin/themes-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/themes-action/update`]);
     let targetTheme = this.themesList.find((x) => x._id == id);
     this.storage.setLocalStorage("weds360#themeOnEdit", targetTheme);
   }
@@ -113,7 +113,7 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
   }
 
   navigateToCreateNewTheme() {
-    this.router.navigate([`profile${this.lang}admin/themes-action/new`]);
+    this.router.navigate([`profile/${this.lang}/admin/themes-action/new`]);
   }
 
   ngAfterViewInit(): void {

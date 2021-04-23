@@ -19,6 +19,8 @@ export class constants {
       CATEGORIES: "categories",
       AREAS: "areas",
       POSTS: "posts",
+      VENDORS: "vendor",
+      SERVICES: "services",
       USER_DASHBOARD: "user-profile-nav",
       ADMIN_DASHBOARD: "admin-profile-nav",
       VENDOR_DASHBOARD: "vendor-profile-nav",
