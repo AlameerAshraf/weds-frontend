@@ -29,10 +29,13 @@
           <table class="table borderless">
             <thead>
               <tr>
-                <th scope="col" width="35%">Vendor</th>
-                <th scope="col" width="45%">Email</th>
-                <th scope="col" width="10%">Delete</th>
-                <th scope="col" width="10%">Edit</th>
+                <th scope="col" width="20%">Vendor</th>
+                <th scope="col" width="20%">Email</th>
+                <th scope="col" width="20%">Phone</th>
+                <th scope="col" width="15%">Status</th>
+                <th scope="col" width="5%">Act.</th>
+                <th scope="col" width="5%">Delete</th>
+                <th scope="col" width="5%">Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -43,6 +46,41 @@
                 </td>
                 <td>
                   <p >{{ item.email }}</p>
+                </td>                
+                <td>
+                  <p >{{ item.phone }}</p>
+                </td>
+                <td>
+                  <ng-container *ngIf="item.isPublished">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: green;"></span> &nbsp;
+                      <label style="color: green; font-size: 15px; font-weight: 600;"> Published </label>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="!item.isPublished">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: rgb(214, 148, 4);"></span> &nbsp;
+                      <label style="color: rgb(214, 148, 4); font-size: 15px; font-weight: 600;"> Pending </label>
+                    </p>
+                  </ng-container>
+                </td>
+                <td class="td-in-table" style="cursor: pointer;">
+                  <ng-container *ngIf="!item.isPublished">
+                    <p class="tooltip">
+                      <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload" 
+                      (click)="publishVendor(item._id)"></i>
+                      <span class="tooltiptext">Force publish</span>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="item.isPublished">
+                    <p class="tooltip">
+                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-download"
+                      (click)="publishVendor(item._id)"></i>
+                      <span class="tooltiptext">Revoke publish</span>
+                    </p>
+                  </ng-container>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"

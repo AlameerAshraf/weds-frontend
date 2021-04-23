@@ -101,7 +101,6 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
-    this.initSocialValues();
     this.ngxSpinner.show();
     let tempVar = await this.getLookups();
     this.ngxSpinner.hide();
@@ -183,27 +182,15 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.vendor.location.latitude = this.latitude.toString();
     this.vendor.location.longtitude = this.longitude.toString();
     if (this.facebookUrl != "")
-      this.socialArray.push({
-        source: "facebook",
-        url: this.facebookUrl
-      });
+      this.socialArray.push(this.facebookUrl.toLowerCase());
     if (this.twitterUrl != "")
-      this.socialArray.push({
-        source: "twitter",
-        url: this.twitterUrl
-      });
+      this.socialArray.push(this.twitterUrl.toLowerCase());
     if (this.instagramUrl != "")
-      this.socialArray.push({
-        source: "instagram",
-        url: this.instagramUrl
-      });
+      this.socialArray.push(this.instagramUrl.toLowerCase());
     if (this.pinterestUrl != "")
-      this.socialArray.push({
-        source: "pinterest",
-        url: this.pinterestUrl
-      });
+      this.socialArray.push(this.pinterestUrl.toLowerCase());
 
-    this.vendor.social = this.socialArray;
+      this.vendor.social = this.socialArray;
 
     let updateURL = `${urls.UPDATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(updateURL, {}, { "vendor": this.vendor }).subscribe((response: responseModel) => {
@@ -339,20 +326,10 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   //#region  DropZone Engine Helper Function..
 
   socailMediaData() {
-    console.log(this.vendor)
-    this.facebookUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "facebook";
-    })[0].url;
-    console.log(this.facebookUrl)
-    this.twitterUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "twitter";
-    })[0].url;
-    this.instagramUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "instagram";
-    })[0].url;
-    this.pinterestUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "pinterest";
-    })[0].url;
+    this.facebookUrl = this.vendor.social.find(x => x.includes('facebook') == true)
+    this.twitterUrl = this.vendor.social.find(x => x.includes('twitter') == true);
+    this.instagramUrl = this.vendor.social.find(x => x.includes('instagram') == true);
+    this.pinterestUrl = this.vendor.social.find(x => x.includes('pinterest') == true);
   };
 
   onSelect(event: any) {
@@ -411,26 +388,6 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     return new File([data], image.split('/').pop(), metadata);
   };
 
-  initSocialValues() {
-    this.vendor.social = [
-      {
-        source: "facebook",
-        url: this.facebookUrl
-      },
-      {
-        source: "instagram",
-        url: this.instagramUrl
-      },
-      {
-        source: "twitter",
-        url: this.twitterUrl
-      },
-      {
-        source: "pinterest",
-        url: this.pinterestUrl
-      }
-    ]
-  }
   //#endregion
 
   //#region  Scripts Loading helpers..
