@@ -1,7 +1,7 @@
 <div id="titlebar" class="gradient">
   <div class="row">
     <div class="col-md-12">
-      <h2>Vendors List.</h2>
+      <h2>{{labels.VENDOR_TITLE}}</h2>
     </div>
   </div>
 </div>
@@ -11,14 +11,14 @@
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
       <h4>
-        Vendors List
+        {{labels.DEFAULT_VENDORS}}
 
         <div (click)="navigateToCreateNewVendor()" style="background-color: #046B69 !important;
             color: white !important;
             cursor: pointer;
             border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Create New Vendor</strong>
+          <strong style="color: white !important">{{labels.ADD_VENDOR}}</strong>
         </div>
       </h4>
 
@@ -26,13 +26,13 @@
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="20%">Vendor</th>
-              <th scope="col" width="20%">Email</th>
-              <th scope="col" width="20%">Phone</th>
-              <th scope="col" width="15%">Status</th>
-              <th scope="col" width="5%">Act.</th>
-              <th scope="col" width="5%">Delete</th>
-              <th scope="col" width="5%">Edit</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.VENDOR}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.EMAIL}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.PHONE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.STATUS}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.ACTION}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +67,7 @@
                     <p class="tooltip">
                       <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload"
                         (click)="publishVendor(item._id)"></i>
-                      <span class="tooltiptext">Force publish</span>
+                      <span class="tooltiptext">{{labels.FORCE_PUBLISH}}</span>
                     </p>
                   </ng-container>
 
@@ -75,7 +75,7 @@
                     <p class="tooltip">
                       <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
                         class="sl sl-icon-cloud-download" (click)="publishVendor(item._id)"></i>
-                      <span class="tooltiptext">Revoke publish</span>
+                      <span class="tooltiptext">{{labels.REVOKE_PUBLISH}}</span>
                     </p>
                   </ng-container>
                 </td>

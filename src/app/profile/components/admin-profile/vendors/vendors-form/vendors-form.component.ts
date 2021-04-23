@@ -130,7 +130,7 @@ export class VendorsFormComponent implements OnInit {
 
   async ngOnInit() {
     this.mapsLoader();
-
+    this.loadResources();
     this.ngxSpinner.show();
     let tempVar = await this.getLookups();
     this.ngxSpinner.hide();

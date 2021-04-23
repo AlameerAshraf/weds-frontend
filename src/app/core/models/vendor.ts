@@ -2,6 +2,7 @@ export class vendor {
   _id?: string;
   username?: string = "";
   nameEn?: string = "";
+  email?: string = "";
   nameAr?: string = "";
   phone?: string = "";
   priceRange?: string = "";
