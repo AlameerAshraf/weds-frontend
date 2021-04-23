@@ -27,7 +27,7 @@ export class VendorsFormComponent implements OnInit {
   private geoCoder: any;
   tagsAr: tag[] = [];
   tagsEn: tag[] = [];
-  socialArray: any[] = [];
+  socialArray: string[] = [];
   htmlContentEnglish: any;
   htmlContentArabic: any;
   pinterestUrl: any;
@@ -110,7 +110,7 @@ export class VendorsFormComponent implements OnInit {
   }
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/admin/vendors-defaults');
+    this.router.navigateByUrl('/profile/en/admin/vendors-list');
   };
 
   async getLookups() {
@@ -130,6 +130,8 @@ export class VendorsFormComponent implements OnInit {
   initVendorView() {
     if (this.editingMode == "update") {
       this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
+      if (this.vendor.featuredImage == undefined)
+        this.vendor.featuredImage = "assets/images/defaults/wedding/cover-photo.png";
       this.mapData();
       this.loadGalleryPhotos();
       this.socailMediaData();
@@ -179,25 +181,13 @@ export class VendorsFormComponent implements OnInit {
     this.vendor.location.latitude = this.latitude.toString();
     this.vendor.location.longtitude = this.longitude.toString();
     if (this.facebookUrl != "")
-      this.vendor.social.push({
-        source: "facebook",
-        url: this.facebookUrl
-      });
+      this.vendor.social.push( this.facebookUrl.toLowerCase());
     if (this.twitterUrl != "")
-      this.vendor.social.push({
-        source: "twitter",
-        url: this.twitterUrl
-      });
+      this.vendor.social.push( this.twitterUrl.toLowerCase());
     if (this.instagramUrl != "")
-      this.vendor.social.push({
-        source: "instagram",
-        url: this.instagramUrl
-      });
+      this.vendor.social.push( this.instagramUrl.toLowerCase());
     if (this.pinterestUrl != "")
-      this.vendor.social.push({
-        source: "pinterest",
-        url: this.pinterestUrl
-      });
+      this.vendor.social.push( this.pinterestUrl.toLowerCase());
 
     let createURL = `${urls.CREATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`;
     this.http.Post(createURL, {}, { "vendor": this.vendor }).subscribe((response: responseModel) => {
@@ -217,25 +207,13 @@ export class VendorsFormComponent implements OnInit {
     this.vendor.location.latitude = this.latitude.toString();
     this.vendor.location.longtitude = this.longitude.toString();
     if (this.facebookUrl != "")
-      this.socialArray.push({
-        source: "facebook",
-        url: this.facebookUrl
-      });
+      this.socialArray.push(this.facebookUrl.toLowerCase());
     if (this.twitterUrl != "")
-      this.socialArray.push({
-        source: "twitter",
-        url: this.twitterUrl
-      });
+      this.socialArray.push(this.twitterUrl.toLowerCase());
     if (this.instagramUrl != "")
-      this.socialArray.push({
-        source: "instagram",
-        url: this.instagramUrl
-      });
+      this.socialArray.push(this.instagramUrl.toLowerCase());
     if (this.pinterestUrl != "")
-      this.socialArray.push({
-        source: "pinterest",
-        url: this.pinterestUrl
-      });
+      this.socialArray.push(this.pinterestUrl.toLowerCase());
 
     this.vendor.social = this.socialArray;
 
@@ -455,22 +433,9 @@ export class VendorsFormComponent implements OnInit {
   }
 
   socailMediaData() {
-    this.facebookUrl= this.vendor.social.filter(social => {
-
-      return social["source"] == "facebook" ? social.url :""
-    });
-    console.log(this.facebookUrl)
-    this.facebookUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "facebook";
-    })[0].url;
-    this.twitterUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "twitter";
-    })[0].url;
-    this.instagramUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "instagram";
-    })[0].url;
-    this.pinterestUrl = this.vendor.social.filter((social: any) => {
-      return social.source == "pinterest";
-    })[0].url;
+    this.facebookUrl = this.vendor.social.find(x => x.includes('facebook') == true)
+    this.twitterUrl = this.vendor.social.find(x => x.includes('twitter') == true);
+    this.instagramUrl = this.vendor.social.find(x => x.includes('instagram') == true);
+    this.pinterestUrl = this.vendor.social.find(x => x.includes('pinterest') == true);
   }
 }

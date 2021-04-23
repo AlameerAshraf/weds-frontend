@@ -34,5 +34,5 @@ export class vendor {
     ranks: { user?: string, criteria?: string, value?: number }[] = [];
     comments: { userEmail?: string, body?: string, likes?: number, date?: Date }[] = [];
     services: [];
-    social: { source?: string, url?: string }[] = [];
+    social: string[]=[] ;
 };
