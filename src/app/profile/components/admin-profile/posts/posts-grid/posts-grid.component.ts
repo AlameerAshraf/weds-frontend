@@ -88,7 +88,7 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
   pageChange(pageNumber) {}
 
   navigateToCreateNewPost() {
-    this.router.navigate(["profile/en/admin/posts-action/new"]);
+    this.router.navigate([`profile/${this.lang}/admin/posts-action/new`]);
   }
 
   navigateToUpdatePost(postId: any) {

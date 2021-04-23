@@ -18,7 +18,10 @@
   "POST_INFO": "Basic Article information  ",
   "STATUS": "Status",
   "ACTION": "Action",
-
+  "SCHEDULED": "Scheduled",
+  "REVOKED": "Revoked",
+  "FORCE_PUBLISH": " Force publish  ",
+  "REVOKE_PUBLISH": "Revoke publish",
   "IMAGE": "Image ",
   "TITLE_ENGLISH": "Title English  ",
   "TITLE_ARABIC": "Title Arabic  ",
