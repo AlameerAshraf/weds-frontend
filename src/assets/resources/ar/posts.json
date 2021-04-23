@@ -1,6 +1,6 @@
 {
   "POSTS": "اهلا بيك في المقالات",
-  "POSTS_SUBTITLE": "! ابحث في المقالات الاعلي تصنيف",
+  "POSTS_SUBTITLE": "  ابحث في المقالات الاعلي تصنيف",
   "ADD_POST": "اضافة مقالة جديدة",
   "SEARCH_PLACEHOLDER": "ادخل كلمة للبحث",
 
@@ -22,7 +22,7 @@
   "SUBTITLE_ENGLISH": "العنوان الفرعي باللغة الانجليزية",
   "SUBTITLE_ARABIC": "العنوان الفرعي باللغة العربية",
   "META_DESC_ENGLISH": "كلمات الوصف الانجليزية",
-  "META_DESC_ARABIC": "كلمات الوصف باللغةالعربية",
+  "META_DESC_ARABIC": "كلمات الوصف باللغة العربية",
 
   "NEXT": "التالي ",
 
@@ -38,6 +38,7 @@
   "SHOW_AUTHOR_INFO_SUBTITLE": "الاختيار دا هيظهر معملومات الكاتب لكل المستخدمين",
   "SCHEDULED_AT": "تاجيل تاريخ النشر الي  ",
   "RELATED_POSTS": "مقالات ذات صله",
+  "SELECT_MULTI": "اختار اكثر من عنصر",
 
   "IMAGES_MEDIA": "الصور والوسائط  ",
   "GALLERY": "معرض الصور",
@@ -46,6 +47,9 @@
   "FEATURED_VIDEO": "اختار فيديو مميز",
   "UPLOAD_COVER_VIDEO": "ارفق فيديو ",
   "DESCRIPTION": "الوصف",
+  "POST_NO_IMG": "لا يوجد صور في المقالة",
+  "ATTACH_IMAGE": "ارفق صورة",
+  "UPLOAD_PHOTO": "ارفق صورة",
 
   "UPDATE": "تعديل",
   "DELETE": "حذف",

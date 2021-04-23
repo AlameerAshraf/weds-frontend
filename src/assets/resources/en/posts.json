@@ -37,6 +37,7 @@
   "SHOW_AUTHOR_INFO_SUBTITLE": "This will make your name visible on the blogs view for users. ",
   "SCHEDULED_AT": "Publish Scheduled At  ",
   "RELATED_POSTS": "Related Posts  ",
+  "SELECT_MULTI": "Select Multiple Items",
 
   "IMAGES_MEDIA": "Images & Media ",
   "GALLERY": "Gallery",
@@ -45,7 +46,9 @@
   "FEATURED_VIDEO": "Select a featured video  ",
   "UPLOAD_COVER_VIDEO": "Upload video",
   "DESCRIPTION": "Description",
-
+  "POST_NO_IMG": "Post has no images",
+  "ATTACH_IMAGE": "Attach an image",
+  "UPLOAD_PHOTO": "Upload Photo",
   "SAVE": "Save",
   "CANCEL": "Cancel",
   "DELETE": "Delete",

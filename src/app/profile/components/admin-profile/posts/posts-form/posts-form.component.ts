@@ -1,15 +1,31 @@
-import { Component, OnInit, ViewEncapsulation, AfterViewInit, ElementRef, Inject } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { post , LookupsService, responseModel, urls, constants , httpService } from 'src/app/core';
-import { DOCUMENT } from '@angular/common';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  AfterViewInit,
+  ElementRef,
+  Inject,
+} from "@angular/core";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import {
+  post,
+  LookupsService,
+  responseModel,
+  urls,
+  constants,
+  httpService,
+  resources,
+} from "src/app/core";
+import { DOCUMENT } from "@angular/common";
+import { environment } from "src/environments/environment";
 declare var $;
 
 @Component({
-  selector: 'app-posts-form',
-  templateUrl: './posts-form.component.html',
-  styleUrls: ['./posts-form.component.scss']
+  selector: "app-posts-form",
+  templateUrl: "./posts-form.component.html",
+  styleUrls: ["./posts-form.component.scss"],
 })
 export class PostsFormComponent implements OnInit, AfterViewInit {
   that = this;
@@ -19,63 +35,85 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   post: post = new post();
 
   tinymceInit = {
-    height : "400",
-    plugins : [
+    height: "400",
+    plugins: [
       "advlist autolink lists link image charmap print preview hr anchor pagebreak",
       "searchreplace visualblocks visualchars code fullscreen",
       "insertdatetime media nonbreaking save table directionality",
-      "emoticons template paste textpattern"
+      "emoticons template paste textpattern",
     ],
-    toolbar : 'formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | image emoticons',
-    image_advtab : false,
+    toolbar:
+      "formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | image emoticons",
+    image_advtab: false,
     images_upload_handler: this.tiny_image_upload_handler.bind(this),
   };
 
   tagsEnglish: any;
   tagsArabic: any;
   currentUserEmail: string;
-  constructor(private spinner: NgxSpinnerService ,private router: Router,
-    private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef, private lookupsService: LookupsService,
-    private http: httpService) {
-      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
-    }
-
+  lang: string;
+  labels: any = {};
+  constructor(
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private resources: resources,
+    private toastr: ToastrService,
+    @Inject(DOCUMENT) private document: any,
+    private elementRef: ElementRef,
+    private lookupsService: LookupsService,
+    private http: httpService
+  ) {
+    this.loadResources();
+    this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+  }
 
   async ngOnInit() {
     this.spinner.show();
     await this.getLookups();
     this.spinner.hide();
 
-
     this.loadScripts();
     this.documentSelectors();
   }
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
-  view(){
-    console.log(this.htmlEnglishContent)
-  };
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["POSTS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 
-  createPost(){
-    console.log(this.post)
-  };
+  view() {
+    console.log(this.htmlEnglishContent);
+  }
 
-  navigateToPosts(){
+  createPost() {
+    console.log(this.post);
+  }
+
+  navigateToPosts() {
     this.spinner.show();
 
     setTimeout(() => {
       this.spinner.hide();
-      this.toastr.success('Hello world!', 'Toastr fun!');
-      this.router.navigateByUrl('/profile/en/admin/posts');
+      this.toastr.success("Hello world!", "Toastr fun!");
+      this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
     }, 3000);
-  };
+  }
 
-  backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/posts');
-  };
+  backToRoute() {
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
+  }
 
-
-  async getLookups(){
+  async getLookups() {
     let allTags = (await this.lookupsService.getTags()) as responseModel;
     this.tagsArabic = allTags.data.filter((tag: any) => {
       return tag.langauge == "Ar";
@@ -84,16 +122,14 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     this.tagsEnglish = allTags.data.filter((tag: any) => {
       return tag.langauge == "En";
     });
-  };
-
-
+  }
 
   tiny_image_upload_handler(blobInfo, success, failure, progress) {
     const imageFile = blobInfo.blob();
-    this.uploadPhoto(imageFile , success , failure);
-  };
+    this.uploadPhoto(imageFile, success, failure);
+  }
 
-  uploadPhoto(file , success, failuer){
+  uploadPhoto(file, success, failuer) {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("targetEntity", "POSTS");
@@ -101,81 +137,98 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     formData.append("targetUserEmail", this.currentUserEmail);
 
     let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_ADMINS}`;
-    this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
-      if (!response.error) {
-        this.spinner.hide();
-        success(response.data)
-      } else {
-        this.spinner.hide();
-        failuer(response.error);
-      }
-    });
-  };
-
+    this.http
+      .Post(uploadImageURL, {}, formData)
+      .subscribe((response: responseModel) => {
+        if (!response.error) {
+          this.spinner.hide();
+          success(response.data);
+        } else {
+          this.spinner.hide();
+          failuer(response.error);
+        }
+      });
+  }
 
   //#region Helper Methods ..
-  documentSelectors(){
-    $("#tagsAr").change({ angularThis: this.that } ,function(e, params){
+  documentSelectors() {
+    $("#tagsAr").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.post.tagsAr = $("#tagsAr").chosen().val();
     });
 
-    $("#tagsEn").change({ angularThis: this.that } ,function(e, params){
+    $("#tagsEn").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.post.tagsEn = $("#tagsEn").chosen().val();
     });
-  };
+  }
 
   scrollToElement($element): void {
-    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-  };
+    $element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  }
 
   getImage() {
     document.getElementById("upImage").click();
-  };
+  }
 
   getVideo() {
     document.getElementById("upVideo").click();
-  };
+  }
 
   uploadCoverPhoto(e: any) {
     this.spinner.show();
-    const imageFile = e.target.files[0]
-    this.uploadPhoto(imageFile , (url: any) =>{
-      this.spinner.hide();
-      this.post.featuredImage = url;
-    } , (err) => {
-      this.spinner.hide();
-      this.post.featuredImage = "";
-    })
-  };
+    const imageFile = e.target.files[0];
+    this.uploadPhoto(
+      imageFile,
+      (url: any) => {
+        this.spinner.hide();
+        this.post.featuredImage = url;
+      },
+      (err) => {
+        this.spinner.hide();
+        this.post.featuredImage = "";
+      }
+    );
+  }
 
   uploadVideo(e: any) {
     this.spinner.show();
     const imageFile = e.target.files[0];
-    this.uploadPhoto(imageFile , (url: any) =>{
-      this.spinner.hide();
-      this.post.featuredVideo = url;
-    } , (err) => {
-      this.spinner.hide();
-      this.post.featuredVideo = "";
-    })
-  };
+    this.uploadPhoto(
+      imageFile,
+      (url: any) => {
+        this.spinner.hide();
+        this.post.featuredVideo = url;
+      },
+      (err) => {
+        this.spinner.hide();
+        this.post.featuredVideo = "";
+      }
+    );
+  }
 
-  addImage(){
-    this.post.images.push({ url: "" , arabicDesc: "ar" , englishDesc: "en" })
-  };
+  addImage() {
+    this.post.images.push({ url: "", arabicDesc: "ar", englishDesc: "en" });
+  }
   //#endregion
 
   //#region Scripts Helpers
   ngAfterViewInit(): void {
-    this.loadScripts()
-  };
+    this.loadScripts();
+  }
 
-  loadScripts(){
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js' , 'assets/scripts/dropzone.js'];
+  loadScripts() {
+    let scripts = [
+      "assets/scripts/datePickerInitakizer.js",
+      "assets/scripts/custom.js",
+      "assets/scripts/dropzone.js",
+    ];
 
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
+    scripts.forEach((element) => {
+      const s = this.document.createElement("script");
+      s.type = "text/javascript";
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
