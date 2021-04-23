@@ -24,43 +24,43 @@
             <label>{{labels.SUBTITLE_ENGLISH}}</label>
             <input value="Tom Perrin" type="text" [(ngModel)]="post.subtitleEn" [placeholder]="labels.SUBTITLE_ENGLISH">
 
-            <label>Meta Description English</label>
+            <label>{{labels.META_DESC_ENGLISH}}</label>
             <textarea value="" type="text" cols="1" rows="0" [(ngModel)]="post.metaDescriptionEn"
-              placeholder="Meta Description in English"></textarea>
+              [placeholder]="labels.META_DESC_ENGLISH"></textarea>
           </div>
         </div>
 
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
-            <label class="margin-top-0">Title Arabic</label>
-            <input value="Tom Perrin" type="text" [(ngModel)]="post.titleAr" placeholder="Title in Arabic">
+            <label class="margin-top-0">{{labels.TITLE_ARABIC}}</label>
+            <input value="Tom Perrin" type="text" [(ngModel)]="post.titleAr" [placeholder]="labels.TITLE_ARABIC">
 
-            <label>Subtitle Arabic</label>
-            <input value="Tom Perrin" type="text" [(ngModel)]="post.subtitleAr" placeholder="Subtitle in Arabic">
+            <label>{{labels.SUBTITLE_ARABIC}}</label>
+            <input value="Tom Perrin" type="text" [(ngModel)]="post.subtitleAr" [placeholder]="labels.SUBTITLE_ARABIC">
 
-            <label>Meta Description Arabic</label>
+            <label>{{labels.META_DESC_ARABIC}}</label>
             <textarea value="" type="text" cols="2" rows="1" [(ngModel)]="post.metaDescriptionAr"
-              placeholder="Meta Description in Arabic" s></textarea>
+              [placeholder]="labels.META_DESC_ARABIC" s></textarea>
           </div>
         </div>
 
         <div class="row with-forms" [align]="lang==='ar'?'left':'right'">
-          <a class="button" (click)="scrollToElement(postContent)">Next - Post Content &nbsp; <i
-              class="sl sl-icon-arrow-down"></i></a>
+          <a class="button" (click)="scrollToElement(postContent)">{{labels.NEXT}} - {{labels.ARTICLE_CONTENT}} &nbsp;
+            <i class="sl sl-icon-arrow-down"></i></a>
         </div>
       </div>
 
       <!-- Content info -->
       <div class="add-listing-section margin-top-20" #postContent>
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-note"></i> Article Content</h3>
+          <h3><i class="sl sl-icon-note"></i> {{labels.ARTICLE_CONTENT}} </h3>
         </div>
 
         <div class="submit-section">
           <div class="row with-forms">
             <div class="row">
               <div class="my-profile">
-                <label class="margin-top-0">English Content</label>
+                <label class="margin-top-0">{{labels.CONTENT_ENGLISH}} </label>
               </div>
               <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentEn"
                 [init]="tinymceInit">
@@ -69,7 +69,7 @@
 
             <div class="row margin-top-30">
               <div class="my-profile">
-                <label class="margin-top-0">Arabic Content</label>
+                <label class="margin-top-0">{{labels.CONTENT_ARABIC}}</label>
               </div>
               <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="post.bodyContentAr"
                 [init]="tinymceInit">
@@ -79,8 +79,8 @@
         </div>
 
         <div class="row with-forms margin-top-20" [align]="lang==='ar'?'left':'right'">
-          <a class="button" (click)="scrollToElement(detaildInfo)">Next - Identification Details &nbsp; <i
-              class="sl sl-icon-arrow-down"></i></a>
+          <a class="button" (click)="scrollToElement(detaildInfo)">{{labels.NEXT}} - {{labels.IDENTIFICATIONS}} &nbsp;
+            <i class="sl sl-icon-arrow-down"></i></a>
         </div>
       </div>
 
@@ -88,20 +88,20 @@
       <!-- Detaild Info -->
       <div class="add-listing-section margin-top-20" #detaildInfo>
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-doc"></i> Basic Article Informations</h3>
+          <h3><i class="sl sl-icon-doc"></i> {{labels.IDENTIFICATIONS}}</h3>
         </div>
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
-            <label class="margin-top-0">Tags English</label>
+            <label class="margin-top-0">{{labels.TAG_ENGLISH}}</label>
             <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
               <option *ngFor="let tag of tagsEnglish" [selected]="tagsBinder(tag._id , 'en')" [value]="tag._id">
                 {{ tag.name }}
               </option>
             </select>
 
-            <label>Category</label>
+            <label>{{labels.CATEGORY}}</label>
             <select id="cats" class="chosen-select-no-single">
-              <option label="blank">Select category</option>
+              <option label="blank">{{labels.SELECT_CATEGORY}}</option>
               <option *ngFor="let cat of categories" [selected]="cat._id == post.category" [value]="cat._id">
                 {{ cat.nameEn }}
               </option>
@@ -109,32 +109,32 @@
 
             <div class="checkboxes in-row margin-top-30">
               <input id="check-a" type="checkbox" name="check" [(ngModel)]="post.isAuthorVisible">
-              <label for="check-a">Show Author Name & Details</label>
-              <p>This will make your name visible on the blogs view for users.</p>
+              <label for="check-a">{{labels.SHOW_AUTHOR_INFO}}</label>
+              <p>{{labels.SHOW_AUTHOR_INFO_SUBTITLE}}.</p>
             </div>
           </div>
         </div>
 
         <div class="col-lg-6 col-md-12">
           <div class="my-profile">
-            <label class="margin-top-0">Tags Arabic</label>
+            <label class="margin-top-0">{{labels.TAG_ARABIC}}</label>
             <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
               <option *ngFor="let tag of tagsArabic" [selected]="tagsBinder(tag._id , 'ar')" [value]="tag._id">
                 {{ tag.name }}
               </option>
             </select>
 
-            <label>Reading Time In Mins</label>
+            <label>{{labels.READING_TIME}}</label>
             <input value="5 Mins" type="number" [(ngModel)]="post.readingTime">
 
-            <label>Publish Secheduled At</label>
-            <input type="date" placeholder="Secheduled At" [(ngModel)]="post.scheduledAt">
+            <label>{{labels.SCHEDULED_AT}}</label>
+            <input type="date" [placeholder]="labels.SCHEDULED_AT" [(ngModel)]="post.scheduledAt">
           </div>
         </div>
 
         <div class="col-lg-12 col-md-12">
           <div class="my-profile margin-bottom-20">
-            <label class="margin-top-0">Related Posts</label>
+            <label class="margin-top-0">{{labels.RELATED_POSTS}}</label>
             <select id="relatedPosts" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
               <option *ngFor="let possiblePost of posts" [selected]="relatedPostsBinder(possiblePost._id)"
                 [value]="possiblePost._id">
@@ -144,7 +144,7 @@
           </div>
         </div>
         <div class="row with-forms" [align]="lang==='ar'?'left':'right'">
-          <a class="button" (click)="scrollToElement(media)">Next - Images & Media &nbsp; <i
+          <a class="button" (click)="scrollToElement(media)">{{labels.NEXT}} - {{labels.IMAGES_MEDIA}} &nbsp; <i
               class="sl sl-icon-arrow-down"></i></a>
         </div>
       </div>
@@ -153,18 +153,18 @@
       <!-- Section -->
       <div class="add-listing-section margin-top-20" #media>
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-picture"></i> Gallery
+          <h3><i class="sl sl-icon-picture"></i> {{labels.GALLERY}}
           </h3>
         </div>
 
         <div class="row margin-bottom-20">
           <div class="row col-lg-3 col-md-3">
             <div class="my-profile">
-              <label class="margin-top-0">Select a featured image</label>
+              <label class="margin-top-0">{{labels.FEATURED_IMAGE}}</label>
               <a class="button"
                 [ngClass]="{ 'pending' : post.featuredImage == '' , 'success' : post.featuredImage != '' }"
                 (click)="getImage()" id="photoCliker">
-                <span *ngIf="post.featuredImage == ''">Upload Cover Photo</span>
+                <span *ngIf="post.featuredImage == ''">{{labels.UPLOAD_COVER_PHOTO}}</span>
                 <span *ngIf="post.featuredImage !== ''">
                   <i class="sl sl-icon-check"></i>
                   Cover photo uploaded
@@ -173,11 +173,11 @@
               <input style="display: none;" id="upImage" type="file" (change)="uploadCoverPhoto($event)">
 
 
-              <label class="margin-top-10">Select a featured video</label>
+              <label class="margin-top-10">{{labels.FEATURED_VIDEO}}</label>
               <a class="button"
                 [ngClass]="{ 'pending' : post.featuredVideo == '' , 'success' : post.featuredVideo != '' }"
                 (click)="getVideo()" id="videoClicker">
-                <span *ngIf="post.featuredVideo == ''">Upload video</span>
+                <span *ngIf="post.featuredVideo == ''">{{labels.UPLOAD_COVER_VIDEO}}</span>
                 <span *ngIf="post.featuredVideo !== ''">
                   <i class="sl sl-icon-check"></i>
                   Video uploaded
@@ -192,10 +192,10 @@
               <div class="col-lg-3"></div>
               <div class="col-lg-3" align="center">
                 <img src="assets/images/errors/nothing-found.png">
-                <span>Post has no images.</span>
+                <span>{{labels.POST_NO_IMG}}</span>
                 <p style="cursor: pointer;" (click)="addImage()">
                   <i class="sl sl-icon-camera"></i>
-                  Attach an image
+                  {{labels.ATTACH_IMAGE}}
                 </p>
               </div>
               <div class="col-lg-3"></div>
@@ -204,7 +204,7 @@
             <ng-container *ngIf="post.images.length > 0">
               <p style="cursor: pointer;" (click)="addImage()">
                 <i class="sl sl-icon-camera"></i>
-                Attach an image
+                {{labels.ATTACH_IMAGE}}
               </p>
               <ng-container *ngFor="let image of post.images">
                 <div class="col-md-3">
@@ -213,7 +213,7 @@
                     <img class="anImage" [src]="image.url" alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
-                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                        <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
                         <input type="file" class="upload" (change)="uploadImagePhoto($event , image.id)" />
                       </div>
                     </div>
@@ -239,9 +239,9 @@
 
 
 <div [align]="lang==='ar'?'left':'right'" *ngIf="editingMode == 'new'">
-  <a class="button preview" (click)="createPost()">Save Changes <i class="sl sl-icon-check"></i></a>
+  <a class="button preview" (click)="createPost()">{{labels.SAVE}} <i class="sl sl-icon-check"></i></a>
 </div>
 
 <div [align]="lang==='ar'?'left':'right'" *ngIf="editingMode == 'update'">
-  <a class="button preview" (click)="updatePost()">Update Changes <i class="sl sl-icon-check"></i></a>
+  <a class="button preview" (click)="updatePost()">{{labels.UPDATE}} <i class="sl sl-icon-check"></i></a>
 </div>
