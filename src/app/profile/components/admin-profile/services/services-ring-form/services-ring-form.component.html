@@ -40,7 +40,7 @@
                   </select>
 
                   <label>Metal</label>
-                  <input value="metal" type="text">
+                  <input value="metal" type="text" [(ngModel)] = "ring.metal">
 
                   <label>Price (EGP)</label>
                   <input value="price" type="text">
@@ -50,7 +50,7 @@
 
                   <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
                     <img class="anImage"
-                      [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                      [src]="'assets/images/defaults/wedding/cover-photo.png'"
                       alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
@@ -112,7 +112,7 @@
         <a style="background-color: #F91942 !important;" class="button preview">
           Cancel <i class="sl sl-icon-close"></i>
         </a>
-        <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
+        <a class="button preview" (click)="createRing()">Save Changes <i class="sl sl-icon-check"></i></a>
       </div>
     </div>
   </div>

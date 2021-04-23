@@ -11,6 +11,7 @@ import {
 } from "src/app/core";
 import { environment } from "src/environments/environment";
 declare var $: any;
+import { ring, vendorService } from 'src/app/core';
 
 declare var $: any;
 
@@ -23,6 +24,8 @@ export class ServicesRingFormComponent implements OnInit {
   selectedLayout = "";
   lang: string;
   labels: any = {};
+  ring = new ring();
+  service =  new vendorService();
   constructor(
     private spinner: NgxSpinnerService,
     private router: Router,
@@ -47,6 +50,10 @@ export class ServicesRingFormComponent implements OnInit {
   selectTemplate(template) {
     if (this.selectedLayout == template) this.selectedLayout = "";
     else this.selectedLayout = template;
+  }
+  createRing(){
+    this.service.attributes = this.ring;
+    console.log(this.service);
   }
 
   addNewServiceTemplate() {
@@ -84,6 +91,7 @@ export class ServicesRingFormComponent implements OnInit {
     )) as any;
     this.labels = resData.res;
   }
+
   navigateToServicesForm() {
     this.spinner.show();
 
