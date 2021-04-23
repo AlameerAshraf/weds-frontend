@@ -4,39 +4,41 @@
       <h2>Vendors List.</h2>
     </div>
   </div>
-</div>
 
 
-<div class="row">
-  <div class="col-lg-12 col-md-12">
-    <div class="dashboard-list-box margin-top-0">
-      <h4>
-        Vendors List
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="dashboard-list-box margin-top-0">
+        <h4>
+          Vendors List
 
-        <div (click)="navigateToCreateNewVendor()" style="background-color: #046B69 !important;
-            color: white !important;
-            cursor: pointer;
-            border-radius: 20px;" class="comission-taken">
-          <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Create New Vendor</strong>
-        </div>
-      </h4>
+          <div
+            (click)="navigateToCreateNewVendor()"
+            style="background-color: #046B69 !important;
+              color: white !important;
+              cursor: pointer;
+              border-radius: 20px;"
+              class="comission-taken">
+            <i class="im im-icon-Pencil"></i> &nbsp;
+            <strong style="color: white !important">Create New Vendor</strong>
+          </div>
+        </h4>
 
-      <div class="col-md-12" style="background-color: white;">
-        <table class="table borderless">
-          <thead>
-            <tr>
-              <th scope="col" width="20%">Vendor</th>
-              <th scope="col" width="20%">Email</th>
-              <th scope="col" width="20%">Phone</th>
-              <th scope="col" width="15%">Status</th>
-              <th scope="col" width="5%">Act.</th>
-              <th scope="col" width="5%">Delete</th>
-              <th scope="col" width="5%">Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let item of vendorsList">
+        <div class="col-md-12" style="background-color: white;">
+          <table class="table borderless">
+            <thead>
+              <tr>
+                <th scope="col" width="20%">Vendor</th>
+                <th scope="col" width="20%">Email</th>
+                <th scope="col" width="20%">Phone</th>
+                <th scope="col" width="15%">Status</th>
+                <th scope="col" width="5%">Act.</th>
+                <th scope="col" width="5%">Delete</th>
+                <th scope="col" width="5%">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of vendorsList">
               <tr>
                 <td>
                   <p>{{ item.nameEn }}</p>
@@ -66,15 +68,15 @@
                   <ng-container *ngIf="!item.isPublished">
                     <p class="tooltip">
                       <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload"
-                        (click)="publishVendor(item._id)"></i>
+                      (click)="publishVendor(item._id)"></i>
                       <span class="tooltiptext">Force publish</span>
                     </p>
                   </ng-container>
 
                   <ng-container *ngIf="item.isPublished">
                     <p class="tooltip">
-                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
-                        class="sl sl-icon-cloud-download" (click)="publishVendor(item._id)"></i>
+                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-download"
+                      (click)="publishVendor(item._id)"></i>
                       <span class="tooltiptext">Revoke publish</span>
                     </p>
                   </ng-container>

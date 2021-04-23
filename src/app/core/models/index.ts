@@ -13,3 +13,4 @@ export * from './user';
 export * from './wedding-website';
 export * from './post';
 export * from './vendorService';
+export * from './ring';

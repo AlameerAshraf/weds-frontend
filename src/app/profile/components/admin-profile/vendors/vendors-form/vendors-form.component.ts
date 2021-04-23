@@ -228,13 +228,13 @@ export class VendorsFormComponent implements OnInit {
     this.vendor.location.latitude = this.latitude.toString();
     this.vendor.location.longtitude = this.longitude.toString();
     if (this.facebookUrl != "")
-      this.vendor.social.push(this.facebookUrl.toLowerCase());
+      this.vendor.social.push( this.facebookUrl.toLowerCase());
     if (this.twitterUrl != "")
-      this.vendor.social.push(this.twitterUrl.toLowerCase());
+      this.vendor.social.push( this.twitterUrl.toLowerCase());
     if (this.instagramUrl != "")
-      this.vendor.social.push(this.instagramUrl.toLowerCase());
+      this.vendor.social.push( this.instagramUrl.toLowerCase());
     if (this.pinterestUrl != "")
-      this.vendor.social.push(this.pinterestUrl.toLowerCase());
+      this.vendor.social.push( this.pinterestUrl.toLowerCase());
 
     let createURL = `${urls.CREATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`;
     this.http
@@ -519,17 +519,9 @@ export class VendorsFormComponent implements OnInit {
   }
 
   socailMediaData() {
-    this.facebookUrl = this.vendor.social.find(
-      (x) => x.includes("facebook") == true
-    );
-    this.twitterUrl = this.vendor.social.find(
-      (x) => x.includes("twitter") == true
-    );
-    this.instagramUrl = this.vendor.social.find(
-      (x) => x.includes("instagram") == true
-    );
-    this.pinterestUrl = this.vendor.social.find(
-      (x) => x.includes("pinterest") == true
-    );
+    this.facebookUrl = this.vendor.social.find(x => x.includes('facebook') == true)
+    this.twitterUrl = this.vendor.social.find(x => x.includes('twitter') == true);
+    this.instagramUrl = this.vendor.social.find(x => x.includes('instagram') == true);
+    this.pinterestUrl = this.vendor.social.find(x => x.includes('pinterest') == true);
   }
 }

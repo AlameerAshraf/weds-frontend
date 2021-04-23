@@ -221,7 +221,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     if (this.pinterestUrl != "")
       this.socialArray.push(this.pinterestUrl.toLowerCase());
 
-    this.vendor.social = this.socialArray;
+      this.vendor.social = this.socialArray;
 
     let updateURL = `${urls.UPDATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http
@@ -377,19 +377,11 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   //#region  DropZone Engine Helper Function..
 
   socailMediaData() {
-    this.facebookUrl = this.vendor.social.find(
-      (x) => x.includes("facebook") == true
-    );
-    this.twitterUrl = this.vendor.social.find(
-      (x) => x.includes("twitter") == true
-    );
-    this.instagramUrl = this.vendor.social.find(
-      (x) => x.includes("instagram") == true
-    );
-    this.pinterestUrl = this.vendor.social.find(
-      (x) => x.includes("pinterest") == true
-    );
-  }
+    this.facebookUrl = this.vendor.social.find(x => x.includes('facebook') == true)
+    this.twitterUrl = this.vendor.social.find(x => x.includes('twitter') == true);
+    this.instagramUrl = this.vendor.social.find(x => x.includes('instagram') == true);
+    this.pinterestUrl = this.vendor.social.find(x => x.includes('pinterest') == true);
+  };
 
   onSelect(event: any) {
     for (const key in event.addedFiles) {
@@ -451,8 +443,8 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       type: `image/${image.split(".").pop()}`,
     };
 
-    return new File([data], image.split("/").pop(), metadata);
-  }
+    return new File([data], image.split('/').pop(), metadata);
+  };
 
   //#endregion
 
