@@ -4,6 +4,7 @@ export class vendor {
     nameEn?: string = "";
     nameAr?: string = "";
     phone?: string ="";
+    email?: string = "";
     priceRange?: string = "";
     shortDescriptionAr?: string = "";
     shortDescriptionEn?: string = "";
@@ -20,7 +21,7 @@ export class vendor {
         longtitude?: string
         typedAddress?: string
         guestCount?: number
-    };
+    } = { latitude: "23" , longtitude: "23" }
     order?: number = 0;
     arTags: [];
     enTags: [];

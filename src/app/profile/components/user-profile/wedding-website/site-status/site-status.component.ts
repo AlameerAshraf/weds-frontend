@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { localStorageService, weddingWebsite } from 'src/app/core';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,7 +18,7 @@ export class SiteStatusComponent implements OnInit {
     }
   }
 
-  constructor(private localStorageService: localStorageService) { }
+  constructor(private localStorageService: localStorageService , private router: Router) { }
 
   ngOnInit() {
     this.getWebSiteStaus();
@@ -25,5 +26,9 @@ export class SiteStatusComponent implements OnInit {
 
   getWebSiteStaus(){;
     this.weddingWebsite = this.localStorageService.getLocalStorage("weds360#mysite");
+  };
+
+  previewSite(){
+    this.router.navigateByUrl("/sites/en/save-the-day");
   };
 }
