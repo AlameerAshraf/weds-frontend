@@ -3,7 +3,6 @@ import { ToastrService } from 'ngx-toastr';
 import { MapsAPILoader } from '@agm/core';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
-//import { } from '@types/googlemaps';
 import { Router, ActivatedRoute } from '@angular/router';
 import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag } from 'src/app/core';
 
@@ -127,7 +126,6 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   };
 
   loadUser() {
-
     let loadUserURL = `${urls.GET_USER_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
     this.http.Get(loadUserURL, { "role": atob(window.localStorage.getItem("weds360#role")) }).subscribe((response: responseModel) => {
       if (!response.error) {
@@ -135,15 +133,11 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
         this.vendor = response.data.vendorRefrence;
         this.mapData();
         this.loadGalleryPhotos();
-        this.mapsLoader();
         this.socailMediaData();
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "My bad, server couldn't load your budegeters.");
       }
-
-
-
     });
   };
 
@@ -248,19 +242,27 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     }
   };
 
-  //#region Maps Helpers..
-  onFileSelected(e: any): void {
-    if (e.target.files && e.target.files[0]) {
-      const imageFile = e.target.files[0];
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        return this.coverPhotoSource = fileReader.result;
-      };
-      fileReader.readAsDataURL(imageFile);
-    }
+  enTagsContainsTag(tagId: any) {
+    return this.vendor.enTags.some(entry => entry === tagId);
+  }
+
+  arTagsContainsTag(tagId: any) {
+    return this.vendor.arTags.some(entry => entry === tagId);
+  }
+
+  areasContainsArea(areaId: any) {
+    return this.vendor.area.some(entry => entry === areaId);
   };
 
+  mapData() {
+    this.latitude = parseFloat(this.vendor.location.latitude);
+    this.longitude = parseFloat(this.vendor.location.longtitude);
+  };
+
+
+  //#region Maps Helpers..
   mapsLoader() {
+    alert("Map loaded");
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -313,7 +315,6 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     }
   };
 
-
   markerDragEnd(e: any) {
     this.latitude = e.coords.lat;
     this.longitude = e.coords.lng;
@@ -334,27 +335,9 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       }
     });
   };
-
   //#endregion
 
   //#region  DropZone Engine Helper Function..
-
-  enTagsContainsTag(tagId: any) {
-    return this.vendor.enTags.some(entry => entry === tagId);
-  }
-
-  arTagsContainsTag(tagId: any) {
-    return this.vendor.arTags.some(entry => entry === tagId);
-  }
-
-  areasContainsArea(areaId: any) {
-    return this.vendor.area.some(entry => entry === areaId);
-  }
-
-  mapData() {
-    this.latitude = parseFloat(this.vendor.location.latitude);
-    this.longitude = parseFloat(this.vendor.location.longtitude);
-  }
 
   socailMediaData() {
     console.log(this.vendor)
@@ -371,7 +354,8 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.pinterestUrl = this.vendor.social.filter((social: any) => {
       return social.source == "pinterest";
     })[0].url;
-  }
+  };
+
   onSelect(event: any) {
     for (const key in event.addedFiles) {
       this.ngxSpinner.show();

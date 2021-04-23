@@ -99,6 +99,8 @@ export class VendorsFormComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.mapsLoader();
+
     this.ngxSpinner.show();
     let tempVar = await this.getLookups();
     this.ngxSpinner.hide();
@@ -130,7 +132,6 @@ export class VendorsFormComponent implements OnInit {
       this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
       this.mapData();
       this.loadGalleryPhotos();
-      this.mapsLoader();
       this.socailMediaData();
     }
   };
@@ -455,7 +456,7 @@ export class VendorsFormComponent implements OnInit {
 
   socailMediaData() {
     this.facebookUrl= this.vendor.social.filter(social => {
-      
+
       return social["source"] == "facebook" ? social.url :""
     });
     console.log(this.facebookUrl)
