@@ -1,11 +1,9 @@
-
-
 <div class="row">
   <div class="col-lg-12">
     <div id="add-listing">
       <div class="add-listing-section">
         <div class="add-listing-headline" style="padding: 25px;">
-          <h3><i class="im im-icon-Heart-2"></i> New ring</h3>
+          <h3><i class="im im-icon-Heart-2"></i> Ring</h3>
         </div>
 
         <div class="row with-forms">
@@ -14,49 +12,56 @@
               <div class="dashboard-list-box-static margin-top-0" style="padding: 0px;">
                 <div class="my-profile">
 
-                  <label class="margin-top-0" >Name English</label>
-                  <input value="Tom Perrin" type="text">
+                  <label class="margin-top-0">Name English</label>
+                  <input placeholder="English Name" type="text" [(ngModel)]="ring.nameEn">
 
                   <label>Description English</label>
-                  <textarea></textarea>
-
-                  <label>Service</label>
-                  <select class="chosen-select-no-single">
-                    <option label="blank">Select your service</option>
-                    <option>Dress</option>
-                    <option>Ring</option>
-                  </select>
+                  <textarea placeholder="English Description" [(ngModel)]="ring.descriptionEn"></textarea>
 
                   <label>Purity</label>
-                  <select class="chosen-select-no-single">
-                    <option label="blank">Select your purity</option>
-                    <option>short</option>
-                    <option>tall</option>
+                  <select id="purity" class="chosen-select-no-single">
+                    <option label="blank" value="">Select your purity</option>
+                    <ng-container *ngFor="let purity of purityList">
+                      <option [selected]="purity.purity === ring.purity" [value]="purity.purity">{{ purity.name }}
+                      </option>
+                    </ng-container>
                   </select>
 
                   <label>Stone Shape</label>
-                  <select class="chosen-select-no-single">
-                    <option label="blank">Select your stone shape</option>
-                    <option>short</option>
-                    <option>tall</option>
+                  <select id="stoneShapes" class="chosen-select-no-single">
+                    <option label="blank" value="">Select your stone shape</option>
+                    <ng-container *ngFor="let stoneShape of stoneShapeList">
+                      <option [selected]="stoneShape.stone_shape === ring.stoneShape" [value]="stoneShape.stone_shape">{{
+                        stoneShape.name }}</option>
+                    </ng-container>
                   </select>
 
                   <label>Metal</label>
-                  <input value="metal" type="text" [(ngModel)] = "ring.metal">
+                  <input placeholder="Metal" type="text" [(ngModel)]="ring.metal">
 
                   <label>Price (EGP)</label>
-                  <input value="price" type="text">
+                  <input placeholder="Price" type="text" [(ngModel)]="ring.price">
 
                   <label>Tags English list</label>
-                  <input value="Tags en" type="text">
+                  <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                    <option *ngFor="let tag of tagsEn" [selected]="enTagsContainsTag(tag._id)" [value]="tag._id">
+                      {{ tag.name }}
+                    </option>
+                  </select>
+
+                  <label>Gender</label>
+                  <select id="gender" class="chosen-select-no-single">
+                    <option label="blank" value="">Select your gender</option>
+                    <option [selected]="ring.gender === 'Male'" value="Male">Male</option>
+                    <option [selected]="ring.gender === 'Female'" value="Female">Female</option>
+                  </select>
 
                   <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                    <img class="anImage"
-                      [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource" alt="">
+                    <img class="anImage" [src]="ring.image" alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
-                        <span><i class="fa fa-upload"></i> Upload Photo</span>
-                        <input type="file" class="upload" />
+                        <span><i class="fa fa-upload"></i> Cover Photo</span>
+                        <input type="file" class="upload" (change)="uploadImage($event)" />
                       </div>
                     </div>
                   </div>
@@ -68,40 +73,51 @@
               <div class="dashboard-list-box-static margin-top-0" style="padding: 0px;">
                 <div class="my-profile">
                   <label class="margin-top-0">Name Arabic</label>
-                  <input value="توم" type="text">
+                  <input placeholder="Arabic Name" [(ngModel)]="ring.nameAr" type="text">
 
                   <label>Description Arabic</label>
-                  <textarea></textarea>
+                  <textarea placeholder="Arabic Description" [(ngModel)]="ring.descriptionAr"></textarea>
 
                   <label>Category</label>
-                  <select class="chosen-select-no-single">
-                    <option label="blank">Select your category</option>
-                    <option>Him</option>
-                    <option>Her</option>
+                  <select id="categories" class="chosen-select-no-single">
+                    <option label="blank" value="">Select your category</option>
+                    <ng-container *ngFor="let category of categories">
+                      <option [selected]="category._id === ring.category" [value]="category._id">{{ category.nameEn }}
+                      </option>
+                    </ng-container>
                   </select>
 
                   <label>Clarity</label>
-                  <select class="chosen-select-no-single">
-                    <option label="blank">Select your clarity</option>
-                    <option>Him</option>
-                    <option>Her</option>
+                  <select id="clarity" class="chosen-select-no-single">
+                    <option label="blank" value="">Select your clarity</option>
+                    <ng-container *ngFor="let clarity of clarityList">
+                      <option [selected]="clarity.clarity === ring.clarity" [value]="clarity.clarity">{{ clarity.name }}
+                      </option>
+                    </ng-container>
                   </select>
 
                   <label>Style</label>
-                  <input value="style" type="text">
+                  <input placeholder="Style" [(ngModel)]="ring.style" type="text">
 
                   <label>Designer</label>
-                  <input value="designer" type="text">
-
-                  <label>Gender</label>
-                  <select class="chosen-select-no-single">
-                    <option label="blank">Select your gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
+                  <input placeholder="Designer" [(ngModel)]="ring.designer" type="text">
 
                   <label>Tags Arabic list</label>
-                  <input value="Tags ar" type="text">
+                  <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                    <option *ngFor="let tag of tagsAr" [selected]="arTagsContainsTag(tag._id)" [value]="tag._id">
+                      {{ tag.name }}
+                    </option>
+                  </select>
+
+                  <label>Vendor</label>
+                  <select id="vendors" class="chosen-select-no-single">
+                    <option label="blank" value="">Select your vendor</option>
+                    <ng-container *ngFor="let vendor of vendors">
+                      <option [selected]="vendor._id === service.vendor" [value]="vendor._id">{{ vendor.nameEn }}
+                      </option>
+                    </ng-container>
+                  </select>
+
                 </div>
               </div>
             </div>
@@ -110,10 +126,13 @@
       </div>
 
       <div align="right">
-        <a style="background-color: #F91942 !important;" class="button preview">
+        <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
           Cancel <i class="sl sl-icon-close"></i>
         </a>
-        <a class="button preview" (click)="createRing()">Save Changes <i class="sl sl-icon-check"></i></a>
+        <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
+            class="sl sl-icon-check"></i></a>
+        <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i
+            class="sl sl-icon-check"></i></a>
       </div>
     </div>
   </div>

@@ -14,8 +14,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VendorServicesComponent implements OnInit {
 
-  startTypingAnimation: boolean = true;
-
   vendorServicesList: vendorService[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
@@ -68,19 +66,6 @@ export class VendorServicesComponent implements OnInit {
   navigateToCreateNewService(){
     this.router.navigate(['profile/en/vendor/services-action/new']);
   }
-
-  //#region load gallery
-  async convertURLtoFile(image){
-    // image = "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png";
-    let response = await fetch(image);
-    let data = await response.blob();
-    let metadata = {
-      type: `image/${image.split('.').pop()}`
-    };
-
-    return new File([data], image.split('/').pop() , metadata);
-  }
-  //#endregion
 
   ngAfterViewInit(): void {
     this.loadScripts();

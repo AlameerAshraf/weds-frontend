@@ -1,11 +1,10 @@
 export class vendorService {
     _id?: string;
-    name?: string = "";
-    url?: string = "";
-    image?: string = "";
     type?: string = "";
     isActive?: Boolean = true;
-    vendor: any[] = [];
+    vendor?: string;
+    vendorNameEn?: string;
+    vendorNameAr?: string;
     order?: Number = 0;
     arTags: any[] = [];
     enTags: any[] = [];

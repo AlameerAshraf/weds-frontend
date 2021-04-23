@@ -30,7 +30,6 @@
             <thead>
               <tr>
                 <th scope="col" width="90%">Service Type</th>
-                <th scope="col" width="5%">Delete</th>
                 <th scope="col" width="5%">Edit</th>
               </tr>
             </thead>
@@ -39,10 +38,6 @@
               <tr>
                 <td>
                   <p >{{ item.type }}</p>
-                </td>
-                <td class="td-in-table">
-                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;cursor: pointer;"

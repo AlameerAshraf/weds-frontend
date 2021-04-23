@@ -134,6 +134,121 @@ export class constants {
     ]
   };
 
+  public static get PURITY(){
+    return [
+      {
+        "purity" : "D_E_F",
+        "name" : "D_E_F"
+      },
+      {
+        "purity" : "H_I_J",
+        "name" : "H_I_J"
+      },
+      {
+        "purity" : "K_L_M",
+        "name" : "K_L_M"
+      },
+      {
+        "purity" : "N_O_P_Q_R",
+        "name" : "N_O_P_Q_R"
+      },
+      {
+        "purity" : "D_T_U_V_X_Y_Z",
+        "name" : "D_T_U_V_X_Y_Z"
+      }
+    ]
+  };
+
+  public static get CLARITY(){
+    return [
+      {
+        "clarity" : "FL_IF",
+        "name" : "FL_IF"
+      },
+      {
+        "clarity" : "VVS1_VVS2",
+        "name" : "VVS1_VVS2"
+      },
+      {
+        "clarity" : "VS1_VS2",
+        "name" : "VS1_VS2"
+      },
+      {
+        "clarity" : "SI1_SI2",
+        "name" : "SI1_SI2"
+      },
+      {
+        "clarity" : "I1",
+        "name" : "I1"
+      },
+      {
+        "clarity" : "I2",
+        "name" : "I2"
+      },
+      {
+        "clarity" : "I3",
+        "name" : "I3"
+      }
+    ]
+  };
+
+  public static get STONE_SHAPE(){
+    return [
+      {
+        "stone_shape" : "CUSHION",
+        "name" : "Cushion"
+      },
+      {
+        "stone_shape" : "EMERALD",
+        "name" : "Emerald"
+      },
+      {
+        "stone_shape" : "HEART",
+        "name" : "Heart"
+      },
+      {
+        "stone_shape" : "PEAR",
+        "name" : "Pear"
+      },
+      {
+        "stone_shape" : "PRINCESS",
+        "name" : "Princess"
+      },
+      {
+        "stone_shape" : "RADIANT",
+        "name" : "Radiant"
+      },
+      {
+        "stone_shape" : "ROUND",
+        "name" : "Round"
+      }
+    ]
+  };
+
+  public static get DRESS_CUT(){
+    return [
+      {
+        "dress_cut" : "SHORT",
+        "name" : "Short"
+      },
+      {
+        "dress_cut" : "MERMAID",
+        "name" : "Mermaid"
+      },
+      {
+        "dress_cut" : "SHEATH",
+        "name" : "Sheath"
+      },
+      {
+        "dress_cut" : "BALL_GOWN",
+        "name" : "Ball_gown"
+      },
+      {
+        "dress_cut" : "A_LINE",
+        "name" : "a_line"
+      }
+    ]
+  };
 
 
   public static get LAYOUTS(){
@@ -174,6 +289,7 @@ export class constants {
       "WEDDING_WEBSITES" : "WEDDING_WEBSITES",
       "WEDDING_ALBUMS" : "WEDDING_ALBUMS",
       "VENDOR_ALBUMS" : "VENDOR_ALBUMS",
+      "VENDOR_SERVICES" : "VENDOR_SERVICES"
     }
   };
 
