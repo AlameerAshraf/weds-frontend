@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { ring, vendorService } from 'src/app/core';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
   styleUrls: ['./services-ring-form.component.scss']
 })
 export class ServicesRingFormComponent implements OnInit, AfterViewInit {
+  ring = new ring();
+  service =  new vendorService();
 
   coverPhotoSource="";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
@@ -19,6 +22,11 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.loadScripts();
+  }
+
+  createRing(){
+    this.service.attributes = this.ring;
+    console.log(this.service);
   }
 
   navigateToServicesForm(){

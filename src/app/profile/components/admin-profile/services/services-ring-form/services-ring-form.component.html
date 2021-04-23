@@ -42,7 +42,7 @@
                   </select>
 
                   <label>Metal</label>
-                  <input value="metal" type="text">
+                  <input value="metal" type="text" [(ngModel)] = "ring.metal">
 
                   <label>Price (EGP)</label>
                   <input value="price" type="text">
@@ -113,7 +113,7 @@
         <a style="background-color: #F91942 !important;" class="button preview">
           Cancel <i class="sl sl-icon-close"></i>
         </a>
-        <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
+        <a class="button preview" (click)="createRing()">Save Changes <i class="sl sl-icon-check"></i></a>
       </div>
     </div>
   </div>
