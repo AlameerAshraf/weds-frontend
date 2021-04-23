@@ -10,7 +10,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
   templateUrl: './services-ring-form.component.html',
   styleUrls: ['./services-ring-form.component.scss']
 })
-export class ServicesRingFormComponent implements OnInit {
+export class ServicesRingFormComponent implements OnInit, AfterViewInit {
 
   coverPhotoSource="";
   constructor(private spinner: NgxSpinnerService , private router: Router ,
@@ -18,6 +18,7 @@ export class ServicesRingFormComponent implements OnInit {
     private elementRef: ElementRef) { }
 
   ngOnInit() {
+    this.loadScripts();
   }
 
   navigateToServicesForm(){
@@ -33,5 +34,22 @@ export class ServicesRingFormComponent implements OnInit {
   backToRoute(){
     this.router.navigateByUrl('/profile/en/admin/services-action/new');
   };
+
+  //#region load scripts
+  ngAfterViewInit(): void {
+    this.loadScripts();
+  };
+
+  loadScripts(){
+    let scripts = ['assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  }
+  //#endregion
 
 }

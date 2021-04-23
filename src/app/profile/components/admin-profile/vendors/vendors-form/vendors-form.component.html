@@ -35,8 +35,7 @@
 
                         <label>Advanced Description English</label>
                         <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx"
-                            [(ngModel)]="vendor.descriptionURLEn"
-                            placeholder="Advanced Description English">
+                            [(ngModel)]="vendor.descriptionURLEn" placeholder="Advanced Description English">
                         </editor>
 
                         <label>Short Description English</label>
@@ -57,7 +56,8 @@
 
                         <label>Tags English List</label>
                         <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-                            <option *ngFor="let tag of tagsEn" [selected]="enTagsContainsTag(tag._id)" [value]="tag._id">
+                            <option *ngFor="let tag of tagsEn" [selected]="enTagsContainsTag(tag._id)"
+                                [value]="tag._id">
                                 {{ tag.name }}
                             </option>
                         </select>
@@ -73,7 +73,8 @@
                     <div class="my-profile">
                         <label class="margin-top-0">Area</label>
                         <select id="areas" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-                            <option *ngFor="let area of areas" [selected]="areasContainsArea(area._id)" [value]="area._id">
+                            <option *ngFor="let area of areas" [selected]="areasContainsArea(area._id)"
+                                [value]="area._id">
                                 {{ area.nameEn }}
                             </option>
                         </select>
@@ -87,8 +88,7 @@
 
                         <label>Advanced Description Arabic</label>
                         <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx"
-                            [(ngModel)]="vendor.descriptionURLAr"
-                            placeholder="Advanced Description Arabic">
+                            [(ngModel)]="vendor.descriptionURLAr" placeholder="Advanced Description Arabic">
                         </editor>
 
                         <label>Short Description Arabic</label>
@@ -117,7 +117,8 @@
                         <label>Tags Arabic List </label>
                         <!-- <input type="text" placeholder="tags arabic"> -->
                         <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
-                            <option *ngFor="let tag of tagsAr" [selected]="arTagsContainsTag(tag._id)" [value]="tag._id">
+                            <option *ngFor="let tag of tagsAr" [selected]="arTagsContainsTag(tag._id)"
+                                [value]="tag._id">
                                 {{ tag.name }}
                             </option>
                         </select>
@@ -157,7 +158,9 @@
 
                             <div class="col-md-7">
                                 <label>Search </label>
-                                <input type="text" placeholder="search">
+                                <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                                    placeholder="Search Venue Nearest Location" autocorrect="off" autocapitalize="off"
+                                    spellcheck="off" type="text" #search>
 
                                 <div>
                                     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">

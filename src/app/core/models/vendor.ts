@@ -26,6 +26,7 @@ export class vendor {
     enTags: [];
     gallery: any[] = [];
     isFeatured?: Boolean = false;
+    isPublished?: boolean = false;
     featuredImage?: string = "";
     featuredVideo?: string = "";
     numberOfBookmarks?: number = 0;
