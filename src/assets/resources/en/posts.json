@@ -1,0 +1,54 @@
+{
+  "POSTS": "Welcome to your Posts ",
+  "POSTS_SUBTITLE": "Search top rated posts! ",
+  "SEARCH_PLACEHOLDER": "Enter search criteria.",
+  "ADD_POST": "Add New Post ",
+  "POST": "Post ",
+  "DEFAULT_POSTS": "Posts",
+  "CATEGORY": "Category",
+  "AUTHOR": "Author",
+  "PUBLISHED_AT": "Published At",
+  "PUBLISH": "Publish",
+  "PUBLISHED": "Published",
+  "ALL": "All",
+  "SEARCH": "Search ",
+
+  "POST_INFO": "Basic Article information  ",
+
+  "IMAGE": "Image ",
+  "TITLE_ENGLISH": "Title English  ",
+  "TITLE_ARABIC": "Title Arabic  ",
+  "SUBTITLE_ENGLISH": "Subtitle English ",
+  "SUBTITLE_ARABIC": "Subtitle Arabic  ",
+  "META_DESC_ENGLISH": "Meta Description English  ",
+  "META_DESC_ARABIC": "Meta Description Arabic  ",
+
+  "NEXT": "Next",
+
+  "ARTICLE_CONTENT": "Article Content",
+  "CONTENT_ENGLISH": "English Content",
+  "CONTENT_ARABIC": "Arabic Content ",
+
+  "IDENTIFICATIONS": "Identification Details",
+  "TAG_ENGLISH": "Tags English",
+  "TAG_ARABIC": "Tags Arabic",
+  "READING_TIME": "Reading Time In Mins",
+  "SHOW_AUTHOR_INFO": "Show Author Name & Details",
+  "SHOW_AUTHOR_INFO_SUBTITLE": "This will make your name visible on the blogs view for users. ",
+  "SCHEDULED_AT": "Publish Scheduled At  ",
+  "RELATED_POSTS": "Related Posts  ",
+
+  "IMAGES_MEDIA": "Images & Media ",
+  "GALLERY": "Gallery",
+  "FEATURED_IMAGE": "Select a featured image  ",
+  "UPLOAD_COVER_PHOTO": "Upload Cover Photo",
+  "FEATURED_VIDEO": "Select a featured video  ",
+  "UPLOAD_COVER_VIDEO": "Upload video",
+  "DESCRIPTION": "Description",
+
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
+}

@@ -50,7 +50,6 @@ export class AdminOverviewComponent implements OnInit, AfterViewInit {
       window.location.href.toString().toLowerCase().indexOf("ar") > -1
         ? "ar"
         : "en";
-
     let resourceLang =
       lang == null || lang == undefined ? environment.defaultLang : lang;
     this.lang = resourceLang;

@@ -21492,3 +21492,25 @@ div.layout-style {
 #style-switcher {
   display: none;
 }
+/* for arabic cols in admin/vendor/user  */
+.th {
+  text-align: right !important;
+}
+.change-photo-btnRTL {
+  font-weight: 600;
+  padding: 5px 6px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 50px;
+  display: inline-block;
+  position: relative;
+  font-size: 13px;
+  width: auto;
+  transition: 0.3s;
+  cursor: pointer;
+  line-height: 20px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: auto;
+}

@@ -5,5 +5,12 @@
   "THEMES": "Themes",
   "TAGS": "Tags",
   "OFFERS": "Offers",
-  "POSTS": "Posts"
+  "POSTS": "Posts",
+  "VENDORS": "Vendors",
+  "SERVICES": "Services",
+  "USERS": "Users",
+  "CHECKLIST": "Checklists",
+  "BUDGETER": "Budgeters",
+  "WEDDING_WEBSITE": "Wedding websites",
+  "EVENTS": "Events"
 }

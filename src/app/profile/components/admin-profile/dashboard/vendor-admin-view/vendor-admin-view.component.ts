@@ -12,7 +12,6 @@ export class VendorAdminViewComponent implements OnInit {
   lang: string;
   labels: any = {};
   constructor(private router: Router, private resources: resources) {
-    alert("vendor view");
     this.loadResources();
   }
 

@@ -1,0 +1,56 @@
+{
+  "POSTS": "اهلا بيك في المقالات",
+  "POSTS_SUBTITLE": "! ابحث في المقالات الاعلي تصنيف",
+  "ADD_POST": "اضافة مقالة جديدة",
+  "SEARCH_PLACEHOLDER": "ادخل كلمة للبحث",
+
+  "POST": " المقالة ",
+  "DEFAULT_POSTS": "جميع المقالات",
+  "CATEGORY": "الفئة",
+  "AUTHOR": "الكاتب",
+  "PUBLISHED_AT": "مقالة في وقت",
+  "PUBLISH": " عرض",
+  "PUBLISHED": " المعروض ",
+  "ALL": "الكل ",
+  "SEARCH": "بحث",
+
+  "POST_INFO": " معلومات  اساسية عن المقالة",
+
+  "IMAGE": "الصورة",
+  "TITLE_ENGLISH": "العنوان باللغة الانجليزية",
+  "TITLE_ARABIC": "العنوان باللغة العربية",
+  "SUBTITLE_ENGLISH": "العنوان الفرعي باللغة الانجليزية",
+  "SUBTITLE_ARABIC": "العنوان الفرعي باللغة العربية",
+  "META_DESC_ENGLISH": "كلمات الوصف الانجليزية",
+  "META_DESC_ARABIC": "كلمات الوصف باللغةالعربية",
+
+  "NEXT": "التالي ",
+
+  "ARTICLE_CONTENT": "محتوى المقالة",
+  "CONTENT_ENGLISH": "المحتوى باللغة الانجليزية",
+  "CONTENT_ARABIC": "المحتوى باللغة الانجليزية ",
+
+  "IDENTIFICATIONS": "كلامات دلاليه ",
+  "TAG_ENGLISH": "العلامة/التاج باللغة الانجليزية",
+  "TAG_ARABIC": "العلامة/التاج باللغة الانجليزية ",
+  "READING_TIME": "وقت القراءة بالدقيقة",
+  "SHOW_AUTHOR_INFO": "عرض اسم وبيانات الكاتب",
+  "SHOW_AUTHOR_INFO_SUBTITLE": "الاختيار دا هيظهر معملومات الكاتب لكل المستخدمين",
+  "SCHEDULED_AT": "تاجيل تاريخ النشر الي  ",
+  "RELATED_POSTS": "مقالات ذات صله",
+
+  "IMAGES_MEDIA": "الصور والوسائط  ",
+  "GALLERY": "معرض الصور",
+  "FEATURED_IMAGE": "اختار صورة مميزة",
+  "UPLOAD_COVER_PHOTO": "ارفق صورة غلاف ",
+  "FEATURED_VIDEO": "اختار فيديو مميز",
+  "UPLOAD_COVER_VIDEO": "ارفق فيديو ",
+  "DESCRIPTION": "الوصف",
+
+  "UPDATE": "تعديل",
+  "DELETE": "حذف",
+  "EDIT": "تعديل",
+  "SAVE": "حفظ",
+  "CANCEL": "إلغاء",
+  "ENABLED": "فعال"
+}

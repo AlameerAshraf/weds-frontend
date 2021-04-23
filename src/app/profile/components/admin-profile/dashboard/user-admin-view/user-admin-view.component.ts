@@ -13,7 +13,6 @@ export class UserAdminViewComponent implements OnInit {
   labels: any = {};
   constructor(private router: Router, private resources: resources) {
     this.loadResources();
-    alert("admin  view");
   }
 
   ngOnInit() {}
