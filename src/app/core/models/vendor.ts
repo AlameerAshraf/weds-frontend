@@ -21,7 +21,7 @@ export class vendor {
         longtitude?: string
         typedAddress?: string
         guestCount?: number
-    };
+    } = { latitude: "23" , longtitude: "23" }
     order?: number = 0;
     arTags: [];
     enTags: [];

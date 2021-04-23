@@ -1,3 +1,5 @@
+<ngx-spinner></ngx-spinner>
+
 <weds-header [authorizedUser]="isAuthed" type="not-sticky"></weds-header>
 
 <div class="listing-slider mfp-gallery-container margin-bottom-0">
@@ -52,10 +54,10 @@
 				<div class="listing-links-container">
 
 					<ul class="listing-links contact-links">
-						<li><a href="tel:12-345-678" class="listing-links"><i class="fa fa-phone"></i> +12 345 6578</a></li>
-						<li><a href="mailto:mail@example.com" class="listing-links"><i class="fa fa-envelope-o"></i> mail@example.com</a>
+						<li><a [href]="telRef" class="listing-links"><i class="fa fa-phone"></i> {{ vendor.phone }} </a></li>
+						<li><a href="mailto:mail@example.com" class="listing-links"><i class="fa fa-envelope-o"></i> {{ vendor.email }} </a>
 						</li>
-						<li><a href="#" target="_blank"  class="listing-links"><i class="fa fa-link"></i> www.example.com</a></li>
+						<li><a [href]="vendor.websiteURL" target="_blank"  class="listing-links"><i class="fa fa-link"></i> {{ vendor.websiteURL }}</a></li>
 					</ul>
 					<div class="clearfix"></div>
 
@@ -78,10 +80,9 @@
 			<div id="listing-location" class="listing-section">
 				<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
 				<div id="singleListingMap-container">
-          <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="8">
-            <agm-marker [latitude]="latitude" [longitude]="longitude"
+          <agm-map [latitude]="vendor.location.latitude" [longitude]="vendor.location.longtitude" [zoom]="8">
+            <agm-marker [latitude]="vendor.location.latitude" [longitude]="vendor.location.longtitude"
               ></agm-marker>
-
           </agm-map>
 				</div>
 			</div>
