@@ -8,13 +8,16 @@
   "DEFAULT_POSTS": "جميع المقالات",
   "CATEGORY": "الفئة",
   "AUTHOR": "الكاتب",
-  "PUBLISHED_AT": "مقالة في وقت",
+  "PUBLISHED_AT": "وقت النشر",
+  "STATUS": "الحالة",
   "PUBLISH": " عرض",
   "PUBLISHED": " المعروض ",
   "ALL": "الكل ",
   "SEARCH": "بحث",
-
+  "RESET": "مسح حقول البحث",
+  "FILTER_POSTS": "فلترة وبحث في المقالات ",
   "POST_INFO": " معلومات  اساسية عن المقالة",
+  "SELECT_CATEGORY": "اختار فئة",
 
   "IMAGE": "الصورة",
   "TITLE_ENGLISH": "العنوان باللغة الانجليزية",
@@ -50,7 +53,7 @@
   "POST_NO_IMG": "لا يوجد صور في المقالة",
   "ATTACH_IMAGE": "ارفق صورة",
   "UPLOAD_PHOTO": "ارفق صورة",
-
+  "ACTION": "نشر",
   "UPDATE": "تعديل",
   "DELETE": "حذف",
   "EDIT": "تعديل",

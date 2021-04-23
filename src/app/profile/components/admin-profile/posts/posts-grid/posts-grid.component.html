@@ -1,98 +1,131 @@
 <div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>{{labels.POSTS}}</h2>
-            <span>{{labels.POSTS_SUBTITLE}}</span>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{labels.POSTS}}</h2>
+      <span>{{labels.POSTS_SUBTITLE}}</span>
     </div>
+  </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div id="add-listing">
-            <div class="add-listing-section">
-                <div class="row with-forms">
-
-                    <div class="col-md-6 margin-top-20" [ngClass]="lang === 'ar' ? 'searchBoxRTL' : ''">
-                        <h5>{{labels.SEARCH}} </h5>
-                        <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER">
-                    </div>
-                    <div class="col-md-2 margin-top-65">
-                        <a class="button"> <i class="fa fa-search"></i> {{labels.SEARCH}} </a>
-                    </div>
-                    <div class="col-md-4 margin-top-65" align=" right">
-                        <a style="background-color: gray !important; color: white !important" class="button">
-                            <i class="im im-icon-Thumbs-UpSmiley"></i> {{labels.PUBLISHED}}
-                        </a>
-                        <a class="button"> {{labels.ALL}} </a>
-                    </div>
-                </div>
-
-            </div>
+<div class="style-2" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
+    <span class="trigger">
+      <a href="#" style="font-size: 25px !important">
+        <i style="font-size: 25px !important" class="fa fa-filter"></i> {{labels.FILTER_POSTS}}
+        <i class="sl sl-icon-plus"></i>
+      </a>
+    </span>
+    <div class="toggle-container" style="padding-bottom: 0px !important; ">
+      <div class="row with-forms">
+        <div class="col-md-3">
+          <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER">
         </div>
+        <div class="col-md-3">
+          <select id="cats" class="chosen-select-no-single">
+            <option label="blank">{{labels.SELECT_CATEGORY}}</option>
+            <option>
+              Search based on ...
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
+            {{labels.RESET }} </a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-12 col-md-12">
-        <div class="dashboard-list-box with-icons margin-top-20">
-            <h4>
-                {{labels.DEFAULT_POSTS}}
-                <div (click)="navigateToCreateNewPost()" style="background-color: #046B69 !important;
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box with-icons margin-top-20">
+      <h4>
+        Posts
+        <div (click)="navigateToCreateNewPost()" style="background-color: #046B69 !important;
                 color: white !important;
                 cursor: pointer;
                 border-radius: 20px;" class="comission-taken">
-                    <i class="im im-icon-Pencil"></i> &nbsp;
-                    <strong style="color: white !important">{{labels.ADD_POST}}</strong>
-                </div>
-            </h4>
-            <div class="col-md-12" style="background-color: white;">
-                <table class="table borderless">
-                    <thead>
-                        <tr>
-                            <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.POST}}</th>
-                            <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.CATEGORY}}</th>
-                            <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.AUTHOR}}</th>
-                            <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.PUBLISHED_AT}}
-                            </th>
-                            <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
-                            <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
-                            <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.PUBLISH}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container *ngFor="let item of postsList">
-                            <tr>
-                                <td>
-                                    <p style="font-size: 20px; font-weight: 600;">{{item.titleEn}}</p>
-                                </td>
-                                <td>
-                                    <p>{{item.category}}</p>
-                                </td>
-                                <td>
-                                    <p>Arsany.</p>
-                                </td>
-                                <td>
-                                    <p>2020.</p>
-                                </td>
-                                <td class="td-in-table">
-                                    <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
-                                            class="sl sl-icon-trash"></i>
-                                    </p>
-                                </td>
-                                <td class="td-in-table">
-                                    <p><i style="color: rgb(80, 121, 233); font-size: 20px; font-weight: 600;"
-                                            class="sl sl-icon-pencil"></i></p>
-                                </td>
-                                <td class="td-in-table">
-                                    <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                                            class="sl sl-icon-arrow-up-circle"></i></p>
-                                </td>
-                            </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
-            </div>
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">Add Post</strong>
         </div>
+      </h4>
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.POST}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.CATEGORY}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.AUTHOR}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.PUBLISHED_AT}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.STATUS}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.ACTION}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of postsList">
+              <tr>
+                <td>
+                  <p style="font-size: 20px; font-weight: 600; overflow:hidden !important;">{{item.titleEn}}</p>
+                </td>
+                <td>
+                  <p> {{ item.categoryName }} </p>
+                </td>
+                <td>
+                  <p> {{ item.authorName }} </p>
+                </td>
+                <td>
+                  <p> {{ item.publishedAt }} </p>
+                </td>
+                <td>
+                  <ng-container *ngIf="item.isPublished">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: green;"></span> &nbsp;
+                      <label style="color: green; font-size: 15px; font-weight: 600;"> Published </label>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="!item.isPublished">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: rgb(214, 148, 4);"></span> &nbsp;
+                      <label style="color: rgb(214, 148, 4); font-size: 15px; font-weight: 600;"> Scheduled </label>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="item.isRemoved">
+                    <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                      <span class="dot" style="background-color: rgb(248, 54, 54);"></span> &nbsp;
+                      <label style="color: rgb(248, 54, 54); font-size: 15px; font-weight: 600;"> Revoked </label>
+                    </p>
+                  </ng-container>
+                </td>
+                <td class="td-in-table" style="cursor: pointer;">
+                  <ng-container *ngIf="!item.isPublished">
+                    <p class="tooltip">
+                      <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload"></i>
+                      <span class="tooltiptext">Force publish</span>
+                    </p>
+                  </ng-container>
+
+                  <ng-container *ngIf="item.isPublished">
+                    <p class="tooltip">
+                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
+                        class="sl sl-icon-cloud-download"></i>
+                      <span class="tooltiptext">Revoke publish</span>
+                    </p>
+                  </ng-container>
+                </td>
+                <td class="td-in-table" style="cursor: pointer;">
+                  <p (click)="navigateToUpdatePost(item._id)">
+                    <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-pencil"></i>
+                  </p>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>

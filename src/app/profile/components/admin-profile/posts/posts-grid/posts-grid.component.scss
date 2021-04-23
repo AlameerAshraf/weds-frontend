@@ -1,3 +1,59 @@
+table {
+  table-layout: fixed;
+}
+td {
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
+}
+th {
+  text-align: center;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+}
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 15px;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modfied-btn {
+  padding-bottom: 5px !important;
+  padding-top: 5px !important;
+  margin-top: 13px !important;
+}
 .searchBoxRTL {
   float: right !important;
   direction: rtl !important;

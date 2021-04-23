@@ -9,12 +9,12 @@ import * as COMPONENTS from './components';
 @NgModule({
   declarations: [
     COMPONENTS.BlogsComponent,
-    COMPONENTS.SingleBlogComponent
+    COMPONENTS.SingleBlogComponent,
   ],
   imports: [
     CommonModule,
     BlogsRoutingModule,
-    THEME_MODULE
-  ]
+    THEME_MODULE,
+  ],
 })
 export class BlogsModule { }

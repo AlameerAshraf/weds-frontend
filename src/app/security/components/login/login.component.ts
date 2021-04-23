@@ -8,6 +8,11 @@ import {
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthService,
+} from "angularx-social-login";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
 import {
@@ -41,6 +46,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
   helpers = new helper(this.router, this.actictedRoute, this.resources);
   labels: any = {};
+  translated: any = {};
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -51,7 +57,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private spinner: NgxSpinnerService,
     private resources: resources,
     private formBuilder: FormBuilder,
-    private http: httpService
+    private http: httpService,
+
+    private OAuth: SocialAuthService
   ) {
     this.loadResources();
   }
@@ -60,6 +68,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.initForm();
 
     let resourcesData = await this.helpers.loadResources();
+    this.lang = resourcesData.lang;
+    this.translated = resourcesData.translatedObject;
+
+    this.OAuth.authState.subscribe((user) => {
+      console.log(user);
+    });
   }
 
   /** Form functions */
@@ -73,7 +87,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     return this.loginForm.controls;
   }
 
-  /** toggle password. */
+  /** toggle pauthssword. */
   togglePassword() {
     this.passwordHidden = !this.passwordHidden;
   }
@@ -118,6 +132,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
           else this.buildErrorsInView([{ message: response.details }]);
         }
       });
+  }
+
+  signInWithFB(): void {
+    this.OAuth.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithGoogle(): void {
+    this.OAuth.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   //#region Binding scripts to the component.

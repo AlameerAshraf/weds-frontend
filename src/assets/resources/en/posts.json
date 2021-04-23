@@ -12,8 +12,12 @@
   "PUBLISHED": "Published",
   "ALL": "All",
   "SEARCH": "Search ",
-
+  "RESET": "RESET",
+  "FILTER_POSTS": "Filter & search in posts",
+  "SELECT_CATEGORY": "Select category",
   "POST_INFO": "Basic Article information  ",
+  "STATUS": "Status",
+  "ACTION": "Action",
 
   "IMAGE": "Image ",
   "TITLE_ENGLISH": "Title English  ",

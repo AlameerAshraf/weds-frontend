@@ -1,101 +1,119 @@
-<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
-    <div class="col-lg-6 col-md-12">
-        <div class="dashboard-list-box-static margin-top-0">
-            <div class="my-profile">
+<div class="row">
+  <div class="col-lg-12">
+    <div id="add-listing">
+      <div class="add-listing-section">
+        <div class="add-listing-headline" style="padding: 25px;">
+          <h3><i class="im im-icon-Heart-2"></i> New ring</h3>
+        </div>
 
-                <label class="margin-top-0">{{labels.NAME_ENGLISH}}</label>
-                <input value="Tom Perrin" type="text">
+        <div class="row with-forms">
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="dashboard-list-box-static margin-top-0" style="padding: 0px;">
+                <div class="my-profile">
 
-                <label>{{labels.DESC_ENGLISH}}</label>
-                <textarea [placeholder]='labels.DESC_ENGLISH'></textarea>
+                  <label class="margin-top-0">Name English</label>
+                  <input value="Tom Perrin" type="text">
 
-                <label>{{labels.SERVICE}}</label>
-                <select class="chosen-select-no-single">
-                    <option [label]="labels.SELECT_SERVICE">{{labels.SELECT_SERVICE}}</option>
-                    <option>{{labels.DRESS}}</option>
-                    <option>{{labels.RING}}</option>
-                </select>
+                  <label>Description English</label>
+                  <textarea></textarea>
 
-                <label>Purity</label>
-                <select class="chosen-select-no-single">
-                    <option [label]="labels.SELECT_PURITY">{{labels.SELECT_PURITY}}</option>
+                  <label>Service</label>
+                  <select class="chosen-select-no-single">
+                    <option label="blank">Select your service</option>
+                    <option>Dress</option>
+                    <option>Ring</option>
+                  </select>
+
+                  <label>Purity</label>
+                  <select class="chosen-select-no-single">
+                    <option label="blank">Select your purity</option>
                     <option>short</option>
                     <option>tall</option>
-                </select>
+                  </select>
 
-                <label>Stone Shape</label>
-                <select class="chosen-select-no-single">
+                  <label>Stone Shape</label>
+                  <select class="chosen-select-no-single">
                     <option label="blank">Select your stone shape</option>
                     <option>short</option>
                     <option>tall</option>
-                </select>
+                  </select>
 
-                <label>Metal</label>
-                <input value="metal" type="text">
+                  <label>Metal</label>
+                  <input value="metal" type="text">
 
-                <label>Price (EGP)</label>
-                <input value="price" type="text">
+                  <label>Price (EGP)</label>
+                  <input value="price" type="text">
 
-                <label>Tags En list</label>
-                <input value="Tags en" type="text">
+                  <label>Tags English list</label>
+                  <input value="Tags en" type="text">
 
-                <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                  <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
                     <img class="anImage"
-                        [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                        alt="">
+                      [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
+                      alt="">
                     <div class="change-photo-btn">
-                        <div class="photoUpload">
-                            <span><i class="fa fa-upload"></i> Upload Photo</span>
-                            <input type="file" class="upload" (change)="onFileSelected($event)" />
-                        </div>
+                      <div class="photoUpload">
+                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                        <input type="file" class="upload" />
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-lg-6 col-md-12">
-        <div class="dashboard-list-box-static margin-top-0">
-            <div class="my-profile">
-                <label class="margin-top-0">Name Ar</label>
-                <input value="توم" type="text">
+            <div class="col-lg-6 col-md-12">
+              <div class="dashboard-list-box-static margin-top-0" style="padding: 0px;">
+                <div class="my-profile">
+                  <label class="margin-top-0">Name Arabic</label>
+                  <input value="توم" type="text">
 
-                <label>Description Ar</label>
-                <textarea></textarea>
+                  <label>Description Arabic</label>
+                  <textarea></textarea>
 
-                <label>Category</label>
-                <select class="chosen-select-no-single">
+                  <label>Category</label>
+                  <select class="chosen-select-no-single">
                     <option label="blank">Select your category</option>
                     <option>Him</option>
                     <option>Her</option>
-                </select>
+                  </select>
 
-                <label>Clarity</label>
-                <select class="chosen-select-no-single">
+                  <label>Clarity</label>
+                  <select class="chosen-select-no-single">
                     <option label="blank">Select your clarity</option>
                     <option>Him</option>
                     <option>Her</option>
-                </select>
+                  </select>
 
-                <label>Style</label>
-                <input value="style" type="text">
+                  <label>Style</label>
+                  <input value="style" type="text">
 
-                <label>Designer</label>
-                <input value="designer" type="text">
+                  <label>Designer</label>
+                  <input value="designer" type="text">
 
-                <label>Gender</label>
-                <select class="chosen-select-no-single">
+                  <label>Gender</label>
+                  <select class="chosen-select-no-single">
                     <option label="blank">Select your gender</option>
                     <option>Male</option>
                     <option>Female</option>
-                </select>
+                  </select>
 
-                <label>Tags Ar list</label>
-                <input value="Tags ar" type="text">
-
-
-
+                  <label>Tags Arabic list</label>
+                  <input value="Tags ar" type="text">
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
+      <div align="right">
+        <a style="background-color: #F91942 !important;" class="button preview">
+          Cancel <i class="sl sl-icon-close"></i>
+        </a>
+        <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
+      </div>
     </div>
+  </div>
 </div>
