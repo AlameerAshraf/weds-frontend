@@ -1,3 +1,4 @@
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -21,10 +22,14 @@ import { AgmCoreModule } from '@agm/core';
     CommonModule,
     SegmentsAndVendorsRoutingModule,
     THEME_MODULE,
+    NgxSpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAnZPhwhppJByAoyUEzJtF31F0TalEoiYA',
       libraries: ['places']
     })
+  ],
+  providers:[
+    NgxSpinnerService
   ]
 })
 export class SegmentsAndVendorsModule { }
