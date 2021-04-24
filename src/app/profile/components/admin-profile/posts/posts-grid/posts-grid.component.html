@@ -17,10 +17,10 @@
     </span>
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
           <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
           <select id="cats" class="chosen-select-no-single">
             <option label="blank">{{labels.SELECT_CATEGORY}}</option>
             <option>
@@ -28,7 +28,7 @@
             </option>
           </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
           <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
             {{labels.RESET }} </a>
         </div>
