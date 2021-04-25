@@ -131,7 +131,7 @@
         </a>
         <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
             class="sl sl-icon-check"></i></a>
-        <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i
+        <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity(service._id)">Update <i
             class="sl sl-icon-check"></i></a>
       </div>
     </div>

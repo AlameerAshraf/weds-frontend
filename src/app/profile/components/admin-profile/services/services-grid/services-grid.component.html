@@ -26,19 +26,27 @@
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="33%">Service Name</th>
-              <th scope="col" width="33%">Vendor Name</th>
-              <th scope="col" width="33%">Edit</th>
+              <th scope="col" width="20%">Service Name</th>
+              <th scope="col" width="20%">Vendor Name</th>
+              <th scope="col" width="20%">Service Name</th>
+              <th scope="col" width="30%">Service Description</th>
+              <th scope="col" width="10%">Edit</th>
             </tr>
           </thead>
           <tbody>
             <ng-container *ngFor="let item of servicesList">
               <tr>
                 <td>
-                  <p >{{item.type}}</p>
+                  <p >{{ item.type.toLowerCase() }}</p>
                 </td>
                 <td>
                   <p >{{item.vendorNameEn}}</p>
+                </td>
+                <td>
+                  <p >{{ item.attributes.nameEn }}</p>
+                </td>
+                <td>
+                  <p >{{ item.attributes.descriptionEn }}</p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"

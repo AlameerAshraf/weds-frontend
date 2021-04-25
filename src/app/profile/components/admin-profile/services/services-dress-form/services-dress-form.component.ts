@@ -34,68 +34,37 @@ export class ServicesDressFormComponent implements OnInit, AfterViewInit {
 
     this.activatedRoute.params.subscribe((params) => {
       this.editingMode = params["actionType"];
+      this.service.type = "DRESS"
+      this.dress.image = "assets/images/defaults/wedding/cover-photo.png"
+      if(this.editingMode == "update"){
+        this.initDressView();
+      }
     });
    }
 
   async ngOnInit() {
-    this.ngxSpinner.show();
-    let tempVendor = this.getVendors();
-    this.ngxSpinner.hide();
-    this.ngxSpinner.show();
-    let tempCategory = await this.getCategories();
-    this.ngxSpinner.hide();
-    this.ngxSpinner.show();
-    let tempTag = await this.getTags();
-    this.ngxSpinner.hide();
-    this.initDressView();
+    let tempLookup = await this.getLookups();  
     this.loadScripts();
     this.documentSelectors();
   }
 
   initDressView(){
-    this.service.type = "DRESS"
-    this.dress.image = "assets/images/defaults/wedding/cover-photo.png"
-    if(this.editingMode == "update"){
-      this.service = this.storage.getLocalStorage("weds360#vendorServiceOnEdit");
-      this.dress = this.service.attributes;
-
-    }
+    this.service = this.storage.getLocalStorage("weds360#vendorServiceOnEdit");
+    this.dress = this.service.attributes;
   };
 
-  
-  async getCategories() {
-    this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
-
-    let allTags = (await this.lookupsService.getTags()) as responseModel;
-    this.tagsAr = allTags.data.filter((tag: any) => {
-      return tag.langauge == "Ar";
-    });
-
-    this.tagsEn = allTags.data.filter((tag: any) => {
-      return tag.langauge == "En";
-    });
-  };
-
-  async getTags() {
-    let allTags = (await this.lookupsService.getTags()) as responseModel;
-    this.tagsAr = allTags.data.filter((tag: any) => {
-      return tag.langauge == "Ar";
-    });
-
-    this.tagsEn = allTags.data.filter((tag: any) => {
-      return tag.langauge == "En";
-    });
-  };
-
-  async getVendors() {
-    this.vendors = ((await this.lookupsService.getVendorsAsLookups()) as responseModel).data;
+  async getLookups() {
+    this.categories = this.storage.getLocalStorage("weds360#categories");
+    this.tagsAr = this.storage.getLocalStorage("weds360#tagsAr");
+    this.tagsEn = this.storage.getLocalStorage("weds360#tagsEn");
+    this.vendors = this.storage.getLocalStorage("weds360#vendors");
   };
 
   createNewEntity(){
     this.ngxSpinner.show();
     this.service.attributes = this.dress;
 
-    let createURL = `${urls.CREATE_VENDOR_SERVICE}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`;
+    let createURL = `${urls.CREATE_VENDOR_SERVICE}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}?admin=admin`;
     this.http.Post(createURL , {} , { "service" : this.service }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
@@ -190,16 +159,8 @@ export class ServicesDressFormComponent implements OnInit, AfterViewInit {
 
     //#region load scripts
   async ngAfterViewInit() {
-    let tempVendor = this.getVendors();
-    this.ngxSpinner.hide();
-    this.ngxSpinner.show();
-    let tempCategory = await this.getCategories();
-    this.ngxSpinner.hide();
-    this.ngxSpinner.show();
-    let tempTag = await this.getTags();
-    this.ngxSpinner.hide();
+    let tempLookup = await this.getLookups();
     this.loadScripts();
-    this.documentSelectors();
   };
 
   loadScripts(){
