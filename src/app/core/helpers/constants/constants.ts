@@ -21,6 +21,7 @@ export class constants {
       POSTS: "posts",
       VENDORS: "vendor",
       SERVICES: "services",
+      USERS: "users",
       USER_DASHBOARD: "user-profile-nav",
       ADMIN_DASHBOARD: "admin-profile-nav",
       VENDOR_DASHBOARD: "vendor-profile-nav",
