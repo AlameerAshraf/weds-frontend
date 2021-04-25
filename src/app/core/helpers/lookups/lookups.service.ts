@@ -25,4 +25,8 @@ export class LookupsService {
   async getPostsAsLookups(){
     return this.httpService.Get(`${urls.GET_ALL_POSTS_AS_LOOKUPS}/${constants.APP_IDENTITY_FOR_USERS}` , {} ).toPromise();
   };
+
+  async getVendorsAsLookups(){
+    return this.httpService.Get(`${urls.GET_ALL_VENDORS}/${constants.APP_IDENTITY_FOR_USERS}` , {} ).toPromise();
+  };
 }

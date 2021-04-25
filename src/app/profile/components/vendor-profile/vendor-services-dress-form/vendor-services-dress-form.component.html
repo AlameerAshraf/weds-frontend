@@ -1,93 +1,123 @@
 <div class="row">
-    <div class="col-lg-6 col-md-12">
-            <div class="dashboard-list-box-static">
-                <div class="my-profile">
-
-                    <label class="margin-top-0">Name En</label>
-                    <input value="Tom Perrin" type="text">
-
-                    <label>Description En</label>
-                    <textarea></textarea>
-
-                    <label>Service</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Select your service</option>
-                        <option>Dress</option>
-                        <option>Ring</option>
-                    </select>
-
+    <div class="col-lg-12">
+      <div id="add-listing">
+        <div class="add-listing-section">
+          <div class="add-listing-headline" style="padding: 25px;">
+            <h3><i class="im im-icon-Dress"></i> New dress</h3>
+          </div>
+  
+          <div class="row with-forms">
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <div class="dashboard-list-box-static" style="padding: 0px;">
+                  <div class="my-profile">
+  
+                    <label class="margin-top-0">Name English</label>
+                    <input placeholder="English Name" type="text" [(ngModel)]="dress.nameEn">
+  
+                    <label>Description English</label>
+                    <textarea placeholder="English Description" [(ngModel)]="dress.descriptionEn"></textarea>
+  
                     <label>Dress cut</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Select your dress cut</option>
-                        <option>short</option>
-                        <option>tall</option>
+                    <select id="dressCut" class="chosen-select-no-single">
+                      <option label="blank">Select your dress cut</option>
+                      <ng-container *ngFor="let dressCut of dressCutList">
+                        <option [selected]="dressCut.dress_cut === dress.dressCut" [value]="dressCut.dress_cut">{{ dressCut.name }}
+                        </option>
+                      </ng-container>
                     </select>
-
+  
                     <label>Train length</label>
-                    <input value="length" type="text">
-
+                    <input  placeholder="Train Length" type="text" [(ngModel)]="dress.trainLength">
+  
                     <label>Silhouette</label>
-                    <input value="length" type="text">
-
+                    <input placeholder="Silhouette" type="text" [(ngModel)]="dress.silhouette">
+  
                     <label>Color</label>
-                    <input value="color" type="text">
-
+                    <input placeholder="Color" type="text" [(ngModel)]="dress.color">
+  
                     <label>Price (EGP)</label>
-                    <input value="price" type="text">
-
+                    <input placeholder="Price" type="text" [(ngModel)]="dress.price">
+  
                     <label>Tags En list</label>
-                    <input value="Tags en" type="text">
-
-                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                        <img class="anImage"
-                            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource"
-                            alt="">
-                        <div class="change-photo-btn">
-                            <div class="photoUpload">
-                                <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                <input type="file" class="upload" (change)="onFileSelected($event)" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-
-    <div class="col-lg-6 col-md-12">
-            <div class="dashboard-list-box-static">
-                <div class="my-profile">
-                    <label class="margin-top-0">Name Ar</label>
-                    <input value="توم" type="text">
-
-                    <label>Description Ar</label>
-                    <textarea></textarea>
-
-                    <label>Category</label>
-                    <select class="chosen-select-no-single">
-                        <option label="blank">Select your category</option>
-                        <option>Him</option>
-                        <option>Her</option>
+                    <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                      <option *ngFor="let tag of tagsEn" [selected]="enTagsContainsTag(tag._id)" [value]="tag._id">
+                        {{ tag.name }}
+                      </option>
                     </select>
-
-                    <label>Dress Length</label>
-                    <input value="dress length" type="text">
-
-                    <label>Waist style</label>
-                    <input value="waist style" type="text">
-
-                    <label>Style</label>
-                    <input value="style" type="text">
-
-                    <label>Size</label>
-                    <input value="size" type="text">
-
+  
                     <label>Neckline</label>
-                    <input value="neckline" type="text">
-
-                    <label>Tags Ar list</label>
-                    <input value="Tags ar" type="text">
-
+                    <input placeholder="Neckline" [(ngModel)]="dress.neckline" type="text">
+  
+                  </div>
                 </div>
+              </div>
+  
+              <div class="col-lg-6 col-md-12">
+                <div class="dashboard-list-box-static" style="padding: 0px;">
+                  <div class="my-profile">
+                    <label class="margin-top-0">Name Arabic</label>
+                    <input placeholder="Arabic Name" [(ngModel)]="dress.nameAr" type="text">
+  
+                    <label>Description Arabic</label>
+                    <textarea placeholder="Arabic Description" [(ngModel)]="dress.descriptionAr"></textarea>
+  
+                    <label>Category</label>
+                    <select id="categories" class="chosen-select-no-single">
+                      <option label="blank" value="">Select your category</option>
+                      <ng-container *ngFor="let category of categories">
+                        <option [selected]="category._id === dress.category" [value]="category._id">{{ category.nameEn }}
+                        </option>
+                      </ng-container>
+                    </select>
+  
+                    <label>Dress Length</label>
+                    <input placeholder="Dress Length" [(ngModel)]="dress.dressLength" type="text">
+  
+                    <label>Waist style</label>
+                    <input placeholder="Waist style" [(ngModel)]="dress.waistStyle" type="text">
+  
+                    <label>Style</label>
+                    <input placeholder="Style" [(ngModel)]="dress.style" type="text">
+  
+                    <label>Size</label>
+                    <input placeholder="Size" [(ngModel)]="dress.size" type="text">
+  
+                    <label>Tags Ar list</label>
+                    <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
+                      <option *ngFor="let tag of tagsAr" [selected]="arTagsContainsTag(tag._id)" [value]="tag._id">
+                        {{ tag.name }}
+                      </option>
+                    </select>
+  
+  
+                    <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+                      <img class="anImage" [src]="dress.image" alt="">
+                      <div class="change-photo-btn">
+                        <div class="photoUpload">
+                          <span><i class="fa fa-upload"></i> Cover Photo</span>
+                          <input type="file" class="upload" (change)="uploadImage($event)" />
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+  
+        <div align="right">
+          <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+            Cancel <i class="sl sl-icon-close"></i>
+          </a>
+          <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
+              class="sl sl-icon-check"></i></a>
+          <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i
+              class="sl sl-icon-check"></i></a>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  

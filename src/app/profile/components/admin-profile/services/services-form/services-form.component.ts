@@ -14,20 +14,36 @@ declare var $: any;
 })
 export class ServicesFormComponent implements OnInit, AfterViewInit {
   selectedLayout = "";
+  editingMode = "new";
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private router: Router,private ngxSpinner: NgxSpinnerService,
-    private storage: localStorageService,
-    private elementRef: ElementRef, private http: httpService,private toastr: ToastrService,
+    private router: Router, private ngxSpinner: NgxSpinnerService,
+    private storage: localStorageService, private activatedRoute: ActivatedRoute,
+    private elementRef: ElementRef, private http: httpService, private toastr: ToastrService,
     private actictedRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
     this.loadScripts();
+    this.activatedRoute.params.subscribe((params) => {
+      this.editingMode = params["actionType"];
+      if(this.editingMode == "update"){
+        this.selectTemplateToUpdate()
+      }
+    });
   }
 
-  selectTemplate(template){
-    if(this.selectedLayout == template)
+  selectTemplateToUpdate(){
+    let service = this.storage.getLocalStorage("weds360#vendorServiceOnEdit");
+    this.selectedLayout = service.type.toLowerCase();
+    return
+  }
+
+  selectTemplate(template) {
+    if(this.editingMode == "update"){
+      return false;
+    }
+    if (this.selectedLayout == template)
       this.selectedLayout = "";
     else
       this.selectedLayout = template;
@@ -47,7 +63,7 @@ export class ServicesFormComponent implements OnInit, AfterViewInit {
     this.loadScripts();
   };
 
-  loadScripts(){
+  loadScripts() {
     let scripts = ['assets/scripts/custom.js'];
 
     scripts.forEach(element => {

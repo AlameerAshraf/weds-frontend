@@ -104,6 +104,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.ngxSpinner.show();
     let tempVar = await this.getLookups();
     this.ngxSpinner.hide();
+    this.mapsLoader();
     this.loadUser();
     this.loadScripts();
     this.documentSelectors();
@@ -248,7 +249,6 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
   //#region Maps Helpers..
   mapsLoader() {
-    alert("Map loaded");
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;

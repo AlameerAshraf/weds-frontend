@@ -1,6 +1,9 @@
 
 
 export class weddingWebsite {
+  name?: string;
+  email?: string;
+  _id?:string;
   requestIssued?: boolean = false;
   themeId?: string;
   themeName?: string;
