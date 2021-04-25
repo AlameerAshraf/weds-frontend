@@ -1,0 +1,16 @@
+{
+  "CHECKLISTS":" قائمة المهام ",
+  "CHECKLISTS_TITLE":" ضيف الي قائمة المهام ",
+  "NAME_ENGLISH": "الاسم باللغة الانجليزية",
+  "NAME_ARABIC": "الاسم باللغة العربية",
+  "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
+  "DESCRIPTION_ARABIC": "الوصف باللغة الانجليزية ",
+  "ADD_CHECKLIST":" اضافة قائمة مهام جديدة ",
+  "CHECKLISTS_INFO":" معلومات عن قائمة المهام ",
+
+  "UPDATE": "تعديل",
+  "DELETE": "حذف",
+  "EDIT": "تعديل",
+  "SAVE": "حفظ",
+  "CANCEL": "إلغاء"
+}

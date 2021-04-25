@@ -6,33 +6,35 @@
       <div class="add-listing-section">
 
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-note"></i> Checklist information</h3>
+          <h3><i class="sl sl-icon-note"></i> {{labels.CHECKLISTS_INFO}}</h3>
         </div>
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Title English</h5>
-            <input class="search-field" type="text" placeholder="English Title" [(ngModel)]="checklist.titleEn" />
+            <h5>{{labels.NAME_ENGLISH}}</h5>
+            <input class="search-field" type="text" placeholder="{{labels.NAME_ENGLISH}}"
+              [(ngModel)]="checklist.titleEn" />
           </div>
 
           <div class="col-md-6">
-            <h5>Title Arabic</h5>
-            <input class="search-field" type="text" placeholder="Arabic Title" [(ngModel)]="checklist.titleAr"/>
+            <h5>{{labels.NAME_ARABIC}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.NAME_ARABIC"
+              [(ngModel)]="checklist.titleAr" />
           </div>
         </div>
 
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Description English</h5>
+            <h5>{{labels.DESCRIPTION_ENGLISH}}</h5>
             <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"
-            placeholder="English Description" [(ngModel)]="checklist.noteEn"></textarea>
+              placeholder="{{labels.DESCRIPTION_ENGLISH}}" [(ngModel)]="checklist.noteEn"></textarea>
           </div>
 
           <div class="col-md-6">
-            <h5>Description Arabic</h5>
+            <h5>{{labels.DESCRIPTION_ARABIC}}</h5>
             <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"
-            placeholder="English Description" [(ngModel)]="checklist.noteAr"></textarea>
+              placeholder="{{labels.DESCRIPTION_ARABIC}}" [(ngModel)]="checklist.noteAr"></textarea>
           </div>
         </div>
       </div>
@@ -41,7 +43,9 @@
 </div>
 
 <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-  Cancel <i class="sl sl-icon-close"></i>
+  {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
 </a>
-<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
-  <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
+    class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
+    class="sl sl-icon-check"></i></a>

@@ -1,0 +1,17 @@
+
+{
+  "CHECKLISTS_TITLE":" Create the defaults checklist items.  ",
+  "CHECKLISTS":" Checklist ",
+  "CHECKLISTS_INFO":" Checklist information ",
+  "ADD_CHECKLIST":" Create New Checklist Item ",
+  "NAME_ENGLISH": "Title English ",
+  "NAME_ARABIC": "Title Arabic  ",
+  "DESCRIPTION_ENGLISH": " Description English  ",
+  "DESCRIPTION_ARABIC": " Description Arabic  ",
+
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
+}

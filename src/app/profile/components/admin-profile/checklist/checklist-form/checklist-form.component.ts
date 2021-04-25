@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { checklist, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { checklist, constants, urls, httpService, responseModel, localStorageService,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -16,7 +17,7 @@ export class ChecklistFormComponent implements OnInit {
   that = this;
 
   currentUserEmail: string;
-  
+
   checklist: checklist = {
     note: "",
     noteEn: "",
@@ -27,13 +28,15 @@ export class ChecklistFormComponent implements OnInit {
     isChecked: false
   };
 
-  constructor(private router: Router,
+  labels:any={};
+  lang:string;
+  constructor(private router: Router, private resources: resources,
     @Inject(DOCUMENT) private document: any, private elementRef: ElementRef, private http: httpService,
     private toastr: ToastrService, private activatedRoute: ActivatedRoute,
     private storage: localStorageService,
     private ngxSpinner: NgxSpinnerService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
-
+    this.loadResources();
     this.activatedRoute.params.subscribe((params) => {
       this.editingMode = params["actionType"];
     });
@@ -42,6 +45,21 @@ export class ChecklistFormComponent implements OnInit {
   ngOnInit() {
     this.loadScripts();
     this.initCheckListView();
+  };
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["CHECKLIST"]
+      )) as any;
+      this.labels = resData.res;
   };
 
   initCheckListView(){
@@ -59,7 +77,7 @@ export class ChecklistFormComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("You have a new checklist item created" , "Wow, Your checklist just created! start the planning! 🎉");
-        this.router.navigateByUrl('/profile/en/admin/checklist-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/checklist-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your checklist couldn't created on the server!");
@@ -77,7 +95,7 @@ export class ChecklistFormComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("We've updated your checkList!" , "Amazing you're doing great keep yourself updated, plane each step! 😍");
-        this.router.navigateByUrl('/profile/en/admin/checklist-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/checklist-defaults`);
       } else{
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your checklist couldn't created on the server!");
@@ -104,6 +122,6 @@ export class ChecklistFormComponent implements OnInit {
 
 
   backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/checklist-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/checklist-defaults`);
   };
 }
