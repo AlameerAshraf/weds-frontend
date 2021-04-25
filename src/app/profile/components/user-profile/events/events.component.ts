@@ -1,9 +1,10 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Inject, ElementRef } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, event, httpService, responseModel, urls } from 'src/app/core';
+import { constants, event, httpService, responseModel, urls ,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-events',
@@ -14,7 +15,9 @@ export class EventsComponent implements OnInit{
   currentUserEmail: string;
   listOfEvents: event[] = [];
 
-  constructor(@Inject(DOCUMENT) private document: any,
+  labels: any = {};
+  lang: string;
+  constructor(@Inject(DOCUMENT) private document: any, private resources: resources,
     private elementRef: ElementRef, private router: Router, private http: httpService,
     private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
@@ -22,10 +25,25 @@ export class EventsComponent implements OnInit{
 
 
   ngOnInit() {
+    this.loadResources();
     this.getAllEventsPerUser();
   }
 
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
 
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['EVENTS']
+      )) as any;
+    this.labels = resData.res;
+  }
   getAllEventsPerUser(){
     this.ngxSpinner.show();
     let getAllEventsURL = `${urls.GET_EVENTS_PER_USER}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
@@ -89,14 +107,14 @@ export class EventsComponent implements OnInit{
   };
 
   viewEventDetails(id: any){
-    this.router.navigateByUrl(`/profile/en/user/event-details/${id}`);
+    this.router.navigateByUrl(`/profile/${this.lang}/user/event-details/${id}`);
   };
 
   inviteFriends(id: any){
-    this.router.navigateByUrl(`/profile/en/user/invite/${id}`);
+    this.router.navigateByUrl(`/profile/${this.lang}/user/invite/${id}`);
   };
 
   createNewEvent(){
-    this.router.navigateByUrl('/profile/en/user/create-event');
+    this.router.navigateByUrl(`/profile/${this.lang}/user/create-event`);
   };
 }

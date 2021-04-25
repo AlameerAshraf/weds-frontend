@@ -9,6 +9,15 @@
   "DESCRIPTION_ARABIC": " Description Arabic  ",
   "EVENTS_TITLE":" Create the defaults Events  items.  ",
 
+  "MY_EVENTS":"My Events",
+  "INVITE_FRIENDS":" Invite Friends ",
+  "EVENT_DETAILS":"Event Details  ",
+  "LOCATION": "Location",
+  "DATE": "Date",
+  "NAME": "Name",
+  "DESC": "Description",
+  "SHOW_ON_SITE":"Display on wedding website",
+
   "SAVE": "Save",
   "CANCEL": "Cancel",
   "DELETE": "Delete",

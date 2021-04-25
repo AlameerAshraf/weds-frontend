@@ -1,9 +1,10 @@
-import { constants, event, httpService, responseModel, urls } from './../../../../core';
-import { Router } from '@angular/router';
+ import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { constants, event, httpService, responseModel, urls ,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-event',
@@ -24,19 +25,36 @@ export class CreateEventComponent implements OnInit {
   };
   date = "";
 
-  constructor(@Inject(DOCUMENT) private document: any,
+  labels: any = {};
+  lang: string;
+  constructor(@Inject(DOCUMENT) private document: any,private resources: resources,
   private elementRef: ElementRef, private router: Router , private httpService: httpService,
   private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
 
   ngOnInit() {
+    this.loadResources();
   };
 
   backToRoute(){
-    this.router.navigateByUrl('profile/en/user/events');
+    this.router.navigateByUrl(`profile/${this.lang}/user/events`);
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
 
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['EVENTS']
+      )) as any;
+    this.labels = resData.res;
+  }
   createNewEvent(){
     this.ngxSpinner.show();
     let dateValue: any = document.getElementById("date-picker");
@@ -50,7 +68,7 @@ export class CreateEventComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Weds360 has created the event for you." , "Let's celebrate your event has been created 💥🎉");
-        this.router.navigateByUrl('profile/en/user/events');
+        this.router.navigateByUrl(`profile/${this.lang}/user/events`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your event is not created, trya again later!");
