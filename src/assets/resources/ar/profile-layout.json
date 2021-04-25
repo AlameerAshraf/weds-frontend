@@ -1,0 +1,27 @@
+{
+  "MY_PROFILE":"صفحتي الشخصية",
+  "PROFILE_DETAILS_TITLE ":"تفاصيل البروفايل",
+  "CHANGE_PASSWORD_TITLE ":"تعيير كلمة السر",
+  "CURRENT_PASSWORD ":"كلمة السر الحالية",
+  "NEW_PASSWORD ":"كلمة السر الجديدة",
+  "CONFIRM_PASSWORD ":"تاكيد كلمة السر الجديدة",
+  "CHANGE_PASSWORD ":"غير كلمة السر",
+  "YOUR_NAME":"الاسم",
+  "EMAIL":"البريد الإلكتروني",
+  "Phone":"رقم التليفون",
+  "DOB":"تاريخ الميلاد",
+  "GENDER":"النوع ",
+  "CITY":"المدينة",
+  "ADDRESS":"العنوان",
+  "UPLOAD_PHOTO": "ارفق صورة",
+  "MALE": "ذكر",
+  "FEMALE": "انثى",
+  "SELECT":"اختر",
+
+  "UPDATE": "تعديل",
+  "DELETE": "حذف",
+  "EDIT": "تعديل",
+  "SAVE": "حفظ",
+  "CANCEL": "إلغاء"
+
+}
