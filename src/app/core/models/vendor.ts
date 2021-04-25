@@ -1,3 +1,5 @@
+import { comment } from "./comment";
+
 export class vendor {
     _id?: string;
     username?: string = "";
@@ -28,12 +30,16 @@ export class vendor {
     gallery: any[] = [];
     isFeatured?: Boolean = false;
     isPublished?: boolean = false;
+    isApproved?: boolean = false;
     featuredImage?: string = "";
     featuredVideo?: string = "";
     numberOfBookmarks?: number = 0;
     numberOfLoves?: number = 0;
     ranks: { user?: string, criteria?: string, value?: number }[] = [];
-    comments: { userEmail?: string, body?: string, likes?: number, date?: Date }[] = [];
+    comments: comment[] = [];
     services: [];
     social: string[]=[] ;
+    categoryEnglish?: string;
+    categoryArabic?: string;
+    avatar?: string;
 };
