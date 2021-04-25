@@ -19,6 +19,8 @@ export class WeddingWebsitesGridComponent implements OnInit {
 
   weddingWebsiteList: weddingWebsite[] = [];
 
+  labels:any={}
+  lang:string
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -36,11 +38,19 @@ export class WeddingWebsitesGridComponent implements OnInit {
   }
 
   async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["WEDDING_WEBSITE"]
+      )) as any;
+      this.labels = resData.res;
   };
 
   getAllThemes() {
