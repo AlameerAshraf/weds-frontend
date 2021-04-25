@@ -35,7 +35,7 @@ export class vendor {
     featuredVideo?: string = "";
     numberOfBookmarks?: number = 0;
     numberOfLoves?: number = 0;
-    ranks: { user?: string, criteria?: string, value?: number }[] = [];
+    ranks: { user?: string, criteria?: string, value?: number, userEmail?: string }[] = [];
     comments: comment[] = [];
     services: [];
     social: string[]=[] ;

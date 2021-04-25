@@ -11,21 +11,25 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./vendor.component.scss']
 })
 export class VendorComponent implements OnInit {
-
   isAuthed: boolean;
+
+  vendor = new vendor();
   vendorId: any;
   currentUserEmail: string;
 
   telRef: any;
   mailTo: any;
-  userComment = new comment();
-  allComments: comment[] = [];
-  vendor = new vendor();
+
   facebookURL: string;
   pinterestURL: string;
   instagramURL: string;
   twitterURL: string;
   htmlView: any;
+
+  userComment = new comment();
+  allComments: comment[] = [];
+
+  userRank: { user?: string, criteria?: string, value?: number, userEmail?: string } = {};
 
 
   constructor(@Inject(DOCUMENT) private document: any, private ActivatedRoute: ActivatedRoute,
@@ -62,8 +66,7 @@ export class VendorComponent implements OnInit {
 
         this.htmlView = this._sanitizer.bypassSecurityTrustHtml(this.vendor.descriptionURLAr);
         this.vendor.avatar = this.vendor.avatar == undefined ? 'assets/images/defaults/avatar/vendor.png' : this.vendor.avatar;
-
-        console.log(this.vendor)
+        this.bindCurrebtUserRate(this.vendor.ranks);
       }else{
         this.spineer.hide();
         this.toaster.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
@@ -74,10 +77,48 @@ export class VendorComponent implements OnInit {
 
 
   //#region User Helpers..
-  rate(rateValue , rateCriteria){
-    console.log(rateValue , rateCriteria)
+  bindCurrebtUserRate(vendorRates: { user?: string, criteria?: string, value?: number, userEmail?: string }[]){
+    let map = {
+      5: 1,
+      4: 2,
+      3: 3,
+      2: 4,
+      1: 5
+    };
+
+    let myRates = vendorRates.filter((rate) => {
+      return rate.userEmail == this.currentUserEmail;
+    });
+debugger
+    myRates.forEach((rate) => {
+      let starLocation = map[rate.value]
+      let starElement = `${rate.criteria}-${starLocation}`;
+      let htmlElement = document.querySelector(`[rate-map="${starElement}"]`) as any;
+
+      console.log(htmlElement)
+      htmlElement.checked = true;
+    })
   };
 
+  rate(rateValue , rateCriteria){
+    this.userRank = {
+      criteria: rateCriteria,
+      value: rateValue,
+      userEmail: this.currentUserEmail
+    };
+
+    let rateURL = `${urls.RATE_VENDOR}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}?vendorId=${this.vendorId}`;
+    this.httpService.Post(rateURL , {} , { "rank" : this.userRank }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.spineer.hide();
+        this.getAllComments();
+        this.toaster.success("Gooood!" , `Thanks your rate has been saved, it will help people know ${this.vendor.nameEn} well! ⭐`);
+      }else{
+        this.spineer.hide();
+        this.toaster.error("Our bad sorry!" , "My bad, Server couldn't save your rate, try again later.");
+      }
+    })
+  };
 
   comment(){
     this.userComment.userEmail = this.currentUserEmail;

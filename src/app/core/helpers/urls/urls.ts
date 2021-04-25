@@ -101,6 +101,7 @@ export class urls {
   public static get GET_VENDOR_BY_ID(): string { return this.BASE_URL + '/vendors/get-vendor-by-id'};
   public static get CREATE_NEW_COMMENT(): string { return this.BASE_URL + '/vendors/create-new-comment'};
   public static get GET_ALL_COMMENTS(): string { return this.BASE_URL + '/vendors/get-all-comments'};
+  public static get RATE_VENDOR(): string { return this.BASE_URL + '/vendors/rate-vendor'};
 
 
   // Authed ..
