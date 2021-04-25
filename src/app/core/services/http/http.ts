@@ -12,7 +12,7 @@ export class httpService  {
   }
 
   Fetch(url: string, params: any = null ,  headers: headersModel[] = null) {
-    return this.http.get(url , { responseType: 'text' });
+    return this.http.get(url, { responseType: 'text', headers: { 'cache-control': 'no-cache' } });
   }
 
   Get(url: string, params: any = null ,  headers: headersModel[] = null) {
