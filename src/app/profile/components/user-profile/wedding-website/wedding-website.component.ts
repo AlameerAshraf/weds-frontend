@@ -18,7 +18,6 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   isRouteAlreadyExists = false;
   saveDisabled = true;
   coverPhotoSource: any = '';
-
   latitude: number;
   longitude: number;
   zoom: number;

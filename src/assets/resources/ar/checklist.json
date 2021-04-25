@@ -1,6 +1,6 @@
 {
-  "CHECKLIST":"تكاليف الفرح",
-  "CHECKLISTS_TITLE":" ضيف الي تكاليف الفرح ",
+  "CHECKLIST":"جدول المهام",
+  "CHECKLISTS_TITLE":" ضيف الي جدول المهام ",
   "NAME_ENGLISH": "الاسم باللغة الانجليزية",
   "NAME_ARABIC": "الاسم باللغة العربية",
   "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
@@ -8,6 +8,9 @@
   "ADD_CHECKLIST":" اضافة تكاليف الفرح جديدة ",
   "CHECKLIST_INFO":" معلومات عن تكاليف الفرح ",
   "PERCENTAGE ":"النسبة",
+  "ADD_ITEM":"ضيف بند جديد",
+  "NOTE":"ملاحظة",
+  "MY_CHECKLIST":"مهامي",
   "UPDATE": "تعديل",
   "DELETE": "حذف",
   "EDIT": "تعديل",

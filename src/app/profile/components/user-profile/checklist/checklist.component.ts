@@ -1,8 +1,9 @@
 import { NgxSpinnerService } from 'ngx-spinner';
-import { slideInOutAnimation , checklist , urls , httpService , constants , responseModel} from './../../../../core';
+import { slideInOutAnimation , checklist , urls , httpService , constants , responseModel,resources} from './../../../../core';
 import { Component, OnInit, AfterViewInit, Inject, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-checklist',
@@ -24,15 +25,32 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
   listOfUsersChecklists: checklist[] = [];
   currentUserEmail: string;
 
-  constructor(@Inject(DOCUMENT) private document: any,
+  labels: any = {};
+  lang: string;
+  constructor(@Inject(DOCUMENT) private document: any,private resources: resources,
     private elementRef: ElementRef, private http: httpService ,
     private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.loadResources();
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.getChecklistsPerUser();
   }
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
 
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS.CHECKLIST
+      )) as any;
+    this.labels = resData.res;
+  }
   getChecklistsPerUser(){
     this.ngxSpinner.show();
     let getAllChecklists = `${urls.GET_ALL_CHECKLISTS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;

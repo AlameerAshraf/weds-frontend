@@ -1,5 +1,5 @@
 {
-  "menu": [
+  "menu" : [
     {
       "name": "أجندة الفرح",
       "url": "",
@@ -35,53 +35,53 @@
       ]
     },
     {
-      "name": "لها",
+      "name": "Her",
       "url": "",
       "child": [
         {
-          "name": "المصممين",
+          "name": "Designers",
           "url": ""
         },
         {
-          "name": "بوكية الزفاف",
+          "name": "Bridal Boutique",
           "url": ""
         },
         {
-          "name": "فساتين زفاف",
+          "name": "Wedding Dresses",
           "url": ""
         },
         {
-          "name": "خواتم",
+          "name": "Rings",
           "url": ""
         },
         {
-          "name": "ميكاب ارتيست",
+          "name": "Makeup Artists",
           "url": ""
         },
         {
-          "name": "المزيد",
+          "name": "More",
           "url": "segment/ar/her"
         }
       ]
     },
     {
-      "name": "له",
+      "name": "لك",
       "url": "",
       "child": [
         {
-          "name": "البدل",
+          "name": "بدلة الفرح",
           "url": ""
         },
         {
-          "name": "صحة",
+          "name": "لصحتك",
           "url": ""
         },
         {
-          "name": "صالون الحلاقة",
+          "name": "صالون رجالي",
           "url": ""
         },
         {
-          "name": "اللياقة البدنية",
+          "name": "لياقتك",
           "url": ""
         },
         {
@@ -91,27 +91,27 @@
       ]
     },
     {
-      "name": "الزفاف",
+      "name": "الفرح",
       "url": "",
       "child": [
         {
-          "name": "الأماكن",
+          "name": "أماكن",
           "url": ""
         },
         {
-          "name": "قاعات أفراح خارجية",
+          "name": "أماكن افراح خارجية",
           "url": ""
         },
         {
-          "name": "مصوري الفيديو",
+          "name": "مصورين فيديو",
           "url": ""
         },
         {
-          "name": "المصورين",
+          "name": "مصورين",
           "url": ""
         },
         {
-          "name": "دي جي",
+          "name": "الدي جي",
           "url": ""
         },
         {
@@ -121,11 +121,11 @@
       ]
     },
     {
-      "name": "المعرض",
+      "name": "جاليري",
       "url": "",
       "child": [
         {
-          "name": "أفكار الزفاف",
+          "name": "افكار جديدة",
           "url": ""
         },
         {
@@ -135,15 +135,15 @@
       ]
     },
     {
-      "name": "أفكار والمزيد",
+      "name": "  افكار واكتر  ",
       "url": "",
       "child": [
         {
-          "name": "نصائح وآداب",
+          "name": "  آداب & اتيكيت  ",
           "url": ""
         },
         {
-          "name": "زفاف الأسبوع",
+          "name": "فرح الأسبوع",
           "url": ""
         },
         {
@@ -153,61 +153,131 @@
       ]
     }
   ],
-  "actions": [
+  "actions" : [
     {
-      "title": "تسجيل خروج",
-      "url": "",
-      "icon": "sl sl-icon-power"
+      "title" : "أجندة الفرح",
+      "url" : "/profile/ar/user/checklist",
+      "icon" : "sl sl-icon-magic-wand"
+    },
+    {
+      "title" : "حسابي",
+      "url" : "/profile/ar/user/overview",
+      "icon" : "sl sl-icon-settings"
+    },
+    {
+      "title" : "المفضلة لدي",
+      "url" : "/profile/ar/user/my-taste",
+      "icon" : "sl sl-icon-heart"
+    },
+    {
+      "title" : "الرسائل",
+      "url" : "/profile/ar/user/messages",
+      "icon" : "sl sl-icon-envelope-open"
+    },
+    {
+      "title" : "English",
+      "url" : "",
+      "icon" : "",
+      "hasImage" : "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title" : "تسجيل الخروج",
+      "url" : "/profile/ar/user/checklist",
+      "icon" : "sl sl-icon-power"
     }
   ],
-  "navigations": [
+  "navigations" : [
     {
-      "menuTitle": "لوحة التحكم",
-      "childMenuItem": [
+      "menuTitle" : "لوحة التحكم",
+      "childMenuItem" : [
         {
-          "title": "نظرة عامة",
-          "icon": "sl sl-icon-rocket",
-          "child": []
+          "title" : "نظرة عامة",
+          "icon" : "sl sl-icon-rocket",
+          "url" : "overview",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "الرسائل",
+          "icon" : "sl sl-icon-envelope-open",
+          "url" : "messages",
+          "child" : [
+          ]
         }
       ]
     },
     {
-      "menuTitle": "أجندة الفرح",
-      "childMenuItem": [
+      "menuTitle" : "أجندة الفرح",
+      "childMenuItem" : [
         {
-          "title": "جدول المهام",
-          "icon": "sl sl-icon-rocket",
-          "child": []
+          "title" : "جدول المهام",
+          "icon" : "im im-icon-Check",
+          "url" : "checklist",
+          "child" : [
+
+          ]
         },
         {
-          "title": "تكاليف الفرح",
-          "icon": "",
-          "child": []
+          "title" : "تكاليف الفرح",
+          "icon" : "im im-icon-Calculator-2",
+          "url" : "budgeter",
+          "child" : [
+
+          ]
         },
         {
-          "title": "المعازيم و المناسبات",
-          "icon": "",
-          "child": []
+          "title" : "المعازيم والمناسبات",
+          "icon" : "im im-icon-CD-2",
+          "url" : "events",
+          "child" : [
+
+          ]
         },
         {
-          "title": "هدايا الفرح",
-          "icon": "",
-          "child": []
+          "title" : "هدايا الفرح",
+          "icon" : "im im-icon-Gift-Box",
+          "url" : "registery",
+          "child" : [
+
+          ]
         },
         {
-          "title": "موقع الزفاف",
-          "icon": "",
-          "child": []
+          "title" : "موقع الفرح",
+          "icon" : "im im-icon-Touch-Window",
+          "url" : "wedding-website",
+          "child" : [
+
+          ]
         }
       ]
     },
     {
-      "menuTitle": "رسائلي",
-      "childMenuItem": [
+      "menuTitle" : "معلومات عن الحساب",
+      "childMenuItem" : [
         {
-          "title": "رسائل",
-          "icon": "",
-          "child": []
+          "title" : "تفاصيل الفرح",
+          "icon" : "im im-icon-Suit",
+          "url" : "wedding-info",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "تفاصيل شخصية",
+          "icon" : "im im-icon-Male",
+          "url" : "my-info",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "المفضلة لدي",
+          "icon" : "im im-icon-Bookmark",
+          "url" : "my-taste",
+          "child" : [
+
+          ]
         }
       ]
     }

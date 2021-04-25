@@ -8,7 +8,9 @@
   "NAME_ARABIC": "Title Arabic  ",
   "DESCRIPTION_ENGLISH": " Description English  ",
   "DESCRIPTION_ARABIC": " Description Arabic  ",
-
+  "ADD_ITEM":"Create New Checklist Item ",
+  "NOTE":"Note",
+  "MY_CHECKLIST":"My CheckList",
   "SAVE": "Save",
   "CANCEL": "Cancel",
   "DELETE": "Delete",

@@ -10,6 +10,33 @@
   "DESCRIPTION_ARABIC": " Description Arabic  ",
   "PERCENT":"Percentage",
 
+  "WEDDING_PLANNING":"Wedding Planning",
+  "HOW_TO_ENJOY":"How would you want to enjoy your wedding?",
+  "SELECT_BUDGET_LVL":"Select budget level",
+  "EXPENSIVELY":"Expensively",
+  "AFFORDABLY":"Affordably",
+  "CHEAPLY":"Cheaply",
+  "OWN_PLAN":"Let me plane freely",
+  "BUDGET":"Budget",
+  "BUDGET_PLACEHOLDER_SUGGEST":"This is our suggestion, you can plan your wedding based on your budget.",
+  "BUDGET_PLACEHOLDER":"Enter the planned budget to prepare your wedding.",
+
+  "ADD_ITEM":"Create Budget Item ",
+  "VENDOR":"Vendor",
+  "SELECT":"Select",
+  "CATEGORY":"Category",
+  "WEDDING_BUDGET":"Wedding Budget ",
+
+  "NOTES_REMEMBER":"Notes - things to remember",
+  "NOTE":"Note",
+  "AMNT_SPEND":"Amount to spend",
+  "AMNT_SPEND_PLACEHOLDER":"Enter the planned budget to prepare your wedding.",
+
+  "PLAN_ITEM":"Plan Item",
+  "AMOUNT":"Amount",
+  "RECOMMENDATION":"Recommendation",
+
+
   "SAVE": "Save",
   "CANCEL": "Cancel",
   "DELETE": "Delete",
