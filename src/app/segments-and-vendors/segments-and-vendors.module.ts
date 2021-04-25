@@ -9,6 +9,7 @@ import * as COMPONENTS from './components';
 
 import { NGX_SPINNER , THEME_MODULE} from './segments-and-vendors.imports';
 import { AgmCoreModule } from '@agm/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     SegmentsAndVendorsRoutingModule,
     THEME_MODULE,
     NgxSpinnerModule,
