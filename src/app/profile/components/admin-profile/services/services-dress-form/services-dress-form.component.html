@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12">
     <div id="add-listing">
       <div class="add-listing-section">
         <div class="add-listing-headline" style="padding: 25px;">
-          <h3><i class="im im-icon-Dress"></i> New dress</h3>
+          <h3><i class="im im-icon-Dress"></i> {{labels.NEW_DRESS}}</h3>
         </div>
 
         <div class="row with-forms">
@@ -12,39 +12,39 @@
               <div class="dashboard-list-box-static" style="padding: 0px;">
                 <div class="my-profile">
 
-                  <label class="margin-top-0">Name English</label>
+                  <label class="margin-top-0">{{labels.NAME_ENGLISH}}</label>
                   <input value="Tom Perrin" type="text">
 
-                  <label>Description English</label>
+                  <label>{{labels.DESC_ENGLISH}}</label>
                   <textarea></textarea>
 
-                  <label>Service</label>
+                  <label>{{labels.SERVICE}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your service</option>
-                    <option>Dress</option>
-                    <option>Ring</option>
+                    <option [label]="labels.SERVICE">{{labels.SELECT_SERVICE}}</option>
+                    <option>{{labels.DRESS}}</option>
+                    <option>{{labels.RING}}</option>
                   </select>
 
-                  <label>Dress cut</label>
+                  <label>{{labels.DRESS_CUT}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your dress cut</option>
-                    <option>short</option>
-                    <option>tall</option>
+                    <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+                    <option>{{labels.SHORT}}</option>
+                    <option>{{labels.TALL}}</option>
                   </select>
 
-                  <label>Train length</label>
+                  <label>{{labels.TRAIN_LEN}}</label>
                   <input value="length" type="text">
 
-                  <label>Silhouette</label>
+                  <label>{{labels.SILHOUETTE}}</label>
                   <input value="length" type="text">
 
-                  <label>Color</label>
+                  <label>{{labels.COLOR}}</label>
                   <input value="color" type="text">
 
-                  <label>Price (EGP)</label>
+                  <label>{{labels.PRICE}}</label>
                   <input value="price" type="text">
 
-                  <label>Tags En list</label>
+                  <label>{{labels.TAG_ENGLISH}}</label>
                   <input value="Tags en" type="text">
 
                   <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
@@ -53,7 +53,7 @@
                       alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
-                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                        <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
                         <input type="file" class="upload" />
                       </div>
                     </div>
@@ -65,35 +65,35 @@
             <div class="col-lg-6 col-md-12">
               <div class="dashboard-list-box-static" style="padding: 0px;">
                 <div class="my-profile">
-                  <label class="margin-top-0">Name Arabic</label>
+                  <label class="margin-top-0">{{labels.NAME_ARABIC}}</label>
                   <input value="توم" type="text">
 
-                  <label>Description Arabic</label>
+                  <label>{{labels.DESC_ENGLISH}}</label>
                   <textarea></textarea>
 
-                  <label>Category</label>
+                  <label>{{labels.CATEGORY}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your category</option>
-                    <option>Him</option>
-                    <option>Her</option>
+                    <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+                    <option>{{labels.HIM}}</option>
+                    <option>{{labels.HER}}</option>
                   </select>
 
-                  <label>Dress Length</label>
+                  <label> {{labels.DRESS_LEN}} </label>
                   <input value="dress length" type="text">
 
-                  <label>Waist style</label>
+                  <label>{{labels.WAIST_STYLE}}</label>
                   <input value="waist style" type="text">
 
-                  <label>Style</label>
+                  <label>{{labels.STYLE}}</label>
                   <input value="style" type="text">
 
-                  <label>Size</label>
+                  <label>{{labels.SIZE}}</label>
                   <input value="size" type="text">
 
-                  <label>Neckline</label>
+                  <label>{{labels.NECKLINE}}</label>
                   <input value="neckline" type="text">
 
-                  <label>Tags Ar list</label>
+                  <label>{{labels.TAG_ARABIC}}</label>
                   <input value="Tags ar" type="text">
 
                 </div>
@@ -103,11 +103,11 @@
         </div>
       </div>
 
-      <div align="right">
+      <div [align]="lang==='ar'?'left':'right'">
         <a style="background-color: #F91942 !important;" class="button preview">
-          Cancel <i class="sl sl-icon-close"></i>
+          {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
         </a>
-        <a class="button preview">Save Changes <i class="sl sl-icon-check"></i></a>
+        <a class="button preview">{{labels.SAVE}} <i class="sl sl-icon-check"></i></a>
       </div>
     </div>
   </div>

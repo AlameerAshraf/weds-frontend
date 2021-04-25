@@ -24,6 +24,8 @@
   "ACTION": "نشر",
   "FORCE_PUBLISH": "نشر بالقوه",
 
+   "SELECT_CATEGORY":"اختار الفئة",
+
   "LOCATION": "المكان ",
   "ADDRESS": " العنوان",
   "ADDRESS_DETAIL": " اكتب العنوان بالتفصيل للتوضيح",
@@ -34,6 +36,10 @@
   "GALLERY": "معرض الصور",
   "UPLOAD_COVER_PHOTO": "ارفق صورة غلاف ",
   "UPLOAD_PHOTO": "ارفق صورة",
+  "SEGMENT":"القائمة الرئسيسة",
+  "SELECT_SEGMENT":" اختار  ",
+  "SELECT_PRICE":"  اختار السعر    ",
+  "SEARCH_VENUE": " البحث عن أقرب موقع   ",
 
   "UPDATE": "تعديل",
   "DELETE": "حذف",

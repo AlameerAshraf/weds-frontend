@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12">
     <div id="add-listing">
       <div class="add-listing-section">
         <div class="add-listing-headline" style="padding: 25px;">
-          <h3><i class="im im-icon-Heart-2"></i> New ring</h3>
+          <h3><i class="im im-icon-Heart-2"></i> {{labels.ADD_RING}}</h3>
         </div>
 
         <div class="row with-forms">
@@ -12,49 +12,47 @@
               <div class="dashboard-list-box-static margin-top-0" style="padding: 0px;">
                 <div class="my-profile">
 
-                  <label class="margin-top-0">Name English</label>
+                  <label class="margin-top-0">{{labels.NAME_ENGLISH}}</label>
                   <input value="Tom Perrin" type="text">
 
-                  <label>Description English</label>
+                  <label>{{labels.DESC_ENGLISH}}</label>
                   <textarea></textarea>
 
-                  <label>Service</label>
+                  <label>{{labels.SERVICE}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your service</option>
-                    <option>Dress</option>
-                    <option>Ring</option>
+                    <option [label]="labels.SELECT_SERVICE">{{labels.SELECT_SERVICE}}</option>
+                    <option>{{labels.DRESS}}</option>
+                    <option>{{labels.RING}}</option>
                   </select>
 
-                  <label>Purity</label>
+                  <label>{{labels.PURITY}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your purity</option>
-                    <option>short</option>
-                    <option>tall</option>
+                    <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+                    <option>{{labels.TALL}}</option>
+                    <option>{{labels.SHORT}}</option>
                   </select>
 
-                  <label>Stone Shape</label>
+                  <label>{{labels.STONE_SHAPE}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your stone shape</option>
-                    <option>short</option>
-                    <option>tall</option>
+                    <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+                    <option>{{labels.TALL}}</option>
+                    <option>{{labels.SHORT}}</option>
                   </select>
 
-                  <label>Metal</label>
-                  <input value="metal" type="text" [(ngModel)] = "ring.metal">
+                  <label>{{labels.METAL}}</label>
+                  <input value="metal" type="text" [(ngModel)]="ring.metal">
 
-                  <label>Price (EGP)</label>
+                  <label>{{labels.PRICE}}</label>
                   <input value="price" type="text">
 
-                  <label>Tags English list</label>
+                  <label>{{labels.TAG_ENGLISH}}</label>
                   <input value="Tags en" type="text">
 
                   <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                    <img class="anImage"
-                      [src]="'assets/images/defaults/wedding/cover-photo.png'"
-                      alt="">
+                    <img class="anImage" [src]="'assets/images/defaults/wedding/cover-photo.png'" alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
-                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                        <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
                         <input type="file" class="upload" />
                       </div>
                     </div>
@@ -66,40 +64,40 @@
             <div class="col-lg-6 col-md-12">
               <div class="dashboard-list-box-static margin-top-0" style="padding: 0px;">
                 <div class="my-profile">
-                  <label class="margin-top-0">Name Arabic</label>
+                  <label class="margin-top-0"> {{labels.NAME_ARABIC}}</label>
                   <input value="توم" type="text">
 
-                  <label>Description Arabic</label>
+                  <label>{{labels.DESC_ARABIC}}</label>
                   <textarea></textarea>
 
-                  <label>Category</label>
+                  <label>{{labels.CATEGORY}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your category</option>
-                    <option>Him</option>
-                    <option>Her</option>
+                    <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+                    <option>{{labels.HIM}}</option>
+                    <option>{{labels.HER}}</option>
                   </select>
 
-                  <label>Clarity</label>
+                  <label>{{labels.CLARITY}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your clarity</option>
-                    <option>Him</option>
-                    <option>Her</option>
+                    <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+                    <option>{{labels.HIM}}</option>
+                    <option>{{labels.HER}}</option>
                   </select>
 
-                  <label>Style</label>
+                  <label>{{labels.STYLE}}</label>
                   <input value="style" type="text">
 
-                  <label>Designer</label>
+                  <label>{{labels.DESIGNER}}</label>
                   <input value="designer" type="text">
 
-                  <label>Gender</label>
+                  <label>{{labels.GENDER}}</label>
                   <select class="chosen-select-no-single">
-                    <option label="blank">Select your gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
+                    <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+                    <option>{{labels.MALE}}</option>
+                    <option>{{labels.FEMALE}}</option>
                   </select>
 
-                  <label>Tags Arabic list</label>
+                  <label>{{labels.TAG_ARABIC}}</label>
                   <input value="Tags ar" type="text">
                 </div>
               </div>

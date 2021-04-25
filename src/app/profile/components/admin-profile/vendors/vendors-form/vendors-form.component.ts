@@ -282,7 +282,7 @@ export class VendorsFormComponent implements OnInit {
             "Vendor has been saved succesfully",
             "Vendor has been updated, Bingo!"
           );
-          this.router.navigateByUrl("/profile/en/admin/vendors-list");
+          this.router.navigateByUrl(`/profile/${this.lang}/admin/vendors-list`);
         } else {
           this.ngxSpinner.hide();
           this.toastr.error(

@@ -98,11 +98,11 @@ export class ServicesRingFormComponent implements OnInit {
     setTimeout(() => {
       this.spinner.hide();
       this.toastr.success("Hello world!", "Toastr fun!");
-      this.router.navigateByUrl("/profile/en/admin/services-action/new");
+      this.router.navigateByUrl(`/profile/${this.lang}/admin/services-action/new`);
     }, 3000);
   }
 
   backToRoute() {
-    this.router.navigateByUrl("/profile/en/admin/services-action/new");
+    this.router.navigateByUrl(`"/profile/${this.lang}/admin/services-action/new`);
   }
 }

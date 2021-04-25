@@ -38,29 +38,30 @@
               placeholder="labels.ADV_DESC_ENGLISH">
             </editor>
 
-            <label>Short Description English</label>
-            <input type="text" value="" placeholder="Short Description English" [(ngModel)]="vendor.shortDescriptionEn">
+            <label>{{labels.SHORT_DESC_ENGLISH}}</label>
+            <input type="text" value="" [placeholder]="labels.SHORT_DESC_ENGLISH"
+              [(ngModel)]="vendor.shortDescriptionEn">
 
-            <label>segment</label>
+            <label>{{labels.SEGMENT}}</label>
             <select id="segments" class="chosen-select-no-single">
-              <option label="Select Segment">Select Segment</option>
+              <option [label]="labels.SELECT_SEGMENT">{{labels.SELECT_SEGMENT}}</option>
               <ng-container *ngFor="let segment of segments">
                 <option [selected]="segment.segment == vendor.segment" [value]="segment.segment">
                   {{ segment.name }}</option>
               </ng-container>
             </select>
 
-            <label>Website Url</label>
-            <input value="" type="text" placeholder="Website Url" [(ngModel)]="vendor.websiteURL">
+            <label>{{labels.WEB_URL}}</label>
+            <input value="" type="text" [placeholder]="labels.WEB_URL" [(ngModel)]="vendor.websiteURL">
 
-            <label>Tags English List</label>
+            <label>{{labels.TAG_ENGLISH}}</label>
             <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
               <option *ngFor="let tag of tagsEn" [selected]="enTagsContainsTag(tag._id)" [value]="tag._id">
                 {{ tag.name }}
               </option>
             </select>
 
-            <label>Phone</label>
+            <label>{{labels.PHONE}}</label>
             <input value="" type="text" placeholder="Phone" [(ngModel)]="vendor.phone">
           </div>
         </div>
@@ -69,40 +70,40 @@
         <div class="col-lg-6 col-md-12">
 
           <div class="my-profile">
-            <label class="margin-top-0">Area</label>
+            <label class="margin-top-0">{{labels.LOCATION}}</label>
             <select id="areas" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
               <option *ngFor="let area of areas" [selected]="areasContainsArea(area._id)" [value]="area._id">
                 {{ area.nameEn }}
               </option>
             </select>
 
-            <label>Name Arabic</label>
-            <input value="" type="text" placeholder="Name Arabic" [(ngModel)]="vendor.nameAr">
+            <label>{{labels.NAME_ARABIC}}</label>
+            <input value="" type="text" [placeholder]="labels.NAME_ARABIC" [(ngModel)]="vendor.nameAr">
 
-            <label>Description Arabic</label>
-            <textarea value="" type="text" placeholder="Description Arabic"
+            <label>{{labels.DESC_ARABIC}}</label>
+            <textarea value="" type="text" [placeholder]="labels.DESC_ARABIC"
               [(ngModel)]="vendor.descriptionAr"></textarea>
 
-            <label>Advanced Description Arabic</label>
-            <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="vendor.descriptionURLAr"
-              placeholder="Advanced Description Arabic">
+            <label>{{labels.ADV_DESC_ARABIC}}</label>
+            <editor apiKey="kfc2cb7tdp6l4eu34ylp7c4wram241iqpdvwm5n781w5lhgx" [(ngModel)]="vendor.descriptionURLAr">
             </editor>
 
-            <label>Short Description Arabic</label>
-            <input type="text" value="" placeholder="Short Description Arabic" [(ngModel)]="vendor.shortDescriptionAr">
+            <label>{{labels.SHORT_DESC_ARABIC}}</label>
+            <input type="text" value="" [placeholder]="labels.SHORT_DESC_ARABIC"
+              [(ngModel)]="vendor.shortDescriptionAr">
 
-            <label>Category</label>
+            <label>{{labels.CATEGORY}}</label>
             <select id="categories" class="chosen-select-no-single">
-              <option label="Select Category">Select Category</option>
+              <option [label]="labels.CATEGORY">{{labels.CATEGORY}}</option>
               <ng-container *ngFor="let category of categories">
                 <option [selected]="category._id == vendor.category" [value]="category._id">{{
                   category.nameEn }}</option>
               </ng-container>
             </select>
 
-            <label>Price Range</label>
+            <label>{{labels.PRICE_RANGE}}</label>
             <select id="priceRanges" class="chosen-select-no-single">
-              <option label="Select Price">Select Price </option>
+              <option [label]="labels.SELECT_PRICE">{{labels.SELECT_PRICE}} </option>
               <ng-container *ngFor="let priceRange of priceRanges">
                 <option [selected]="priceRange.price_range == vendor.priceRange" [value]="priceRange.price_range">{{
                   priceRange.name }}</option>
@@ -110,7 +111,7 @@
             </select>
 
 
-            <label>Tags Arabic List </label>
+            <label>{{labels.TAG_ARABIC}} </label>
             <!-- <input type="text" placeholder="tags arabic"> -->
             <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
               <option *ngFor="let tag of tagsAr" [selected]="arTagsContainsTag(tag._id)" [value]="tag._id">
@@ -135,7 +136,7 @@
 
         <!-- Headline -->
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-location"></i> Location</h3>
+          <h3><i class="sl sl-icon-location"></i> {{labels.LOCATION}}</h3>
         </div>
 
         <div class="submit-section">
@@ -144,17 +145,17 @@
           <div class="row with-forms">
             <div class="row">
               <div class="col-md-5">
-                <label>Guest Count </label>
-                <input type="text" placeholder="Address" placeholder="Guest Count"
+                <label>{{labels.ADDRESS}} </label>
+                <input type="text" placeholder="Address" [placeholder]="labels.ADDRESS"
                   [(ngModel)]="vendor.location.guestCount">
-                <textarea cols="40" rows="2" placeholder="Your Detailed Address, write it or let us!"
+                <textarea cols="40" rows="2" [placeholder]="labels.ADDRESS_DETAIL"
                   [(ngModel)]="vendor.location.typedAddress"></textarea>
               </div>
 
               <div class="col-md-7">
-                <label>Search </label>
+                <label>{{labels.SEARCH}} </label>
                 <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
-                  placeholder="Search Venue Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off"
+                  [placeholder]="labels.SEARCH_VENUE" autocorrect="off" autocapitalize="off" spellcheck="off"
                   type="text" #search>
 
                 <div>
@@ -178,7 +179,7 @@
 
         <!-- Headline -->
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-picture"></i> Gallery</h3>
+          <h3><i class="sl sl-icon-picture"></i> {{labels.GALLERY}}</h3>
         </div>
 
         <!-- Dropzone -->
@@ -190,7 +191,7 @@
                 <img class="anImage" [src]="vendor.featuredImage" alt="">
                 <div class="change-photo-btn">
                   <div class="photoUpload">
-                    <span><i class="fa fa-upload"></i> Cover Photo</span>
+                    <span><i class="fa fa-upload"></i> {{labels.UPLOAD_COVER_PHOTO}}</span>
                     <input type="file" class="upload" (change)="uploadImage($event)" />
                   </div>
                 </div>
@@ -202,7 +203,7 @@
           <div class="row col-lg-9 col-md-9" style="padding: 10px; padding-right:0% !important;">
             <div class="col-md-12">
               <ngx-dropzone #nationalDropZone (change)="onSelect($event)">
-                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                <ngx-dropzone-label>{{labels.UPLOAD_PHOTO}}</ngx-dropzone-label>
                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
                   [removable]="true" (removed)="onRemove(f)">
                   <ngx-dropzone-label></ngx-dropzone-label>
@@ -220,7 +221,7 @@
 
         <!-- Headline -->
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-docs"></i> Social Details</h3>
+          <h3><i class="sl sl-icon-docs"></i> {{labels.SOCIAL_DETAILS}}</h3>
         </div>
 
         <!-- Row -->
