@@ -57,6 +57,14 @@ export class WeddingWebsitesGridComponent implements OnInit {
     });
   };
 
+  pageChange(pageNumber){
+
+  };
+
+  editEntity(){
+
+  }
+
   ngAfterViewInit(): void {
     this.loadScripts();
   };
