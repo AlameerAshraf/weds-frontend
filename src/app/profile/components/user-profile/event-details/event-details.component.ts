@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, urls, responseModel, event } from 'src/app/core';
+import { constants, httpService, urls, responseModel, event,resources } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-event-details',
@@ -23,9 +24,10 @@ export class EventDetailsComponent implements OnInit {
   };
   originalGuests: { status_txt?: string; status: string; name: string; email: string; phone: string; invitationMessage: string; }[];
 
-
+  labels: any = {};
+  lang: string;
   constructor(private router: Router, private http: httpService, private activatedRoute: ActivatedRoute,
-    private ngxSpinner: NgxSpinnerService, private toastr: ToastrService) {
+    private ngxSpinner: NgxSpinnerService, private toastr: ToastrService,private resources: resources,) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.activatedRoute.params.subscribe((params) => {
       this.eventId = params["eventId"];
@@ -33,6 +35,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadResources();
     this.getGuestsPerEvent();
   }
 
@@ -106,5 +109,21 @@ export class EventDetailsComponent implements OnInit {
       this.ngxSpinner.hide();
       return guest.status == filter
     });
+  }
+
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['EVENTS']
+      )) as any;
+    this.labels = resData.res;
   }
 }

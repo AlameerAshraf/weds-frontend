@@ -29,21 +29,7 @@ export class EventsComponent implements OnInit{
     this.getAllEventsPerUser();
   }
 
-  async loadResources() {
-    const lang =
-        window.location.href.toString().toLowerCase().indexOf('ar') > -1
-          ? 'ar'
-          : 'en';
 
-    const resourceLang =
-        lang == null || lang == undefined ? environment.defaultLang : lang;
-    this.lang = resourceLang;
-    const resData = (await this.resources.load(
-        resourceLang,
-        constants.VIEWS['EVENTS']
-      )) as any;
-    this.labels = resData.res;
-  }
   getAllEventsPerUser(){
     this.ngxSpinner.show();
     let getAllEventsURL = `${urls.GET_EVENTS_PER_USER}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
@@ -117,4 +103,19 @@ export class EventsComponent implements OnInit{
   createNewEvent(){
     this.router.navigateByUrl(`/profile/${this.lang}/user/create-event`);
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['EVENTS']
+      )) as any;
+    this.labels = resData.res;
+   }
 }

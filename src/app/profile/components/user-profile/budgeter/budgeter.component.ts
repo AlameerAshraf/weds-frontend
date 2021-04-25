@@ -53,21 +53,7 @@ export class BudgeterComponent implements OnInit {
     this.documentSelectors();
     this.getAllBudgetItems();
   };
-  async loadResources() {
-    const lang =
-        window.location.href.toString().toLowerCase().indexOf('ar') > -1
-          ? 'ar'
-          : 'en';
 
-    const resourceLang =
-        lang == null || lang == undefined ? environment.defaultLang : lang;
-    this.lang = resourceLang;
-    const resData = (await this.resources.load(
-        resourceLang,
-        constants.VIEWS['BUDGETERS']
-      )) as any;
-    this.labels = resData.res;
-  }
   saveBudget(){
     let updateWeddingURL = `${urls.UPDATE_WEDDING_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
     this.http.Post(updateWeddingURL , {} , { "wedding" : { "budget" : this.suggestedBudget } }).subscribe((response: responseModel) => {
@@ -223,4 +209,19 @@ export class BudgeterComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['BUDGETERS']
+      )) as any;
+    this.labels = resData.res;
+  }
 }

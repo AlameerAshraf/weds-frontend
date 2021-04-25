@@ -36,21 +36,7 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.getChecklistsPerUser();
   }
-  async loadResources() {
-    const lang =
-        window.location.href.toString().toLowerCase().indexOf('ar') > -1
-          ? 'ar'
-          : 'en';
 
-    const resourceLang =
-        lang == null || lang == undefined ? environment.defaultLang : lang;
-    this.lang = resourceLang;
-    const resData = (await this.resources.load(
-        resourceLang,
-        constants.VIEWS.CHECKLIST
-      )) as any;
-    this.labels = resData.res;
-  }
   getChecklistsPerUser(){
     this.ngxSpinner.show();
     let getAllChecklists = `${urls.GET_ALL_CHECKLISTS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
@@ -135,4 +121,19 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS.CHECKLIST
+      )) as any;
+    this.labels = resData.res;
+  }
 }

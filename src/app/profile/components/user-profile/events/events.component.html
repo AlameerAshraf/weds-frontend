@@ -1,4 +1,4 @@
-<div id="titlebar" class="gradient">
+<div id="titlebar" class="gradient" [align]="lang==='ar'?'left':'right'">
   <div class="row">
     <div class="col-md-12">
       <h2>{{labels.EVENTS_TITLE}}</h2>
@@ -9,7 +9,7 @@
 
 
 
-<div class="row">
+<div class="row" [align]="lang==='ar'?'left':'right'">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
       <h4>{{labels.MY_EVENTS}} <div (click)="createNewEvent()" style="background-color: #046B69 !important;
@@ -40,26 +40,27 @@
 
 
                   <div class="inner-booking-list">
-                    <h5 style="font-size: 20px;">Guests: </h5> &nbsp;
+                    <h5 style="font-size: 20px;">{{labels.GUESTS}}: </h5> &nbsp;
                     <ul class="booking-list">
+
                       <li
                         style="font-size: 17px; background-color: rgb(140, 212, 112) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.GOING }} Going</li>
+                        class="highlighted">{{ event.counts.GOING }}{{labels.GOING}} </li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: lightcoral !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.DECLINED }} Declined</li>
+                        class="highlighted">{{ event.counts.DECLINED }} {{labels.DECLINED}}</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(66, 148, 202) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.INVITED }} Invited</li>
+                        class="highlighted">{{ event.counts.INVITED }} {{labels.INVITED}}</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.NO_RESPONSE }} No Response</li>
+                        class="highlighted">{{ event.counts.NO_RESPONSE }}{{labels.NO_RESPONSE}}</li>
                     </ul>
                   </div>
 

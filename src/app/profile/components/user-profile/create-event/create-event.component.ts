@@ -40,21 +40,7 @@ export class CreateEventComponent implements OnInit {
   backToRoute(){
     this.router.navigateByUrl(`profile/${this.lang}/user/events`);
   };
-  async loadResources() {
-    const lang =
-        window.location.href.toString().toLowerCase().indexOf('ar') > -1
-          ? 'ar'
-          : 'en';
 
-    const resourceLang =
-        lang == null || lang == undefined ? environment.defaultLang : lang;
-    this.lang = resourceLang;
-    const resData = (await this.resources.load(
-        resourceLang,
-        constants.VIEWS['EVENTS']
-      )) as any;
-    this.labels = resData.res;
-  }
   createNewEvent(){
     this.ngxSpinner.show();
     let dateValue: any = document.getElementById("date-picker");
@@ -86,4 +72,19 @@ export class CreateEventComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['EVENTS']
+      )) as any;
+    this.labels = resData.res;
+  }
 }
