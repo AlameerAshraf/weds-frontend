@@ -1,0 +1,17 @@
+
+{
+  "EVENTS":"EVENTS  ",
+  "EVENT_INFO":" Events  information ",
+  "ADD_EVENT":" Create New Event",
+  "NAME_ENGLISH": "Title English ",
+  "NAME_ARABIC": "Title Arabic  ",
+  "DESCRIPTION_ENGLISH": " Description English  ",
+  "DESCRIPTION_ARABIC": " Description Arabic  ",
+  "EVENTS_TITLE":" Create the defaults Events  items.  ",
+
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
+}

@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { event, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { event, constants, urls, httpService, responseModel, localStorageService,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -26,17 +27,36 @@ export class EventsFormComponent implements OnInit {
     ownerEmail:""
   };
 
-  constructor( private router: Router, @Inject(DOCUMENT) private document: any, 
+
+  labels:any={}
+  lang:string
+
+  constructor( private router: Router, @Inject(DOCUMENT) private document: any, private resources: resources,
     private elementRef: ElementRef, private http: httpService,
     private toastr: ToastrService, private activatedRoute: ActivatedRoute,
     private storage: localStorageService,
-    private ngxSpinner: NgxSpinnerService) { 
+    private ngxSpinner: NgxSpinnerService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
-
-    this.activatedRoute.params.subscribe((params) => {
+      this.loadResources();
+      this.activatedRoute.params.subscribe((params) => {
       this.editingMode = params["actionType"];
     });
     }
+    async loadResources() {
+      let lang =
+          window.location.href.toString().toLowerCase().indexOf("ar") > -1
+            ? "ar"
+            : "en";
+
+        let resourceLang =
+          lang == null || lang == undefined ? environment.defaultLang : lang;
+        this.lang = resourceLang;
+        let resData = (await this.resources.load(
+          resourceLang,
+          constants.VIEWS["EVENTS"]
+        )) as any;
+        this.labels = resData.res;
+    };
 
   ngOnInit() {
     this.loadScripts();
@@ -58,7 +78,7 @@ export class EventsFormComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Event has been saved succesfully" , "Event has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/events-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/events-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your event couldn't created on the server!");
@@ -75,7 +95,7 @@ export class EventsFormComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Event has been saved succesfully" , "A event has been created and wedding website will be impacted.");
-        this.router.navigateByUrl('/profile/en/admin/events-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/events-defaults`);
       } else {
         console.log(response)
         this.ngxSpinner.hide();
@@ -86,7 +106,7 @@ export class EventsFormComponent implements OnInit {
 
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/admin/events-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/events-defaults`);
   };
 
   ngAfterViewInit(): void {

@@ -24,6 +24,7 @@ export class constants {
       USERS: "users",
       CHECKLIST : "checklist",
       BUDGETERS : "budgeters",
+      EVENTS : "events",
       WEDDING_WEBSITE : "wedding-website",
       USER_DASHBOARD: "user-profile-nav",
       ADMIN_DASHBOARD: "admin-profile-nav",
