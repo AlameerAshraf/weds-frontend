@@ -16,3 +16,4 @@ export * from './vendorService';
 export * from './ring';
 export * from './dress';
 export * from './featureCount';
+export * from './comment';

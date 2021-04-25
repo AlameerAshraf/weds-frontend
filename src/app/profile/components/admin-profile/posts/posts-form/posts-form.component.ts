@@ -44,6 +44,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private lookupsService: LookupsService,
     private http: httpService) {
+      window.scrollTo(0 , 0);
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
       this.activatedRoute.params.subscribe((params) => {
@@ -56,10 +57,10 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     this.spinner.show();
     let tempVar = await this.getLookups(); // this var is doing nothing just for waiting the results!
     this.spinner.hide();
+    this.loadPost();
 
     this.loadScripts();
     this.documentSelectors();
-    this.loadPost();
   }
 
   createPost(){
@@ -75,7 +76,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.spinner.hide();
         this.toastr.success("Gooood!" , "Amazing words catch hearts before eyes, post has been added successfully 💕");
-        // this.router.navigateByUrl('/profile/en/admin/posts');
+        this.router.navigateByUrl('/profile/en/admin/posts');
       }else{
         this.spinner.hide();
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
@@ -89,14 +90,15 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     // Set user email as author!
     this.post.author = this.currentUserEmail;
     this.post.isPublished = this.post.scheduledAt == undefined ? true : false;
-    this.post.isScheduledPost = this.post.scheduledAt == undefined ? false : true;
+    console.log(this.post.scheduledAt)
+    this.post.isScheduledPost = (this.post.scheduledAt == undefined || this.post.scheduledAt == "") ? false : true;
 
     let updatePostURL = `${urls.UPDATE_POST}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.post._id}`;
     this.http.Post(updatePostURL , {} , { "post" : this.post }).subscribe((response: responseModel) => {
       if(!response.error){
         this.spinner.hide();
         this.toastr.success("Gooood!" , "Amazing Post has been updated successfully 💕");
-        // this.router.navigateByUrl('/profile/en/admin/posts');
+        this.router.navigateByUrl('/profile/en/admin/posts');
       }else{
         this.spinner.hide();
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
@@ -108,9 +110,9 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     if(this.editingMode == "update"){
       this.post = this.storage.getLocalStorage("weds360#postOnEdit");
       this.spinner.show();
-      this.post.scheduledAt = this.post.scheduledAt.toString().split('T')[0];
-      this.post.bodyContentEn = await this.fetchEdiedPosts(this.post.bodyEnURL);
-      this.post.bodyContentAr = await this.fetchEdiedPosts(this.post.bodyArURL);
+      this.fetchEdiedPosts(this.post.bodyEnURL , "en");
+      this.fetchEdiedPosts(this.post.bodyArURL, "ar");
+      // this.post.scheduledAt = this.post.scheduledAt.toString().split('T')[0];
       this.spinner.hide();
     }
   };
@@ -162,8 +164,14 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     });
   };
 
-  fetchEdiedPosts(postFileUrl: any){
-    return this.http.Fetch(postFileUrl).toPromise()
+  fetchEdiedPosts(postFileUrl: any , lang){
+    return this.http.Fetch(postFileUrl).subscribe((response) => {
+      console.log(response)
+      if(lang == "ar")
+        this.post.bodyContentAr = response;
+      else if(lang == "en")
+        this.post.bodyContentEn = response;
+    })
   };
 
 
