@@ -4,29 +4,36 @@ import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/c
 import { Router } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { constants, resources, vendorService, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { constants, resources, vendorService, LookupsService, localStorageService, tag, category, responseModel , urls, httpService, vendor } from 'src/app/core';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-vendor-services',
   templateUrl: './vendor-services.component.html',
   styleUrls: ['./vendor-services.component.scss']
 })
+
 export class VendorServicesComponent implements OnInit {
 
-  startTypingAnimation: boolean = true;
-
-  vendorServicesList: vendorService[] = [];
+  servicesList: vendorService[] = [];
+  vendor: vendor;
+  currentUserEmail;
+  tagsAr: tag[] = [];
+  tagsEn: tag[] = [];
+  categories: category[] = [];
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private router: Router,
-    private storage: localStorageService,
-    private elementRef: ElementRef, private resources: resources,
-    private http: httpService,private toastr: ToastrService,
-    private ngxSpinner: NgxSpinnerService,
-    private actictedRoute: ActivatedRoute) {
-      this.loadResources();
-      this.storage.eraseLocalStorage("weds360#vendorServiceOnEdit");
+  private router: Router,
+  private storage: localStorageService,
+  private elementRef: ElementRef, private resources: resources,
+  private http: httpService,private toastr: ToastrService,
+  private ngxSpinner: NgxSpinnerService,private lookupsService: LookupsService,
+  private actictedRoute: ActivatedRoute) {
+    this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+    this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
+    this.loadResources();
+    this.storage.eraseLocalStorage("weds360#vendorServiceOnEdit");
   }
 
   ngOnInit() {
@@ -43,11 +50,11 @@ export class VendorServicesComponent implements OnInit {
 
   getAllVendorServices() {
     this.ngxSpinner.show();
-    let getAllItemsURL = `${urls.GET_ALL_VENDOR_SERVICES}/${constants.APP_IDENTITY_FOR_USERS}`;
+    let getAllItemsURL = `${urls.GET_ALL_VENDOR_SERVICES}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
-    this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
+    this.http.Get(getAllItemsURL, { }).subscribe((response: responseModel) => {
       if (!response.error) {
-        this.vendorServicesList = response.data as vendorService[];
+        this.servicesList = response.data as vendorService[];
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -55,32 +62,40 @@ export class VendorServicesComponent implements OnInit {
     });
   };
 
+
   pageChange(pageNumber){
 
   };
 
-  editEntity(id: any){
+  editEntity(id: any) {
+    this.ngxSpinner.show();
+    this.getLookups();
+    let targetTheme = this.servicesList.find(x => x._id == id);
+    this.storage.setLocalStorage("weds360#vendorServiceOnEdit", targetTheme);
     this.router.navigate([`profile/en/vendor/services-action/update`]);
-    let targetTheme = this.vendorServicesList.find(x => x._id == id);
-    this.storage.setLocalStorage("weds360#vendorServiceOnEdit" , targetTheme);
+    this.ngxSpinner.hide();
+
+  };
+
+  async getLookups() {
+    this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
+    this.storage.setLocalStorage("weds360#categories", this.categories);
+    
+    let allTags = (await this.lookupsService.getTags()) as responseModel;
+    this.tagsAr = allTags.data.filter((tag: any) => {
+      return tag.langauge == "Ar";
+    });
+    this.storage.setLocalStorage("weds360#tagsAr", this.tagsAr);
+
+    this.tagsEn = allTags.data.filter((tag: any) => {
+      return tag.langauge == "En";
+    });
+    this.storage.setLocalStorage("weds360#tagsEn", this.tagsEn);
   };
 
   navigateToCreateNewService(){
     this.router.navigate(['profile/en/vendor/services-action/new']);
   }
-
-  //#region load gallery
-  async convertURLtoFile(image){
-    // image = "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png";
-    let response = await fetch(image);
-    let data = await response.blob();
-    let metadata = {
-      type: `image/${image.split('.').pop()}`
-    };
-
-    return new File([data], image.split('/').pop() , metadata);
-  }
-  //#endregion
 
   ngAfterViewInit(): void {
     this.loadScripts();
