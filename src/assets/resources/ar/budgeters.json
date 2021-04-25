@@ -7,10 +7,11 @@
   "DESCRIPTION_ARABIC": "الوصف باللغة الانجليزية ",
   "ADD_BUDGETERS":" اضافة تكاليف الفرح جديدة ",
   "BUDGETERS_INFO":" معلومات عن تكاليف الفرح ",
-  "PERCENTAGE ":"النسبة",
+  "PERCENT":"النسبة",
   "UPDATE": "تعديل",
   "DELETE": "حذف",
   "EDIT": "تعديل",
   "SAVE": "حفظ",
   "CANCEL": "إلغاء"
 }
+

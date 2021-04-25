@@ -1,0 +1,18 @@
+
+{
+  "BUDGETERS_TITLE":" Create the defaults budgeters  items.  ",
+  "BUDGETERS":"Default Budgeters  ",
+  "BUDGETERS_INFO":" budgeters  information ",
+  "ADD_BUDGETERS":" Create New budgeters  Item ",
+  "NAME_ENGLISH": "Title English ",
+  "NAME_ARABIC": "Title Arabic  ",
+  "DESCRIPTION_ENGLISH": " Description English  ",
+  "DESCRIPTION_ARABIC": " Description Arabic  ",
+  "PERCENT":"Percentage",
+
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
+}

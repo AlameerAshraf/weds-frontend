@@ -1,54 +1,57 @@
-<div class="row">
-    <div class="col-lg-12">
-  
-      <div id="add-listing">
-  
-        <div class="add-listing-section">
-  
-          <div class="add-listing-headline">
-            <h3><i class="sl sl-icon-note"></i> Budgeters information</h3>
-          </div>
-  
-          <div class="row with-forms">
-            <div class="col-md-6">
-              <h5>Title English</h5>
-              <input class="search-field" type="text" placeholder="Budgeter English Name" [(ngModel)]="budgeter.nameEn" />
-            </div>
-  
-            <div class="col-md-6">
-              <h5>Title Arabic</h5>
-              <input class="search-field" placeholder="Budgeter Arabic Name" [(ngModel)]="budgeter.nameAr" />
-            </div>
-          </div>
-  
-  
-          <div class="row with-forms">
-            <div class="col-md-6">
-              <h5>Description English</h5>
-              <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"
-              placeholder="Description English" [(ngModel)]="budgeter.descriptionEn"></textarea>
-            </div>
-  
-            <div class="col-md-6">
-              <h5>Description Arabic</h5>
-              <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"
-              placeholder="Description Arabic" [(ngModel)]="budgeter.descriptionAr"></textarea>
-            </div>
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="col-lg-12">
+
+    <div id="add-listing">
+
+      <div class="add-listing-section">
+
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-note"></i> {{labels.BUDGETERS_INFO}}</h3>
+        </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.NAME_ENGLISH}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.NAME_ENGLISH" [(ngModel)]="budgeter.nameEn" />
           </div>
 
-          <div class="row with-forms">
-            <div class="col-md-6">
-              <h5>Percentage %</h5>
-              <input class="search-field" type="text" placeholder="Percentage" [(ngModel)]="budgeter.recommendedPercentage"/>
-            </div>
+          <div class="col-md-6">
+            <h5>{{labels.NAME_ARABIC}}</h5>
+            <input class="search-field" [placeholder]="labels.NAME_ARABIC" [(ngModel)]="budgeter.nameAr" />
+          </div>
+        </div>
+
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.DESCRIPTION_ENGLISH}}</h5>
+            <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"
+              [placeholder]="labels.DESCRIPTION_ENGLISH" [(ngModel)]="budgeter.descriptionEn"></textarea>
+          </div>
+
+          <div class="col-md-6">
+            <h5>{{labels.DESCRIPTION_ENGLISH}}</h5>
+            <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"
+              [placeholder]="labels.DESCRIPTION_ENGLISH" [(ngModel)]="budgeter.descriptionAr"></textarea>
+          </div>
+        </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.PERCENT}} %</h5>
+            <input class="search-field" type="text" [placeholder]="labels.PERCENT"
+              [(ngModel)]="budgeter.recommendedPercentage" />
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-    Cancel <i class="sl sl-icon-close"></i>
-  </a>
-  <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
-  <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>
+</div>
+
+<a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+  {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
+</a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
+    class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
+    class="sl sl-icon-check"></i></a>

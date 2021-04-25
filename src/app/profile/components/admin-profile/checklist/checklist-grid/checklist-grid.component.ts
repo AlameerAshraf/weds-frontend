@@ -72,7 +72,7 @@ export class ChecklistGridComponent implements OnInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/checklist-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/checklist-action/update`]);
     let targetTheme = this.checkLists.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#checkListOnEdit" , targetTheme);
   };
@@ -94,7 +94,7 @@ export class ChecklistGridComponent implements OnInit {
   };
 
   navigateToCreateNewCheklist(){
-    this.router.navigate(['profile/en/admin/checklist-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/checklist-action/new`]);
   }
 
   ngAfterViewInit(): void {

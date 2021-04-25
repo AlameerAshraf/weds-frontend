@@ -23,6 +23,7 @@ export class constants {
       SERVICES: "services",
       USERS: "users",
       CHECKLIST : "checklist",
+      BUDGETERS : "budgeters",
       USER_DASHBOARD: "user-profile-nav",
       ADMIN_DASHBOARD: "admin-profile-nav",
       VENDOR_DASHBOARD: "vendor-profile-nav",
