@@ -36,7 +36,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of checkLists">
-              <tr>
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{item.titleEn}}</p>
                 </td>

@@ -37,7 +37,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of budgetersList">
-              <tr>
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{item.nameEn}}</p>
                 </td>
