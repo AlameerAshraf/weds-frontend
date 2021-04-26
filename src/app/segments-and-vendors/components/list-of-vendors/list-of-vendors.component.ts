@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { slideInOutAnimation } from './../../../core/helpers/animations/slideInOutAnimation';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { localStorageService } from 'src/app/core';
+import { localStorageService, transporter } from 'src/app/core';
 
 @Component({
   selector: 'app-list-of-vendors',
@@ -19,6 +19,7 @@ export class ListOfVendorsComponent implements OnInit {
 
   ngOnInit() {
     this.checkLoginStatus();
+    this.loadScripts();
   }
 
   checkLoginStatus(){
@@ -44,6 +45,10 @@ export class ListOfVendorsComponent implements OnInit {
   };
 
   ngAfterViewInit(): void {
+    this.loadScripts();
+  };
+
+  loadScripts(){
     let scripts = ['assets/scripts/sideBarSlider.js', 'assets/scripts/custom.js'];
 
     scripts.forEach(element => {

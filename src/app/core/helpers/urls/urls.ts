@@ -91,6 +91,7 @@ export class urls {
 
   //Wedding website
   public static get CHECK_WEDDING_WEBSITE_UNIQNESS(): string { return this.BASE_URL + '/wedding/checking-website-routing-uniqueness'};
+  public static get GET_WEDDING_OWNER_EMAIL(): string { return this.BASE_URL + '/wedding/wedding-website-owner'};
 
 
   //Vendor
