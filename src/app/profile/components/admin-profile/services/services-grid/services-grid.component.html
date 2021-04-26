@@ -34,7 +34,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of servicesList">
-              <tr>
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{ item.type.toLowerCase() }}</p>
                 </td>

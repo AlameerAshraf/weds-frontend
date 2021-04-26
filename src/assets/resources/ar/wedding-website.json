@@ -3,7 +3,9 @@
 "SEARCH_PLACEHOLDER": "ادخل كلمة للبحث",
 "DESTROY": "حذف",
 "PUBLISH": "نشر",
-
+"SELECT": "اختر الحالة",
+"RESET": "مسح حقول البحث",
+"FILTER_SITES":"فلترة  وبحث في موافع الزفاف",
 "WEBSITES": "المواقع ",
 "WEBSITE": "الموقع ",
 "PENDING": "تحت المراجعة",

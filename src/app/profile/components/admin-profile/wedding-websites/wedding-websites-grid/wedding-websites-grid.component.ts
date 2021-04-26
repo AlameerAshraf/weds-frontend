@@ -18,7 +18,8 @@ export class WeddingWebsitesGridComponent implements OnInit {
   startTypingAnimation: boolean = true;
 
   weddingWebsiteList: weddingWebsite[] = [];
-
+  labels:any={};
+  lang:string;
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -35,15 +36,7 @@ export class WeddingWebsitesGridComponent implements OnInit {
     this.getAllThemes();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
-
-  getAllThemes() {
+   getAllThemes() {
     this.ngxSpinner.show();
     let getAllWeddingWebsitesURL = `${urls.GET_ALL_WEDDING_LIST}/${constants.APP_IDENTITY_FOR_USERS}`;
 
@@ -79,5 +72,19 @@ export class WeddingWebsitesGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
 
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["WEDDING_WEBSITE"]
+      )) as any;
+      this.labels = resData.res;
+  };
 }

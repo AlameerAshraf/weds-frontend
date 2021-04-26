@@ -75,7 +75,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of categoriesList">
-              <tr *ngIf="item.isRemoved == false">
+              <tr *ngIf="item.isRemoved == false" [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{ item.nameEn }}</p>
                 </td>
