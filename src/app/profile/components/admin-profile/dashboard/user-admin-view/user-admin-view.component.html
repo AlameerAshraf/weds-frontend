@@ -1,53 +1,53 @@
 <div id="titlebar" class="gradient">
-	<div class="row">
-		<div class="col-md-12">
-			<h2>Manage & control website default data</h2>
-			<span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{labels.MANAGE_WEBSITE_DATA}}</h2>
+      <!-- <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span> -->
+    </div>
+  </div>
 </div>
 
 
 <div class="row">
-	<div class="col-md-12">
+  <div class="col-md-12">
 
 
-		<div class="categories-boxes-container margin-top-5 margin-bottom-30">
+    <div class="categories-boxes-container margin-top-5 margin-bottom-30">
 
-			<!-- Box -->
-			<a (click)="navigate('users-list')" class="category-small-box" style="cursor: pointer;">
-				<i class="sl sl-icon-people"></i>
-				<h4>Users</h4>
-				<span class="category-box-counter">{{featuresCount.usersCount}}</span>
-			</a>
+      <!-- Box -->
+      <a (click)="navigate('users-list')" class="category-small-box" style="cursor: pointer;">
+        <i class="sl sl-icon-people"></i>
+        <h4>{{labels.USERS}}</h4>
+        <span class="category-box-counter">{{featuresCount.usersCount}}</span>
+      </a>
 
-			<!-- Box -->
-			<a (click)="navigate('checklist-defaults')" class="category-small-box" style="cursor: pointer;">
-				<i class="sl sl-icon-globe"></i>
-				<h4>Checklists</h4>
-				<span class="category-box-counter">{{featuresCount.checkListsCount}}</span>
-			</a>
+      <!-- Box -->
+      <a (click)="navigate('checklist-defaults')" class="category-small-box" style="cursor: pointer;">
+        <i class="sl sl-icon-globe"></i>
+        <h4>{{labels.CHECKLIST}}</h4>
+        <span class="category-box-counter">{{featuresCount.checkListsCount}}</span>
+      </a>
 
-			<!-- Box -->
-			<a (click)="navigate('budgeter-defaults')" class="category-small-box" style="cursor: pointer;">
-				<i class="sl sl-icon-docs"></i>
-				<h4>Budgeters</h4>
-				<span class="category-box-counter">{{featuresCount.budgetersCount}}</span>
-			</a>
+      <!-- Box -->
+      <a (click)="navigate('budgeter-defaults')" class="category-small-box" style="cursor: pointer;">
+        <i class="sl sl-icon-docs"></i>
+        <h4>{{labels.BUDGETER}}</h4>
+        <span class="category-box-counter">{{featuresCount.budgetersCount}}</span>
+      </a>
 
-			<!-- Box -->
-			<a (click)="navigate('wedding-websites')" class="category-small-box" style="cursor: pointer;">
-				<i class="im im-icon-Heart-2"></i>
-				<h4>Wedding websites</h4>
-				<span class="category-box-counter">{{featuresCount.weddingsCount}}</span>
-			</a>
+      <!-- Box -->
+      <a (click)="navigate('wedding-websites')" class="category-small-box" style="cursor: pointer;">
+        <i class="im im-icon-Heart-2"></i>
+        <h4>{{labels.WEDDING_WEBSITE}}</h4>
+        <span class="category-box-counter">{{featuresCount.weddingsCount}}</span>
+      </a>
 
-			<!-- Box -->
-			<a (click)="navigate('events-defaults')" class="category-small-box" style="cursor: pointer;">
-				<i class="im im-icon-CD-2"></i>
-				<h4>Events</h4>
-				<span class="category-box-counter">{{featuresCount.eventsCount}}</span>
-			</a>
-		</div>
-	</div>
+      <!-- Box -->
+      <a (click)="navigate('events-defaults')" class="category-small-box" style="cursor: pointer;">
+        <i class="im im-icon-CD-2"></i>
+        <h4>{{labels.EVENTS}}</h4>
+        <span class="category-box-counter">{{featuresCount.eventsCount}}</span>
+      </a>
+    </div>
+  </div>
 </div>

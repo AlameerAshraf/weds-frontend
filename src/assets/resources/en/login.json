@@ -1,0 +1,17 @@
+{
+  "LOGIN": "Login",
+  "LOGIN_NOW": "Login Now",
+  "REMEMBER_ME": "Remember me",
+  "EMAIL_REQUIRED": "Email is required to register.  ",
+  "VALID_EMAIL": "Please enter a valid email.  ",
+  "PASSWORD_REQUIRED": "Password is required to register.  ",
+  "CREATE_NEW_ACCOUNT": " Create New Account",
+  "OR": "OR.  ",
+  "FORGOT_PASSWORD": " Forget my password?",
+  "REGISTER_NOW": "Register Now  ",
+  "REGISTER": "Register  ",
+  "REGISTER_SUBTITLE": "Wedding Planning is a piece of cake with Weds360 ",
+  "VENDOR_JOIN_US": "Wanna join us as a vendor?",
+  "ALREADY_HAVE_ACCOUNT": "Already Have an Account?",
+  "ٌJOIN_AS_USER": "Join us as User"
+}

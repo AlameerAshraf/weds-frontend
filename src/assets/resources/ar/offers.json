@@ -1,0 +1,24 @@
+{
+  "OFFERS": "اضافة عروض ",
+  "ADD_OFFER": "اضافة عرض جديد",
+  "OFFER_INFO": " معلومات عن العرض",
+  "OFFER": " العرض ",
+
+  "IMAGE": "الصورة",
+  "VENDOR": "البائع",
+  "SHOWS_IN": "اختار صفحة العرض",
+  "DEFAULT_OFFERS": " العروض الافتراضية",
+  "TITLE_ENGLISH": "الاسم باللغة الانجليزية",
+  "TITLE_ARABIC": "الاسم باللغة العربية",
+  "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
+  "DESCRIPTION_ARABIC": "الوصف باللغة الانجليزية ",
+  "UPLOAD_PHOTO": "ارفق صورة",
+  "DESCRIPTION": "الوصف",
+
+  "UPDATE": "تعديل",
+  "DELETE": "حذف",
+  "EDIT": "تعديل",
+  "SAVE": "حفظ",
+  "CANCEL": "إلغاء",
+  "ENABLED": "فعال"
+}

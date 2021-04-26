@@ -19,6 +19,9 @@ export class BudgeterGridComponent implements OnInit {
 
   budgetersList: budgeter[] = [];
 
+  labels:any={};
+  lang:string;
+
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -32,15 +35,9 @@ export class BudgeterGridComponent implements OnInit {
 
   ngOnInit() {
     this.getAllBudgeters();
+    this.loadResources();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllBudgeters() {
     this.ngxSpinner.show();
@@ -61,9 +58,9 @@ export class BudgeterGridComponent implements OnInit {
 
   };
 
-  
+
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/budgeter-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/budgeter-action/update`]);
     let targetTheme = this.budgetersList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#budgeterOnEdit" , targetTheme);
   };
@@ -85,7 +82,7 @@ export class BudgeterGridComponent implements OnInit {
   };
 
   navigateToCreateNewBudgeter(){
-    this.router.navigate(['profile/en/admin/budgeter-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/budgeter-action/new`]);
   }
 
   ngAfterViewInit(): void {
@@ -101,5 +98,20 @@ export class BudgeterGridComponent implements OnInit {
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
+  };
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["BUDGETERS"]
+      )) as any;
+      this.labels = resData.res;
   };
 }
