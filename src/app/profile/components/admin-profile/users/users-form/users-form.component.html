@@ -1,59 +1,62 @@
-<div class="row">
-    <div class="col-lg-12">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="col-lg-12">
 
-      <div id="add-listing">
+    <div id="add-listing">
 
-        <div class="add-listing-section">
+      <div class="add-listing-section">
 
-          <div class="add-listing-headline">
-            <h3><i class="sl sl-icon-note"></i> User information</h3>
-          </div>
-
-          <div class="row with-forms">
-            <div class="col-md-6">
-              <h5>Full Name</h5>
-              <input class="search-field" type="text" placeholder="User Full Name" [(ngModel)]="user.name" />
-            </div>
-
-            <div class="col-md-6">
-              <h5>Phone</h5>
-              <input class="search-field" type="text" placeholder="Phone" [(ngModel)]="user.phone" />
-            </div>
-          </div>
-
-
-          <div class="row with-forms">
-            <div class="col-md-6">
-              <h5>Email</h5>
-              <input class="search-field" type="email" placeholder="Email" [(ngModel)]="user.email"/>
-            </div>
-
-            <div class="col-md-6">
-              <h5>Role</h5>
-              <select id="userRolesDropDown" class="chosen-select-no-single">
-                <option>Select a role</option>
-                <ng-container *ngFor="let userRole of userRoles">
-                  <option [selected] = "user.role == userRole.name" [value]="userRole.name">{{ userRole.name.toLocaleLowerCase() }}</option>
-                </ng-container>
-              </select>
-            </div>
-          </div>
-
-
-          <div class="row with-forms">
-            <div class="col-md-6">
-              <h5>Date</h5>
-              <input type="text" id="date-picker" placeholder="Date" [(ngModel)] = "date">
-            </div>
-          </div>
-
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-note"></i> {{labels.USER_INFO}}</h3>
         </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.FULL_NAME}}</h5>
+            <input class="search-field" type="text" placeholder="{{labels.FULL_NAME}}" [(ngModel)]="user.name" />
+          </div>
+
+          <div class="col-md-6">
+            <h5>{{labels.PHONE}}</h5>
+            <input class="search-field" type="text" placeholder="{{labels.PHONE}}" [(ngModel)]="user.phone" />
+          </div>
+        </div>
+
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.EMAIL}}</h5>
+            <input class="search-field" type="email" placeholder="{{labels.EMAIL}}" [(ngModel)]="user.email" />
+          </div>
+
+          <div class="col-md-6">
+            <h5>{{labels.ROLE}}</h5>
+            <select id="userRolesDropDown" class="chosen-select-no-single">
+              <option>{{labels.SELECT_ROLE}}</option>
+              <ng-container *ngFor="let userRole of userRoles">
+                <option [selected]="user.role == userRole.name" [value]="userRole.name">{{
+                  userRole.name.toLocaleLowerCase() }}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.DATE}}</h5>
+            <input type="text" id="date-picker" placeholder="{{labels.DATE}}" [(ngModel)]="date">
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 
-  <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-    Cancel <i class="sl sl-icon-close"></i>
-  </a>
-  <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
-  <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>
+<a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+  {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
+</a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}}<i
+    class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
+    class="sl sl-icon-check"></i></a>

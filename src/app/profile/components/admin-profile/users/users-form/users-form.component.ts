@@ -3,7 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
-import { user, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { user, constants, urls, httpService, responseModel, localStorageService , resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
+
 declare var $: any;
 
 
@@ -36,11 +38,12 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
     isActive: true,
     isEmailConfirmed: false,
   };
-
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private router: Router,
     private toastr: ToastrService, private http: httpService,
-    private activatedRoute: ActivatedRoute, private storage: localStorageService,
+    private activatedRoute: ActivatedRoute, private storage: localStorageService,private resources:resources,
     private ngxSpinner: NgxSpinnerService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
@@ -53,6 +56,7 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
     this.loadScripts();
     this.initUserView();
     this.documentSelectors();
+    this.loadResources();
   }
 
   initUserView() {
@@ -72,7 +76,7 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("User has been saved succesfully", "User has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/users-list');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/users-list`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "Ooh Sorry, your user couldn't created on the server!");
@@ -91,7 +95,7 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("User has been saved succesfully", "A user has been updated .");
-        this.router.navigateByUrl('/profile/en/admin/users-list');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/users-list`);
       } else {
         console.log(response)
         this.ngxSpinner.hide();
@@ -114,7 +118,7 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
   }
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/admin/users-list');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/users-list`);
   };
 
   ngAfterViewInit(): void {
@@ -130,6 +134,21 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
+  };
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["USERS"]
+      )) as any;
+      this.labels = resData.res;
   };
 }
 

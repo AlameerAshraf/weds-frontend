@@ -1,26 +1,25 @@
-<div id="titlebar" class="gradient">
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
-      <h2>Welcome Users</h2>
-      <span>Search top rated Users and experts that will make your wedding looks like a carnaval!</span>
+      <h2>{{labels.WELCOME}}</h2>
+      <!-- <span>Search top rated Users and experts that will make your wedding looks like a carnaval!</span> -->
     </div>
   </div>
 </div>
-
-<div class="style-2">
+<div class="style-2" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
     <span class="trigger">
       <a href="#" style="font-size: 25px !important">
-        <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in posts
+        <i style="font-size: 25px !important" class="fa fa-filter"></i> {{labels.FILTER_USERS}}
         <i class="sl sl-icon-plus"></i>
       </a>
     </span>
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
-        <div class="col-md-3">
-          <input type="text" placeholder="Enter search critera.">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
+          <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
           <select id="userRolesDropDown" class="chosen-select-no-single">
             <option label="blank">select role</option>
             <ng-container *ngFor="let userRole of userRoles">
@@ -28,9 +27,10 @@
             </ng-container>
           </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
+          <a class="button"> {{labels.SEARCH}} </a>
           <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
-            Reset </a>
+            {{labels.RESET}} </a>
         </div>
       </div>
     </div>
@@ -38,12 +38,11 @@
 </div>
 
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box with-icons margin-top-20">
       <h4>
-        Users
-
+        {{labels.USERS}}
         <div (click)="navigateToAddNewUser()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
@@ -56,15 +55,16 @@
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="40%">User</th>
-              <th scope="col" width="40%">Role</th>
-              <th scope="col" width="5%">Delete</th>
-              <th scope="col" width="5%">Edit</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="40%">{{labels.USER}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="40%">{{labels.ROLE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
+
             </tr>
           </thead>
           <tbody>
             <ng-container *ngFor="let item of usersList">
-              <tr *ngIf="item.isActive == true">
+              <tr *ngIf="item.isActive" [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{ item.name }}</p>
                 </td>
