@@ -3,7 +3,9 @@ import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/c
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { tag, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { tag, constants, urls, httpService, responseModel, localStorageService,resources} from 'src/app/core';
+import { environment } from "src/environments/environment.prod";
+
 declare var $: any;
 
 @Component({
@@ -26,12 +28,13 @@ export class TagsFormComponent implements OnInit, AfterViewInit {
     isEnabled:true,
     langauge:"En"
   };
-
+  lang: string;
+  labels: any = {};
   constructor(private spinner: NgxSpinnerService , private router: Router ,
     private toastr: ToastrService,private activatedRoute: ActivatedRoute,
-    private storage: localStorageService, @Inject(DOCUMENT) private document: any,
+    private storage: localStorageService, @Inject(DOCUMENT) private document: any, private resources:resources,
      private elementRef: ElementRef,private ngxSpinner: NgxSpinnerService,
-     private http: httpService) { 
+     private http: httpService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
     this.activatedRoute.params.subscribe((params) => {
@@ -43,6 +46,7 @@ export class TagsFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loadScripts();
     this.initTagView();
+    this.loadResources();
   }
 
   initTagView(){
@@ -71,7 +75,7 @@ export class TagsFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Tag has been saved succesfully" , "Tag has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/tags-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/tags-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your tag couldn't created on the server!");
@@ -87,7 +91,7 @@ export class TagsFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Tag has been saved succesfully" , "A new tag has been updated and wedding website will be impacted.");
-        this.router.navigateByUrl('/profile/en/admin/tags-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/tags-defaults`);
       } else {
         console.log(response)
         this.ngxSpinner.hide();
@@ -98,7 +102,7 @@ export class TagsFormComponent implements OnInit, AfterViewInit {
 
 
   backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/tags-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/tags-defaults`);
   };
 
   ngAfterViewInit(): void {
@@ -115,4 +119,19 @@ export class TagsFormComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["TAGS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }
