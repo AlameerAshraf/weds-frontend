@@ -55,7 +55,7 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/tags-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/tags-action/update`]);
     let targetTheme = this.tagsList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#tagOnEdit" , targetTheme);
   };
@@ -77,7 +77,7 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
   };
 
   navigateToCreateNewTag(){
-    this.router.navigate(['profile/en/admin/tags-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/tags-action/new`]);
   }
 
   ngAfterViewInit(): void {

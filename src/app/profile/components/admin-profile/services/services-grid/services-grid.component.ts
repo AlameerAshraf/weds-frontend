@@ -58,7 +58,7 @@ export class ServicesGridComponent implements OnInit {
     this.getLookups();
     let targetTheme = this.servicesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#vendorServiceOnEdit", targetTheme);
-    this.router.navigate([`profile/en/admin/services-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/services-action/update`]);
     this.ngxSpinner.hide();
   };
 
@@ -87,7 +87,7 @@ export class ServicesGridComponent implements OnInit {
   };
 
   navigateToCreateNewService(){
-    this.router.navigate(['profile/en/admin/services-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/services-action/new`]);
   }
 
 
