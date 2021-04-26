@@ -18,7 +18,8 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
   startTypingAnimation: boolean = true;
 
   tagsList: tag[] = [];
-
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -34,13 +35,6 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
     this.getAllTags();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllTags() {
     this.ngxSpinner.show();
@@ -100,5 +94,19 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["TAGS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }
