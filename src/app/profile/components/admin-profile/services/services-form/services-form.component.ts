@@ -3,7 +3,9 @@ import { Component, OnInit, AfterViewInit, Inject, ElementRef } from '@angular/c
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { httpService, localStorageService } from 'src/app/core';
+import { httpService, localStorageService,resources,constants } from 'src/app/core';
+import { environment } from 'src/environments/environment';
+
 declare var $: any;
 
 
@@ -15,11 +17,12 @@ declare var $: any;
 export class ServicesFormComponent implements OnInit, AfterViewInit {
   selectedLayout = "";
   editingMode = "new";
-
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router, private ngxSpinner: NgxSpinnerService,
     private storage: localStorageService, private activatedRoute: ActivatedRoute,
-    private elementRef: ElementRef, private http: httpService, private toastr: ToastrService,
+    private elementRef: ElementRef, private http: httpService, private toastr: ToastrService,private resources: resources,
     private actictedRoute: ActivatedRoute) { }
 
 
@@ -31,6 +34,7 @@ export class ServicesFormComponent implements OnInit, AfterViewInit {
         this.selectTemplateToUpdate()
       }
     });
+    this.loadResources();
   }
 
   selectTemplateToUpdate(){
@@ -74,4 +78,19 @@ export class ServicesFormComponent implements OnInit, AfterViewInit {
     });
   }
   //#endregion
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["SERVICES"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

@@ -3,7 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ring, vendorService,LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, vendor } from 'src/app/core';
+import { ring, vendorService,LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, vendor ,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -27,11 +28,12 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
   clarityList = constants.CLARITY;
   stoneShapeList = constants.STONE_SHAPE;
 
- 
+  lang: string;
+  labels: any = {};
   constructor(private router: Router,
     @Inject(DOCUMENT) private document: any, private elementRef: ElementRef, private http: httpService,
     private toastr: ToastrService, private activatedRoute: ActivatedRoute,
-    private storage: localStorageService,private lookupsService: LookupsService,
+    private storage: localStorageService,private lookupsService: LookupsService,  private resources: resources,
     private ngxSpinner: NgxSpinnerService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
@@ -45,10 +47,11 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
     });
    }
 
-  async ngOnInit() {    
-    let tempLookup = this.getLookups();    
+  async ngOnInit() {
+    let tempLookup = this.getLookups();
     this.loadScripts();
     this.documentSelectors();
+    this.loadResources();
   }
 
   initRingView(){
@@ -72,7 +75,7 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Service has been saved succesfully" , "service has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/services-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/services-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your service couldn't created on the server!");
@@ -90,7 +93,7 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Service has been saved succesfully" , "A new service has been created.");
-        this.router.navigateByUrl('/profile/en/admin/services-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/services-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your service couldn't created on the server!");
@@ -169,12 +172,12 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
   }
 
   backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/services-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/services-defaults`);
   };
 
   //#region load scripts
-  async ngAfterViewInit() {    
-    let tempLookup = await this.getLookups();    
+  async ngAfterViewInit() {
+    let tempLookup = await this.getLookups();
     this.loadScripts();
   };
 
@@ -189,5 +192,19 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
     });
   }
   //#endregion
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["SERVICES"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

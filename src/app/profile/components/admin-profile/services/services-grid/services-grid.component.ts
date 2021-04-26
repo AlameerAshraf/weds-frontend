@@ -19,7 +19,8 @@ export class ServicesGridComponent implements OnInit {
   tagsEn: tag[] = [];
   categories: category[] = [];
   vendors: vendor[] = [];
-
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,private lookupsService: LookupsService,
   private storage: localStorageService,
@@ -36,13 +37,7 @@ export class ServicesGridComponent implements OnInit {
     this.getAllVendorServices();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllVendorServices() {
     this.ngxSpinner.show();
@@ -70,7 +65,7 @@ export class ServicesGridComponent implements OnInit {
   async getLookups() {
     this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
     this.storage.setLocalStorage("weds360#categories", this.categories);
-    
+
     let allTags = (await this.lookupsService.getTags()) as responseModel;
     this.tagsAr = allTags.data.filter((tag: any) => {
       return tag.langauge == "Ar";
@@ -95,7 +90,7 @@ export class ServicesGridComponent implements OnInit {
     this.router.navigate(['profile/en/admin/services-action/new']);
   }
 
-  
+
   ngAfterViewInit(): void {
     this.loadScripts();
   };
@@ -110,5 +105,19 @@ export class ServicesGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["SERVICES"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }
