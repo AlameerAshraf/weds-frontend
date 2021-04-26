@@ -18,6 +18,8 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
   postsList : post[] = [];
 
+  labels: any = {};
+  lang: string;
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private elementRef: ElementRef, private resources: resources,
@@ -33,13 +35,7 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
     this.getAllPosts();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllPosts() {
     this.spinner.show();
@@ -61,13 +57,13 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
   };
 
   navigateToCreateNewPost() {
-    this.router.navigate(['profile/en/admin/posts-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/posts-action/new`]);
   };
 
   navigateToUpdatePost(postId: any){
     let targetPost = this.postsList.find(x => x._id == postId);
     this.storage.setLocalStorage("weds360#postOnEdit" , targetPost);
-    this.router.navigate([`profile/en/admin/posts-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/posts-action/update`]);
   };
 
 
@@ -87,4 +83,19 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
     });
   };
   //#endregion
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["POSTS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

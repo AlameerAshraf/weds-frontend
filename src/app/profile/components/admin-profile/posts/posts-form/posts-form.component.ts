@@ -2,8 +2,9 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, ElementRef, Inject
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { post, LookupsService, responseModel, urls, constants, httpService, category, localStorageService } from 'src/app/core';
+import { post, LookupsService, responseModel, urls, constants, httpService, category, localStorageService,resources } from 'src/app/core';
 import { DOCUMENT } from '@angular/common';
+import { environment } from 'src/environments/environment';
 declare var $;
 
 @Component({
@@ -37,11 +38,12 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   categories: category[] = [];
   currentUserEmail: string;
   editingMode: any;
-
+  labels: any = {};
+  lang: string;
 
   constructor(private spinner: NgxSpinnerService, private router: Router,
     private activatedRoute: ActivatedRoute, private storage: localStorageService,
-    private toastr: ToastrService,@Inject(DOCUMENT) private document: any,
+    private toastr: ToastrService,@Inject(DOCUMENT) private document: any,private resources: resources,
     private elementRef: ElementRef, private lookupsService: LookupsService,
     private http: httpService) {
       window.scrollTo(0 , 0);
@@ -76,7 +78,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.spinner.hide();
         this.toastr.success("Gooood!" , "Amazing words catch hearts before eyes, post has been added successfully 💕");
-        this.router.navigateByUrl('/profile/en/admin/posts');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
       }else{
         this.spinner.hide();
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
@@ -98,7 +100,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.spinner.hide();
         this.toastr.success("Gooood!" , "Amazing Post has been updated successfully 💕");
-        this.router.navigateByUrl('/profile/en/admin/posts');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
       }else{
         this.spinner.hide();
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
@@ -119,7 +121,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
 
   backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/posts');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
   };
 
 
@@ -301,4 +303,19 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     });
   }
   //#endregion
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["POSTS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }
