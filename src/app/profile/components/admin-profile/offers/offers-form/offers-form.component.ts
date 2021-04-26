@@ -80,7 +80,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Offer has been saved succesfully" , "Offer has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/offers-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your offer couldn't created on the server!");
@@ -97,7 +97,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Offer has been saved succesfully" , "A new offer has been updated and wedding website will be impacted.");
-        this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/offers-defaults`);
       } else {
         console.log(response)
         this.ngxSpinner.hide();
@@ -139,7 +139,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   };
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/offers-defaults`);
   };
 
   ngAfterViewInit(): void {
