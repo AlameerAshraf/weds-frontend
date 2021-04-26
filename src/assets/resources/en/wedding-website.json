@@ -4,12 +4,14 @@
   "SEARCH_PLACEHOLDER": "Enter search criteria.",
   "DESTROY": "Destroy",
   "PUBLISH": "Publish",
-
+  "SELECT": "Select",
+  "FILTER_SITES":"Filter & search in Wedding Websites",
   "WEBSITES": "Websites ",
   "WEBSITE": "Website ",
   "PENDING": "Pending",
   "ALL": "All",
   "SEARCH": "Search ",
+  "RESET": "RESET",
   "EMAIL": "EMail"
 
 

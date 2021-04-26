@@ -1,91 +1,92 @@
 <div id="titlebar" class="gradient">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Welcome to your Websites</h2>
-            <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      {{labels.WEDDING_WEBSITE}}
+      <!-- <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span> -->
     </div>
+  </div>
 </div>
 
-<div class="style-2">
-    <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
-        <span class="trigger">
-            <a href="#" style="font-size: 25px !important">
-                <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in posts
-                <i class="sl sl-icon-plus"></i>
-            </a>
-        </span>
-        <div class="toggle-container" style="padding-bottom: 0px !important; ">
-            <div class="row with-forms">
-                <div class="col-md-3">
-                    <input type="text" placeholder="Enter search critera.">
-                </div>
-                <div class="col-md-3">
-                    <select id="cats" class="chosen-select-no-single">
-                        <option label="blank">select</option>
-                        <option value="pending"> pending </option>
-                        <option value="pending"> all </option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i
-                            class="sl sl-icon-trash"></i> Reset </a>
-                </div>
-            </div>
+<div class="style-2" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
+    <span class="trigger">
+      <a href="#" style="font-size: 25px !important">
+        <i style="font-size: 25px !important" class="fa fa-filter"></i> {{labels.FILTER_SITES}}
+        <i class="sl sl-icon-plus"></i>
+      </a>
+    </span>
+    <div class="toggle-container" style="padding-bottom: 0px !important; ">
+      <div class="row with-forms">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+          <input type="text" placeholder="{{labels.SEARCH_PLACEHOLDER}}">
         </div>
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+          <select id="cats" class="chosen-select-no-single">
+            <option label="blank"> {{labels.SELECT}}</option>
+            <option value="pending"> {{labels.PENDING}} </option>
+            <option value="all"> {{labels.ALL}} </option>
+          </select>
+        </div>
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
+            {{labels.RESET}} </a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 
 <div class="row">
-    <div class="col-lg-12 col-md-12">
-        <div class="dashboard-list-box with-icons margin-top-20">
-            <h4>
-                Websites
-            </h4>
-            <div class="col-md-12" style="background-color: white;">
-                <table class="table borderless">
-                    <thead>
-                        <tr>
-                            <th scope="col" width="45%">Website</th>
-                            <th scope="col" width="45%">Email</th>
-                            <th scope="col" width="5%">Destroy</th>
-                            <th scope="col" width="5%">Publish</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container *ngFor="let item of weddingWebsiteList">
-                            <tr>
-                                <td>
-                                    <p>{{item.name}}</p>
-                                </td>
-                                <td>
-                                    <p>{{item.email}}</p>
-                                </td>
-                                <td class="td-in-table">
-                                    <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
-                                            class="sl sl-icon-trash"></i>
-                                    </p>
-                                </td>
-                                <td class="td-in-table">
-                                    <p><i style="color: rgb(80, 121, 233); cursor: pointer; font-size: 20px; font-weight: 600;"
-                                            (click)="editEntity(item._id)" class="sl sl-icon-share-alt"></i></p>
-                                </td>
-                            </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box with-icons margin-top-20">
+      <h4>
+        {{labels.WEBSITES}}
+      </h4>
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="45%"> {{labels.WEBSITE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="45%"> {{labels.EMAIL}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DESTROY}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.PUBLISH}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of weddingWebsiteList">
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
+                <td>
+                  <p>{{item.name}}</p>
+                </td>
+                <td>
+                  <p>{{item.email}}</p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
+                      class="sl sl-icon-trash"></i>
+                  </p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(80, 121, 233); cursor: pointer; font-size: 20px; font-weight: 600;"
+                      (click)="editEntity(item._id)" class="sl sl-icon-share-alt"></i></p>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="clearfix"></div>
 
 <div class="row">
-    <div class="col-md-12">
-        <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="weddingWebsiteList.length"
-            [maxSize]="5">
-        </weds-paging>
-    </div>
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="weddingWebsiteList.length"
+      [maxSize]="5">
+    </weds-paging>
+  </div>
 </div>

@@ -35,7 +35,7 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let item of offersList">
-              <tr>
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p style="font-size: 20px; font-weight: 600;">{{ item.titleEn}}</p>
                 </td>
