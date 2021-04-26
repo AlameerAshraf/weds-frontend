@@ -19,6 +19,7 @@ export class ListOfCategoriesComponent implements OnInit , AfterViewInit {
 
   ngOnInit() {
     this.checkLoginStatus();
+    this.loadScripts();
   }
 
   checkLoginStatus(){
@@ -44,14 +45,17 @@ export class ListOfCategoriesComponent implements OnInit , AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log("sd")
-    // let scripts = ['assets/scripts/custom.js'];
-
-    // scripts.forEach(element => {
-    //   const s = this.document.createElement('script');
-    //   s.type = 'text/javascript';
-    //   s.src = element;
-    //   this.elementRef.nativeElement.appendChild(s);
-    // });
+    this.loadScripts();
   };
+
+  loadScripts(){
+    let scripts = ['assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  }
 }
