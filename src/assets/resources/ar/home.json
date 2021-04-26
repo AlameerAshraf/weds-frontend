@@ -1,5 +1,16 @@
 {
-    "SEARCH_MAJOUR_TITLE" : "Find Most Amazing",
-    "SEARCH_SUB_TITLE" : "Expolore top-rated attractions, activities and more",
-    "FEATURED_CATEGORIES_TITLE" : "Or browse featured categories:"
+  "SEARCH_MAJOUR_TITLE": "البحث عن الأكثر روعة",
+  "SEARCH_SUB_TITLE": "استكشف المعالم والأنشطة ذات التصنيف الأعلى والمزيد",
+  "FEATURED_CATEGORIES_TITLE": "Or browse featured categories:",
+  "LOOKING_FOR": " عن ماذا تبحث؟",
+  "LOCATION": "المكان",
+  "SEARCH": "البحث",
+  "POPULAR_CATEGORIES": "التصنيفات الشائعة",
+  "ALL_CATEGORIES": "جميع التصنيفات",
+  "BROWSE": "تصفح",
+  "PLAN_WEDDING": "خطط لحفل زفاف أحلامك",
+  "PLAN_WEDDING_SUBTITLE": "الترتيب لفرحك أسهل كتير معانا   لأننا عارفين إيه المهم، تقدر تعتمد علينا في كل تفصيلة.",
+  "FOOTER": "عشان احنا عارفين ايه اكتر حاجة مهمة ويمكنك الاعتماد علينا في كل خطوة على الطريق ، من  اول حجز بائع الزهور المناسب إلى تفريغ الأمتعة بعد شهر العسل ، لا يمكننا الانتظار لمساعدتك في بدء الفصل التالي من حياتك ",
+  "FOOTER_HELPFUL_LINKS": "روابط مفيدة",
+  "FOOTER_CONTACT_US": "تواصل معنا"
 }

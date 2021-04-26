@@ -3,7 +3,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { offer,vendor, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { offer,vendor, constants, urls, httpService, responseModel, localStorageService,resources } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -18,7 +19,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   vendor = "";
 
   currentUserEmail: string;
-  offersVendors : any; 
+  offersVendors : any;
   offer: offer = {
     image: "assets/images/defaults/wedding/cover-photo.png",
     descriptionAr: "",
@@ -28,10 +29,12 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
     titleEn: "",
     vendor: ""
   };
+  lang: string;
+  labels: any = {};
 
   constructor(private ngxSpinner: NgxSpinnerService, private router: Router,
     @Inject(DOCUMENT) private document: any,private activatedRoute: ActivatedRoute,
-     private elementRef: ElementRef,private storage: localStorageService,
+     private elementRef: ElementRef,private storage: localStorageService,private resources: resources,
      private http: httpService,    private toastr: ToastrService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
@@ -45,6 +48,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
     this.loadOffersVendor();
     this.initOfferView();
     this.documentSelectors();
+    this.loadResources();
   }
 
   loadOffersVendor(){
@@ -152,4 +156,19 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["OFFERS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

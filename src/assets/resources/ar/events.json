@@ -1,0 +1,41 @@
+{
+  "EVENTS_TITLE":"اضافة المناسبات والاحتفالات",
+  "EVENTS":"المناسبات",
+  "NAME_ENGLISH": "الاسم باللغة الانجليزية",
+  "NAME_ARABIC": "الاسم باللغة العربية",
+  "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
+  "DESCRIPTION_ARABIC": "الوصف باللغة الانجليزية ",
+  "ADD_EVENT":" اضافة مناسبة جديدة ",
+  "EVENT_INFO":" معلومات عن المناسبة",
+  "PERCENT":"النسبة",
+
+  "MY_EVENTS":"مناسبتي",
+  "INVITE_FRIENDS":"اعزم اصحابك",
+  "EVENT_DETAILS":"تفاصيل  ",
+  "LOCATION": "اسم المكان",
+  "DATE": " تاريخ المناسبة  ",
+  "NAME": "اسم المناسبة  ",
+  "DESC": "  شرح عن المناسبة  ",
+  "SHOW_ON_SITE":"عرض في موقع الفرح",
+  "NO_RESPONSE":"لا يوجد رد",
+  "GOING":"قبل الدعوة  ",
+  "DECLINED:":"رفض الدعوة",
+  "GUESTS":"المعازيم",
+  "DAY":"يوم",
+  "MY_GUESTS":"المعازيم المدوعيين",
+  "WITHDRAW_INVITATION":"سحب الدعوة",
+  "INVITED":"المدعويين",
+  "INVITE_FRIENDS_TITLE":"ابعت دعوة لاصحابك",
+  "INVITE_NAME":"الاسم",
+  "INVITE_PHONE":"رقم التلفون",
+  "EMAIL":"الايميل",
+  "INVITE_MSG":"دعوة فرح لذيذة",
+
+
+  "UPDATE": "تعديل",
+  "DELETE": "حذف",
+  "EDIT": "تعديل",
+  "SAVE": "حفظ",
+  "CANCEL": "إلغاء"
+}
+

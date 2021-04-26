@@ -1,7 +1,7 @@
-<div id="titlebar" class="gradient">
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
-      <h2>Create the Area items.</h2>
+      <h2>{{labels.ADD_AREA}}</h2>
     </div>
   </div>
 </div>
@@ -11,14 +11,14 @@
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
       <h4>
-        Default Areas
+        {{labels.AREAS}}
 
         <div (click)="navigateToCreateNewArea()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
               border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Create New Area Item</strong>
+          <strong style="color: white !important">{{labels.ADD_AREA}}</strong>
         </div>
       </h4>
 
@@ -26,39 +26,39 @@
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="45%">Area Name</th>
-              <th scope="col" width="45%">Hidden</th>
-              <th scope="col" width="5%">Delete</th>
-              <th scope="col" width="5%">Edit</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="45%">{{labels.AREA_NAME}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="45%">{{labels.HIDDEN}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
             </tr>
           </thead>
           <tbody>
 
-                
-                  
-                
 
-<ng-container *ngFor="let item of areasList">
-            <tr>
-              <td>
-                <p style="font-size: 20px; font-weight: 600;">{{ item.nameEn }}</p>
-              </td>
-              <td>
-                <p style="display: -webkit-inline-box;margin-bottom: 0px;">
-                  <span class="dot" style="background-color: green;"></span> &nbsp;
-                  <label style="color: green; font-size: 20px; font-weight: 600;"> {{ item.isHidden }} </label>
-                </p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                  (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
-                </p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                  (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
-              </td>
-            </tr>
+
+
+
+            <ng-container *ngFor="let item of areasList">
+              <tr>
+                <td>
+                  <p style="font-size: 20px; font-weight: 600;">{{ item.nameEn }}</p>
+                </td>
+                <td>
+                  <p style="display: -webkit-inline-box;margin-bottom: 0px;">
+                    <span class="dot" style="background-color: green;"></span> &nbsp;
+                    <label style="color: green; font-size: 20px; font-weight: 600;"> {{ item.isHidden }} </label>
+                  </p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
+                  </p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                </td>
+              </tr>
             </ng-container>
           </tbody>
         </table>

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12">
 
     <div id="add-listing">
@@ -6,49 +6,48 @@
       <div class="add-listing-section">
 
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-note"></i> Category information</h3>
+          <h3><i class="sl sl-icon-note"></i> {{labels.CATEGORY_INFO}}</h3>
         </div>
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Name English</h5>
-            <input class="search-field" type="text" placeholder="Category English Name" [(ngModel)]="category.nameEn" />
+            <h5>{{labels.NAME_ENGLISH}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.NAME_ENGLISH" [(ngModel)]="category.nameEn" />
           </div>
 
           <div class="col-md-6">
-            <h5>Name Arabic</h5>
-            <input class="search-field" type="text" placeholder="Category Arabic Name" [(ngModel)]="category.nameAr" />
+            <h5>{{labels.NAME_ARABIC}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.NAME_ARABIC" [(ngModel)]="category.nameAr" />
           </div>
         </div>
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Description English</h5>
-            <textarea class="search-field" type="text" placeholder="Description English"
+            <h5>{{labels.DESCRIPTION_ENGLISH}}</h5>
+            <textarea class="search-field" type="text" [placeholder]="labels.DESCRIPTION_ENGLISH"
               [(ngModel)]="category.descriptionEn"></textarea>
           </div>
 
           <div class="col-md-6">
-            <h5>Description Arabic</h5>
-            <textarea class="search-field" type="text" placeholder="Description Arabic"
+            <h5>{{labels.DESCRIPTION_ARABIC}}</h5>
+            <textarea class="search-field" type="text" [placeholder]="labels.DESCRIPTION_ARABIC"
               [(ngModel)]="category.descriptionAr"></textarea>
           </div>
         </div>
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Segment</h5>
+            <h5>{{labels.SEGMENT}}</h5>
             <select id="categoriesSegments" class="chosen-select-no-single">
               <ng-container *ngFor="let categorySegment of categoriesSegments">
-                <option [selected]="categorySegment.segment == category.parentMenu"
-                  [value]="categorySegment.segment">
+                <option [selected]="categorySegment.segment == category.parentMenu" [value]="categorySegment.segment">
                   {{ categorySegment.name }}</option>
               </ng-container>
             </select>
           </div>
 
           <div class="col-md-6">
-            <h5>Layout Name</h5>
+            <h5>{{labels.LAYOUT_NAME}}</h5>
             <select id="categoriesLayouts" class="chosen-select-no-single">
               <ng-container *ngFor="let categoryLayout of categoriesLayouts">
                 <option [selected]="categoryLayout.layout == category.layout" [value]="categoryLayout.layout">{{
@@ -60,12 +59,12 @@
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Image</h5>
+            <h5>{{labels.IMAGE}}</h5>
             <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
               <img class="anImage" [src]="category.photo" alt="">
               <div class="change-photo-btn">
                 <div class="photoUpload">
-                  <span><i class="fa fa-upload"></i> Upload Photo</span>
+                  <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
                   <input type="file" class="upload" (change)="uploadImage($event,'photo')" />
                 </div>
               </div>
@@ -73,12 +72,12 @@
           </div>
 
           <div class="col-md-6">
-            <h5>Icon</h5>
+            <h5>{{labels.ICON}}</h5>
             <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
               <img class="anImage" [src]="category.icon" alt="">
               <div class="change-photo-btn">
                 <div class="photoUpload">
-                  <span><i class="fa fa-upload"></i> Upload Photo</span>
+                  <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
                   <input type="file" class="upload" (change)="uploadImage($event,'icon')" />
                 </div>
               </div>
@@ -91,9 +90,9 @@
 </div>
 
 <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-  Cancel <i class="sl sl-icon-close"></i>
+  {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
 </a>
-<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
     class="sl sl-icon-check"></i></a>
-<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
     class="sl sl-icon-check"></i></a>

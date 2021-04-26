@@ -1,5 +1,16 @@
 {
-    "SEARCH_MAJOUR_TITLE" : "",
-    "SEARCH_SUB_TITLE" : "",
-    "FEATURED_CATEGORIES_TITLE" : ""
+  "SEARCH_MAJOUR_TITLE": "Find Most Amazing",
+  "SEARCH_SUB_TITLE": "Explore top-rated attractions, activities and more",
+  "FEATURED_CATEGORIES_TITLE": "Or browse featured categories:",
+  "LOOKING_FOR": "What are you looking for?",
+  "LOCATION": "Location",
+  "SEARCH": "Search",
+  "POPULAR_CATEGORIES": "Popular Categories",
+  "ALL_CATEGORIES": "All Categories",
+  "BROWSE": "Browse",
+  "PLAN_WEDDING": "Plan The Wedding of Your Dreams ",
+  "PLAN_WEDDING_SUBTITLE": "WEDDING PLANNING IS A PIECE OF CAKE WITH WEDS360. WE KNOW WHAT MATTERS MOST AND YOU CAN COUNT ON US EVERY STEP OF THE WAY.",
+  "FOOTER": "We know what matters most and you can count on us every step of the way, From booking the right florist to unpacking after your honeymoon We can’t wait to help you start the next chapter of your life, Wedding Planning is a piece of cake with Weds360.  ",
+  "FOOTER_HELPFUL_LINKS": "Helpful Links",
+  "FOOTER_CONTACT_US": "Contact Us"
 }

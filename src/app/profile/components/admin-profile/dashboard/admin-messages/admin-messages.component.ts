@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
+import { constants, resources } from "src/app/core";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-admin-messages',
@@ -7,11 +9,13 @@ import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/c
   styleUrls: ['./admin-messages.component.scss']
 })
 export class AdminMessagesComponent implements OnInit, AfterViewInit {
-
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef,) { }
+    private elementRef: ElementRef,private resources: resources) { }
 
   ngOnInit() {
+    this.loadResources();
   }
 
   ngAfterViewInit(): void {
@@ -24,4 +28,20 @@ export class AdminMessagesComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["MESSAGES"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

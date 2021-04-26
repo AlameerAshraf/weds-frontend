@@ -20,7 +20,8 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
   startTypingAnimation: boolean = true;
 
   areasList : area[] = [];
-
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,private ngxSpinner: NgxSpinnerService,
     private storage: localStorageService,
@@ -33,15 +34,9 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getAllAreas();
+    this.loadResources();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllAreas() {
     let getAllAreasURL = `${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}`;
@@ -65,7 +60,7 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/areas-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/areas-action/update`]);
     let targetTheme = this.areasList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#areaOnEdit" , targetTheme);
   };
@@ -87,7 +82,7 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
   };
 
   navigateToCreateNewArea() {
-    this.router.navigate(['profile/en/admin/areas-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/areas-action/new`]);
   };
 
   ngAfterViewInit(): void {
@@ -104,4 +99,16 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toLowerCase().indexOf(`/ar/`) > -1 ? "ar" : "en";
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["AREAS"]
+    )) as any;
+    this.lang = resourceLang;
+    this.labels = resData.res;
+  }
 }
