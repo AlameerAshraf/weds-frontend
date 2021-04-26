@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12">
     <div id="add-listing">
       <div class="add-listing-section">
         <div class="add-listing-headline" style="padding: 25px;">
-          <h3><i class="im im-icon-Dress"></i> New dress</h3>
+          <h3><i class="im im-icon-Dress"></i> {{labels.NEW_DRESS}}</h3>
         </div>
 
         <div class="row with-forms">
@@ -12,44 +12,45 @@
               <div class="dashboard-list-box-static" style="padding: 0px;">
                 <div class="my-profile">
 
-                  <label class="margin-top-0">Name English</label>
-                  <input placeholder="English Name" type="text" [(ngModel)]="dress.nameEn">
+                  <label class="margin-top-0">{{labels.NAME_ENGLISH}}</label>
+                  <input placeholder="{{labels.NAME_ENGLISH}}" type="text" [(ngModel)]="dress.nameEn">
 
-                  <label>Description English</label>
-                  <textarea placeholder="English Description" [(ngModel)]="dress.descriptionEn"></textarea>
+                  <label>{{labels.DESC_ENGLISH}}</label>
+                  <textarea placeholder="{{labels.DESC_ENGLISH}}" [(ngModel)]="dress.descriptionEn"></textarea>
 
-                  <label>Dress cut</label>
+                  <label>{{labels.DRESS_CUT}}</label>
                   <select id="dressCut" class="chosen-select-no-single">
-                    <option label="blank">Select your dress cut</option>
+                    <option label="{{labels.DRESS_CUT}}">{{labels.DRESS_CUT}}</option>
                     <ng-container *ngFor="let dressCut of dressCutList">
-                      <option [selected]="dressCut.dress_cut === dress.dressCut" [value]="dressCut.dress_cut">{{ dressCut.name }}
+                      <option [selected]="dressCut.dress_cut === dress.dressCut" [value]="dressCut.dress_cut">{{
+                        dressCut.name }}
                       </option>
                     </ng-container>
                   </select>
 
-                  <label>Train length</label>
-                  <input  placeholder="Train Length" type="text" [(ngModel)]="dress.trainLength">
+                  <label>{{labels.TRAIN_LEN}}</label>
+                  <input placeholder="{{labels.TRAIN_LEN}}" type="text" [(ngModel)]="dress.trainLength">
 
-                  <label>Silhouette</label>
-                  <input placeholder="Silhouette" type="text" [(ngModel)]="dress.silhouette">
+                  <label>{{labels.SILHOUETTE}}</label>
+                  <input placeholder="{{labels.SILHOUETTE}}" type="text" [(ngModel)]="dress.silhouette">
 
-                  <label>Color</label>
-                  <input placeholder="Color" type="text" [(ngModel)]="dress.color">
+                  <label>{{labels.COLOR}}</label>
+                  <input placeholder="{{labels.COLOR}}" type="text" [(ngModel)]="dress.color">
 
-                  <label>Price (EGP)</label>
-                  <input placeholder="Price" type="text" [(ngModel)]="dress.price">
+                  <label>{{labels.PRICE}}</label>
+                  <input placeholder="{{labels.PRICE}}" type="text" [(ngModel)]="dress.price">
 
-                  <label>Tags En list</label>
+                  <label>{{labels.TAG_ENGLISH}}</label>
                   <select id="tagsEn" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
                     <option *ngFor="let tag of tagsEn" [selected]="enTagsContainsTag(tag._id)" [value]="tag._id">
                       {{ tag.name }}
                     </option>
                   </select>
 
-                  <label>Neckline</label>
+                  <label>{{labels.NECKLINE}}</label>
                   <input placeholder="Neckline" [(ngModel)]="dress.neckline" type="text">
 
-                  <label>Vendor</label>
+                  <label>{{labels.VENDOR}}</label>
                   <select id="vendors" class="chosen-select-no-single">
                     <option label="blank" value="">Select your vendor</option>
                     <ng-container *ngFor="let vendor of vendors">
@@ -64,34 +65,34 @@
             <div class="col-lg-6 col-md-12">
               <div class="dashboard-list-box-static" style="padding: 0px;">
                 <div class="my-profile">
-                  <label class="margin-top-0">Name Arabic</label>
-                  <input placeholder="Arabic Name" [(ngModel)]="dress.nameAr" type="text">
+                  <label class="margin-top-0">{{labels.NAME_ARABIC}}</label>
+                  <input placeholder="{{labels.NAME_ARABIC}}" [(ngModel)]="dress.nameAr" type="text">
 
-                  <label>Description Arabic</label>
-                  <textarea placeholder="Arabic Description" [(ngModel)]="dress.descriptionAr"></textarea>
+                  <label>{{labels.DESC_ARABIC}}</label>
+                  <textarea placeholder="{{labels.DESC_ARABIC}}" [(ngModel)]="dress.descriptionAr"></textarea>
 
-                  <label>Category</label>
+                  <label>{{labels.CATEGORY}}</label>
                   <select id="categories" class="chosen-select-no-single">
-                    <option label="blank" value="">Select your category</option>
+                    <option [label]="labels.SELECT" value="">{{labels.SELECT}}</option>
                     <ng-container *ngFor="let category of categories">
                       <option [selected]="category._id === dress.category" [value]="category._id">{{ category.nameEn }}
                       </option>
                     </ng-container>
                   </select>
 
-                  <label>Dress Length</label>
-                  <input placeholder="Dress Length" [(ngModel)]="dress.dressLength" type="text">
+                  <label>{{labels.DRESS_LEN}}</label>
+                  <input placeholder="{{labels.DRESS_LEN}}" [(ngModel)]="dress.dressLength" type="text">
 
-                  <label>Waist style</label>
-                  <input placeholder="Waist style" [(ngModel)]="dress.waistStyle" type="text">
+                  <label>{{labels.WAIST_STYLE}}</label>
+                  <input placeholder="{{labels.WAIST_STYLE}}" [(ngModel)]="dress.waistStyle" type="text">
 
-                  <label>Style</label>
-                  <input placeholder="Style" [(ngModel)]="dress.style" type="text">
+                  <label>{{labels.STYLE}}</label>
+                  <input placeholder="{{labels.STYLE}}" [(ngModel)]="dress.style" type="text">
 
-                  <label>Size</label>
-                  <input placeholder="Size" [(ngModel)]="dress.size" type="text">
+                  <label>{{labels.SIZE}}</label>
+                  <input placeholder="{{labels.SIZE}}" [(ngModel)]="dress.size" type="text">
 
-                  <label>Tags Ar list</label>
+                  <label>{{labels.TAG_ARABIC}}</label>
                   <select id="tagsAr" data-placeholder="Select Multiple Items" class="chosen-select" multiple>
                     <option *ngFor="let tag of tagsAr" [selected]="arTagsContainsTag(tag._id)" [value]="tag._id">
                       {{ tag.name }}
@@ -103,7 +104,7 @@
                     <img class="anImage" [src]="dress.image" alt="">
                     <div class="change-photo-btn">
                       <div class="photoUpload">
-                        <span><i class="fa fa-upload"></i> Cover Photo</span>
+                        <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
                         <input type="file" class="upload" (change)="uploadImage($event)" />
                       </div>
                     </div>
@@ -116,14 +117,14 @@
         </div>
       </div>
 
-      <div align="right">
+      <div [align]="lang==='ar'?'left':'right'">
         <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-          Cancel <i class="sl sl-icon-close"></i>
+          {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
         </a>
-        <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i
+        <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
             class="sl sl-icon-check"></i></a>
-        <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity(service._id)">Update <i
-            class="sl sl-icon-check"></i></a>
+        <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity(service._id)">
+          {{labels.UPDATE}} <i class="sl sl-icon-check"></i></a>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
-<div id="titlebar" class="gradient">
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
-      <h2>Services items</h2>
+      <h2>{{labels.SERVICE_TITLE}}</h2>
     </div>
   </div>
 </div>
@@ -11,14 +11,13 @@
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
       <h4>
-        Services
-
+        {{labels.SERVICES}}
         <div (click)="navigateToCreateNewService()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
               border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Create New Service Item</strong>
+          <strong style="color: white !important">{{labels.ADD_SERVICE}}</strong>
         </div>
       </h4>
 
@@ -26,31 +25,31 @@
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="20%">Service Name</th>
-              <th scope="col" width="20%">Vendor Name</th>
-              <th scope="col" width="20%">Service Name</th>
-              <th scope="col" width="30%">Service Description</th>
-              <th scope="col" width="10%">Edit</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.SERVICE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.VENDOR}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">Service Name</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.DESC}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="10%">{{labels.EDIT}}</th>
             </tr>
           </thead>
           <tbody>
             <ng-container *ngFor="let item of servicesList">
               <tr>
                 <td>
-                  <p >{{ item.type.toLowerCase() }}</p>
+                  <p>{{ item.type.toLowerCase() }}</p>
                 </td>
                 <td>
-                  <p >{{item.vendorNameEn}}</p>
+                  <p>{{item.vendorNameEn}}</p>
                 </td>
                 <td>
-                  <p >{{ item.attributes.nameEn }}</p>
+                  <p>{{ item.attributes.nameEn }}</p>
                 </td>
                 <td>
-                  <p >{{ item.attributes.descriptionEn }}</p>
+                  <p>{{ item.attributes.descriptionEn }}</p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                       (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
             </ng-container>
@@ -65,7 +64,8 @@
 
 <div class="row">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="servicesList.length" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="servicesList.length"
+      [maxSize]="5">
     </weds-paging>
   </div>
 </div>

@@ -79,7 +79,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
   };
 
   navigateToCreateNewOffer(){
-    this.router.navigate(['profile/en/admin/offers-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/offers-action/new`]);
   };
 
   ngAfterViewInit(): void {

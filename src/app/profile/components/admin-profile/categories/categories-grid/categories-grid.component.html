@@ -17,10 +17,10 @@
     </span>
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <input type="text" [placeholder]="labels.SEARCH_KEYWORD">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <select id="categoriesSegments" class="chosen-select-no-single">
             <option label="blank">{{labels.SELECT_SEGMENT}}</option>
             <ng-container *ngFor="let categorySegment of categoriesSegments">
@@ -29,7 +29,7 @@
             </ng-container>
           </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <select id="categoriesLayouts" class="chosen-select-no-single">
             <option label="blank">{{labels.SELECT_SERVICE_TYPE}}</option>
             <ng-container *ngFor="let categoryLayout of categoriesLayouts">
@@ -39,7 +39,7 @@
           </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
             {{labels.RESET}} </a>
         </div>
