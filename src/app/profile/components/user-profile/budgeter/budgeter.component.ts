@@ -1,8 +1,10 @@
-import { constants, slideInOutAnimation , budgeter, urls , httpService , responseModel} from './../../../../core';
+import { constants, slideInOutAnimation , budgeter, urls , httpService , responseModel,resources} from './../../../../core';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
+
 declare var $: any;
 
 @Component({
@@ -38,8 +40,9 @@ export class BudgeterComponent implements OnInit {
   suggestedBudget: Number;
   currentBudget: any = 0;
   showAlarm = false;
-
-  constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef,
+  labels: any = {};
+  lang: string;
+  constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef,private resources: resources,
     private http: httpService , private ngxSpinner: NgxSpinnerService , private toastr: ToastrService){
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
@@ -48,6 +51,7 @@ export class BudgeterComponent implements OnInit {
     this.loadScripts();
     this.documentSelectors();
     this.getAllBudgetItems();
+    this.loadResources();
   };
 
   saveBudget(){
@@ -205,4 +209,19 @@ export class BudgeterComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['BUDGETERS']
+      )) as any;
+    this.labels = resData.res;
+  }
 }
