@@ -18,7 +18,7 @@ export class SiteStatusComponent implements OnInit {
     }
   }
 
-  constructor(private localStorageService: localStorageService , private router: Router) { }
+  constructor(private localStorageService: localStorageService) { }
 
   ngOnInit() {
     this.getWebSiteStaus();
@@ -29,6 +29,6 @@ export class SiteStatusComponent implements OnInit {
   };
 
   previewSite(){
-    this.router.navigateByUrl("/sites/en/save-the-day");
+    window.open(`/sites/en/save-the-day?me=${this.weddingWebsite.routeURL}`);
   };
 }

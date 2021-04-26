@@ -1,8 +1,8 @@
-import { urls, localStorageService, constants, httpService, post, responseModel, vendor , socialSharing, comment } from 'src/app/core';
+import { urls, localStorageService, constants, httpService, post, responseModel, vendor, socialSharing, comment, transporter } from 'src/app/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './vendor.component.html',
   styleUrls: ['./vendor.component.scss']
 })
-export class VendorComponent implements OnInit {
+export class VendorComponent implements OnInit, AfterViewInit {
   isAuthed: boolean;
 
   vendor = new vendor();
@@ -44,8 +44,9 @@ export class VendorComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.checkLoginStatus();
     this.getAllComments();
+    this.checkLoginStatus();
+    this.loadScripts();
   }
 
   loadVendorData(id: any){
@@ -89,7 +90,6 @@ export class VendorComponent implements OnInit {
     let myRates = vendorRates.filter((rate) => {
       return rate.userEmail == this.currentUserEmail;
     });
-debugger
     myRates.forEach((rate) => {
       let starLocation = map[rate.value]
       let starElement = `${rate.criteria}-${starLocation}`;
@@ -173,14 +173,18 @@ debugger
   };
 
   ngAfterViewInit(): void {
-    // let scripts = ['assets/scripts/custom.js'];
-
-    // scripts.forEach(element => {
-    //   const s = this.document.createElement('script');
-    //   s.type = 'text/javascript';
-    //   s.src = element;
-    //   this.elementRef.nativeElement.appendChild(s);
-    // });
+    this.loadScripts();
   };
+
+  loadScripts(){
+    let scripts = ['assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  }
   //#endregion
 }
