@@ -42,7 +42,7 @@ export class UserAdminViewComponent implements OnInit {
   };
 
   navigate(url) {
-    this.router.navigateByUrl(`/profile/en/admin/${url}`)
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/${url}`)
   };
   async loadResources() {
     let lang =

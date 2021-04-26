@@ -34,7 +34,7 @@ export class CreateEventComponent implements OnInit {
   };
 
   backToRoute(){
-    this.router.navigateByUrl('profile/en/user/events');
+    this.router.navigateByUrl(`profile/${this.lang}/user/events`);
   };
 
   createNewEvent(){
@@ -50,7 +50,7 @@ export class CreateEventComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Weds360 has created the event for you." , "Let's celebrate your event has been created 💥🎉");
-        this.router.navigateByUrl('profile/en/user/events');
+        this.router.navigateByUrl(`profile/${this.lang}/user/events`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your event is not created, trya again later!");

@@ -57,7 +57,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/offers-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/offers-action/update`]);
     let targetTheme = this.offersList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#offerOnEdit" , targetTheme);
   };
