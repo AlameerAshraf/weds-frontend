@@ -1,42 +1,40 @@
-<div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Create the offers items.</h2>
-      </div>
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{labels.OFFERS}}</h2>
     </div>
   </div>
-  
-  
-  <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <div class="dashboard-list-box margin-top-0">
-        <h4>
-          Default Offers
-  
-          <div
-            (click)="navigateToCreateNewOffer()"
-            style="background-color: #046B69 !important;
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>
+        {{labels.DEFAULT_OFFERS}}
+
+        <div (click)="navigateToCreateNewOffer()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
-              border-radius: 20px;"
-              class="comission-taken">
-            <i class="im im-icon-Pencil"></i> &nbsp;
-            <strong style="color: white !important">Create New Offer Item</strong>
-          </div>
-        </h4>
-  
-        <div class="col-md-12" style="background-color: white;">
-          <table class="table borderless">
-            <thead>
-              <tr>
-                <th scope="col" width="29%">Offer</th>
-                <th scope="col" width="29%">Description</th>
-                <th scope="col" width="2%">Delete</th>
-                <th scope="col" width="2%">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of offersList">
+              border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">{{labels.ADD_OFFER}}</strong>
+        </div>
+      </h4>
+
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="29%">{{labels.OFFER}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="29%">{{labels.DESCRIPTION}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="2%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="2%">{{labels.EDIT}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of offersList">
               <tr>
                 <td>
                   <p style="font-size: 20px; font-weight: 600;">{{ item.titleEn}}</p>
@@ -46,27 +44,26 @@
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                    (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </div>
+            </ng-container>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
-  <div class="clearfix"></div>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="offersList.length" [maxSize]="5">
-      </weds-paging>
-    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="offersList.length" [maxSize]="5">
+    </weds-paging>
   </div>
-  
+</div>

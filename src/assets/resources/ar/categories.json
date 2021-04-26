@@ -1,0 +1,34 @@
+{
+  "CATEGORIES": "الفئات",
+  "CATEGORIES_SUBTITLE": "دور على  أفضل الفئات والخبراء اللي هيخلوا فرحك زي كرنفال!  ",
+
+  "SEGMENT": "القائمة الرئيسية",
+  "SERVICE_TYPE": "نوع الخدمة",
+  "CATEGORY": "الفئة",
+
+  "ADD_CATEGORY": "اضافة فئة جديدة",
+  "RESET": "حذف حقول البحث",
+  "DELETE": "حذف",
+  "EDIT": "تعديل",
+  "SEARCH": "بحث",
+
+  "SAVE": "حفظ",
+  "CANCEL": "إلغاء",
+  "NAME_ENGLISH": "الاسم باللغة الانجليزية",
+  "NAME_ARABIC": "الاسم باللغة العربية",
+  "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
+  "DESCRIPTION_ARABIC": "الوصف باللغة الانجليزية ",
+  "LAYOUT_NAME": "شكل التصميم ",
+  "IMAGE": "الصورة",
+  "CATEGORY_INFO": "معلومات  عن الفئة  ",
+  "UPLOAD_PHOTO": "ارفق صورة",
+  "UPDATE": "حفط التعديل",
+  "ICON": "أيقونة",
+  "SEARCH_KEYWORD": "ادخل كلمة للبحث",
+  "FILTER_CATEGORIES": "فلترة وبحث في الفئات ",
+  "SELECT_CATEGORY": "اختار فئة",
+  "SELECT_SEGMENT": "اختار القائمة الرئيسية ",
+  "SELECT_SERVICE_TYPE": "     اختار نوع الخدمة"
+
+
+}

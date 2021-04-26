@@ -1,50 +1,48 @@
-<div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Create the defaults budgeters items.</h2>
-      </div>
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{labels.BUDGETERS_TITLE}}</h2>
     </div>
   </div>
-  
-  
-  <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <div class="dashboard-list-box margin-top-0">
-        <h4>
-          Default Budgeters
-  
-          <div
-            (click)="navigateToCreateNewBudgeter()"
-            style="background-color: #046B69 !important;
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>
+        {{labels.BUDGETERS}}
+
+        <div (click)="navigateToCreateNewBudgeter()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
-              border-radius: 20px;"
-              class="comission-taken">
-            <i class="im im-icon-Pencil"></i> &nbsp;
-            <strong style="color: white !important">Create New Budgeter Item</strong>
-          </div>
-        </h4>
-  
-        <div class="col-md-12" style="background-color: white;">
-          <table class="table borderless">
-            <thead>
-              <tr>
-                <th scope="col" width="15%">English Name</th>
-                <th scope="col" width="15%">Arabic Name</th>
-                <th scope="col" width="33%">Description English</th>
-                <th scope="col" width="33%">Description Arabic</th>
-                <th scope="col" width="2%">Delete</th>
-                <th scope="col" width="2%">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of budgetersList">
+              border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">{{labels.ADD_BUDGETERS}}</strong>
+        </div>
+      </h4>
+
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.NAME_ENGLISH}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.NAME_ARABIC}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.DESCRIPTION_ENGLISH}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.DESCRIPTION_ARABIC}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of budgetersList">
               <tr>
                 <td>
-                  <p >{{item.nameEn}}</p>
+                  <p>{{item.nameEn}}</p>
                 </td>
                 <td>
-                  <p >{{item.nameAr}}</p>
+                  <p>{{item.nameAr}}</p>
                 </td>
                 <td>
                   <p>{{item.descriptionEn}}</p>
@@ -54,27 +52,27 @@
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); cursor: pointer; font-size: 20px; font-weight: 600;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                    (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
             </ng-container>
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
-  <div class="clearfix"></div>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="budgetersList.length" [maxSize]="5">
-      </weds-paging>
-    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="budgetersList.length"
+      [maxSize]="5">
+    </weds-paging>
   </div>
-  
+</div>

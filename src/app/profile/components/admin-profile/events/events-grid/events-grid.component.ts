@@ -19,7 +19,8 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
 
   eventsList: event[] = [];
   currentUserEmail: string;
-
+  labels:any={};
+  lang:string;
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -37,13 +38,7 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
     this.getAllEvents();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllEvents() {
     this.ngxSpinner.show();
@@ -62,7 +57,7 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
 
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/events-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/events-action/update`]);
     let targetTheme = this.eventsList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#eventOnEdit" , targetTheme);
   };
@@ -88,7 +83,7 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
   };
 
   navigateToCreateNewEvent() {
-    this.router.navigate(['profile/en/admin/events-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/events-action/new`]);
   }
 
 
@@ -105,5 +100,21 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
+  };
+
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["EVENTS"]
+      )) as any;
+      this.labels = resData.res;
   };
 }

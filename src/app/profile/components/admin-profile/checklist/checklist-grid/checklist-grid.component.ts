@@ -19,6 +19,8 @@ export class ChecklistGridComponent implements OnInit {
 
   checkLists: checklist[] = [];
 
+  labels: any = {};
+  lang: string;
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -34,13 +36,7 @@ export class ChecklistGridComponent implements OnInit {
     this.getAllCheckLists();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllCheckLists() {
     this.ngxSpinner.show();
@@ -100,4 +96,20 @@ export class ChecklistGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['CHECKLIST']
+      )) as any;
+    this.labels = resData.res;
+  }
+
 }

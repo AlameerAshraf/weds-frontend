@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { category, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { category, constants, urls, httpService, responseModel, localStorageService,resources } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -37,10 +38,12 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
     subDescriptionEn: "Sub Ar"
   };
 
+  lang: string;
+  labels: any = {};
 
 
   constructor(private ngxSpinner: NgxSpinnerService, private router: Router, private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService, @Inject(DOCUMENT) private document: any, private storage: localStorageService,
+    private toastr: ToastrService, @Inject(DOCUMENT) private document: any, private storage: localStorageService,  private resources: resources,
     private elementRef: ElementRef, private http: httpService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
@@ -53,6 +56,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
     this.loadScripts();
     this.initCategoryView();
     this.documentSelectors();
+    this.loadResources();
   }
 
   initCategoryView() {
@@ -71,7 +75,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("category has been saved succesfully", "category has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/categories-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/categories-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "Ooh Sorry, your category couldn't created on the server!");
@@ -90,7 +94,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("Category has been saved succesfully", "A new category has been updated and wedding website will be impacted.");
-        this.router.navigateByUrl('/profile/en/admin/categories-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/categories-defaults`);
       } else {
         console.log(response)
         this.ngxSpinner.hide();
@@ -140,7 +144,7 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
   };
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/admin/categories-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/categories-defaults`);
   };
 
   ngAfterViewInit(): void {
@@ -157,4 +161,20 @@ export class CategoriesFormComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["CATEGORIES"]
+    )) as any;
+    this.lang = lang;
+
+    this.labels = resData.res;
+  }
 }

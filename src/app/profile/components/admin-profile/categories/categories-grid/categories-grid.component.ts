@@ -24,6 +24,8 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
   categoriesSegments = constants.SEGMENTS;
   categoriesLayouts = constants.LAYOUTS;
 
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -49,13 +51,6 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
     });
   };
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllCategories() {
     this.ngxSpinner.show();
@@ -67,7 +62,7 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
-      }      
+      }
     });
 
   };
@@ -77,7 +72,7 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/categories-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/categories-action/update`]);
     let targetTheme = this.categoriesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#categoryOnEdit" , targetTheme);
   };
@@ -99,7 +94,7 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
   };
 
   navigateToCreateNewCategory() {
-    this.router.navigate(['profile/en/admin/categories-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/categories-action/new`]);
   };
 
 
@@ -117,4 +112,21 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["CATEGORIES"]
+    )) as any;
+    this.lang = lang;
+
+    this.labels = resData.res;
+  }
 }
