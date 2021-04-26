@@ -1,11 +1,10 @@
 {
-
   "WEDDING_WEBSITE": "Welcome to your Wedding Website ",
   "SEARCH_PLACEHOLDER": "Enter search criteria.",
   "DESTROY": "Destroy",
   "PUBLISH": "Publish",
   "SELECT": "Select",
-  "FILTER_SITES":"Filter & search in Wedding Websites",
+  "FILTER_SITES": "Filter & search in Wedding Websites",
   "WEBSITES": "Websites ",
   "WEBSITE": "Website ",
   "PENDING": "Pending",
@@ -13,6 +12,4 @@
   "SEARCH": "Search ",
   "RESET": "RESET",
   "EMAIL": "EMail"
-
-
 }
