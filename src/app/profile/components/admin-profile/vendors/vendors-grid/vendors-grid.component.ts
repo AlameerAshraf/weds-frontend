@@ -17,7 +17,8 @@ export class VendorsGridComponent implements OnInit {
   startTypingAnimation: boolean = true;
 
   vendorsList: vendor[] = [];
-
+  labels: any = {};
+  lang: string;
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -32,14 +33,6 @@ export class VendorsGridComponent implements OnInit {
   ngOnInit() {
     this.getAllVendors();
   }
-
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllVendors() {
     this.ngxSpinner.show();
@@ -56,7 +49,7 @@ export class VendorsGridComponent implements OnInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/vendors-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/vendors-action/update`]);
     let targetTheme = this.vendorsList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#vendorOnEdit" , targetTheme);
   };
@@ -78,7 +71,7 @@ export class VendorsGridComponent implements OnInit {
   };
 
   publishVendor(id: any){
-    
+
   }
 
   pageChange(pageNumber){
@@ -86,7 +79,7 @@ export class VendorsGridComponent implements OnInit {
   };
 
   navigateToCreateNewVendor(){
-    this.router.navigate(['profile/en/admin/vendors-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/vendors-action/new`]);
   }
 
   ngAfterViewInit(): void {
@@ -103,5 +96,19 @@ export class VendorsGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["VENDORS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

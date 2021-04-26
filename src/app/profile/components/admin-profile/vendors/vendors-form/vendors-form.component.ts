@@ -5,7 +5,9 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 //import { } from '@types/googlemaps';
 import { Router, ActivatedRoute } from '@angular/router';
-import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, area } from 'src/app/core';
+import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, area ,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
+
 declare const google: any
 declare var $;
 
@@ -82,14 +84,15 @@ export class VendorsFormComponent implements OnInit {
   };
 
 
-
+  labels: any = {};
+  lang: string;
 
 
   constructor(private spinner: NgxSpinnerService, private router: Router,
     private toastr: ToastrService, @Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, private lookupsService: LookupsService,
-    private http: httpService, private activatedRoute: ActivatedRoute,
+    private http: httpService, private activatedRoute: ActivatedRoute, private resources:resources,
     private storage: localStorageService, private ngxSpinner: NgxSpinnerService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
@@ -107,10 +110,11 @@ export class VendorsFormComponent implements OnInit {
     this.initVendorView();
     this.loadScripts();
     this.documentSelectors();
+    this.loadResources();
   }
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/admin/vendors-list');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/vendors-list`);
   };
 
   async getLookups() {
@@ -194,7 +198,7 @@ export class VendorsFormComponent implements OnInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("Vendor has been saved succesfully", "A vendor has been created.");
-        this.router.navigateByUrl('/profile/en/admin/vendors-list');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/vendors-list`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "Ooh Sorry, your vendor couldn't created on the server!");
@@ -222,7 +226,7 @@ export class VendorsFormComponent implements OnInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("Vendor has been saved succesfully", "Vendor has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/vendors-list');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/vendors-list`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "Ooh Sorry, your vendor couldn't created on the server!");
@@ -437,5 +441,20 @@ export class VendorsFormComponent implements OnInit {
     this.twitterUrl = this.vendor.social.find(x => x.includes('twitter') == true);
     this.instagramUrl = this.vendor.social.find(x => x.includes('instagram') == true);
     this.pinterestUrl = this.vendor.social.find(x => x.includes('pinterest') == true);
+  }
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["VENDORS"]
+    )) as any;
+    this.labels = resData.res;
   }
 }
