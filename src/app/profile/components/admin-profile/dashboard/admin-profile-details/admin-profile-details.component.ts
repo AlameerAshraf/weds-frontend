@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminProfileDetailsComponent implements OnInit, AfterViewInit {
   coverPhotoSource: string | ArrayBuffer = ''
-  labels:any={}
-  lang:string
+  labels:any={};
+  lang:string;
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef,private resources: resources,) { }
 

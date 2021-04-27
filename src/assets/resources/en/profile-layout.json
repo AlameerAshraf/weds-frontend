@@ -16,8 +16,8 @@
   "UPLOAD_PHOTO": "Upload Photo",
   "MALE": "Male",
   "FEMALE": "Female",
-  "SELECT":"SELECT",
-
+  "SELECT":"Select",
+  "LOCATION":"Where are you - address",
   "SAVE": "Save",
   "CANCEL": "Cancel",
   "DELETE": "Delete",
