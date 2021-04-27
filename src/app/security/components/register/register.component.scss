@@ -63,3 +63,15 @@
   .disable-notify{
     display: none !important;
   }
+  #logoRTL {
+    float: left;
+  }
+  .rtlIcon {
+    left: 0rem;
+  }
+  .orRTL {
+    width: 402px !important;
+  }
+  .rtlText {
+    direction: rtl;
+  }

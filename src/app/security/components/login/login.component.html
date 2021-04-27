@@ -1,13 +1,13 @@
 <ngx-spinner></ngx-spinner>
-<div class="transparent-header">
+<div class="transparent-header" [ngClass]="lang === 'ar' ? 'rtlText' : ''">
   <header id="header-container" class="fullwidth">
     <div id="header" style="border-bottom: 0px;">
       <div class="container">
         <div class="left-side">
           <div id="logo">
             <a>
-              <img style="max-height: 55px;" src="assets/images/logos/logo_1.png"
-                data-sticky-logo="assets/images/logos/logo_1.png" alt="Weds360 logo">
+              <img style="max-height: 55px;" src="assets/images/logos/whitelogo.png"
+                data-sticky-logo="assets/images/logos/whitelogo.png" alt="Weds360 logo">
             </a>
           </div>
         </div>
@@ -16,7 +16,8 @@
   </header>
 
 
-  <div class="main-search-container full-height alt-search-box centered" [attr.data-background-image]="bkImage">
+  <div [ngClass]="lang === 'ar' ? 'rtlText' : ''" class="main-search-container full-height alt-search-box centered"
+    [attr.data-background-image]="bkImage">
     <div class="main-search-inner">
       <div class="container">
         <div class="row">
@@ -24,10 +25,11 @@
             <form [formGroup]="loginForm">
               <div class="main-search-input">
                 <div class="main-search-input-headline">
-                  <h2>Login Now </h2>
+                  <h2>{{labels.LOGIN_NOW}} </h2>
                 </div>
 
-                <div [ngClass]="{'enable-notify': showNotification , ' disable-notify' : !showNotification }" class="main-search-input-item closeable removed-margins">
+                <div [ngClass]="{'enable-notify': showNotification , ' disable-notify' : !showNotification }"
+                  class="main-search-input-item closeable removed-margins">
                   <div [ngClass]="{'error': hasErrors ,
                                     'success' : hasSuccessMessages ,
                                     'warning' : hasWarnings ,
@@ -40,14 +42,14 @@
                 <div *ngIf="lf['email'].errors?.required && lf.email.touched"
                   class="main-search-input-item removed-margins">
                   <div class="notification error closeable fullWidth removed-paddings">
-                    <p>Email is required to register.</p>
+                    <p>{{labels.EMAIL_REQUIRED}}.</p>
                   </div>
                 </div>
 
                 <div *ngIf="lf['email'].errors?.email && lf.email.touched"
                   class="main-search-input-item removed-margins">
                   <div class="notification error closeable fullWidth removed-paddings">
-                    <p>Please enter a valid email.</p>
+                    <p>{{labels.VALID_EMAIL}}.</p>
                   </div>
                 </div>
                 <!-- End Email Errors -->
@@ -57,7 +59,7 @@
                 <div *ngIf="lf['password'].errors?.required && lf.password.touched"
                   class="main-search-input-item removed-margins">
                   <div class="notification error closeable fullWidth removed-paddings">
-                    <p>Password is required to register.</p>
+                    <p>{{labels.PASSWORD_REQUIRED}}.</p>
                   </div>
                 </div>
                 <!-- End Password Errors -->
@@ -80,38 +82,41 @@
                 </div>
                 <div class="panel-dropdown-content checkboxes" style="padding: 0px !important;">
                   <input id="check-a" type="checkbox" name="check">
-                  <label for="check-a">Remeber me</label>
+                  <label for="check-a">{{labels.REMEMBER_ME}}</label>
                 </div>
 
                 <div class="panel-dropdown-content" style="padding: 0px !important;">
-                  <label style="cursor: pointer;" (click)="helpers.navigateToRegister()">Forget my password?</label>
+                  <label style="cursor: pointer;"
+                    (click)="helpers.navigateToRegister()">{{labels.FORGOT_PASSWORD}}</label>
                 </div>
 
 
                 <div class="main-search-input-item" style="margin-bottom: 0px;">
-                  <div id="or">OR</div>
+                  <div id="or">{{labels.OR}}</div>
                 </div>
 
 
                 <div class="main-search-input-item">
                   <ul class="social-icons color rounded icons-ul">
-                    <li style="cursor: pointer;" (click)="signInWithFB()"><a class="facebook"><i class="icon-facebook"></i></a></li>
+                    <li style="cursor: pointer;" (click)="signInWithFB()"><a class="facebook"><i
+                          [ngClass]="lang === 'ar' ? 'rtlIcon' : ''" class="icon-facebook"></i></a></li>
                     <!-- <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li> -->
-                    <li style="cursor: pointer;" (click)="signInWithGoogle()"><a class="gplus" ><i class="icon-gplus"></i></a></li>
+                    <li style="cursor: pointer;" (click)="signInWithGoogle()"><a class="gplus"><i
+                          [ngClass]="lang === 'ar' ? 'rtlIcon' : ''" class="icon-gplus"></i></a></li>
                   </ul>
 
-                  <span (click)="helpers.navigateToRegister()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
+                  <span (click)="helpers.navigateToRegister()" style="font-size: 13px; cursor: pointer;"
+                    class="icons-ul">
                     <span>
-                      Create a new account.
+                      {{labels.CREATE_NEW_ACCOUNT}}
                     </span>
                   </span>
 
                 </div>
 
-                <button [disabled]="!loginForm.valid" [ngClass]="{'disabled': !loginForm.valid }"
-                  (click)="login()"
+                <button [disabled]="!loginForm.valid" [ngClass]="{'disabled': !loginForm.valid }" (click)="login()"
                   class="button fullwidth margin-top-5">
-                  Login
+                  {{labels.LOGIN}}
                 </button>
               </div>
             </form>

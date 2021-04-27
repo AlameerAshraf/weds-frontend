@@ -6,6 +6,7 @@ import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/c
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   // Form variables
   registerForm: FormGroup = null;
+  labels: any = {};
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
@@ -38,6 +40,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.initForm();
+    this.loadResources();
     this.actictedRoute.queryParams.subscribe((params) => {
       let isVendor = this.isVendorRegistering = params["vendor"];
       this.bkImage = isVendor == undefined ? this.userRegisterationImage : this.vendorRegisterationImage;
@@ -143,4 +146,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.showNotification = false;
   }
   //#endregion
+  async loadResources() {
+    let providedlang: any = this.actictedRoute.parent.params;
+    let lang = providedlang._value["lang"];
+    let resourceLang = (this.lang =
+      lang == null || lang == undefined ? environment.defaultLang : lang);
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["LOGIN"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }
