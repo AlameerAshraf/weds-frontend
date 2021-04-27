@@ -31,6 +31,7 @@ export class constants {
       "REGISTRY" : "registry",
       "PROFILE_LAYOUT" : "profile-layout",
       "WEDDING_WEBSITE" : "wedding-website",
+      "WEDDING_DETAILS" : "wedding-detail",
 
     }
   };
