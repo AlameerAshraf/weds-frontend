@@ -28,6 +28,7 @@ export class constants {
       "CHECKLIST" : "checklist",
       "BUDGETERS" : "budgeters",
       "EVENTS" : "events",
+      "REGISTRY" : "registry",
       "PROFILE_LAYOUT" : "profile-layout",
       "WEDDING_WEBSITE" : "wedding-website",
 
