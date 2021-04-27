@@ -14503,7 +14503,7 @@ a.close-list-item {
 .buttons-to-right,
 .dashboard-list-box .button.to-right {
   position: absolute;
-  right: 30px;
+  right: 13rem;
   top: 50%;
   transform: translate3d(0, -49%, 0);
   -moz-transform: translate3d(0, -50%, 0);
