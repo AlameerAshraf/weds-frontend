@@ -19,6 +19,21 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
 
   tagsList: tag[] = [];
 
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
+
+  // Search vars!
+  searchableList : tag[] = [];
+  that: any = this;
+  searchKey = undefined;
+  // End search vars!
+
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -48,6 +63,9 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
     this.http.Get(getAllTagsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.tagsList = response.data as tag[];
+        this.tagsList = this.searchableList = this.tagsList.filter(x => x.isRemoved == false) as tag[];
+        this.collectionSize = this.tagsList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -56,9 +74,6 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
 
   };
 
-  pageChange(pageNumber){
-
-  };
 
   editEntity(id: any){
     this.router.navigate([`profile/en/admin/tags-action/update`]);
@@ -100,5 +115,48 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+
+   //#search region functions 
+   search(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.tagsList.filter((aTag) => {
+      return (aTag.description.includes(this.searchKey))
+        || (aTag.name.includes(this.searchKey));
+    });
+    window.scroll(0,0);
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0,0);
+    this.searchableList = this.tagsList;
+    
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.tagsList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+//#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0,0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
+
 
 }

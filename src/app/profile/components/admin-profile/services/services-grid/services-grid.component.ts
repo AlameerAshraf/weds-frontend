@@ -20,6 +20,20 @@ export class ServicesGridComponent implements OnInit {
   categories: category[] = [];
   vendors: vendor[] = [];
 
+     // Paging vars!
+     collectionSize: number = 0;
+     pageSize: any = 5;
+     limit: number;
+     skip: number;
+     showPaging = true;
+     // End paging vars!
+   
+     // Search vars!
+     searchableList : vendorService[] = [];
+     searchKey = undefined;
+     // End search vars!
+   
+
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,private lookupsService: LookupsService,
   private storage: localStorageService,
@@ -51,6 +65,9 @@ export class ServicesGridComponent implements OnInit {
     this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.servicesList = response.data as vendorService[];
+        this.servicesList = this.searchableList = this.servicesList.filter(x => x.isActive == true);
+        this.collectionSize = this.servicesList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -87,10 +104,6 @@ export class ServicesGridComponent implements OnInit {
 
   };
 
-  pageChange(pageNumber){
-
-  };
-
   navigateToCreateNewService(){
     this.router.navigate(['profile/en/admin/services-action/new']);
   }
@@ -111,4 +124,49 @@ export class ServicesGridComponent implements OnInit {
     });
   };
 
+  //#search region functions 
+  search(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.servicesList.filter((aService) => {
+      return (aService.attributes.nameEn.includes(this.searchKey))
+        || (aService.attributes.nameAr.includes(this.searchKey))
+        || (aService.attributes.descriptionEn.includes(this.searchKey))
+        || (aService.attributes.descriptionAr.includes(this.searchKey))
+        || (aService.type.includes(this.searchKey))
+        || (aService.vendorNameAr.includes(this.searchKey)
+        || aService.vendorNameEn.includes(this.searchKey));
+    });
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0,0);
+    this.searchableList = this.servicesList;
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.servicesList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+//#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0,0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
 }

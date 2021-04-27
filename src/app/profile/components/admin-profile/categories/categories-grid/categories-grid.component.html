@@ -11,37 +11,33 @@
   <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
     <span class="trigger">
       <a href="#" style="font-size: 25px !important">
-        <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in posts
+        <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in categories
         <i class="sl sl-icon-plus"></i>
       </a>
     </span>
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
         <div class="col-md-3">
-          <input type="text" placeholder="Enter search critera.">
+          <input type="text" placeholder="search in category name." [(ngModel)] = "searchKey">
         </div>
         <div class="col-md-3">
           <select id="categoriesSegments" class="chosen-select-no-single">
-            <option label="blank">select segment</option>
-            <ng-container *ngFor="let categorySegment of categoriesSegments">
-              <option [selected]="categorySegment.segment == parentMenu"
-                [value]="categorySegment.segment">
+            <option label="blank" [ngValue] = "selectedSearchCategory">select segment</option>
+              <option *ngFor="let categorySegment of categoriesSegments" [value]="categorySegment.segment">
                 {{ categorySegment.name }}</option>
-            </ng-container>
           </select>
         </div>
         <div class="col-md-3">
           <select id="categoriesLayouts" class="chosen-select-no-single">
-            <option label="blank">select service type</option>
-            <ng-container *ngFor="let categoryLayout of categoriesLayouts">
-              <option [selected]="categoryLayout.layout == layout" [value]="categoryLayout.layout">{{
+            <option label="blank" [selected]="selectedSearchLayout == 'empty'" >select service type</option>
+              <option *ngFor="let categoryLayout of categoriesLayouts" [value]="categoryLayout.layout">{{
                 categoryLayout.name }}</option>
-            </ng-container>
           </select>
         </div>
 
-        <div class="col-md-3">
-          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i> Reset </a>
+        <div class="col-md-3" align="right">
+          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> Reset </a>
         </div>
       </div>
     </div>
@@ -74,7 +70,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container  *ngFor="let item of categoriesList">
+            <ng-container  *ngFor="let item of searchableList | slice:skip:limit">
             <tr *ngIf="item.isRemoved == false">
               <td>
                 <p>{{ item.nameEn }}</p>
@@ -103,9 +99,9 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="collectionSize > 0 && showPaging">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="categoriesList.length" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

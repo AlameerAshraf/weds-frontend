@@ -17,8 +17,8 @@
     </span>
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
-        <div class="col-md-3">
-          <input type="text" placeholder="Enter search critera." [(ngModel)] = "searchKey">
+        <div class="col-md-4">
+          <input type="text" placeholder="search in post name." [(ngModel)] = "searchKey">
         </div>
         <div class="col-md-3">
           <select id="cats" class="chosen-select-no-single">
@@ -28,7 +28,7 @@
             </option>
         </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-5" align="right">
           <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
           <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> Reset </a>
         </div>
