@@ -18,18 +18,19 @@
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
         <div class="col-md-3">
-          <input type="text" placeholder="Enter search critera.">
+          <input type="text" placeholder="Enter search critera." [(ngModel)] = "searchKey">
         </div>
         <div class="col-md-3">
           <select id="cats" class="chosen-select-no-single">
             <option label="blank">Select category</option>
-            <option>
-              Search based on ...
+            <option *ngFor="let category of categoriesLookups" [value]="category._id">
+              {{ category.nameEn }}
             </option>
         </select>
         </div>
         <div class="col-md-3">
-          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i> Reset </a>
+          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> Reset </a>
         </div>
       </div>
     </div>
@@ -63,7 +64,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of postsList">
+            <ng-container *ngFor="let item of searchableList | slice:skip:limit">
               <tr>
                 <td>
                   <p style="font-size: 20px; font-weight: 600; overflow:hidden !important;">{{item.titleEn}}</p>
@@ -125,5 +126,12 @@
         </table>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="collectionSize > 0 && showPaging">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
+    </weds-paging>
   </div>
 </div>
