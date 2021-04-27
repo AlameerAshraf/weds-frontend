@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: 'save-the-day',
     component: COMPONENTS.SaveTheDayTemplateComponent
+  },
+  {
+    path: 'violet-flower',
+    component: COMPONENTS.VioletFlowerComponent
   }
 ];
 
