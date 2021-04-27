@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
+import { constants, resources } from 'src/app/core';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-wedding-details',
@@ -7,8 +9,9 @@ import { Component, ElementRef, Inject, OnInit } from '@angular/core';
   styleUrls: ['./wedding-details.component.scss']
 })
 export class WeddingDetailsComponent implements OnInit {
-
-  constructor(@Inject(DOCUMENT) private document: any,
+  lang: string;
+  labels: any = {};
+  constructor(@Inject(DOCUMENT) private document: any,private resources: resources,
   private elementRef: ElementRef,) { }
 
   ngOnInit() {
@@ -24,4 +27,21 @@ export class WeddingDetailsComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["WEDDING_DETAILS"]
+    )) as any;
+    this.labels = resData.res;
+
+  }
 }
