@@ -11,5 +11,27 @@
 "PENDING": "تحت المراجعة",
 "ALL": "الكل",
 "SEARCH": "بحث ",
-"EMAIL": "البريد الاليكتروني"
+"EMAIL": "البريد الاليكتروني",
+
+"SELECT_TEMPLATE":"اختار قالب الموقع",
+"WEDDING_DETAIL":"تفاصيل الفرح",
+"WEDDING_PRE_DATE":"معاد كتب الكتاب/ إكليل"  ,
+"WEDDING_DATE":"معاد الفرح" ,
+"UPLOAD_COVER_PHOTO":"ارفق صورة الغلاف",
+"COVER_PHOTO":"صورة الغلاف",
+"WEB_URL":"رابط الموقع",
+"WEB_URL_PLACEHOLDER":" رابط الموقع ",
+"LOCATION_SEARCH":"ابحث عن مكان مناسب",
+"LOCATION_SEARCH_PLACEHOLDER":"مرسيليا ، فرنسا",
+"VENUE":"عنوان فاعة الزفاف",
+"GALLERY":"الصور",
+"UPLOAD_PHOTO":"ارفق صورة",
+"VENUE_DETAILS":"عنوان بالتفاصي",
+
+"UPDATE": "تعديل",
+"DELETE": "حذف",
+"EDIT": "تعديل",
+"SAVE": "حفظ",
+"CANCEL": "إلغاء"
+
 }

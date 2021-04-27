@@ -4,7 +4,9 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, responseModel, theme, urls, weddingWebsite, localStorageService } from 'src/app/core';
+import { constants, httpService, responseModel, theme, urls, weddingWebsite, localStorageService,resources } from 'src/app/core';
+import { environment } from 'src/environments/environment';
+
 //import { } from '@types/googlemaps';
 declare const google: any
 
@@ -47,10 +49,11 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   themeIdValid: boolean;
   weddingTimeValid: boolean;
   routeURLValid: boolean;
-
+  labels:any={};
+  lang:string;
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private router: Router, private http: httpService,
+    private ngZone: NgZone, private router: Router, private http: httpService,private resources: resources,
     private ngxSpinner: NgxSpinnerService, private toastr: ToastrService, private storage: localStorageService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
@@ -61,6 +64,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     this.mapsLoader();
     this.loadThemesTemplates();
     this.getCurrentWeddingWebsiteDetails();
+    this.loadResources();
   }
 
   getCurrentWeddingWebsiteDetails(){
@@ -362,4 +366,19 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     });
   };
   //#endregion
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["WEDDING_WEBSITE"]
+      )) as any;
+      this.labels = resData.res;
+  };
 }
