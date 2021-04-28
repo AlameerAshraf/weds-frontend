@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { httpService } from 'src/app/core';
+import { httpService, user, weddingWebsite } from 'src/app/core';
 import { weddingTemplatesHelper } from '../../helpers';
 
 @Component({
@@ -11,20 +11,26 @@ import { weddingTemplatesHelper } from '../../helpers';
 export class VioletFlowerComponent implements OnInit {
   helper: weddingTemplatesHelper;
   routingURL: any;
+  weddingData: weddingWebsite;
+  ownerData: any;
+  userInfo: any;
 
   constructor(private httpService: httpService , private router: Router, private activatedRoute: ActivatedRoute) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.routingURL = params["me"];
     });
 
 
     this.helper = new weddingTemplatesHelper(this.httpService , this.router);
+    this.weddingData = await this.helper.getWeddingWebisteData(this.routingURL) as any;
+    this.userInfo = this.weddingData["user"];
     this.helper.getWeddingWebsiteOwner(this.routingURL);
-    let weddingData = this.helper.getWeddingWebisteData(this.routingURL)
+
+    console.log(this.weddingData["wedding"] , this.userInfo)
   }
 
   //#region Helpers
