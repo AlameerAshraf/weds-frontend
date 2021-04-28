@@ -27,12 +27,12 @@ export class ServicesGridComponent implements OnInit {
      skip: number;
      showPaging = true;
      // End paging vars!
-   
+
      // Search vars!
      searchableList : vendorService[] = [];
      searchKey = undefined;
      // End search vars!
-   
+
 
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,private lookupsService: LookupsService,
@@ -87,7 +87,7 @@ export class ServicesGridComponent implements OnInit {
   async getLookups() {
     this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
     this.storage.setLocalStorage("weds360#categories", this.categories);
-    
+
     let allTags = (await this.lookupsService.getTags()) as responseModel;
     this.tagsAr = allTags.data.filter((tag: any) => {
       return tag.langauge == "Ar";
@@ -101,14 +101,14 @@ export class ServicesGridComponent implements OnInit {
 
     this.vendors = ((await this.lookupsService.getVendorsAsLookups()) as responseModel).data;
     this.storage.setLocalStorage("weds360#vendors", this.vendors);
-
   };
 
-  navigateToCreateNewService(){
+  async navigateToCreateNewService(){
+    await this.getLookups();
     this.router.navigate(['profile/en/admin/services-action/new']);
   }
 
-  
+
   ngAfterViewInit(): void {
     this.loadScripts();
   };
@@ -124,7 +124,7 @@ export class ServicesGridComponent implements OnInit {
     });
   };
 
-  //#search region functions 
+  //#search region functions
   search(){
     this.showPaging = false;
     this.ngxSpinner.show();

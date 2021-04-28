@@ -67,9 +67,9 @@ export class VendorServicesComponent implements OnInit {
 
   };
 
-  editEntity(id: any) {
+  async editEntity(id: any) {
     this.ngxSpinner.show();
-    this.getLookups();
+    await this.getLookups();
     let targetTheme = this.servicesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#vendorServiceOnEdit", targetTheme);
     this.router.navigate([`profile/en/vendor/services-action/update`]);
@@ -80,7 +80,7 @@ export class VendorServicesComponent implements OnInit {
   async getLookups() {
     this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
     this.storage.setLocalStorage("weds360#categories", this.categories);
-    
+
     let allTags = (await this.lookupsService.getTags()) as responseModel;
     this.tagsAr = allTags.data.filter((tag: any) => {
       return tag.langauge == "Ar";
@@ -93,7 +93,8 @@ export class VendorServicesComponent implements OnInit {
     this.storage.setLocalStorage("weds360#tagsEn", this.tagsEn);
   };
 
-  navigateToCreateNewService(){
+  async navigateToCreateNewService(){
+    await this.getLookups();
     this.router.navigate(['profile/en/vendor/services-action/new']);
   }
 
@@ -112,5 +113,5 @@ export class VendorServicesComponent implements OnInit {
     });
   };
 
-  
+
 }
