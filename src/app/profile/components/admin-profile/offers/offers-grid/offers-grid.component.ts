@@ -19,6 +19,20 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
 
   offersList :  offer[] = [];
 
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
+
+  // Search vars!
+  searchableList : offer[] = [];
+  searchKey = undefined;
+  // End search vars!
+
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -49,16 +63,14 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
 
     this.http.Get(getAllOffersURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-        this.offersList = response.data as offer[];
+        this.offersList = this.searchableList = response.data as offer[];
+        this.collectionSize = this.offersList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
       }
     });
-
-  };
-
-  pageChange(pageNumber){
 
   };
 
@@ -102,4 +114,47 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+
+   //#search region functions 
+   search(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.offersList.filter((aOffer) => {
+      return  (aOffer.titleEn.includes(this.searchKey)
+        || aOffer.titleAr.includes(this.searchKey))
+        || (aOffer.descriptionEn.includes(this.searchKey)
+        || aOffer.descriptionAr.includes(this.searchKey));
+    });
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0,0);
+    this.searchableList = this.offersList;
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.offersList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+//#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0,0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
 }

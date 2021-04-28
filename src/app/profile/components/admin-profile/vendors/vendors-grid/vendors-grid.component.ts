@@ -18,6 +18,20 @@ export class VendorsGridComponent implements OnInit {
 
   vendorsList: vendor[] = [];
 
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
+
+  // Search vars!
+  searchableList : vendor[] = [];
+  searchKey = undefined;
+  // End search vars!
+
+
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -48,6 +62,9 @@ export class VendorsGridComponent implements OnInit {
     this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.vendorsList = response.data as vendor[];
+        this.vendorsList = this.searchableList = this.vendorsList.filter(x => x.isActive == true);
+        this.collectionSize = this.vendorsList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -81,10 +98,6 @@ export class VendorsGridComponent implements OnInit {
     
   }
 
-  pageChange(pageNumber){
-
-  };
-
   navigateToCreateNewVendor(){
     this.router.navigate(['profile/en/admin/vendors-action/new']);
   }
@@ -103,5 +116,48 @@ export class VendorsGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+
+   //#search region functions 
+   search(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.vendorsList.filter((aVendor) => {
+      return (aVendor.email != undefined ? aVendor.email.includes(this.searchKey) : "")
+        || (aVendor.phone.includes(this.searchKey))
+        || (aVendor.nameEn.includes(this.searchKey)
+        || aVendor.nameAr.includes(this.searchKey));
+    });
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0,0);
+    this.searchableList = this.vendorsList;
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.vendorsList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+//#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0,0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
 
 }
