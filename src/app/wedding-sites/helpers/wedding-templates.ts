@@ -5,6 +5,7 @@ import { constants, httpService, responseModel, urls, weddingWebsite } from './.
 export class weddingTemplatesHelper {
   weddingWebsite: weddingWebsite = new weddingWebsite();
   currentUserEmail: any;
+  userInfo: any;
 
   constructor(private httpService: httpService, private router: Router){
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
@@ -17,7 +18,11 @@ export class weddingTemplatesHelper {
       this.httpService.Get(weddingDataURL , {}).subscribe((response: responseModel) => {
         if(!response.error){
           let weddingData = response.data["weddingData"];
-          console.log(weddingData)
+          let userInfo = response.data["userInfo"];
+          this.weddingWebsite = weddingData["website"];
+          resolve({ wedding: weddingData , user: userInfo });
+        } else {
+          resolve({ error: true });
         }
       });
     })
@@ -29,7 +34,6 @@ export class weddingTemplatesHelper {
     this.httpService.Get(ownerURL , {}).subscribe((response: responseModel) => {
       if(!response.error){
         let ownerEmail = response.data["email"];
-        console.log(ownerEmail , this.currentUserEmail)
         this.validateAuthorityToViewWeddingWebsite(ownerEmail);
       }
     });

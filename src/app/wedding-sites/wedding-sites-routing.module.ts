@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'violet-flower',
     component: COMPONENTS.VioletFlowerComponent
+  },
+  {
+    path: 'spring-garden',
+    component: COMPONENTS.SpringGardenComponent
   }
 ];
 

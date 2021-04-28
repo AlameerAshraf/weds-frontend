@@ -8,7 +8,8 @@ import * as COMPONENTS from './components';
 @NgModule({
   declarations: [
     COMPONENTS.SaveTheDayTemplateComponent,
-    COMPONENTS.VioletFlowerComponent
+    COMPONENTS.VioletFlowerComponent,
+    COMPONENTS.SpringGardenComponent
   ],
   imports: [
     CommonModule,
