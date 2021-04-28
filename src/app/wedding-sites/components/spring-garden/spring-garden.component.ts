@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { httpService, weddingWebsite } from 'src/app/core';
+import { httpService, registery, weddingWebsite } from 'src/app/core';
 import { weddingTemplatesHelper } from '../../helpers';
 
 @Component({
@@ -17,6 +17,8 @@ export class SpringGardenComponent implements OnInit {
   userInfo: any;
   websiteData: weddingWebsite = new weddingWebsite();
   weddingTime: string;
+  preMartialWeddingTime: string;
+  registryList: registery[] = [];
 
   constructor(private httpService: httpService , private router: Router, private activatedRoute: ActivatedRoute,
     private titleService: Title) {
@@ -37,6 +39,9 @@ export class SpringGardenComponent implements OnInit {
     this.helper.getWeddingWebsiteOwner(this.routingURL);
 
     this.weddingTime = new Date(this.websiteData.weddingTime).toDateString();
+    this.preMartialWeddingTime = new Date(this.websiteData.preWeddingMaritalCeremony).toDateString();
+    this.registryList = this.weddingData["wedding"].registery as registery[];
+
     this.titleService.setTitle(`${this.userInfo.name} & ${this.userInfo.partener.name} ❤ are getting married!`);
 
     console.log(this.weddingData["wedding"] , this.websiteData)
