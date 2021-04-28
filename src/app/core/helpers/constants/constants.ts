@@ -77,8 +77,12 @@ export class constants {
         "name" : "Spring"
       },
       {
-        "route" : "flowers",
-        "name" : "Flowers & Spring"
+        "route" : "violet-flower",
+        "name" : "Violet flower"
+      },
+      {
+        "route" : "spring-garden",
+        "name" : "Spring garden"
       }
     ]
   };
