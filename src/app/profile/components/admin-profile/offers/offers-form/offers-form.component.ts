@@ -1,3 +1,4 @@
+import { LookupsService } from './../../../../../core/helpers/lookups/lookups.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
@@ -16,9 +17,10 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   editingMode = "new";
   that = this;
   vendor = "";
+  vendors: vendor[] = [];
 
   currentUserEmail: string;
-  offersVendors : any; 
+  offersVendors : any;
   offer: offer = {
     image: "assets/images/defaults/wedding/cover-photo.png",
     descriptionAr: "",
@@ -32,7 +34,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   constructor(private ngxSpinner: NgxSpinnerService, private router: Router,
     @Inject(DOCUMENT) private document: any,private activatedRoute: ActivatedRoute,
      private elementRef: ElementRef,private storage: localStorageService,
-     private http: httpService,    private toastr: ToastrService) {
+     private http: httpService, private toastr: ToastrService, private lookupsService: LookupsService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
       this.activatedRoute.params.subscribe((params) => {
@@ -40,11 +42,13 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       });
      }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.loadScripts();
     this.loadOffersVendor();
     this.initOfferView();
     this.documentSelectors();
+
+    await this.getLookups();
   }
 
   loadOffersVendor(){
@@ -61,6 +65,10 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
     });
   };
 
+  async getLookups() {
+    this.vendors = ((await this.lookupsService.getVendorsAsLookups()) as responseModel).data;
+  };
+
   initOfferView(){
     if(this.editingMode == "update"){
       this.offer = this.storage.getLocalStorage("weds360#offerOnEdit");
@@ -69,7 +77,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
 
   createNewEntity(){
     this.ngxSpinner.show();
-    this.offer.vendor = this.vendor;
+    // this.offer.vendor = this.vendor;
 
     let createURL = `${urls.CREATE_OFFER}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(createURL , {} , { "offer" : this.offer }).subscribe((response: responseModel) => {
@@ -86,7 +94,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
 
   updateExistingEntity(){
     this.ngxSpinner.show();
-    this.offer.vendor = this.vendor == "" ? this.offer.vendor : this.vendor;
+    // this.offer.vendor = this.vendor == "" ? this.offer.vendor : this.vendor;
 
     let updateURL = `${urls.UPDATE_OFFER}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.offer._id}`;
     this.http.Post(updateURL , {} , { "offer" : this.offer }).subscribe((response: responseModel) => {
@@ -127,10 +135,10 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
 
   documentSelectors(){
     $("#offerVendors").change({ angularThis: this.that } ,function(e, params){
-      e.data.angularThis.vendor = $("#offerVendors").chosen().val();
+      e.data.angularThis.offer.vendor = $("#offerVendors").chosen().val();
     });
     $("#offersResides").change({ angularThis: this.that } ,function(e, params){
-      e.data.angularThis.layoutRouting = $("#offersResides").chosen().val();
+      // e.data.angularThis.layoutRouting = $("#offersResides").chosen().val();
     });
   };
 
