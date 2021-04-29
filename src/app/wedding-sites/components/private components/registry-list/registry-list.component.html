@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>This is my wish list 😍<small></small></h2>
+
+  <div class="text-box" style="text-align: center; cursor: pointer;">
+    <a (click)="downloadImage()" class="btn btn-white btn-animate">click here to download list</a>
+  </div>
+  <br>
+
+  <ul #screen class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Image</div>
+      <div class="col col-2">Price</div>
+      <div class="col col-3">Adrress</div>
+    </li>
+    <li class="table-row" *ngFor="let wish of myList">
+      <div class="col col-1" data-label="Job Id">
+        <img [src]="wish.image">
+      </div>
+      <div class="col col-2" data-label="Customer Name">
+        ${{ wish.price }}
+      </div>
+      <div class="col col-3" data-label="Amount">
+        {{ wish.address }}
+      </div>
+    </li>
+  </ul>
+
+  <div id="download">
+    <img #canvas>
+    <a #downloadLink></a>
+  </div>
+</div>

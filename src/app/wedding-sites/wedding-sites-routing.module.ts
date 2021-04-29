@@ -5,6 +5,10 @@ import * as COMPONENTS from './components';
 
 const routes: Routes = [
   {
+    path: 'my-wishes-list',
+    component: COMPONENTS.RegistryListComponent
+  },
+  {
     path: 'save-the-day',
     component: COMPONENTS.SaveTheDayTemplateComponent
   },

@@ -3,7 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constants, httpService, registery, responseModel, urls, weddingWebsite } from 'src/app/core';
+import { constants, httpService, registery, responseModel, urls, weddingWebsite , localStorageService } from 'src/app/core';
 import { weddingTemplatesHelper } from '../../helpers';
 
 @Component({
@@ -37,6 +37,7 @@ export class SpringGardenComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private toaster: ToastrService,
+    private storage: localStorageService,
     private titleService: Title) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
@@ -70,6 +71,11 @@ export class SpringGardenComponent implements OnInit {
   scrollToElement($element): void {
     console.log($element);
     $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  };
+
+  navigateToRegistryList(){
+    this.storage.setLocalStorage("tempWishesList" , this.weddingData["wedding"].registery);
+    window.open(`/sites/en/my-wishes-list?me=${this.routingURL}`);
   };
   //#endregion
 

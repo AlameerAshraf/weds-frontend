@@ -21,13 +21,12 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(cover)">Cover Photo</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(when)">When</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(album)">Album</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(album)">My Wishes</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="navigateToRegistryList()">Registry List</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(venue)">Venue location</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!-- Masthead-->
         <header class="masthead bkgrnd">
             <div class="container h-100 ">
                 <div class="row h-100 align-items-center justify-content-center text-center">
@@ -42,14 +41,15 @@
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5" style="font-size: 28px;">
                           " The joy of this wedding is incomplete without your presence in it. You have shared in our lives with your friendship. Let’s share the joy together. "</p>
-                        <a (click)="scrollToElement(when)" class="btn btn-primary btn-primary-garden btn-xl js-scroll-trigger">
+                        <a (click)="scrollToElement(venue)" class="btn btn-primary btn-primary-garden btn-xl js-scroll-trigger">
                           Venue location
                         </a>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- About-->
+
+        <!-- Our story  -->
         <section class="page-section bg-primary-garden" id="about" #story>
             <div class="container">
                 <div class="row justify-content-center">
@@ -64,9 +64,9 @@
                 </div>
             </div>
         </section>
-        <!-- Services-->
 
 
+        <!-- Cover photo  -->
         <section #cover class="page-section bg-dark text-white cover"
           [style.background]="'url(' + websiteData.coverImage + ')'"
             style="
@@ -77,6 +77,7 @@
         </section>
 
 
+        <!-- Time  -->
         <section class="page-section" id="services" style="background-color: #64a527;" #when>
             <div class="container">
                 <h2 class="text-center mt-0" style="color: white !important;position: relative; bottom: 70px;">We will be waiting for you 😘</h2>
@@ -105,19 +106,8 @@
                 </div>
             </div>
         </section>
-        <!-- Portfolio-->
-        <div id="portfolio" #album>
-            <div class="container-fluid p-0">
-                <div class="row no-gutters">
-                  <ng-container *ngFor="let image of websiteData.album" >
-                    <div class="col-lg-4 col-sm-6">
-                      <img class="img-fluid" [src]="image" alt="" />
-                    </div>
-                  </ng-container>
-                </div>
-            </div>
-        </div>
-        <!-- Call to action-->
+
+        <!-- Album and Guest Album  -->
         <section class="page-section bg-dark text-white" #album>
           <div class="container text-center">
             <h2 class="text-white mt-0">It will be our great pleasure sharing your moments with us, it will be remebered to the rest of our lives 😍</h2>
@@ -131,7 +121,19 @@
               </ngx-dropzone>
           </div>
         </section>
+        <div id="portfolio">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters">
+                  <ng-container *ngFor="let image of websiteData.album" >
+                    <div class="col-lg-4 col-sm-6">
+                      <img class="img-fluid" [src]="image" alt="" />
+                    </div>
+                  </ng-container>
+                </div>
+            </div>
+        </div>
 
+        <!-- Vneu location  -->
         <section class="page-section bg-primary-garden" id="contact" style="padding: 70px;" #venue>
           <div class="container">
             <div class="row justify-content-center">
