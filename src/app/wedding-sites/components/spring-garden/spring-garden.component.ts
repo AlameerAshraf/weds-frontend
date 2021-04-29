@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -26,10 +27,14 @@ export class SpringGardenComponent implements OnInit {
   files: File[] = [];
   currentUserEmail: string;
 
+  latitude = 0;
+  longitude = 0;
+  zoom = 12;
 
   constructor(private httpService: httpService , private router: Router,
     private activatedRoute: ActivatedRoute,
     private spinner: NgxSpinnerService,
+    private toaster: ToastrService,
     private titleService: Title) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
@@ -49,7 +54,10 @@ export class SpringGardenComponent implements OnInit {
 
     this.weddingTime = new Date(this.websiteData.weddingTime).toDateString();
     this.preMartialWeddingTime = new Date(this.websiteData.preWeddingMaritalCeremony).toDateString();
+    this.longitude = this.websiteData.location.longtitude;
+    this.latitude = this.websiteData.location.latitude;
     this.registryList = this.weddingData["wedding"].registery as registery[];
+    this.loadGuestAlbum();
 
     this.titleService.setTitle(`${this.userInfo.name} & ${this.userInfo.partener.name} ❤ are getting married!`);
 
@@ -73,7 +81,7 @@ export class SpringGardenComponent implements OnInit {
       formData.append("image", imageFile);
       formData.append("targetEntity", constants.S3_CONTAINERS["VISITORS_WEDDING_SITE"]);
       formData.append("isSlefAssigned", "true");
-      formData.append("targetUserEmail", this.websiteData._id);
+      formData.append("targetUserEmail", this.userInfo.email);
 
       let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
       this.httpService.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
@@ -101,10 +109,31 @@ export class SpringGardenComponent implements OnInit {
     this.bindTempFilesToWeddingObject();
   };
 
-  bindTempFilesToWeddingObject() {
-    this.websiteData.album = [];
+  async bindTempFilesToWeddingObject() {
+    this.websiteData.guestAlbum = [];
     this.tempAlbumFiles.forEach((imge) => {
-      this.websiteData.album.push(imge.url);
+      this.websiteData.guestAlbum.push(imge.url);
+    });
+
+    await this.updateWeddingWebsite();
+  };
+
+  updateWeddingWebsite(){
+    let updateWebSiteURL = `${urls.UPDATE_WEDDING_WEBSITE}/${constants.APP_IDENTITY_FOR_USERS}/${this.userInfo.email}`;
+    console.log(this.userInfo.email)
+
+    this.httpService.Post(updateWebSiteURL , {} , { "website" : this.websiteData }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.toaster.success("Image has been added" , "Thanks for sharing the love with us! 😍");
+      }
+    });
+  };
+
+  loadGuestAlbum(){
+    this.websiteData.guestAlbum.forEach(async (anImage) => {
+      let imageFile = await this.convertURLtoFile(anImage);
+      this.files.push(imageFile);
+      this.tempAlbumFiles.push({ name: imageFile.name , url: anImage });
     });
   };
 

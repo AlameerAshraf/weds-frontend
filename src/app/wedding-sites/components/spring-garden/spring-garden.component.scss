@@ -13,6 +13,29 @@
 }
 
 
+.btn-primary-white {
+  color: #fff;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+
 .bg-primary-garden {
   background-color: #64a527 !important;
+}
+
+/* Map */
+
+agm-map{
+  height: 30rem;
+}
+
+.map {
+  height: 30rem;
+}
+
+@media (max-width: 992px) {
+  .map {
+    height: 75%;
+  }
 }
