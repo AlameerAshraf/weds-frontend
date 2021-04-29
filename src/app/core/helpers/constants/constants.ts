@@ -104,6 +104,10 @@ export class constants {
       {
         "route" : "spring-garden",
         "name" : "Spring garden"
+      },
+      {
+        "route" : "beach",
+        "name" : "Beach"
       }
     ]
   };
