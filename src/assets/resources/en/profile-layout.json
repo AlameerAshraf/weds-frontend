@@ -45,5 +45,7 @@
   "GALLERY": "Gallery",
   "UPLOAD_COVER_PHOTO": "Upload Cover Photo",
   "COVER_PHOTO": "Cover Photo",
-  "SOCIAL_DETAILS": " Social Details  "
+  "SOCIAL_DETAILS": " Social Details  ",
+  "EDIT_COVER_PHOTO": "Edit Cover Photo",
+  "REMOVE_COVER_PHOTO": "Remove Cover Photo"
 }

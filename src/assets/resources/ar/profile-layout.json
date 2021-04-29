@@ -45,5 +45,7 @@
   "GALLERY": "الصور",
   "UPLOAD_COVER_PHOTO": "ارفق صورة غلاف ",
   "COVER_PHOTO": "صورة الغلاف",
-  "SOCIAL_DETAILS": " مواقع التواصل الاجتماعي"
+  "SOCIAL_DETAILS": " مواقع التواصل الاجتماعي",
+  "EDIT_COVER_PHOTO": "تعديل صورة الغلاف",
+  "REMOVE_COVER_PHOTO": "حذف صورة الغلاف"
 }
