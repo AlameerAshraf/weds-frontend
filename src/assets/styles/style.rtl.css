@@ -14822,7 +14822,7 @@ a.close-list-item {
 /* Content */
 .list-box-listing-content {
   flex: 1;
-  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .list-box-listing-content .inner {

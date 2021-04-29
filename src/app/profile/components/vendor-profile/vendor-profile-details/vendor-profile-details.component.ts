@@ -202,7 +202,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("Vendor has been saved succesfully", "Vendor has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/vendor/overview');
+        this.router.navigateByUrl(`/profile/${this.lang}/vendor/overview`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "Ooh Sorry, your vendor couldn't created on the server!");
