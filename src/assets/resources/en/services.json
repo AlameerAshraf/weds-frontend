@@ -54,7 +54,6 @@
   "GENDER": "Gender",
   "MALE": "Male",
   "FEMALE": "Female",
-  "DESC": "Description",
   "UPLOAD_COVER_PHOTO": " Cover Photo",
   "UPLOAD_PHOTO": "Upload Photo",
   "VENDOR_INFO": " Basic Information",
@@ -63,7 +62,5 @@
   "CANCEL": "Cancel",
   "DELETE": "Delete",
   "EDIT": "Edit",
-  "UPDATE": "Update",
-  "TYPE": "Type"
-
+  "UPDATE": "Update"
 }
