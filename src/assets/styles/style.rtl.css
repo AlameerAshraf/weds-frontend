@@ -3332,6 +3332,7 @@ input[type="range"]:focus + .rangeslider .rangeslider__handle {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+  direction:ltr;
 }
 
 .chosen-container * {
@@ -21514,4 +21515,25 @@ div.layout-style {
   bottom: 15px;
   right: 15px;
   width: auto;
+}
+.button-to-left{
+  position: absolute;
+  left: 13rem !important;
+  top: 50%;
+  transform: translate3d(0, -49%, 0);
+  -moz-transform: translate3d(0, -50%, 0);
+  opacity: 0;
+  transition: 0.4s;
+  box-shadow: 0px 0px 10px 15px #fbfbfb;
+}
+li:hover .button-to-left,
+li:hover .button.to-left {
+  opacity: 1;
+}
+
+.button-to-left {
+  box-shadow: none;
+}
+.button-to-left .button {
+  margin-left: 2px;
 }
