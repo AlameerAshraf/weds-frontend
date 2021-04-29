@@ -131,7 +131,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     let loadUserURL = `${urls.GET_USER_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
     this.http.Get(loadUserURL, { "role": atob(window.localStorage.getItem("weds360#role")) }).subscribe((response: responseModel) => {
       console.log({ response })
-      if (!response.error && response.data && response.data.vendorRefrence) {
+      if (!response.error) {
         this.ngxSpinner.hide();
         this.vendor = response.data.vendorRefrence;
         this.mapData();
