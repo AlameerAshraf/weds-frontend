@@ -13,7 +13,8 @@ import { AgmCoreModule } from '@agm/core';
   declarations: [
     COMPONENTS.SaveTheDayTemplateComponent,
     COMPONENTS.VioletFlowerComponent,
-    COMPONENTS.SpringGardenComponent
+    COMPONENTS.SpringGardenComponent,
+    COMPONENTS.RegistryListComponent
   ],
   imports: [
     CommonModule,
