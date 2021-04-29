@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,6 +7,7 @@ import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
 
 import * as COMPONENTS from './components';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,15 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     CommonModule,
     WeddingSitesRoutingModule,
     NgxSpinnerModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAnZPhwhppJByAoyUEzJtF31F0TalEoiYA',
+      libraries: ['places']
+    }),
   ],
   providers: [
-    NgxSpinnerService
+    NgxSpinnerService,
+    ToastrService
   ]
 })
 export class WeddingSitesModule { }
