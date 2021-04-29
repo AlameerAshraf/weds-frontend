@@ -25,7 +25,6 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   address: any;
   @ViewChild('search', { static: true }) public searchElementRef: ElementRef;
 
-  files: File[] = [];
 
   private geoCoder: any;
   currentUserEmail: string;
@@ -33,7 +32,10 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
   themesTemplates: theme[] = [];
   addressDetails: any[] = [];
+
   tempAlbumFiles: any[] = [];
+  files: File[] = [];
+
 
   weddingWebsite: weddingWebsite = {
     coverImage : "assets/images/defaults/wedding/cover-photo.png",

@@ -31,6 +31,7 @@ export class vendor {
     isFeatured?: Boolean = false;
     isPublished?: boolean = false;
     isApproved?: boolean = false;
+    isActive?: boolean = false;
     featuredImage?: string = "";
     featuredVideo?: string = "";
     numberOfBookmarks?: number = 0;

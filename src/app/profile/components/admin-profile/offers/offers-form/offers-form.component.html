@@ -38,7 +38,7 @@
                     <div class="col-md-6">
                         <h5>Vendor</h5>
                         <select id="offerVendors" class="chosen-select-no-single">
-                            <ng-container  *ngFor="let offerVendor of offersVendors">
+                            <ng-container  *ngFor="let offerVendor of vendors">
                             <option [selected] = "offerVendor._id === offer.vendor" [value]="offerVendor._id">{{ offerVendor.nameEn }}</option>
                         </ng-container>
                         </select>

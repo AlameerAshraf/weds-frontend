@@ -6,6 +6,28 @@
   </div>
 </div>
 
+<div class="style-2">
+  <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
+    <span class="trigger">
+      <a href="#" style="font-size: 25px !important">
+        <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in categories
+        <i class="sl sl-icon-plus"></i>
+      </a>
+    </span>
+    <div class="toggle-container" style="padding-bottom: 0px !important; ">
+      <div class="row with-forms">
+        <div class="col-md-5">
+          <input type="text" placeholder="search in service name, description & vendor name." [(ngModel)] = "searchKey">
+        </div>
+
+        <div class="col-md-6" align="right">
+          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> Reset </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-lg-12 col-md-12">
@@ -26,7 +48,7 @@
         <table class="table borderless">
           <thead>
             <tr>
-              <th scope="col" width="20%">Service Name</th>
+              <th scope="col" width="20%">Service Type</th>
               <th scope="col" width="20%">Vendor Name</th>
               <th scope="col" width="20%">Service Name</th>
               <th scope="col" width="30%">Service Description</th>
@@ -34,7 +56,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of servicesList">
+            <ng-container *ngFor="let item of searchableList | slice:skip:limit">
               <tr>
                 <td>
                   <p >{{ item.type.toLowerCase() }}</p>
@@ -63,9 +85,9 @@
 
 <div class="clearfix"></div>
 
-<div class="row">
+<div class="row" *ngIf="collectionSize > 0 && showPaging">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="servicesList.length" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

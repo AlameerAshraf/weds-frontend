@@ -20,9 +20,9 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(story)">Our story</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(cover)">Cover Photo</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(when)">When</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(cover)">Album</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(cover)">My Wishes</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(cover)">Venue location</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(album)">Album</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(album)">My Wishes</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="scrollToElement(venue)">Venue location</a></li>
                     </ul>
                 </div>
             </div>
@@ -79,120 +79,95 @@
 
         <section class="page-section" id="services" style="background-color: #64a527;" #when>
             <div class="container">
-                <h2 class="text-center mt-0" style="color: white !important;position: relative; bottom: 70px;">At Your Service</h2>
-                <hr class="divider light my-4" style="color: white !important;position: relative; bottom: 70px;"/>
+                <h2 class="text-center mt-0" style="color: white !important;position: relative; bottom: 70px;">We will be waiting for you 😘</h2>
+                <!-- <hr class="divider light my-4" style="color: white !important;position: relative; bottom: 70px;"/> -->
                 <div class="row">
                     <div class="col-lg-6 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i style="color:white;font-size: 90px; margin-bottom: 10px;" class="sl sl-icon-people"></i>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                        <div class="mt-5" style="margin: 0px !important;">
+                            <i style="color:white;font-size: 80px; margin-bottom: 10px;" class="im im-icon-Bakelite"></i>
+                            <h3 class="h4 mb-2" style="margin-top: 10px;font-size: 33px; color: white;">Pre wedding martial cermony</h3>
+                            <p class="text-muted mb-0"
+                              style="color: #c2c2c2 !important; font-size: 35px;font-weight: 600;">
+                              <i class="fa fa-calendar-check-o"></i> On, {{ preMartialWeddingTime }}
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i style="color:white;font-size: 90px; margin-bottom: 10px;" class="sl sl-icon-people"></i>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                        <div class="mt-5" style="margin: 0px !important;">
+                            <i style="color:white;font-size: 80px; margin-bottom: 10px;" class="im im-icon-Dress"></i>
+                            <h3 class="h4 mb-2" style="margin-top: 10px;font-size: 33px; color: white;">Wedding cermony</h3>
+                            <p class="text-muted mb-0"
+                              style="color: #c2c2c2 !important; font-size: 35px;font-weight: 600;">
+                              <i class="fa fa-calendar-check-o"></i> On, {{ weddingTime }}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Portfolio-->
-        <div id="portfolio">
+        <div id="portfolio" #album>
             <div class="container-fluid p-0">
                 <div class="row no-gutters">
+                  <ng-container *ngFor="let image of websiteData.album" >
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/1.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
+                      <img class="img-fluid" [src]="image" alt="" />
                     </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/3.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/4.jpg">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/4.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/5.jpg" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/6.jpg">
-                            <img class="img-fluid" src="assets/styles/themes/theme_1/assets/img/portfolio/thumbnails/2.jpg" alt="" />
-                            <div class="portfolio-box-caption p-3">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
+                  </ng-container>
                 </div>
             </div>
         </div>
         <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
-            </div>
+        <section class="page-section bg-dark text-white" #album>
+          <div class="container text-center">
+            <h2 class="text-white mt-0">It will be our great pleasure sharing your moments with us, it will be remebered to the rest of our lives 😍</h2>
+            <hr class="divider light my-4" />
+              <ngx-dropzone #nationalDropZone (change)="onSelect($event)">
+                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                  [removable]="true" (removed)="onRemove(f)">
+                  <ngx-dropzone-label></ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+          </div>
         </section>
-        <!-- Contact-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Let's Get In Touch!</h2>
-                        <hr class="divider my-4" />
-                        <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-                        <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                        <div>+1 (555) 123-4567</div>
-                    </div>
-                    <div class="col-lg-4 mr-auto text-center">
-                        <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-                        <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                        <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
-                    </div>
-                </div>
+
+        <section class="page-section bg-primary-garden" id="contact" style="padding: 70px;" #venue>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8 text-center">
+                <h2 class="mt-0" style="color: white;">We will be waiting for you at
+                  <span *ngIf="websiteData.location.venue !==''" >{{ websiteData.location.venue }} 🎉🎉</span>
+                  <span *ngIf="websiteData.location.venue == ''" >venue 🎉🎉</span>
+                </h2>
+                <hr class="divider my-4 btn-primary-white"  />
+                <p class="text-muted mb-5" style="color: white !important; font-size: 25px">
+                  {{ websiteData.location.address }}
+                </p>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0"
+                style="color: white !important; font-size: 25px;">
+                <div>{{ userInfo.phone }}</div>
+              </div>
+              <div class="col-lg-4 mr-auto text-center"
+                style="color: white !important; font-size: 25px">
+                <div>{{ userInfo.email }}</div>
+              </div>
+            </div>
+          </div>
         </section>
-        <!-- Footer-->
+        <section>
+          <div id="contact" class="map">
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+              <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+            </agm-map>
+          </div>
+        </section>
+
         <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div></div>
+            <div class="container"><div class="small text-center text-muted">Copyright © 2021 - Plus360</div></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
