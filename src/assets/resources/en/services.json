@@ -67,5 +67,6 @@
   "TYPE": "Type",
   "FILTER": "Filter & search in Services",
   "FILTER_PLACEHOLDER": "Search in service name, description & vendor name.",
-  "RESET": "Reset"
+  "RESET": "Reset",
+  "MY_SERVICES": "My Services"
 }
