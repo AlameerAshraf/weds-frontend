@@ -1,9 +1,11 @@
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
 
 import * as COMPONENTS from './components';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,12 @@ import * as COMPONENTS from './components';
   ],
   imports: [
     CommonModule,
-    WeddingSitesRoutingModule
+    WeddingSitesRoutingModule,
+    NgxSpinnerModule,
+    NgxDropzoneModule
+  ],
+  providers: [
+    NgxSpinnerService
   ]
 })
 export class WeddingSitesModule { }
