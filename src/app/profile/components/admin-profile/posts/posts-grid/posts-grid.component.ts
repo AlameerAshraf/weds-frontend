@@ -34,10 +34,9 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
   that: any = this;
   searchKey = undefined;
   // End search vars!
-
-
   labels: any = {};
   lang: string;
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private lookupsService: LookupsService,

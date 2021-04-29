@@ -1,9 +1,10 @@
-import { constants, event, httpService, responseModel, urls } from './../../../../core';
+import { constants, event, httpService, responseModel, urls,resources } from './../../../../core';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-event',
@@ -23,14 +24,16 @@ export class CreateEventComponent implements OnInit {
     guestList: []
   };
   date = "";
-
+  labels: any = {};
+  lang: string;
   constructor(@Inject(DOCUMENT) private document: any,
-  private elementRef: ElementRef, private router: Router , private httpService: httpService,
+  private elementRef: ElementRef, private router: Router , private httpService: httpService,private resources: resources,
   private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
 
   ngOnInit() {
+    this.loadResources();
   };
 
   backToRoute(){
@@ -68,4 +71,19 @@ export class CreateEventComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['EVENTS']
+      )) as any;
+    this.labels = resData.res;
+  }
 }

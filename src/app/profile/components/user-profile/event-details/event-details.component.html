@@ -1,4 +1,4 @@
-<div class="approved-booking">
+<div class="approved-booking" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="list-box-listing bookings">
     <div class="list-box-listing-img">
       <p class="calendar">{{ anEevent.day }} <em> {{ anEevent.month }} </em></p>
@@ -8,19 +8,23 @@
         <h3 style="font-size: 25px;">{{ anEevent.name }}
           <span
             style="border-radius: 0px !important; font-size: 17px; background-color: #c40505 !important; color: rgb(255, 255, 255) !important"
-            class="booking-status">{{ anEevent.numbersOfDaysToEvent }} Day</span>
+            class="booking-status">{{ anEevent.numbersOfDaysToEvent }} {{labels.DAY}}</span>
         </h3>
 
         <div class="inner-booking-list">
-          <h5 style="font-size: 20px;">Guests: </h5> &nbsp;
+          <h5 style="font-size: 20px;">{{labels.GUESTS}}: </h5> &nbsp;
           <ul class="booking-list" (click)="filter('GOING')">
-            <li [ngClass]="{ 'going-guests-badge' : selctedFilter == 'GOING' , 'NO-guests-badge' : selctedFilter !== 'GOING' }">{{ statuses.GOING }} Going</li>
+            <li
+              [ngClass]="{ 'going-guests-badge' : selctedFilter == 'GOING' , 'NO-guests-badge' : selctedFilter !== 'GOING' }">
+              {{ statuses.GOING }} {{labels.GOING}}</li>
           </ul>
           <ul class="booking-list" (click)="filter('DECLINED')">
-            <li [ngClass]="{ 'declined-guests-badge' : selctedFilter == 'DECLINED' , 'NO-guests-badge' : selctedFilter !== 'DECLINED' }">{{ statuses.DECLINED }} Declined</li>
+            <li
+              [ngClass]="{ 'declined-guests-badge' : selctedFilter == 'DECLINED' , 'NO-guests-badge' : selctedFilter !== 'DECLINED' }">
+              {{ statuses.DECLINED }} {{labels.DECLINED}}</li>
           </ul>
           <ul class="booking-list" (click)="filter('NO_RESPONSE')">
-            <li class="NO-guests-badge">{{ statuses.NO_RESPONSE }} No Response</li>
+            <li class="NO-guests-badge">{{ statuses.NO_RESPONSE }} {{labels.NO_RESPONSE}}</li>
           </ul>
         </div>
 
@@ -34,10 +38,10 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>My Guests</h4>
+      <h4>{{labels.MY_GUESTS}}</h4>
       <ul>
 
         <ng-container *ngFor="let guest of allGuests">
@@ -47,13 +51,15 @@
                 <div class="inner">
                   <h3>{{ guest.name }}
                     <span
-                     [ngClass] = "{ 'going-guests' : guest.status == 'GOING' , 'declined-guests' : guest.status == 'DECLINED' , 'NO-guests' : guest.status == 'NO_RESPONSE' }"> {{ guest.status_txt }} </span></h3>
+                      [ngClass]="{ 'going-guests' : guest.status == 'GOING' , 'declined-guests' : guest.status == 'DECLINED' , 'NO-guests' : guest.status == 'NO_RESPONSE' }">
+                      {{ guest.status_txt }} </span>
+                  </h3>
                   <span>{{ guest.phone }} - {{ guest.email }}</span>
                 </div>
               </div>
             </div>
             <div class="buttons-to-right">
-              <a class="button gray"><i class="sl sl-icon-close"></i> Withdraw invitation </a>
+              <a class="button gray"><i class="sl sl-icon-close"></i> {{labels.WITHDRAW_INVITATION}} </a>
             </div>
           </li>
         </ng-container>
