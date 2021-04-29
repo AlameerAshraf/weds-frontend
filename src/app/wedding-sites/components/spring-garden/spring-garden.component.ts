@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants, httpService, registery, responseModel, urls, weddingWebsite } from 'src/app/core';
@@ -30,6 +30,8 @@ export class SpringGardenComponent implements OnInit {
   latitude = 0;
   longitude = 0;
   zoom = 12;
+  show = false;
+
 
   constructor(private httpService: httpService , private router: Router,
     private activatedRoute: ActivatedRoute,
