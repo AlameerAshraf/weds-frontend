@@ -4,7 +4,8 @@ import { MapsAPILoader } from '@agm/core';
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, area } from 'src/app/core';
+import { vendor, LookupsService, constants, urls, httpService, responseModel, localStorageService, tag, category, area, resources } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 declare const google: any
 declare var $;
@@ -27,12 +28,12 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   tagsAr: tag[] = [];
   tagsEn: tag[] = [];
   socialArray: any[] = [];
-  htmlContentEnglish: any  = "";
-  htmlContentArabic  = "";
-  pinterestUrl  = "";
-  instagramUrl  = "";
+  htmlContentEnglish: any = "";
+  htmlContentArabic = "";
+  pinterestUrl = "";
+  instagramUrl = "";
   twitterUrl = "";
-  facebookUrl  = "";
+  facebookUrl = "";
   categories: category[] = [];
   areas: area[] = [];
   priceRanges = constants.PRICE_RANGE;
@@ -86,11 +87,12 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     social: [],
   };
 
-
+  labels: any = {};
+  lang: string;
   constructor(private router: Router, private ngZone: NgZone,
     private toastr: ToastrService, @Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
-    private http: httpService, private activatedRoute: ActivatedRoute,
+    private http: httpService, private activatedRoute: ActivatedRoute, private resources: resources,
     private storage: localStorageService, private ngxSpinner: NgxSpinnerService,
     private lookupsService: LookupsService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
@@ -108,6 +110,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.loadUser();
     this.loadScripts();
     this.documentSelectors();
+    this.loadResources();
   };
 
   async getLookups() {
@@ -127,6 +130,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
   loadUser() {
     let loadUserURL = `${urls.GET_USER_DATA}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
     this.http.Get(loadUserURL, { "role": atob(window.localStorage.getItem("weds360#role")) }).subscribe((response: responseModel) => {
+      console.log({ response })
       if (!response.error) {
         this.ngxSpinner.hide();
         this.vendor = response.data.vendorRefrence;
@@ -191,7 +195,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     if (this.pinterestUrl != "")
       this.socialArray.push(this.pinterestUrl.toLowerCase());
 
-      this.vendor.social = this.socialArray;
+    this.vendor.social = this.socialArray;
 
     let updateURL = `${urls.UPDATE_VENDOR}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(updateURL, {}, { "vendor": this.vendor }).subscribe((response: responseModel) => {
@@ -410,6 +414,21 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
+  };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["PROFILE_LAYOUT"]
+    )) as any;
+    this.labels = resData.res;
   };
 
   //#endregion

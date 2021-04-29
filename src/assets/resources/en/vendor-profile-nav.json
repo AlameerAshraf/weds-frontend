@@ -1,5 +1,5 @@
 {
-  "menu" : [
+  "menu": [
     {
       "name": "360 Planner",
       "url": "",
@@ -153,65 +153,61 @@
       ]
     }
   ],
-  "actions" : [
+  "actions": [
     {
-      "title" : "My Account",
-      "url" : "/profile/en/vendor/overview",
-      "icon" : "sl sl-icon-settings"
+      "title": "My Account",
+      "url": "/profile/en/vendor/overview",
+      "icon": "sl sl-icon-settings"
     },
     {
-      "title" : "Messages",
-      "url" : "/profile/en/vendor/messages",
-      "icon" : "sl sl-icon-envelope-open"
+      "title": "Messages",
+      "url": "/profile/en/vendor/messages",
+      "icon": "sl sl-icon-envelope-open"
     },
     {
-      "title" : "English",
-      "url" : "",
-      "icon" : "",
-      "hasImage" : "assets/images/defaults/flags/en.png"
+      "title": "English",
+      "url": "",
+      "icon": "",
+      "hasImage": "assets/images/defaults/flags/en.png"
     },
     {
-      "title" : "Logout",
-      "url" : "/profile/en/vendor/checklist",
-      "icon" : "sl sl-icon-power"
+      "title": "Logout",
+      "url": "/profile/en/vendor/checklist",
+      "icon": "sl sl-icon-power"
     }
   ],
-  "navigations" : [
+  "navigations": [
     {
-      "menuTitle" : "My Dashboard",
-      "childMenuItem" : [
+      "menuTitle": "My Dashboard",
+      "childMenuItem": [
         {
-          "title" : "Overview",
-          "icon" : "sl sl-icon-rocket",
-          "url" : "overview",
-          "child" : [
-
-          ]
+          "title": "Overview",
+          "icon": "sl sl-icon-rocket",
+          "url": "overview",
+          "child": []
         },
         {
-          "title" : "Messages",
-          "icon" : "sl sl-icon-envelope-open",
-          "url" : "messages",
-          "child" : [
-          ]
+          "title": "Messages",
+          "icon": "sl sl-icon-envelope-open",
+          "url": "messages",
+          "child": []
         },
         {
-          "title" : "Services",
-          "icon" : "sl sl-icon-basket",
-          "url" : "my-services",
-          "child" : [
-          ]
+          "title": "Services",
+          "icon": "sl sl-icon-basket",
+          "url": "my-services",
+          "child": []
         }
       ]
     },
     {
-      "menuTitle" : "Account & Info",
-      "childMenuItem" : [
+      "menuTitle": "Account & Info",
+      "childMenuItem": [
         {
-          "title" : "Personal Details",
-          "icon" : "im im-icon-Male",
-          "url" : "my-info",
-          "child" : []
+          "title": "Personal Details",
+          "icon": "im im-icon-Male",
+          "url": "my-info",
+          "child": []
         }
       ]
     }

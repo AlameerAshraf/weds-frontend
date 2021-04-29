@@ -6,30 +6,32 @@
       <div class="add-listing-section">
 
         <div class="add-listing-headline">
-          <h3><i class="sl sl-icon-note"></i> Event information</h3>
+          <h3><i class="sl sl-icon-note"></i> {{labels.EVENT_INFO}}</h3>
         </div>
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Title English</h5>
-            <input class="search-field" type="text" placeholder="Event English Name" [(ngModel)]="event.nameEn" />
+            <h5>{{labels.NAME_ENGLISH}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.NAME_ENGLISH" [(ngModel)]="event.nameEn" />
           </div>
 
           <div class="col-md-6">
-            <h5>Title Arabic</h5>
-            <input class="search-field" type="text" placeholder="Event Arabic Name" [(ngModel)]="event.nameAr" />
+            <h5>{{labels.NAME_ARABIC}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.NAME_ARABIC" [(ngModel)]="event.nameAr" />
           </div>
         </div>
 
 
         <div class="row with-forms">
           <div class="col-md-6">
-            <h5>Description English</h5>
-            <textarea class="search-field" type="text" placeholder="Event English Description" [(ngModel)]="event.descriptionEn"></textarea>
+            <h5>{{labels.DESCRIPTION_ENGLISH}}</h5>
+            <textarea class="search-field" type="text" [placeholder]="labels.DESCRIPTION_ENGLISH"
+              [(ngModel)]="event.descriptionEn"></textarea>
           </div>
           <div class="col-md-6">
-            <h5>Description Arabic</h5>
-            <textarea class="search-field" type="text" placeholder="Event Arabic Description" [(ngModel)]="event.descriptionAr"></textarea>
+            <h5>{{labels.DESCRIPTION_ARABIC}}</h5>
+            <textarea class="search-field" type="text" [placeholder]="labels.DESCRIPTION_ARABIC"
+              [(ngModel)]="event.descriptionAr"></textarea>
           </div>
         </div>
       </div>
@@ -38,7 +40,9 @@
 </div>
 
 <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-  Cancel <i class="sl sl-icon-close"></i>
+  {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
 </a>
-<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
-  <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
+    class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
+    class="sl sl-icon-check"></i></a>

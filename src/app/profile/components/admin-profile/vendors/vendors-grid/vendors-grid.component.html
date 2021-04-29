@@ -1,76 +1,51 @@
 <div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Vendors List.</h2>
-      </div>
-    </div>
-  </div>
-  
-  <div class="style-2">
-    <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
-      <span class="trigger">
-        <a href="#" style="font-size: 25px !important">
-          <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in vendors
-          <i class="sl sl-icon-plus"></i>
-        </a>
-      </span>
-      <div class="toggle-container" style="padding-bottom: 0px !important; ">
-        <div class="row with-forms">
-          <div class="col-md-5">
-            <input type="text" placeholder="search in vendor name, email & phone." [(ngModel)] = "searchKey">
-          </div>
-  
-          <div class="col-md-6" align="right">
-            <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
-            <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> Reset </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
   <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <div class="dashboard-list-box margin-top-0">
-        <h4>
-          Vendors List
-  
-          <div
-            (click)="navigateToCreateNewVendor()"
-            style="background-color: #046B69 !important;
+    <div class="col-md-12">
+      <h2>{{labels.VENDOR_TITLE}}.</h2>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>
+        {{labels.DEFAULT_VENDORS}}
+        <div (click)="navigateToCreateNewVendor()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
-              border-radius: 20px;"
-              class="comission-taken">
-            <i class="im im-icon-Pencil"></i> &nbsp;
-            <strong style="color: white !important">Create New Vendor</strong>
-          </div>
-        </h4>
-  
-        <div class="col-md-12" style="background-color: white;">
-          <table class="table borderless">
-            <thead>
-              <tr>
-                <th scope="col" width="20%">Vendor</th>
-                <th scope="col" width="20%">Email</th>
-                <th scope="col" width="20%">Phone</th>
-                <th scope="col" width="15%">Status</th>
-                <th scope="col" width="5%">Act.</th>
-                <th scope="col" width="5%">Delete</th>
-                <th scope="col" width="5%">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of searchableList | slice:skip:limit">
-              <tr>
+              border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">{{labels.ADD_VENDOR}}</strong>
+        </div>
+      </h4>
+
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.VENDOR}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.EMAIL}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="20%">{{labels.PHONE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.STATUS}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.ACTION}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of searchableList | slice:skip:limit">
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
-                  <p >{{ item.nameEn }}</p>
+                  <p>{{ item.nameEn }}</p>
                 </td>
                 <td>
-                  <p >{{ item.email }}</p>
-                </td>                
+                  <p>{{ item.email }}</p>
+                </td>
                 <td>
-                  <p >{{ item.phone }}</p>
+                  <p>{{ item.phone }}</p>
                 </td>
                 <td>
                   <ng-container *ngIf="item.isPublished">
@@ -90,44 +65,43 @@
                 <td class="td-in-table" style="cursor: pointer;">
                   <ng-container *ngIf="!item.isPublished">
                     <p class="tooltip">
-                      <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload" 
-                      (click)="publishVendor(item._id)"></i>
+                      <i style="color: #046B69; font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-upload"
+                        (click)="publishVendor(item._id)"></i>
                       <span class="tooltiptext">Force publish</span>
                     </p>
                   </ng-container>
 
                   <ng-container *ngIf="item.isPublished">
                     <p class="tooltip">
-                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;" class="sl sl-icon-cloud-download"
-                      (click)="publishVendor(item._id)"></i>
+                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;"
+                        class="sl sl-icon-cloud-download" (click)="publishVendor(item._id)"></i>
                       <span class="tooltiptext">Revoke publish</span>
                     </p>
                   </ng-container>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                    (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
             </ng-container>
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
+
   <div class="clearfix"></div>
-  
+
   <div class="row" *ngIf="collectionSize > 0 && showPaging">
     <div class="col-md-12">
       <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
       </weds-paging>
     </div>
   </div>
-  
-  
+
+

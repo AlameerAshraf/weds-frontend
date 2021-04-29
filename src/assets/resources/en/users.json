@@ -1,0 +1,19 @@
+{
+  "WELCOME": "Welcome to users Section",
+  "USERS": "Users",
+  "ADD_USER": "Add User",
+  "USER": "User",
+  "PHONE": "Phone",
+  "FULL_NAME": "Full Name",
+  "EMAIL": "Email",
+  "ROLE": "Role",
+  "DATE": "Date",
+  "SEARCH_PLACEHOLDER": "Enter search criteria.",
+  "SEARCH": "Search ",
+  "RESET": "RESET",
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
+}

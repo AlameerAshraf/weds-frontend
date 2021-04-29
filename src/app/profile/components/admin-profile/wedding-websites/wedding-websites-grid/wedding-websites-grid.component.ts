@@ -19,6 +19,8 @@ export class WeddingWebsitesGridComponent implements OnInit {
   startTypingAnimation: boolean = true;
 
   weddingWebsiteList: weddingWebsite[] = [];
+  labels:any={};
+  lang:string;
   that: any = this;
 
      // Paging vars!
@@ -28,7 +30,7 @@ export class WeddingWebsitesGridComponent implements OnInit {
      skip: number;
      showPaging = true;
      // End paging vars!
-   
+
      // Search vars!
      searchableList : weddingWebsite[] = [];
      selectedSearchCriteria: string = "";
@@ -51,14 +53,6 @@ export class WeddingWebsitesGridComponent implements OnInit {
     this.getAllWebsites();
     this.documentSelectors();
   }
-
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllWebsites() {
     this.ngxSpinner.show();
@@ -96,8 +90,23 @@ export class WeddingWebsitesGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
 
-  //#search region functions 
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["WEDDING_WEBSITE"]
+      )) as any;
+      this.labels = resData.res;
+  };
+
+  //#search region functions
   search(){
     this.showPaging = false;
     this.ngxSpinner.show();

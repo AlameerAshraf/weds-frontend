@@ -1,8 +1,9 @@
-import { constants, httpService, urls, responseModel } from 'src/app/core';
+import { constants, httpService, urls, responseModel,resources } from 'src/app/core';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-invite-friends',
@@ -13,8 +14,9 @@ export class InviteFriendsComponent implements OnInit {
   currentUserEmail: string;
   invitation = { name: "" , email: "" , phone: "" , invitationMessage: "" }
   eventId: any;
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute , private http: httpService,
+  labels: any = {};
+  lang: string;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute , private http: httpService,private resources:resources,
   private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.activatedRoute.params.subscribe((params) => {
@@ -24,6 +26,7 @@ export class InviteFriendsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.loadResources()
   }
 
   invite(){
@@ -34,7 +37,7 @@ export class InviteFriendsComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Invitation has been sent" , "Your friend has been invited now wait him to responde ♥");
-        this.router.navigateByUrl('profile/en/user/events');
+        this.router.navigateByUrl(`profile/${this.lang}/user/events`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your invitation couldn't be sent now.");
@@ -43,7 +46,22 @@ export class InviteFriendsComponent implements OnInit {
   };
 
   backToRoute(){
-    this.router.navigateByUrl('profile/en/user/events');
+    this.router.navigateByUrl(`profile/${this.lang}/user/events`);
   };
+  async loadResources() {
+    const lang =
+        window.location.href.toString().toLowerCase().indexOf('ar') > -1
+          ? 'ar'
+          : 'en';
+
+    const resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    const resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS['EVENTS']
+      )) as any;
+    this.labels = resData.res;
+   }
 
 }

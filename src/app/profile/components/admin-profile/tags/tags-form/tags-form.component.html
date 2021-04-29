@@ -1,52 +1,58 @@
-<div class="row">
-    <div class="col-lg-12">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="col-lg-12">
 
-      <div id="add-listing">
+    <div id="add-listing">
 
-        <div class="add-listing-section">
+      <div class="add-listing-section">
 
-          <div class="add-listing-headline">
-            <h3><i class="sl sl-icon-note"></i> Tag information</h3>
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-note"></i> {{labels.TAG_INFO}}</h3>
+        </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6" *ngIf="tag.name == ''">
+            <h5>{{labels.NAME_ENGLISH}}</h5>
+            <input class="search-field" type="text" placeholder="{{labels.NAME_ENGLISH}}" *ngIf="tag.name == ''"
+              [(ngModel)]="tag.nameEn" />
           </div>
 
-          <div class="row with-forms">
-            <div class="col-md-6" *ngIf="tag.name == ''">
-              <h5>Name English</h5>
-              <input class="search-field" type="text" placeholder="Tag English Name" *ngIf="tag.name == ''" [(ngModel)]="tag.nameEn"/>
-              </div>
-
-            <div class="col-md-6" *ngIf="tag.name !== '' && tag.langauge === 'En'">
-              <h5>Name English</h5>
-              <input class="search-field" type="text" placeholder="Tag Arabic Name" *ngIf="tag.name !== '' && tag.langauge === 'En'" [(ngModel)]="tag.name" />
-            </div>
-
-            <div class="col-md-6" *ngIf="tag.name == ''">
-                <h5 >Name Arabic</h5>
-                <input class="search-field" type="text" placeholder="Tag Arabic Name" *ngIf="tag.name == ''" [(ngModel)]="tag.nameAr" />
-                </div>
-
-            <div class="col-md-6" *ngIf="tag.name != ''  && tag.langauge === 'Ar'" >
-              <h5 >Name Arabic</h5>
-              <input class="search-field" type="text" placeholder="Tag Arabic Name" *ngIf="tag.name != ''  && tag.langauge === 'Ar'" [(ngModel)]="tag.name" />
-          </div>
+          <div class="col-md-6" *ngIf="tag.name !== '' && tag.langauge === 'En'">
+            <h5>{{labels.NAME_ARABIC}}</h5>
+            <input class="search-field" type="text" placeholder="{{labels.NAME_ARABIC}}"
+              *ngIf="tag.name !== '' && tag.langauge === 'En'" [(ngModel)]="tag.name" />
           </div>
 
+          <div class="col-md-6" *ngIf="tag.name == ''">
+            <h5>{{labels.NAME_ARABIC}}</h5>
+            <input class="search-field" type="text" placeholder="{{labels.NAME_ARABIC}}" *ngIf="tag.name == ''"
+              [(ngModel)]="tag.nameAr" />
+          </div>
 
-          <div class="row with-forms">
-            <div class="col-md-6">
-              <div class="checkboxes in-row">
-                <input id="check-a" [(ngModel)]="tag.isEnabled" type="checkbox" name="check">
-                <label for="check-a">Make this tag active</label>
-              </div>
+          <div class="col-md-6" *ngIf="tag.name != ''  && tag.langauge === 'Ar'">
+            <h5>Name Arabic</h5>
+            <input class="search-field" type="text" placeholder="{{labels.NAME_ARABIC}}"
+              *ngIf="tag.name != ''  && tag.langauge === 'Ar'" [(ngModel)]="tag.name" />
+          </div>
+        </div>
+
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <div class="checkboxes in-row">
+              <input id="check-a" [(ngModel)]="tag.isEnabled" type="checkbox" name="check">
+              <label for="check-a">{{labels.MAKE_TAG_ACTIVE}}</label>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-    Cancel <i class="sl sl-icon-close"></i>
-  </a>
-  <a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
-  <a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>
+<a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
+  {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
+</a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
+    class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
+    class="sl sl-icon-check"></i></a>

@@ -1,7 +1,7 @@
 <div id="titlebar">
   <div class="row">
     <div class="col-md-12">
-      <h2>My Profile</h2>
+      <h2>{{labels.MY_PROFILE}}</h2>
     </div>
   </div>
 </div>
@@ -50,7 +50,7 @@
 <div class="row">
   <div class="col-lg-6 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4 class="gray">Profile Details</h4>
+      <h4 class="gray">{{labels.PROFILE_DETAILS_TITLE}}</h4>
       <div class="dashboard-list-box-static">
 
         <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
@@ -58,7 +58,7 @@
             [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource" alt="">
           <div class="change-photo-btn">
             <div class="photoUpload">
-              <span><i class="fa fa-upload"></i> Upload Photo</span>
+              <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
               <input type="file" class="upload" (change)="onFileSelected($event)" />
             </div>
           </div>
@@ -66,35 +66,35 @@
 
         <div class="my-profile">
 
-          <label>Your Name</label>
+          <label>{{labels.YOUR_NAME}}</label>
           <input value="Tom Perrin" type="text">
 
-          <label>Email</label>
+          <label>{{labels.EMAIL}}</label>
           <input value="tom@example.com" type="text">
 
-          <label>Phone</label>
+          <label>{{labels.Phone}}</label>
           <input value="(123) 123-456" type="text">
 
-          <label>Date of birth</label>
+          <label>{{labels.DOB}}</label>
           <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
 
-          <label>Gender</label>
+          <label>{{labels.GENDER}}</label>
           <select class="chosen-select-no-single">
-            <option label="blank">Select your gender</option>
-            <option>Male</option>
-            <option>Female</option>
+            <option [label]="labels.SELECT">{{labels.SELECT}}</option>
+            <option>{{labels.MALE}}</option>
+            <option>{{labels.FEMALE}}</option>
           </select>
 
-          <label>Where are you - address</label>
+          <label>{{labels.LOCATION}}</label>
           <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
             <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
               (dragEnd)="markerDragEnd($event)"></agm-marker>
           </agm-map>
-          <label>City</label>
-          <input placeholder="City ex. Alexandria" type="text" autocomplete="sd">
+          <label>{{labels.CITY}}</label>
+          <input [placeholder]="labels.CITY" type="text" autocomplete="sd">
 
-          <label>Address</label>
-          <input placeholder="Detailed Adress," [value]="address" type="text">
+          <label>{{labels.ADDRESS}}</label>
+          <input [placeholder]="labels.ADDRESS" [value]="address" type="text">
 
           <label class="margin-top-0"><i class="fa fa-twitter"></i> Twitter</label>
           <input placeholder="https://www.twitter.com/" type="text">
@@ -103,7 +103,7 @@
           <input placeholder="https://www.facebook.com/" type="text">
         </div>
 
-        <button class="button margin-top-15">Save Changes</button>
+        <button class="button margin-top-15">{{labels.SAVE}}</button>
 
       </div>
     </div>
@@ -112,19 +112,19 @@
   <!-- Change Password -->
   <div class="col-lg-6 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4 class="gray">Change Password</h4>
+      <h4 class="gray">{{labels.CHANGE_PASSWORD_TITLE}}</h4>
       <div class="dashboard-list-box-static">
         <div class="my-profile">
-          <label class="margin-top-0">Current Password</label>
+          <label class="margin-top-0">{{labels.CURRENT_PASSWORD}}</label>
           <input type="password">
 
-          <label>New Password</label>
+          <label>{{labels.NEW_PASSWORD}}</label>
           <input type="password">
 
-          <label>Confirm New Password</label>
+          <label>{{labels.CONFIRM_PASSWORD}}</label>
           <input type="password">
 
-          <button class="button margin-top-15">Change Password</button>
+          <button class="button margin-top-15">{{labels.CHANGE_PASSWORD}}</button>
         </div>
 
       </div>

@@ -73,3 +73,12 @@
     display: none !important;
   }
 
+  .rtlText {
+    direction: rtl;
+  }
+  #logoRTL {
+    float: left;
+  }
+  .rtlIcon {
+    left: 0rem;
+  }

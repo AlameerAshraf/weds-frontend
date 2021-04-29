@@ -4,7 +4,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { offer,vendor, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { offer,vendor, constants, urls, httpService, responseModel, localStorageService,resources } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -30,11 +31,13 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
     titleEn: "",
     vendor: ""
   };
+  lang: string;
+  labels: any = {};
 
   constructor(private ngxSpinner: NgxSpinnerService, private router: Router,
     @Inject(DOCUMENT) private document: any,private activatedRoute: ActivatedRoute,
-     private elementRef: ElementRef,private storage: localStorageService,
-     private http: httpService, private toastr: ToastrService, private lookupsService: LookupsService) {
+     private elementRef: ElementRef,private storage: localStorageService,private resources: resources,
+     private http: httpService,  private toastr: ToastrService, private lookupsService: LookupsService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
       this.activatedRoute.params.subscribe((params) => {
@@ -47,7 +50,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
     this.loadOffersVendor();
     this.initOfferView();
     this.documentSelectors();
-
+    this.loadResources();
     await this.getLookups();
   }
 
@@ -84,7 +87,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Offer has been saved succesfully" , "Offer has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/offers-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your offer couldn't created on the server!");
@@ -101,7 +104,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Offer has been saved succesfully" , "A new offer has been updated and wedding website will be impacted.");
-        this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/offers-defaults`);
       } else {
         console.log(response)
         this.ngxSpinner.hide();
@@ -143,7 +146,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   };
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/admin/offers-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/offers-defaults`);
   };
 
   ngAfterViewInit(): void {
@@ -160,4 +163,19 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["OFFERS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

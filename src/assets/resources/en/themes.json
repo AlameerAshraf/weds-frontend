@@ -1,0 +1,18 @@
+{
+  "THEMES": "Create the themes items ",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "ADD_THEME": "Add theme",
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "NAME": "Name",
+  "IMAGE": "Image",
+  "LAYOUT_NAME": "Layout Name",
+  "THEME_INFO": "Theme information",
+  "THUMBNAIL_IMAGE  ": "Thumbnail Image ",
+  "UPDATE": "Update",
+  "DEFAULT_THEMES": " Default Themes  ",
+  "UPLOAD_PHOTO": "Upload Photo",
+
+  "URL": "Routing URL"
+}

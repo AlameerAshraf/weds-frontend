@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { budgeter, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { budgeter, constants, urls, httpService, responseModel, localStorageService ,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -25,11 +26,13 @@ export class BudgeterFormComponent implements OnInit {
     recommendedPercentage: 0,
     amount:0
   };
+  labels:any={};
+  lang:string;
 
-  constructor( private router: Router, @Inject(DOCUMENT) private document: any, 
+  constructor( private router: Router, @Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private http: httpService,
     private toastr: ToastrService, private activatedRoute: ActivatedRoute,
-    private storage: localStorageService,
+    private storage: localStorageService,private resources: resources,
     private ngxSpinner: NgxSpinnerService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
@@ -41,6 +44,7 @@ export class BudgeterFormComponent implements OnInit {
      ngOnInit() {
       this.loadScripts();
       this.initBudgeterView();
+      this.loadResources();
     };
 
     initBudgeterView(){
@@ -51,29 +55,29 @@ export class BudgeterFormComponent implements OnInit {
 
     createNewEntity(){
       this.ngxSpinner.show();
-  
+
       let createURL = `${urls.CREATE_BUDGETER_ADMIN}/${constants.APP_IDENTITY_FOR_ADMINS}`;
       this.http.Post(createURL , {} , { "budgeter" : this.budgeter }).subscribe((response: responseModel) => {
         if(!response.error){
           this.ngxSpinner.hide();
           this.toastr.success("Budgeter has been saved succesfully" , "Budgeter has been updated, Bingo!");
-          this.router.navigateByUrl('/profile/en/admin/budgeter-defaults');
+          this.router.navigateByUrl(`/profile/${this.lang}/admin/budgeter-defaults`);
         } else {
           this.ngxSpinner.hide();
           this.toastr.error("Our bad sorry!" , "Ooh Sorry, your budgeter couldn't created on the server!");
         }
       });
     };
-  
+
     updateExistingEntity(){
       this.ngxSpinner.show();
-  
+
       let updateURL = `${urls.UPDATE_BUDGETER_ADMIN}/${constants.APP_IDENTITY_FOR_ADMINS}`;
       this.http.Post(updateURL , {} , { "budgeter" : this.budgeter }).subscribe((response: responseModel) => {
         if(!response.error){
           this.ngxSpinner.hide();
           this.toastr.success("Budgeter has been saved succesfully" , "A Budgeter has been created and wedding website will be impacted.");
-          this.router.navigateByUrl('/profile/en/admin/budgeter-defaults');
+          this.router.navigateByUrl(`/profile/${this.lang}/admin/budgeter-defaults`);
         } else {
           console.log(response)
           this.ngxSpinner.hide();
@@ -81,11 +85,11 @@ export class BudgeterFormComponent implements OnInit {
         }
       });
     };
-  
+
 
 
   backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/budgeter-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/budgeter-defaults`);
   };
 
   ngAfterViewInit(): void {
@@ -101,5 +105,20 @@ export class BudgeterFormComponent implements OnInit {
       s.src = element;
       this.elementRef.nativeElement.appendChild(s);
     });
+  };
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["BUDGETERS"]
+      )) as any;
+      this.labels = resData.res;
   };
 }

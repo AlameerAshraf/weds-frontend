@@ -1,80 +1,83 @@
-<div class="row">
-    <div class="col-lg-12">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="col-lg-12">
 
-        <div id="add-listing">
+    <div id="add-listing">
 
-            <div class="add-listing-section">
+      <div class="add-listing-section">
 
-                <div class="add-listing-headline">
-                    <h3><i class="sl sl-icon-note"></i> Offer information</h3>
-                </div>
-
-                <div class="row with-forms">
-                    <div class="col-md-6">
-                        <h5>Title English</h5>
-                        <input class="search-field" type="text" placeholder="Offer English Title" [(ngModel)]="offer.titleEn" />
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Title Arabic</h5>
-                        <input class="search-field" type="text" placeholder="Offer Arabic Title" [(ngModel)]="offer.titleAr" />
-                    </div>
-                </div>
-
-                <div class="row with-forms">
-                    <div class="col-md-6">
-                        <h5>Description English</h5>
-                        <textarea class="search-field" type="text" placeholder="Offer English Description" [(ngModel)]="offer.descriptionEn"></textarea>
-                    </div>
-
-                    <div class="col-md-6">
-                        <h5>Description Arabic</h5>
-                        <textarea class="search-field" type="text" placeholder="Offer Arabic Description" [(ngModel)]="offer.descriptionAr"></textarea>
-                    </div>
-                </div>
-
-
-                <div class="row with-forms">
-                    <div class="col-md-6">
-                        <h5>Vendor</h5>
-                        <select id="offerVendors" class="chosen-select-no-single">
-                            <ng-container  *ngFor="let offerVendor of vendors">
-                            <option [selected] = "offerVendor._id === offer.vendor" [value]="offerVendor._id">{{ offerVendor.nameEn }}</option>
-                        </ng-container>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Resides In - The page this offer will be shown in</h5>
-                        <select id="selectId" class="chosen-select-no-single">
-                          <option value="user">User</option>
-                          <option value="user">Admin</option>
-                        </select>
-                      </div>
-                </div>
-
-                <div class="row with-forms">
-                    <div class="col-md-6">
-                        <h5>Image</h5>
-                        <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-                            <img class="anImage"
-                            [src]="offer.image"
-                                alt="">
-                            <div class="change-photo-btn">
-                                <div class="photoUpload">
-                                    <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                    <input type="file" class="upload" (change)="uploadImage($event)"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="add-listing-headline">
+          <h3><i class="sl sl-icon-note"></i> {{labels.OFFER_INFO}}</h3>
         </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.TITLE_ENGLISH}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.TITLE_ENGLISH" [(ngModel)]="offer.titleEn" />
+          </div>
+
+          <div class="col-md-6">
+            <h5>{{labels.TITLE_ARABIC}}</h5>
+            <input class="search-field" type="text" [placeholder]="labels.TITLE_ARABIC" [(ngModel)]="offer.titleAr" />
+          </div>
+        </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.DESCRIPTION_ENGLISH}}</h5>
+            <textarea class="search-field" type="text" [placeholder]="labels.DESCRIPTION_ENGLISH"
+              [(ngModel)]="offer.descriptionEn"></textarea>
+          </div>
+
+          <div class="col-md-6">
+            <h5>{{labels.DESCRIPTION_ARABIC}}</h5>
+            <textarea class="search-field" type="text" [placeholder]="labels.DESCRIPTION_ARABIC"
+              [(ngModel)]="offer.descriptionAr"></textarea>
+          </div>
+        </div>
+
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.VENDOR}}</h5>
+            <select id="offerVendors" class="chosen-select-no-single">
+              <ng-container *ngFor="let offerVendor of offersVendors">
+                <option [selected]="offerVendor._id === offer.vendor" [value]="offerVendor._id">{{ offerVendor.nameEn }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <h5>{{labels.SHOWS_IN}}</h5>
+            <select id="selectId" class="chosen-select-no-single">
+              <option value="user">User</option>
+              <option value="user">Admin</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row with-forms">
+          <div class="col-md-6">
+            <h5>{{labels.IMAGE}}</h5>
+            <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
+              <img class="anImage" [src]="offer.image" alt="">
+              <div class="change-photo-btn">
+                <div class="photoUpload">
+                  <span><i class="fa fa-upload"></i> Upload Photo</span>
+                  <input type="file" class="upload" (change)="uploadImage($event)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <a style="background-color: #F91942 !important;" class="button preview" (click)="backToRoute()">
-    Cancel <i class="sl sl-icon-close"></i>
+  {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
 </a>
-<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">Save Changes <i class="sl sl-icon-check"></i></a>
-<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">Update <i class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'new'" class="button preview" (click)="createNewEntity()">{{labels.SAVE}} <i
+    class="sl sl-icon-check"></i></a>
+<a *ngIf="editingMode == 'update'" class="button preview" (click)="updateExistingEntity()">{{labels.UPDATE}} <i
+    class="sl sl-icon-check"></i></a>

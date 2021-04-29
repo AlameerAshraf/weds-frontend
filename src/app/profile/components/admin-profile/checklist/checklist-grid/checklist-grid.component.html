@@ -1,24 +1,24 @@
-<div id="titlebar" class="gradient">
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
-      <h2>Create the defaults checklist items.</h2>
+      <h2>{{labels.CHECKLISTS_TITLE}}</h2>
     </div>
   </div>
 </div>
 
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
       <h4>
-        Default Checklists
+        {{labels.CHECKLISTS}}
 
         <div (click)="navigateToCreateNewCheklist()" style="background-color: #046B69 !important;
             color: white !important;
             cursor: pointer;
             border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Create New Checklist Item</strong>
+          <strong style="color: white !important">{{labels.ADD_CHECKLIST}}</strong>
         </div>
       </h4>
 
@@ -26,17 +26,17 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col" width="15%">English Name</th>
-              <th scope="col" width="15%">Arabic Name</th>
-              <th scope="col" width="30%">Description English</th>
-              <th scope="col" width="30%">Description Arabic</th>
-              <th scope="col" width="5%">Delete</th>
-              <th scope="col" width="5%">Edit</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.NAME_ENGLISH}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="15%">{{labels.NAME_ARABIC}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.DESCRIPTION_ENGLISH}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.DESCRIPTION_ARABIC}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
             </tr>
           </thead>
           <tbody>
             <ng-container *ngFor="let item of checkLists">
-              <tr>
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{item.titleEn}}</p>
                 </td>
@@ -51,7 +51,7 @@
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
@@ -68,7 +68,7 @@
 
 <div class="clearfix"></div>
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-md-12">
     <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="checkLists.length" [maxSize]="5">
     </weds-paging>

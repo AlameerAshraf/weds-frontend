@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { area, constants, urls, httpService, responseModel, localStorageService } from 'src/app/core';
+import { area, constants, urls, httpService, responseModel, localStorageService ,resources} from 'src/app/core';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -24,12 +25,13 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
     order: 0,
     isHidden:false
   };
-
-  constructor( private router: Router, @Inject(DOCUMENT) private document: any, 
+  lang: string;
+  labels: any = {};
+  constructor( private router: Router, @Inject(DOCUMENT) private document: any, private resources: resources,
   private elementRef: ElementRef,private ngxSpinner: NgxSpinnerService,
     private toastr: ToastrService,private activatedRoute: ActivatedRoute,
     private storage: localStorageService,private http: httpService,
-    ) { 
+    ) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
     this.activatedRoute.params.subscribe((params) => {
@@ -40,6 +42,7 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loadScripts();
     this.initAreaView();
+    this.loadResources();
   }
 
   initAreaView(){
@@ -56,7 +59,7 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Area has been saved succesfully" , "Area has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/admin/areas-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/areas-defaults`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your area couldn't created on the server!");
@@ -72,7 +75,7 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.toastr.success("Area has been saved succesfully" , "An area has been updated and wedding website will be impacted.");
-        this.router.navigateByUrl('/profile/en/admin/areas-defaults');
+        this.router.navigateByUrl(`/profile/${this.lang}/admin/areas-defaults`);
       } else {
         console.log(response)
         this.ngxSpinner.hide();
@@ -83,7 +86,7 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
 
 
   backToRoute(){
-    this.router.navigateByUrl('/profile/en/admin/areas-defaults');
+    this.router.navigateByUrl(`/profile/${this.lang}/admin/areas-defaults`);
   };
 
 
@@ -101,4 +104,16 @@ export class AreasFormComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toLowerCase().indexOf(`/ar/`) > -1 ? "ar" : "en";
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["AREAS"]
+    )) as any;
+    this.lang = resourceLang;
+    this.labels = resData.res;
+  }
 }
