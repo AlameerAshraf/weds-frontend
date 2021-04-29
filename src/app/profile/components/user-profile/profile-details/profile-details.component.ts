@@ -14,7 +14,7 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
   latitude: number;
   longitude: number;
   zoom: number = 12;
-
+  profilePhotoUrl:string ='http://via.placeholder.com/1920x315'
   private geoCoder: any;
   address: any = "";
   currentUserEmail: string;
@@ -26,7 +26,7 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
     }
 
   ngOnInit() {
-    this.setCurrentLocation();
+     this.setCurrentLocation();
     this.loadUser();
   };
 
