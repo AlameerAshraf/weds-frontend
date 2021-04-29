@@ -98,8 +98,12 @@ export class constants {
         "name" : "Spring"
       },
       {
-        "route" : "flowers",
-        "name" : "Flowers & Spring"
+        "route" : "violet-flower",
+        "name" : "Violet flower"
+      },
+      {
+        "route" : "spring-garden",
+        "name" : "Spring garden"
       }
     ]
   };
@@ -310,7 +314,8 @@ export class constants {
       "WEDDING_WEBSITES" : "WEDDING_WEBSITES",
       "WEDDING_ALBUMS" : "WEDDING_ALBUMS",
       "VENDOR_ALBUMS" : "VENDOR_ALBUMS",
-      "VENDOR_SERVICES" : "VENDOR_SERVICES"
+      "VENDOR_SERVICES" : "VENDOR_SERVICES",
+      "VISITORS_WEDDING_SITE" : "VISITORS_WEDDING_SITE"
     }
   };
 

@@ -13,6 +13,8 @@ export class weddingWebsite {
   routeURL?: string;
   story?: string;
   album?: string [];
+  guestBook?: string[];
+  guestAlbum?: string[];
   isPublished?: boolean = false;
   location?: {
     venue: string;

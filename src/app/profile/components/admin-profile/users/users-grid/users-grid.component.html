@@ -17,20 +17,18 @@
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
         <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
-          <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER">
+          <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER" [(ngModel)] = "searchKey">
         </div>
         <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
           <select id="userRolesDropDown" class="chosen-select-no-single">
             <option label="blank">select role</option>
-            <ng-container *ngFor="let userRole of userRoles">
-              <option [value]="userRole.name">{{ userRole.name.toLocaleLowerCase() }}</option>
-            </ng-container>
+            <option *ngFor="let userRole of userRoles" [value]="userRole.name">
+              {{ userRole.name.toLowerCase() }}</option>
           </select>
         </div>
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
-          <a class="button"> {{labels.SEARCH}} </a>
-          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
-            {{labels.RESET}} </a>
+        <div class="col-md-5" [ngClass]="lang === 'ar' ? ' col-md3-RTL' : ''">
+          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> {{labels.SEARCH}} </a>
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> {{labels.RESET}} </a>
         </div>
       </div>
     </div>
@@ -63,13 +61,13 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of usersList">
+            <ng-container *ngFor="let item of searchableList | slice:skip:limit">
               <tr *ngIf="item.isActive" [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{ item.name }}</p>
                 </td>
                 <td>
-                  <p>{{ item.role }}</p>
+                  <p>{{ item.role.toLowerCase() }}</p>
                 </td>
                 <td class="td-in-table">
                   <p><i
@@ -92,9 +90,9 @@
 
 <div class="clearfix"></div>
 
-<div class="row">
+<div class="row" *ngIf="collectionSize > 0 && showPaging">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="usersList.length" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

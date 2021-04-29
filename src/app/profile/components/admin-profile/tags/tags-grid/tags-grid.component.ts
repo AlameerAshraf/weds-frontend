@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { constants, resources, tag, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { constants, resources, tag, localStorageService, responseModel, urls, httpService } from 'src/app/core';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -20,15 +20,31 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
   tagsList: tag[] = [];
   lang: string;
   labels: any = {};
+
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
+
+  // Search vars!
+  searchableList: tag[] = [];
+  that: any = this;
+  searchKey = undefined;
+  // End search vars!
+
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,private toastr: ToastrService,
+    private http: httpService, private toastr: ToastrService,
     private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
-      this.loadResources();
-      this.storage.eraseLocalStorage("weds360#tagOnEdit");
+    this.loadResources();
+    this.storage.eraseLocalStorage("weds360#tagOnEdit");
   }
 
   ngOnInit() {
@@ -42,6 +58,9 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
     this.http.Get(getAllTagsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.tagsList = response.data as tag[];
+        this.tagsList = this.searchableList = this.tagsList.filter(x => x.isRemoved == false) as tag[];
+        this.collectionSize = this.tagsList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -50,33 +69,30 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
 
   };
 
-  pageChange(pageNumber){
 
-  };
-
-  editEntity(id: any){
+  editEntity(id: any) {
     this.router.navigate([`profile/${this.lang}/admin/tags-action/update`]);
     let targetTheme = this.tagsList.find(x => x._id == id);
-    this.storage.setLocalStorage("weds360#tagOnEdit" , targetTheme);
+    this.storage.setLocalStorage("weds360#tagOnEdit", targetTheme);
   };
 
-  deleteEntity(id: any){
+  deleteEntity(id: any) {
     this.ngxSpinner.show();
 
     let deleteURL = `${urls.DELETE_TAG}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
-    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Post(deleteURL, {}, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.ngxSpinner.hide();
-        this.toastr.success("Tag has been deleted succesfully" , "An tag has been deleted and wedding website will be impacted.");
+        this.toastr.success("Tag has been deleted succesfully", "An tag has been deleted and wedding website will be impacted.");
         this.getAllTags();
       } else {
         this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your tag couldn't deleted on the server!");
+        this.toastr.error("Our bad sorry!", "Ooh Sorry, your tag couldn't deleted on the server!");
       }
     });
   };
 
-  navigateToCreateNewTag(){
+  navigateToCreateNewTag() {
     this.router.navigate([`profile/${this.lang}/admin/tags-action/new`]);
   }
 
@@ -84,7 +100,7 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
     this.loadScripts();
   };
 
-  loadScripts(){
+  loadScripts() {
     let scripts = ['assets/scripts/custom.js'];
 
     scripts.forEach(element => {
@@ -109,4 +125,48 @@ export class TagsGridComponent implements OnInit, AfterViewInit {
     )) as any;
     this.labels = resData.res;
   }
+
+  //#search region functions
+  search() {
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.tagsList.filter((aTag) => {
+      return (aTag.description.includes(this.searchKey))
+        || (aTag.name.includes(this.searchKey));
+    });
+    window.scroll(0, 0);
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch() {
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0, 0);
+    this.searchableList = this.tagsList;
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.tagsList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+  //#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0, 0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
+
+
 }

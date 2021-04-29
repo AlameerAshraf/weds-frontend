@@ -23,6 +23,7 @@
     "@tinymce/tinymce-angular": "^4.2.2",
     "@types/jquery": "^3.5.5",
     "angularx-social-login": "^3.5.5",
+    "html2canvas": "^1.0.0-rc.7",
     "jquery": "^3.6.0",
     "ngx-dropzone": "^3.0.0",
     "ngx-spinner": "^10.0.1",

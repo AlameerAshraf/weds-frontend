@@ -60,13 +60,13 @@
       </div>
     </div>
   </div>
-</div>
 
-<div class="clearfix"></div>
+  <div class="clearfix"></div>
 
-<div class="row">
-  <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="tagsList.length" [maxSize]="5">
-    </weds-paging>
+  <div class="row" *ngIf="collectionSize > 0 && showPaging">
+    <div class="col-md-12">
+      <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
+      </weds-paging>
+    </div>
   </div>
 </div>

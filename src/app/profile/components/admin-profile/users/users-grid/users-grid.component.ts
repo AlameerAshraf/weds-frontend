@@ -6,6 +6,7 @@ import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { constants, resources, user, localStorageService , responseModel , urls , httpService } from 'src/app/core';
 import { ToastrService } from 'ngx-toastr';
+declare var $
 
 @Component({
   selector: 'app-users-grid',
@@ -21,6 +22,22 @@ export class UsersGridComponent implements OnInit {
   userRoles = constants.USER_ROLES_LIST;
   lang: string;
   labels: any = {};
+
+     // Paging vars!
+     collectionSize: number = 0;
+     pageSize: any = 5;
+     limit: number;
+     skip: number;
+     showPaging = true;
+     // End paging vars!
+
+     // Search vars!
+     searchableList : user[] = [];
+     selectedSearchRole: string = "";
+     searchKey = undefined;
+     that: any = this;
+     // End search vars!
+
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -35,6 +52,7 @@ export class UsersGridComponent implements OnInit {
 ngOnInit() {
   this.getAllUsers();
   this.loadResources();
+  this.documentSelectors();
 }
 
 
@@ -45,6 +63,9 @@ getAllUsers() {
   this.http.Get(getAllUsersURL, {}).subscribe((response: responseModel) => {
     if (!response.error) {
       this.usersList = response.data as user[];
+      this.usersList = this.searchableList = this.usersList.filter(x => x.isActive == true);
+        this.collectionSize = this.usersList.length;
+        this.pageChange(1);
       this.ngxSpinner.hide();
     } else {
       this.ngxSpinner.hide();
@@ -52,9 +73,11 @@ getAllUsers() {
   });
 };
 
-  pageChange(pageNumber){
-
-  };
+documentSelectors() {
+  $("#userRolesDropDown").change({ angularThis: this.that }, function (e, params) {
+    e.data.angularThis.selectedSearchRole = $("#userRolesDropDown").chosen().val();
+  });
+};
 
   editEntity(id: any){
     this.router.navigate([`profile/${this.lang}/admin/users-action/update`]);
@@ -112,4 +135,45 @@ getAllUsers() {
       )) as any;
       this.labels = resData.res;
   };
+  //#search region functions
+  search(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.usersList.filter((aUser) => {
+      return (aUser.role == this.selectedSearchRole)
+        || (aUser.name.includes(this.searchKey));
+    });
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0,0);
+    this.searchableList = this.usersList;
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.usersList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+//#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0,0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
+
 }

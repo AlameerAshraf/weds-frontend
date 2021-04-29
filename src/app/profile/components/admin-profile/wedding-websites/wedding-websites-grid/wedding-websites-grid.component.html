@@ -7,25 +7,31 @@
   </div>
 </div>
 
-<div class="style-2" [ngClass]="lang === 'ar' ? 'rtl' : ''">
-  <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
-    <span class="trigger">
-      <a href="#" style="font-size: 25px !important">
-        <i style="font-size: 25px !important" class="fa fa-filter"></i> {{labels.FILTER_SITES}}
-        <i class="sl sl-icon-plus"></i>
-      </a>
-    </span>
-    <div class="toggle-container" style="padding-bottom: 0px !important; ">
-      <div class="row with-forms">
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
-          <input type="text" placeholder="{{labels.SEARCH_PLACEHOLDER}}">
-        </div>
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
-          <select id="cats" class="chosen-select-no-single">
-            <option label="blank"> {{labels.SELECT}}</option>
-            <option value="pending"> {{labels.PENDING}} </option>
-            <option value="all"> {{labels.ALL}} </option>
-          </select>
+<div class="style-2">
+    <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
+        <span class="trigger">
+            <a href="#" style="font-size: 25px !important">
+                <i style="font-size: 25px !important" class="fa fa-filter"></i> {{labels.FILTER_SITES}}
+                <i class="sl sl-icon-plus"></i>
+            </a>
+        </span>
+        <div class="toggle-container" style="padding-bottom: 0px !important; ">
+            <div class="row with-forms">
+                <div class="col-md-4" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+                    <input type="text" placeholder="{{labels.SEARCH_PLACEHOLDER}}"  [(ngModel)] = "searchKey">
+                </div>
+                <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+                    <select id="cats" class="chosen-select-no-single" >
+                      <option label="blank"> {{labels.SELECT}}</option>
+                      <option value="pending"> {{labels.PENDING}} </option>
+                      <option value="all"> {{labels.ALL}} </option>
+                    </select>
+                </div>
+                <div class="col-md-5" align="right">
+                    <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
+                    <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> Reset </a>
+                  </div>
+            </div>
         </div>
         <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
@@ -33,8 +39,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 
 
 <div class="row">
@@ -55,7 +59,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of weddingWebsiteList">
+            <ng-container *ngFor="let item of searchableList | slice:skip:limit">
               <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{item.name}}</p>
@@ -69,8 +73,8 @@
                   </p>
                 </td>
                 <td class="td-in-table">
-                  <p><i style="color: rgb(80, 121, 233); cursor: pointer; font-size: 20px; font-weight: 600;"
-                      (click)="editEntity(item._id)" class="sl sl-icon-share-alt"></i></p>
+                  <!-- <p><i style="color: rgb(80, 121, 233); cursor: pointer; font-size: 20px; font-weight: 600;"
+                      (click)="editEntity(item._id)" class="sl sl-icon-share-alt"></i></p> -->
                 </td>
               </tr>
             </ng-container>
@@ -83,10 +87,9 @@
 
 <div class="clearfix"></div>
 
-<div class="row">
-  <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="10" [collectionSize]="weddingWebsiteList.length"
-      [maxSize]="5">
-    </weds-paging>
+<div class="row" *ngIf="collectionSize > 0 && showPaging">
+    <div class="col-md-12">
+      <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
+      </weds-paging>
+    </div>
   </div>
-</div>

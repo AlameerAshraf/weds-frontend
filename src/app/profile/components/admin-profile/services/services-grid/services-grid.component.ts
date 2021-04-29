@@ -4,7 +4,7 @@ import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/c
 import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { constants, resources, tag, category, vendor, LookupsService, vendorService, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { constants, resources, tag, category, vendor, LookupsService, vendorService, localStorageService, responseModel, urls, httpService } from 'src/app/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -21,17 +21,32 @@ export class ServicesGridComponent implements OnInit {
   vendors: vendor[] = [];
   lang: string;
   labels: any = {};
+
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
+
+  // Search vars!
+  searchableList: vendorService[] = [];
+  searchKey = undefined;
+  // End search vars!
+
+
   constructor(@Inject(DOCUMENT) private document: any,
-  private router: Router,private lookupsService: LookupsService,
-  private storage: localStorageService,
-  private elementRef: ElementRef, private resources: resources,
-  private http: httpService,private toastr: ToastrService,
-  private ngxSpinner: NgxSpinnerService,
-  private actictedRoute: ActivatedRoute) {
+    private router: Router, private lookupsService: LookupsService,
+    private storage: localStorageService,
+    private elementRef: ElementRef, private resources: resources,
+    private http: httpService, private toastr: ToastrService,
+    private ngxSpinner: NgxSpinnerService,
+    private actictedRoute: ActivatedRoute) {
     this.loadResources();
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.storage.eraseLocalStorage("weds360#vendorServiceOnEdit");
-}
+  }
 
   ngOnInit() {
     this.getAllVendorServices();
@@ -46,6 +61,9 @@ export class ServicesGridComponent implements OnInit {
     this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.servicesList = response.data as vendorService[];
+        this.servicesList = this.searchableList = this.servicesList.filter(x => x.isActive == true);
+        this.collectionSize = this.servicesList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -53,7 +71,7 @@ export class ServicesGridComponent implements OnInit {
     });
   };
 
-  editEntity(id: any){
+  editEntity(id: any) {
     this.ngxSpinner.show();
     this.getLookups();
     let targetTheme = this.servicesList.find(x => x._id == id);
@@ -79,14 +97,10 @@ export class ServicesGridComponent implements OnInit {
 
     this.vendors = ((await this.lookupsService.getVendorsAsLookups()) as responseModel).data;
     this.storage.setLocalStorage("weds360#vendors", this.vendors);
-
   };
 
-  pageChange(pageNumber){
 
-  };
-
-  navigateToCreateNewService(){
+  navigateToCreateNewService() {
     this.router.navigate([`profile/${this.lang}/admin/services-action/new`]);
   }
 
@@ -120,4 +134,50 @@ export class ServicesGridComponent implements OnInit {
     )) as any;
     this.labels = resData.res;
   }
+
+  //#search region functions
+  search() {
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.servicesList.filter((aService) => {
+      return (aService.attributes.nameEn.includes(this.searchKey))
+        || (aService.attributes.nameAr.includes(this.searchKey))
+        || (aService.attributes.descriptionEn.includes(this.searchKey))
+        || (aService.attributes.descriptionAr.includes(this.searchKey))
+        || (aService.type.includes(this.searchKey))
+        || (aService.vendorNameAr.includes(this.searchKey)
+          || aService.vendorNameEn.includes(this.searchKey));
+    });
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch() {
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0, 0);
+    this.searchableList = this.servicesList;
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.servicesList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+  //#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0, 0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
 }

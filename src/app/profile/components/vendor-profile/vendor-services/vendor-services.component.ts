@@ -60,9 +60,9 @@ export class VendorServicesComponent implements OnInit {
 
   };
 
-  editEntity(id: any) {
+  async editEntity(id: any) {
     this.ngxSpinner.show();
-    this.getLookups();
+    await this.getLookups();
     let targetTheme = this.servicesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#vendorServiceOnEdit", targetTheme);
     this.router.navigate([`profile/${this.lang}/vendor/services-action/update`]);
@@ -86,7 +86,8 @@ export class VendorServicesComponent implements OnInit {
     this.storage.setLocalStorage("weds360#tagsEn", this.tagsEn);
   };
 
-  navigateToCreateNewService() {
+  async navigateToCreateNewService() {
+    await this.getLookups();
     this.router.navigate([`profile/${this.lang}/vendor/services-action/new`]);
   }
 
@@ -104,6 +105,7 @@ export class VendorServicesComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+
   async loadResources() {
     let lang =
       window.location.href.toString().toLowerCase().indexOf("ar") > -1
@@ -118,6 +120,5 @@ export class VendorServicesComponent implements OnInit {
       constants.VIEWS["SERVICES"]
     )) as any;
     this.labels = resData.res;
-  }
-
+  };
 }

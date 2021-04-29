@@ -16,9 +16,7 @@ declare var $: any;
 export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
-    that = this;
-    layout = "";
-  parentMenu = "";
+  that = this;
 
   categoriesList: category[] = [];
   categoriesSegments = constants.SEGMENTS;
@@ -26,6 +24,24 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
   lang: string;
   labels: any = {};
+
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  categoriesLookups: category[] = [];
+  showPaging = true;
+  // End paging vars!
+
+  // Search vars!
+  searchableList: category[] = [];
+  selectedSearchCategory: string = "";
+  searchKey = undefined;
+  selectedSearchLayout: string;
+   // End search vars!
+
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -44,10 +60,10 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
   documentSelectors() {
     $("#categoriesLayouts").change({ angularThis: this.that }, function (e, params) {
-      e.data.angularThis.layout = $("#categoriesLayouts").chosen().val();
+      e.data.angularThis.selectedSearchLayout = $("#categoriesLayouts").chosen().val();
     });
     $("#categoriesSegments").change({ angularThis: this.that }, function (e, params) {
-      e.data.angularThis.parentMenu = $("#categoriesSegments").chosen().val();
+      e.data.angularThis.selectedSearchCategory = $("#categoriesSegments").chosen().val();
     });
   };
 
@@ -59,6 +75,9 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
     this.http.Get(getAllCategoriesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.categoriesList = response.data as category[];
+        this.categoriesList = this.searchableList = this.categoriesList.filter(x => x.isRemoved == false);
+        this.collectionSize = this.categoriesList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -67,9 +86,6 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
   };
 
-  pageChange(pageNumber) {
-
-  };
 
   editEntity(id: any){
     this.router.navigate([`profile/${this.lang}/admin/categories-action/update`]);
@@ -129,4 +145,48 @@ export class CategoriesGridComponent implements OnInit, AfterViewInit {
 
     this.labels = resData.res;
   }
+
+
+  //#search region functions
+  search(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+
+    this.searchableList = this.categoriesList.filter((aCategory) => {
+      return (aCategory.parentMenu == this.selectedSearchCategory)
+        || (aCategory.layout == this.selectedSearchLayout)
+        || (aCategory.nameEn.includes(this.searchKey)
+        || aCategory.nameAr.includes(this.searchKey));
+    });
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.searchableList.length;
+    }, 0);
+  };
+
+  clearSearch(){
+    this.showPaging = false;
+    this.ngxSpinner.show();
+    window.scroll(0,0);
+    this.searchableList = this.categoriesList;
+
+    setTimeout(() => {
+      this.ngxSpinner.hide();
+      this.showPaging = true;
+      this.collectionSize = this.categoriesList.length;
+      this.searchKey = undefined;
+    }, 0);
+
+  };
+  //#endregion
+
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0,0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
 }
