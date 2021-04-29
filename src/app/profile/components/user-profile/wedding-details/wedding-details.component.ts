@@ -11,10 +11,11 @@ import { environment } from "src/environments/environment";
 export class WeddingDetailsComponent implements OnInit {
   lang: string;
   labels: any = {};
-  constructor(@Inject(DOCUMENT) private document: any,private resources: resources,
-  private elementRef: ElementRef,) { }
+  constructor(@Inject(DOCUMENT) private document: any, private resources: resources,
+    private elementRef: ElementRef,) { }
 
   ngOnInit() {
+    this.loadResources();
   }
 
   ngAfterViewInit(): void {

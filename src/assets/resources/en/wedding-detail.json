@@ -1,4 +1,19 @@
 {
   "TITLE": "My Perfect Night Details",
-  "PROFILE_DETAILS": "Profile Details"
+  "PROFILE_DETAILS": "Profile Details",
+  "WEDDING_DATE": "Wedding Date",
+  "WEDDING_BUDGET": "Wedding Budget",
+  "VENUE": "Venue",
+  "GUEST_COUNT": "Number of Guests",
+  "SAVE": "Save Changes",
+  "MY_PARTNER": "My Partner",
+  "PARTNER_NAME": "Partner Name",
+  "PARTNER_EMAIL": "Partner Email",
+  "PARTNER_PHONE": "Partner Phone",
+  "DOB": "Date of birth",
+  "CHANGE_PASSWORD": "Change Password",
+  "CANCEL": "Cancel",
+  "DELETE": "Delete",
+  "EDIT": "Edit",
+  "UPDATE": "Update"
 }

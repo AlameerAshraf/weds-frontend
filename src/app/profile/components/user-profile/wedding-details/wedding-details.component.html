@@ -1,34 +1,34 @@
-<div id="titlebar">
+<div id="titlebar" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
-      <h2>My Perfect Night Details 🎉❤</h2>
+      <h2>{{labels.TITLE}} 🎉❤</h2>
     </div>
   </div>
 </div>
 
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-6 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4 class="gray">Profile Details</h4>
+      <h4 class="gray">{{labels.PROFILE_DETAILS}}</h4>
       <div class="dashboard-list-box-static">
 
         <div class="my-profile">
 
-          <label class="margin-top-0">Wedding Date</label>
+          <label class="margin-top-0">{{labels.WEDDING_DATE}}</label>
           <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
 
-          <label>Wedding Budget</label>
+          <label>{{labels.WEDDING_BUDGET}}</label>
           <input placeholder="20,000" type="Number">
 
-          <label>Venue</label>
+          <label>{{labels.VENUE}}</label>
           <input value="Ex. Masaya" type="text">
 
-          <label>Number of Guests</label>
+          <label>{{labels.GUEST_COUNT}}</label>
           <input value="500" type="Number">
         </div>
 
-        <button class="button margin-top-15">Save Changes</button>
+        <button class="button margin-top-15">{{labels.SAVE}}</button>
 
       </div>
     </div>
@@ -37,23 +37,23 @@
   <!-- Change Password -->
   <div class="col-lg-6 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4 class="gray">My Partner</h4>
+      <h4 class="gray">{{labels.MY_PARTNER}}</h4>
       <div class="dashboard-list-box-static">
         <div class="my-profile">
-          <label class="margin-top-0">Partner Name</label>
-          <input type="password" >
+          <label class="margin-top-0">{{labels.PARTNER_NAME}}</label>
+          <input type="password">
 
-          <label>Partner Email</label>
+          <label>{{labels.PARTNER_EMAIL}}</label>
           <input type="text" placeholder="partner@email.com">
 
-          <label>Partner Phone</label>
+          <label>{{labels.PARTNER_PHONE}}</label>
           <input type="text" placeholder="01xxxxxxxx">
 
 
-          <label>Date of birth</label>
+          <label>{{labels.DOB}}</label>
           <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
 
-          <button class="button margin-top-15">Change Password</button>
+          <button class="button margin-top-15">{{labels.CHANGE_PASSWORD}}</button>
         </div>
       </div>
     </div>
