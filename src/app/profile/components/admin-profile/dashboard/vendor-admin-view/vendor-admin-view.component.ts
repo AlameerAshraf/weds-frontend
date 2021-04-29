@@ -2,7 +2,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { constants, featureCount, responseModel, urls, httpService,resources } from 'src/app/core';
+import { constants, featureCount, responseModel, urls, httpService, resources } from 'src/app/core';
 import { environment } from "src/environments/environment";
 @Component({
   selector: 'app-vendor-admin-view',
@@ -16,7 +16,7 @@ export class VendorAdminViewComponent implements OnInit {
   lang: string;
   labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
-    private router: Router, private http: httpService,private resources: resources,
+    private router: Router, private http: httpService, private resources: resources,
     private ngxSpinner: NgxSpinnerService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }

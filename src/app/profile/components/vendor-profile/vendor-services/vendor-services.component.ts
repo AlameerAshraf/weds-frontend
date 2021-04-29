@@ -4,7 +4,7 @@ import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/c
 import { Router } from '@angular/router';
 import { environment } from '../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { constants, resources, vendorService, LookupsService, localStorageService, tag, category, responseModel , urls, httpService, vendor } from 'src/app/core';
+import { constants, resources, vendorService, LookupsService, localStorageService, tag, category, responseModel, urls, httpService, vendor } from 'src/app/core';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -22,14 +22,15 @@ export class VendorServicesComponent implements OnInit {
   tagsAr: tag[] = [];
   tagsEn: tag[] = [];
   categories: category[] = [];
-
+  lang: string;
+  labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
-  private router: Router,
-  private storage: localStorageService,
-  private elementRef: ElementRef, private resources: resources,
-  private http: httpService,private toastr: ToastrService,
-  private ngxSpinner: NgxSpinnerService,private lookupsService: LookupsService,
-  private actictedRoute: ActivatedRoute) {
+    private router: Router,
+    private storage: localStorageService,
+    private elementRef: ElementRef, private resources: resources,
+    private http: httpService, private toastr: ToastrService,
+    private ngxSpinner: NgxSpinnerService, private lookupsService: LookupsService,
+    private actictedRoute: ActivatedRoute) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.vendor = this.storage.getLocalStorage("weds360#vendorOnEdit");
     this.loadResources();
@@ -40,19 +41,11 @@ export class VendorServicesComponent implements OnInit {
     this.getAllVendorServices();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
-
   getAllVendorServices() {
     this.ngxSpinner.show();
     let getAllItemsURL = `${urls.GET_ALL_VENDOR_SERVICES}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
-    this.http.Get(getAllItemsURL, { }).subscribe((response: responseModel) => {
+    this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.servicesList = response.data as vendorService[];
         this.ngxSpinner.hide();
@@ -63,7 +56,7 @@ export class VendorServicesComponent implements OnInit {
   };
 
 
-  pageChange(pageNumber){
+  pageChange(pageNumber) {
 
   };
 
@@ -72,7 +65,7 @@ export class VendorServicesComponent implements OnInit {
     this.getLookups();
     let targetTheme = this.servicesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#vendorServiceOnEdit", targetTheme);
-    this.router.navigate([`profile/en/vendor/services-action/update`]);
+    this.router.navigate([`profile/${this.lang}/vendor/services-action/update`]);
     this.ngxSpinner.hide();
 
   };
@@ -80,7 +73,7 @@ export class VendorServicesComponent implements OnInit {
   async getLookups() {
     this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
     this.storage.setLocalStorage("weds360#categories", this.categories);
-    
+
     let allTags = (await this.lookupsService.getTags()) as responseModel;
     this.tagsAr = allTags.data.filter((tag: any) => {
       return tag.langauge == "Ar";
@@ -93,8 +86,8 @@ export class VendorServicesComponent implements OnInit {
     this.storage.setLocalStorage("weds360#tagsEn", this.tagsEn);
   };
 
-  navigateToCreateNewService(){
-    this.router.navigate(['profile/en/vendor/services-action/new']);
+  navigateToCreateNewService() {
+    this.router.navigate([`profile/${this.lang}/vendor/services-action/new`]);
   }
 
   ngAfterViewInit(): void {
@@ -111,6 +104,20 @@ export class VendorServicesComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
-  
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["SERVICES"]
+    )) as any;
+    this.labels = resData.res;
+  }
+
 }

@@ -52,7 +52,7 @@
 
                   <label>{{labels.VENDOR}}</label>
                   <select id="vendors" class="chosen-select-no-single">
-                    <option label="blank" value="">Select your vendor</option>
+                    <option [label]="labels.SELECT" value="">{{labels.SELECT}}</option>
                     <ng-container *ngFor="let vendor of vendors">
                       <option [selected]="vendor._id === service.vendor" [value]="vendor._id">{{ vendor.nameEn }}
                       </option>

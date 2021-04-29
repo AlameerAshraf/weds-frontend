@@ -11,11 +11,13 @@ export class MessagesComponent implements OnInit {
 
   lang: string;
   labels: any = {};
-   constructor(private resources: resources) {
+  constructor(private resources: resources) {
 
   }
 
-  ngOnInit() {  this.loadResources();}
+  ngOnInit() {
+    this.loadResources();
+  }
   async loadResources() {
     let lang =
       window.location.href.toString().toLowerCase().indexOf("ar") > -1
