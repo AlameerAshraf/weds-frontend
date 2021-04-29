@@ -107,7 +107,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     let tempVar = await this.getLookups();
     this.ngxSpinner.hide();
     this.mapsLoader();
-    this.loadUser();
+    //  this.loadUser();
     this.loadScripts();
     this.documentSelectors();
     this.loadResources();
