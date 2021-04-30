@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'beach',
     component: COMPONENTS.BeachComponent
+  },
+  {
+    path: 'wedding-hall',
+    component: COMPONENTS.WeddingHallComponent
   }
 ];
 
