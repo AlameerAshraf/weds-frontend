@@ -109,6 +109,10 @@ export class constants {
       {
         "route": "beach",
         "name": "Beach"
+      },
+      {
+        "route": "hug",
+        "name": "Hug"
       }
     ]
   };
