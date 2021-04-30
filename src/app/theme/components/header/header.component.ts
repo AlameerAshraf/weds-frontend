@@ -43,19 +43,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     let providedlang: any = this.actictedRoute.parent.params;
     let lang = providedlang._value["lang"];
     let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
+    this.lang = resourceLang;
     let dashboardNavs = `${currentUserType.toUpperCase()}_DASHBOARD`;
     let resData = await this.resources.load(resourceLang, constants.VIEWS[dashboardNavs]) as any;
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
+    if (this.lang === 'ar') this.menuItems.reverse()
     this.profileLinks = this.profileLinks.concat(resData.res["actions"]);
   };
 
-  checkViewAuthority(){
+  checkViewAuthority() {
     this.isLogined = this.authorizedUser;
   };
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/custom.js' , 'assets/scripts/changeLang.js'];
+    let scripts = ['assets/scripts/custom.js', 'assets/scripts/changeLang.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');
