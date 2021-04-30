@@ -13,11 +13,7 @@
   z-index:999;
 }
 
-
-.image-slider .image-slider-container .main .main-inner {
-  background-color: white !important;
-}
-
-.style {
-  background-color: white !important;
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+  background: rgba(0,0,0,0.5);
+  z-index:999;
 }
