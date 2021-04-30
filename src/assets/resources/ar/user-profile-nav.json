@@ -1,35 +1,35 @@
 {
   "menu" : [
     {
-      "name": "360 Planner",
+      "name": "أجندة الفرح",
       "url": "",
       "child": [
         {
-          "name": "Check List",
+          "name": "جدول المهام",
           "url": ""
         },
         {
-          "name": "Budgeter",
+          "name": "تكاليف الفرح",
           "url": ""
         },
         {
-          "name": "Registry List",
+          "name": "هدايا الفرح",
           "url": ""
         },
         {
-          "name": "Guest List",
+          "name": "قائمة الضيوف",
           "url": ""
         },
         {
-          "name": "Wedding Website",
+          "name": "موقع الزفاف",
           "url": ""
         },
         {
-          "name": "Couple Website",
+          "name": "موقع الزوجين",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
@@ -65,89 +65,89 @@
       ]
     },
     {
-      "name": "Him",
+      "name": "لك",
       "url": "",
       "child": [
         {
-          "name": "Suits",
+          "name": "بدلة الفرح",
           "url": ""
         },
         {
-          "name": "Health",
+          "name": "لصحتك",
           "url": ""
         },
         {
-          "name": "Men's Grooming",
+          "name": "صالون رجالي",
           "url": ""
         },
         {
-          "name": "Fitness",
+          "name": "لياقتك",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "The Wedding",
+      "name": "الفرح",
       "url": "",
       "child": [
         {
-          "name": "Venues",
+          "name": "أماكن",
           "url": ""
         },
         {
-          "name": "Outdoor Wedding Venues",
+          "name": "أماكن افراح خارجية",
           "url": ""
         },
         {
-          "name": "Videographers",
+          "name": "مصورين فيديو",
           "url": ""
         },
         {
-          "name": "Photographers",
+          "name": "مصورين",
           "url": ""
         },
         {
-          "name": "DJs",
+          "name": "الدي جي",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Gallery",
+      "name": "جاليري",
       "url": "",
       "child": [
         {
-          "name": "Wedding Ideas",
+          "name": "افكار جديدة",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Ideas & More",
+      "name": "  افكار واكتر  ",
       "url": "",
       "child": [
         {
-          "name": "Tips & Etiquette",
+          "name": "  آداب & اتيكيت  ",
           "url": ""
         },
         {
-          "name": "Wedding Of The Week",
+          "name": "فرح الأسبوع",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
@@ -155,18 +155,97 @@
   ],
   "actions" : [
     {
-      "title" : "Logout",
+      "title" : "أجندة الفرح",
+      "url" : "/profile/ar/user/checklist",
+      "icon" : "sl sl-icon-magic-wand"
+    },
+    {
+      "title" : "حسابي",
+      "url" : "/profile/ar/user/overview",
+      "icon" : "sl sl-icon-settings"
+    },
+    {
+      "title" : "المفضلة لدي",
+      "url" : "/profile/ar/user/my-taste",
+      "icon" : "sl sl-icon-heart"
+    },
+    {
+      "title" : "الرسائل",
+      "url" : "/profile/ar/user/messages",
+      "icon" : "sl sl-icon-envelope-open"
+    },
+    {
+      "title" : "English",
       "url" : "",
+      "icon" : "",
+      "hasImage" : "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title" : "تسجيل الخروج",
+      "url" : "/profile/ar/user/checklist",
       "icon" : "sl sl-icon-power"
     }
   ],
   "navigations" : [
     {
-      "menuTitle" : "My Dashboard",
+      "menuTitle" : "لوحة التحكم",
       "childMenuItem" : [
         {
-          "title" : "Overview",
+          "title" : "نظرة عامة",
           "icon" : "sl sl-icon-rocket",
+          "url" : "overview",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "الرسائل",
+          "icon" : "sl sl-icon-envelope-open",
+          "url" : "messages",
+          "child" : [
+          ]
+        }
+      ]
+    },
+    {
+      "menuTitle" : "أجندة الفرح",
+      "childMenuItem" : [
+        {
+          "title" : "جدول المهام",
+          "icon" : "im im-icon-Check",
+          "url" : "checklist",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "تكاليف الفرح",
+          "icon" : "im im-icon-Calculator-2",
+          "url" : "budgeter",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "المناسبات",
+          "icon" : "im im-icon-CD-2",
+          "url" : "events",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "هدايا الفرح",
+          "icon" : "im im-icon-Gift-Box",
+          "url" : "registery",
+          "child" : [
+
+          ]
+        },
+        {
+          "title" : "موقع الفرح",
+          "icon" : "im im-icon-Touch-Window",
+          "url" : "wedding-website",
           "child" : [
 
           ]
@@ -174,51 +253,28 @@
       ]
     },
     {
-      "menuTitle" : "360Planner",
+      "menuTitle" : "معلومات عن الحساب",
       "childMenuItem" : [
         {
-          "title" : "Check List",
-          "icon" : "sl sl-icon-rocket",
+          "title" : "تفاصيل الفرح",
+          "icon" : "im im-icon-Suit",
+          "url" : "wedding-info",
           "child" : [
 
           ]
         },
         {
-          "title" : "Budgeter",
-          "icon" : "",
+          "title" : "تفاصيل شخصية",
+          "icon" : "im im-icon-Male",
+          "url" : "my-info",
           "child" : [
 
           ]
         },
         {
-          "title" : "Events & Guest List",
-          "icon" : "",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Registery List",
-          "icon" : "",
-          "child" : [
-
-          ]
-        },
-        {
-          "title" : "Wedding website",
-          "icon" : "",
-          "child" : [
-
-          ]
-        }
-      ]
-    },
-    {
-      "menuTitle" : "My Messages",
-      "childMenuItem" : [
-        {
-          "title" : "Messages",
-          "icon" : "",
+          "title" : "المفضلة لدي",
+          "icon" : "im im-icon-Bookmark",
+          "url" : "my-taste",
           "child" : [
 
           ]

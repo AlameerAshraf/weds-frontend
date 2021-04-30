@@ -4,7 +4,7 @@ import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/c
 import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { constants, resources, tag, category, vendor, LookupsService, vendorService, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { constants, resources, tag, category, vendor, LookupsService, vendorService, localStorageService, responseModel, urls, httpService } from 'src/app/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,44 +19,40 @@ export class ServicesGridComponent implements OnInit {
   tagsEn: tag[] = [];
   categories: category[] = [];
   vendors: vendor[] = [];
+  lang: string;
+  labels: any = {};
 
-     // Paging vars!
-     collectionSize: number = 0;
-     pageSize: any = 5;
-     limit: number;
-     skip: number;
-     showPaging = true;
-     // End paging vars!
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
 
-     // Search vars!
-     searchableList : vendorService[] = [];
-     searchKey = undefined;
-     // End search vars!
+  // Search vars!
+  searchableList: vendorService[] = [];
+  searchKey = undefined;
+  // End search vars!
 
 
   constructor(@Inject(DOCUMENT) private document: any,
-  private router: Router,private lookupsService: LookupsService,
-  private storage: localStorageService,
-  private elementRef: ElementRef, private resources: resources,
-  private http: httpService,private toastr: ToastrService,
-  private ngxSpinner: NgxSpinnerService,
-  private actictedRoute: ActivatedRoute) {
+    private router: Router, private lookupsService: LookupsService,
+    private storage: localStorageService,
+    private elementRef: ElementRef, private resources: resources,
+    private http: httpService, private toastr: ToastrService,
+    private ngxSpinner: NgxSpinnerService,
+    private actictedRoute: ActivatedRoute) {
     this.loadResources();
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.storage.eraseLocalStorage("weds360#vendorServiceOnEdit");
-}
+  }
 
   ngOnInit() {
     this.getAllVendorServices();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllVendorServices() {
     this.ngxSpinner.show();
@@ -75,12 +71,12 @@ export class ServicesGridComponent implements OnInit {
     });
   };
 
-  editEntity(id: any){
+  editEntity(id: any) {
     this.ngxSpinner.show();
     this.getLookups();
     let targetTheme = this.servicesList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#vendorServiceOnEdit", targetTheme);
-    this.router.navigate([`profile/en/admin/services-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/services-action/update`]);
     this.ngxSpinner.hide();
   };
 
@@ -103,9 +99,9 @@ export class ServicesGridComponent implements OnInit {
     this.storage.setLocalStorage("weds360#vendors", this.vendors);
   };
 
-  async navigateToCreateNewService(){
-    await this.getLookups();
-    this.router.navigate(['profile/en/admin/services-action/new']);
+
+  navigateToCreateNewService() {
+    this.router.navigate([`profile/${this.lang}/admin/services-action/new`]);
   }
 
 
@@ -123,9 +119,24 @@ export class ServicesGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["SERVICES"]
+    )) as any;
+    this.labels = resData.res;
+  }
 
   //#search region functions
-  search(){
+  search() {
     this.showPaging = false;
     this.ngxSpinner.show();
 
@@ -136,7 +147,7 @@ export class ServicesGridComponent implements OnInit {
         || (aService.attributes.descriptionAr.includes(this.searchKey))
         || (aService.type.includes(this.searchKey))
         || (aService.vendorNameAr.includes(this.searchKey)
-        || aService.vendorNameEn.includes(this.searchKey));
+          || aService.vendorNameEn.includes(this.searchKey));
     });
 
     setTimeout(() => {
@@ -146,10 +157,10 @@ export class ServicesGridComponent implements OnInit {
     }, 0);
   };
 
-  clearSearch(){
+  clearSearch() {
     this.showPaging = false;
     this.ngxSpinner.show();
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.searchableList = this.servicesList;
 
     setTimeout(() => {
@@ -160,11 +171,11 @@ export class ServicesGridComponent implements OnInit {
     }, 0);
 
   };
-//#endregion
+  //#endregion
 
   //#region Paging Helpers ..
   pageChange(pageNumber) {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.limit = this.pageSize * pageNumber;
     this.skip = Math.abs(this.pageSize - this.limit);
   };

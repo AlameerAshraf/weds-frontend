@@ -6,6 +6,7 @@ import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/c
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   helpers = new helper(this.router , this.actictedRoute , this.resources );
   translated: any = {};
 
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router,
+  labels: any = {};
+   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
   private OAuth: SocialAuthService,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
     private storage: localStorageService, private spinner: NgxSpinnerService,
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.initForm();
-
+    this.loadResources();
     let resourcesData = await this.helpers.loadResources();
     this.lang = resourcesData.lang;
     this.translated = resourcesData.translatedObject;
@@ -129,4 +131,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.showNotification = false;
   }
   //#endregion
+  async loadResources() {
+    let providedlang: any = this.actictedRoute.parent.params;
+    let lang = providedlang._value["lang"];
+    let resourceLang = (this.lang =
+      lang == null || lang == undefined ? environment.defaultLang : lang);
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["LOGIN"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

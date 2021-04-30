@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, registery, urls , responseModel } from 'src/app/core';
+import { constants, httpService, registery, urls , responseModel ,resources} from 'src/app/core';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-registrylist',
@@ -29,14 +30,16 @@ export class RegistrylistComponent implements OnInit {
     title: ""
   };
   currentUserEmail: string;
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute , private http: httpService,
+  lang: string;
+  labels: any = {};
+  constructor(private router: Router, private activatedRoute: ActivatedRoute , private http: httpService, private resources:resources,
     private ngxSpinner: NgxSpinnerService , private toastr: ToastrService){
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
 
   ngOnInit() {
     this.getAllRegistryListPerUser();
+    this.loadResources();
   }
 
   getAllRegistryListPerUser(){
@@ -157,4 +160,21 @@ export class RegistrylistComponent implements OnInit {
       });
     }
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["REGISTRY"]
+    )) as any;
+    this.labels = resData.res;
+
+  }
 }

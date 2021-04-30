@@ -14,7 +14,8 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.SaveTheDayTemplateComponent,
     COMPONENTS.VioletFlowerComponent,
     COMPONENTS.SpringGardenComponent,
-    COMPONENTS.RegistryListComponent
+    COMPONENTS.RegistryListComponent,
+    COMPONENTS.BeachComponent
   ],
   imports: [
     CommonModule,

@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'spring-garden',
     component: COMPONENTS.SpringGardenComponent
+  },
+  {
+    path: 'beach',
+    component: COMPONENTS.BeachComponent
   }
 ];
 

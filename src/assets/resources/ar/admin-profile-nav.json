@@ -1,0 +1,232 @@
+{
+  "menu": [
+    {
+      "name": "أجندة الفرح",
+      "url": "",
+      "child": [
+        {
+          "name": "جدول المهام",
+          "url": ""
+        },
+        {
+          "name": "تكاليف الفرح",
+          "url": ""
+        },
+        {
+          "name": "هدايا الفرح",
+          "url": ""
+        },
+        {
+          "name": "قائمة الضيوف",
+          "url": ""
+        },
+        {
+          "name": "موقع الزفاف",
+          "url": ""
+        },
+        {
+          "name": "موقع الزوجين",
+          "url": ""
+        },
+        {
+          "name": "المزيد",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "لها",
+      "url": "",
+      "child": [
+        {
+          "name": "المصممين",
+          "url": ""
+        },
+        {
+          "name": "بوكية الزفاف",
+          "url": ""
+        },
+        {
+          "name": "فساتين زفاف",
+          "url": ""
+        },
+        {
+          "name": "خواتم",
+          "url": ""
+        },
+        {
+          "name": "ميكاب ارتيست",
+          "url": ""
+        },
+        {
+          "name": "المزيد",
+          "url": "segment/ar/her"
+        }
+      ]
+    },
+    {
+      "name": "له",
+      "url": "",
+      "child": [
+        {
+          "name": "البدل",
+          "url": ""
+        },
+        {
+          "name": "صحة",
+          "url": ""
+        },
+        {
+          "name": "صالون الرجال",
+          "url": ""
+        },
+        {
+          "name": "اللياقة البدنية",
+          "url": ""
+        },
+        {
+          "name": "المزيد",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "الزفاف",
+      "url": "",
+      "child": [
+        {
+          "name": "الأماكن",
+          "url": ""
+        },
+        {
+          "name": "قاعات أفراح خارجية",
+          "url": ""
+        },
+        {
+          "name": "مصوري الفيديو",
+          "url": ""
+        },
+        {
+          "name": "المصورين",
+          "url": ""
+        },
+        {
+          "name": "دي جي",
+          "url": ""
+        },
+        {
+          "name": "المزيد",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "الاستديو",
+      "url": "",
+      "child": [
+        {
+          "name": "أفكار الزفاف",
+          "url": ""
+        },
+        {
+          "name": "المزيد",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "أفكار والمزيد",
+      "url": "",
+      "child": [
+        {
+          "name": "نصائح وآداب",
+          "url": ""
+        },
+        {
+          "name": "زفاف الأسبوع",
+          "url": ""
+        },
+        {
+          "name": "المزيد",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "title": "حسابي",
+      "url": "/profile/ar/admin/overview",
+      "icon": "sl sl-icon-settings"
+    },
+    {
+      "title": "رسائل",
+      "url": "/profile/ar/admin/messages",
+      "icon": "sl sl-icon-envelope-open"
+    },
+    {
+      "title": "English",
+      "url": "",
+      "icon": "",
+      "hasImage": "assets/images/defaults/flags/en.png"
+    },
+    {
+      "title": "تسجيل خروج",
+      "url": "/profile/ar/admin/checklist",
+      "icon": "sl sl-icon-power"
+    }
+  ],
+  "navigations": [
+    {
+      "menuTitle": "لوحة التحكم",
+      "childMenuItem": [
+        {
+          "title": "نظرة عامة",
+          "icon": "sl sl-icon-rocket",
+          "url": "overview",
+          "child": []
+        },
+        {
+          "title": "الرسائل",
+          "icon": "sl sl-icon-envelope-open",
+          "url": "messages",
+          "child": []
+        }
+      ]
+    },
+    {
+      "menuTitle": "لوحة المسؤول",
+      "childMenuItem": [
+        {
+          "title": "الموقع إلكتروني",
+          "icon": "sl sl-icon-screen-desktop",
+          "url": "website-admin",
+          "child": []
+        },
+        {
+          "title": "البائعين ",
+          "icon": "sl sl-icon-handbag",
+          "url": "vendors-admin",
+          "child": []
+        },
+        {
+          "title": "المستخدم",
+          "icon": "sl sl-icon-people",
+          "url": "users-admin",
+          "child": []
+        }
+      ]
+    },
+    {
+      "menuTitle": "معلومات الحساب",
+      "childMenuItem": [
+        {
+          "title": "تفاصيل شخصية",
+          "icon": "im im-icon-Male",
+          "url": "profile-details",
+          "child": []
+        }
+      ]
+    }
+  ]
+}

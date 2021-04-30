@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { responseModel , urls , httpService , constants, localStorageService, post, resources , LookupsService, category } from './../../../../../core';
+import { responseModel, urls, httpService, constants, localStorageService, post, resources, LookupsService, category } from './../../../../../core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +17,7 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  postsList : post[] = [];
+  postsList: post[] = [];
 
   // Paging vars!
   collectionSize: number = 0;
@@ -29,12 +29,13 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
   // End paging vars!
 
   // Search vars!
-  searchableList : post[] = [];
+  searchableList: post[] = [];
   selectedSearchCategory: string = "";
   that: any = this;
   searchKey = undefined;
   // End search vars!
-
+  labels: any = {};
+  lang: string;
 
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
@@ -54,26 +55,20 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
     await this.getLookups();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
 
   getAllPosts() {
     this.spinner.show();
     let getAllPostsURL = `${urls.GET_ALL_POSTS}/${constants.APP_IDENTITY_FOR_USERS}`;
     this.http.Get(getAllPostsURL, {}).subscribe((response: responseModel) => {
-      if(!response.error){
+      if (!response.error) {
         this.spinner.hide();
         this.postsList = this.searchableList = response.data as post[];
         this.collectionSize = this.postsList.length;
         this.pageChange(1);
-      }else{
+      } else {
         this.spinner.hide();
-        this.toastr.error("Our bad sorry!" , "Error loading data from the server, try again later!");
+        this.toastr.error("Our bad sorry!", "Error loading data from the server, try again later!");
       }
     });
 
@@ -82,23 +77,23 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
 
   navigateToCreateNewPost() {
-    this.router.navigate(['profile/en/admin/posts-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/posts-action/new`]);
   };
 
-  navigateToUpdatePost(postId: any){
+  navigateToUpdatePost(postId: any) {
     let targetPost = this.postsList.find(x => x._id == postId);
-    this.storage.setLocalStorage("weds360#postOnEdit" , targetPost);
-    this.router.navigate([`profile/en/admin/posts-action/update`]);
+    this.storage.setLocalStorage("weds360#postOnEdit", targetPost);
+    this.router.navigate([`profile/${this.lang}/admin/posts-action/update`]);
   };
 
-  search(){
+  search() {
     this.showPaging = false;
     this.spinner.show();
 
     this.searchableList = this.postsList.filter((aPost) => {
       return (aPost.category == this.selectedSearchCategory)
         || (aPost.titleEn.includes(this.searchKey)
-        || aPost.titleAr.includes(this.searchKey));
+          || aPost.titleAr.includes(this.searchKey));
     });
 
     setTimeout(() => {
@@ -108,7 +103,7 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
     }, 0);
   };
 
-  clearSearch(){
+  clearSearch() {
     this.showPaging = false;
     this.spinner.show();
 
@@ -124,13 +119,13 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
 
   //#region Helper methods
-  async getLookups(){
+  async getLookups() {
     let categories = (await this.lookupsService.getCategories() as responseModel).data;
     this.categoriesLookups = categories as category[];
   };
 
-  documentSelectors(){
-    $("#cats").change({ angularThis: this.that } ,function(e, params){
+  documentSelectors() {
+    $("#cats").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.selectedSearchCategory = $("#cats").chosen().val();
     });
   };
@@ -156,9 +151,24 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
   //#region Paging Helpers ..
   pageChange(pageNumber) {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.limit = this.pageSize * pageNumber;
     this.skip = Math.abs(this.pageSize - this.limit);
   };
   //#endregion
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
+
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["POSTS"]
+    )) as any;
+    this.labels = resData.res;
+  }
 }

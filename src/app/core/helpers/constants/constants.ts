@@ -12,6 +12,27 @@ export class constants {
       "USER_DASHBOARD" : "user-profile-nav",
       "ADMIN_DASHBOARD" : "admin-profile-nav",
       "VENDOR_DASHBOARD" : "vendor-profile-nav",
+      "LOGIN": "login",
+      "OVERVIEW": "overview",
+      "MESSAGES": "messages",
+      "THEMES": "themes",
+      "TAGS": "tags",
+      "OFFERS": "offers",
+      "WEBSITE_ADMIN": "website-admin",
+      "CATEGORIES": "categories",
+      "AREAS": "areas",
+      "POSTS": "posts",
+      "VENDORS": "vendor",
+      "SERVICES": "services",
+      "USERS": "users",
+      "CHECKLIST" : "checklist",
+      "BUDGETERS" : "budgeters",
+      "EVENTS" : "events",
+      "REGISTRY" : "registry",
+      "PROFILE_LAYOUT" : "profile-layout",
+      "WEDDING_WEBSITE" : "wedding-website",
+      "WEDDING_DETAILS" : "wedding-detail",
+
     }
   };
 
@@ -83,6 +104,10 @@ export class constants {
       {
         "route" : "spring-garden",
         "name" : "Spring garden"
+      },
+      {
+        "route" : "beach",
+        "name" : "Beach"
       }
     ]
   };

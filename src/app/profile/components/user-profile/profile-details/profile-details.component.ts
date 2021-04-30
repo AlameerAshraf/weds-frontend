@@ -2,7 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, responseModel, urls } from 'src/app/core';
+import { constants, httpService, responseModel, urls,resources } from 'src/app/core';
+
+import { environment } from 'src/environments/environment';
 declare const google: any
 @Component({
   selector: 'app-profile-details',
@@ -14,20 +16,22 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
   latitude: number;
   longitude: number;
   zoom: number = 12;
-
+  profilePhotoUrl:string ='http://via.placeholder.com/1920x315'
   private geoCoder: any;
   address: any = "";
   currentUserEmail: string;
-
+  labels:any={};
+  lang:string;
   constructor(@Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef, private http: httpService ,
+    private elementRef: ElementRef, private http: httpService , private resources: resources,
     private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     }
 
   ngOnInit() {
-    this.setCurrentLocation();
+     this.setCurrentLocation();
     this.loadUser();
+    this.loadResources();
   };
 
   loadUser(){
@@ -105,4 +109,19 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
     });
   };
   //#endregion
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["PROFILE_LAYOUT"]
+      )) as any;
+      this.labels = resData.res;
+  };
 }

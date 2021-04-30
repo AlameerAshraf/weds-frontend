@@ -1,13 +1,13 @@
 <ngx-spinner></ngx-spinner>
-<div class="transparent-header">
+<div class="transparent-header" [ngClass]="lang === 'ar' ? 'rtlText' : ''">
   <header id="header-container" class="fullwidth">
     <div id="header" style="border-bottom: 0px;">
       <div class="container">
         <div class="left-side">
           <div id="logo">
             <a>
-              <img style="max-height: 55px;" src="assets/images/logos/logo_1.png"
-                data-sticky-logo="assets/images/logos/logo_1.png" alt="Weds360 logo">
+              <img style="max-height: 55px;" src="assets/images/logos/whitelogo.png"
+                data-sticky-logo="assets/images/logos/whitelogo.png" alt="Weds360 logo">
             </a>
           </div>
         </div>
@@ -16,20 +16,22 @@
   </header>
 
 
-  <div class="main-search-container full-height alt-search-box centered" [attr.data-background-image]="bkImage">
+  <div [ngClass]="lang === 'ar' ? 'rtlText' : ''" class="main-search-container full-height alt-search-box centered"
+    [attr.data-background-image]="bkImage">
     <div class="main-search-inner">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <form [formGroup]="registerForm">
+            <form [formGroup]="registerForm" [ngClass]="lang === 'ar' ? 'rtlText' : ''">
               <div class="main-search-input">
 
                 <div class="main-search-input-headline ">
-                  <h2>Register Now </h2>
-                  <h4 style="margin-bottom: 8px;">Wedding Planning is a piece of cake with Weds360</h4>
+                  <h2>{{labels.REGISTER_NOW}} </h2>
+                  <h4 style="margin-bottom: 8px;">{{labels.REGISTER_SUBTITLE}}</h4>
                 </div>
 
-                <div [ngClass]="{'enable-notify': showNotification , ' disable-notify' : !showNotification }" class="main-search-input-item closeable removed-margins">
+                <div [ngClass]="{'enable-notify': showNotification , ' disable-notify' : !showNotification }"
+                  class="main-search-input-item closeable removed-margins">
                   <div [ngClass]="{'error': hasErrors ,
                                     'success' : hasSuccessMessages ,
                                     'warning' : hasWarnings ,
@@ -43,14 +45,14 @@
                 <div *ngIf="rf['email'].errors?.required && rf.email.touched"
                   class="main-search-input-item removed-margins">
                   <div class="notification error closeable fullWidth removed-paddings">
-                    <p>Email is required to register.</p>
+                    <p>{{labels.EMAIL_REQUIRED}}.</p>
                   </div>
                 </div>
 
                 <div *ngIf="rf['email'].errors?.email && rf.email.touched"
                   class="main-search-input-item removed-margins">
                   <div class="notification error closeable fullWidth removed-paddings">
-                    <p>Please enter a valid email.</p>
+                    <p>{{labels.VALID_EMAIL}}.</p>
                   </div>
                 </div>
                 <!-- End Email Errors -->
@@ -60,7 +62,7 @@
                 <div *ngIf="rf['password'].errors?.required && rf.password.touched"
                   class="main-search-input-item removed-margins">
                   <div class="notification error closeable fullWidth removed-paddings">
-                    <p>Password is required to register.</p>
+                    <p>{{labels.PASSWORD_REQUIRED}}.</p>
                   </div>
                 </div>
                 <!-- End Password Errors -->
@@ -68,7 +70,8 @@
 
                 <div class="main-search-input-item">
                   <div>
-                    <input (keydown)="textChanged()" formControlName="email" type="email" placeholder="example@weds360.com">
+                    <input (keydown)="textChanged()" formControlName="email" type="email"
+                      placeholder="example@weds360.com">
                   </div>
                 </div>
 
@@ -84,20 +87,22 @@
                 </div>
 
                 <div class="main-search-input-item" style="margin-bottom: 0px;">
-                  <div id="or">OR</div>
+                  <div id="or">{{labels.OR}}</div>
                 </div>
 
                 <div class="main-search-input-item">
                   <ul class="social-icons color rounded icons-ul">
-                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a class="facebook" href="#"><i [ngClass]="lang === 'ar' ? 'rtlIcon' : ''"
+                          class="icon-facebook"></i></a></li>
                     <!-- <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li> -->
-                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                    <li><a class="gplus" href="#"><i [ngClass]="lang === 'ar' ? 'rtlIcon' : ''"
+                          class="icon-gplus"></i></a></li>
                   </ul>
                   <span *ngIf="!isVendorRegistering" (click)="helpers.changeRegisterationType('vendor')"
                     style="font-size: 15px; cursor: pointer; color: rgb(82, 80, 80); font-weight: 600;"
                     class="icons-ul">
                     <span>
-                      Wanna join us as a vendor?
+                      <div id="or" class="orRTL ">{{labels.VENDOR_JOIN_US}}</div>
                     </span>
                   </span>
 
@@ -105,13 +110,13 @@
                     style="font-size: 15px; cursor: pointer; color: rgb(63, 62, 62); font-weight: 600;"
                     class="icons-ul">
                     <span>
-                      Join as a user?
+                      <div id="or">{{labels.JOIN_AS_USER}}</div>
                     </span>
                   </span>
 
                   <span (click)="helpers.navigateToLogin()" style="font-size: 13px; cursor: pointer;" class="icons-ul">
                     <span>
-                      Aleady have an account?
+                      {{labels.ALREADY_HAVE_ACCOUNT}}
                     </span>
                   </span>
 
@@ -119,7 +124,8 @@
 
                 <button (click)="register()" [ngClass]="{'disabled': !registerForm.valid}"
                   [disabled]="!registerForm.valid" class="button fullwidth margin-top-5">
-                  Register
+                  {{labels.REGISTER}}
+
                 </button>
               </div>
             </form>

@@ -1,65 +1,41 @@
-<div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Create the offers items.</h2>
-      </div>
-    </div>
-  </div>
-
-  <div class="style-2">
-    <div class="toggle-wrap" style="border-bottom: 0px solid #e0e0e0 !important">
-      <span class="trigger">
-        <a href="#" style="font-size: 25px !important">
-          <i style="font-size: 25px !important" class="fa fa-filter"></i> Filter & search in offers
-          <i class="sl sl-icon-plus"></i>
-        </a>
-      </span>
-      <div class="toggle-container" style="padding-bottom: 0px !important; ">
-        <div class="row with-forms">
-          <div class="col-md-5">
-            <input type="text" placeholder="search in offer name & description." [(ngModel)] = "searchKey">
-          </div>
-          
-          <div class="col-md-6" align="right">
-            <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
-            <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i> Reset </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <div class="dashboard-list-box margin-top-0">
-        <h4>
-          Default Offers
-  
-          <div
-            (click)="navigateToCreateNewOffer()"
-            style="background-color: #046B69 !important;
+    <div class="col-md-12">
+      <h2>{{labels.OFFERS}}</h2>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>
+        {{labels.DEFAULT_OFFERS}}
+
+        <div (click)="navigateToCreateNewOffer()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
-              border-radius: 20px;"
-              class="comission-taken">
-            <i class="im im-icon-Pencil"></i> &nbsp;
-            <strong style="color: white !important">Create New Offer Item</strong>
-          </div>
-        </h4>
-  
-        <div class="col-md-12" style="background-color: white;">
-          <table class="table borderless">
-            <thead>
-              <tr>
-                <th scope="col" width="29%">Offer</th>
-                <th scope="col" width="29%">Description</th>
-                <th scope="col" width="2%">Delete</th>
-                <th scope="col" width="2%">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of searchableList | slice:skip:limit">
-              <tr>
+              border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">{{labels.ADD_OFFER}}</strong>
+        </div>
+      </h4>
+
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="29%">{{labels.OFFER}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="29%">{{labels.DESCRIPTION}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="2%">{{labels.DELETE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="2%">{{labels.EDIT}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of offersList">
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p style="font-size: 20px; font-weight: 600;">{{ item.titleEn}}</p>
                 </td>
@@ -68,28 +44,27 @@
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                    (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i></p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                    (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </div>
+            </ng-container>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
+
   <div class="clearfix"></div>
-  
+
   <div class="row" *ngIf="collectionSize > 0 && showPaging">
     <div class="col-md-12">
       <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
       </weds-paging>
     </div>
   </div>
-  
-  
+
+

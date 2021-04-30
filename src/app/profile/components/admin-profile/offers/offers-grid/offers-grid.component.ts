@@ -18,6 +18,8 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
   startTypingAnimation: boolean = true;
 
   offersList :  offer[] = [];
+  lang: string;
+  labels: any = {};
 
   // Paging vars!
   collectionSize: number = 0;
@@ -48,14 +50,6 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     this.getAllOffers();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
-
   getAllOffers() {
     this.ngxSpinner.show();
     let getAllOffersURL = `${urls.GET_ALL_OFFERS}/${constants.APP_IDENTITY_FOR_USERS}`;
@@ -75,7 +69,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/offers-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/offers-action/update`]);
     let targetTheme = this.offersList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#offerOnEdit" , targetTheme);
   };
@@ -97,7 +91,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
   };
 
   navigateToCreateNewOffer(){
-    this.router.navigate(['profile/en/admin/offers-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/offers-action/new`]);
   };
 
   ngAfterViewInit(): void {
@@ -114,8 +108,23 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
-   //#search region functions 
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["OFFERS"]
+    )) as any;
+    this.labels = resData.res;
+  }
+
+   //#search region functions
    search(){
     this.showPaging = false;
     this.ngxSpinner.show();

@@ -1,8 +1,8 @@
 <div id="titlebar" class="gradient">
   <div class="row">
     <div class="col-md-12">
-      <h2>Welcome to your checklist</h2>
-      <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
+      <h2>{{labels.CHECKLIST}}</h2>
+      <!-- <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span> -->
     </div>
   </div>
 </div>
@@ -10,15 +10,14 @@
 <div class="row">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box with-icons margin-top-20">
-      <h4>My CheckList <div
-        (click) = "createNewChecklist()"
-        style="background-color: #046B69 !important;
+      <h4>{{labels.MY_CHECKLIST}} <div (click)="createNewChecklist()" style="background-color: #046B69 !important;
           color: white !important;
           cursor: pointer;
           border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Create checklist</strong>
-        </div></h4>
+          <strong style="color: white !important">{{labels.ADD_ITEM}}</strong>
+        </div>
+      </h4>
       <ul>
 
         <ng-container *ngFor="let checkList of listOfUsersChecklists">
@@ -26,38 +25,38 @@
           <ng-container *ngIf="!checkList.isNew">
             <li style="cursor: pointer;" (click)="toggleNote(checkList._id)">
               <i (click)="$event.stopPropagation(); check(checkList._id);"
-                [ngClass] = "{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
+                [ngClass]="{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
                 class="list-box-icon fa fa-check"></i>
-                <span style="font-size: 20px;">{{ checkList.title }}</span>
+              <span style="font-size: 20px;">{{ checkList.title }}</span>
             </li>
 
 
             <div [ngClass]="{'show': showNote == checkList._id , 'hide' : showNote !== checkList._id }"
-              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'"
-              id="add-review" class="add-review-box no-margins">
-              <label>Note:</label>
+              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'" id="add-review"
+              class="add-review-box no-margins">
+              <label>{{labels.NOTE}}:</label>
               <textarea cols="40" rows="2" [(ngModel)]="checkList.note"></textarea>
 
-              <button class="button" (click)="updateChecklistItem(checkList._id)">Update Note</button>
+              <button class="button" (click)="updateChecklistItem(checkList._id)">{{labels.UPDATE}}</button>
             </div>
           </ng-container>
 
           <!-- new checkLists -->
           <ng-container *ngIf="checkList.isNew">
             <li style="cursor: pointer;" (click)="toggleNote(checkList._id)">
-              <i [ngClass] = "{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
+              <i [ngClass]="{ 'isChecked' : checkList.isChecked , 'isNotChecked' : !checkList.isChecked }"
                 class="list-box-icon fa fa-check"></i>
-                <input type="text" style="width: 75%;" [(ngModel)]="newlyCreatedCheckList.title">
+              <input type="text" style="width: 75%;" [(ngModel)]="newlyCreatedCheckList.title">
             </li>
 
 
             <div [ngClass]="{'show': showNote == checkList._id , 'hide' : showNote !== checkList._id }"
-              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'"
-              id="add-review" class="add-review-box no-margins">
-              <label>Note:</label>
+              [@slideInOut]="showNote == checkList._id ? 'in' : 'out'" id="add-review"
+              class="add-review-box no-margins">
+              <label>{{labels.NOTE}}:</label>
               <textarea cols="40" rows="2" [(ngModel)]="newlyCreatedCheckList.note"></textarea>
 
-              <button class="button" (click)="presisteItemChecklist()">Save Cheklist</button>
+              <button class="button" (click)="presisteItemChecklist()">{{labels.SAVE}}</button>
             </div>
           </ng-container>
         </ng-container>

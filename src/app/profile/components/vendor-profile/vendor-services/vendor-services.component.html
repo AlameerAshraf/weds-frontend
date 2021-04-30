@@ -1,71 +1,68 @@
-<div id="titlebar" class="gradient">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>My Services </h2>
-      </div>
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{labels.SERVICE_TITLE}}</h2>
     </div>
   </div>
-  
-  
-  <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <div class="dashboard-list-box margin-top-0">
-        <h4>
-          Services
-  
-          <div
-            (click)="navigateToCreateNewService()"
-            style="background-color: #046B69 !important;
+</div>
+
+
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="col-lg-12 col-md-12">
+    <div class="dashboard-list-box margin-top-0">
+      <h4>
+        {{labels.SERVICES}}
+
+        <div (click)="navigateToCreateNewService()" style="background-color: #046B69 !important;
               color: white !important;
               cursor: pointer;
-              border-radius: 20px;"
-              class="comission-taken">
-            <i class="im im-icon-Pencil"></i> &nbsp;
-            <strong style="color: white !important">Create New Service Item</strong>
-          </div>
-        </h4>
-  
-        <div class="col-md-12" style="background-color: white;">
-          <table class="table borderless">
-            <thead>
-              <tr>
-                <th scope="col" width="30%">Service Type</th>
-                <th scope="col" width="30%">Service Name</th>
-                <th scope="col" width="30%">Service Description</th>
-                <th scope="col" width="10%">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <ng-container *ngFor="let item of servicesList">
-              <tr>
+              border-radius: 20px;" class="comission-taken">
+          <i class="im im-icon-Pencil"></i> &nbsp;
+          <strong style="color: white !important">{{labels.ADD_SERVICE}}</strong>
+        </div>
+      </h4>
+
+      <div class="col-md-12" style="background-color: white;">
+        <table class="table borderless">
+          <thead>
+            <tr>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.TYPE}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.NAME}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="30%">{{labels.DESC}}</th>
+              <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="10%">{{labels.EDIT}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of servicesList">
+              <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
-                  <p >{{ item.type.toLowerCase() }}</p>
+                  <p>{{ item.type.toLowerCase() }}</p>
                 </td>
                 <td>
-                  <p >{{ item.attributes.nameEn }}</p>
+                  <p>{{ item.attributes.nameEn }}</p>
                 </td>
                 <td>
-                  <p >{{ item.attributes.descriptionEn }}</p>
+                  <p>{{ item.attributes.descriptionEn }}</p>
                 </td>
                 <td class="td-in-table">
                   <p><i style="color:  #046B69; font-size: 20px; font-weight: 600;cursor: pointer;"
-                    (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
                 </td>
               </tr>
             </ng-container>
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
-  <div class="clearfix"></div>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="servicesList.length" [maxSize]="5">
-      </weds-paging>
-    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="servicesList.length"
+      [maxSize]="5">
+    </weds-paging>
   </div>
-  
+</div>

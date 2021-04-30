@@ -20,6 +20,8 @@ export class UsersGridComponent implements OnInit {
   usersList: user[] = [];
 
   userRoles = constants.USER_ROLES_LIST;
+  lang: string;
+  labels: any = {};
 
      // Paging vars!
      collectionSize: number = 0;
@@ -28,7 +30,7 @@ export class UsersGridComponent implements OnInit {
      skip: number;
      showPaging = true;
      // End paging vars!
-   
+
      // Search vars!
      searchableList : user[] = [];
      selectedSearchRole: string = "";
@@ -49,16 +51,10 @@ export class UsersGridComponent implements OnInit {
 
 ngOnInit() {
   this.getAllUsers();
+  this.loadResources();
   this.documentSelectors();
 }
 
-async loadResources() {
-  let providedlang: any = this.actictedRoute.parent.params;
-  let lang = providedlang._value["lang"];
-  let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-  let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-};
 
 getAllUsers() {
   this.ngxSpinner.show();
@@ -84,7 +80,7 @@ documentSelectors() {
 };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/users-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/users-action/update`]);
     let targetItem = this.usersList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#userOnEdit" , targetItem);
   };
@@ -106,7 +102,7 @@ documentSelectors() {
   };
 
   navigateToAddNewUser(){
-    this.router.navigate(['profile/en/admin/users-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/users-action/new`]);
   }
 
   ngAfterViewInit(): void {
@@ -124,7 +120,22 @@ documentSelectors() {
     });
   };
 
-  //#search region functions 
+  async loadResources() {
+    let lang =
+        window.location.href.toString().toLowerCase().indexOf("ar") > -1
+          ? "ar"
+          : "en";
+
+      let resourceLang =
+        lang == null || lang == undefined ? environment.defaultLang : lang;
+      this.lang = resourceLang;
+      let resData = (await this.resources.load(
+        resourceLang,
+        constants.VIEWS["USERS"]
+      )) as any;
+      this.labels = resData.res;
+  };
+  //#search region functions
   search(){
     this.showPaging = false;
     this.ngxSpinner.show();

@@ -1,0 +1,43 @@
+{
+  "BUDGETERS":"تكاليف الفرح",
+  "BUDGETERS_TITLE":" ضيف الي تكاليف الفرح ",
+  "NAME_ENGLISH": "الاسم باللغة الانجليزية",
+  "NAME_ARABIC": "الاسم باللغة العربية",
+  "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
+  "DESCRIPTION_ARABIC": "الوصف باللغة الانجليزية ",
+  "ADD_BUDGETERS":" اضافة تكاليف الفرح جديدة ",
+  "BUDGETERS_INFO":" معلومات عن تكاليف الفرح ",
+
+  "WEDDING_PLANNING":"تحضير للزفاف",
+  "HOW_TO_ENJOY":"عاوز تستمتع بفرحك ازاي؟",
+  "SELECT_BUDGET_LVL":"حدد مستوى الميزانية",
+  "EXPENSIVELY":"غالي ",
+  "AFFORDABLY":" متوسط",
+  "CHEAPLY":"رخيص",
+  "OWN_PLAN":"انا هحدد",
+  "BUDGET":"الميزانية",
+  "BUDGET_PLACEHOLDER_SUGGEST":"دا اقتراح من عندنا.. بس انت ممكن تحدد الميزانية براحتك",
+  "BUDGET_PLACEHOLDER":" دخل الميزانية المناسبة لك",
+  "ADD_ITEM":"ضيف بند جديد",
+  "VENDOR":"البائع",
+  "SELECT":"اختار",
+  "CATEGORY":"الفئة",
+
+  "NOTES_REMEMBER":"ملاحطات - حاجات لازم تفتكرها",
+  "NOTE":"ملاحطة",
+  "AMNT_SPEND":"عاوز تصرف لجد كام؟",
+  "AMNT_SPEND_PLACEHOLDER":"دخل الميزانية المخطط لها للتحضير لحفل الزفاف الخاص بك",
+
+  "WEDDING_BUDGET":"ميزانة الفرح",
+  "PLAN_ITEM":"العنصر",
+  "AMOUNT":"المبلغ",
+  "RECOMMENDATION":"توصية",
+
+  "PERCENT":"النسبة",
+  "UPDATE": "تعديل",
+  "DELETE": "حذف",
+  "EDIT": "تعديل",
+  "SAVE": "حفظ",
+  "CANCEL": "إلغاء"
+}
+

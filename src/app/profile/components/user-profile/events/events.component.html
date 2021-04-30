@@ -1,25 +1,23 @@
-<div id="titlebar" class="gradient">
+<div id="titlebar" class="gradient" [align]="lang==='ar'?'left':'right'">
   <div class="row">
     <div class="col-md-12">
-      <h2>Welcome to your Registry List</h2>
-      <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
+      <h2>{{labels.EVENTS_TITLE}}</h2>
+      <!-- <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span> -->
     </div>
   </div>
 </div>
 
 
 
-<div class="row">
+<div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>My Events <div
-        (click)="createNewEvent()"
-        style="background-color: #046B69 !important;
+      <h4>{{labels.MY_EVENTS}} <div (click)="createNewEvent()" style="background-color: #046B69 !important;
         color: white !important;
         cursor: pointer;
         border-radius: 20px;" class="comission-taken">
           <i class="im im-icon-Pencil"></i> &nbsp;
-          <strong style="color: white !important">Create a new event</strong>
+          <strong style="color: white !important">{{labels.ADD_EVENT}}</strong>
         </div>
       </h4>
       <ul>
@@ -35,34 +33,33 @@
               <div class="list-box-listing-content">
                 <div class="inner">
                   <h3 style="font-size: 25px;"> {{ event.name }}
-                    <span
-                      [style.background-color]="event.numbersOfDaysToEvent < 10 ? '#6b0404' : '#046B69'"
+                    <span [style.background-color]="event.numbersOfDaysToEvent < 10 ? '#6b0404' : '#046B69'"
                       style="border-radius: 0px !important; font-size: 17px; color: rgb(255, 255, 255) !important"
                       class="booking-status">{{ event.numbersOfDaysToEvent }} Days</span>
                   </h3>
 
 
                   <div class="inner-booking-list">
-                    <h5 style="font-size: 20px;">Guests: </h5> &nbsp;
+                    <h5 style="font-size: 20px;">{{labels.GUESTS}}: </h5> &nbsp;
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(140, 212, 112) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.GOING }} Going</li>
+                        class="highlighted">{{ event.counts.GOING }} {{labels.GOING}}</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: lightcoral !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.DECLINED }} Declined</li>
+                        class="highlighted">{{ event.counts.DECLINED }} {{labels.DECLINED}}</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(66, 148, 202) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.INVITED }} Invited</li>
+                        class="highlighted">{{ event.counts.INVITED }} {{labels.INVITED}}</li>
                     </ul>
                     <ul class="booking-list">
                       <li
                         style="font-size: 17px; background-color: rgb(75, 74, 74) !important; color: rgb(255, 255, 255) !important"
-                        class="highlighted">{{ event.counts.NO_RESPONSE }} No Response</li>
+                        class="highlighted">{{ event.counts.NO_RESPONSE }} {{labels.NO_RESPONSE}}</li>
                     </ul>
                   </div>
 
@@ -72,12 +69,14 @@
                     </ul>
                   </div>
 
-                  <a style="cursor: pointer;" (click)="viewEventDetails(event._id)" class="rate-review popup-with-zoom-anim">
-                    <i class="sl sl-icon-paper-clip"></i> View Details
+                  <a style="cursor: pointer;" (click)="viewEventDetails(event._id)"
+                    class="rate-review popup-with-zoom-anim">
+                    <i class="sl sl-icon-paper-clip"></i> {{labels.EVENT_DETAILS}}
                   </a>
 
-                  <a style="cursor: pointer;" (click)="inviteFriends(event._id)" class="rate-review popup-with-zoom-anim">
-                    <i class="im im-icon-Mail-Read"></i> Invite friends
+                  <a style="cursor: pointer;" (click)="inviteFriends(event._id)"
+                    class="rate-review popup-with-zoom-anim">
+                    <i class="im im-icon-Mail-Read"></i>{{labels.INVITE_FRIENDS}}
                   </a>
                 </div>
               </div>

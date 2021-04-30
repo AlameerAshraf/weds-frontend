@@ -17,6 +17,8 @@ export class VendorsGridComponent implements OnInit {
   startTypingAnimation: boolean = true;
 
   vendorsList: vendor[] = [];
+  labels: any = {};
+  lang: string;
 
   // Paging vars!
   collectionSize: number = 0;
@@ -47,14 +49,6 @@ export class VendorsGridComponent implements OnInit {
     this.getAllVendors();
   }
 
-  async loadResources() {
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
-
-    let resData = await this.resources.load(resourceLang, constants.VIEWS["HOME_LAYOUT"]);
-  };
-
   getAllVendors() {
     this.ngxSpinner.show();
     let getAllItemsURL = `${urls.GET_ALL_VENDORS}/${constants.APP_IDENTITY_FOR_USERS}`;
@@ -73,7 +67,7 @@ export class VendorsGridComponent implements OnInit {
   };
 
   editEntity(id: any){
-    this.router.navigate([`profile/en/admin/vendors-action/update`]);
+    this.router.navigate([`profile/${this.lang}/admin/vendors-action/update`]);
     let targetTheme = this.vendorsList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#vendorOnEdit" , targetTheme);
   };
@@ -95,11 +89,11 @@ export class VendorsGridComponent implements OnInit {
   };
 
   publishVendor(id: any){
-    
+
   }
 
   navigateToCreateNewVendor(){
-    this.router.navigate(['profile/en/admin/vendors-action/new']);
+    this.router.navigate([`profile/${this.lang}/admin/vendors-action/new`]);
   }
 
   ngAfterViewInit(): void {
@@ -116,8 +110,23 @@ export class VendorsGridComponent implements OnInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  async loadResources() {
+    let lang =
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
-   //#search region functions 
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["VENDORS"]
+    )) as any;
+    this.labels = resData.res;
+  }
+
+   //#search region functions
    search(){
     this.showPaging = false;
     this.ngxSpinner.show();
