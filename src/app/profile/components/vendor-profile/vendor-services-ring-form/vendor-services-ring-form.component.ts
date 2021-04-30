@@ -75,7 +75,7 @@ export class VendorServicesRingFormComponent implements OnInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("Service has been saved succesfully", "service has been updated, Bingo!");
-        this.router.navigateByUrl('/profile/en/vendor/my-services');
+        this.router.navigateByUrl(`/profile/${this.lang}/vendor/my-services`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "Ooh Sorry, your service couldn't created on the server!");
@@ -92,7 +92,7 @@ export class VendorServicesRingFormComponent implements OnInit {
       if (!response.error) {
         this.ngxSpinner.hide();
         this.toastr.success("Service has been saved succesfully", "A new service has been created.");
-        this.router.navigateByUrl('/profile/en/vendor/my-services');
+        this.router.navigateByUrl(`/profile/${this.lang}/vendor/my-services`);
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "Ooh Sorry, your service couldn't created on the server!");
@@ -169,7 +169,7 @@ export class VendorServicesRingFormComponent implements OnInit {
 
 
   backToRoute() {
-    this.router.navigateByUrl('/profile/en/vendor/my-services');
+    this.router.navigateByUrl(`/profile/${this.lang}/vendor/my-services`);
   };
 
   //#region load scripts

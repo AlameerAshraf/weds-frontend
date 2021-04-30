@@ -1,7 +1,7 @@
 <div id="titlebar">
   <div class="row">
     <div class="col-md-12">
-      <h2>my services</h2>
+      <h2>{{labels.MY_SERVICES}}</h2>
     </div>
   </div>
 </div>
@@ -9,19 +9,19 @@
 <div class="row with-forms">
   <div class="col-md-6">
     <a class="button modfied-btn"
-      [ngClass] = "{ 'selected': selectedLayout == 'ring' , 'not-selected' : selectedLayout != 'ring' }"
+      [ngClass]="{ 'selected': selectedLayout == 'ring' , 'not-selected' : selectedLayout != 'ring' }"
       (click)="selectTemplate('ring')">
-      <i class="im im-icon-Heart-2"></i> Ring
+      <i class="im im-icon-Heart-2"></i> {{labels.RING}}
     </a>
 
 
     <a class="button modfied-btn"
-      [ngClass] = "{ 'selected': selectedLayout == 'dress' , 'not-selected' : selectedLayout != 'dress' }"
+      [ngClass]="{ 'selected': selectedLayout == 'dress' , 'not-selected' : selectedLayout != 'dress' }"
       (click)="selectTemplate('dress')">
-      <i class="im im-icon-Dress"></i> Dress
+      <i class="im im-icon-Dress"></i> {{labels.DRESS}}
     </a>
     <a class="button modfied-btn" (click)="addNewServiceTemplate()">
-      <i class="im im-icon-Add"></i> Add new service template
+      <i class="im im-icon-Add"></i> {{labels.NEW_SERVICE_TEMPLATE}}
     </a>
   </div>
 </div>
