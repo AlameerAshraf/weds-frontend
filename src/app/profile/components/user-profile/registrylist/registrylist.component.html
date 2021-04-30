@@ -82,7 +82,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="buttons-to-right">
+                <div [ngClass]="lang==='ar'?'button-to-left':'buttons-to-right'">
                   <a class="button edit gray" (click)="editWish(wish._id)"><i class="sl sl-icon-close"></i>
                     {{labels.EDIT}}</a>
                   <a class="button remove gray" (click)="confirmDeletRegistryItem(wish._id)"><i

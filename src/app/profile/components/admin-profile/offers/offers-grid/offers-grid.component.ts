@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { constants, resources, offer, localStorageService , responseModel , urls , httpService } from 'src/app/core';
+import { constants, resources, offer, localStorageService, responseModel, urls, httpService } from 'src/app/core';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -17,7 +17,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  offersList :  offer[] = [];
+  offersList: offer[] = [];
   lang: string;
   labels: any = {};
 
@@ -30,7 +30,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
   // End paging vars!
 
   // Search vars!
-  searchableList : offer[] = [];
+  searchableList: offer[] = [];
   searchKey = undefined;
   // End search vars!
 
@@ -39,7 +39,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     private router: Router,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,private toastr: ToastrService,
+    private http: httpService, private toastr: ToastrService,
     private ngxSpinner: NgxSpinnerService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
@@ -68,29 +68,29 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
 
   };
 
-  editEntity(id: any){
+  editEntity(id: any) {
     this.router.navigate([`profile/${this.lang}/admin/offers-action/update`]);
     let targetTheme = this.offersList.find(x => x._id == id);
-    this.storage.setLocalStorage("weds360#offerOnEdit" , targetTheme);
+    this.storage.setLocalStorage("weds360#offerOnEdit", targetTheme);
   };
 
-  deleteEntity(id: any){
+  deleteEntity(id: any) {
     this.ngxSpinner.show();
 
     let deleteURL = `${urls.DELETE_OFFER}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
-    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Post(deleteURL, {}, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.ngxSpinner.hide();
-        this.toastr.success("Offer has been deleted succesfully" , "An offer has been deleted and wedding website will be impacted.");
+        this.toastr.success("Offer has been deleted succesfully", "An offer has been deleted and wedding website will be impacted.");
         this.getAllOffers();
       } else {
         this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your offer couldn't deleted on the server!");
+        this.toastr.error("Our bad sorry!", "Ooh Sorry, your offer couldn't deleted on the server!");
       }
     });
   };
 
-  navigateToCreateNewOffer(){
+  navigateToCreateNewOffer() {
     this.router.navigate([`profile/${this.lang}/admin/offers-action/new`]);
   };
 
@@ -98,7 +98,7 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     this.loadScripts();
   };
 
-  loadScripts(){
+  loadScripts() {
     let scripts = ['assets/scripts/custom.js'];
 
     scripts.forEach(element => {
@@ -124,16 +124,16 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     this.labels = resData.res;
   }
 
-   //#search region functions
-   search(){
+  //#search region functions
+  search() {
     this.showPaging = false;
     this.ngxSpinner.show();
 
     this.searchableList = this.offersList.filter((aOffer) => {
-      return  (aOffer.titleEn.includes(this.searchKey)
+      return (aOffer.titleEn.includes(this.searchKey)
         || aOffer.titleAr.includes(this.searchKey))
         || (aOffer.descriptionEn.includes(this.searchKey)
-        || aOffer.descriptionAr.includes(this.searchKey));
+          || aOffer.descriptionAr.includes(this.searchKey));
     });
 
     setTimeout(() => {
@@ -143,10 +143,10 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     }, 0);
   };
 
-  clearSearch(){
+  clearSearch() {
     this.showPaging = false;
     this.ngxSpinner.show();
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.searchableList = this.offersList;
 
     setTimeout(() => {
@@ -157,11 +157,11 @@ export class OffersGridComponent implements OnInit, AfterViewInit {
     }, 0);
 
   };
-//#endregion
+  //#endregion
 
   //#region Paging Helpers ..
   pageChange(pageNumber) {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.limit = this.pageSize * pageNumber;
     this.skip = Math.abs(this.pageSize - this.limit);
   };

@@ -4,13 +4,12 @@
   "DELETE": "Delete",
   "EDIT": "Edit",
   "ADD_TAG": "Add Tag",
-  "SAVE": "Save",
+  "SAVE": "Save Changes",
   "CANCEL": "Cancel",
   "TAG_INFO": "Tag information",
   "UPDATE": "Update",
   "NAME_ENGLISH": "Name English",
   "NAME_ARABIC": "Name Arabic",
-
   "MAKE_TAG_ACTIVE": "Make Tag Active",
   "DESCRIPTION": "Description",
   "ENABLED": "Enabled"

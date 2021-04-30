@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, ElementRef, Inject
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { post, LookupsService, responseModel, urls, constants, httpService, category, localStorageService,resources } from 'src/app/core';
+import { post, LookupsService, responseModel, urls, constants, httpService, category, localStorageService, resources } from 'src/app/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from 'src/environments/environment';
 declare var $;
@@ -20,15 +20,15 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   post: post = new post();
 
   tinymceInit = {
-    height : "400",
-    plugins : [
+    height: "400",
+    plugins: [
       "advlist autolink lists link image charmap print preview hr anchor pagebreak",
       "searchreplace visualblocks visualchars code fullscreen",
       "insertdatetime media nonbreaking save table directionality",
       "emoticons template paste textpattern"
     ],
-    toolbar : 'formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | image emoticons',
-    image_advtab : false,
+    toolbar: 'formatselect | bold italic forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | image emoticons',
+    image_advtab: false,
     images_upload_handler: this.tiny_image_upload_handler.bind(this),
   };
 
@@ -43,16 +43,16 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
   constructor(private spinner: NgxSpinnerService, private router: Router,
     private activatedRoute: ActivatedRoute, private storage: localStorageService,
-    private toastr: ToastrService,@Inject(DOCUMENT) private document: any,private resources: resources,
+    private toastr: ToastrService, @Inject(DOCUMENT) private document: any, private resources: resources,
     private elementRef: ElementRef, private lookupsService: LookupsService,
     private http: httpService) {
-      window.scrollTo(0 , 0);
-      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+    window.scrollTo(0, 0);
+    this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
-      this.activatedRoute.params.subscribe((params) => {
-        this.editingMode = params["actionType"];
-      });
-    }
+    this.activatedRoute.params.subscribe((params) => {
+      this.editingMode = params["actionType"];
+    });
+  }
 
 
   async ngOnInit() {
@@ -60,12 +60,12 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     let tempVar = await this.getLookups(); // this var is doing nothing just for waiting the results!
     this.spinner.hide();
     this.loadPost();
-
+    this.loadResources();
     this.loadScripts();
     this.documentSelectors();
   }
 
-  createPost(){
+  createPost() {
     this.spinner.show();
 
     // Set user email as author!
@@ -74,19 +74,19 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     this.post.isScheduledPost = this.post.scheduledAt == undefined ? false : true;
 
     let createNewPostURL = `${urls.CREATE_POST}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`;
-    this.http.Post(createNewPostURL , {} , { "post" : this.post }).subscribe((response: responseModel) =>{
-      if(!response.error){
+    this.http.Post(createNewPostURL, {}, { "post": this.post }).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.spinner.hide();
-        this.toastr.success("Gooood!" , "Amazing words catch hearts before eyes, post has been added successfully 💕");
+        this.toastr.success("Gooood!", "Amazing words catch hearts before eyes, post has been added successfully 💕");
         this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
-      }else{
+      } else {
         this.spinner.hide();
-        this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
+        this.toastr.error("Our bad sorry!", "My bad, server couldn't create your post.");
       }
     });
   };
 
-  updatePost(){
+  updatePost() {
     this.spinner.show();
 
     // Set user email as author!
@@ -96,23 +96,23 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     this.post.isScheduledPost = (this.post.scheduledAt == undefined || this.post.scheduledAt == "") ? false : true;
 
     let updatePostURL = `${urls.UPDATE_POST}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.post._id}`;
-    this.http.Post(updatePostURL , {} , { "post" : this.post }).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Post(updatePostURL, {}, { "post": this.post }).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.spinner.hide();
-        this.toastr.success("Gooood!" , "Amazing Post has been updated successfully 💕");
+        this.toastr.success("Gooood!", "Amazing Post has been updated successfully 💕");
         this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
-      }else{
+      } else {
         this.spinner.hide();
-        this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your post.");
+        this.toastr.error("Our bad sorry!", "My bad, server couldn't create your post.");
       }
     });
   };
 
-  async loadPost(){
-    if(this.editingMode == "update"){
+  async loadPost() {
+    if (this.editingMode == "update") {
       this.post = this.storage.getLocalStorage("weds360#postOnEdit");
       this.spinner.show();
-      this.fetchEdiedPosts(this.post.bodyEnURL , "en");
+      this.fetchEdiedPosts(this.post.bodyEnURL, "en");
       this.fetchEdiedPosts(this.post.bodyArURL, "ar");
       // this.post.scheduledAt = this.post.scheduledAt.toString().split('T')[0];
       this.spinner.hide();
@@ -120,12 +120,12 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   };
 
 
-  backToRoute(){
+  backToRoute() {
     this.router.navigateByUrl(`/profile/${this.lang}/admin/posts`);
   };
 
 
-  async getLookups(){
+  async getLookups() {
     let allTags = (await this.lookupsService.getTags()) as responseModel;
     let allCats = (await this.lookupsService.getCategories()) as responseModel;
     let allPosts = (await this.lookupsService.getPostsAsLookups()) as responseModel;
@@ -144,10 +144,10 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
   tiny_image_upload_handler(blobInfo, success, failure, progress) {
     const imageFile = blobInfo.blob();
-    this.uploadPhoto(imageFile , success , failure);
+    this.uploadPhoto(imageFile, success, failure);
   };
 
-  uploadPhoto(file , success, failuer){
+  uploadPhoto(file, success, failuer) {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("targetEntity", "POSTS");
@@ -166,20 +166,20 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     });
   };
 
-  fetchEdiedPosts(postFileUrl: any , lang){
+  fetchEdiedPosts(postFileUrl: any, lang) {
     return this.http.Fetch(postFileUrl).subscribe((response) => {
       console.log(response)
-      if(lang == "ar")
+      if (lang == "ar")
         this.post.bodyContentAr = response;
-      else if(lang == "en")
+      else if (lang == "en")
         this.post.bodyContentEn = response;
     })
   };
 
 
   //#region Helper Methods ..
-  tagsBinder(tagId , lang) {
-    if(lang == "ar")
+  tagsBinder(tagId, lang) {
+    if (lang == "ar")
       return this.post.tagsAr.some(entry => entry === tagId);
     else if (lang == "en")
       return this.post.tagsEn.some(entry => entry === tagId);
@@ -189,20 +189,20 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     return this.post.relatedPosts.some(entry => entry === postId);
   };
 
-  documentSelectors(){
-    $("#tagsAr").change({ angularThis: this.that } ,function(e, params){
+  documentSelectors() {
+    $("#tagsAr").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.post.tagsAr = $("#tagsAr").chosen().val();
     });
 
-    $("#tagsEn").change({ angularThis: this.that } ,function(e, params){
+    $("#tagsEn").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.post.tagsEn = $("#tagsEn").chosen().val();
     });
 
-    $("#relatedPosts").change({ angularThis: this.that } ,function(e, params){
+    $("#relatedPosts").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.post.relatedPosts = $("#relatedPosts").chosen().val();
     });
 
-    $("#cats").change({ angularThis: this.that } ,function(e, params){
+    $("#cats").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.post.category = $("#cats").chosen().val();
     });
   };
@@ -222,10 +222,10 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   uploadCoverPhoto(e: any) {
     this.spinner.show();
     const imageFile = e.target.files[0]
-    this.uploadPhoto(imageFile , (url: any) =>{
+    this.uploadPhoto(imageFile, (url: any) => {
       this.spinner.hide();
       this.post.featuredImage = url;
-    } , (err) => {
+    }, (err) => {
       this.spinner.hide();
       this.post.featuredImage = "";
     })
@@ -234,10 +234,10 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   uploadVideo(e: any) {
     this.spinner.show();
     const imageFile = e.target.files[0];
-    this.uploadPhoto(imageFile , (url: any) =>{
+    this.uploadPhoto(imageFile, (url: any) => {
       this.spinner.hide();
       this.post.featuredVideo = url;
-    } , (err) => {
+    }, (err) => {
       this.spinner.hide();
       this.post.featuredVideo = "";
     })
@@ -245,14 +245,14 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   //#endregion
 
   //#region Blogs Gallery
-  uploadImagePhoto(e: any , imageId: any){
+  uploadImagePhoto(e: any, imageId: any) {
     this.spinner.show();
     const imageFile = e.target.files[0];
     let slectedImage = this.post.images.find(x => x.id == imageId);
-    this.uploadPhoto(imageFile , (url: any) =>{
+    this.uploadPhoto(imageFile, (url: any) => {
       this.spinner.hide();
       slectedImage.url = url;
-    } , (err: any) => {
+    }, (err: any) => {
       this.spinner.hide();
       console.log(err);
       slectedImage.url = "";
@@ -269,18 +269,18 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     return result.join('');
   };
 
-  addImage(){
+  addImage() {
     this.post.images.push({
       id: this.makeid(10),
-      url: "assets/images/defaults/wedding/cover-photo.png" ,
-      arabicDesc: "Arabic Desc." ,
+      url: "assets/images/defaults/wedding/cover-photo.png",
+      arabicDesc: "Arabic Desc.",
       englishDesc: "English Desc."
     })
   };
 
-  removeImage(id: any){
+  removeImage(id: any) {
     let targetImageIndex = this.post.images.indexOf(this.post.images.find(x => x.id == id));
-    this.post.images.splice(targetImageIndex , 1);
+    this.post.images.splice(targetImageIndex, 1);
   };
   //#endregion
 
@@ -292,8 +292,8 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
     this.loadScripts();
   };
 
-  loadScripts(){
-    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js' , 'assets/scripts/dropzone.js'];
+  loadScripts() {
+    let scripts = ['assets/scripts/datePickerInitakizer.js', 'assets/scripts/custom.js', 'assets/scripts/dropzone.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');

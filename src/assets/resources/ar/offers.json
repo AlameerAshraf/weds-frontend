@@ -3,7 +3,6 @@
   "ADD_OFFER": "اضافة عرض جديد",
   "OFFER_INFO": " معلومات عن العرض",
   "OFFER": " العرض ",
-
   "IMAGE": "الصورة",
   "VENDOR": "البائع",
   "SHOWS_IN": "اختار صفحة العرض",
@@ -11,10 +10,9 @@
   "TITLE_ENGLISH": "الاسم باللغة الانجليزية",
   "TITLE_ARABIC": "الاسم باللغة العربية",
   "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
-  "DESCRIPTION_ARABIC": "الوصف باللغة الانجليزية ",
+  "DESCRIPTION_ARABIC": "الوصف باللغة العربية ",
   "UPLOAD_PHOTO": "ارفق صورة",
   "DESCRIPTION": "الوصف",
-
   "UPDATE": "تعديل",
   "DELETE": "حذف",
   "EDIT": "تعديل",
