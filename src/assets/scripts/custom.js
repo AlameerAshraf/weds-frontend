@@ -549,7 +549,8 @@ $(document).ready(function(){
 		slidesToShow: 3,
 		slidesToScroll: 3,
 		dots: true,
-		arrows: true,
+    autoplay: true,
+    speed: 600,
 		responsive: [
 		    {
 		      breakpoint: 992,
@@ -575,7 +576,7 @@ $(document).ready(function(){
 		slidesToScroll: 1,
 		dots: true,
 		arrows: false,
-
+    autoplay: true,
 		responsive: [
 		{
 		  breakpoint: 1610,
@@ -994,7 +995,7 @@ $(document).ready(function(){
 
 					// Refresh sotrable script
 					$(".slots-container").sortable('refresh');
-			} 
+			}
 
 			// Validation Error
 			else {
@@ -1012,14 +1013,14 @@ $(document).ready(function(){
 				daySlots.find(".no-slots")
 						.addClass("no-slots-fadein")
 						.removeClass("no-slots-fadeout");
-			} 
+			}
 		}
 		hideSlotInfo();
 
 
 		// Removing Slot
 	    daySlots.find('.remove-slot').bind('click', function() {
-			$(this).closest('.single-slot').animate({height: 0, opacity: 0}, 'fast', function() { 
+			$(this).closest('.single-slot').animate({height: 0, opacity: 0}, 'fast', function() {
 				$(this).remove();
 			});
 
@@ -1037,7 +1038,7 @@ $(document).ready(function(){
 				daySlots.find(".no-slots")
 						.removeClass("no-slots-fadein")
 						.addClass("no-slots-fadeout");
-			} 
+			}
 		});
 
     });
@@ -1059,7 +1060,7 @@ $(document).ready(function(){
 	      var picker = $(this),
 	          p = picker.find('button:last-child'),
 	          m = picker.find('button:first-child'),
-	          input = picker.find('input'),                 
+	          input = picker.find('input'),
 	          min = parseInt(input.attr('min'), 10),
 	          max = parseInt(input.attr('max'), 10),
 	          inputFunc = function(picker) {
@@ -1070,7 +1071,7 @@ $(document).ready(function(){
 	              m.prop(dis, true);
 	            } else if (i >= max) {
 	              input.val(max);
-	              p.prop(dis, true); 
+	              p.prop(dis, true);
 	              m.prop(dis, false);
 	            } else {
 	              p.prop(dis, false);

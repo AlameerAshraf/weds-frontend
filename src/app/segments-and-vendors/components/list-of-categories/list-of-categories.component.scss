@@ -1,0 +1,19 @@
+.wrap {
+  position:relative;
+}
+
+.wrap:before {
+  content:"";
+  position: absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background: rgba(0,0,0,0.5);
+  z-index:999;
+}
+
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+  background: rgba(0,0,0,0.5);
+  z-index:999;
+}

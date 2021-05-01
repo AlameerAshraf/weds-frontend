@@ -25,6 +25,7 @@
     "angularx-social-login": "^3.5.5",
     "html2canvas": "^1.0.0-rc.7",
     "jquery": "^3.6.0",
+    "ng-image-slider": "^2.8.0",
     "ngx-dropzone": "^3.0.0",
     "ngx-spinner": "^10.0.1",
     "ngx-toastr": "^11.3.3",

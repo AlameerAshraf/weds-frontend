@@ -10,6 +10,7 @@ import * as COMPONENTS from './components';
 import { NGX_SPINNER , THEME_MODULE} from './segments-and-vendors.imports';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     SegmentsAndVendorsRoutingModule,
     THEME_MODULE,
     NgxSpinnerModule,
+    NgImageSliderModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAnZPhwhppJByAoyUEzJtF31F0TalEoiYA',
       libraries: ['places']

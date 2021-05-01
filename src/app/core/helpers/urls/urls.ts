@@ -19,6 +19,8 @@ export class urls {
   public static get CREATE_USER(): string { return this.BASE_URL + '/users/sign-up'};
   public static get UPDATE_USER(): string { return this.BASE_URL + '/users/update-user-personal-info'};
   public static get DELETE_USER(): string { return this.BASE_URL + '/users/delete-user'};
+  public static get GET_WEDDING_AND_PARTNER_DETAILS(): string { return this.BASE_URL + '/users/get-wedding-and-partner-details'};
+  public static get UPDATE_WEDDING_AND_PARTNER_DETAILS(): string { return this.BASE_URL + '/users/update-wedding-and-partner-details'};
 
   // Admin!
   public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
