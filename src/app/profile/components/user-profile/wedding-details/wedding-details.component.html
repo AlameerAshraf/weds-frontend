@@ -16,16 +16,16 @@
         <div class="my-profile">
 
           <label class="margin-top-0">{{labels.WEDDING_DATE}}</label>
-          <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+          <input type="text" id="date-picker" placeholder="Date"  [(ngModel)] = "weddingDetails.weddingDate" readonly="readonly">
 
           <label>{{labels.WEDDING_BUDGET}}</label>
           <input placeholder="20,000" type="Number" [(ngModel)] = "weddingDetails.budget">
 
           <label>{{labels.VENUE}}</label>
-          <input value="Ex. Masaya" type="text" [(ngModel)] = "weddingDetails.venue">
+          <input placeholder="Ex. Masaya" type="text" [(ngModel)] = "weddingDetails.venue">
 
           <label>{{labels.GUEST_COUNT}}</label>
-          <input value="500" type="Number" [(ngModel)] = "weddingDetails.numberOfGuests">
+          <input placeholder="500" type="Number" [(ngModel)] = "weddingDetails.numberOfGuests">
         </div>
       </div>
     </div>
@@ -38,17 +38,17 @@
       <div class="dashboard-list-box-static">
         <div class="my-profile">
           <label class="margin-top-0">{{labels.PARTNER_NAME}}</label>
-          <input type="text" [(ngModel)] = "weddingDetails.partener.name">
+          <input type="text" [(ngModel)] = "weddingDetails.partner.name">
 
           <label>{{labels.PARTNER_EMAIL}}</label>
-          <input type="text" placeholder="partner@email.com" [(ngModel)] = "weddingDetails.partener.email">
+          <input type="text" placeholder="partner@email.com" [(ngModel)] = "weddingDetails.partner.email">
 
           <label>{{labels.PARTNER_PHONE}}</label>
-          <input type="text" placeholder="01xxxxxxxx" min="11" max="11" [(ngModel)] = "weddingDetails.partener.phone">
+          <input type="text" placeholder="01xxxxxxxx" min="11" max="11" [(ngModel)] = "weddingDetails.partner.phone">
 
 
           <label>{{labels.DOB}}</label>
-          <input type="date"  placeholder="Date" [(ngModel)] = "weddingDetails.partener.dateOfBirth">
+          <input type="date"  placeholder="Partner Date Of Birth" [(ngModel)] = "weddingDetails.partner.dateOfBirth">
         </div>
       </div>
     </div>
@@ -58,5 +58,5 @@
 <a style="background-color: #F91942 !important;" class="button preview">
   {{labels.CANCEL}} <i class="sl sl-icon-close"></i>
 </a>
-<a class="button preview" (click)="saveWeddingAndPartenerDetails()">{{labels.SAVE}}
+<a class="button preview" (click)="saveWeddingAndPartnerDetails()">{{labels.SAVE}}
   <i class="sl sl-icon-check"></i></a>

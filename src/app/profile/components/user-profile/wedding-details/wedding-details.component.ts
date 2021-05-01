@@ -1,6 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { constants, resources, weddingDetials } from 'src/app/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { constants, resources, weddingDetials, httpService, urls, responseModel } from 'src/app/core';
 import { environment } from "src/environments/environment";
 
 @Component({
@@ -12,30 +14,52 @@ export class WeddingDetailsComponent implements OnInit {
   lang: string;
   labels: any = {};
   weddingDetails: weddingDetials = new weddingDetials();
+  currentUserEmail: string;
   constructor(@Inject(DOCUMENT) private document: any, private resources: resources,
-    private elementRef: ElementRef,) { }
+    private httpService: httpService, private elementRef: ElementRef,
+    private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
+      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+    }
 
   ngOnInit() {
     this.loadResources();
+    this.getWeddingAndPartnerDetails();
   }
 
-  saveWeddingAndPartenerDetails(){
+  saveWeddingAndPartnerDetails(){
     let dateValue: any = document.getElementById("date-picker");
-    this.weddingDetails.weddingDate = new Date(dateValue.value);
+    this.weddingDetails.weddingDate = dateValue.value;
+    let updateWeddingAndPartnerURL = `${urls.UPDATE_WEDDING_AND_PARTNER_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
-    console.log(this.weddingDetails);
-  };
-
-  ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/datePickerInitakizer.js'];
-
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
+    this.httpService.Post(updateWeddingAndPartnerURL , {} , { "weddingAndPartnerData" : this.weddingDetails }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.getWeddingAndPartnerDetails();
+        this.toastr.success("Our bad sorry!" , "Your details has been updated! 😍");
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
+      }
     });
   };
+
+
+  getWeddingAndPartnerDetails(){
+    let getWeddingAndPartnerURL = `${urls.GET_WEDDING_AND_PARTNER_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.httpService.Get(getWeddingAndPartnerURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.weddingDetails = response.data as weddingDetials;
+        console.log(this.weddingDetails)
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
+      }
+    });
+  };
+
+
   async loadResources() {
     let lang =
       window.location.href.toString().toLowerCase().indexOf("ar") > -1
@@ -53,4 +77,18 @@ export class WeddingDetailsComponent implements OnInit {
     this.labels = resData.res;
 
   };
+
+
+  //#region Scripts Methods Helpers
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/datePickerInitakizer.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
+  };
+  //#endregion
 }

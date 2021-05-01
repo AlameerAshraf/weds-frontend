@@ -1,11 +1,11 @@
 
 
 export class weddingDetials{
-  weddingDate?: Date;
+  weddingDate?: string;
   budget?: string;
   venue?: string;
   numberOfGuests?: Number;
-  partener?: {
+  partner?: {
     name?: string,
     email?: string;
     phone?: string;
