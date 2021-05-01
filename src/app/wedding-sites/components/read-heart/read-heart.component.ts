@@ -7,12 +7,11 @@ import { constants, httpService, registery, responseModel, urls, weddingWebsite,
 import { weddingTemplatesHelper } from '../../helpers';
 
 @Component({
-  selector: 'app-wedding-hall',
-  templateUrl: './wedding-hall.component.html',
-  styleUrls: ['./wedding-hall.component.scss']
+  selector: 'app-read-heart',
+  templateUrl: './read-heart.component.html',
+  styleUrls: ['./read-heart.component.scss']
 })
-export class WeddingHallComponent implements OnInit {
-
+export class ReadHeartComponent implements OnInit {
   helper: weddingTemplatesHelper;
   routingURL: any;
   weddingData: any;

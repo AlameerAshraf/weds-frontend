@@ -8,7 +8,6 @@ import * as COMPONENTS from './components';
 import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
 
 
-
 @NgModule({
   declarations: [
     COMPONENTS.SaveTheDayTemplateComponent,
@@ -16,7 +15,14 @@ import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
     COMPONENTS.SpringGardenComponent,
     COMPONENTS.RegistryListComponent,
     COMPONENTS.BeachComponent,
-    COMPONENTS.WeddingHallComponent
+    COMPONENTS.WeddingHallComponent,
+    COMPONENTS.ReadHeartComponent,
+    COMPONENTS.TwoRingsComponent,
+    COMPONENTS.FloralComponent,
+    COMPONENTS.RedFlowersComponent,
+    COMPONENTS.FlowersComponent,
+    COMPONENTS.LovebookComponent,
+    COMPONENTS.PaperpencilComponent
   ],
   imports: [
     CommonModule,

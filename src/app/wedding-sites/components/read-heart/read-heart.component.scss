@@ -1,0 +1,145 @@
+
+.bkgrnd {
+  background: linear-gradient(to bottom, rgba(144, 79, 139, 0.1) 0%, rgba(102, 67, 148, 0.1) 100%),
+  url('/assets/images/themes/redheart/top-image.jpg') !important;
+  background-color: #E72463 !important;
+  background-repeat: repeat-x no-repeat;
+  background-size: cover  !important;
+}
+
+.btn-primary-garden {
+  color: #fff;
+  background-color: #e20220 !important;
+  border-color: #FB4264 !important;
+}
+
+
+.btn-primary-white {
+  color: #fff;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+
+.bg-primary-garden {
+  background-color: #FB4264 !important;
+}
+
+
+.page-section-main{
+  padding-top: 0rem;
+  padding-right: 0px;
+  padding-bottom: 8rem;
+  padding-left: 0px;
+}
+
+/* Map */
+
+agm-map{
+  height: 30rem;
+}
+
+.map {
+  height: 30rem;
+}
+
+@media (max-width: 992px) {
+  .map {
+    height: 75%;
+  }
+}
+
+#download {
+  display: none;
+}
+
+.navBG{
+ // background-color: #c5c5c5 !important;
+   background: linear-gradient(90deg, rgba(138, 7, 94, 0.8) 0%, rgba(77, 4, 46, 0.349) 100%);
+}
+
+
+//neon
+
+
+@font-face {
+  font-family: neon;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
+
+
+.whiteGlow {
+  font-family: neon;
+  color: #fae8eb;
+  font-size: 9vw;
+  line-height: 9vw;
+  text-shadow: 0 0 3vw #8f8f8f;
+}
+.neon {
+  color: #FB4264;
+   font-family: neon;
+  font-size: 9vw;
+  line-height: 9vw;
+  text-shadow: 0 0 3vw #F40A35;
+}
+
+.flux {
+  color: #fb4242;
+   font-family: neon;
+  font-size: 9vw;
+  line-height: 9vw;
+  text-shadow: 0 0 3vw #ff235a;
+}
+
+.neon {
+  animation: neon 1s ease infinite;
+  -moz-animation: neon 1s ease infinite;
+  -webkit-animation: neon 1s ease infinite;
+}
+
+.whiteGlow {
+  animation: whiteGlow 1s ease infinite;
+  -moz-animation: whiteGlow 1s ease infinite;
+  -webkit-animation: whiteGlow 1s ease infinite;
+}
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #fe2833, .5vw .5vw .1vw #801414;
+    color: #fe2828;
+  }
+  50% {
+    text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
+    color: #801414;
+  }
+}
+
+@keyframes whiteGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #fe2833, .5vw .5vw .1vw #801414;
+    color: #fcf1f1;
+  }
+  50% {
+    text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
+    color: #9b9b9b;
+  }
+}
+.flux {
+  animation: flux 2s linear infinite;
+  -moz-animation: flux 2s linear infinite;
+  -webkit-animation: flux 2s linear infinite;
+  -o-animation: flux 2s linear infinite;
+}
+
+@keyframes flux {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #ff10a3, 0 0 3vw #ff10a3, 0 0 10vw #ff10a3, 0 0 10vw #ff10a3, 0 0 .4vw #fe8bd8, .5vw .5vw .1vw #801438;
+    color: #fe2893;
+  }
+  50% {
+    text-shadow: 0 0 .5vw #800822, 0 0 1.5vw #800822, 0 0 5vw #800822, 0 0 5vw #800822, 0 0 .2vw #800822, .5vw .5vw .1vw #400a11;
+    color: #801441;
+  }
+}
