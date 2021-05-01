@@ -27,6 +27,7 @@ export class WeddingDetailsComponent implements OnInit {
   }
 
   saveWeddingAndPartnerDetails(){
+    this.ngxSpinner.show();
     let dateValue: any = document.getElementById("date-picker");
     this.weddingDetails.weddingDate = dateValue.value;
     let updateWeddingAndPartnerURL = `${urls.UPDATE_WEDDING_AND_PARTNER_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
@@ -35,16 +36,17 @@ export class WeddingDetailsComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.getWeddingAndPartnerDetails();
-        this.toastr.success("Our bad sorry!" , "Your details has been updated! 😍");
+        this.toastr.success("Changes has been saved.", "Your details has been updated! 😍");
       }else{
         this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
+        this.toastr.error("Changes has been saved." , "My bad, server couldn't update your data.");
       }
     });
   };
 
 
   getWeddingAndPartnerDetails(){
+    this.ngxSpinner.show();
     let getWeddingAndPartnerURL = `${urls.GET_WEDDING_AND_PARTNER_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
     this.httpService.Get(getWeddingAndPartnerURL , {}).subscribe((response: responseModel) => {
