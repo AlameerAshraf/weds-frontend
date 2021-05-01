@@ -53,6 +53,7 @@ export class WeddingDetailsComponent implements OnInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.weddingDetails = response.data as weddingDetials;
+        this.weddingDetails.partner.dateOfBirth = this.weddingDetails.partner.dateOfBirth;
         console.log(this.weddingDetails)
       }else{
         this.ngxSpinner.hide();
