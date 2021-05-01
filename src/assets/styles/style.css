@@ -18694,7 +18694,7 @@ body .category-box-btn:hover {
 		min-height: auto;
 	}
 
-	.main     { background: #f91941; }
+	/* .main     { background: #f91941; } */
 	.green    { background: #00a948; }
 	.blue     { background: #004dda; }
 	.orange   { background: #fa5b0f; }

@@ -29,13 +29,10 @@
   "SUBTITLE_ARABIC": "Subtitle Arabic  ",
   "META_DESC_ENGLISH": "Meta Description English  ",
   "META_DESC_ARABIC": "Meta Description Arabic  ",
-
   "NEXT": "Next",
-
   "ARTICLE_CONTENT": "Article Content",
   "CONTENT_ENGLISH": "English Content",
   "CONTENT_ARABIC": "Arabic Content ",
-
   "IDENTIFICATIONS": "Identification Details",
   "TAG_ENGLISH": "Tags English",
   "TAG_ARABIC": "Tags Arabic",
@@ -45,7 +42,6 @@
   "SCHEDULED_AT": "Publish Scheduled At  ",
   "RELATED_POSTS": "Related Posts  ",
   "SELECT_MULTI": "Select Multiple Items",
-
   "IMAGES_MEDIA": "Images & Media ",
   "GALLERY": "Gallery",
   "FEATURED_IMAGE": "Select a featured image  ",
@@ -56,7 +52,7 @@
   "POST_NO_IMG": "Post has no images",
   "ATTACH_IMAGE": "Attach an image",
   "UPLOAD_PHOTO": "Upload Photo",
-  "SAVE": "Save",
+  "SAVE": "Save Changes",
   "CANCEL": "Cancel",
   "DELETE": "Delete",
   "EDIT": "Edit",

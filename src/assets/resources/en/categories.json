@@ -8,7 +8,7 @@
   "DELETE": "Delete",
   "EDIT": "Edit",
   "ADD_CATEGORY": "Add Category",
-  "SAVE": "Save",
+  "SAVE": "Save Changes",
   "CANCEL": "Cancel",
   "NAME_ENGLISH": "Name English",
   "NAME_ARABIC": "Name Arabic",
@@ -26,4 +26,4 @@
   "SELECT_CATEGORY": "Select category",
   "SELECT_SEGMENT": "Select Segment",
   "SELECT_SERVICE_TYPE": "Select Service Type"
- }
+}

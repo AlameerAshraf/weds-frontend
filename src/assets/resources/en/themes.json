@@ -3,7 +3,7 @@
   "DELETE": "Delete",
   "EDIT": "Edit",
   "ADD_THEME": "Add theme",
-  "SAVE": "Save",
+  "SAVE": "Save Changes",
   "CANCEL": "Cancel",
   "NAME": "Name",
   "IMAGE": "Image",
@@ -13,6 +13,5 @@
   "UPDATE": "Update",
   "DEFAULT_THEMES": " Default Themes  ",
   "UPLOAD_PHOTO": "Upload Photo",
-
   "URL": "Routing URL"
 }

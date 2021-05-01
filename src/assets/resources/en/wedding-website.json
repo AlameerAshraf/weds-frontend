@@ -26,9 +26,10 @@
   "VENUE_DETAILS": "Your venue location details",
   "GALLERY": "Gallery",
   "UPLOAD_PHOTO": "  Upload Photo",
-  "SAVE": "Save",
+  "SAVE": "Save Changes",
   "CANCEL": "Cancel",
   "DELETE": "Delete",
   "EDIT": "Edit",
-  "UPDATE": "Update"
+  "UPDATE": "Update",
+  "OUR_STORY": "Our story, how it's started"
 }

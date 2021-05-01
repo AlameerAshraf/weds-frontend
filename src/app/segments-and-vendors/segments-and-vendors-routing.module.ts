@@ -9,7 +9,7 @@ const routes: Routes = [
     component: segmentAndVendorComponents.ListOfCategoriesComponent //List of categories in segment.
   },
   {
-    path: 'all-vendors/:categorName',
+    path: 'all-vendors/:categorName/:categorId',
     component: segmentAndVendorComponents.ListOfVendorsComponent // List of vendors in category.
   },
   {

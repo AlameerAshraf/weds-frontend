@@ -59,10 +59,14 @@
   "UPLOAD_PHOTO": "Upload Photo",
   "VENDOR_INFO": " Basic Information",
   "USER_NAME": " User Name  ",
-  "SAVE": "Save",
+  "SAVE": "Save Changes",
   "CANCEL": "Cancel",
   "DELETE": "Delete",
   "EDIT": "Edit",
   "UPDATE": "Update",
-  "TYPE": "Type"
+  "TYPE": "Type",
+  "FILTER": "Filter & search in Services",
+  "FILTER_PLACEHOLDER": "Search in service name, description & vendor name.",
+  "RESET": "Reset",
+  "MY_SERVICES": "My Services"
 }
