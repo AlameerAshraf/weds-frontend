@@ -111,9 +111,33 @@ export class constants {
         "name": "Beach"
       },
       {
-        "route": "wedding-hall",
-        "name": "Wedding Aisle"
-      }
+        "route": "read-heart",
+        "name": "Red Heart"
+      },
+      {
+        "route": "two-rings",
+        "name": "Two Rings"
+      },
+      {
+        "route": "floral",
+        "name": "Floral"
+      },
+      {
+        "route": "red-flowers",
+        "name": "Red Flowers"
+      },
+      {
+        "route": "flowers",
+        "name": "Flowers"
+      },
+      {
+        "route": "lovebook",
+        "name": "Love book"
+      },
+      {
+        "route": "paperpencil",
+        "name": "Paper & Pencil"
+      },
     ]
   };
 
