@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { constants, resources } from 'src/app/core';
+import { constants, resources, weddingDetials } from 'src/app/core';
 import { environment } from "src/environments/environment";
 
 @Component({
@@ -11,12 +11,20 @@ import { environment } from "src/environments/environment";
 export class WeddingDetailsComponent implements OnInit {
   lang: string;
   labels: any = {};
+  weddingDetails: weddingDetials = new weddingDetials();
   constructor(@Inject(DOCUMENT) private document: any, private resources: resources,
     private elementRef: ElementRef,) { }
 
   ngOnInit() {
     this.loadResources();
   }
+
+  saveWeddingAndPartenerDetails(){
+    let dateValue: any = document.getElementById("date-picker");
+    this.weddingDetails.weddingDate = new Date(dateValue.value);
+
+    console.log(this.weddingDetails);
+  };
 
   ngAfterViewInit(): void {
     let scripts = ['assets/scripts/datePickerInitakizer.js'];
@@ -44,5 +52,5 @@ export class WeddingDetailsComponent implements OnInit {
     )) as any;
     this.labels = resData.res;
 
-  }
+  };
 }
