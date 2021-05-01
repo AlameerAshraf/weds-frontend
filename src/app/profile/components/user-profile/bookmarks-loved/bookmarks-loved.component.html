@@ -4,59 +4,28 @@
       <h4>{{labels.TITLE}}</h4>
       <ul>
 
-        <li>
+        <li *ngFor="let bookmark of bookmarks">
           <div class="list-box-listing">
-            <div class="list-box-listing-img"><a href="#"><img src="images/listing-item-02.jpg" alt=""></a></div>
+            <div class="list-box-listing-img"><a href="#"><img [src]="bookmark.cover" [alt]="bookmark.nameEn"></a></div>
             <div class="list-box-listing-content">
               <div class="inner">
-                <h3>Sticky Band</h3>
-                <span>Bishop Avenue, New York</span>
+                <h3 *ngIf="lang==='ar'">{{bookmark.nameAr}}</h3>
+                <h3 *ngIf="lang==='en'">{{bookmark.nameEn}}</h3>
+                <span>{{bookmark.location}}</span>
                 <div class="star-rating" data-rating="5.0">
-                  <div class="rating-counter">(23 reviews)</div>
+                  <div class="rating-counter"> {{labels.REVIEWS}} ({{bookmark.reviews}})</div>
                 </div>
               </div>
             </div>
           </div>
           <div [ngClass]="lang==='ar'?'button-to-left':'buttons-to-right'">
-            <a href="#" class="button gray"><i class="sl sl-icon-close"></i> {{labels.DELETE}}</a>
+            <!-- <a href="#" class="button gray"> {{labels.DELETE}}</a> -->
+            <button class=" button gray" (click)="deleteEntity(bookmark._id)"> {{labels.DELETE}}</button>
+
           </div>
         </li>
 
-        <li>
-          <div class="list-box-listing">
-            <div class="list-box-listing-img"><a href="#"><img src="images/listing-item-04.jpg" alt=""></a></div>
-            <div class="list-box-listing-content">
-              <div class="inner">
-                <h3>Burger House</h3>
-                <span>2726 Shinn Street, New York</span>
-                <div class="star-rating" data-rating="5.0">
-                  <div class="rating-counter">(31 reviews)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div [ngClass]="lang==='ar'?'button-to-left':'buttons-to-right'">
-            <a href="#" class="button gray"><i class="sl sl-icon-close"></i> {{labels.DELETE}}</a>
-          </div>
-        </li>
 
-        <li>
-          <div class="list-box-listing">
-            <div class="list-box-listing-img"><a href="#"><img src="images/listing-item-06.jpg" alt=""></a></div>
-            <div class="list-box-listing-content">
-              <div class="inner">
-                <h3>Think Coffee</h3>
-                <span>215 Terry Lane, New York</span>
-                <div class="star-rating" data-rating="5.0">
-                  <div class="rating-counter">(31 reviews)</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div [ngClass]="lang==='ar'?'button-to-left':'buttons-to-right'">
-            <a href="#" class="button gray"><i class="sl sl-icon-close"></i> {{labels.DELETE}}</a>
-          </div>
-        </li>
 
       </ul>
     </div>
