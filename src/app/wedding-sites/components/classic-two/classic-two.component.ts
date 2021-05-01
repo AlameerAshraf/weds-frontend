@@ -6,12 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { constants, httpService, registery, responseModel, urls, weddingWebsite, localStorageService } from 'src/app/core';
 import { weddingTemplatesHelper } from '../../helpers';
 
+
 @Component({
-  selector: 'app-classic',
-  templateUrl: './classic.component.html',
-  styleUrls: ['./classic.component.scss']
+  selector: 'app-classic-two',
+  templateUrl: './classic-two.component.html',
+  styleUrls: ['./classic-two.component.scss']
 })
-export class ClassicComponent implements OnInit {
+export class ClassicTwoComponent implements OnInit {
   helper: weddingTemplatesHelper;
   routingURL: any;
   weddingData: any;

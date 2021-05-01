@@ -146,6 +146,10 @@ export class constants {
         "route": "classic",
         "name": "Classic"
       },
+      {
+        "route": "classic-two",
+        "name": "Classic 2"
+      },
     ]
   };
 

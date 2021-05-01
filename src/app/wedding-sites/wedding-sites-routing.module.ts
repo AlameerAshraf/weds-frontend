@@ -64,6 +64,10 @@ const routes: Routes = [
     path: 'classic',
     component: COMPONENTS.ClassicComponent
   },
+  {
+    path: 'classic-two',
+    component: COMPONENTS.ClassicTwoComponent
+  },
 ];
 
 @NgModule({
