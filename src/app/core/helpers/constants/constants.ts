@@ -142,6 +142,10 @@ export class constants {
         "route": "bouquet",
         "name": "Bouquet"
       },
+      {
+        "route": "classic",
+        "name": "Classic"
+      },
     ]
   };
 

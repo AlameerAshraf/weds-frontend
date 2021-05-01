@@ -60,6 +60,10 @@ const routes: Routes = [
     path: 'bouquet',
     component: COMPONENTS.BouquetComponent
   },
+  {
+    path: 'classic',
+    component: COMPONENTS.ClassicComponent
+  },
 ];
 
 @NgModule({

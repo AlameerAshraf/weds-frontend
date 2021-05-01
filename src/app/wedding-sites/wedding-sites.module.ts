@@ -6,6 +6,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import * as COMPONENTS from './components';
 import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
+import { ClassicComponent } from './components/classic/classic.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
     COMPONENTS.FlowersComponent,
     COMPONENTS.LovebookComponent,
     COMPONENTS.PaperpencilComponent,
-    COMPONENTS.BouquetComponent
+    COMPONENTS.BouquetComponent,
+    COMPONENTS.ClassicComponent,
   ],
   imports: [
     CommonModule,
