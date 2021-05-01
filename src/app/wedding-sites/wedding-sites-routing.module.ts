@@ -25,9 +25,53 @@ const routes: Routes = [
     component: COMPONENTS.BeachComponent
   },
   {
+    path: 'wedding-hall',
+    component: COMPONENTS.WeddingHallComponent
+  },
+  {
+    path: 'floral',
+    component: COMPONENTS.FloralComponent
+  },
+  {
+    path: 'read-heart',
+    component: COMPONENTS.ReadHeartComponent
+  },
+  {
+    path: 'red-flowers',
+    component: COMPONENTS.RedFlowersComponent
+  },
+  {
+    path: 'two-rings',
+    component: COMPONENTS.TwoRingsComponent
+  },
+  {
+    path: 'flowers',
+    component: COMPONENTS.FlowersComponent
+  },
+  {
+    path: 'lovebook',
+    component: COMPONENTS.LovebookComponent
+  },
+  {
+    path: 'paperpencil',
+    component: COMPONENTS.PaperpencilComponent
+  },
+  {
+    path: 'bouquet',
+    component: COMPONENTS.BouquetComponent
+  },
+  {
+    path: 'classic',
+    component: COMPONENTS.ClassicComponent
+  },
+  {
+    path: 'classic-two',
+    component: COMPONENTS.ClassicTwoComponent
+  },
+  {
     path: 'hug',
     component: COMPONENTS.HugComponent
-  }
+  },
 ];
 
 @NgModule({

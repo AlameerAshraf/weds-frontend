@@ -45,18 +45,18 @@ export class ProfileMainLayoutComponent implements OnInit {
     let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
 
     let dashboardNavs = `${currentUserType.toUpperCase()}_DASHBOARD`;
-
     let resData = await this.resources.load(resourceLang, constants.VIEWS[dashboardNavs]) as any;
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
+    if (this.lang === 'ar') this.menuItems.reverse()
     this.profileLinks = this.profileLinks.concat(resData.res["actions"]);
     this.navLinks = this.navLinks.concat(resData.res["navigations"]);
   };
 
-  checkViewAuthority(){
+  checkViewAuthority() {
     this.isLogined = this.authorizedUser;
   };
 
-  navigateTo(url: any , title: any){
+  navigateTo(url: any, title: any) {
     this.selectedTitle = title;
     // this.router.navigateByUrl();
   };

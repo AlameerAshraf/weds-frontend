@@ -8,11 +8,11 @@ import { weddingTemplatesHelper } from '../../helpers';
 
 
 @Component({
-  selector: 'app-hug',
-  templateUrl: './hug.component.html',
-  styleUrls: ['./hug.component.scss']
+  selector: 'app-classic-two',
+  templateUrl: './classic-two.component.html',
+  styleUrls: ['./classic-two.component.scss']
 })
-export class HugComponent implements OnInit {
+export class ClassicTwoComponent implements OnInit {
   helper: weddingTemplatesHelper;
   routingURL: any;
   weddingData: any;

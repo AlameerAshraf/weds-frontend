@@ -1,15 +1,15 @@
 
 .bkgrnd {
-  background: linear-gradient(to bottom, rgba(90,67,71 ,0.4) 0%, rgba(150,114,107,0.5) 100%),
-  url('/assets/images/themes/hug/top-image.jpg') !important;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(145, 173, 80, 0.4) 100%),
+  url('/assets/images/themes/lovebook/top-image.jpg') !important;
   background-repeat: repeat-x no-repeat;
   background-size: cover !important;
 }
 
 .btn-primary-garden {
   color: #fff;
-  background-color: #833471 !important;
-  border-color: #833471 !important;
+  background-color: #818145 !important;
+  border-color: #dbe9ae !important;
 }
 
 
@@ -21,7 +21,7 @@
 
 
 .bg-primary-garden {
-  background-color: #833471 !important;
+  background-color: #818145 !important;
 }
 
 
@@ -53,9 +53,10 @@ agm-map{
 }
 
 .navBG{
-  background-color:rgba(99,104,115, 0.5)!important;
+  background-color:rgba(101,101,90, 0.5)!important;
   //  background: linear-gradient(90deg, rgba(138, 7, 94, 0.8) 0%, rgba(77, 4, 46, 0.349) 100%);
 }
-
-
+body,p{
+  color:#65655A !important
+}
 

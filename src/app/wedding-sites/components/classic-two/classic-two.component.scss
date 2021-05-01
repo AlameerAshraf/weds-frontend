@@ -1,15 +1,15 @@
 
 .bkgrnd {
-  background: linear-gradient(to bottom, rgba(90,67,71 ,0.4) 0%, rgba(150,114,107,0.5) 100%),
-  url('/assets/images/themes/hug/top-image.jpg') !important;
+  background: linear-gradient(to right, rgba(197,178,175, 0.9) 0%, rgba(99,104,115 ,0.9) 100%),
+  url('/assets/images/themes/classic/top-image.png') !important;
   background-repeat: repeat-x no-repeat;
   background-size: cover !important;
 }
 
 .btn-primary-garden {
   color: #fff;
-  background-color: #833471 !important;
-  border-color: #833471 !important;
+  background-color: #191D23 !important;
+  border-color: #C5B2AF !important;
 }
 
 
@@ -21,7 +21,7 @@
 
 
 .bg-primary-garden {
-  background-color: #833471 !important;
+  background-color: #191D23 !important;
 }
 
 
@@ -58,4 +58,8 @@ agm-map{
 }
 
 
-
+.body,p {
+  color:#191D23!important;
+  text-shadow: #C5B2AF 0px 0px 1px;
+  -webkit-font-smoothing: antialiased;
+}

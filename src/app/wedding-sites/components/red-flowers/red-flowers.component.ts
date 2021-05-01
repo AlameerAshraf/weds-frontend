@@ -6,13 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { constants, httpService, registery, responseModel, urls, weddingWebsite, localStorageService } from 'src/app/core';
 import { weddingTemplatesHelper } from '../../helpers';
 
-
 @Component({
-  selector: 'app-hug',
-  templateUrl: './hug.component.html',
-  styleUrls: ['./hug.component.scss']
+  selector: 'app-red-flowers',
+  templateUrl: './red-flowers.component.html',
+  styleUrls: ['./red-flowers.component.scss']
 })
-export class HugComponent implements OnInit {
+export class RedFlowersComponent implements OnInit {
   helper: weddingTemplatesHelper;
   routingURL: any;
   weddingData: any;

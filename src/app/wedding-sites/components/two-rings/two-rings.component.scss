@@ -1,15 +1,14 @@
-
 .bkgrnd {
-  background: linear-gradient(to bottom, rgba(90,67,71 ,0.4) 0%, rgba(150,114,107,0.5) 100%),
-  url('/assets/images/themes/hug/top-image.jpg') !important;
-  background-repeat: repeat-x no-repeat;
+  background: linear-gradient(to bottom, rgba(144, 79, 139, 0.8) 0%, rgba(102, 67, 148, 0.8) 100%),
+  url('/assets/images/themes/tworings/top-image.jpg') !important;
+  background-repeat: no-repeat, repeat;
   background-size: cover !important;
 }
 
 .btn-primary-garden {
   color: #fff;
-  background-color: #833471 !important;
-  border-color: #833471 !important;
+  background-color: #1c0a25 !important;
+  border-color: #744394 !important;
 }
 
 
@@ -21,7 +20,7 @@
 
 
 .bg-primary-garden {
-  background-color: #833471 !important;
+  background-color: #744394 !important;
 }
 
 
@@ -53,9 +52,6 @@ agm-map{
 }
 
 .navBG{
-  background-color:rgba(99,104,115, 0.5)!important;
-  //  background: linear-gradient(90deg, rgba(138, 7, 94, 0.8) 0%, rgba(77, 4, 46, 0.349) 100%);
+    background-color: #744394 !important;
+  // background: linear-gradient(90deg, rgba(16,42,10, 0.8) 0%,  rgba(179,167,131, 0.8)90%, rgba(162,168,138, 0.8) 100%);
 }
-
-
-
