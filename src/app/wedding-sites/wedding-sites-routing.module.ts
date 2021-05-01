@@ -56,6 +56,10 @@ const routes: Routes = [
     path: 'paperpencil',
     component: COMPONENTS.PaperpencilComponent
   },
+  {
+    path: 'bouquet',
+    component: COMPONENTS.BouquetComponent
+  },
 ];
 
 @NgModule({

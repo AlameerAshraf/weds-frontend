@@ -22,7 +22,8 @@ import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
     COMPONENTS.RedFlowersComponent,
     COMPONENTS.FlowersComponent,
     COMPONENTS.LovebookComponent,
-    COMPONENTS.PaperpencilComponent
+    COMPONENTS.PaperpencilComponent,
+    COMPONENTS.BouquetComponent
   ],
   imports: [
     CommonModule,

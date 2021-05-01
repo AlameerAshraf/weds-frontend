@@ -138,6 +138,10 @@ export class constants {
         "route": "paperpencil",
         "name": "Paper & Pencil"
       },
+      {
+        "route": "bouquet",
+        "name": "Bouquet"
+      },
     ]
   };
 
