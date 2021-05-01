@@ -26,6 +26,7 @@ import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
     COMPONENTS.BouquetComponent,
     COMPONENTS.ClassicComponent,
     COMPONENTS.ClassicTwoComponent,
+    COMPONENTS.HugComponent,
   ],
   imports: [
     CommonModule,

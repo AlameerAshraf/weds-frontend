@@ -68,6 +68,10 @@ const routes: Routes = [
     path: 'classic-two',
     component: COMPONENTS.ClassicTwoComponent
   },
+  {
+    path: 'hug',
+    component: COMPONENTS.HugComponent
+  },
 ];
 
 @NgModule({

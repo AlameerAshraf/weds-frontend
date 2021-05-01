@@ -150,6 +150,10 @@ export class constants {
         "route": "classic-two",
         "name": "Classic 2"
       },
+      {
+        "route": "hug",
+        "name": "Hug"
+      },
     ]
   };
 
