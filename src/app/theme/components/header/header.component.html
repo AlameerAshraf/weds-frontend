@@ -25,7 +25,7 @@
             <li *ngFor="let item of menuItems"><a>{{ item.name }}</a>
               <ul>
                 <li *ngFor="let subItem of item.child">
-                  <a [routerLink]="[urlSegment+subItem.url]">{{ subItem.name }}</a>
+                  <a [href]="[urlSegment+subItem.url]">{{ subItem.name }}</a>
                 </li>
               </ul>
             </li>
