@@ -1,0 +1,57 @@
+.bkgrnd {
+  background: linear-gradient(to bottom, rgba(16,42,10, 0.8) 0%, rgba(162,168,138, 0.8) 100%),
+  url('/assets/images/themes/weddinghall/top-image.jpg') !important;
+  background-repeat: no-repeat, repeat;
+  background-size: cover !important;
+}
+
+.btn-primary-garden {
+  color: #fff;
+  background-color: #10250A !important;
+  border-color: #B7A88A !important;
+}
+
+
+.btn-primary-white {
+  color: #fff;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+
+.bg-primary-garden {
+  background-color: #B3A783 !important;
+}
+
+
+.page-section-main{
+  padding-top: 0rem;
+  padding-right: 0px;
+  padding-bottom: 8rem;
+  padding-left: 0px;
+}
+
+/* Map */
+
+agm-map{
+  height: 30rem;
+}
+
+.map {
+  height: 30rem;
+}
+
+@media (max-width: 992px) {
+  .map {
+    height: 75%;
+  }
+}
+
+#download {
+  display: none;
+}
+
+.navBG{
+    background-color: #B3A783 !important;
+  // background: linear-gradient(90deg, rgba(16,42,10, 0.8) 0%,  rgba(179,167,131, 0.8)90%, rgba(162,168,138, 0.8) 100%);
+}

@@ -1,17 +1,17 @@
-<div id="titlebar" class="gradient">
+<!-- <div id="titlebar" class="gradient">
   <div class="row">
     <div class="col-md-12">
       <h2>Welcome to your Registry List</h2>
       <span>Search top rated vendors and experts that will make your wedding looks like a carnaval!</span>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <div class="row" *ngIf="!weddingWebsite.isPublished">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box margin-top-0">
-      <h4>Your wedding website status</h4>
+      <h4>{{labels.SITE_STATUS}}</h4>
       <ul>
         <ng-container>
           <li>
@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8" align="center">
-                <h2 style="font-size: 25px; font-weight: 600; margin-top: 2px;">Not a log time and your site will be published! 🤙</h2>
+                <h2 style="font-size: 25px; font-weight: 600; margin-top: 2px;">{{labels.SITE_STATUS_TITLE}}! 🤙</h2>
               </div>
               <div class="col-md-2"></div>
             </div>
@@ -35,9 +35,10 @@
               <div class="col-md-3"></div>
               <div class="col-md-6" align="center">
                 <a class="button preview" style="background-color: #FDAC42 !important;">
-                  Update my info <i class="sl sl-icon-pencil"></i></a> &nbsp;
+                  {{labels.UPDATE_SITE_INFO}} <i class="sl sl-icon-pencil"></i></a> &nbsp;
 
-                <a class="button preview" (click)="previewSite()"> Preview website <i class="sl sl-icon-screen-desktop"></i></a>
+                <a class="button preview" (click)="previewSite()"> {{labels.PREVIEW_SITE}} &nbsp;<i
+                    class="sl sl-icon-screen-desktop"></i></a>
               </div>
               <div class="col-md-3"></div>
             </div>
@@ -66,7 +67,8 @@
             <div class="row">
               <div class="col-md-2"></div>
               <div class="col-md-8" align="center">
-                <h2 style="font-size: 25px; font-weight: 600;">Your website is live! Share it an enjoy a delightful wedding night 💕
+                <h2 style="font-size: 25px; font-weight: 600;">Your website is live! Share it an enjoy a delightful
+                  wedding night 💕
                   with your friends and family!
                 </h2>
               </div>
@@ -79,7 +81,8 @@
                 <a class="button preview" style="background-color: #F91942 !important;">
                   Copy link and share <i class="sl sl-icon-share"></i></a> &nbsp;
 
-                <a class="button preview" (click)="previewSite()"> Preview website <i class="sl sl-icon-screen-desktop"></i></a>
+                <a class="button preview" (click)="previewSite()"> {{labels.PREVIEW_SITE}} <i
+                    class="sl sl-icon-screen-desktop"></i></a>
               </div>
               <div class="col-md-3"></div>
             </div>

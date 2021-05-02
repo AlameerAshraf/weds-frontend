@@ -1,13 +1,12 @@
-import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { NgModule } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import * as COMPONENTS from './components';
 import { WeddingSitesRoutingModule } from './wedding-sites-routing.module';
 
-import * as COMPONENTS from './components';
-import { NgxDropzoneModule } from 'ngx-dropzone';
-import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,18 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.SpringGardenComponent,
     COMPONENTS.RegistryListComponent,
     COMPONENTS.BeachComponent,
-    COMPONENTS.HugComponent
+    COMPONENTS.WeddingHallComponent,
+    COMPONENTS.ReadHeartComponent,
+    COMPONENTS.TwoRingsComponent,
+    COMPONENTS.FloralComponent,
+    COMPONENTS.RedFlowersComponent,
+    COMPONENTS.FlowersComponent,
+    COMPONENTS.LovebookComponent,
+    COMPONENTS.PaperpencilComponent,
+    COMPONENTS.BouquetComponent,
+    COMPONENTS.ClassicComponent,
+    COMPONENTS.ClassicTwoComponent,
+    COMPONENTS.HugComponent,
   ],
   imports: [
     CommonModule,

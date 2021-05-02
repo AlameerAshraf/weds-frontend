@@ -25,19 +25,7 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
   currentUserEmail: string;
   userRoles = constants.USER_ROLES_LIST;
 
-  user: user = {
-    age: "",
-    password: "Weds360user**",
-    accountSource: "WEDS360",
-    name: "",
-    dateOfBirth: new Date,
-    email: "",
-    phone: "",
-    role: "",
-    isAccountLocked: false,
-    isActive: true,
-    isEmailConfirmed: false,
-  };
+  user: user = new user();
   lang: string;
   labels: any = {};
   constructor(@Inject(DOCUMENT) private document: any,
@@ -111,8 +99,8 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
   };
 
   calculateAge(dateValue){
-    this.user.dateOfBirth = new Date(dateValue.value);
-    var diff = (new Date().getTime() - this.user.dateOfBirth.getTime()) / 1000;
+    let dateOfBirth = new Date(dateValue.value);
+    var diff = (new Date().getTime() - dateOfBirth.getTime()) / 1000;
     diff /= (60 * 60 * 24);
     this.user.age = Math.abs(Math.round(diff / 365.25)).toString();
   }

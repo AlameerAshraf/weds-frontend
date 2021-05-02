@@ -11,6 +11,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class SingleBlogComponent implements OnInit {
   yourHTML= "https://weds360-production.s3.eu-west-1.amazonaws.com/new-weds360-preprod/POSTS_BODY/607f72d3bb1d9b27f0d80030/607f72d3bb1d9b27f0d80030-ar.html";
   html: SafeHtml = "";
+  blogs = [{
+    name : "1"
+  }];
 
   constructor(private httpService: httpService , private _sanitizer: DomSanitizer) { }
 
@@ -23,6 +26,16 @@ export class SingleBlogComponent implements OnInit {
       this.html = this._sanitizer.bypassSecurityTrustHtml(response);;
       console.log(response)
     })
+  }
+
+  onScroll(e) {
+    // if(this.blogs.length >= 100) {
+    //   console.log('No more items');
+    //   return;
+    // }
+    console.log('scrolled!!', e);
+    const moreBoxes = { name : "2" };
+    this.blogs.push(moreBoxes)
   }
 
 }

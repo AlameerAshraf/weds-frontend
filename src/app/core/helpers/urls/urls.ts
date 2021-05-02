@@ -10,6 +10,10 @@ export class urls {
   // Uploading
   public static get UPLOAD_IMAGE(): string { return this.BASE_URL + '/upload/image' };
 
+  //Blogs ..
+  public static get GET_ALL_BLOGS_PER_CATEGORY(): string { return this.BASE_URL + '/blog/category-blogs' };
+
+
   // Users ...
   public static get USER_SIGN_UP(): string { return this.BASE_URL + '/users/sign-up' };
   public static get USER_SIGN_IN(): string { return this.BASE_URL + '/users/sign-in' };
