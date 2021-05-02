@@ -8,29 +8,34 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <div class="fb-profile-block  ">
+      <div class="fb-profile-block" >
 
-        <div class="fb-profile-block-thumb cover-container"
-          [ngStyle]="{'background': 'url(' + profilePhotoUrl + ') center center no-repeat'}">
+        <div (click)="getCover()" style="cursor: pointer;" class="fb-profile-block-thumb cover-container"
+          [ngStyle]="{'background': 'url(' + user.settings.cover + ') center center no-repeat'}">
           <div class="card-img-overlay"></div>
-
         </div>
 
-        <div class="profile-img ">
-          <a href="#!">
-            <img src="/assets/images/defaults/avatar/me.jpg" alt="" title="">
+        <div class="profile-img" style="cursor: pointer;" (click)="getAvatar()">
+          <a>
+            <img [src]="user.settings.avatar" alt="" title="">
           </a>
         </div>
         <div class="profile-name">
-          <h2>Markins Smithertain</h2>
+          <h2>{{ user.name }}</h2>
         </div>
 
         <div class="fb-profile-block-menu">
           <div class="block-menu">
             <ul>
-              <li> <a href="#!" class="card-link text-info">{{labels.EDIT_COVER_PHOTO}}</a></li>
-              <li> <a href="#!" class="card-link text-danger">{{labels.REMOVE_COVER_PHOTO}}</a></li>
-
+              <li (click)="getAvatar()" style="cursor: pointer;">
+                <a class="card-link text-info">
+                  <i class="sl sl-icon-user"></i> {{labels.EDIT_PROFILE_PHOTO}}
+                </a>
+              </li>
+              <li (click)="getCover()" style="cursor: pointer;">
+                <a class="card-link text-info">
+                  <i class="sl sl-icon-picture"></i> {{labels.EDIT_COVER_PHOTO}}</a>
+              </li>
             </ul>
           </div>
 
@@ -39,65 +44,55 @@
     </div>
   </div>
 </div>
+<input style="display: none;" id="upImage" type="file" (change)="uploadProfilePicture($event)">
+<input style="display: none;" id="upCover" type="file" (change)="uploadCoverImage($event)">
+
 
 <div class="row">
   <div class="col-lg-6 col-md-12">
     <div class="dashboard-list-box margin-top-0">
       <h4 class="gray">{{labels.PROFILE_DETAILS_TITLE}}</h4>
       <div class="dashboard-list-box-static">
-
-        <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-          <img class="anImage"
-            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource" alt="">
-          <div class="change-photo-btn">
-            <div class="photoUpload">
-              <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
-              <input type="file" class="upload" (change)="onFileSelected($event)" />
-            </div>
-          </div>
-        </div>
-
         <div class="my-profile">
 
-          <label>{{labels.YOUR_NAME}}</label>
-          <input value="Tom Perrin" type="text">
+          <label style="margin-top: 0px;">{{labels.YOUR_NAME}}</label>
+          <input value="Tom Perrin" type="text" [(ngModel)] = "user.name">
 
           <label>{{labels.EMAIL}}</label>
-          <input value="tom@example.com" type="text">
+          <input value="tom@example.com" type="text" [(ngModel)] = "user.email">
 
-          <label>{{labels.Phone}}</label>
-          <input value="(123) 123-456" type="text">
+          <label>{{labels.PHONE}}</label>
+          <input value="(123) 123-456" type="text" [(ngModel)] = "user.phone">
 
           <label>{{labels.DOB}}</label>
           <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
 
           <label>{{labels.GENDER}}</label>
-          <select class="chosen-select-no-single">
+          <select id="gender" class="chosen-select-no-single">
             <option [label]="labels.SELECT">{{labels.SELECT}}</option>
-            <option>{{labels.MALE}}</option>
-            <option>{{labels.FEMALE}}</option>
+            <option [selected]="'MALE' == user.gender" value="MALE">{{labels.MALE}}</option>
+            <option [selected]="'FEMALE' == user.gender"  value="FEMALE">{{labels.FEMALE}}</option>
           </select>
 
           <label>{{labels.LOCATION}}</label>
           <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-              (dragEnd)="markerDragEnd($event)"></agm-marker>
+            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable] = "true" (dragEnd)="markerDragEnd($event)"></agm-marker>
           </agm-map>
+
           <label>{{labels.CITY}}</label>
-          <input [placeholder]="labels.CITY" type="text" autocomplete="sd">
+          <input [placeholder]="labels.CITY" type="text" autocomplete="sd" [(ngModel)] = "user.address.city">
 
           <label>{{labels.ADDRESS}}</label>
-          <input [placeholder]="labels.ADDRESS" [value]="address" type="text">
+          <input [placeholder]="labels.ADDRESS" type="text" [(ngModel)] = "user.address.address">
 
           <label class="margin-top-0"><i class="fa fa-twitter"></i> Twitter</label>
-          <input placeholder="https://www.twitter.com/" type="text">
+          <input placeholder="https://www.twitter.com/" type="text" [(ngModel)] ="twitterURL">
 
           <label><i class="fa fa-facebook-square"></i> Facebook</label>
-          <input placeholder="https://www.facebook.com/" type="text">
+          <input placeholder="https://www.facebook.com/" type="text" [(ngModel)] ="faceBookURL">
         </div>
 
-        <button class="button margin-top-15">{{labels.SAVE}}</button>
-
+        <button (click)="updateUserInfo()" class="button margin-top-15">{{labels.SAVE}}</button>
       </div>
     </div>
   </div>
