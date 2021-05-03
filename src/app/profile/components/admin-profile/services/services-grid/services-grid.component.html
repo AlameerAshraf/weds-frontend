@@ -60,7 +60,7 @@
             <ng-container *ngFor="let item of servicesList">
               <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
-                  <p>{{ item.type.toLowerCase() }}</p>
+                  <p>{{ item.type.toLowerCase() == "ring" ? "Ring" : "Dress" }}</p>
                 </td>
                 <td>
                   <p>{{item.vendorNameEn}}</p>
