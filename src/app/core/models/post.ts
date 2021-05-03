@@ -24,7 +24,8 @@ export class post {
   readingTime?: number;
   relatedPosts?: any[] = [];
   images?: { id:string; url: string , arabicDesc: string, englishDesc: string }[] = [];
-  publishedAt?: string;
+  publishedAt?: Date;
+  publishedDate?: string;
   authorName?: string;
   categoryName?: string;
   isPublished?: boolean = false;
