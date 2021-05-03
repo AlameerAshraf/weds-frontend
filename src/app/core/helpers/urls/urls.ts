@@ -124,5 +124,7 @@ export class urls {
   public static get GET_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/get-all-bookmarks' };
 
   public static get DELETE_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/bookmark' };
+  //frontend
+  public static get GET_CATEGORIES_BY_SEGMENT(): string { return this.BASE_URL + '/admin/get-categories-by-segment' };
 
 }
