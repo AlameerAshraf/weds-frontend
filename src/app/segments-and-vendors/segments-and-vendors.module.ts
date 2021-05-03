@@ -11,6 +11,8 @@ import { NGX_SPINNER , THEME_MODULE} from './segments-and-vendors.imports';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { SingleDressComponent } from './components/services-components/single-dress/single-dress.component';
+import { SingleRingComponent } from './components/services-components/single-ring/single-ring.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NgImageSliderModule } from 'ng-image-slider';
     COMPONENTS.ListOfCategoriesComponent,
     COMPONENTS.ListOfVendorsComponent,
     COMPONENTS.DressesComponent,
-    COMPONENTS.RingsComponent
+    COMPONENTS.RingsComponent,
+    SingleDressComponent,
+    SingleRingComponent
   ],
   imports: [
     CommonModule,
