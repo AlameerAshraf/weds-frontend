@@ -14,5 +14,6 @@ export class dress {
     color?: string = "";
     neckline?: string = "";
     price?: string = "";
+    size?: string = "";
 }
 
