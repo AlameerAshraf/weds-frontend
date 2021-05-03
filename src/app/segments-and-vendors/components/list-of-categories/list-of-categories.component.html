@@ -68,16 +68,15 @@
 
       <!-- Items -->
       <div>
-        <div class="row" *ngIf="categoriesList&& categoriesList.length>0">
+        <div class="row" *ngIf="categoriesList&& categoriesList.length > 0 ">
 
-          <div class="col-lg-4 col-md-6 " *ngFor="let category of categoriesList">
+          <div class="col-lg-4 col-md-6 " *ngFor="let category of categoriesList | slice:skip:limit">
 
             <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
-              <div class="listing-item  effect-image">
+              <div class="listing-item effect-image">
                 <img [src]="category.photo" alt="">
                 <div class="icon">
                   <img [src]="category.icon" class='iconImage' alt="">
-
                 </div>
                 <div class="overlay-text overlay-text-1">
                   <div class="overlay-text-desc">
@@ -87,146 +86,22 @@
                   </div>
                 </div>
 
-
                 <div class="listing-item-content">
-                  <!-- <div class="numerical-rating"  [attr.data-rating]="category.order" ></div> -->
                   <h3>{{lang==='ar'?category.nameAr:category.nameEn}} </h3>
-
                 </div>
               </div>
             </a>
           </div>
 
-
-
-          <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
-              <div class="listing-item">
-                <img src="images/listing-item-02.jpg" alt="">
-                <div class="listing-item-details">
-
-                </div>
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="5.0"></div>
-                  <h3>Sticky Band</h3>
-                  <span>Bishop Avenue, New York</span>
-                </div>
-                <span class="like-icon"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
-              <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="2.0"></div>
-                  <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
-                </div>
-                <span class="like-icon"></span>
-              </div>
-
-            </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
-              <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="2.0"></div>
-                  <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
-                </div>
-                <span class="like-icon"></span>
-              </div>
-
-            </a>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
-              <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="2.0"></div>
-                  <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
-                </div>
-                <span class="like-icon"></span>
-              </div>
-
-            </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
-              <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="2.0"></div>
-                  <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
-                </div>
-                <span class="like-icon"></span>
-              </div>
-
-            </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
-              <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="2.0"></div>
-                  <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
-                </div>
-                <span class="like-icon"></span>
-              </div>
-
-            </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <a href="listings-single-page.html" class="listing-item-container compact">
-              <div class="listing-item">
-                <img src="images/listing-item-03.jpg" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="2.0"></div>
-                  <h3>Hotel Govendor</h3>
-                  <span>778 Country Street, New York</span>
-                </div>
-                <span class="like-icon"></span>
-              </div>
-
-            </a>
-          </div>
         </div>
       </div>
 
       <!-- Pagination -->
       <div class="clearfix"></div>
-      <div class="row">
+      <div class="row" *ngIf="collectionSize > 0 && showPaging">
         <div class="col-md-12">
-          <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="120" [maxSize]="5">
+          <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize"
+            [maxSize]="5">
           </weds-paging>
         </div>
       </div>

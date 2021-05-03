@@ -22,6 +22,17 @@ export class ListOfCategoriesComponent implements OnInit, AfterViewInit {
   categoriesList: category[] = [];
   imageObject: Array<object> = [];
   segmentName: string
+
+
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 9;
+  limit: number;
+  skip: number;
+  categoriesLookups: category[] = [];
+  showPaging = true;
+  // End paging vars!
+
   constructor(@Inject(DOCUMENT) private document: any,
     private http: httpService, private lookupsService: LookupsService,
     private elementRef: ElementRef, private router: Router, private activatedRoute: ActivatedRoute, private ngxSpinner: NgxSpinnerService,
@@ -50,6 +61,22 @@ export class ListOfCategoriesComponent implements OnInit, AfterViewInit {
   showCategories(event: any) {
     event.stopPropagation();
     this.isSearchExpanded = !this.isSearchExpanded;
+  };
+
+  getAllCategories() {
+    this.ngxSpinner.show()
+    let getCategoiresBySeggment = `${urls.GET_CATEGORIES_BY_SEGMENT}/${constants.APP_IDENTITY_FOR_USERS}/${this.segmentName}`
+
+    this.http.Get(getCategoiresBySeggment, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.ngxSpinner.hide();
+        this.categoriesList = response.data as category[];
+        this.collectionSize = this.categoriesList.length;
+        this.pageChange(1);
+      } else {
+        this.ngxSpinner.hide()
+      }
+    })
   };
 
   async getLookups() {
@@ -106,8 +133,10 @@ export class ListOfCategoriesComponent implements OnInit, AfterViewInit {
   //#endregion
 
   //#region Pagination Region..
-  pageChange(pageNumber: number) {
-    console.log(pageNumber);
+  pageChange(pageNumber) {
+    window.scroll(0, 0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
   };
   //#endregion
 
@@ -126,23 +155,5 @@ export class ListOfCategoriesComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
-  //#endregion
-  //#region getAllCategories
-  getAllCategories() {
-    this.ngxSpinner.show()
-    let getCategoiresBySeggment = `${urls.GET_CATEGORIES_BY_SEGMENT}/${constants.APP_IDENTITY_FOR_USERS}/${this.segmentName}`
-
-    this.http.Get(getCategoiresBySeggment, {}).subscribe((response: responseModel) => {
-      if (!response.error) {
-        this.categoriesList = response.data as category[]
-        console.log(this.categoriesList)
-
-        this.ngxSpinner.hide()
-      } else {
-        this.ngxSpinner.hide()
-      }
-    })
-  };
-
   //#endregion
 }
