@@ -19,7 +19,8 @@ import { NgImageSliderModule } from 'ng-image-slider';
     COMPONENTS.SearchResultsComponent,
     COMPONENTS.ListOfCategoriesComponent,
     COMPONENTS.ListOfVendorsComponent,
-    COMPONENTS.DressesComponent
+    COMPONENTS.DressesComponent,
+    COMPONENTS.RingsComponent
   ],
   imports: [
     CommonModule,

@@ -13,6 +13,10 @@ const routes: Routes = [
     component: segmentAndVendorComponents.DressesComponent //List of dresses!
   },
   {
+    path: 'rings',
+    component: segmentAndVendorComponents.RingsComponent //List of dresses!
+  },
+  {
     path: 'all-vendors/:categorName/:categorId',
     component: segmentAndVendorComponents.ListOfVendorsComponent // List of vendors in category.
   },
