@@ -30,6 +30,9 @@ export class VendorComponent implements OnInit, AfterViewInit {
   allComments: comment[] = [];
 
   userRank: { user?: string, criteria?: string, value?: number, userEmail?: string } = {};
+  locationRankValues: number;
+  serviceRankValues: number;
+  valueForMoneyRankValues: number;
 
 
   constructor(@Inject(DOCUMENT) private document: any, private ActivatedRoute: ActivatedRoute,
@@ -67,7 +70,8 @@ export class VendorComponent implements OnInit, AfterViewInit {
 
         this.htmlView = this._sanitizer.bypassSecurityTrustHtml(this.vendor.descriptionURLAr);
         this.vendor.avatar = this.vendor.avatar == undefined ? 'assets/images/defaults/avatar/vendor.png' : this.vendor.avatar;
-        this.bindCurrebtUserRate(this.vendor.ranks);
+        this.bindCurrentUserRate(this.vendor.ranks);
+        this.viewAggregatedVendorRate(this.vendor.ranks);
       }else{
         this.spineer.hide();
         this.toaster.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
@@ -76,9 +80,59 @@ export class VendorComponent implements OnInit, AfterViewInit {
   };
 
 
+  //#region  Vendor helpers..
+  viewAggregatedVendorRate(vendorRates: { user?: string, criteria?: string, value?: number, userEmail?: string }[]){
+    let counter = 0;
+    let aggregatedTotalRank = 0;
+
+    let locationRanks = 0;
+    let locationNumberOfRates = 0;
+
+    let serviceRanks = 0;
+    let serviceNumberOfRates = 0;
+
+    let valueForMoneyRanks = 0;
+    let valueForMoneyNumberOfRates = 0;
+
+    vendorRates.forEach((rank) => {
+      counter = counter + rank.value;
+      if(rank.criteria == "LOCATION"){
+        locationNumberOfRates = locationNumberOfRates + 1;
+        locationRanks = locationRanks + rank.value;
+      }
+
+      if(rank.criteria == "SERVICE"){
+        serviceNumberOfRates = locationNumberOfRates + 1;
+        serviceRanks = serviceRanks + rank.value;
+      }
+
+      if(rank.criteria == "VALUE_FOR_MONEY"){
+        valueForMoneyNumberOfRates = valueForMoneyNumberOfRates + 1;
+        valueForMoneyRanks = valueForMoneyRanks + rank.value;
+      }
+    });
+
+
+    let locationRates = vendorRates.filter((rank) => {
+      return rank.criteria == "LOCATION"
+    });
+
+    aggregatedTotalRank = Math.ceil(Number(counter) / Number(vendorRates.length));
+    this.locationRankValues = Number(locationRanks) / Number(locationNumberOfRates);
+    this.serviceRankValues = Number(serviceRanks) / Number(serviceNumberOfRates);
+    this.valueForMoneyRankValues = Number(valueForMoneyRanks) / Number(valueForMoneyNumberOfRates);
+
+    let htmlElementAggrgated = document.getElementById(`star${aggregatedTotalRank}-agg`) as any;
+    let htmlElementTotals = document.getElementById(`star${aggregatedTotalRank}-totals`) as any;
+
+    htmlElementAggrgated.checked = true;
+    htmlElementTotals.checked = true;
+  };
+  //#endregion
 
   //#region User Helpers..
-  bindCurrebtUserRate(vendorRates: { user?: string, criteria?: string, value?: number, userEmail?: string }[]){
+  // This to bind the actual current loggen in user rates!
+  bindCurrentUserRate(vendorRates: { user?: string, criteria?: string, value?: number, userEmail?: string }[]){
     let map = {
       5: 1,
       4: 2,
@@ -152,7 +206,6 @@ export class VendorComponent implements OnInit, AfterViewInit {
     })
   }
   //#endregion
-
 
   //#region Helper methods
   checkLoginStatus(){

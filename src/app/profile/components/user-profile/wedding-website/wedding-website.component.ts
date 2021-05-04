@@ -4,7 +4,7 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit, Inject, ElementRef
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, responseModel, theme, urls, weddingWebsite, localStorageService,resources } from 'src/app/core';
+import { constants, httpService, responseModel, theme, urls, weddingWebsite, localStorageService, resources } from 'src/app/core';
 import { environment } from 'src/environments/environment';
 
 //import { } from '@types/googlemaps';
@@ -40,7 +40,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
 
   weddingWebsite: weddingWebsite = {
-    coverImage : "assets/images/defaults/wedding/cover-photo.png",
+    coverImage: "assets/images/defaults/wedding/cover-photo.png",
     location: {
       venue: "",
       address: "",
@@ -51,11 +51,11 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   themeIdValid: boolean;
   weddingTimeValid: boolean;
   routeURLValid: boolean;
-  labels:any={};
-  lang:string;
+  labels: any = {};
+  lang: string;
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private router: Router, private http: httpService,private resources: resources,
+    private ngZone: NgZone, private router: Router, private http: httpService, private resources: resources,
     private ngxSpinner: NgxSpinnerService, private toastr: ToastrService, private storage: localStorageService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
@@ -69,18 +69,18 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     this.loadResources();
   }
 
-  getCurrentWeddingWebsiteDetails(){
+  getCurrentWeddingWebsiteDetails() {
     this.ngxSpinner.show();
     let websiteDetialsURL = `${urls.GET_WEDDING_WEBSITE_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
-    this.http.Get(websiteDetialsURL , {}).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Get(websiteDetialsURL, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.ngxSpinner.hide();
         let savedweddingWebsite = response.data as weddingWebsite;
 
-        if(savedweddingWebsite.requestIssued){
+        if (savedweddingWebsite.requestIssued) {
           this.weddingWebsite = savedweddingWebsite;
-          this.storage.setLocalStorage("weds360#mysite" , this.weddingWebsite);
+          this.storage.setLocalStorage("weds360#mysite", this.weddingWebsite);
 
           // This function converts the imge URL to a file object!
           // Loading the images from the s3 bucket
@@ -88,7 +88,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
           this.weddingWebsite.album.forEach(async (anImage) => {
             let imageFile = await this.convertURLtoFile(anImage);
             this.files.push(imageFile);
-            this.tempAlbumFiles.push({ name: imageFile.name , url: anImage });
+            this.tempAlbumFiles.push({ name: imageFile.name, url: anImage });
           });
           this.setSelectedTemplate(this.weddingWebsite.themeId);
           this.latitude = this.weddingWebsite.location.latitude;
@@ -100,21 +100,21 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
         } else {
           this.setCurrentLocation();
         }
-      }else{
+      } else {
         this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your website details.");
+        this.toastr.error("Our bad sorry!", "My bad, server couldn't load your website details.");
       }
     });
   };
 
-  selectTemplate(e: any , templateId) {
+  selectTemplate(e: any, templateId) {
     e.preventDefault();
     this.setSelectedTemplate(templateId);
   };
 
-  setSelectedTemplate(templateId){
+  setSelectedTemplate(templateId) {
     this.themesTemplates.forEach((aTheme) => {
-      if(aTheme._id != templateId){
+      if (aTheme._id != templateId) {
         aTheme.isThemeSelected = false;
       }
     });
@@ -133,19 +133,21 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   }
 
   onCoverPhotoChanged(e: any): void {
+    debugger;
     this.ngxSpinner.show();
     const formData = new FormData();
     if (e.target.files && e.target.files[0]) {
       const imageFile = e.target.files[0];
 
       formData.append("image", imageFile);
-      formData.append("targetEntity" , constants.S3_CONTAINERS["WEDDING_WEBSITES"]);
-      formData.append("isSlefAssigned" , "true");
-      formData.append("targetUserEmail" , this.currentUserEmail);
+      formData.append("targetEntity", constants.S3_CONTAINERS["WEDDING_WEBSITES"]);
+      formData.append("isSlefAssigned", "true");
+      formData.append("targetUserEmail", this.currentUserEmail);
 
       let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
-      this.http.Post(uploadImageURL , {} , formData).subscribe((response: responseModel) => {
-        if(!response.error){
+      this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
+        console.log({ response })
+        if (!response.error) {
           this.ngxSpinner.hide();
           this.weddingWebsite.coverImage = response.data;
         } else {
@@ -155,23 +157,23 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     }
   };
 
-  loadThemesTemplates(){
+  loadThemesTemplates() {
     this.ngxSpinner.show();
     let getAllThemes = `${urls.GET_ALL_THEMES}/${constants.APP_IDENTITY_FOR_USERS}`;
 
-    this.http.Get(getAllThemes , {}).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Get(getAllThemes, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.ngxSpinner.hide();
         this.themesTemplates = response.data as theme[];
-      }else{
+      } else {
         this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load any themes!");
+        this.toastr.error("Our bad sorry!", "My bad, server couldn't load any themes!");
       }
     });
   };
 
-  checkWeddingWebsiteRouteUniqness(){
-    if(this.weddingWebsite.routeURL == "" || this.weddingWebsite.routeURL.includes(" ")){
+  checkWeddingWebsiteRouteUniqness() {
+    if (this.weddingWebsite.routeURL == "" || this.weddingWebsite.routeURL.includes(" ")) {
       this.isRouteAlreadyExists = false;
       this.saveDisabled = true;
       return;
@@ -179,8 +181,8 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
     let checkingURL = `${urls.CHECK_WEDDING_WEBSITE_UNIQNESS}/${constants.APP_IDENTITY_FOR_USERS}/${this.weddingWebsite.routeURL}`;
 
-    this.http.Get(checkingURL , {} ).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Get(checkingURL, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.isRouteAlreadyExists = response.data.isRouteExisted;
         this.saveDisabled = this.isRouteAlreadyExists;
         this.loadScripts();
@@ -188,7 +190,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     });
   };
 
-  validateWeddingWebsiteDataBeforeSave(){
+  validateWeddingWebsiteDataBeforeSave() {
     this.themeIdValid = this.weddingWebsite.themeId == "" ? false : true;
     this.weddingTimeValid = this.weddingWebsite.weddingTime == "" ? false : true;
     this.routeURLValid = (this.weddingWebsite.routeURL == "" || this.weddingWebsite.routeURL.includes(" ")) ? false : true;
@@ -198,27 +200,27 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   createNewWebsiteRequest() {
-    if(!this.saveDisabled){
-      if(this.validateWeddingWebsiteDataBeforeSave()){
+    if (!this.saveDisabled) {
+      if (this.validateWeddingWebsiteDataBeforeSave()) {
         this.weddingWebsite.requestIssued = true;
         this.saveWebsiteRequest();
       } else {
-        this.toastr.error("Some fields need your attention" , "Give us all the details to make this night joyful.");
+        this.toastr.error("Some fields need your attention", "Give us all the details to make this night joyful.");
       }
     }
   };
 
-  saveWebsiteRequest(){
+  saveWebsiteRequest() {
     this.ngxSpinner.show();
     let weddingWebsiteCreationURL = `${urls.CREATE_WEDDING_WEBSITE}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
-    this.http.Post(weddingWebsiteCreationURL , {} , { "weddingWebsite" : this.weddingWebsite }).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Post(weddingWebsiteCreationURL, {}, { "weddingWebsite": this.weddingWebsite }).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.ngxSpinner.hide();
-        this.toastr.success("Your website request has been created!" , "Isn't it amazing, your wedding website awaiting the approval! 🎉 few steps to celebrate.");
-      }else{
+        this.toastr.success("Your website request has been created!", "Isn't it amazing, your wedding website awaiting the approval! 🎉 few steps to celebrate.");
+      } else {
         this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!" , "My bad, server couldn't create your website.");
+        this.toastr.error("Our bad sorry!", "My bad, server couldn't create your website.");
       }
     })
   };
@@ -245,7 +247,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   };
 
   setCurrentLocation() {
-    if('geolocation' in navigator){
+    if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((locationInfo) => {
         this.latitude = this.weddingWebsite.location.latitude = locationInfo.coords.latitude;
         this.longitude = this.weddingWebsite.location.longtitude = locationInfo.coords.longitude;
@@ -309,11 +311,11 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
         if (!response.error) {
           this.ngxSpinner.hide();
-          this.tempAlbumFiles.push({ name: event.addedFiles[key].name , url: response.data });
+          this.tempAlbumFiles.push({ name: event.addedFiles[key].name, url: response.data });
           this.files.push(event.addedFiles[key]);
 
           this.bindTempFilesToWeddingObject();
-          console.log("add" , this.weddingWebsite.album);
+          console.log("add", this.weddingWebsite.album);
           // this.weddingWebsite.album.push(response.data);
         } else {
           this.ngxSpinner.hide();
@@ -330,17 +332,17 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     this.tempAlbumFiles.splice(targetFileInTemp, 1);
 
     this.bindTempFilesToWeddingObject();
-    console.log("remove" , this.weddingWebsite.album);
+    console.log("remove", this.weddingWebsite.album);
   };
 
-  bindTempFilesToWeddingObject(){
+  bindTempFilesToWeddingObject() {
     this.weddingWebsite.album = [];
     this.tempAlbumFiles.forEach((imge) => {
       this.weddingWebsite.album.push(imge.url);
     });
   };
 
-  async convertURLtoFile(image){
+  async convertURLtoFile(image) {
     // image = "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png";
     let response = await fetch(image);
     let data = await response.blob();
@@ -348,7 +350,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
       type: `image/${image.split('.').pop()}`
     };
 
-    return new File([data], image.split('/').pop() , metadata);
+    return new File([data], image.split('/').pop(), metadata);
   }
   //#endregion
 
@@ -357,8 +359,8 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
     // this.loadScripts();
   };
 
-  loadScripts(){
-    let scripts = ['assets/scripts/custom.js', 'assets/scripts/datePickerInitakizer.js'  , 'assets/scripts/dropzone.js'];
+  loadScripts() {
+    let scripts = ['assets/scripts/custom.js', 'assets/scripts/datePickerInitakizer.js', 'assets/scripts/dropzone.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');
@@ -370,17 +372,17 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   //#endregion
   async loadResources() {
     let lang =
-        window.location.href.toString().toLowerCase().indexOf("ar") > -1
-          ? "ar"
-          : "en";
+      window.location.href.toString().toLowerCase().indexOf("ar") > -1
+        ? "ar"
+        : "en";
 
-      let resourceLang =
-        lang == null || lang == undefined ? environment.defaultLang : lang;
-      this.lang = resourceLang;
-      let resData = (await this.resources.load(
-        resourceLang,
-        constants.VIEWS["WEDDING_WEBSITE"]
-      )) as any;
-      this.labels = resData.res;
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
+    this.lang = resourceLang;
+    let resData = (await this.resources.load(
+      resourceLang,
+      constants.VIEWS["WEDDING_WEBSITE"]
+    )) as any;
+    this.labels = resData.res;
   };
 }

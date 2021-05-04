@@ -5,7 +5,7 @@ import * as COMPONENTS from "./components";
 
 const routes: Routes = [
   {
-    path: 'all',
+    path: 'all/:categoryName/:categoryId',
     component: COMPONENTS.BlogsComponent
   },
   {

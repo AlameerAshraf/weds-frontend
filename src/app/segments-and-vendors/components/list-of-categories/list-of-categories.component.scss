@@ -1,0 +1,75 @@
+.wrap {
+  position:relative;
+}
+
+.wrap:before {
+  content:"";
+  position: absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background: rgba(0,0,0,0.5);
+  z-index:999;
+}
+
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div{
+  background: rgba(0,0,0,0.5);
+  z-index:999;
+}
+.icon{
+  position: absolute;
+  left: 43%;
+  top: 28%;
+  z-index: 10;
+  // width: 5em;
+  // height: 5em;
+}
+.iconImage{
+  width: 54px;
+}
+
+.overlay,
+.overlay-text,
+ img{
+   transition: all .4s linear;
+    -webkit-transition: all .4s linear;
+    -moz-transition: all .4s linear;
+    -o-transition: all .4s linear;
+}
+.effect-image{
+	position: relative;
+	display: block;
+}
+.overlay-text {
+  position: absolute;
+  // left: 5px;
+  // top: 5px;
+  top: 7%;
+  left: 6%;
+  width: 89%;
+  height: 80%;
+  color: black;
+  background-color: #fff;
+  align-items: center;
+}
+.overlay-text-desc{
+
+  text-align: center;
+  padding-top: 55px;
+}
+.overlay-text-desc p{
+  color:darkcyan;
+}
+.overlay-text-desc h4{
+  font-weight: 800;
+}
+.overlay-text-1{
+  opacity: 0;
+  visibility: hidden;
+  z-index: 11;
+}
+.effect-image:hover .overlay-text-1{
+  opacity: 1;
+  visibility: visible;
+}

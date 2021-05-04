@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserChatComponent } from './user-chat.component';
+import { PhotosGridComponent } from './photos-grid.component';
 
-describe('UserChatComponent', () => {
-  let component: UserChatComponent;
-  let fixture: ComponentFixture<UserChatComponent>;
+describe('PhotosGridComponent', () => {
+  let component: PhotosGridComponent;
+  let fixture: ComponentFixture<PhotosGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserChatComponent ]
+      declarations: [ PhotosGridComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserChatComponent);
+    fixture = TestBed.createComponent(PhotosGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

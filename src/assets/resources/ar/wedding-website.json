@@ -30,5 +30,10 @@
   "DELETE": "حذف",
   "EDIT": "تعديل",
   "SAVE": "حفظ",
-  "CANCEL": "إلغاء"
+  "CANCEL": "إلغاء",
+  "OUR_STORY": "ازاي ابتدت قصة حبنا",
+  "SITE_STATUS": "حالة الموقع",
+  "SITE_STATUS_TITLE": "متقلقش الموقع بتاعك هيبقى متاح قريب",
+  "PREVIEW_SITE": "عرض الموقع",
+  "UPDATE_SITE_INFO": " تعديل في بيانات الموقع "
 }

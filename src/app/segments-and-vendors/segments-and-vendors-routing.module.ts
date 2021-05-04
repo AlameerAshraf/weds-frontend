@@ -9,7 +9,23 @@ const routes: Routes = [
     component: segmentAndVendorComponents.ListOfCategoriesComponent //List of categories in segment.
   },
   {
-    path: 'all-vendors/:categorName',
+    path: 'dresses',
+    component: segmentAndVendorComponents.DressesComponent
+  },
+  {
+    path: 'dress/:dressId',
+    component: segmentAndVendorComponents.SingleDressComponent
+  },
+  {
+    path: 'rings',
+    component: segmentAndVendorComponents.RingsComponent
+  },
+  {
+    path: 'ring/:ringId',
+    component: segmentAndVendorComponents.SingleRingComponent
+  },
+  {
+    path: 'all-vendors/:categorName/:categorId',
     component: segmentAndVendorComponents.ListOfVendorsComponent // List of vendors in category.
   },
   {

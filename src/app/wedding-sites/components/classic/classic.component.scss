@@ -1,0 +1,62 @@
+
+.bkgrnd {
+  background: linear-gradient(to bottom, rgba(209,206,206, 0.4) 0%, rgba(93,95,108 ,0.4) 100%),
+  url('/assets/images/themes/classic2/top-image.png') !important;
+  background-repeat: repeat-x no-repeat;
+  background-size: cover !important;
+}
+
+.btn-primary-garden {
+  color: #fff;
+  background-color: #5D5F6C !important;
+  border-color: #514F50 !important;
+}
+
+
+.btn-primary-white {
+  color: #fff;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+
+.bg-primary-garden {
+  background-color: #5D5F6C !important;
+}
+
+
+.page-section-main{
+  padding-top: 0rem;
+  padding-right: 0px;
+  padding-bottom: 8rem;
+  padding-left: 0px;
+}
+
+/* Map */
+
+agm-map{
+  height: 30rem;
+}
+
+.map {
+  height: 30rem;
+}
+
+@media (max-width: 992px) {
+  .map {
+    height: 75%;
+  }
+}
+
+#download {
+  display: none;
+}
+
+.navBG{
+  background-color:rgba(101,101,90, 0.5)!important;
+  //  background: linear-gradient(90deg, rgba(138, 7, 94, 0.8) 0%, rgba(77, 4, 46, 0.349) 100%);
+}
+body,p{
+  color:#222f3e !important
+}
+
