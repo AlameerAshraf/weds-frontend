@@ -21,6 +21,15 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
   currentUserEmail: string;
   labels:any={};
   lang:string;
+
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -46,7 +55,10 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
 
     this.http.Get(getAllEventsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-        this.eventsList = response.data;
+        this.eventsList = response.data as event[];
+        console.log(this.eventsList)
+        this.collectionSize = this.eventsList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -76,10 +88,6 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
         this.toastr.error("Our bad sorry!" , "Ooh Sorry, your event couldn't deleted on the server!");
       }
     });
-  };
-
-  pageChange(pageNumber) {
-
   };
 
   navigateToCreateNewEvent() {
@@ -117,4 +125,12 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
       )) as any;
       this.labels = resData.res;
   };
+
+    //#region Paging Helpers ..
+    pageChange(pageNumber) {
+      window.scroll(0,0);
+      this.limit = this.pageSize * pageNumber;
+      this.skip = Math.abs(this.pageSize - this.limit);
+    };
+    //#endregion
 }

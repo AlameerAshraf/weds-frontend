@@ -57,7 +57,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of servicesList">
+            <ng-container *ngFor="let item of servicesList  | slice:skip:limit">
               <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{ item.type.toLowerCase() == "ring" ? "Ring" : "Dress" }}</p>
@@ -88,8 +88,7 @@
 
 <div class="row" *ngIf="collectionSize > 0 && showPaging">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="servicesList.length"
-      [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

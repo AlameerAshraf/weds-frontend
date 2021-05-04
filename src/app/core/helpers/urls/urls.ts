@@ -61,6 +61,10 @@ export class urls {
   public static get UPDATE_POST(): string { return this.BASE_URL + '/admin/update-post' };
   public static get GET_ALL_POSTS_AS_LOOKUPS(): string { return this.BASE_URL + '/admin/get-all-posts-as-lookups' };
   public static get GET_ALL_FEATURES_COUNT(): string { return this.BASE_URL + '/admin/get-all-features-count' };
+  public static get GET_ALL_PHOTOS(): string { return this.BASE_URL + '/admin/get-all-photos' };
+  public static get CREATE_PHOTO(): string { return this.BASE_URL + '/admin/create-photo' };
+  public static get UPDATE_PHOTO(): string { return this.BASE_URL + '/admin/update-photo' };
+  public static get DELETE_PHOTO(): string { return this.BASE_URL + '/admin/delete-photo' };
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist' };

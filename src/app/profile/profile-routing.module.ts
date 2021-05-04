@@ -205,6 +205,14 @@ const routes: Routes = [
           {
             path: 'services-dress-action/:actionType',
             component : COMPONENTS.ServicesDressFormComponent
+          },      
+          {
+            path: 'photos-defaults',
+            component: COMPONENTS.PhotosGridComponent
+          },
+          {
+            path: 'photos-action/:actionType',
+            component : COMPONENTS.PhotosFormComponent
           },
         ]
       },

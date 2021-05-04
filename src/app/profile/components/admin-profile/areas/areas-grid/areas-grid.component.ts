@@ -22,6 +22,15 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
   areasList : area[] = [];
   lang: string;
   labels: any = {};
+
+    // Paging vars!
+    collectionSize: number = 0;
+    pageSize: any = 5;
+    limit: number;
+    skip: number;
+    showPaging = true;
+    // End paging vars!
+
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,private ngxSpinner: NgxSpinnerService,
     private storage: localStorageService,
@@ -39,25 +48,24 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
 
 
   getAllAreas() {
+    this.ngxSpinner.show();
     let getAllAreasURL = `${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    console.log(getAllAreasURL)
 
     this.http.Get(getAllAreasURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
-        console.log(response)
         this.areasList = response.data;
+        this.collectionSize = this.areasList.length;
+        this.pageChange(1);
+        this.ngxSpinner.hide();
       } else {
-        console.log("error")
-        console.log(response.error);
+        this.ngxSpinner.hide();
       }
     });
 
   };
 
 
-  pageChange(pageNumber: any) {
 
-  };
 
   editEntity(id: any){
     this.router.navigate([`profile/${this.lang}/admin/areas-action/update`]);
@@ -111,4 +119,12 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
     this.lang = resourceLang;
     this.labels = resData.res;
   }
+
+    //#region Paging Helpers ..
+    pageChange(pageNumber) {
+      window.scroll(0,0);
+      this.limit = this.pageSize * pageNumber;
+      this.skip = Math.abs(this.pageSize - this.limit);
+    };
+    //#endregion
 }

@@ -22,6 +22,14 @@ export class BudgeterGridComponent implements OnInit {
   labels:any={};
   lang:string;
 
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
+
   constructor(@Inject(DOCUMENT) private document: any,
   private router: Router,
   private storage: localStorageService,
@@ -46,6 +54,8 @@ export class BudgeterGridComponent implements OnInit {
     this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.budgetersList = response.data as budgeter[];
+        this.collectionSize = this.budgetersList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -54,9 +64,6 @@ export class BudgeterGridComponent implements OnInit {
   };
 
 
-  pageChange(pageNumber){
-
-  };
 
 
   editEntity(id: any){
@@ -114,4 +121,12 @@ export class BudgeterGridComponent implements OnInit {
       )) as any;
       this.labels = resData.res;
   };
+
+    //#region Paging Helpers ..
+    pageChange(pageNumber) {
+      window.scroll(0,0);
+      this.limit = this.pageSize * pageNumber;
+      this.skip = Math.abs(this.pageSize - this.limit);
+    };
+    //#endregion
 }
