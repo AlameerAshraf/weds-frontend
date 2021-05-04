@@ -27,7 +27,7 @@
                 {{ categorySegment.name }}</option>
           </select>
         </div>
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+        <div class="col-md-2" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <select id="categoriesLayouts" class="chosen-select-no-single">
             <option label="blank" [selected]="selectedSearchLayout == 'empty'" >{{labels.SELECT_SERVICE_TYPE}}</option>
               <option *ngFor="let categoryLayout of categoriesLayouts" [value]="categoryLayout.layout">{{
@@ -35,9 +35,9 @@
           </select>
         </div>
 
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
-          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> Search </a>
-          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);"> <i class="sl sl-icon-trash"></i>
+        <div class="col-md-4" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> {{labels.SEARCH}} </a>
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i>
             {{labels.RESET}}
           </a>
         </div>

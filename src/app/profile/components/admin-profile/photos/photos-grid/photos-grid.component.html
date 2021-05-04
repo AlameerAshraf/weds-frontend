@@ -1,1 +1,73 @@
-<p>photos-grid works!</p>
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>{{labels.PHOTOS}}</h2>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+    <div class="col-lg-12 col-md-12">
+      <div class="dashboard-list-box margin-top-0">
+        <h4>
+          {{labels.DEFAULT_PHOTOS}}
+  
+          <div (click)="navigateToCreateNewPhoto()" style="background-color: #046B69 !important;
+                color: white !important;
+                cursor: pointer;
+                border-radius: 20px;" class="comission-taken">
+            <i class="im im-icon-Pencil"></i> &nbsp;
+            <strong style="color: white !important">{{labels.ADD_PHOTO}}</strong>
+          </div>
+        </h4>
+  
+        <div class="col-md-12" style="background-color: white;">
+          <table class="table borderless">
+            <thead>
+              <tr>
+                <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="45%">{{labels.NAME}}</th>
+                <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="45%">{{labels.IMAGE}}</th>
+                <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.DELETE}}</th>
+                <th [ngClass]="lang === 'ar' ? 'th' : ''" scope="col" width="5%">{{labels.EDIT}}</th>
+  
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of photosList | slice:skip:limit">
+                <tr [ngClass]="lang === 'ar' ? 'th' : ''">
+                  <td>
+                    <p>{{ item.titleEn }}</p>
+                  </td>
+                  <td>
+                    <img src="{{ item.image }}" style="width:150px; height:100px;">
+                  </td>
+                  <td class="td-in-table">
+                    <p>
+                      <i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600; cursor: pointer;"
+                        (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
+                    </p>
+                  </td>
+                  <td class="td-in-table">
+                    <p>
+                      <i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
+                        (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i>
+                    </p>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="clearfix"></div>
+  
+  <div class="row" *ngIf="collectionSize > 0 && showPaging">
+    <div class="col-md-12">
+      <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
+      </weds-paging>
+    </div>
+  </div>
+  
