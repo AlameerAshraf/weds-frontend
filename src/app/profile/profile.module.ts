@@ -72,6 +72,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     COMPONENTS.VendorServicesRingFormComponent,
     COMPONENTS.VendorServicesDressFormComponent,
     COMPONENTS.SiteStatusComponent,
+    COMPONENTS.PhotosGridComponent,
+    COMPONENTS.PhotosFormComponent,
   ],
   imports: [
     CommonModule,

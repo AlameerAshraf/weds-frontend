@@ -96,7 +96,7 @@ export class VendorServicesDressFormComponent implements OnInit {
   };
 
   uploadImage(e: any): void {
-
+    this.ngxSpinner.show();
     const formData = new FormData();
     if (e.target.files && e.target.files[0]) {
       const imageFile = e.target.files[0];
@@ -109,7 +109,7 @@ export class VendorServicesDressFormComponent implements OnInit {
       let uploadImageURL = `${urls.UPLOAD_IMAGE}/${constants.APP_IDENTITY_FOR_USERS}`;
       this.http.Post(uploadImageURL, {}, formData).subscribe((response: responseModel) => {
         if (!response.error) {
-
+          this.ngxSpinner.hide();
           this.dress.image = response.data;
         } else {
 
