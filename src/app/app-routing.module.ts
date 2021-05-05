@@ -17,7 +17,27 @@ const routes: Routes = [
         path: 'home',
         component: appComponents.AuthorizedHomeComponent,
         canActivate: [CanRouteActivate]
-      }
+      },
+      {
+        path: 'checklist',
+        component: appComponents.ChecklistComponent,
+      },
+      {
+        path: 'guest-list',
+        component: appComponents.ChecklistComponent,
+      },
+      {
+        path: 'registry-list',
+        component: appComponents.ChecklistComponent,
+      },
+      {
+        path: 'wedding-website',
+        component: appComponents.ChecklistComponent,
+      },
+      {
+        path: 'budgeter',
+        component: appComponents.ChecklistComponent,
+      },
     ]
   },
   {
