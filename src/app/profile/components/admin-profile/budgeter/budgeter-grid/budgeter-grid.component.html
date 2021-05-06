@@ -36,7 +36,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of budgetersList">
+            <ng-container *ngFor="let item of budgetersList | slice:skip:limit">
               <tr [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{item.nameEn}}</p>
@@ -69,10 +69,9 @@
 
 <div class="clearfix"></div>
 
-<div class="row">
+<div class="row" *ngIf="collectionSize > 0 && showPaging">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="12" [collectionSize]="budgetersList.length"
-      [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
     </weds-paging>
   </div>
 </div>

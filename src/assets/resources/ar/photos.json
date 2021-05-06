@@ -1,0 +1,26 @@
+{
+    "PHOTOS": " صور   ",
+    "ADD_PHOTO": "اضافة صورة جديد",
+    "NAME": "الاسم",
+    "IMAGE": "الصورة",
+    "LAYOUT_NAME": "شكل التصميم ",
+    "PHOTO_INFO": "معلومات عن الصورة",
+    "THUMBNAIL_IMAGE  ": "الصورة مصغرة  ",
+    "UPDATE": "تعديل",
+    "DELETE": "حذف",
+    "EDIT": "تعديل",
+    "SAVE": "حفظ",
+    "CANCEL": "إلغاء",
+    "DEFAULT_PHOTOS": "الصور الافتراضية  ",
+    "UPLOAD_PHOTO": "ارفق صورة",
+    "NAME_ENGLISH": "الاسم باللغة الانجليزية",
+    "NAME_ARABIC": "الاسم باللغة العربية",
+    "DESCRIPTION_ENGLISH": "الوصف باللغة الانجليزية",
+    "DESCRIPTION_ARABIC": "الوصف باللغة العربية",
+    "TAG_ENGLISH": "العلامة/التاج باللغة الانجليزية",
+    "TAG_ARABIC": "العلامة/التاج باللغة الانجليزية ",
+    "CATEGORY": "الفئة",
+    "SELECT": "اختر",
+    "VENDOR": "اسم البائع"
+  }
+  

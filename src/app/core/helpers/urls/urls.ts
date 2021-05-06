@@ -25,6 +25,8 @@ export class urls {
   public static get DELETE_USER(): string { return this.BASE_URL + '/users/delete-user' };
   public static get GET_WEDDING_AND_PARTNER_DETAILS(): string { return this.BASE_URL + '/users/get-wedding-and-partner-details' };
   public static get UPDATE_WEDDING_AND_PARTNER_DETAILS(): string { return this.BASE_URL + '/users/update-wedding-and-partner-details' };
+  public static get GET_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/get-all-bookmarks' };
+  public static get DELETE_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/bookmark' };
 
   // Admin!
   public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
@@ -61,6 +63,11 @@ export class urls {
   public static get UPDATE_POST(): string { return this.BASE_URL + '/admin/update-post' };
   public static get GET_ALL_POSTS_AS_LOOKUPS(): string { return this.BASE_URL + '/admin/get-all-posts-as-lookups' };
   public static get GET_ALL_FEATURES_COUNT(): string { return this.BASE_URL + '/admin/get-all-features-count' };
+  public static get GET_ALL_PHOTOS(): string { return this.BASE_URL + '/admin/get-all-photos' };
+  public static get CREATE_PHOTO(): string { return this.BASE_URL + '/admin/create-photo' };
+  public static get UPDATE_PHOTO(): string { return this.BASE_URL + '/admin/update-photo' };
+  public static get DELETE_PHOTO(): string { return this.BASE_URL + '/admin/delete-photo' };
+  public static get GET_CATEGORIES_BY_SEGMENT(): string { return this.BASE_URL + '/admin/get-categories-by-segment' };
 
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist' };
@@ -117,14 +124,13 @@ export class urls {
   public static get GET_ALL_COMMENTS(): string { return this.BASE_URL + '/vendors/get-all-comments' };
   public static get RATE_VENDOR(): string { return this.BASE_URL + '/vendors/rate-vendor' };
 
+  // Messages ..
+  public static get SEND_MESSAGE(): string { return this.BASE_URL + '/message/send' };
+
 
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
-  //user bookmarks
-  public static get GET_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/get-all-bookmarks' };
 
-  public static get DELETE_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/bookmark' };
-  //frontend
-  public static get GET_CATEGORIES_BY_SEGMENT(): string { return this.BASE_URL + '/admin/get-categories-by-segment' };
+
 
 }

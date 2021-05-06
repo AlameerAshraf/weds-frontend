@@ -1,1 +1,54 @@
-<p>vendor-chat works!</p>
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="messages-container margin-top-0">
+      <div class="messages-headline">
+        <h4>
+          <img src="assets/images/defaults/avatar/vendor.png" alt="Avatar" class="profile"> &nbsp;
+          Kathy Brown - <strong>Designer</strong>
+        </h4>
+        <a href="#" class="message-action"><i class="sl sl-icon-trash"></i> Delete Conversation</a>
+      </div>
+      <div class="messages-container-inner">
+          <div id="message-content" class="message-content" style="overflow-y: scroll; height: 150px;" infiniteScroll
+            [infiniteScrollUpDistance]="2" [scrollWindow]="false"  (scrolledUp)="onScrollUp()">
+
+            <div *ngFor="let message of messages">
+              <ng-container *ngIf="message.from == me">
+                <div class="message-bubble me">
+                  <div class="message-avatar">
+                    <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" />
+                  </div>
+                  <div class="message-text">
+                    <p>{{ message.messageBody}}</p>
+                  </div>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="message.from !== me">
+                <div class="message-bubble">
+                  <div class="message-avatar">
+                    <img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" />
+                  </div>
+                  <div class="message-text">
+                    <p>{{ message.messageBody}}</p>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+      </div>
+      <div class="messages-container-inner">
+        <div class="message-content">
+          <div class="clearfix"></div>
+          <div class="message-reply">
+            <textarea cols="40" rows="3" placeholder="Your Message" [(ngModel)]="messageBody"></textarea>
+            <button class="button" (click)="send()">
+              <i style="font-size: 15px;" class="fa fa-send-o"></i>Send Message
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

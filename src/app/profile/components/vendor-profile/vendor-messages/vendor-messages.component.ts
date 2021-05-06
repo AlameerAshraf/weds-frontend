@@ -1,5 +1,8 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { constants, resources } from "src/app/core";
+import { conatct, constants, resources } from "src/app/core";
 import { environment } from "src/environments/environment";
 
 @Component({
@@ -11,13 +14,27 @@ export class VendorMessagesComponent implements OnInit {
 
   lang: string;
   labels: any = {};
-  constructor(private resources: resources) {
+  contacts: conatct[] = [];
+
+  constructor(private resources: resources, private router: Router,
+    private toaster: ToastrService, private spinner: NgxSpinnerService) {
 
   }
 
   ngOnInit() {
     this.loadResources();
   }
+
+  getAllUserContacts(){
+
+  };
+
+
+  redierctToSingleChat(contactId){
+    this.spinner.show();
+    this.router.navigate([`profile/${this.lang}/vendor/chat`] , { queryParams: { 'dest' : contactId } })
+  };
+
   async loadResources() {
     let lang =
       window.location.href.toString().toLowerCase().indexOf("ar") > -1
@@ -33,6 +50,5 @@ export class VendorMessagesComponent implements OnInit {
       constants.VIEWS["MESSAGES"]
     )) as any;
     this.labels = resData.res;
-  }
-
+  };
 }

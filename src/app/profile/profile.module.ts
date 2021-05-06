@@ -10,6 +10,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
   ],
   imports: [
     CommonModule,
+    InfiniteScrollModule,
     ProfileRoutingModule,
     FormsModule,
     THEME_MODULE,

@@ -17,10 +17,10 @@
     </span>
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+        <div class="col-md-4" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <input type="text" [placeholder]="labels.SEARCH_PLACEHOLDER" [(ngModel)]="searchKey">
         </div>
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+        <div class="col-md-4" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <select id="cats" class="chosen-select-no-single">
             <option label="{{labels.SELECT_CATEGORY}}">{{labels.SELECT_CATEGORY}}</option>
             <option *ngFor="let category of categoriesLookups" [value]="category._id">
@@ -28,7 +28,7 @@
             </option>
           </select>
         </div>
-        <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
+        <div class="col-md-4" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i
               class="sl sl-icon-magnifier"></i> {{labels.SEARCH}} </a>
           <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i

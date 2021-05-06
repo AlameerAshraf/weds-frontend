@@ -1,0 +1,26 @@
+{
+    "PHOTOS": "Photos ",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "ADD_PHOTO": "Add photo",
+    "SAVE": "Save Changes",
+    "CANCEL": "Cancel",
+    "NAME": "Name",
+    "IMAGE": "Image",
+    "LAYOUT_NAME": "Layout Name",
+    "PHOTO_INFO": "Photo information",
+    "THUMBNAIL_IMAGE  ": "Thumbnail Image ",
+    "UPDATE": "Update",
+    "DEFAULT_PHOTOS": " Default Photos  ",
+    "UPLOAD_PHOTO": "Upload Photo",
+    "NAME_ENGLISH": "English Name",
+    "NAME_ARABIC": "Arabic Name",
+    "DESCRIPTION_ENGLISH": "English Description",
+    "DESCRIPTION_ARABIC": "Arabic Description",
+    "TAG_ENGLISH": "English Tags",
+    "TAG_ARABIC": "Arabic Tags",
+    "CATEGORY": "Category",
+    "SELECT": "Select",
+    "VENDOR": "Vendor"
+  }
+  

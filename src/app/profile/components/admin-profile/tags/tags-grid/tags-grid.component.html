@@ -34,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let item of tagsList">
+            <ng-container *ngFor="let item of tagsList | slice:skip:limit">
               <tr *ngIf="item.isRemoved == false" [ngClass]="lang === 'ar' ? 'th' : ''">
                 <td>
                   <p>{{ item.name }}</p>

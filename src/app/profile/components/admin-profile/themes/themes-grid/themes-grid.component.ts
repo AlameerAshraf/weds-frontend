@@ -20,6 +20,15 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
 
   lang: string;
   labels: any = {};
+
+    // Paging vars!
+    collectionSize: number = 0;
+    pageSize: any = 5;
+    limit: number;
+    skip: number;
+    showPaging = true;
+    // End paging vars!
+    
   constructor(@Inject(DOCUMENT) private document: any,
     private router: Router,
     private storage: localStorageService,
@@ -44,6 +53,8 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
     this.http.Get(getAllThemesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.themesList = response.data as theme[];
+        this.collectionSize = this.themesList.length;
+        this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();
@@ -51,9 +62,7 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
     });
   };
 
-  pageChange(pageNumber: any) {
 
-  };
 
   editEntity(id: any){
     let targetTheme = this.themesList.find(x => x._id == id);
@@ -110,4 +119,12 @@ export class ThemesGridComponent implements OnInit, AfterViewInit {
     )) as any;
     this.labels = resData.res;
   }
+
+    //#region Paging Helpers ..
+    pageChange(pageNumber) {
+      window.scroll(0, 0);
+      this.limit = this.pageSize * pageNumber;
+      this.skip = Math.abs(this.pageSize - this.limit);
+    };
+    //#endregion
 }

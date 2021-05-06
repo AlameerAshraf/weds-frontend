@@ -18,3 +18,6 @@ export * from './dress';
 export * from './featureCount';
 export * from './comment';
 export * from './wedding-details';
+export * from './photo';
+export * from './contact';
+export * from './message';

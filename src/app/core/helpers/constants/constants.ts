@@ -33,7 +33,7 @@ export class constants {
       "WEDDING_WEBSITE": "wedding-website",
       "WEDDING_DETAILS": "wedding-detail",
       "BOOKMARKS": "bookmarks",
-
+      "PHOTOS": "photos"
     }
   };
 
@@ -364,7 +364,8 @@ export class constants {
       "WEDDING_ALBUMS": "WEDDING_ALBUMS",
       "VENDOR_ALBUMS": "VENDOR_ALBUMS",
       "VENDOR_SERVICES": "VENDOR_SERVICES",
-      "VISITORS_WEDDING_SITE": "VISITORS_WEDDING_SITE"
+      "VISITORS_WEDDING_SITE": "VISITORS_WEDDING_SITE",
+      "PHOTOS": "PHOTOS"
     }
   };
 

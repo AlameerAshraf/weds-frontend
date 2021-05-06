@@ -1,0 +1,54 @@
+.bkgrnd {
+    background: linear-gradient(to bottom, rgba(107, 113, 224, 0.712) 0%, rgba(92, 75, 21, 0.61) 100%),
+    url('/assets/images/themes/beach/top-image.png') !important;
+    background-repeat: no-repeat, repeat;
+    background-size: cover !important;
+  }
+  
+  
+  .btn-primary-garden {
+    color: #fff;
+    background-color: #2d49a5e1 !important;
+    border-color: #1f0b55 !important;
+  }
+  
+  
+  .btn-primary-white {
+    color: #fff;
+    background-color: #fff !important;
+    border-color: #fff !important;
+  }
+  
+  
+  .bg-primary-garden {
+    background-color: #2d49a5e1 !important;
+  }
+  
+  
+  .page-section-main{
+    padding-top: 0rem;
+    padding-right: 0px;
+    padding-bottom: 8rem;
+    padding-left: 0px;
+  }
+  
+  /* Map */
+  
+  agm-map{
+    height: 30rem;
+  }
+  
+  .map {
+    height: 30rem;
+  }
+  
+  @media (max-width: 992px) {
+    .map {
+      height: 75%;
+    }
+  }
+  
+  #download {
+    display: none;
+  }
+  

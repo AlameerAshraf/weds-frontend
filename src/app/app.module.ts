@@ -18,6 +18,11 @@ import { AgmCoreModule } from '@agm/core';
     AppComponent,
     COMPONENTS.AnonymousHomeComponent,
     COMPONENTS.AuthorizedHomeComponent,
+    COMPONENTS.ChecklistComponent,
+    COMPONENTS.BudgeterComponent,
+    COMPONENTS.RegistryListComponent,
+    COMPONENTS.WeddingWebsiteComponent,
+    COMPONENTS.GuestListComponent,
   ],
   imports: [
     BrowserModule,
