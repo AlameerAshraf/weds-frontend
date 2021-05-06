@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { constants, httpService, resources, responseModel, urls } from 'src/app/core';
+import { constants, httpService, message, resources, responseModel, urls } from 'src/app/core';
 
 @Component({
   selector: 'app-vendor-chat',
@@ -10,7 +10,7 @@ import { constants, httpService, resources, responseModel, urls } from 'src/app/
   styleUrls: ['./vendor-chat.component.scss']
 })
 export class VendorChatComponent implements OnInit {
-  messages = [];
+  messages : message[] = [];
   me: '123';
 
   messageBody = "";
@@ -23,7 +23,6 @@ export class VendorChatComponent implements OnInit {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     this.activatedRoute.queryParams.subscribe((params) => {
       this.destinationUser = params["dest"];
-      console.log(this.destinationUser)
     })
   }
 
@@ -99,14 +98,26 @@ export class VendorChatComponent implements OnInit {
       if(!response.error){
         this.spinner.hide();
         this.messageBody = "";
-        console.log(response);
+        this.messages.push({ messageBody: response.data.body , to: response.data.to , from: response.data.to  });
+        this.toaster.success("message has been delivered");
+        this.scrollToLatestMessage();
       } else {
-
+        this.toaster.success("Error delivering the message!");
       }
     })
   };
 
   loadMessages(){
-
+    let allMessagesURL = ``
   };
+
+
+  //#region Helpers methods..
+  scrollToLatestMessage(){
+    setTimeout(() => {
+      var box = document.getElementById('message-content');
+      box.scrollTop = box.scrollHeight;
+    }, 0);
+  };
+  //#endregion
 }
