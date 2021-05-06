@@ -488,8 +488,8 @@ header.fullwidth .container {
   padding: 40px 0;
   display: inline-block;
   width: 100%;
-  direction: rtl;
-  text-align: right;
+  direction: ltr;
+  text-align: center;
 }
 
 #footer.alt .copyrights {
@@ -10801,7 +10801,7 @@ body .notification strong {
   width: 100%;
   text-align: center;
   bottom: -10px;
-  left: 0;
+  right: 0;
   content: "\f0dd";
   font-family: "FontAwesome";
   font-size: 42px;
@@ -10813,7 +10813,7 @@ body .notification strong {
 .testimonial:after {
   position: absolute;
   top: 47px;
-  left: 42px;
+  right: 42px;
   content: "\f10d";
   font-family: "FontAwesome";
   font-size: 38px;

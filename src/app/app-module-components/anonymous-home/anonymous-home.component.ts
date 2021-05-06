@@ -18,7 +18,9 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   startTypingAnimation: boolean = true;
 
   allCategories = [];
-
+  //labels
+  labels: any = {};
+  lang: string;
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService,
@@ -32,18 +34,21 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   };
 
   /** Use this function at each view to load corrosponding resources! */
-  async loadResources(){
-    let providedlang: any = this.actictedRoute.parent.params;
-    let lang = providedlang._value["lang"];
-    let resourceLang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
+  async loadResources() {
+    let lang =
+      window.location.href.toLowerCase().indexOf(`/ar/`) > -1 ? "ar" : "en";
+    let resourceLang =
+      lang == null || lang == undefined ? environment.defaultLang : lang;
 
-    let resData = await this.resources.load(resourceLang , constants.VIEWS["HOME_LAYOUT"]);
+    this.lang = ((resourceLang == null) || (resourceLang == undefined)) ? environment.defaultLang : resourceLang;
+    let resData = await this.resources.load(this.lang, constants.VIEWS["HOME_LAYOUT"]) as any;;
+    this.labels = resData.res;
   };
 
-  getAllCategories(){
+  getAllCategories() {
     let allCatesURL = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(allCatesURL , {}).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Get(allCatesURL, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.allCategories = response.data;
       } else {
         console.log(response.error);
@@ -52,7 +57,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/typedwords.js' , 'assets/scripts/custom.js'];
+    let scripts = ['assets/scripts/typedwords.js', 'assets/scripts/custom.js'];
 
     scripts.forEach(element => {
       const s = this.document.createElement('script');

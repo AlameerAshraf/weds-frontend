@@ -33,7 +33,8 @@ export class constants {
       "WEDDING_WEBSITE": "wedding-website",
       "WEDDING_DETAILS": "wedding-detail",
       "BOOKMARKS": "bookmarks",
-      "PHOTOS": "photos"
+      "PHOTOS": "photos",
+      "FOOTER": "footer"
     }
   };
 

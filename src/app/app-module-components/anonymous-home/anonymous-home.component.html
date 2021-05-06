@@ -1,44 +1,44 @@
-<weds-header [authorizedUser]="false" urlSegment= "../../"></weds-header>
+<weds-header [authorizedUser]="false" urlSegment="../../"></weds-header>
 
 <!-- Main video & search bar! -->
 <div class="main-search-container dark-overlay centered">
   <div class="main-search-inner">
-    <div class="container">
+    <div class="container" [ngClass]="lang === 'ar' ? 'rtl' : ''">
       <div class="row">
         <div class="col-md-12">
           <h2>
-            Find Most Amazing
-            <span class="typed-words"></span>
+            {{labels.SEARCH_MAJOUR_TITLE}}
+            <!-- <span class="typed-words"></span> -->
           </h2>
-          <h4>Expolore top-rated attractions, activities and more</h4>
+          <h4>>{{labels.SEARCH_SUB_TITLE}}</h4>
 
           <div class="main-search-input">
 
             <div class="main-search-input-item">
-              <input type="text" placeholder="What are you looking for?" value="" />
+              <input type="text" [placeholder]="labels.LOOKING_FOR" value="" />
             </div>
 
             <div class="main-search-input-item location">
               <div id="autocomplete-container">
-                <input id="autocomplete-input" type="text" placeholder="Location">
+                <input id="autocomplete-input" type="text" [placeholder]="labels.LOCATION">
               </div>
               <a href="#"><i class="fa fa-map-marker"></i></a>
             </div>
 
             <div class="main-search-input-item">
               <select data-placeholder="All Categories" class="chosen-select">
-                <option>All Categories</option>
-                <option>Shops</option>
-                <option>Hotels</option>
-                <option>Restaurants</option>
-                <option>Fitness</option>
-                <option>Events</option>
+                <option [selected]='true' disabled value="-1">{{labels.ALL_CATEGORIES}}</option>
+                <option *ngFor="let category of allCategories" [value]="category._id">
+                  {{ lang==='en'? category.nameEn:category.nameAr}}
+                </option>
               </select>
             </div>
-
-            <button class="button" onclick="window.location.href='listings-half-screen-map-list.html'">Search</button>
+            <button class="button"
+              onclick="window.location.href='listings-half-screen-map-list.html'">{{labels.SEARCH}}</button>
 
           </div>
+
+
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
 
     <div class="col-md-12">
       <h3 class="headline centered margin-top-75">
-        Popular Categories
+        {{labels.POPULAR_CATEGORIES}}
         <span>Browse <i>the most desirable</i> categories</span>
       </h3>
     </div>
@@ -75,13 +75,12 @@
     <ng-container *ngFor="let item of allCategories">
       <div class="fw-carousel-item">
         <div class="category-box-container">
-          <a class="category-box"
-            [attr.data-background-image]="item.photo">
+          <a class="category-box" [attr.data-background-image]="item.photo">
             <div class="category-box-content">
-              <h3>{{ item.nameEn }}</h3>
+              <h3>{{ lang==='en'? item.nameEn:item.nameAr}}</h3>
               <span>54 Seller</span>
             </div>
-            <span class="category-box-btn">Browse</span>
+            <span class="category-box-btn">{{labels.BROWSE}}</span>
           </a>
         </div>
       </div>
@@ -323,7 +322,8 @@
       <div class="col-md-8 col-md-offset-2">
         <h3 class="headline centered headline-extra-spacing">
           <strong class="headline-with-separator">Plan The Wedding of Your Dreams</strong>
-          <span class="margin-top-25">Wedding planning is a piece of cake with weds360. we know what matters most and you can count on us every step of the way.</span>
+          <span class="margin-top-25">Wedding planning is a piece of cake with weds360. we know what matters most and
+            you can count on us every step of the way.</span>
         </h3>
       </div>
     </div>

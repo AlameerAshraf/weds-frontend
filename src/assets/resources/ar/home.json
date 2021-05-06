@@ -1,6 +1,6 @@
 {
-  "SEARCH_MAJOUR_TITLE": "البحث عن الأكثر روعة",
-  "SEARCH_SUB_TITLE": "استكشف المعالم والأنشطة ذات التصنيف الأعلى والمزيد",
+  "SEARCH_MAJOUR_TITLE": "  اكتشف ",
+  "SEARCH_SUB_TITLE": " احسن الامكان والانشطة وحاجات تانية كتير..",
   "FEATURED_CATEGORIES_TITLE": "Or browse featured categories:",
   "LOOKING_FOR": " عن ماذا تبحث؟",
   "LOCATION": "المكان",
@@ -10,7 +10,13 @@
   "BROWSE": "تصفح",
   "PLAN_WEDDING": "خطط لحفل زفاف أحلامك",
   "PLAN_WEDDING_SUBTITLE": "الترتيب لفرحك أسهل كتير معانا   لأننا عارفين إيه المهم، تقدر تعتمد علينا في كل تفصيلة.",
-  "FOOTER": "عشان احنا عارفين ايه اكتر حاجة مهمة ويمكنك الاعتماد علينا في كل خطوة على الطريق ، من  اول حجز بائع الزهور المناسب إلى تفريغ الأمتعة بعد شهر العسل ، لا يمكننا الانتظار لمساعدتك في بدء الفصل التالي من حياتك ",
-  "FOOTER_HELPFUL_LINKS": "روابط مفيدة",
-  "FOOTER_CONTACT_US": "تواصل معنا"
+  "MOST_VISITED_PLACES": "الأماكن الأكثر زيارة",
+  "DISCOVER_MOST_VISITED_PLACES": "اكتشف الياعئين الافضل    ",
+  "WHAT_USER_SAY": "اراء العملاء ",
+  "WHAT_USER_SAY_SUB": "دي تقيمات العملاء اللي اتعاملو معانا  ",
+  "BEST_FITNESS": "أفضل متخصصين لياقة  ",
+  "BEST_VENUES": "أفضل أماكن  ",
+  "BEST_DESIGNERS": "أفضل مصممين  ",
+  "BEST_PHOTOGRAPHERS": "أفضل مصورين  ",
+  "NEW_VENDORS": "متخصصين جداد  "
 }
