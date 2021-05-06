@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   // Languge!
   loginURL: string;
   langChangerURL: string;
+  labels: any = {};
 
 
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
@@ -49,6 +50,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
     if (this.lang === 'ar') this.menuItems.reverse()
     this.profileLinks = this.profileLinks.concat(resData.res["actions"]);
+    let translatedRes = await this.resources.load(this.lang, constants.VIEWS["HOME_LAYOUT"]) as any;;
+    this.labels = translatedRes.res
   };
 
   checkViewAuthority() {
