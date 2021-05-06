@@ -4,7 +4,7 @@ import { httpService } from './../../core/services/http/http';
 import { Component, OnInit } from '@angular/core';
 import { Inject, AfterViewInit, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { constants, resources } from 'src/app/core';
+import { constants, resources, area, category } from 'src/app/core';
 import { environment } from '../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,6 +18,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   startTypingAnimation: boolean = true;
 
   allCategories = [];
+  allAreas = [];
   //labels
   labels: any = {};
   lang: string;
@@ -31,6 +32,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getAllCategories();
+    this.getAllAreas();
   };
 
   /** Use this function at each view to load corrosponding resources! */
@@ -50,6 +52,17 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
     this.http.Get(allCatesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allCategories = response.data;
+      } else {
+        console.log(response.error);
+      }
+    });
+  };
+  getAllAreas() {
+    let allAreasURL = `${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}`;
+    this.http.Get(allAreasURL, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.allAreas = response.data;
+
       } else {
         console.log(response.error);
       }

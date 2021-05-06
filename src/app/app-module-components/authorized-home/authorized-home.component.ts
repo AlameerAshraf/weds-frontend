@@ -16,6 +16,7 @@ export class AuthorizedHomeComponent implements OnInit {
   labels: any = {};
   lang: string;
   reviews = []
+  allAreas = [];
   constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef, private resources: resources,
     private http: httpService,
     private actictedRoute: ActivatedRoute) {
@@ -24,6 +25,7 @@ export class AuthorizedHomeComponent implements OnInit {
 
   ngOnInit() {
     this.getAllCategories();
+    this.getAllAreas();
     const englishReviews = [
       {
         name: "Mohammed & Mona",
@@ -44,7 +46,7 @@ export class AuthorizedHomeComponent implements OnInit {
     ]
     const arabicReviews = [
       {
-        name: "محمد وونى",
+        name: "محمد ومنى",
         review: "شكرًا على الخدمة الرائعة ، لقد كان التخطيط لحفل زفافي معك أمرًا رائعًا ",
         type: "عروسين"
       },
@@ -93,5 +95,17 @@ export class AuthorizedHomeComponent implements OnInit {
     this.lang = ((resourceLang == null) || (resourceLang == undefined)) ? environment.defaultLang : resourceLang;
     let resData = await this.resources.load(this.lang, constants.VIEWS["HOME_LAYOUT"]) as any;;
     this.labels = resData.res;
+  };
+  getAllAreas() {
+    let allAreasURL = `${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}`;
+    this.http.Get(allAreasURL, {}).subscribe((response: responseModel) => {
+
+      if (!response.error) {
+        this.allAreas = response.data;
+
+      } else {
+        console.log(response.error);
+      }
+    });
   };
 }

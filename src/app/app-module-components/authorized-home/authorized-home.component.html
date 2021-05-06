@@ -18,11 +18,13 @@
                 <input type="text" [placeholder]="labels.LOOKING_FOR" value="" />
               </div>
 
-              <div class="main-search-input-item location">
-                <div id="autocomplete-container">
-                  <input id="autocomplete-input" type="text" [placeholder]="labels.LOCATION">
-                </div>
-                <a href="#"><i class="fa fa-map-marker"></i></a>
+              <div class="main-search-input-item">
+                <select data-placeholder="All Location" class="chosen-select">
+                  <option [selected]='true' disabled value="-1">{{labels.ALL_LOCATIONS}}</option>
+                  <option *ngFor="let area of allAreas" [value]="area._id">
+                    {{ lang==='en'? area.nameEn:area.nameAr}}
+                  </option>
+                </select>
               </div>
 
               <div class="main-search-input-item">
