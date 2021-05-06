@@ -12,7 +12,8 @@
         <!-- Logo -->
         <div id="logo">
           <a><img src="assets/images/logos/logo_1.png" alt="Weds360"></a>
-          <a class="dashboard-logo"><img style="max-width: 70%;" src="assets/images/logos/dashboard_logo.png" alt="Weds360"></a>
+          <a class="dashboard-logo"><img style="max-width: 70%;" src="assets/images/logos/dashboard_logo.png"
+              alt="Weds360"></a>
         </div>
 
         <div class="mmenu-trigger">
@@ -40,15 +41,35 @@
 
 
       </div>
-
       <div class="right-side">
+        <!-- Header Widget -->
+        <div class="header-widget">
+
+          <!-- User Menu -->
+          <div class="user-menu">
+            <div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt=""></span>Hi, Alameer!
+            </div>
+
+          </div>
+          <span>
+            <a (click)="changeLanguge()" class="button border with-icon"> <b style="padding:5px"
+                *ngIf="lang === 'ar'">English</b>
+              <b style="padding:5px" *ngIf="lang === 'en'">العربية</b> <i class="sl sl-icon-globe"></i></a>
+          </span>
+
+        </div>
+        <!-- Header Widget / End -->
+      </div>
+      <!-- old -->
+      <!-- <div class="right-side">
         <div class="header-widget">
           <div class="user-menu">
-            <div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt="">
-              </span>Hi, Alameer!</div>
+            <div class="user-name">
+              <span><img src="assets/images/defaults/avatar/me.jpg" alt=""></span>Hi, Alameer!
+            </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -66,16 +87,16 @@
       <ng-container *ngFor="let navItem of navLinks">
         <ul [attr.data-submenu-title]="navItem.menuTitle">
           <ng-container *ngFor="let childMenuItem of navItem.childMenuItem">
-            <li *ngIf="childMenuItem.child.length == 0" class="noBorder"
-              [routerLink]="redierctURL + childMenuItem.url" routerLinkActive="active">
+            <li *ngIf="childMenuItem.child.length == 0" class="noBorder" [routerLink]="redierctURL + childMenuItem.url"
+              routerLinkActive="active">
               <a (click)="navigateTo(childMenuItem.url , childMenuItem.title)">
-                <i [class]="childMenuItem.icon" ></i> {{ childMenuItem.title }}
+                <i [class]="childMenuItem.icon"></i> {{ childMenuItem.title }}
               </a>
             </li>
 
-            <li *ngIf="childMenuItem.child.length > 0" class="noBorder" >
+            <li *ngIf="childMenuItem.child.length > 0" class="noBorder">
               <a (click)="navigateTo(childMenuItem.url , childMenuItem.title)">
-                <i [class]="childMenuItem.icon" ></i> {{ childMenuItem.title }}
+                <i [class]="childMenuItem.icon"></i> {{ childMenuItem.title }}
               </a>
 
               <ng-container *ngIf="childMenuItem.child.length > 0">
@@ -83,7 +104,7 @@
                   <ul>
                     <li class="noBorder" [routerLink]="redierctURL + nestedChild.url" routerLinkActive="active">
                       <a (click)="navigateTo(nestedChild.url , nestedChild.title )">
-                        <i [class]="nestedChild.icon" ></i> {{ nestedChild.title }}
+                        <i [class]="nestedChild.icon"></i> {{ nestedChild.title }}
                       </a>
                     </li>
                   </ul>

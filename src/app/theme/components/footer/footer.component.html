@@ -1,73 +1,75 @@
-<div id="footer">
-    <!-- Main -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 col-sm-6">
-                <img class="footer-logo" src="assets/images/logos/logo_1.png" alt="Weds360">
-                <br><br>
-                <p>We know what matters most and you can count on us every step of the way,
-                    From booking the right florist to unpacking after your honeymoon We can’t wait to help you
-                    start the next chapter of your life, Wedding Planning is a piece of cake with Weds360.</p>
+<div id="footer" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <!-- Main -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 col-sm-6">
+        <img class="footer-logo" src="assets/images/logos/logo_1.png" alt="Weds360">
+        <br><br>
+        <p>{{labels.FOOTER}}</p>
 
-                <div class="download-badges">
-                    <div style="margin-right: 5px;">
-                        <img class="badge" src="assets/images/app download badges/en/android.png" alt="Download App From Google Play">
-                    </div>
+        <div class="download-badges">
+          <div style="margin-right: 5px;">
+            <img class="badge" src="assets/images/app download badges/en/android.png"
+              alt="Download App From Google Play">
+          </div>
 
-                    <div>
-                        <img class="badge" src="assets/images/app download badges/en/ios.png" alt="Download App From Google Play">
-                    </div>
-                </div>
-                <br><br>
-            </div>
+          <div>
+            <img class="badge" src="assets/images/app download badges/en/ios.png" alt="Download App From Google Play">
+          </div>
+        </div>
+        <br><br>
+      </div>
 
-            <div class="col-md-4 col-sm-6 ">
-                <h4>Helpful Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">Add Listing</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
+      <div class="col-md-4 col-sm-6 ">
+        <h4>{{labels.FOOTER_HELPFUL_LINKS}}</h4>
+        <ul class="footer-links">
+          <li><a href="#">{{labels.LINK_LOGIN}}</a></li>
+          <li><a href="#">{{labels.LINK_SIGN_UP}}</a></li>
+          <li><a href="#">{{labels.LINK_MY_ACCOUNT}}</a></li>
+          <li><a href="#">{{labels.LINK_PRICING}}</a></li>
+          <li><a href="#">{{labels.LINK_ADD_LISTING}}</a></li>
+          <li><a href="#">{{labels.LINK_PRIVACY_POLICY}}</a></li>
 
-                <ul class="footer-links">
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Our Partners</a></li>
-                    <li><a href="#">How It Works</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
 
-            <div class="col-md-3  col-sm-12">
-                <h4>Contact Us</h4>
-                <div class="text-widget">
-                    <span>6B Aswan square 5th floor Mohandessin, Egypt</span> <br>
-                    Phone: <span>(+20) 155-555-1360 </span><br>
-                    E-Mail:<span> <a href="#">info@plus360.xyz</a> </span><br>
-                </div>
+        </ul>
 
-                <ul class="social-icons margin-top-20">
-                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-                    <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
-                </ul>
+        <ul class="footer-links">
+          <li><a href="#">{{labels.LINK_FAQ}}</a></li>
+          <li><a href="#">{{labels.LINK_BLOG}}</a></li>
+          <li><a href="#">{{labels.LINK_PARTNERS}}</a></li>
+          <li><a href="#">{{labels.LINK_HIW}}</a></li>
+          <li><a href="#">{{labels.LINK_CONTACT}}</a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
 
-            </div>
-
+      <div class="col-md-3  col-sm-12">
+        <h4>{{labels.FOOTER_CONTACT_US}}</h4>
+        <div class="text-widget">
+          <span>{{labels.FOOTER_ADDRESS}}</span> <br>
+          {{labels.FOOTER_PHONE}}: <span>(+20) 155-555-1360 </span><br>
+          {{labels.FOOTER_EMAIL}}:<span> <a href="#">info@plus360.xyz</a> </span><br>
         </div>
 
-        <!-- Copyright -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="copyrights">© {{ currentDate }} <a href="http://plus360.xyz/"> Plus360 </a> All Rights Reserved.</div>
-            </div>
-        </div>
+        <ul class="social-icons margin-top-20">
+          <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+          <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+          <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+          <li><a class="instagram" href="#"><i class="icon-instagram"></i></a></li>
+        </ul>
+
+      </div>
 
     </div>
+
+    <!-- Copyright -->
+    <div class="row " [ngClass]="lang === 'ar' ? 'footerText' : ''">
+      <div class="col-md-12">
+        <div class="copyrights">© {{ currentDate }} <a href="http://plus360.xyz/"> {{labels.PLUS360}}
+          </a>{{labels.COPY_RIGHT}}</div>
+      </div>
+    </div>
+
+  </div>
 
 </div>

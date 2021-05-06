@@ -38,10 +38,15 @@
 
       <!-- Right Side Content / End -->
       <div *ngIf="!isLogined" class="right-side">
-        <div class="header-widget" >
-          <a [routerLink]="loginURL" style="cursor: pointer;" class="sign-in" >
-            <i class="sl sl-icon-login"></i> Sign In
+        <div class="header-widget">
+          <a [routerLink]="loginURL" style="cursor: pointer;" class="sign-in">
+            <i class="sl sl-icon-login"></i> {{labels.SIGN_IN}}
           </a>
+          <span>
+            <a (click)="changeLanguge()" class="button border with-icon"> <b style="padding:5px"
+                *ngIf="lang === 'ar'">English</b>
+              <b style="padding:5px" *ngIf="lang === 'en'">العربية</b> <i class="sl sl-icon-globe"></i></a>
+          </span>
         </div>
       </div>
 
@@ -53,31 +58,26 @@
             <div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt="">
               </span>Hi, Alameer!</div>
             <ul>
-              <ng-container  *ngFor="let link of profileLinks">
+              <ng-container *ngFor="let link of profileLinks">
                 <li *ngIf="!link.hasImage">
                   <a [routerLink]="link.url"><i [class]="link.icon"></i>{{ link.title }}</a>
                 </li>
 
-                  <li *ngIf="link.hasImage">
-                    <a [routerLink]="link.url"> <img style="max-width: 17%;" [src]="link.hasImage"> {{ link.title }}</a>
-                  </li>
+                <li *ngIf="link.hasImage">
+                  <a [routerLink]="link.url"> <img style="max-width: 17%;" [src]="link.hasImage"> {{ link.title }}</a>
+                </li>
               </ng-container>
             </ul>
           </div>
 
-          <div class="lang-holder">
-            <li style="list-style-type: none;" onclick="changeLanguge()">
-              <a>
-                <i class="sl sl-icon-globe"></i>
-                English
-              </a>
-            </li>
-          </div>
+          <span>
+            <a (click)="changeLanguge()" class="button border with-icon"> <b style="padding:5px"
+                *ngIf="lang === 'ar'">English</b>
+              <b style="padding:5px" *ngIf="lang === 'en'">العربية</b> <i class="sl sl-icon-globe"></i></a>
+          </span>
         </div>
       </div>
     </div>
   </div>
 </header>
 <div class="clearfix"></div>
-
-
