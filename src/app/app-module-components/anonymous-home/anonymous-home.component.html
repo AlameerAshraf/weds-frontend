@@ -1,48 +1,44 @@
-<weds-header [authorizedUser]="false" urlSegment="../../"></weds-header>
+<weds-header [authorizedUser]="false" urlSegment= "../../"></weds-header>
 
 <!-- Main video & search bar! -->
 <div class="main-search-container dark-overlay centered">
   <div class="main-search-inner">
-    <div class="container" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+    <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h2>
-            {{labels.SEARCH_MAJOUR_TITLE}}
-            <!-- <span class="typed-words"></span> -->
+            Find Most Amazing
+            <span class="typed-words"></span>
           </h2>
-          <h4>>{{labels.SEARCH_SUB_TITLE}}</h4>
+          <h4>Expolore top-rated attractions, activities and more</h4>
 
           <div class="main-search-input">
 
             <div class="main-search-input-item">
-              <input type="text" [placeholder]="labels.LOOKING_FOR" value="" />
+              <input type="text" placeholder="What are you looking for?" value="" />
             </div>
 
-
-            <div class="main-search-input-item">
-              <select data-placeholder="All Location" class="chosen-select">
-                <option [selected]='true' disabled value="-1">{{labels.ALL_LOCATIONS}}</option>
-                <option *ngFor="let area of allAreas" [value]="area._id">
-                  {{ lang==='en'? area.nameEn:area.nameAr}}
-                </option>
-              </select>
+            <div class="main-search-input-item location">
+              <div id="autocomplete-container">
+                <input id="autocomplete-input" type="text" placeholder="Location">
+              </div>
+              <a href="#"><i class="fa fa-map-marker"></i></a>
             </div>
-
 
             <div class="main-search-input-item">
               <select data-placeholder="All Categories" class="chosen-select">
-                <option [selected]='true' disabled value="-1">{{labels.ALL_CATEGORIES}}</option>
-                <option *ngFor="let category of allCategories" [value]="category._id">
-                  {{ lang==='en'? category.nameEn:category.nameAr}}
-                </option>
+                <option>All Categories</option>
+                <option>Shops</option>
+                <option>Hotels</option>
+                <option>Restaurants</option>
+                <option>Fitness</option>
+                <option>Events</option>
               </select>
             </div>
-            <button class="button"
-              onclick="window.location.href='listings-half-screen-map-list.html'">{{labels.SEARCH}}</button>
+
+            <button class="button" onclick="window.location.href='listings-half-screen-map-list.html'">Search</button>
 
           </div>
-
-
         </div>
       </div>
     </div>
@@ -66,8 +62,8 @@
 
     <div class="col-md-12">
       <h3 class="headline centered margin-top-75">
-        {{labels.POPULAR_CATEGORIES}}
-        <span>{{labels.POPULAR_CATEGORIES_SUB}}</span>
+        Popular Categories
+        <span>Browse <i>the most desirable</i> categories</span>
       </h3>
     </div>
 
@@ -79,12 +75,13 @@
     <ng-container *ngFor="let item of allCategories">
       <div class="fw-carousel-item">
         <div class="category-box-container">
-          <a class="category-box" [attr.data-background-image]="item.photo">
+          <a class="category-box"
+            [attr.data-background-image]="item.photo">
             <div class="category-box-content">
-              <h3>{{ lang==='en'? item.nameEn:item.nameAr}}</h3>
+              <h3>{{ item.nameEn }}</h3>
               <span>54 Seller</span>
             </div>
-            <span class="category-box-btn">{{labels.BROWSE}}</span>
+            <span class="category-box-btn">Browse</span>
           </a>
         </div>
       </div>
@@ -157,14 +154,12 @@
 
 
 <!-- Areas -->
-<div class="container" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+<div class="container">
   <div class="row">
 
     <div class="col-md-12">
-      <h3 class="headline centered margin-bottom-35 margin-top-70">{{labels.POPULAR_CITIES}}
-        <!-- <span>Browse listings in popular
-          places</span> -->
-      </h3>
+      <h3 class="headline centered margin-bottom-35 margin-top-70">Popular Cities <span>Browse listings in popular
+          places</span></h3>
     </div>
 
     <div class="col-md-4">
@@ -220,13 +215,15 @@
 
 <!-- Blogs Featured -->
 <section class="fullwidth margin-top-0 padding-top-75 padding-bottom-10" data-background-color="#fff">
-  <div class="container" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="container">
 
     <div class="row">
       <div class="col-md-12">
         <h3 class="headline centered margin-top-50">
-          {{labels.FROM_BLOG}}
-          <span>{{labels.BLOG_SUB}}</span>
+          From the Blog
+          <span>You think you got the whole marriage thing figured out? Well, think again… or just checkout what the
+            experts have to say about all that is matrimony related.
+            Weds360 has got you covered, and we can say that because we can back it up!</span>
         </h3>
       </div>
     </div>
@@ -290,7 +287,7 @@
       <!-- Blog post Item / End -->
 
       <div class="col-md-12 centered-content">
-        <a href="pages-blog.html" class="button border margin-top-10">{{labels.VIEW_BLOG}}</a>
+        <a href="pages-blog.html" class="button border margin-top-10">View Blog</a>
       </div>
 
     </div>
@@ -307,9 +304,10 @@
   data-background="images/slider-bg-02.jpg" data-color="#046b69" data-color-opacity="0.85" data-img-width="2500"
   data-img-height="1666">
   <div class="flip-banner-content">
-    <h2 class="flip-visible" style="font-size: 22px;">{{labels.CONGRATS}}<br>
-      {{labels.CAN_COUNT}}.</h2>
-    <h2 class="flip-hidden">{{labels.REGISTER_NOW}}<i class="sl sl-icon-arrow-right"></i></h2>
+    <h2 class="flip-visible" style="font-size: 22px;">Haven't we told you yet? Congratulations ❤ <br>
+      Wedding planning is a piece of cake with weds360. we know what matters most and you can count on us every step of
+      the way.</h2>
+    <h2 class="flip-hidden">We're ready for you. Are you?! Sign up now!<i class="sl sl-icon-arrow-right"></i></h2>
   </div>
 </a>
 
@@ -319,13 +317,13 @@
 
 <!-- Info Section -->
 <section class="fullwidth padding-top-75 padding-bottom-70" data-background-color="#f9f9f9">
-  <div class="container" [ngClass]="lang === 'ar' ? 'rtl' : ''">
+  <div class="container">
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <h3 class="headline centered headline-extra-spacing">
-          <strong class="headline-with-separator">{{labels.PLAN_WEDDING}}</strong>
-          <span class="margin-top-25">{{labels.PLAN_WEDDING_SUBTITLE}}.</span>
+          <strong class="headline-with-separator">Plan The Wedding of Your Dreams</strong>
+          <span class="margin-top-25">Wedding planning is a piece of cake with weds360. we know what matters most and you can count on us every step of the way.</span>
         </h3>
       </div>
     </div>
@@ -334,24 +332,27 @@
       <div class="col-md-4">
         <div class="icon-box-2 with-line">
           <i class="im im-icon-Map2"></i>
-          <h3>{{labels.FIND_PLACE}}</h3>
-
+          <h3>Find Interesting Place</h3>
+          <p>Proin dapibus nisl ornare diam varius tempus. Aenean a quam luctus, finibus tellus ut, convallis eros
+            sollicitudin.</p>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="icon-box-2 with-line">
           <i class="im im-icon-Mail-withAtSign"></i>
-          <h3>{{labels.CONTACT_OWNER}}</h3>
-
+          <h3>Contact a Few Owners</h3>
+          <p>Maecenas pulvinar, risus in facilisis dignissim, quam nisi hendrerit nulla, id vestibulum metus nullam
+            viverra purus.</p>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="icon-box-2">
           <i class="im im-icon-Checked-User"></i>
-          <h3>{{labels.RESERVATION}}</h3>
-
+          <h3>Make a Reservation</h3>
+          <p>Faucibus ante, in porttitor tellus blandit et. Phasellus tincidunt metus lectus sollicitudin feugiat
+            consectetur.</p>
         </div>
       </div>
     </div>
