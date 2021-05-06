@@ -120,6 +120,7 @@ export class urls {
   public static get CREATE_NEW_COMMENT(): string { return this.BASE_URL + '/vendors/create-new-comment' };
   public static get GET_ALL_COMMENTS(): string { return this.BASE_URL + '/vendors/get-all-comments' };
   public static get RATE_VENDOR(): string { return this.BASE_URL + '/vendors/rate-vendor' };
+  public static get GET_ALL_VENDOR_FEATURES_COUNT(): string { return this.BASE_URL + '/vendors/get-all-vendor-features-count' };
 
 
   // Authed ..
@@ -130,5 +131,9 @@ export class urls {
   public static get DELETE_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/bookmark' };
   //frontend
   public static get GET_CATEGORIES_BY_SEGMENT(): string { return this.BASE_URL + '/admin/get-categories-by-segment' };
+
+  //User
+  public static get GET_ALL_USER_FEATURES_COUNT(): string { return this.BASE_URL + '/users/get-all-user-features-count' };
+
 
 }
