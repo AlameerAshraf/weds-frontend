@@ -24,19 +24,19 @@ const routes: Routes = [
       },
       {
         path: 'guest-list',
-        component: appComponents.ChecklistComponent,
+        component: appComponents.GuestListComponent,
       },
       {
         path: 'registry-list',
-        component: appComponents.ChecklistComponent,
+        component: appComponents.RegistryListComponent,
       },
       {
         path: 'wedding-website',
-        component: appComponents.ChecklistComponent,
+        component: appComponents.WeddingWebsiteComponent,
       },
       {
         path: 'budgeter',
-        component: appComponents.ChecklistComponent,
+        component: appComponents.BudgeterComponent,
       },
     ]
   },

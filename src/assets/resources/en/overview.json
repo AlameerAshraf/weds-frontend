@@ -1,10 +1,18 @@
 {
-  "BOOKMARKS": " Bookmarks ",
-  "ACTION_LIST": "Actions in checklist",
+  "OFFERS": "Offers",
+  "USERS": "Users",
+  "VENDORS": "Vendors",
+  "POSTS": "Posts",
   "EVENTS": "Events",
-  "COMMENTS": "Comments",
+  "BOOKMARKS": "Bookmarks",
+  "CHECKLIST": "Checklist",
+  "REGISTRYLIST": "Registry list",
+  "SERVICES": "Services",
   "NOTIFICATIONS": "Notifications ",
+  "UP_COMING_SESSIONS": "Upcoming sessions ",
   "HOWDY": "Howdy",
   "HI": "Hi",
-  "EMAIL_SENT": "we've sent you an email confirmation,- Confirm your account- now!"
+  "EMAIL_SENT": "we've sent you an email confirmation,- Confirm your account- now!",
+  "EMAIL_CONFIRMED": "Welcome to Weds360"
+
 }

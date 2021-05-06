@@ -86,6 +86,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.storage.setLocalStorage('weds360#role', btoa(response.data.info.role));
         this.storage.setLocalStorage('weds360#avatar', response.data.info.avatar);
         this.storage.setLocalStorage('weds360#email', btoa(response.data.info.email));
+        this.storage.setLocalStorage('weds360#id', btoa(response.data.info.id));
 
         this.router.navigateByUrl(`/${this.lang}/home`);
       } else {
