@@ -27,6 +27,7 @@ export class urls {
   public static get UPDATE_WEDDING_AND_PARTNER_DETAILS(): string { return this.BASE_URL + '/users/update-wedding-and-partner-details' };
   public static get GET_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/get-all-bookmarks' };
   public static get DELETE_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/bookmark' };
+  public static get GET_USER_BY_ID(): string { return this.BASE_URL + '/users/get-user-by-id' };
 
   // Admin!
   public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
@@ -126,6 +127,7 @@ export class urls {
 
   // Messages ..
   public static get SEND_MESSAGE(): string { return this.BASE_URL + '/message/send' };
+  public static get GET_MESSAGES_IN_CONVERSATION(): string { return this.BASE_URL + '/message/get-messages' };
 
 
   // Authed ..

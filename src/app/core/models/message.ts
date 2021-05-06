@@ -1,5 +1,6 @@
 export class message{
-  messageBody?: string;
+  body?: string;
   to?: string;
   from?: string;
+  createdAt?: any;
 }
