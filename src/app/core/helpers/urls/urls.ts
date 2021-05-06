@@ -124,15 +124,21 @@ export class urls {
   public static get CREATE_NEW_COMMENT(): string { return this.BASE_URL + '/vendors/create-new-comment' };
   public static get GET_ALL_COMMENTS(): string { return this.BASE_URL + '/vendors/get-all-comments' };
   public static get RATE_VENDOR(): string { return this.BASE_URL + '/vendors/rate-vendor' };
+  public static get GET_ALL_VENDOR_FEATURES_COUNT(): string { return this.BASE_URL + '/vendors/get-all-vendor-features-count' };
 
   // Messages ..
   public static get SEND_MESSAGE(): string { return this.BASE_URL + '/message/send' };
   public static get GET_MESSAGES_IN_CONVERSATION(): string { return this.BASE_URL + '/message/get-messages' };
+  public static get GET_CONTACTS(): string { return this.BASE_URL + '/message/get-contacts' };
 
 
   // Authed ..
   public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
 
+
+
+  //User
+  public static get GET_ALL_USER_FEATURES_COUNT(): string { return this.BASE_URL + '/users/get-all-user-features-count' };
 
 
 }

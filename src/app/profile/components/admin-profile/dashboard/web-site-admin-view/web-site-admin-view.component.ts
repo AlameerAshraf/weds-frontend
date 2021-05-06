@@ -33,7 +33,6 @@ export class WebSiteAdminViewComponent implements OnInit {
     this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.featuresCount = response.data as featureCount;
-        console.log(this.featuresCount.areasCount)
         this.ngxSpinner.hide();
       } else {
         this.ngxSpinner.hide();

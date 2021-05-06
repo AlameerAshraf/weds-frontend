@@ -1,8 +1,9 @@
+import { httpService } from './../../../../core/services/http/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { conatct, constants, resources } from "src/app/core";
+import { conatct, constants, resources, responseModel, urls } from "src/app/core";
 import { environment } from "src/environments/environment";
 
 @Component({
@@ -15,18 +16,24 @@ export class VendorMessagesComponent implements OnInit {
   lang: string;
   labels: any = {};
   contacts: conatct[] = [];
+  currentUserEmail: string;
 
-  constructor(private resources: resources, private router: Router,
+  constructor(private resources: resources, private router: Router, private http: httpService,
     private toaster: ToastrService, private spinner: NgxSpinnerService) {
-
+      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
 
   ngOnInit() {
     this.loadResources();
+    this.getAllUserContacts();
   }
 
   getAllUserContacts(){
+    let allContacts = `${urls.GET_CONTACTS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
 
+    this.http.Get(allContacts , {} ).subscribe((response: responseModel) => {
+
+    })
   };
 
 
