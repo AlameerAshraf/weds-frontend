@@ -13,4 +13,14 @@ export class featureCount {
   weddingsCount: string = "0";
   eventsCount: string = "0";
   servicesCount: string = "0";
+
+  //User
+  userEventsCount: string = "0";
+  userRegistryListCount: string = "0";
+  userCheckListCount: string = "0";
+  userBookmarksCount: string = "0";
+
+  //Vendor
+  vendorBookmarksCount: string = "0";
+  vendorServicesCount: string = "0";
 }
