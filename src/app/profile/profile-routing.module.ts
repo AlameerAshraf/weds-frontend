@@ -205,7 +205,7 @@ const routes: Routes = [
           {
             path: 'services-dress-action/:actionType',
             component : COMPONENTS.ServicesDressFormComponent
-          },      
+          },
           {
             path: 'photos-defaults',
             component: COMPONENTS.PhotosGridComponent
@@ -234,6 +234,10 @@ const routes: Routes = [
           {
             path: 'messages',
             component: COMPONENTS.VendorMessagesComponent
+          },
+          {
+            path: 'chat',
+            component: COMPONENTS.VendorChatComponent
           },
           {
             path: 'services-action/:actionType',
