@@ -1,7 +1,10 @@
 <div id="titlebar">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" *ngIf="currentUserName != 'undefined'">
       <h2>{{labels.HI}}, {{currentUserName}}!</h2>
+    </div>
+    <div class="col-md-12" *ngIf="currentUserEmail != 'undefined'">
+      <h2>{{labels.HI}}, {{currentUserEmail}}!</h2>
     </div>
   </div>
 </div>
@@ -9,12 +12,28 @@
 <div class="row">
   <div class="col-md-12">
     <div *ngIf="isConfirmed == 'true'" class="notification success closeable margin-bottom-30">
-      <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
-        <a class="close" href="#"></a>
+      <div *ngIf="currentUserName != 'undefined'">
+        <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
+      <div *ngIf="currentUserEmail != 'undefined'">
+        <p>{{labels.HI}} {{currentUserEmail}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
     </div>
     <div *ngIf="isConfirmed == 'false'" class="notification error closeable margin-bottom-30">
-      <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
-        <a class="close" href="#"></a>
+      <div *ngIf="currentUserName != 'undefined'">
+        <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
+      <div *ngIf="currentUserEmail != 'undefined'">
+        <p>{{labels.HI}} {{currentUserEmail}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
     </div>
   </div>
 </div>

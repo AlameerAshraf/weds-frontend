@@ -385,6 +385,22 @@ export class constants {
         "name": "Events & Guest List"
       },
       {
+        "ref" : "USER_CREATE_EVENT",
+        "name": "Create Event"
+      },       
+      {
+        "ref" : "USER_EVENT_DETAILS",
+        "name": "Event Details"
+      }, 
+      {
+        "ref" : "USER_INVITE_FRIENDS",
+        "name": "Invite Friends"
+      },       
+      {
+        "ref" : "USER_CHAT",
+        "name": "Chat"
+      },    
+      {
         "ref" : "USER_REGISTRYLIST",
         "name": "Registry List"
       },
@@ -395,6 +411,10 @@ export class constants {
       {
         "ref" : "USER_WEDDING_DETAILS",
         "name": "Wedding Details"
+      },      
+      {
+        "ref" : "USER_SITE_STATUS",
+        "name": "Site Status"
       },
       {
         "ref" : "USER_PERSONAL_DETAILS",
@@ -417,8 +437,16 @@ export class constants {
         "name": "Vendor Personal Details"
       },
       {
+        "ref" : "VENDOR_CHAT",
+        "name": "Chat"
+      },
+      {
         "ref" : "VENDOR_SERVICES",
         "name": "Services"
+      },
+      {
+        "ref" : "VENDOR_SERVICE_FORM",
+        "name": "Service Form"
       },
       {
         "ref" : "VENDOR_OVERVIEW",
