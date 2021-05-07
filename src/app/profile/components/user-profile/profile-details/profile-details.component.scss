@@ -122,3 +122,9 @@ a.text-warning:hover, a.text-warning:focus {
 a.text-danger:hover, a.text-danger:focus {
   color: #a71d2a !important;
 }
+
+
+.disabled {
+  background-color: gray !important;
+  cursor: not-allowed;
+}

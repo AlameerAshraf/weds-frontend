@@ -29,6 +29,9 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
 
   faceBookURL = "";
   twitterURL = "";
+
+  reset : { email?: string, oldPassword?: string , newPassword?: string , confirmNewPassword?: string } = {};
+
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private http: httpService , private resources: resources,
     private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
@@ -89,6 +92,29 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
     $("#gender").change({ angularThis: this.that }, function (e, params) {
       e.data.angularThis.user.gender = $("#gender").chosen().val();
     });
+  };
+
+  resetPassword(){
+    if(this.reset.newPassword == this.reset.confirmNewPassword){
+      let resetUserPasswordURL = `${urls.RESEt_USER_PASSSWORD}/${constants.APP_IDENTITY_FOR_USERS}`;
+
+
+      this.reset.email = this.currentUserEmail;
+      this.http.Post(resetUserPasswordURL , { "mode" : "in_app" } , { "resetData" : this.reset }).subscribe((response: responseModel) => {
+        if(!response.error){
+          this.ngxSpinner.hide();
+          this.reset.newPassword = "";
+          this.reset.oldPassword = "";
+          this.reset.confirmNewPassword = "";
+          this.toastr.success("We've updated your password!" , "Okay done, password changed successfully.");
+        } else{
+          this.ngxSpinner.hide();
+          this.toastr.error("Our bad sorry!" , "Ooh Sorry, your checklist couldn't created on the server!");
+        }
+      })
+    } else {
+      this.toastr.error("New passworddidn't match" , "Passwords are not the same, be calm and try again its easy ❤");
+    }
   };
 
 
