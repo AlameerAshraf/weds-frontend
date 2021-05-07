@@ -75,6 +75,8 @@ export class VendorChatComponent implements OnInit {
   };
 
   loadMessages(){
+    this.spinner.show();
+
     this.pageNumber = this.pageNumber + 1;
     this.limit = this.pageSize * this.pageNumber;
     this.skip = Math.abs(this.pageSize - this.limit);
@@ -84,8 +86,8 @@ export class VendorChatComponent implements OnInit {
     this.http.Get(allMessagesInConversationURL,
       { "skip": this.skip, "limit": this.limit, "dest": this.destinationUser }).subscribe((response: responseModel) => {
         if (!response.error) {
+          this.spinner.hide();
           this.messages = response.data.reverse().concat(this.messages);
-          console.log(this.messages.length);
 
           if(this.pageNumber == 1){
             setTimeout(() => {
