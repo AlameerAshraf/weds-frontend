@@ -47,13 +47,15 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
         this.listOfUsersChecklists = response.data as checklist[];
 
         this.listOfUsersChecklists.forEach((aChecklist) => {
-          if(this.lang == "en"){
-            aChecklist.title = aChecklist.titleEn;
-            aChecklist.note = aChecklist.noteEn;
-          }
-          else{
-            aChecklist.title = aChecklist.titleAr;
-            aChecklist.note = aChecklist.noteAr;
+          if(aChecklist.isDefault){
+            if(this.lang == "en"){
+              aChecklist.title = aChecklist.titleEn;
+              aChecklist.note = aChecklist.noteEn;
+            }
+            else{
+              aChecklist.title = aChecklist.titleAr;
+              aChecklist.note = aChecklist.noteAr;
+            }
           }
         })
       }else{
