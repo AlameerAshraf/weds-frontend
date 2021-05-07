@@ -19,7 +19,8 @@ export class AdminOverviewComponent implements OnInit, AfterViewInit {
   featuresCount = new featureCount();
   isConfirmed: string = "false";
   upcommingSessionsList: any[] = [];
-
+  notificationsList: any[] = [];
+  
   constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef,
     private router: Router, private http: httpService, private resources: resources,
     private ngxSpinner: NgxSpinnerService) {
