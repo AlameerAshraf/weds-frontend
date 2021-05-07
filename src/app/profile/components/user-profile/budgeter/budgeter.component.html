@@ -31,7 +31,7 @@
           <div class="col-md-6">
             <h5>{{labels.BUDGET}} <i class="tip"
                 data-tip-content="This is our suggestion, you can plan your wedding based on your budget."></i></h5>
-            <input id="suggestedBudget" type="text" autocomplete="off" [(ngModel)]="suggestedBudget"
+            <input id="suggestedBudget" type="text" autocomplete="off" [(ngModel)]="weddingDetails.budget"
               [placeholder]="labels.BUDGET_PLACEHOLDER">
           </div>
         </div>
@@ -82,7 +82,7 @@
             <ng-container *ngFor="let budgeter of listOfBudgeters">
               <tr [ngClass]="lang === 'ar' ? 'th' : ''" scope="col">
                 <td><input type="text" placeholder="Plan" [(ngModel)]="budgeter.name" /></td>
-                <td><input disabled type="number" placeholder="Recommended" [(ngModel)]="budgeter.amount" /></td>
+                <td><input disabled type="number" placeholder="Recommended" [(ngModel)]="budgeter.recommendedPercentage" /></td>
                 <td><input disabled type="number" placeholder="Amount" [(ngModel)]="budgeter.vendor.amountSpent" /></td>
                 <td class="td-in-table" (click)="openBudgeter(budgeter._id)">
                   <p><i [class]="budgetItem == budgeter._id ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></p>
@@ -97,11 +97,15 @@
                   style="background-color: #F9F9F9 !important;">
                   <div>
                     <div class="row with-forms">
+
                       <div class="col-md-6">
-                        <h5>{{labels.SELECT}} {{labels.VENDOR}}</h5>
-                        <select class="chosen-select-no-single">
-                          <option style="padding-left: 2px;" value="sd">Select Categorssy</option>
-                          <option style="padding-left: 2px;" value="606b7e6d29485531bcbbb76b">Alameer</option>
+                        <h5>{{labels.VENDOR}}</h5>
+                        <select  [(ngModel)]="budgeter.vendor.vendorId">
+                          <option style="padding-left: 2px;" [label]="labels.SELECT" value="">{{labels.SELECT}}</option>
+                          <ng-container *ngFor="let vendor of vendors">
+                            <option style="padding-left: 2px;" [selected]="vendor._id === newlyCreatedBudgetItem.vendor.vendorId" [value]="vendor._id">{{ vendor.nameEn }}
+                            </option>
+                          </ng-container>
                         </select>
                       </div>
 

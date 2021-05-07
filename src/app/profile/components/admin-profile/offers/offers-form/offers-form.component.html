@@ -40,6 +40,7 @@
           <div class="col-md-6">
             <h5>{{labels.VENDOR}}</h5>
             <select id="offerVendors" class="chosen-select-no-single">
+              <option>{{labels.SELECT}}</option>
               <ng-container *ngFor="let offerVendor of offersVendors">
                 <option [selected]="offerVendor._id === offer.vendor" [value]="offerVendor._id">{{ offerVendor.nameEn }}
                 </option>
@@ -48,9 +49,12 @@
           </div>
           <div class="col-md-6">
             <h5>{{labels.SHOWS_IN}}</h5>
-            <select id="selectId" class="chosen-select-no-single">
-              <option value="user">User</option>
-              <option value="user">Admin</option>
+            <select id="offersResides" class="chosen-select-no-single">
+              <option>{{labels.SELECT}}</option>
+              <ng-container *ngFor="let showIn of showInList">
+                <option [selected]="showIn.ref === offer.residesIn" [value]="showIn.ref">{{ showIn.name }}
+                </option>
+              </ng-container>
             </select>
           </div>
         </div>
