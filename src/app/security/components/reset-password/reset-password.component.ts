@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { helper } from './../register/helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Form, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { constants, httpService, resources, responseModel, urls } from 'src/app/core';
 import { environment } from 'src/environments/environment';
@@ -17,7 +17,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   translated = {};
   bkImage: string = 'assets/images/backgrounds/login/11.jpg';
   lang: any;
-  requestEmailForm: any = null;
+  requestEmailForm: FormGroup = null;
   resetPasswordForm: any = null;
   passwordHidden = true;
 
@@ -94,11 +94,13 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
         this.ngxSpinner.hide();
         if(response.EMAIL.SENT){
           this.emailSent = true
-        this.emailNotValid = false
+          this.emailNotValid = false
+          this.requestEmailForm.get('email').setValue('');
         }
       }else{
         this.emailNotValid = true
         this.ngxSpinner.hide();
+        this.requestEmailForm.get('email').setValue('');
       }
     })
   };
