@@ -60,11 +60,11 @@ export class EventsFormComponent implements OnInit {
     this.ngxSpinner.show();
     this.event.ownerEmail = this.currentUserEmail;
 
-    let createURL = `${urls.CREATE_EVENT}/${constants.APP_IDENTITY_FOR_ADMINS}`;
+    let createURL = `${urls.CREATE_DEFAULT_EVENT}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(createURL , {} , { "event" : this.event }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
-        this.toastr.success("Event has been saved succesfully" , "Event has been updated, Bingo!");
+        this.toastr.success("Event has been saved succesfully" , "Event has been created, Bingo!");
         this.router.navigateByUrl(`/profile/${this.lang}/admin/events-defaults`);
       } else {
         this.ngxSpinner.hide();
@@ -77,11 +77,11 @@ export class EventsFormComponent implements OnInit {
     this.ngxSpinner.show();
     this.event.ownerEmail = this.currentUserEmail;
 
-    let updateURL = `${urls.UPDATE_EVENT}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.event._id}`;
+    let updateURL = `${urls.UPDATE_DEFAULT_EVENT}/${constants.APP_IDENTITY_FOR_ADMINS}`;
     this.http.Post(updateURL , {} , { "event" : this.event }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
-        this.toastr.success("Event has been saved succesfully" , "A event has been created and wedding website will be impacted.");
+        this.toastr.success("Event has been saved succesfully" , "Event has been updated, Bingo!");
         this.router.navigateByUrl(`/profile/${this.lang}/admin/events-defaults`);
       } else {
         console.log(response)

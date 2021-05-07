@@ -51,12 +51,11 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
 
   getAllEvents() {
     this.ngxSpinner.show();
-    let getAllEventsURL = `${urls.GET_ALL_EVENTS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+    let getAllEventsURL = `${urls.GET_ALL_DEFAULT_EVENT}/${constants.APP_IDENTITY_FOR_USERS}`;
 
     this.http.Get(getAllEventsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.eventsList = response.data as event[];
-        console.log(this.eventsList)
         this.collectionSize = this.eventsList.length;
         this.pageChange(1);
         this.ngxSpinner.hide();
@@ -69,19 +68,19 @@ export class EventsGridComponent implements OnInit, AfterViewInit {
 
 
   editEntity(id: any){
-    this.router.navigate([`profile/${this.lang}/admin/events-action/update`]);
     let targetTheme = this.eventsList.find(x => x._id == id);
     this.storage.setLocalStorage("weds360#eventOnEdit" , targetTheme);
+    this.router.navigate([`profile/${this.lang}/admin/events-action/update`]);
   };
 
   deleteEntity(id: any){
     this.ngxSpinner.show();
 
-    let deleteURL = `${urls.DELETE_EVENT}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
+    let deleteURL = `${urls.DELETE_DEFAULT_EVENT}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
     this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
-        this.toastr.success("Event has been deleted succesfully" , "An event has been deleted and wedding website will be impacted.");
+        this.toastr.success("Event has been deleted succesfully" , "Event has been deleted.");
         this.getAllEvents();
       } else {
         this.ngxSpinner.hide();
