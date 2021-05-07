@@ -45,6 +45,17 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.listOfUsersChecklists = response.data as checklist[];
+
+        this.listOfUsersChecklists.forEach((aChecklist) => {
+          if(this.lang == "en"){
+            aChecklist.title = aChecklist.titleEn;
+            aChecklist.note = aChecklist.noteEn;
+          }
+          else{
+            aChecklist.title = aChecklist.titleAr;
+            aChecklist.note = aChecklist.noteAr;
+          }
+        })
       }else{
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
