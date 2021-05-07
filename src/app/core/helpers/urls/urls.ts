@@ -28,6 +28,7 @@ export class urls {
   public static get GET_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/get-all-bookmarks' };
   public static get DELETE_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/bookmark' };
   public static get GET_USER_BY_ID(): string { return this.BASE_URL + '/users/get-user-by-id' };
+  public static get RESEt_USER_PASSSWORD(): string { return this.BASE_URL + '/users/reset-password' };
 
   // Admin!
   public static get GET_ALL_CATEGORIES(): string { return this.BASE_URL + '/admin/get-all-categories' };
