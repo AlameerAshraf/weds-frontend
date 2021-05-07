@@ -1,0 +1,12 @@
+<div class="col-md-12 margin-top-50">
+  <h3 class="headline centered margin-bottom-45">
+    Most Visited Places
+    <span>Discover top-rated local businesses</span>
+  </h3>
+</div>
+
+<div>
+  <ng-image-slider [images]="imageObject" [infinite]="true" [autoSlide]="5" slideImage="3" animationSpeed="2"
+    [imagePopup]="false" [imageSize]="{width: '300', height: 300}" (imageClick)="openOffer($event)">
+  </ng-image-slider>
+</div>
