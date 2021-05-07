@@ -60,7 +60,7 @@ export class AdminMessagesComponent implements OnInit {
 
   redierctToSingleChat(contactId){
     this.spinner.show();
-    this.router.navigate([`profile/${this.lang}/vendor/chat`] , { queryParams: { 'dest' : contactId } })
+    this.router.navigate([`profile/${this.lang}/admin/chat`] , { queryParams: { 'dest' : contactId } })
   };
 
   timeSince(date: any) {
