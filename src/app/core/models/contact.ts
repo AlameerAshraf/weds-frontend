@@ -1,5 +1,5 @@
 export class conatct{
-  user?: string; // User id
+  _id?: string; // User id
   userName?:  string;
   userAvatar?: string;
   lastMessage?: string;
