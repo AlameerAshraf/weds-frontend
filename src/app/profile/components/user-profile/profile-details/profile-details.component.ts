@@ -109,7 +109,7 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
           this.toastr.success("We've updated your password!" , "Okay done, password changed successfully.");
         } else{
           this.ngxSpinner.hide();
-          this.toastr.error("Our bad sorry!" , "Ooh Sorry, your checklist couldn't created on the server!");
+          this.toastr.error("Our bad sorry!" , "Ooh Sorry, maube you misstyped your password, try again!");
         }
       })
     } else {
