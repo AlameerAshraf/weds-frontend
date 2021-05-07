@@ -1,9 +1,11 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { helper } from './../register/helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constants, resources } from 'src/app/core';
+import { constants, httpService, resources, responseModel, urls } from 'src/app/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -21,6 +23,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
   // Logic variables
   emailSent: boolean = false;
+  emailNotValid: boolean = false;
   resetView: string;
   helpers = new helper(this.router , this.actictedRoute , this.resources);
 
@@ -33,7 +36,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private document: any, //private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router, private http: httpService, private toaster: ToastrService, private ngxSpinner: NgxSpinnerService,
     private resources: resources, private formBuilder: FormBuilder) { }
 
   async ngOnInit() {
@@ -81,7 +84,26 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   };
 
   /** Request password reset email. */
-  resetMyPassword(){
+  requesrPasswordReset(){
+    this.ngxSpinner.show();
+    this.requestEmailForm.value;
+    let requestResetPasswordURL = `${urls.REQUEST_RESEt_USER_PASSSWORD}/${constants.APP_IDENTITY_FOR_USERS}/${this.requestEmailForm.value["email"]}`;
+
+    this.http.Post(requestResetPasswordURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        if(response.EMAIL.SENT){
+          this.emailSent = true
+        this.emailNotValid = false
+        }
+      }else{
+        this.emailNotValid = true
+        this.ngxSpinner.hide();
+      }
+    })
+  };
+
+  resetPassword(){
 
   };
 
