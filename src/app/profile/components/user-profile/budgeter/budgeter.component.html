@@ -82,7 +82,7 @@
             <ng-container *ngFor="let budgeter of listOfBudgeters">
               <tr [ngClass]="lang === 'ar' ? 'th' : ''" scope="col">
                 <td><input type="text" placeholder="Plan" [(ngModel)]="budgeter.name" /></td>
-                <td><input disabled type="number" placeholder="Recommended" [(ngModel)]="budgeter.amount" /></td>
+                <td><input disabled type="number" placeholder="Recommended" [(ngModel)]="budgeter.recommendedPercentage" /></td>
                 <td><input disabled type="number" placeholder="Amount" [(ngModel)]="budgeter.vendor.amountSpent" /></td>
                 <td class="td-in-table" (click)="openBudgeter(budgeter._id)">
                   <p><i [class]="budgetItem == budgeter._id ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></p>
