@@ -32,6 +32,10 @@ const routes: Routes = [
             component: COMPONENTS.MessagesComponent
           },
           {
+            path: 'chat',
+            component: COMPONENTS.UserChatComponent
+          },
+          {
             path: 'checklist',
             component: COMPONENTS.ChecklistComponent
           },
@@ -95,6 +99,10 @@ const routes: Routes = [
           {
             path: 'messages',
             component: COMPONENTS.AdminMessagesComponent
+          },
+          {
+            path: 'chat',
+            component: COMPONENTS.ChatComponent
           },
           {
             path: 'checklist-defaults',

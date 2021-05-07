@@ -129,6 +129,7 @@ export class urls {
   // Messages ..
   public static get SEND_MESSAGE(): string { return this.BASE_URL + '/message/send' };
   public static get GET_MESSAGES_IN_CONVERSATION(): string { return this.BASE_URL + '/message/get-messages' };
+  public static get GET_CONTACTS(): string { return this.BASE_URL + '/message/get-contacts' };
 
 
   // Authed ..

@@ -8,11 +8,13 @@ import { RouterModule } from '@angular/router';
     themeComponents.HeaderComponent,
     themeComponents.FooterComponent,
     themeComponents.PagingComponent,
+    themeComponents.OffersViewerComponent
   ],
   exports: [
     themeComponents.HeaderComponent,
     themeComponents.FooterComponent,
     themeComponents.PagingComponent,
+    themeComponents.OffersViewerComponent
   ],
   imports: [
     CommonModule,
