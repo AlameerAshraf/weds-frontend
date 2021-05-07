@@ -13,5 +13,7 @@
   "HOWDY": "اهلاً",
   "HI": "اهلا",
   "EMAIL_SENT": "لقد أرسلنا لك رسالة تأكيد بالبريد الإلكتروني ، - قم بتأكيد حسابك - الآن!",
-  "EMAIL_CONFIRMED": "مرحبا بك في Weds360"
+  "EMAIL_CONFIRMED": "مرحبا بك في Weds360",
+  "NO_NOTIFICATIONS": "ليس لديك اشعارات",
+  "NO_UPCOMING_SESSIONS": "ليس لديك مواعيد قادمة"
 }

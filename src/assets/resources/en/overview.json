@@ -13,6 +13,7 @@
   "HOWDY": "Howdy",
   "HI": "Hi",
   "EMAIL_SENT": "we've sent you an email confirmation,- Confirm your account- now!",
-  "EMAIL_CONFIRMED": "Welcome to Weds360"
-
+  "EMAIL_CONFIRMED": "Welcome to Weds360",
+  "NO_NOTIFICATIONS": "you haven't any notifications",
+  "NO_UPCOMING_SESSIONS": "you haven't any upcoming sessions"
 }

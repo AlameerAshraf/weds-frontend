@@ -370,6 +370,66 @@ export class constants {
     }
   };
 
+  public static get APP_VIEWS() {
+    return [
+      {
+        "ref" : "USER_CHECKLIST",
+        "name": "Checklist"
+      },
+      {
+        "ref" : "USER_BUDGETER",
+        "name": "Budgeter"
+      },
+      {
+        "ref" : "USER_EVENTS_GUESTLIST",
+        "name": "Events & Guest List"
+      },
+      {
+        "ref" : "USER_REGISTRYLIST",
+        "name": "Registry List"
+      },
+      {
+        "ref" : "USER_WEDDING_WEBSITE",
+        "name": "Wedding Website"
+      },
+      {
+        "ref" : "USER_WEDDING_DETAILS",
+        "name": "Wedding Details"
+      },
+      {
+        "ref" : "USER_PERSONAL_DETAILS",
+        "name": "User Personal Details"
+      },
+      {
+        "ref" : "USER_BOOKMARKS_LOVES",
+        "name": "Bookmarks & Loves"
+      },
+      {
+        "ref" : "USER_OVERVIEW",
+        "name": "User Overview"
+      },
+      {
+        "ref" : "USER_MESSAGES",
+        "name": "User Messages"
+      },
+      {
+        "ref" : "VENDOR_PERSONAL_DETAILS",
+        "name": "Vendor Personal Details"
+      },
+      {
+        "ref" : "VENDOR_SERVICES",
+        "name": "Services"
+      },
+      {
+        "ref" : "VENDOR_OVERVIEW",
+        "name": "Vendor Overview"
+      },
+      {
+        "ref" : "VENDOR_MESSAGES",
+        "name": "Vendor Messages"
+      }
+    ]
+  };
 
 
   public static get APP_IDENTITY_FOR_USERS(): string { return this._config.getConfig("CLIENT_IDENTITY_USERS") };
