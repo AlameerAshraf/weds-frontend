@@ -75,12 +75,11 @@ export class OffersViewerComponent implements OnInit {
 
 
   openOffer(imageIndex: any) {
-    let offer = this.imageObject.find(x => x.index == imageIndex);
-    console.log(offer);
-
     // TODO: NAVIGATE TO THE VENMDOR PAGE!
+    let offer = this.imageObject.find(x => x.index == imageIndex);
+    window.open(`/segment/en/vendor/${offer.redierctURL}`);
   }
-  
+
   async loadResources() {
     const lang =
         window.location.href.toString().toLowerCase().indexOf('ar') > -1
