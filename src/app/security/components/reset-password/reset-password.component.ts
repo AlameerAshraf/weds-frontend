@@ -32,7 +32,8 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   hasInfo = false;
   hasSuccessMessages = false;
   showNotification = false;
-
+  reset : { email?: string, oldPassword?: string , newPassword?: string , confirmNewPassword?: string, resetToken?: string } = {};
+  resetToken: any;
 
   constructor(@Inject(DOCUMENT) private document: any, //private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
@@ -53,6 +54,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   getResetPasswordView(){
     this.actictedRoute.params.subscribe((params) => {
       let userToken = params["token"];
+      this.resetToken = userToken;
       this.resetView = (userToken == undefined) ? 'email-request' : 'password-reset';
     })
   };
@@ -70,7 +72,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   /** Form functions */
   initResetPasswordForm() {
     this.resetPasswordForm = this.formBuilder.group({
-      oldPassowrd: ['', Validators.required],
+      // oldPassowrd: ['', Validators.required],
       newPassowrd: ['', Validators.required],
     });
   };
@@ -105,8 +107,23 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
     })
   };
 
-  resetPassword(){
+  resetPassword() {
+    this.ngxSpinner.show();
+    let resetUserPasswordURL = `${urls.RESEt_USER_PASSSWORD}/${constants.APP_IDENTITY_FOR_USERS}`;
 
+    this.reset.resetToken = this.resetToken;
+    this.reset.newPassword = this.resetPasswordForm.value["newPassowrd"];
+    this.http.Post(resetUserPasswordURL, { "mode": "email" }, { "resetData": this.reset }).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.ngxSpinner.hide();
+        this.reset.newPassword = "";
+        this.router.navigateByUrl(`/security/${this.lang}/login`);
+        this.toaster.success("We've updated your password!", "Okay done, password changed successfully.");
+      } else {
+        this.ngxSpinner.hide();
+        this.toaster.error("Our bad sorry!", "Ooh Sorry, maube you misstyped your password, try again!");
+      }
+    })
   };
 
 
