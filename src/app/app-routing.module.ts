@@ -77,6 +77,11 @@ const routes: Routes = [
       .then(m => m.PhotosModule)
   },
   {
+    path: 'search/:lang',
+    loadChildren: () => import('./search/search.module')
+      .then(m => m.SearchModule)
+  },
+  {
     path: 'sites/:lang',
     loadChildren: () => import('./wedding-sites/wedding-sites.module')
       .then(m => m.WeddingSitesModule)

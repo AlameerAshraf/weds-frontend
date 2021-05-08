@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { localStorageService, httpService } from 'src/app/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { httpService, localStorageService } from 'src/app/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dresses',
-  templateUrl: './dresses.component.html',
-  styleUrls: ['./dresses.component.scss']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class DressesComponent implements OnInit {
+export class SearchComponent implements OnInit {
   isAuthed: boolean;
 
   constructor(private http: httpService , private toaster: ToastrService,

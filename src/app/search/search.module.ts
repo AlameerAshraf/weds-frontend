@@ -8,10 +8,16 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { AgmCoreModule } from '@agm/core';
 
+import * as COMPONENTS from './components';
 
 @NgModule({
   declarations: [
-
+    COMPONENTS.BlogsComponent,
+    COMPONENTS.DressesComponent,
+    COMPONENTS.PhotosComponent,
+    COMPONENTS.RingsComponent,
+    COMPONENTS.SearchComponent,
+    COMPONENTS.VendorsComponent,
   ],
   imports: [
     CommonModule,
