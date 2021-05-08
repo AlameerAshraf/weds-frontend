@@ -101,6 +101,10 @@ export class BudgeterComponent implements OnInit {
     this.loadScripts();
   };
 
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  };
+
   saveBudgeterItem(){
     this.ngxSpinner.show();
     let createBudgeterItemURL = `${urls.CREATE_BUDGETER_ITEM}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
