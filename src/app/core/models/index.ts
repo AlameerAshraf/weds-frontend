@@ -21,3 +21,4 @@ export * from './wedding-details';
 export * from './photo';
 export * from './contact';
 export * from './message';
+export * from './social';

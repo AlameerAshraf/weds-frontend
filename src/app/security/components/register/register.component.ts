@@ -1,5 +1,4 @@
-import { errorBuilder } from './../../../core/models/response';
-import { urls , resources , httpService, constants , responseModel } from './../../../core';
+import { urls , resources , httpService, constants , responseModel , social , errorBuilder} from './../../../core';
 import { helper } from './helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
@@ -7,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +32,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   // Form variables
   registerForm: FormGroup = null;
   labels: any = {};
+  socialUser: {
+    name: any;
+    password: string; role: string; email: any; accountSource: any; isActive: boolean; settings: { avatar: any; };
+  };
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
-    private resources: resources, private formBuilder: FormBuilder,
+    private resources: resources, private formBuilder: FormBuilder, private OAuth: SocialAuthService,
     private httpService: httpService , private spinner: NgxSpinnerService) { }
 
   async ngOnInit() {
@@ -49,6 +53,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     let resourcesData = await this.helpers.loadResources();
     this.lang = resourcesData.lang;
     this.translated = resourcesData.translatedObject;
+
+    this.OAuth.authState.subscribe((user) => {
+      this.setSocialLoginData(user);
+    });
   };
 
   /** Form functions */
@@ -101,11 +109,36 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     return result;
   };
 
+  async setSocialLoginData(user: any){
+    let userData = {
+      "name": user.name,
+      // "gender" : "Male",
+      "password" : "01060931989Aa**",
+      "role" : this.isVendorRegistering ? constants.USER_ROLES.VENDOR : constants.USER_ROLES.USER,
+      "email" : user.email,
+      "accountSource" : user.provider,
+      "isActive" : true,
+      "settings" : {
+        "avatar" : user.photoUrl
+      }
+    };
+
+    this.socialUser = userData;
+    await this.register(true);
+  };
+
   /** Register current user */
-  async register() {
+  async register(social = false) {
     this.spinner.show();
     let signUpURL = `${urls.USER_SIGN_UP}/${constants.APP_IDENTITY_FOR_USERS}`;
-    let userData = await this.getFormData();
+
+    let userData = null;
+    if(social){
+      userData = this.socialUser;
+    }
+    else{
+      userData = await this.getFormData();
+    }
 
     this.httpService.Post(signUpURL , {} , { "user" : userData }).subscribe((response: responseModel) => {
       this.spinner.hide();
@@ -120,6 +153,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       }
     });
   };
+
+
+  signInWithFB(): void {
+    this.OAuth.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithGoogle(): void {
+    this.OAuth.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
 
   //#region Binding scripts to the component.
   ngAfterViewInit(): void {
