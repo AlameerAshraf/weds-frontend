@@ -30,9 +30,9 @@ export class VendorComponent implements OnInit, AfterViewInit {
   allComments: comment[] = [];
 
   userRank: { user?: string, criteria?: string, value?: number, userEmail?: string } = {};
-  locationRankValues: number;
-  serviceRankValues: number;
-  valueForMoneyRankValues: number;
+  locationRankValues: string;
+  serviceRankValues: string;
+  valueForMoneyRankValues: string;
 
 
   constructor(@Inject(DOCUMENT) private document: any, private ActivatedRoute: ActivatedRoute,
@@ -118,9 +118,9 @@ export class VendorComponent implements OnInit, AfterViewInit {
     });
 
     aggregatedTotalRank = Math.ceil(Number(counter) / Number(vendorRates.length));
-    this.locationRankValues = Number(locationRanks) / Number(locationNumberOfRates);
-    this.serviceRankValues = Number(serviceRanks) / Number(serviceNumberOfRates);
-    this.valueForMoneyRankValues = Number(valueForMoneyRanks) / Number(valueForMoneyNumberOfRates);
+    this.locationRankValues = (Number(locationRanks) / Number(locationNumberOfRates)).toFixed(1);
+    this.serviceRankValues = (Number(serviceRanks) / Number(serviceNumberOfRates)).toFixed(1);
+    this.valueForMoneyRankValues = (Number(valueForMoneyRanks) / Number(valueForMoneyNumberOfRates)).toFixed(1);
 
     let htmlElementAggrgated = document.getElementById(`star${aggregatedTotalRank}-agg`) as any;
     let htmlElementTotals = document.getElementById(`star${aggregatedTotalRank}-totals`) as any;
