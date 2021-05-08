@@ -115,6 +115,7 @@ export class urls {
   public static get CREATE_VENDOR(): string { return this.BASE_URL + '/vendors/create-new-vendor' };
   public static get UPDATE_VENDOR(): string { return this.BASE_URL + '/vendors/update-vendor' };
   public static get DELETE_VENDOR(): string { return this.BASE_URL + '/vendors/delete-vendor' };
+  public static get GET_VENDOR_BY_CATEGORY(): string { return this.BASE_URL + '/vendors/get-vendor-by-category' };
 
   //Vendor service
   public static get CREATE_VENDOR_SERVICE(): string { return this.BASE_URL + '/vendors/create-new-service' };

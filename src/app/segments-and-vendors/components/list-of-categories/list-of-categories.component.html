@@ -72,7 +72,7 @@
 
           <div class="col-lg-4 col-md-6 " *ngFor="let category of categoriesList | slice:skip:limit">
 
-            <a (click)="navigateToVendorsList('catg')" class="listing-item-container compact">
+            <a (click)="navigateToVendorsList(category.parentMenu,category._id)" class="listing-item-container compact">
               <div class="listing-item effect-image">
                 <img [src]="category.photo" alt="">
                 <div class="icon">

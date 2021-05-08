@@ -54,7 +54,7 @@ export class ListOfCategoriesComponent implements OnInit, AfterViewInit {
 
   navigateToVendorsList(categoryName, categoryId) {
     categoryName = categoryName.replace(/ /g, "-");
-    this.router.navigate([`segment/en/all-vendors/${categoryName}/${categoryId}`]);
+    this.router.navigate([`segment/${this.lang}/all-vendors/${categoryName}/${categoryId}`]);
   };
 
   //#region Searches Helpers ..

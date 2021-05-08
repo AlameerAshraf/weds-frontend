@@ -14,8 +14,7 @@ export class RingsComponent implements OnInit {
   allCategories = [];
   allAreas = [];
 
-  constructor(private resources: resources,
-    private http: httpService) { this.loadResources() }
+  constructor(private resources: resources, private http: httpService) { this.loadResources() }
 
   ngOnInit() {
     //  this.getAllCategories();

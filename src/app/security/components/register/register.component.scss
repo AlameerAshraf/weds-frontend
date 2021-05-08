@@ -75,3 +75,19 @@
   .rtlText {
     direction: rtl;
   }
+
+  .extraPadding{
+    padding-inline-start:1.5em !important;
+  }
+  .normalPadding{
+    padding: 0px !important;
+  }
+  a.button.border {
+    color: #dfdee0 !important;
+    border-color: #dfdee0!important;
+  }
+  a.button:hover {
+    color: #060507!important;
+    border-color: #060507!important;
+    background-color: #FFF!important;
+  }
