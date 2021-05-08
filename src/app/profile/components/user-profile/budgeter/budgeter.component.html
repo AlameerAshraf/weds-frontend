@@ -57,7 +57,7 @@
 <div class="row" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="col-lg-12 col-md-12">
     <div class="dashboard-list-box with-icons margin-top-20">
-      <h4>{{labels.WEDDING_BUDGET}} <div (click)="createBudgeterItem()" style="background-color: #046B69 !important;
+      <h4>{{labels.WEDDING_BUDGET}} <div (click)="createBudgeterItem(); scrollToElement(bottom)" style="background-color: #046B69 !important;
           color: white !important;
           cursor: pointer;
           border-radius: 20px;" class="comission-taken">
@@ -137,6 +137,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div #bottom>
+
 </div>
 
 <weds-offer-viewer residesIn="USER_BUDGETER"></weds-offer-viewer>

@@ -77,8 +77,12 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
     this.updateChecklistItem(id);
   };
 
-  createNewChecklist(){
+  createNewChecklist() {
     this.listOfUsersChecklists.push(this.newlyCreatedCheckList);
+  };
+
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   };
 
   presisteItemChecklist(){
