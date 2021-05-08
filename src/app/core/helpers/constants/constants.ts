@@ -34,7 +34,8 @@ export class constants {
       "WEDDING_DETAILS": "wedding-detail",
       "BOOKMARKS": "bookmarks",
       "PHOTOS": "photos",
-      "FOOTER": "footer"
+      "FOOTER": "footer",
+      "SEGMENTS_DRESSES": "segement-dresses"
     }
   };
 

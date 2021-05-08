@@ -75,12 +75,12 @@
                   </div>
                 </div>
 
-                <div class="main-search-input-item location">
+                <div class="main-search-input-item location ">
                   <div>
                     <input formControlName="password" [type]="passwordHidden ? 'password' : 'text'"
                       (keydown)="textChanged()" placeholder="Password">
                   </div>
-                  <a (click)="togglePassword()" style="cursor: pointer;">
+                  <a (click)="togglePassword()" style="cursor: pointer;" [ngClass]="lang === 'ar' ? 'extraRight' : ''">
                     <i *ngIf="!passwordHidden" class="fa fa-eye"></i>
                     <i *ngIf="passwordHidden" class="fa fa-eye-slash"></i>
                   </a>

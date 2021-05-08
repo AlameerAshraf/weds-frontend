@@ -9,8 +9,14 @@
               <img style="max-height: 55px;" src="assets/images/logos/whitelogo.png"
                 data-sticky-logo="assets/images/logos/whitelogo.png" alt="Weds360 logo">
             </a>
+            <span class="extraPadding">
+              <a (click)="changeLanguge()" class="button border with-icon"> <b style="padding:5px"
+                  *ngIf="lang === 'ar'">English</b>
+                <b style="padding:5px" *ngIf="lang === 'en'">العربية</b> <i class="sl sl-icon-globe"></i></a>
+            </span>
           </div>
         </div>
+
       </div>
     </div>
   </header>
@@ -75,7 +81,7 @@
                     <input formControlName="password" [type]="passwordHidden ? 'password' : 'text'"
                       placeholder="Password">
                   </div>
-                  <a (click)="togglePassword()" style="cursor: pointer;">
+                  <a (click)="togglePassword()" style="cursor: pointer;" [ngClass]="lang === 'ar' ? 'extraRight' : ''">
                     <i *ngIf="!passwordHidden" class="fa fa-eye"></i>
                     <i *ngIf="passwordHidden" class="fa fa-eye-slash"></i>
                   </a>
@@ -85,7 +91,7 @@
                   <label for="check-a">{{labels.REMEMBER_ME}}</label>
                 </div>
 
-                <div class="panel-dropdown-content" style="padding: 0px !important;">
+                <div class="panel-dropdown-content" [ngClass]="lang === 'ar' ? 'extraPadding' : 'normalPadding'">
                   <label style="cursor: pointer;"
                     (click)="helpers.navigateToRegister()">{{labels.FORGOT_PASSWORD}}</label>
                 </div>
