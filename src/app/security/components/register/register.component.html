@@ -92,11 +92,11 @@
 
                 <div class="main-search-input-item">
                   <ul class="social-icons color rounded icons-ul">
-                    <li><a class="facebook" href="#"><i [ngClass]="lang === 'ar' ? 'rtlIcon' : ''"
-                          class="icon-facebook"></i></a></li>
+                    <li style="cursor: pointer;" (click)="signInWithFB()"><a class="facebook"><i
+                          [ngClass]="lang === 'ar' ? 'rtlIcon' : ''" class="icon-facebook"></i></a></li>
                     <!-- <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li> -->
-                    <li><a class="gplus" href="#"><i [ngClass]="lang === 'ar' ? 'rtlIcon' : ''"
-                          class="icon-gplus"></i></a></li>
+                    <li style="cursor: pointer;" (click)="signInWithGoogle()"><a class="gplus"><i
+                          [ngClass]="lang === 'ar' ? 'rtlIcon' : ''" class="icon-gplus"></i></a></li>
                   </ul>
                   <span *ngIf="!isVendorRegistering" (click)="helpers.changeRegisterationType('vendor')"
                     style="font-size: 15px; cursor: pointer; color: rgb(82, 80, 80); font-weight: 600;"
@@ -125,7 +125,6 @@
                 <button (click)="register()" [ngClass]="{'disabled': !registerForm.valid}"
                   [disabled]="!registerForm.valid" class="button fullwidth margin-top-5">
                   {{labels.REGISTER}}
-
                 </button>
               </div>
             </form>
