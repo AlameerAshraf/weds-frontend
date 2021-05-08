@@ -45,7 +45,6 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
     this.documentSelectors();
 
     this.loadUser();
-    this.setCurrentLocation();
     this.loadResources();
   };
 
@@ -54,14 +53,21 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
     this.http.Get(loadUserURL , { "role" : atob(window.localStorage.getItem("weds360#role")) }).subscribe((response: responseModel) => {
       if(!response.error){
         this.ngxSpinner.hide();
-        this.user = response.data as user;
-        console.log(this.user)
-        this.user.settings.cover = this.user.settings.cover || 'http://via.placeholder.com/1920x315';
-        this.user.settings.avatar = this.user.settings.avatar || 'assets/images/defaults/avatar/vendor.png';
-        this.user.address.latitude = this.user.address.latitude || 30.940995;
-        this.user.address.longtitude = this.user.address.longtitude || 26.616871;
-        this.twitterURL = this.user.social.find(x => x.includes("twitter")) || "";
-        this.faceBookURL = this.user.social.find(x => x.includes("facebook")) || "";
+        let savedUser = response.data as user;
+        this.user.email = savedUser.email;
+
+        if(savedUser != null){
+          this.user = savedUser
+          this.user.settings.cover = this.user.settings.cover || 'http://via.placeholder.com/1920x315';
+          this.user.settings.avatar = this.user.settings.avatar || 'assets/images/defaults/avatar/vendor.png';
+          this.user.address.latitude = this.latitude =  this.user.address.latitude;
+          this.user.address.longtitude = this.longitude = this.user.address.longtitude;
+          this.zoom = 8;
+          this.twitterURL = this.user.social.find(x => x.includes("twitter")) || "";
+          this.faceBookURL = this.user.social.find(x => x.includes("facebook")) || "";
+        } else {
+          this.setCurrentLocation();
+        }
       }else{
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
@@ -79,8 +85,8 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
     this.http.Post(updatePersonalInfoURL , {} , { "user" : this.user }).subscribe((response: responseModel) => {
       if (!response.error) {
         this.ngxSpinner.hide();
-        this.loadUser();
         this.toastr.success("Gooood!", "Your data has been updated successfully 💕");
+        this.loadUser();
       } else {
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!", "My bad, server couldn't create your post.");
@@ -177,7 +183,6 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
   //#region Adress Helper..
   setCurrentLocation() {
     if ('geolocation' in navigator) {
-      debugger
       navigator.geolocation.getCurrentPosition((locationInfo) => {
         if ((this.user.address.latitude != undefined && this.user.address.latitude != 0)
           && (this.user.address.longtitude != undefined && this.user.address.longtitude != 0)) {
@@ -209,8 +214,8 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
   };
 
   markerDragEnd(e: any) {
-    this.latitude = e.coords.lat;
-    this.longitude = e.coords.lng;
+    this.latitude = this.user.address.latitude = e.coords.lat;
+    this.longitude = this.user.address.longtitude = e.coords.lng;
     this.getAddress(this.latitude, this.longitude);
   };
 
