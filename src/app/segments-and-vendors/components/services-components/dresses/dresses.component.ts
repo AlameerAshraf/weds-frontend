@@ -36,7 +36,6 @@ export class DressesComponent implements OnInit {
   getAllCategories() {
     let allCatesURL = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
     this.http.Get(allCatesURL, {}).subscribe((response: responseModel) => {
-      console.log({ response })
       if (!response.error) {
         this.allCategories = response.data;
       } else {
@@ -49,7 +48,7 @@ export class DressesComponent implements OnInit {
     let resourceLang = lang == null || lang == undefined ? environment.defaultLang : lang;
 
     this.lang = ((resourceLang == null) || (resourceLang == undefined)) ? environment.defaultLang : resourceLang;
-    let resData = await this.resources.load(this.lang, constants.VIEWS["SEGMENTS_DRESSES"]) as any;;
+    let resData = await this.resources.load(this.lang, constants.VIEWS["SEGMENTS_SERVICE"]) as any;;
     this.labels = resData.res;
   };
 }

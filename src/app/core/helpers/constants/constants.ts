@@ -35,7 +35,7 @@ export class constants {
       "BOOKMARKS": "bookmarks",
       "PHOTOS": "photos",
       "FOOTER": "footer",
-      "SEGMENTS_DRESSES": "segement-dresses"
+      "SEGMENTS_SERVICE": "segement-service"
     }
   };
 
