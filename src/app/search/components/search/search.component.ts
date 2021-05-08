@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
   isAuthed: boolean;
+  lang: any;
 
   constructor(private http: httpService , private toaster: ToastrService,
     private spineer: NgxSpinnerService, private stoarge: localStorageService) { }
