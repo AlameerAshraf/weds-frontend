@@ -14,7 +14,7 @@ export class OffersViewerComponent implements OnInit {
   @Input() residesIn = "";
   imageObject: Array<any> = [];
   lang: string;
-  listOfOffers: offer[];
+  listOfOffers: offer[] = [];
   labels: any;
 
   constructor(private router: Router, @Inject(DOCUMENT) private document: any,private resources: resources,
