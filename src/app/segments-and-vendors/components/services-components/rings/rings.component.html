@@ -1,79 +1,103 @@
 <weds-header [authorizedUser]="true"></weds-header>
 <div class="container">
-  <div class="col-md-12 margin-top-50">
-    <div class="main-search-input gray-style margin-top-0 margin-bottom-10">
+  <div class="row">
+    <div class="col-md-12 margin-top-50">
+      <div class="main-search-input gray-style margin-top-0 margin-bottom-10">
 
-      <div class="main-search-input-item">
-        <input type="text" placeholder="What are you looking for?" value="" />
-      </div>
-
-      <div class="main-search-input-item location">
-        <div id="autocomplete-container">
-          <input id="autocomplete-input" type="text" placeholder="Location">
+        <div class="main-search-input-item">
+          <input type="text" [placeholder]="labels.LOOKING_FOR" value="" />
         </div>
-        <a href="#"><i class="fa fa-map-marker"></i></a>
-      </div>
 
-      <div class="main-search-input-item">
-        <select data-placeholder="All Categories" class="chosen-select">
-          <option>All Categories</option>
-          <option>Shops</option>
-          <option>Hotels</option>
-          <option>Restaurants</option>
-          <option>Fitness</option>
-          <option>Events</option>
-        </select>
-      </div>
+        <div class="main-search-input-item">
+          <select data-placeholder="All Location" class="chosen-select">
+            <option [selected]='true' disabled value="-1">{{labels.ALL_LOCATIONS}}</option>
+            <option *ngFor="let area of allAreas" [value]="area._id">
+              {{ lang==='en'? area.nameEn:area.nameAr}}
+            </option>
+          </select>
+        </div>
 
-      <button class="button">Search</button>
+
+
+
+
+        <button class="button">{{labels.SEARCH}}</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="container">
+  <div class="row margin-bottom-25">
+    <div class="col-md-6 col-xs-6">
+      <!-- Layout Switcher -->
+      <div class="layout-switcher">
+        <a href="listings-grid-with-sidebar-1.html" class="grid"><i class="fa fa-th"></i></a>
+        <a href="#" class="list active"><i class="fa fa-align-justify"></i></a>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xs-6">
+      <!-- Sort by -->
+      <div class="sort-by">
+        <div class="sort-by-select">
+          <select data-placeholder="Default order" class="chosen-select-no-single">
+            <option>{{labels.ORDER_DEFAULT}}</option>
+            <option>{{labels.ORDER_HIGH}}</option>
+            <option>{{labels.ORDER_MOST}}</option>
+            <option>{{labels.ORDER_NEWEST}}</option>
+            <option>{{labels.ORDER_OLDEST}}</option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="container">
-	<div class="row">
+  <div class="row">
 
-		<div class="col-lg-12 col-md-12 padding-right-30">
+    <div class="col-lg-12 col-md-12 padding-right-30">
 
-			<div class="row">
+      <div class="row">
 
-				<div class="col-lg-3 col-md-12">
-					<a href="listings-single-page.html" class="listing-item-container">
-						<div class="listing-item">
-							<img src="images/listing-item-01.jpg" alt="">
-
-
-							<div class="listing-item-content">
-								<h3>Tom's Restaurant</h3>
-							</div>
-							<span class="like-icon"></span>
-						</div>
-						<div class="star-rating" data-rating="3.5">
-							<div class="rating-counter">(3.5 Ranks)</div>
-						</div>
-					</a>
-				</div>
-
-			</div>
+        <div class="col-lg-3 col-md-12">
+          <a href="listings-single-page.html" class="listing-item-container">
+            <div class="listing-item">
+              <img src="images/listing-item-01.jpg" alt="">
 
 
-			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="pagination-container margin-top-20 margin-bottom-40">
-						<nav class="pagination">
-							<ul>
-								<li><a href="#" class="current-page">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+              <div class="listing-item-content">
+                <h3>Tom's Restaurant</h3>
+              </div>
+              <span class="like-icon"></span>
+            </div>
+            <div class="star-rating" data-rating="3.5">
+              <div class="rating-counter">(3.5 Ranks)</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="clearfix"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pagination-container margin-top-20 margin-bottom-40">
+            <nav class="pagination">
+              <ul>
+                <li><a href="#" class="current-page">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 

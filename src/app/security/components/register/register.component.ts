@@ -1,4 +1,4 @@
-import { urls , resources , httpService, constants , responseModel , social , errorBuilder, user, localStorageService} from './../../../core';
+import { urls, resources, httpService, constants, responseModel, social, errorBuilder, user, localStorageService } from './../../../core';
 import { helper } from './helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute, private storage: localStorageService,
     private resources: resources, private formBuilder: FormBuilder, private OAuth: SocialAuthService,
-    private httpService: httpService , private spinner: NgxSpinnerService) { }
+    private httpService: httpService, private spinner: NgxSpinnerService) { }
 
   async ngOnInit() {
     this.initForm();
@@ -76,50 +76,50 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   };
 
   /**Get the Long&Lat location info */
-  getGeoLocationInfo(){
-    return new Promise((resolve , reject) => {
-      if(navigator.geolocation){
+  getGeoLocationInfo() {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((locationInfo) => {
           let lat = locationInfo.coords.latitude;
           let long = locationInfo.coords.longitude;
 
-          let address = { address : { latitude: lat , longtitude: long } };
+          let address = { address: { latitude: lat, longtitude: long } };
           resolve(address);
         }, (err) => {
-          let address = { address : { latitude: 0 , longtitude: 0 } };
+          let address = { address: { latitude: 0, longtitude: 0 } };
           resolve(address);
         })
       } else {
         //TODO: Implememnt a generic alert function!
         alert("Error Finding user location!");
-        let address = { address : { latitude: "" , longtitude: "" } };
+        let address = { address: { latitude: "", longtitude: "" } };
         resolve(address);
       }
     })
   };
 
   //** Prepare all needed data from the current form! */
-  async getFormData(){
+  async getFormData() {
     let geoLocationData: any = await this.getGeoLocationInfo();
     let formData = this.registerForm.value;
-    let accountSource = { accountSource : constants.ACCOUNT_SOURCES.WEDS360 };
+    let accountSource = { accountSource: constants.ACCOUNT_SOURCES.WEDS360 };
     let userRole = this.isVendorRegistering ? { role: constants.USER_ROLES.VENDOR } : { role: constants.USER_ROLES.USER };
 
-    let result = {...formData , ...geoLocationData , ...accountSource ,  ...userRole };
+    let result = { ...formData, ...geoLocationData, ...accountSource, ...userRole };
     return result;
   };
 
-  async setSocialLoginData(user: any){
+  async setSocialLoginData(user: any) {
     let geoLocationData: any = await this.getGeoLocationInfo();
     let userData = {
       "name": user.name,
-      "password" : "01060931989Aa**",
-      "role" : this.isVendorRegistering ? constants.USER_ROLES.VENDOR : constants.USER_ROLES.USER,
-      "email" : user.email,
-      "accountSource" : user.provider,
-      "isActive" : true,
-      "settings" : {
-        "avatar" : user.photoUrl
+      "password": "01060931989Aa**",
+      "role": this.isVendorRegistering ? constants.USER_ROLES.VENDOR : constants.USER_ROLES.USER,
+      "email": user.email,
+      "accountSource": user.provider,
+      "isActive": true,
+      "settings": {
+        "avatar": user.photoUrl
       },
       ...geoLocationData
     };
@@ -134,16 +134,16 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     let signUpURL = `${urls.USER_SIGN_UP}/${constants.APP_IDENTITY_FOR_USERS}`;
     let userData = await this.getFormData();
 
-    this.httpService.Post(signUpURL , {} , { "user" : userData }).subscribe((response: responseModel) => {
+    this.httpService.Post(signUpURL, {}, { "user": userData }).subscribe((response: responseModel) => {
       this.spinner.hide();
-      if(!response.error){
+      if (!response.error) {
         this.helpers.navigateToLogin();
       } else {
         let errors = errorBuilder.build(response.details);
-        if(errors !== undefined)
+        if (errors !== undefined)
           this.buildErrorsInView(errors);
         else
-          this.buildErrorsInView([ { message : response.details } ]);
+          this.buildErrorsInView([{ message: response.details }]);
       }
     });
   };
@@ -152,23 +152,23 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.spinner.show();
     let signUpURL = `${urls.SOCIAL_LOGGING}/${constants.APP_IDENTITY_FOR_USERS}`;
 
-    this.httpService.Post(signUpURL , {} , { "user" : this.socialUser }).subscribe((response: responseModel) => {
+    this.httpService.Post(signUpURL, {}, { "user": this.socialUser }).subscribe((response: responseModel) => {
       this.spinner.hide();
-      if(!response.error){
+      if (!response.error) {
         debugger
         this.setUserDataInStorage(response.data);
         this.router.navigateByUrl(`/${this.lang}/home`);
       } else {
         let errors = errorBuilder.build(response.details);
-        if(errors !== undefined)
+        if (errors !== undefined)
           this.buildErrorsInView(errors);
         else
-          this.buildErrorsInView([ { message : response.details } ]);
+          this.buildErrorsInView([{ message: response.details }]);
       }
     });
   };
 
-  setUserDataInStorage(user){
+  setUserDataInStorage(user) {
     let savedUserData = user["user"] as user;
     this.storage.setLocalStorage('weds360#data', user.token);
     this.storage.setLocalStorage('weds360#name', savedUserData.name);
@@ -207,7 +207,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     document.getElementById('notifyMessage').innerHTML = `<ul style="list-style-type:none;margin: 0px;padding: 0px;"> ${errorBody} </ul>`;;
   };
 
-  textChanged(){
+  textChanged() {
     this.showNotification = false;
   }
   //#endregion
@@ -222,4 +222,11 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     )) as any;
     this.labels = resData.res;
   }
+  changeLanguge() {
+    const baseUrl = window.location.href.toString().toLowerCase();
+    const isArabic = this.lang === 'ar';
+    const url = isArabic ? baseUrl.replace('/ar/', '/en/') : baseUrl.replace('/en/', '/ar/')
+    window.location.href = url
+  }
+
 }

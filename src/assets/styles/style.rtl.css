@@ -21537,3 +21537,12 @@ li:hover .button.to-left {
 .button-to-left .button {
   margin-left: 2px;
 }
+.extraRight
+{
+  right: 24em !important;
+
+}
+
+.main-search-input{
+  text-align: right !important;
+}

@@ -9,6 +9,11 @@
               <img style="max-height: 55px;" src="assets/images/logos/whitelogo.png"
                 data-sticky-logo="assets/images/logos/whitelogo.png" alt="Weds360 logo">
             </a>
+            <span class="extraPadding">
+              <a (click)="changeLanguge()" class="button border with-icon"> <b style="padding:5px"
+                  *ngIf="lang === 'ar'">English</b>
+                <b style="padding:5px" *ngIf="lang === 'en'">العربية</b> <i class="sl sl-icon-globe"></i></a>
+            </span>
           </div>
         </div>
       </div>
@@ -75,12 +80,12 @@
                   </div>
                 </div>
 
-                <div class="main-search-input-item location">
+                <div class="main-search-input-item location ">
                   <div>
                     <input formControlName="password" [type]="passwordHidden ? 'password' : 'text'"
                       (keydown)="textChanged()" placeholder="Password">
                   </div>
-                  <a (click)="togglePassword()" style="cursor: pointer;">
+                  <a (click)="togglePassword()" style="cursor: pointer;" [ngClass]="lang === 'ar' ? 'extraRight' : ''">
                     <i *ngIf="!passwordHidden" class="fa fa-eye"></i>
                     <i *ngIf="passwordHidden" class="fa fa-eye-slash"></i>
                   </a>
@@ -110,7 +115,7 @@
                     style="font-size: 15px; cursor: pointer; color: rgb(63, 62, 62); font-weight: 600;"
                     class="icons-ul">
                     <span>
-                      <div id="or">{{labels.JOIN_AS_USER}}</div>
+                      <div id="or" class="orRTL ">{{labels.JOIN_AS_NORMAL}} </div>
                     </span>
                   </span>
 
