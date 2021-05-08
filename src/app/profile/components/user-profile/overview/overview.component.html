@@ -3,7 +3,7 @@
     <div class="col-md-12" *ngIf="currentUserName != 'undefined'">
       <h2>{{labels.HI}}, {{currentUserName}}!</h2>
     </div>
-    <div class="col-md-12" *ngIf="currentUserEmail != 'undefined'">
+    <div class="col-md-12" *ngIf="currentUserEmail != 'undefined' && currentUserName == 'undefined'">
       <h2>{{labels.HI}}, {{currentUserEmail}}!</h2>
     </div>
   </div>
@@ -17,7 +17,7 @@
           <a class="close" href="#"></a>
         </p>
       </div>
-      <div *ngIf="currentUserEmail != 'undefined'">
+      <div *ngIf="currentUserEmail != 'undefined' && currentUserName == 'undefined'">
         <p>{{labels.HI}} {{currentUserEmail}}, <span [innerHTML]='confirmAccount'></span>
           <a class="close" href="#"></a>
         </p>
@@ -29,7 +29,7 @@
           <a class="close" href="#"></a>
         </p>
       </div>
-      <div *ngIf="currentUserEmail != 'undefined'">
+      <div *ngIf="currentUserEmail != 'undefined' && currentUserName == 'undefined'">
         <p>{{labels.HI}} {{currentUserEmail}}, <span [innerHTML]='confirmAccount'></span>
           <a class="close" href="#"></a>
         </p>
