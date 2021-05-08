@@ -1,4 +1,4 @@
-import { urls , resources , httpService, constants , responseModel , social , errorBuilder} from './../../../core';
+import { urls , resources , httpService, constants , responseModel , social , errorBuilder, user, localStorageService} from './../../../core';
 import { helper } from './helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   };
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
-    private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
+    private elementRef: ElementRef, private actictedRoute: ActivatedRoute, private storage: localStorageService,
     private resources: resources, private formBuilder: FormBuilder, private OAuth: SocialAuthService,
     private httpService: httpService , private spinner: NgxSpinnerService) { }
 
@@ -110,9 +110,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   };
 
   async setSocialLoginData(user: any){
+    let geoLocationData: any = await this.getGeoLocationInfo();
     let userData = {
       "name": user.name,
-      // "gender" : "Male",
       "password" : "01060931989Aa**",
       "role" : this.isVendorRegistering ? constants.USER_ROLES.VENDOR : constants.USER_ROLES.USER,
       "email" : user.email,
@@ -120,25 +120,19 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       "isActive" : true,
       "settings" : {
         "avatar" : user.photoUrl
-      }
+      },
+      ...geoLocationData
     };
 
     this.socialUser = userData;
-    await this.register(true);
+    await this.socialRegisteration();
   };
 
   /** Register current user */
-  async register(social = false) {
+  async register() {
     this.spinner.show();
     let signUpURL = `${urls.USER_SIGN_UP}/${constants.APP_IDENTITY_FOR_USERS}`;
-
-    let userData = null;
-    if(social){
-      userData = this.socialUser;
-    }
-    else{
-      userData = await this.getFormData();
-    }
+    let userData = await this.getFormData();
 
     this.httpService.Post(signUpURL , {} , { "user" : userData }).subscribe((response: responseModel) => {
       this.spinner.hide();
@@ -154,6 +148,35 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     });
   };
 
+  async socialRegisteration() {
+    this.spinner.show();
+    let signUpURL = `${urls.SOCIAL_LOGGING}/${constants.APP_IDENTITY_FOR_USERS}`;
+
+    this.httpService.Post(signUpURL , {} , { "user" : this.socialUser }).subscribe((response: responseModel) => {
+      this.spinner.hide();
+      if(!response.error){
+        debugger
+        this.setUserDataInStorage(response.data);
+        this.router.navigateByUrl(`/${this.lang}/home`);
+      } else {
+        let errors = errorBuilder.build(response.details);
+        if(errors !== undefined)
+          this.buildErrorsInView(errors);
+        else
+          this.buildErrorsInView([ { message : response.details } ]);
+      }
+    });
+  };
+
+  setUserDataInStorage(user){
+    let savedUserData = user["user"] as user;
+    this.storage.setLocalStorage('weds360#data', user.token);
+    this.storage.setLocalStorage('weds360#name', savedUserData.name);
+    this.storage.setLocalStorage('weds360#role', btoa(savedUserData.role));
+    this.storage.setLocalStorage('weds360#avatar', savedUserData.settings.avatar);
+    this.storage.setLocalStorage('weds360#email', btoa(savedUserData.email));
+    this.storage.setLocalStorage('weds360#id', btoa(savedUserData._id));
+  };
 
   signInWithFB(): void {
     this.OAuth.signIn(FacebookLoginProvider.PROVIDER_ID);
