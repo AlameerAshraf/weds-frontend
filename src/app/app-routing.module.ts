@@ -72,6 +72,11 @@ const routes: Routes = [
       .then(m => m.BlogsModule)
   },
   {
+    path: 'photos/:lang',
+    loadChildren: () => import('./photos/photos.module')
+      .then(m => m.PhotosModule)
+  },
+  {
     path: 'sites/:lang',
     loadChildren: () => import('./wedding-sites/wedding-sites.module')
       .then(m => m.WeddingSitesModule)
