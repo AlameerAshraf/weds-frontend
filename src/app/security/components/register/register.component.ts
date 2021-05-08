@@ -110,6 +110,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   };
 
   async setSocialLoginData(user: any){
+    let geoLocationData: any = await this.getGeoLocationInfo();
     let userData = {
       "name": user.name,
       "password" : "01060931989Aa**",
@@ -119,7 +120,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       "isActive" : true,
       "settings" : {
         "avatar" : user.photoUrl
-      }
+      },
+      ...geoLocationData
     };
 
     this.socialUser = userData;
