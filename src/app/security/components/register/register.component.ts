@@ -1,5 +1,4 @@
-import { errorBuilder } from './../../../core/models/response';
-import { urls, resources, httpService, constants, responseModel } from './../../../core';
+import { urls, resources, httpService, constants, responseModel, social, errorBuilder, user, localStorageService } from './../../../core';
 import { helper } from './helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
@@ -7,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +32,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   // Form variables
   registerForm: FormGroup = null;
   labels: any = {};
+  socialUser: {
+    name: any;
+    password: string; role: string; email: any; accountSource: any; isActive: boolean; settings: { avatar: any; };
+  };
 
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
-    private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
-    private resources: resources, private formBuilder: FormBuilder,
+    private elementRef: ElementRef, private actictedRoute: ActivatedRoute, private storage: localStorageService,
+    private resources: resources, private formBuilder: FormBuilder, private OAuth: SocialAuthService,
     private httpService: httpService, private spinner: NgxSpinnerService) { }
 
   async ngOnInit() {
@@ -49,6 +53,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     let resourcesData = await this.helpers.loadResources();
     this.lang = resourcesData.lang;
     this.translated = resourcesData.translatedObject;
+
+    this.OAuth.authState.subscribe((user) => {
+      this.setSocialLoginData(user);
+    });
   };
 
   /** Form functions */
@@ -101,6 +109,25 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     return result;
   };
 
+  async setSocialLoginData(user: any) {
+    let geoLocationData: any = await this.getGeoLocationInfo();
+    let userData = {
+      "name": user.name,
+      "password": "01060931989Aa**",
+      "role": this.isVendorRegistering ? constants.USER_ROLES.VENDOR : constants.USER_ROLES.USER,
+      "email": user.email,
+      "accountSource": user.provider,
+      "isActive": true,
+      "settings": {
+        "avatar": user.photoUrl
+      },
+      ...geoLocationData
+    };
+
+    this.socialUser = userData;
+    await this.socialRegisteration();
+  };
+
   /** Register current user */
   async register() {
     this.spinner.show();
@@ -120,6 +147,44 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       }
     });
   };
+
+  async socialRegisteration() {
+    this.spinner.show();
+    let signUpURL = `${urls.SOCIAL_LOGGING}/${constants.APP_IDENTITY_FOR_USERS}`;
+
+    this.httpService.Post(signUpURL, {}, { "user": this.socialUser }).subscribe((response: responseModel) => {
+      this.spinner.hide();
+      if (!response.error) {
+        debugger
+        this.setUserDataInStorage(response.data);
+        this.router.navigateByUrl(`/${this.lang}/home`);
+      } else {
+        let errors = errorBuilder.build(response.details);
+        if (errors !== undefined)
+          this.buildErrorsInView(errors);
+        else
+          this.buildErrorsInView([{ message: response.details }]);
+      }
+    });
+  };
+
+  setUserDataInStorage(user) {
+    let savedUserData = user["user"] as user;
+    this.storage.setLocalStorage('weds360#data', user.token);
+    this.storage.setLocalStorage('weds360#name', savedUserData.name);
+    this.storage.setLocalStorage('weds360#role', btoa(savedUserData.role));
+    this.storage.setLocalStorage('weds360#avatar', savedUserData.settings.avatar);
+    this.storage.setLocalStorage('weds360#email', btoa(savedUserData.email));
+    this.storage.setLocalStorage('weds360#id', btoa(savedUserData._id));
+  };
+
+  signInWithFB(): void {
+    this.OAuth.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithGoogle(): void {
+    this.OAuth.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
 
   //#region Binding scripts to the component.
   ngAfterViewInit(): void {

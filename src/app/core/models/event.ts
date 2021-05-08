@@ -9,6 +9,10 @@ export class event {
   guestList?: { status: string , name: string , email: string , phone: string , invitationMessage: string }[] = [];
 
   //UI
+  nameEn?: string;
+  nameAr?: string;
+  descriptionEn?: string;
+  descriptionAr?: string;
   numbersOfDaysToEvent?:any;
   month?: string= "";
   day?:string= "";

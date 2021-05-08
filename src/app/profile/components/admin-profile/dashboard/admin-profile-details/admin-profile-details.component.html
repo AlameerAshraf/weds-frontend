@@ -6,55 +6,40 @@
   </div>
 </div>
 
-
 <div class="row">
   <div class="col-lg-6 col-md-12">
     <div class="dashboard-list-box margin-top-0">
       <h4 class="gray">{{labels.PROFILE_DETAILS_TITLE}}</h4>
       <div class="dashboard-list-box-static">
-
-        <div class="edit-profile-photo" style="padding: 10px !important; height: 205px !important;">
-          <img class="anImage"
-            [src]="coverPhotoSource == '' ? 'assets/images/defaults/wedding/cover-photo.png' : coverPhotoSource" alt="">
-          <div class="change-photo-btn">
-            <div class="photoUpload">
-              <span><i class="fa fa-upload"></i> {{labels.UPLOAD_PHOTO}}</span>
-              <input type="file" class="upload" />
-            </div>
-          </div>
-        </div>
-
         <div class="my-profile">
 
-          <label>{{labels.YOUR_NAME}}</label>
-          <input value="Tom Perrin" type="text">
+          <label style="margin-top: 0px;">{{labels.YOUR_NAME}}</label>
+          <input value="Tom Perrin" type="text" [(ngModel)] = "user.name">
 
           <label>{{labels.EMAIL}}</label>
-          <input value="tom@example.com" type="text">
+          <input value="tom@example.com" type="text" [(ngModel)] = "user.email">
 
           <label>{{labels.PHONE}}</label>
-          <input value="(123) 123-456" type="text">
+          <input value="(123) 123-456" type="text" [(ngModel)] = "user.phone">
 
           <label>{{labels.DOB}}</label>
-          <input type="text" id="date-picker" [placeholder]="labels.DOB" readonly="readonly">
+          <input type="text" id="date-picker" placeholder="Date" [(ngModel)] = "user.dateOfBirth" readonly="readonly">
 
           <label>{{labels.GENDER}}</label>
-          <select class="chosen-select-no-single">
+          <select id="gender" class="chosen-select-no-single">
             <option [label]="labels.SELECT">{{labels.SELECT}}</option>
-            <option>{{labels.MALE}}</option>
-            <option>{{labels.FEMALE}}</option>
+            <option [selected]="'MALE' == user.gender" value="MALE">{{labels.MALE}}</option>
+            <option [selected]="'FEMALE' == user.gender"  value="FEMALE">{{labels.FEMALE}}</option>
           </select>
 
-          <label>{{labels.CITY}}</label>
-          <input [placeholder]="labels.CITY" type="text" autocomplete="sd">
+          <label ><i class="fa fa-twitter"></i> Twitter</label>
+          <input placeholder="https://www.twitter.com/" type="text" [(ngModel)] ="twitterURL">
 
-          <label>{{labels.ADDRESS}}</label>
-          <input [placeholder]="labels.ADDRESS" type="text">
-
+          <label><i class="fa fa-facebook-square"></i> Facebook</label>
+          <input placeholder="https://www.facebook.com/" type="text" [(ngModel)] ="faceBookURL">
         </div>
 
-        <button class="button margin-top-15">{{labels.SAVE}}</button>
-
+        <button (click)="updateUserInfo()" class="button margin-top-15">{{labels.SAVE}}</button>
       </div>
     </div>
   </div>
@@ -66,18 +51,22 @@
       <div class="dashboard-list-box-static">
         <div class="my-profile">
           <label class="margin-top-0">{{labels.CURRENT_PASSWORD}}</label>
-          <input type="password">
+          <input type="password" [(ngModel)] = "reset.oldPassword">
 
           <label>{{labels.NEW_PASSWORD}}</label>
-          <input type="password">
+          <input type="password" [(ngModel)] = "reset.newPassword">
 
           <label>{{labels.CONFIRM_PASSWORD}}</label>
-          <input type="password">
+          <input type="password" [(ngModel)] = "reset.confirmNewPassword">
 
-          <button class="button margin-top-15">{{labels.CHANGE_PASSWORD}}</button>
+          <button class="button margin-top-15" [ngClass]=" { 'disabled' : reset.newPassword != reset.confirmNewPassword
+            || reset.newPassword == '' } "
+            (click) = "resetPassword()">{{labels.CHANGE_PASSWORD}}</button>
         </div>
 
       </div>
     </div>
   </div>
 </div>
+
+

@@ -18,7 +18,6 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   editingMode = "new";
   that = this;
   vendor = "";
-  vendors: vendor[] = [];
 
   currentUserEmail: string;
   offersVendors : any;
@@ -33,6 +32,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   };
   lang: string;
   labels: any = {};
+  showInList = constants.APP_VIEWS;
 
   constructor(private ngxSpinner: NgxSpinnerService, private router: Router,
     @Inject(DOCUMENT) private document: any,private activatedRoute: ActivatedRoute,
@@ -46,12 +46,12 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
      }
 
   async ngOnInit() {
+    let tempLookup = await this.getLookups();
     this.loadScripts();
-    this.loadOffersVendor();
+    //this.loadOffersVendor();
     this.initOfferView();
     this.documentSelectors();
     this.loadResources();
-    await this.getLookups();
   }
 
   loadOffersVendor(){
@@ -69,7 +69,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
   };
 
   async getLookups() {
-    this.vendors = ((await this.lookupsService.getVendorsAsLookups()) as responseModel).data;
+    this.offersVendors = ((await this.lookupsService.getVendorsAsLookups()) as responseModel).data;
   };
 
   initOfferView(){
@@ -141,7 +141,7 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
       e.data.angularThis.offer.vendor = $("#offerVendors").chosen().val();
     });
     $("#offersResides").change({ angularThis: this.that } ,function(e, params){
-      // e.data.angularThis.layoutRouting = $("#offersResides").chosen().val();
+      e.data.angularThis.offer.residesIn = $("#offersResides").chosen().val();
     });
   };
 
@@ -149,7 +149,8 @@ export class OffersFormComponent implements OnInit, AfterViewInit {
     this.router.navigateByUrl(`/profile/${this.lang}/admin/offers-defaults`);
   };
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit() {
+    let tempLookup = await this.getLookups();
     this.loadScripts();
   };
 

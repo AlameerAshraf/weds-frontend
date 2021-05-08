@@ -1,9 +1,11 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { helper } from './../register/helper/helper';
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Form, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { constants, resources } from 'src/app/core';
+import { constants, httpService, resources, responseModel, urls } from 'src/app/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,12 +17,13 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   translated = {};
   bkImage: string = 'assets/images/backgrounds/login/11.jpg';
   lang: any;
-  requestEmailForm: any = null;
+  requestEmailForm: FormGroup = null;
   resetPasswordForm: any = null;
   passwordHidden = true;
 
   // Logic variables
   emailSent: boolean = false;
+  emailNotValid: boolean = false;
   resetView: string;
   helpers = new helper(this.router , this.actictedRoute , this.resources);
 
@@ -29,11 +32,12 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   hasInfo = false;
   hasSuccessMessages = false;
   showNotification = false;
-
+  reset : { email?: string, oldPassword?: string , newPassword?: string , confirmNewPassword?: string, resetToken?: string } = {};
+  resetToken: any;
 
   constructor(@Inject(DOCUMENT) private document: any, //private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router, private http: httpService, private toaster: ToastrService, private ngxSpinner: NgxSpinnerService,
     private resources: resources, private formBuilder: FormBuilder) { }
 
   async ngOnInit() {
@@ -50,6 +54,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   getResetPasswordView(){
     this.actictedRoute.params.subscribe((params) => {
       let userToken = params["token"];
+      this.resetToken = userToken;
       this.resetView = (userToken == undefined) ? 'email-request' : 'password-reset';
     })
   };
@@ -67,7 +72,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   /** Form functions */
   initResetPasswordForm() {
     this.resetPasswordForm = this.formBuilder.group({
-      oldPassowrd: ['', Validators.required],
+      // oldPassowrd: ['', Validators.required],
       newPassowrd: ['', Validators.required],
     });
   };
@@ -81,8 +86,44 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   };
 
   /** Request password reset email. */
-  resetMyPassword(){
+  requesrPasswordReset(){
+    this.ngxSpinner.show();
+    this.requestEmailForm.value;
+    let requestResetPasswordURL = `${urls.REQUEST_RESEt_USER_PASSSWORD}/${constants.APP_IDENTITY_FOR_USERS}/${this.requestEmailForm.value["email"]}`;
 
+    this.http.Post(requestResetPasswordURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        if(response.EMAIL.SENT){
+          this.emailSent = true
+          this.emailNotValid = false
+          this.requestEmailForm.get('email').setValue('');
+        }
+      }else{
+        this.emailNotValid = true
+        this.ngxSpinner.hide();
+        this.requestEmailForm.get('email').setValue('');
+      }
+    })
+  };
+
+  resetPassword() {
+    this.ngxSpinner.show();
+    let resetUserPasswordURL = `${urls.RESEt_USER_PASSSWORD}/${constants.APP_IDENTITY_FOR_USERS}`;
+
+    this.reset.resetToken = this.resetToken;
+    this.reset.newPassword = this.resetPasswordForm.value["newPassowrd"];
+    this.http.Post(resetUserPasswordURL, { "mode": "email" }, { "resetData": this.reset }).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.ngxSpinner.hide();
+        this.reset.newPassword = "";
+        this.router.navigateByUrl(`/security/${this.lang}/login`);
+        this.toaster.success("We've updated your password!", "Okay done, password changed successfully.");
+      } else {
+        this.ngxSpinner.hide();
+        this.toaster.error("Our bad sorry!", "Ooh Sorry, maube you misstyped your password, try again!");
+      }
+    })
   };
 
 

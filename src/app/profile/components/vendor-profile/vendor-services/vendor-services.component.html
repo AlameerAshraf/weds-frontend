@@ -22,7 +22,7 @@
         </div>
       </h4>
 
-      <div class="col-md-12" style="background-color: white;">
+      <div class="col-md-12" style="background-color: white;" *ngIf="servicesList.length > 0">
         <table class="table borderless">
           <thead>
             <tr>
@@ -52,6 +52,15 @@
             </ng-container>
           </tbody>
         </table>
+      </div>
+      <div *ngIf="servicesList.length == 0">
+        <ng-container>
+          <li style="height: 250px;">
+            <div class="content margin-top-20">
+              <img src="assets/images/errors/nothing-found.png">
+            </div>
+          </li>
+        </ng-container>
       </div>
     </div>
   </div>

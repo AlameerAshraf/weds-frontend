@@ -18,26 +18,28 @@
     <div class="toggle-container" style="padding-bottom: 0px !important; ">
       <div class="row with-forms">
         <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
-          <input type="text" [placeholder]="labels.SEARCH_KEYWORD" [(ngModel)] = "searchKey">
+          <input type="text" [placeholder]="labels.SEARCH_KEYWORD" [(ngModel)]="searchKey">
         </div>
         <div class="col-md-3" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <select id="categoriesSegments" class="chosen-select-no-single">
-            <option label="blank" [ngValue] = "selectedSearchCategory">{{labels.SELECT_SEGMENT}}</option>
-              <option *ngFor="let categorySegment of categoriesSegments" [value]="categorySegment.segment">
-                {{ categorySegment.name }}</option>
+            <option label="blank" [ngValue]="selectedSearchCategory">{{labels.SELECT_SEGMENT}}</option>
+            <option *ngFor="let categorySegment of categoriesSegments" [value]="categorySegment.segment">
+              {{ categorySegment.name }}</option>
           </select>
         </div>
         <div class="col-md-2" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
           <select id="categoriesLayouts" class="chosen-select-no-single">
-            <option label="blank" [selected]="selectedSearchLayout == 'empty'" >{{labels.SELECT_SERVICE_TYPE}}</option>
-              <option *ngFor="let categoryLayout of categoriesLayouts" [value]="categoryLayout.layout">{{
-                categoryLayout.name }}</option>
+            <option label="blank" [selected]="selectedSearchLayout == 'empty'">{{labels.SELECT_SERVICE_TYPE}}</option>
+            <option *ngFor="let categoryLayout of categoriesLayouts" [value]="categoryLayout.layout">{{
+              categoryLayout.name }}</option>
           </select>
         </div>
 
         <div class="col-md-4" [ngClass]="lang === 'ar' ? 'col-md3-RTL' : ''">
-          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i class="sl sl-icon-magnifier"></i> {{labels.SEARCH}} </a>
-          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i class="sl sl-icon-trash"></i>
+          <a class="button modfied-btn" style="background-color: #046B69;" (click)="search()"> <i
+              class="sl sl-icon-magnifier"></i> {{labels.SEARCH}} </a>
+          <a class="button modfied-btn" style="background-color: rgb(247, 72, 72);" (click)="clearSearch()"> <i
+              class="sl sl-icon-trash"></i>
             {{labels.RESET}}
           </a>
         </div>
@@ -73,28 +75,29 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container  *ngFor="let item of searchableList | slice:skip:limit">
-            <tr *ngIf="item.isRemoved == false" [ngClass]="lang === 'ar' ? 'th' : ''">
-              <td>
-                <p>{{ item.nameEn }}</p>
-              </td>
-              <td>
-                <p>{{ item.parentMenu }}</p>
-              </td>
-              <td>
-                <p>{{ item.layout }}</p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
-                  (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
-                </p>
-              </td>
-              <td class="td-in-table">
-                <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
-                  (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
-              </td>
-            </tr>
+            <ng-container *ngFor="let item of searchableList | slice:skip:limit">
+              <tr *ngIf="item.isRemoved == false" [ngClass]="lang === 'ar' ? 'th' : ''">
+                <td>
+                  <p>{{ item.nameEn }}</p>
+                </td>
+                <td>
+                  <p>{{ item.parentMenu }}</p>
+                </td>
+                <td>
+                  <p>{{ item.layout }}</p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: rgb(233, 80, 80); font-size: 20px; font-weight: 600;cursor: pointer;"
+                      (click)="deleteEntity(item._id)" class="sl sl-icon-trash"></i>
+                  </p>
+                </td>
+                <td class="td-in-table">
+                  <p><i style="color: #046B69 !important; cursor: pointer; font-size: 20px; font-weight: 600;"
+                      (click)="editEntity(item._id)" class="sl sl-icon-pencil"></i></p>
+                </td>
+              </tr>
             </ng-container>
+
           </tbody>
         </table>
       </div>
@@ -104,7 +107,8 @@
 
 <div class="row" *ngIf="collectionSize > 0 && showPaging">
   <div class="col-md-12">
-    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
+    <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize"
+      [maxSize]="5">
     </weds-paging>
   </div>
 </div>

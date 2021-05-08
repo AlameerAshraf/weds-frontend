@@ -45,6 +45,19 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.ngxSpinner.hide();
         this.listOfUsersChecklists = response.data as checklist[];
+
+        this.listOfUsersChecklists.forEach((aChecklist) => {
+          if(aChecklist.isDefault){
+            if(this.lang == "en"){
+              aChecklist.title = aChecklist.titleEn;
+              aChecklist.note = aChecklist.noteEn;
+            }
+            else{
+              aChecklist.title = aChecklist.titleAr;
+              aChecklist.note = aChecklist.noteAr;
+            }
+          }
+        })
       }else{
         this.ngxSpinner.hide();
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
@@ -64,8 +77,12 @@ export class ChecklistComponent implements OnInit, AfterViewInit {
     this.updateChecklistItem(id);
   };
 
-  createNewChecklist(){
+  createNewChecklist() {
     this.listOfUsersChecklists.push(this.newlyCreatedCheckList);
+  };
+
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   };
 
   presisteItemChecklist(){

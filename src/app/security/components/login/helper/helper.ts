@@ -27,4 +27,9 @@ export class helper {
   navigateToRegister() {
     this.router.navigateByUrl(`/security/${this.lang}/register`);
   };
+
+    /** Change the type for who is registerating now! */
+    navigateToForget() {
+      this.router.navigateByUrl(`/security/${this.lang}/reset-password`);
+    };
 };

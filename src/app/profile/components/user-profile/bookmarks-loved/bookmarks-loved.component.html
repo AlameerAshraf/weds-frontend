@@ -25,9 +25,17 @@
           </div>
         </li>
 
-
+        <ng-container *ngIf="bookmarks.length == 0">
+          <li style="height: 250px;">
+            <div class="content margin-top-20">
+              <img src="assets/images/errors/nothing-found.png">
+            </div>
+          </li>
+        </ng-container>
 
       </ul>
     </div>
   </div>
 </div>
+
+<weds-offer-viewer residesIn="USER_BOOKMARKS_LOVES"></weds-offer-viewer>

@@ -7,6 +7,7 @@ export class checklist{
   noteEn?: string = "";
   noteAr?: string = "";
   isChecked: Boolean;
+  isDefault?: boolean;
 
   // UI
   isNew?: boolean;

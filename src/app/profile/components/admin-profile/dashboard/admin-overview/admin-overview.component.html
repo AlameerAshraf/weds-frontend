@@ -1,7 +1,10 @@
 <div id="titlebar">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" *ngIf="currentUserName != 'undefined'">
       <h2>{{labels.HI}}, {{currentUserName}}!</h2>
+    </div>
+    <div class="col-md-12" *ngIf="currentUserEmail != 'undefined' && currentUserName == 'undefined'">
+      <h2>{{labels.HI}}, {{currentUserEmail}}!</h2>
     </div>
   </div>
 </div>
@@ -9,12 +12,28 @@
 <div class="row">
   <div class="col-md-12">
     <div *ngIf="isConfirmed == 'true'" class="notification success closeable margin-bottom-30">
-      <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
-        <a class="close" href="#"></a>
+      <div *ngIf="currentUserName != 'undefined'">
+        <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
+      <div *ngIf="currentUserEmail != 'undefined' && currentUserName == 'undefined'">
+        <p>{{labels.HI}} {{currentUserEmail}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
     </div>
     <div *ngIf="isConfirmed == 'false'" class="notification error closeable margin-bottom-30">
-      <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
-        <a class="close" href="#"></a>
+      <div *ngIf="currentUserName != 'undefined'">
+        <p>{{labels.HI}} {{currentUserName}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
+      <div *ngIf="currentUserEmail != 'undefined' && currentUserName == 'undefined'">
+        <p>{{labels.HI}} {{currentUserEmail}}, <span [innerHTML]='confirmAccount'></span>
+          <a class="close" href="#"></a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -69,34 +88,21 @@
       <h4>{{labels.NOTIFICATIONS}}</h4>
       <ul>
 
-        <li><i style="background-color: rgb(100, 162, 201); color: white;" class="list-box-icon sl sl-icon-rocket"></i>
+        <!--<li><i style="background-color: rgb(100, 162, 201); color: white;" class="list-box-icon sl sl-icon-rocket"></i>
           <strong>Weds360 wore a new suit now, completly new design with handsome views Let's descover it 😍</strong>
           <ul>
             <li>01/02/2019</li>
           </ul>
-        </li>
+        </li>-->
 
-        <li><i class="list-box-icon im im-icon-Gift-Box"></i>
-          <strong>Maruim Dawoud has posted an offer, 70% discount.</strong>
-          <ul>
-            <li class="paid"><span>70%</span> Discount for all services.</li>
-            <li>01/02/2019</li>
-          </ul>
-        </li>
-
-        <li><i class="list-box-icon sl sl-icon-rocket"></i>
-          <strong>Weds360 Freelancer is up and running now. follow your passion and start your career.</strong>
-          <ul>
-            <li>01/02/2019</li>
-          </ul>
-        </li>
-
-        <li><i class="list-box-icon sl sl-icon-envelope-open"></i>
-          <strong>Mayan just sent you a message.</strong>
-          <ul>
-            <li>01/02/2019</li>
-          </ul>
-        </li>
+        <ng-container *ngIf="notificationsList.length == 0">
+          <li style="height: 350px;">
+            <div class="content margin-top-20" align="center">
+              <img src="assets/images/errors/nothing-found.png">
+              <div style="margin: 10px;">{{labels.NO_NOTIFICATIONS}} </div>
+            </div>
+          </li>
+        </ng-container>
 
       </ul>
     </div>
@@ -113,9 +119,10 @@
           </ul>
         </li>-->
         <ng-container *ngIf="upcommingSessionsList.length == 0">
-          <li style="height: 417px;">
-            <div class="content margin-top-20">
+          <li style="height: 350px;">
+            <div class="content margin-top-20" align="center">
               <img src="assets/images/errors/nothing-found.png">
+              <div style="margin: 10px;">{{labels.NO_UPCOMING_SESSIONS}} </div>
             </div>
           </li>
         </ng-container>

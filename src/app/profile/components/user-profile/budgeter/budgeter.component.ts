@@ -1,9 +1,10 @@
-import { constants, slideInOutAnimation , budgeter, urls , httpService , responseModel,resources} from './../../../../core';
+import { constants, slideInOutAnimation , budgeter, urls , httpService , responseModel,resources, vendor, weddingDetials} from './../../../../core';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { LookupsService } from './../../../../core/helpers/lookups/lookups.service';
 
 declare var $: any;
 
@@ -32,6 +33,8 @@ export class BudgeterComponent implements OnInit {
     }
   };
 
+  selectedOption;
+
   showBudgeter: any = 0;
   that = this;
   budgetCategory = "";
@@ -42,12 +45,19 @@ export class BudgeterComponent implements OnInit {
   showAlarm = false;
   labels: any = {};
   lang: string;
+  vendors: vendor[] = [];
+  weddingDetails: weddingDetials = new weddingDetials();
+
+
   constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef,private resources: resources,
-    private http: httpService , private ngxSpinner: NgxSpinnerService , private toastr: ToastrService){
+    private http: httpService , private ngxSpinner: NgxSpinnerService , private toastr: ToastrService,
+    private lookupsService: LookupsService){
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getLookups();
+    this.getWeddingAndPartnerDetails();
     this.loadScripts();
     this.documentSelectors();
     this.getAllBudgetItems();
@@ -91,6 +101,10 @@ export class BudgeterComponent implements OnInit {
     this.loadScripts();
   };
 
+  scrollToElement($element): void {
+    $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  };
+
   saveBudgeterItem(){
     this.ngxSpinner.show();
     let createBudgeterItemURL = `${urls.CREATE_BUDGETER_ITEM}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
@@ -121,7 +135,7 @@ export class BudgeterComponent implements OnInit {
     });
   };
 
-  updateBudgeterItem(id: any){
+  updateBudgeterItem(id: any){ 
     this.ngxSpinner.show();
     let updateBudgeterItemURL = `${urls.UPDATE_BUDGETER_ITEM}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
     let targetBudgter = this.listOfBudgeters.find(x => x._id == id);
@@ -193,7 +207,34 @@ export class BudgeterComponent implements OnInit {
       suggestedBudgetElement.value = suggestedBudgetValue;
       e.data.angularThis.plan(suggestedBudgetValue);
     });
+
+    $("[name='vendorSelection']").change({ angularThis: this.that }, function (e, params) {
+      console.log("Arsany")// $("[name='vendorSelection']").chosen().val();
+    });
+
   };
+
+  async getLookups() {
+    this.vendors = ((await this.lookupsService.getVendorsAsLookups()) as responseModel).data;
+  };
+
+  getWeddingAndPartnerDetails(){
+    this.ngxSpinner.show();
+    let getWeddingAndPartnerURL = `${urls.GET_WEDDING_AND_PARTNER_DETAILS}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
+
+    this.http.Get(getWeddingAndPartnerURL , {}).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.ngxSpinner.hide();
+        this.weddingDetails = response.data as weddingDetials;
+        this.weddingDetails.partner.dateOfBirth = this.weddingDetails.partner.dateOfBirth;
+        console.log(this.weddingDetails)
+      }else{
+        this.ngxSpinner.hide();
+        this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
+      }
+    });
+  };
+
 
   ngAfterViewInit(): void {
     this.loadScripts();

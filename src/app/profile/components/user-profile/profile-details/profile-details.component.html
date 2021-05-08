@@ -65,7 +65,7 @@
           <input value="(123) 123-456" type="text" [(ngModel)] = "user.phone">
 
           <label>{{labels.DOB}}</label>
-          <input type="text" id="date-picker" placeholder="Date" readonly="readonly">
+          <input type="text" id="date-picker" placeholder="Date" [(ngModel)] = "user.dateOfBirth" readonly="readonly">
 
           <label>{{labels.GENDER}}</label>
           <select id="gender" class="chosen-select-no-single">
@@ -104,18 +104,23 @@
       <div class="dashboard-list-box-static">
         <div class="my-profile">
           <label class="margin-top-0">{{labels.CURRENT_PASSWORD}}</label>
-          <input type="password">
+          <input type="password" [(ngModel)] = "reset.oldPassword">
 
           <label>{{labels.NEW_PASSWORD}}</label>
-          <input type="password">
+          <input type="password" [(ngModel)] = "reset.newPassword">
 
           <label>{{labels.CONFIRM_PASSWORD}}</label>
-          <input type="password">
+          <input type="password" [(ngModel)] = "reset.confirmNewPassword">
 
-          <button class="button margin-top-15">{{labels.CHANGE_PASSWORD}}</button>
+          <button class="button margin-top-15" [ngClass]=" { 'disabled' : reset.newPassword != reset.confirmNewPassword
+            || reset.newPassword == '' } "
+            (click) = "resetPassword()">{{labels.CHANGE_PASSWORD}}</button>
         </div>
 
       </div>
     </div>
   </div>
 </div>
+
+
+<weds-offer-viewer residesIn="USER_PERSONAL_DETAILS"></weds-offer-viewer>

@@ -4,7 +4,8 @@ export class responseModel {
   message: string;
   details: any;
   data: any;
-  EMAIL?: { message?: string, code?: string } = { message: "", code: "" };
+  EMAIL?: { message?: string, code?: string , SENT?: boolean } = { message: "", code: "", SENT: false };
+
 };
 
 
