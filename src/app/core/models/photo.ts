@@ -9,5 +9,7 @@ export class photo {
     category?: string = "";
     vendor?: string = "";
     image?: string = "assets/images/defaults/wedding/cover-photo.png";
+
+    //UI
+    isLiked?: boolean = false;
   };
-  

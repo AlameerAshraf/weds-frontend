@@ -33,6 +33,8 @@ export class VendorComponent implements OnInit, AfterViewInit {
   locationRankValues: string;
   serviceRankValues: string;
   valueForMoneyRankValues: string;
+  gallery = []
+  images: number;
 
 
   constructor(@Inject(DOCUMENT) private document: any, private ActivatedRoute: ActivatedRoute,
@@ -60,6 +62,11 @@ export class VendorComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.spineer.hide();
         this.vendor = response.data as vendor;
+        this.images = this.vendor.gallery.length;
+        this.vendor.gallery.forEach((img) => {
+          this.gallery.push(img)
+        })
+
         this.telRef = `tel:${this.vendor.phone}`;
         this.mailTo = `mailto:${this.vendor.email}`;
 
@@ -67,6 +74,8 @@ export class VendorComponent implements OnInit, AfterViewInit {
         this.instagramURL = this.vendor.social.find(x => x.includes('instagram'));
         this.pinterestURL = this.vendor.social.find(x => x.includes('pinterest'));
         this.twitterURL = this.vendor.social.find(x => x.includes('twitter'));
+
+        console.log(this.vendor)
 
         this.htmlView = this._sanitizer.bypassSecurityTrustHtml(this.vendor.descriptionURLAr);
         this.vendor.avatar = this.vendor.avatar == undefined ? 'assets/images/defaults/avatar/vendor.png' : this.vendor.avatar;
@@ -226,7 +235,7 @@ export class VendorComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    this.loadScripts();
+    //this.loadScripts();
   };
 
   loadScripts(){
