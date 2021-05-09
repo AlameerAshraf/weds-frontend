@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { constants, resources } from '../../../../core';
+import { constants, resources, Common } from '../../../../core';
 
 @Component({
   selector: 'app-profile-main-layout',
@@ -23,12 +23,15 @@ export class ProfileMainLayoutComponent implements OnInit {
   redierctURL: string;
   langChangerURL: string;
   selectedTitle: any;
+  baseUrlWithLang: string;
 
 
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
-    @Inject(DOCUMENT) private document: any,
+    @Inject(DOCUMENT) private document: any, private common: Common,
     private elementRef: ElementRef,
-    private router: Router) { }
+    private router: Router) {
+    this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
+  }
 
   async ngOnInit() {
     this.checkViewAuthority();

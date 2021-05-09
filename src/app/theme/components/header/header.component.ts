@@ -1,4 +1,4 @@
-import { constants, resources } from 'src/app/core';
+import { Common, constants, resources } from 'src/app/core';
 import { Component, ElementRef, Inject, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -23,17 +23,19 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   loginURL: string;
   langChangerURL: string;
   labels: any = {};
-
+  baseUrlWithLang: string;
 
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
     @Inject(DOCUMENT) private document: any,
-    private elementRef: ElementRef,
-    private router: Router) { }
+    private elementRef: ElementRef, private common: Common,
+    private router: Router) {
+    this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
+
+  }
 
   ngOnInit() {
     let currentUserEnc = window.localStorage.getItem("weds360#role");
     let currentUser = atob(currentUserEnc);
-
     this.loadResources(currentUser);
     this.checkViewAuthority();
     this.loginURL = `/security/${this.lang}/login`;
@@ -68,11 +70,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
-  changeLanguge() {
-    alert("55555555555")
-    const baseUrl = window.location.href.toString().toLowerCase();
-    const isArabic = this.lang === 'ar';
-    const url = isArabic ? baseUrl.replace('/ar/', '/en/') : baseUrl.replace('/en/', '/ar/')
-    window.location.href = url
+  changeLang() {
+    const url = this.common.changeLanguge();
+    alert(url);
   }
+
 }

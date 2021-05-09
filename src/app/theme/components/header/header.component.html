@@ -51,12 +51,11 @@
                 <b style="padding:5px" *ngIf="lang === 'en'">العربية</b>
               </a>
             </li> -->
-
-            <!-- <a [href]="changeLanguge()" class="button border with-icon">
+            <a [routerLink]="baseUrlWithLang" class="button border with-icon">
               <b style="padding:5px" *ngIf="lang === 'ar'">English</b>
               <b style="padding:5px" *ngIf="lang === 'en'">العربية</b>
               <i class="sl sl-icon-globe"></i>
-            </a> -->
+            </a>
           </span>
         </div>
       </div>
@@ -81,7 +80,7 @@
             </ul>
           </div>
 
-          <a (click)="changeLanguge()" class="button border with-icon">
+          <a [routerLink]="baseUrlWithLang" class="button border with-icon">
             <b style="padding:5px" *ngIf="lang === 'ar'">English</b>
             <b style="padding:5px" *ngIf="lang === 'en'">العربية</b>
             <i class="sl sl-icon-globe"></i>
