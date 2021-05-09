@@ -1,4 +1,4 @@
-import { constants, localStorageService, urls, httpService, responseModel, post } from 'src/app/core';
+import { constants, localStorageService, urls, httpService, responseModel, post, resources } from 'src/app/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,18 +23,21 @@ export class BlogsComponent implements OnInit {
   skip: number;
   showPaging = true;
   // End paging vars!
+  labels: any = {};
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService, private localStorage: localStorageService,
+    private spinner: NgxSpinnerService, private localStorage: localStorageService, private resources: resources,
     private http: httpService, private toastr: ToastrService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
 
     this.activatedRoute.params.subscribe((params) => {
       this.categoryId = params["categoryId"];
     });
+    this.lang = window.location.href.toString().toLowerCase().indexOf("ar") > -1 ? "ar" : "en";
+
+    this.loadResources();
   }
 
   ngOnInit() {
-    this.lang = window.location.href.toString().toLowerCase().indexOf("ar") > -1 ? "ar" : "en";
     this.checkLoginStatus();
     this.getBlogsPercategory();
   }
@@ -86,4 +89,9 @@ export class BlogsComponent implements OnInit {
     categoryName = categoryName.replace(/ /g, "-");
     this.router.navigate([`blogs/${this.lang}/blog/${categoryName}/${blogId}`]);
   };
+  async loadResources() {
+    let resData = (await this.resources.load(this.lang, constants.VIEWS["BLOG"])) as any;
+
+    this.labels = resData.res;
+  }
 }

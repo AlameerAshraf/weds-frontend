@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { responseModel } from './../../../../../core/models/response';
 import { urls } from './../../../../../core/helpers/urls/urls';
 import { httpService } from '../../../../../core/services/http/http';
-import { constants, resources,area,localStorageService } from 'src/app/core';
+import { constants, resources, area, localStorageService } from 'src/app/core';
 import { environment } from '../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -19,23 +19,23 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
 
   startTypingAnimation: boolean = true;
 
-  areasList : area[] = [];
+  areasList: area[] = [];
   lang: string;
   labels: any = {};
 
-    // Paging vars!
-    collectionSize: number = 0;
-    pageSize: any = 5;
-    limit: number;
-    skip: number;
-    showPaging = true;
-    // End paging vars!
+  // Paging vars!
+  collectionSize: number = 0;
+  pageSize: any = 5;
+  limit: number;
+  skip: number;
+  showPaging = true;
+  // End paging vars!
 
   constructor(@Inject(DOCUMENT) private document: any,
-    private router: Router,private ngxSpinner: NgxSpinnerService,
+    private router: Router, private ngxSpinner: NgxSpinnerService,
     private storage: localStorageService,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,private toastr: ToastrService,
+    private http: httpService, private toastr: ToastrService,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
     this.storage.eraseLocalStorage("weds360#areaOnEdit");
@@ -43,7 +43,7 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getAllAreas();
-    this.loadResources();
+
   }
 
 
@@ -67,24 +67,24 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
 
 
 
-  editEntity(id: any){
+  editEntity(id: any) {
     this.router.navigate([`profile/${this.lang}/admin/areas-action/update`]);
     let targetTheme = this.areasList.find(x => x._id == id);
-    this.storage.setLocalStorage("weds360#areaOnEdit" , targetTheme);
+    this.storage.setLocalStorage("weds360#areaOnEdit", targetTheme);
   };
 
-  deleteEntity(id: any){
+  deleteEntity(id: any) {
     this.ngxSpinner.show();
 
     let deleteURL = `${urls.DELETE_AREA}/${constants.APP_IDENTITY_FOR_ADMINS}/${id}`;
-    this.http.Post(deleteURL , {} , { }).subscribe((response: responseModel) => {
-      if(!response.error){
+    this.http.Post(deleteURL, {}, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
         this.ngxSpinner.hide();
-        this.toastr.success("Area has been deleted succesfully" , "An area has been deleted and wedding website will be impacted.");
+        this.toastr.success("Area has been deleted succesfully", "An area has been deleted and wedding website will be impacted.");
         this.getAllAreas();
       } else {
         this.ngxSpinner.hide();
-        this.toastr.error("Our bad sorry!" , "Ooh Sorry, your area couldn't deleted on the server!");
+        this.toastr.error("Our bad sorry!", "Ooh Sorry, your area couldn't deleted on the server!");
       }
     });
   };
@@ -120,11 +120,11 @@ export class AreasGridComponent implements OnInit, AfterViewInit {
     this.labels = resData.res;
   }
 
-    //#region Paging Helpers ..
-    pageChange(pageNumber) {
-      window.scroll(0,0);
-      this.limit = this.pageSize * pageNumber;
-      this.skip = Math.abs(this.pageSize - this.limit);
-    };
-    //#endregion
+  //#region Paging Helpers ..
+  pageChange(pageNumber) {
+    window.scroll(0, 0);
+    this.limit = this.pageSize * pageNumber;
+    this.skip = Math.abs(this.pageSize - this.limit);
+  };
+  //#endregion
 }

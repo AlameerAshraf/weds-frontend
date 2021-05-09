@@ -19550,6 +19550,10 @@ body .menu-responsive i.menu-trigger:after {
 .rtl {
   direction: rtl;
 }
+.ltr{
+  direction: ltr;
+
+}
 /* Headlines */
 h1,
 h2,
@@ -21549,3 +21553,6 @@ li:hover .button.to-left {
 .extraPadding{
     padding-inline-start:1.5em !important;
   }
+.FeaturedBlogRTL{
+  float:right !important;
+}

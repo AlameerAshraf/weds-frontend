@@ -12,6 +12,7 @@ export class urls {
 
   //Blogs ..
   public static get GET_ALL_BLOGS_PER_CATEGORY(): string { return this.BASE_URL + '/blog/category-blogs' };
+  public static get GET_POST_BY_ID(): string { return this.BASE_URL + '/blog/single-post' };
 
 
   // Users ...

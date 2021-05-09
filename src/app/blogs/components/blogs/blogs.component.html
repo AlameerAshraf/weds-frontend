@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2>Get for you best Articles</h2><span>up to date as usual</span>
+          <h2>{{labels.PAGE_TITLE}}</h2><span>{{labels.PAGE_TITLE_SUB}}</span>
         </div>
       </div>
     </div>
@@ -33,15 +33,15 @@
               <ul class="post-meta">
                 <li>{{ featuredPost.publishedAt }}</li>
                 <li><a>Wedding of the week</a></li>
-                <li><a>5 Claps</a></li>
+                <li><a>5 {{labels.CLAPS}}</a></li>
               </ul>
 
               <p>
                 {{ featuredPost.metaDescriptionEn }}
               </p>
 
-              <a style="cursor: pointer;" (click)="navigateToBlogPost(featuredPost._id)" class="read-more">Read More <i
-                  class="fa fa-angle-right"></i></a>
+              <a style="cursor: pointer;" (click)="navigateToBlogPost(featuredPost._id)"
+                class="read-more">{{labels.READ_MORE}} <i class="fa fa-angle-right"></i></a>
             </div>
 
           </div>
@@ -49,10 +49,10 @@
         <div class="col-lg-3 col-md-4">
           <div class="sidebar right">
             <div class="widget">
-              <h3 class="margin-top-0 margin-bottom-25">Search Blog</h3>
+              <h3 class="margin-top-0 margin-bottom-25">{{labels.SEARCH}}</h3>
               <div class="search-blog-input   ">
                 <div class="input" [ngClass]=" lang==='ar' ? 'extraPadding' : ''"><input class="search-field"
-                    type="text" placeholder="Type and hit enter" value="" />
+                    type="text" [placeholder]="labels.SEARCH_PLACEHOLDER" value="" />
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -60,7 +60,7 @@
 
             <div class="widget margin-top-40">
 
-              <h3>Popular Posts</h3>
+              <h3>{{labels.POPULAR_POSTS}}</h3>
               <ul class="widget-tabs">
                 <li>
                   <div class="widget-content">

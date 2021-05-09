@@ -2,23 +2,24 @@
 
 
 
-<div class="container margin-top-100">
+<div class="container margin-top-100" [ngClass]=" lang==='ar' ? 'rtl' : ''">
   <div class="blog-page">
     <div class="row">
 
 
       <div infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll($event)">
-        <div *ngFor="let box of blogs">
-          <div class="col-lg-9 col-md-8 padding-right-30">
+        <div>
+          <!-- <div *ngFor="let box of blogs"> -->
+          <div class="col-lg-9 col-md-8 padding-right-30" [ngClass]=" lang==='ar' ? 'FeaturedBlogRTL' : ''">
             <div class="blog-post single-post">
-              <img class="post-img" src="images/blog-post-02.jpg" alt="">
+              <img class="post-img" [src]="blog.featuredImage" alt="{{lang==='en'?blog.titleEn:blog.titleAr}}">
 
               <div class="post-content">
 
-                <h3>{{ box.name }}</h3>
+                <h3>{{ lang==='en'?blog.titleEn:blog.titleAr}}</h3>
 
                 <ul class="post-meta">
-                  <li>August 22, 2019</li>
+                  <li>{{blog.publishedAt}}</li>
                   <li><a href="#">Tips</a></li>
                   <li><a href="#">5 Comments</a></li>
                 </ul>
@@ -26,21 +27,31 @@
                 <div [innerHtml]="html"></div>
 
                 <!-- Share Buttons -->
-                <ul class="share-buttons margin-top-40 margin-bottom-0">
+                <ul class="share-buttons margin-top-40 margin-bottom-0" [ngClass]=" lang==='ar' ? 'ltr' : ''">
                   <li><a class="fb-share" href="#"><i class="fa fa-facebook"></i> Share</a></li>
                   <li><a class="twitter-share" href="#"><i class="fa fa-twitter"></i> Tweet</a></li>
                   <li><a class="gplus-share" href="#"><i class="fa fa-google-plus"></i> Share</a></li>
                   <li><a class="pinterest-share" href="#"><i class="fa fa-pinterest-p"></i> Pin</a></li>
                 </ul>
                 <div class="clearfix"></div>
+                <ng-container *ngIf="lang==='en'  && blog.tagsEn && blog.tagsEn.length !== 0">
 
+                  <ul class="share-buttons margin-top-40 margin-bottom-0" *ngFor="let tag of blog.tagsEn">
+                    <li><a class="button border " href="#">{{tag.name}}</a></li>
+                  </ul>
+                </ng-container>
+                <ng-container *ngIf="lang==='ar' && blog.tagsAr && blog.tagsAr.length !== 0">
+                  <ul class="share-buttons margin-top-40 margin-bottom-0" *ngFor="let tag of blog.tagsAr">
+                    <li><a class="button border " href="#">{{tag.name}}</a></li>
+                  </ul>
+                </ng-container>
               </div>
             </div>
             <div class="about-author">
               <img src="images/user-avatar.jpg" alt="" />
               <div class="about-description">
-                <h4>Tom Perrin</h4>
-                <a href="#">tom@example.com</a>
+                <h4>{{blog.authorName}}</h4>
+                <a href="#">{{blog.author}}</a>
                 <p>Nullam ultricies, velit ut varius molestie, ante metus condimentum nisi, dignissim
                   facilisis turpis ex in libero. Sed porta ante tortor, a pulvinar mi facilisis nec. Proin
                   finibus dolor ac convallis congue.</p>
@@ -48,7 +59,7 @@
             </div>
 
             <div class="clearfix"></div>
-            <h4 class="headline margin-top-25">Related Posts</h4>
+            <h4 class="headline margin-top-25">{{labels.RELATED_POSTS}}</h4>
             <div class="row">
               <div class="col-md-6">
                 <a href="#" class="blog-compact-item-container">
@@ -90,9 +101,10 @@
             <div class="sidebar right">
 
               <div class="widget">
-                <h3 class="margin-top-0 margin-bottom-25">Search Blog</h3>
+                <h3 class="margin-top-0 margin-bottom-25">{{labels.SEARCH}}</h3>
                 <div class="search-blog-input">
-                  <div class="input"><input class="search-field" type="text" placeholder="Type and hit enter" value="" />
+                  <div class="input"><input class="search-field" type="text" [placeholder]="labels.SEARCH_PLACEHOLDER"
+                      value="" />
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -100,7 +112,7 @@
 
               <div class="widget margin-top-40">
 
-                <h3>Popular Posts</h3>
+                <h3>{{labels.POPULAR_POSTS}}</h3>
                 <ul class="widget-tabs">
                   <li>
                     <div class="widget-content">
