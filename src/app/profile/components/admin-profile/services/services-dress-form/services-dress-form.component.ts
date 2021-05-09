@@ -136,7 +136,7 @@ export class ServicesDressFormComponent implements OnInit, AfterViewInit {
     });
 
     $("#categories").change({ angularThis: this.that }, function (e, params) {
-      e.data.angularThis.dress.category = $("#categories").chosen().val();
+      e.data.angularThis.service.category = $("#categories").chosen().val();
     });
 
     $("#dressCut").change({ angularThis: this.that }, function (e, params) {
