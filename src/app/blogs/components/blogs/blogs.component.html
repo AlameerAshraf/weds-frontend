@@ -4,7 +4,7 @@
 
 <div id="wrapper">
 
-  <div id="titlebar" class="gradient">
+  <div id="titlebar" class="gradient" [ngClass]=" lang==='ar' ? 'rtl' : ''">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -16,10 +16,10 @@
 
 
 
-  <div class="container">
+  <div class="container" [ngClass]=" lang==='ar' ? 'rtl' : ''">
     <div class="blog-page">
       <div class="row">
-        <div class="col-lg-9 col-md-8 padding-right-30">
+        <div class="col-lg-9 col-md-8 padding-right-30" [ngClass]=" lang==='ar' ? 'FeaturedBlogRTL' : ''">
           <div class="blog-post">
             <a href="" class="post-img">
               <img [src]="featuredPost.featuredImage" alt="">
@@ -40,8 +40,8 @@
                 {{ featuredPost.metaDescriptionEn }}
               </p>
 
-              <a style="cursor: pointer;" (click)="navigateToBlogPost(featuredPost._id)"
-                class="read-more">Read More <i class="fa fa-angle-right"></i></a>
+              <a style="cursor: pointer;" (click)="navigateToBlogPost(featuredPost._id)" class="read-more">Read More <i
+                  class="fa fa-angle-right"></i></a>
             </div>
 
           </div>
@@ -50,8 +50,9 @@
           <div class="sidebar right">
             <div class="widget">
               <h3 class="margin-top-0 margin-bottom-25">Search Blog</h3>
-              <div class="search-blog-input">
-                <div class="input"><input class="search-field" type="text" placeholder="Type and hit enter" value="" />
+              <div class="search-blog-input   ">
+                <div class="input" [ngClass]=" lang==='ar' ? 'extraPadding' : ''"><input class="search-field"
+                    type="text" placeholder="Type and hit enter" value="" />
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -83,58 +84,27 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-12 col-md-8 padding-right-30">
+      <div class="col-lg-12 col-md-8 padding-right-30" *ngIf="blogs&& blogs.length > 0 ">
 
-        <div class="col-md-4">
-          <a href="#" class="blog-compact-item-container">
+        <div class="col-md-4" *ngFor="let blog of blogs">
+          <a class="blog-compact-item-container" style="cursor: pointer;"
+            (click)="navigateToBlog(blog.titleEn,blog._id)">
             <div class="blog-compact-item">
-              <img src="images/blog-compact-post-01.jpg" alt="">
-              <span class="blog-item-tag">Tips</span>
+              <img [src]="blog.featuredImage" [alt]="blog.titleEn">
+              <span class="blog-item-tag">{{lang==='ar'?blog.categoryNameArabic:blog.categoryNameEnglish}}</span>
               <div class="blog-compact-item-content">
                 <ul class="blog-post-tags">
-                  <li>22 August 2019</li>
+                  <li>{{blog.publishedAt}}</li>
                 </ul>
-                <h3>Hotels for All Budgets</h3>
-                <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem.
-                  Pellentesque pellentesque.</p>
+                <h3>{{lang==='ar'?blog.titleAr:blog.titleEn}}</h3>
+                <p>{{lang==='ar'?blog.subtitleAr:blog.subtitleEn}}</p>
               </div>
             </div>
           </a>
         </div>
 
-        <div class="col-md-4">
-          <a href="#" class="blog-compact-item-container">
-            <div class="blog-compact-item">
-              <img src="images/blog-compact-post-03.jpg" alt="">
-              <span class="blog-item-tag">Tips</span>
-              <div class="blog-compact-item-content">
-                <ul class="blog-post-tags">
-                  <li>10 August 2019</li>
-                </ul>
-                <h3>The Best Cofee Shops In Sydney Neighborhoods</h3>
-                <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem.
-                  Pellentesque pellentesque.</p>
-              </div>
-            </div>
-          </a>
-        </div>
 
-        <div class="col-md-4">
-          <a href="#" class="blog-compact-item-container">
-            <div class="blog-compact-item">
-              <img src="images/blog-compact-post-01.jpg" alt="">
-              <span class="blog-item-tag">Tips</span>
-              <div class="blog-compact-item-content">
-                <ul class="blog-post-tags">
-                  <li>22 August 2019</li>
-                </ul>
-                <h3>Hotels for All Budgets</h3>
-                <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem.
-                  Pellentesque pellentesque.</p>
-              </div>
-            </div>
-          </a>
-        </div>
+
 
       </div>
     </div>
@@ -143,6 +113,15 @@
 
 
 
+  <!-- Pagination -->
+  <div class="clearfix"></div>
+  <div class="row" *ngIf="collectionSize > 0 && showPaging">
+    <div class="col-md-12">
+      <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize"
+        [maxSize]="5">
+      </weds-paging>
+    </div>
+  </div>
   <!-- Back To Top Button -->
   <div id="backtotop"><a href="#"></a></div>
 

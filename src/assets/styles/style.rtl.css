@@ -9092,7 +9092,7 @@ a.read-more:hover i {
   position: absolute;
   display: inline-block;
   font-family: "simple-line-icons";
-  right: 18px;
+  left: 18px;
   top: 13px;
   margin-bottom: 0;
   background-color: #fff;
@@ -9371,7 +9371,7 @@ span.blog-item-tag {
   margin-bottom: 9px;
   position: absolute;
   top: 30px;
-  left: 32px;
+  right: 32px;
   z-index: 110;
 }
 
@@ -21546,3 +21546,6 @@ li:hover .button.to-left {
 .main-search-input{
   text-align: right !important;
 }
+.extraPadding{
+    padding-inline-start:1.5em !important;
+  }
