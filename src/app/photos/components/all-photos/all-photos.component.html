@@ -48,8 +48,8 @@
                 <div class="listing-item-content">
                   <h3>{{ lang == "en" ?  photo.titleEn : photo.tagAr }}</h3>
                 </div>
-                <span (click) = "bookmarkPhoto($event , photo._id)" [id]="photo._id" [ngClass]="{ 'liked' : photo.isLiked }"
-                class="like-icon"></span>
+                <span (click) = "bookmarkPhoto($event , photo._id)" [id]="photo._id"
+                  class="like-icon"></span>
               </div>
             </a>
           </div>
