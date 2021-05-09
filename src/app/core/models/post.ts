@@ -23,11 +23,12 @@ export class post {
   metaDescriptionAr?: string;
   readingTime?: number;
   relatedPosts?: any[] = [];
-  images?: { id:string; url: string , arabicDesc: string, englishDesc: string }[] = [];
+  images?: { id: string; url: string, arabicDesc: string, englishDesc: string }[] = [];
   publishedAt?: Date;
   publishedDate?: string;
   authorName?: string;
-  categoryName?: string;
+  categoryNameEnglish?: string;
+  categoryNameArabic?: string;
   isPublished?: boolean = false;
   isRemoved?: boolean = false;
 }
