@@ -7,7 +7,6 @@ export class ring {
   descriptionEn?: string = "";
   descriptionAr?: string = "";
   image?: string = "";
-  category?: string= "";
   purity?: string= "";
   stoneShape?: string= "";
   designer?: string= "";

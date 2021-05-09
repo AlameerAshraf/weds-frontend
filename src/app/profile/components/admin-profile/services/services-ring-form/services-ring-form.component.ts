@@ -138,7 +138,7 @@ export class ServicesRingFormComponent implements OnInit, AfterViewInit {
     });
 
     $("#categories").change({ angularThis: this.that }, function (e, params) {
-      e.data.angularThis.ring.category = $("#categories").chosen().val();
+      e.data.angularThis.service.category = $("#categories").chosen().val();
     });
 
     $("#gender").change({ angularThis: this.that }, function (e, params) {

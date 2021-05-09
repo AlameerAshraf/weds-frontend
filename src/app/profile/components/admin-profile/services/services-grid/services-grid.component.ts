@@ -101,6 +101,7 @@ export class ServicesGridComponent implements OnInit {
 
 
   navigateToCreateNewService() {
+    this.getLookups();
     this.router.navigate([`profile/${this.lang}/admin/services-action/new`]);
   }
 

@@ -75,7 +75,7 @@
                   <select id="categories" class="chosen-select-no-single">
                     <option [label]="labels.SELECT" value="">{{labels.SELECT}}</option>
                     <ng-container *ngFor="let category of categories">
-                      <option [selected]="category._id === dress.category" [value]="category._id">{{ category.nameEn }}
+                      <option [selected]="category._id === service.category" [value]="category._id">{{ category.nameEn }}
                       </option>
                     </ng-container>
                   </select>

@@ -12,5 +12,6 @@ export class vendorService {
     numberOfLoves?: Number = 0;
     ranks: { user?: string, criteria?: string, value?: Number }[] = [];
     comments: { userEmail?: string, body?: string, likes?: Number, date?: Date }[] = [];
+    category?: string= "";
     attributes: any = {};
 };
