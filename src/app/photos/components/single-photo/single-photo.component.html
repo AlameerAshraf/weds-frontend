@@ -6,25 +6,24 @@
     <div class="col-lg-6 col-md-4 margin-top-0 margin-bottom-60">
 			<div class="listing-item-container compact order-summary-widget">
 				<div class="listing-item" style="height: 550px;">
-					<img src="images/listing-item-04.jpg" alt="">
+					<img [src]="photo.image" alt="">
 
 					<div class="listing-item-content">
-						<h3>Burger House</h3>
-						<span>2726 Shinn Street, New York</span>
+						<h3>{{ lang == "en" ? photo.titleEn : photo.titleAr }}</h3>
+						<span>{{ lang == "en" ? photo.titleEn : photo.titleAr }}</span>
 					</div>
 				</div>
 			</div>
 
 		</div>
 		<div class="col-lg-6 col-md-8 padding-right-30">
-			<h4 class="margin-top-0" style="color: #046B69 !important; cursor: pointer;" >Champagne mermaid dress</h4>
-			<h2 class="margin-top-0 margin-bottom-30">Champagne mermaid dress</h2>
+			<h4 (click) = "openVendor(photo.vendor)"
+        class="margin-top-0" style="color: #046B69 !important; cursor: pointer;" >{{ vendorName }}</h4>
+			<h2 class="margin-top-0 margin-bottom-30">{{ lang == "en" ? photo.titleEn : photo.titleAr }}</h2>
 			<div class="row">
 				<div class="col-md-12">
 					<p style="font-size: 20px;">
-            The stunningly designed champagne wedding dress features a mermaid cut,
-            with a sweetheart neckline, and the dress is made of embroidered tulle,
-            with very elegant detailing at the tail of the dress.
+            {{ lang == "en" ? photo.descriptionEn : photo.descriptionAr }}
           </p>
 				</div>
 			</div>
