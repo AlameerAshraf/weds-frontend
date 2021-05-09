@@ -35,42 +35,12 @@
       ]
     },
     {
-      "name": "Her",
-      "url": "",
-      "child": [
-        {
-          "name": "Designers",
-          "url": ""
-        },
-        {
-          "name": "Bridal Boutique",
-          "url": ""
-        },
-        {
-          "name": "Wedding Dresses",
-          "url": ""
-        },
-        {
-          "name": "Rings",
-          "url": ""
-        },
-        {
-          "name": "Makeup Artists",
-          "url": ""
-        },
-        {
-          "name": "More",
-          "url": "segment/ar/her"
-        }
-      ]
-    },
-    {
-      "name": "لها",
+      "name": "لكي",
       "url": "",
       "child": [
         {
           "name": "المصممين",
-          "url": ""
+          "url": "http://localhost:8548/segment/ar/all-categories/DESIGNERS"
         },
         {
           "name": "بوكية الزفاف",
@@ -86,6 +56,32 @@
         },
         {
           "name": "ميكاب ارتيست",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "name": "لك",
+      "url": "",
+      "child": [
+        {
+          "name": "بدل",
+          "url": ""
+        },
+        {
+          "name": "الصحة",
+          "url": ""
+        },
+        {
+          "name": "صالون رجالي",
+          "url": ""
+        },
+        {
+          "name": "الرشاقة",
+          "url": ""
+        },
+        {
+          "name": "المزيد",
           "url": ""
         }
       ]
