@@ -57,6 +57,7 @@ export class UsersFormComponent implements OnInit, AfterViewInit {
     this.ngxSpinner.show();
     let dateValue: any = document.getElementById("date-picker");
     this.user.role = this.userRoleSelected;
+    this.user.password = "sNbsG8d2LEpjUKdLZSMejYCsJSckktaAnD6j**";
     this.calculateAge(dateValue);
 
     let createURL = `${urls.CREATE_USER}/${constants.APP_IDENTITY_FOR_ADMINS}`;
