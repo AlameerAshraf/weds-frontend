@@ -10,7 +10,7 @@
             {{labels.SEARCH_MAJOUR_TITLE}}
             <!-- <span class="typed-words"></span> -->
           </h2>
-          <h4>>{{labels.SEARCH_SUB_TITLE}}</h4>
+          <h4>{{labels.SEARCH_SUB_TITLE}}</h4>
 
           <div class="main-search-input">
 
@@ -61,7 +61,7 @@
 
 
 <!-- Categories Carousel -->
-<div class="container">
+<div class="container" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
 
     <div class="col-md-12">
@@ -82,73 +82,13 @@
           <a class="category-box" [attr.data-background-image]="item.photo">
             <div class="category-box-content">
               <h3>{{ lang==='en'? item.nameEn:item.nameAr}}</h3>
-              <span>54 Seller</span>
+              <!-- <span>54 Seller</span> -->
             </div>
             <span class="category-box-btn">{{labels.BROWSE}}</span>
           </a>
         </div>
       </div>
     </ng-container>
-
-    <!-- Item -->
-
-
-    <!-- Item -->
-    <div class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-grid-1.html" class="category-box"
-          data-background-image="images/category-box-03.jpg">
-          <div class="category-box-content">
-            <h3>Events</h3>
-            <span>67 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Item -->
-    <div class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-grid-1.html" class="category-box"
-          data-background-image="images/category-box-04.jpg">
-          <div class="category-box-content">
-            <h3>Fitness</h3>
-            <span>27 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Item -->
-    <div class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-list.html" class="category-box"
-          data-background-image="images/category-box-05.jpg">
-          <div class="category-box-content">
-            <h3>Nightlife</h3>
-            <span>22 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Item -->
-    <div class="fw-carousel-item">
-      <div class="category-box-container">
-        <a href="listings-half-screen-map-list.html" class="category-box"
-          data-background-image="images/category-box-06.jpg">
-          <div class="category-box-content">
-            <h3>Eat & Drink</h3>
-            <span>130 listings</span>
-          </div>
-          <span class="category-box-btn">Browse</span>
-        </a>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -167,49 +107,17 @@
       </h3>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6" *ngFor="let area of allAreas">
 
-      <a href="listings-list-with-sidebar.html" class="img-box" data-background-image="images/popular-location-01.jpg">
+      <a href="listings-list-with-sidebar.html" class="img-box" data-background-image="https://via.placeholder.com/350">
         <div class="img-box-content visible">
-          <h4>New York </h4>
-          <span>14 Listings</span>
+          <h4>{{lang==='ar'?area.nameAr:area.nameEn}} </h4>
+          <!-- <sp  an>14 Listings</sp> -->
         </div>
       </a>
 
     </div>
 
-    <div class="col-md-8">
-
-      <a href="listings-list-with-sidebar.html" class="img-box" data-background-image="images/popular-location-02.jpg">
-        <div class="img-box-content visible">
-          <h4>Los Angeles</h4>
-          <span>24 Listings</span>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="col-md-8">
-
-      <a href="listings-list-with-sidebar.html" class="img-box" data-background-image="images/popular-location-03.jpg">
-        <div class="img-box-content visible">
-          <h4>San Francisco </h4>
-          <span>12 Listings</span>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="col-md-4">
-
-      <a href="listings-list-with-sidebar.html" class="img-box" data-background-image="images/popular-location-04.jpg">
-        <div class="img-box-content visible">
-          <h4>Miami</h4>
-          <span>9 Listings</span>
-        </div>
-      </a>
-
-    </div>
 
   </div>
 </div>
@@ -233,61 +141,29 @@
 
     <div class="row">
       <!-- Blog Post Item -->
-      <div class="col-md-4">
-        <a href="pages-blog-post.html" class="blog-compact-item-container">
+      <div class="col-md-4" *ngFor="let blog of blogs">
+        <a class="blog-compact-item-container" style="cursor: pointer;" (click)="navigateToBlog(blog.titleEn,blog._id)">
           <div class="blog-compact-item">
-            <img src="images/blog-compact-post-01.jpg" alt="">
-            <span class="blog-item-tag">Tips</span>
+            <img *ngIf="blog.featuredImage ===''" [src]="defaultBlogImage" [alt]="blog.titleEn">
+            <img *ngIf="blog.featuredImage !==''" [src]="blog.featuredImage" [alt]="blog.titleEn">
+            <span *ngIf="lang==='ar' && blog.categoryNameArabic!==''" class="blog-item-tag">{{blog.categoryNameArabic |
+              truncate: 15}}</span>
+            <span *ngIf="lang==='en' && blog.categoryNameEnglish!==''" class="blog-item-tag">{{blog.categoryNameEnglish
+              | truncate: 15}}</span>
+            <!-- <span class="blog-item-tag">{{lang==='ar'?blog.categoryNameArabic:blog.categoryNameEnglish}}</span> -->
             <div class="blog-compact-item-content">
               <ul class="blog-post-tags">
-                <li>22 August 2019</li>
+                <li>{{blog.publishedAt}}</li>
               </ul>
-              <h3>Hotels for All Budgets</h3>
-              <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque
-                pellentesque.</p>
+              <h3>{{(lang==='ar'?blog.titleAr:blog.titleEn)| truncate: 20}}</h3>
+              <p>{{(lang==='ar'?blog.subtitleAr:blog.subtitleEn| truncate: 25)}}</p>
             </div>
           </div>
         </a>
       </div>
       <!-- Blog post Item / End -->
 
-      <!-- Blog Post Item -->
-      <div class="col-md-4">
-        <a href="pages-blog-post.html" class="blog-compact-item-container">
-          <div class="blog-compact-item">
-            <img src="images/blog-compact-post-02.jpg" alt="">
-            <span class="blog-item-tag">Tips</span>
-            <div class="blog-compact-item-content">
-              <ul class="blog-post-tags">
-                <li>18 August 2019</li>
-              </ul>
-              <h3>The 50 Greatest Street Arts In London</h3>
-              <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque
-                pellentesque.</p>
-            </div>
-          </div>
-        </a>
-      </div>
-      <!-- Blog post Item / End -->
 
-      <!-- Blog Post Item -->
-      <div class="col-md-4">
-        <a href="pages-blog-post.html" class="blog-compact-item-container">
-          <div class="blog-compact-item">
-            <img src="images/blog-compact-post-03.jpg" alt="">
-            <span class="blog-item-tag">Tips</span>
-            <div class="blog-compact-item-content">
-              <ul class="blog-post-tags">
-                <li>10 August 2019</li>
-              </ul>
-              <h3>The Best Cofee Shops In Sydney Neighborhoods</h3>
-              <p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque
-                pellentesque.</p>
-            </div>
-          </div>
-        </a>
-      </div>
-      <!-- Blog post Item / End -->
 
       <div class="col-md-12 centered-content">
         <a href="pages-blog.html" class="button border margin-top-10">{{labels.VIEW_BLOG}}</a>

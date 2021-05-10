@@ -6,31 +6,23 @@
       "child": [
         {
           "name": "جدول المهام",
-          "url": ""
+          "url": "/ar/checklist"
         },
         {
           "name": "تكاليف الفرح",
-          "url": ""
+          "url": "/ar/budgeter"
         },
         {
           "name": "هدايا الفرح",
-          "url": ""
+          "url": "/ar/registry-list"
         },
         {
           "name": "قائمة الضيوف",
-          "url": ""
+          "url": "/ar/guest-list"
         },
         {
           "name": "موقع الزفاف",
-          "url": ""
-        },
-        {
-          "name": "موقع الزوجين",
-          "url": ""
-        },
-        {
-          "name": "المزيد",
-          "url": ""
+          "url": "/ar/wedding-website"
         }
       ]
     },
