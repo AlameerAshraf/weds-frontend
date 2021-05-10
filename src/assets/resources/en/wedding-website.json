@@ -11,7 +11,7 @@
   "ALL": "All",
   "SEARCH": "Search ",
   "RESET": "RESET",
-  "EMAIL": "EMail",
+  "EMAIL": "Email",
   "SELECT_TEMPLATE": "Select Website Template",
   "WEDDING_DETAIL": "Wedding Details",
   "WEDDING_PRE_DATE": "Pre-wedding marital ceremony",
@@ -35,5 +35,6 @@
   "SITE_STATUS": "Your wedding website status",
   "SITE_STATUS_TITLE": "Not a log time and your site will be published",
   "PREVIEW_SITE": "Preview website ",
-  "UPDATE_SITE_INFO": "Update my info "
+  "UPDATE_SITE_INFO": "Update my info ",
+  "STATUS" : "Status"
 }

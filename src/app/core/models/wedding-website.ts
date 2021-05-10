@@ -27,5 +27,7 @@ export class weddingWebsite {
     street?: string;
   } = { venue : "", address: "", latitude: 0 , longtitude: 0  };
   addressDetails ?:any[] = [];
+  partnerName?: string;
+  userName?: string;
 }
 

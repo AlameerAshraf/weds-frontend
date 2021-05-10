@@ -75,8 +75,6 @@ export class VendorComponent implements OnInit, AfterViewInit {
         this.pinterestURL = this.vendor.social.find(x => x.includes('pinterest'));
         this.twitterURL = this.vendor.social.find(x => x.includes('twitter'));
 
-        console.log(this.vendor)
-
         this.htmlView = this._sanitizer.bypassSecurityTrustHtml(this.vendor.descriptionURLAr);
         this.vendor.avatar = this.vendor.avatar == undefined ? 'assets/images/defaults/avatar/vendor.png' : this.vendor.avatar;
         this.bindCurrentUserRate(this.vendor.ranks);
