@@ -1,3 +1,4 @@
+import { localStorageService } from './../../../../core/services/local-storage/local-storage';
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -32,7 +33,7 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
 
   reset : { email?: string, oldPassword?: string , newPassword?: string , confirmNewPassword?: string } = {};
 
-  constructor(@Inject(DOCUMENT) private document: any,
+  constructor(@Inject(DOCUMENT) private document: any, private storage: localStorageService,
     private elementRef: ElementRef, private http: httpService , private resources: resources,
     private ngxSpinner: NgxSpinnerService , private toastr: ToastrService) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
@@ -58,6 +59,7 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
 
         if(savedUser != null){
           this.user = savedUser
+          this.setUserDataInStorage(this.user);
           this.user.settings.cover = this.user.settings.cover || 'http://via.placeholder.com/1920x315';
           this.user.settings.avatar = this.user.settings.avatar || 'assets/images/defaults/avatar/vendor.png';
           this.user.address.latitude = this.latitude =  this.user.address.latitude;
@@ -73,6 +75,15 @@ export class ProfileDetailsComponent implements OnInit, AfterViewInit {
         this.toastr.error("Our bad sorry!" , "My bad, server couldn't load your budegeters.");
       }
     });
+  };
+
+  setUserDataInStorage(user: any){
+    let savedUserData = user as user;
+    this.storage.setLocalStorage('weds360#name', savedUserData.name);
+    this.storage.setLocalStorage('weds360#role', btoa(savedUserData.role));
+    this.storage.setLocalStorage('weds360#avatar', savedUserData.settings.avatar);
+    this.storage.setLocalStorage('weds360#email', btoa(savedUserData.email));
+    this.storage.setLocalStorage('weds360#id', btoa(savedUserData._id));
   };
 
   updateUserInfo(){
