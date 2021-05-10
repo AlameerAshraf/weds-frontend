@@ -37,38 +37,22 @@
       </div>
     </div>
 
-    <div class="col-md-6 col-xs-6">
-      <!-- Sort by -->
-      <div class="sort-by">
-        <div class="sort-by-select">
-          <select data-placeholder="Default order" class="chosen-select-no-single">
-            <option>{{labels.ORDER_DEFAULT}}</option>
-            <option>{{labels.ORDER_HIGH}}</option>
-            <option>{{labels.ORDER_MOST}}</option>
-            <option>{{labels.ORDER_NEWEST}}</option>
-            <option>{{labels.ORDER_OLDEST}}</option>
-          </select>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-
     <div class="col-lg-12 col-md-12 padding-right-30">
-
       <div class="row">
 
-        <div class="col-lg-3 col-md-12">
-          <a href="listings-single-page.html" class="listing-item-container">
+        <div class="col-lg-3 col-md-12" *ngFor="let ring of rings | slice:skip:limit">
+          <a style="cursor: pointer;" (click)="navigateToRing(ring._id)" class="listing-item-container">
             <div class="listing-item">
-              <img src="images/listing-item-01.jpg" alt="">
+              <img [src]="ring.attributes.image" alt="">
 
 
               <div class="listing-item-content">
-                <h3>Tom's Restaurant</h3>
+                <h3>{{ ring.attributes.nameEn }}</h3>
               </div>
               <span class="like-icon"></span>
             </div>

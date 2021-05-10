@@ -7,33 +7,33 @@
     <div class="col-lg-6 col-md-4 margin-top-0 margin-bottom-60">
       <div class="listing-item-container compact order-summary-widget">
         <div class="listing-item" style="height: 600px;">
-          <img src="images/listing-item-04.jpg" alt="">
+          <img [src]="dress.attributes.image" alt="">
 
           <div class="listing-item-content">
             <div class="numerical-rating" data-rating="5.0"></div>
-            <h3>Burger House</h3>
-            <span>2726 Shinn Street, New York</span>
+            <h3>{{ lang == "en" ? dress.attributes.nameEn :  dress.attributes.nameAr }}</h3>
+            <span>{{ lang == "en" ? dress.vendorNameEn : dress.vendorNameAr }} </span>
           </div>
         </div>
       </div>
 
     </div>
     <div class="col-lg-6 col-md-8 padding-right-30">
-      <h4 class="margin-top-0" style="color: #046B69 !important; cursor: pointer;">Champagne mermaid dress</h4>
-      <h2 class="margin-top-0 margin-bottom-30">Champagne mermaid dress</h2>
+      <h4 (click) = "openVendor(dress.vendor)"
+        class="margin-top-0" style="color: #046B69 !important; cursor: pointer;">
+        {{ lang == "en" ? dress.vendorNameEn : dress.vendorNameAr }} </h4>
+      <h2 class="margin-top-0 margin-bottom-30">{{ lang == "en" ? dress.attributes.nameEn :  dress.attributes.nameAr }}</h2>
       <div class="row">
         <div class="col-md-12">
           <p style="font-size: 20px;">
-            The stunningly designed champagne wedding dress features a mermaid cut,
-            with a sweetheart neckline, and the dress is made of embroidered tulle,
-            with very elegant detailing at the tail of the dress.
+            {{ lang == "en" ? dress.attributes.descriptionEn :  dress.attributes.descriptionAr }}
           </p>
         </div>
       </div>
       <h3 class="margin-top-10" style="font-size: 20px;">
-        <span class="dot" style="background-color: chocolate;"></span> Orang <br>
-        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Neckline: Sweetheart<br>
-        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Style: Sweetheart
+        <span class="dot" style="background-color: chocolate;"></span> {{  dress.attributes.color }} <br>
+        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Neckline: {{  dress.attributes.neckline }}<br>
+        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Style: {{ dress.attributes.style }}
       </h3>
 
       <h3 class="margin-top-55 margin-bottom-10">

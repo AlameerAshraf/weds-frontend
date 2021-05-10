@@ -81,5 +81,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const url = this.common.changeLanguge();
     alert(url);
   }
+  changeLanguge() {
+    const baseUrl = window.location.href.toString().toLowerCase();
+    const isArabic = this.lang === 'ar';
+    const url = isArabic ? baseUrl.replace('/ar/', '/en/') : baseUrl.replace('/en/', '/ar/')
+    window.location.href = url
+  }
 
 }

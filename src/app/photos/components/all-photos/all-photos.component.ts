@@ -2,6 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { constants, httpService, localStorageService, urls, responseModel, photo } from 'src/app/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-photos',
@@ -13,6 +14,7 @@ export class AllPhotosComponent implements OnInit {
   photos: photo[] = [];
   currentUserEmail: string;
   lang = "en";
+  bookmarkedPhotosList: any[] = [];
 
   // Paging vars!
   collectionSize: number = 0;
@@ -23,13 +25,28 @@ export class AllPhotosComponent implements OnInit {
   // End paging vars!
 
   constructor(private localStorage: localStorageService , private http: httpService ,
-    private spinner: NgxSpinnerService, private toaster: ToastrService) {
+    private spinner: NgxSpinnerService, private toaster: ToastrService, private router: Router) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
     }
 
-  ngOnInit() {
+  async ngOnInit() {
+    let loaded = await this.getBookmarkedPhotos();
     this.checkLoginStatus();
     this.getAllPhotos();
+  }
+
+  getBookmarkedPhotos(){
+    return new Promise((resolve , reject) => {
+      this.spinner.show()
+
+      let bookmarkesURL = `${urls.GET_USER_BOOKMARKS_PER_TYPE}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`
+      this.http.Get(bookmarkesURL, { type: 'PHOTO' }).subscribe((response: responseModel) => {
+        if (!response.error) {
+          this.bookmarkedPhotosList = response.data;
+          resolve({ bookmarksLoaded: true })
+        }
+      })
+    })
   }
 
   getAllPhotos(){
@@ -42,44 +59,39 @@ export class AllPhotosComponent implements OnInit {
         this.photos = response.data as photo[];
         this.collectionSize = this.photos.length;
         this.pageChange(1);
-      } else {
-
+        this.marking();
       }
     });
   };
 
   navigateToPhoto(photoId){
-
+    this.router.navigate([`photos/${this.lang}/photo/${photoId}`]);
   };
 
   selectBookmark(e: any, photoId) {
-    e.preventDefault();
+    e.stopPropagation();
     let targetTemplate = this.photos.find(x => x._id == photoId);
-    targetTemplate.isLiked = true;
+    targetTemplate.isLiked = !targetTemplate.isLiked;
 
-    console.log(targetTemplate)
-    // let like = document.getElementById(photoId);
-
-    // if (targetTemplate.isLiked) {
-    //   like.classList.remove("liked");
-    // } else {
-    //   like.classList.add("liked");
-    // }
+    if (targetTemplate.isLiked) {
+      let like = document.getElementById(photoId);
+      like.classList.add("liked");
+      this.bookmarkPhoto(photoId);
+    } else {
+      let like = document.getElementById(photoId);
+      like.classList.remove("liked");
+    }
   };
 
 
-  bookmarkPhoto(e: any, photoId: any) {
-    this.selectBookmark(e , photoId);
-    return
+  bookmarkPhoto(photoId: any) {
     this.spinner.show()
 
-    let deleteURL = `${urls.DELETE_USER_BOOKMARKS}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`
-    console.log({ deleteURL })
-    this.http.Post(deleteURL, { id: photoId, actionType: 'bookmark', entityType: 'PHOTO' }, {}).subscribe((response: responseModel) => {
+    let bookmarkPhotoURL = `${urls.DELETE_USER_BOOKMARKS}/${constants.APP_IDENTITY_FOR_ADMINS}/${this.currentUserEmail}`
+    this.http.Post(bookmarkPhotoURL, { id: photoId, actionType: 'bookmark', entityType: 'PHOTO' }, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.spinner.hide()
-        this.toaster.success("bookmark has been deleted successfully", "Photo has been bookmarked successfully ❤");
-        // this.getAllBookmarks();
+        this.toaster.success("bookmark has been updated successfully", "Photo has been bookmarked successfully ❤");
       } else {
         this.spinner.hide()
         this.toaster.error("Our bad sorry!", "Ooh Sorry, your bookmark couldn't be created on the server!")
@@ -104,6 +116,21 @@ export class AllPhotosComponent implements OnInit {
       window.scroll(0,0);
       this.limit = this.pageSize * pageNumber;
       this.skip = Math.abs(this.pageSize - this.limit);
-    }, 1000);
+    }, 300);
+    this.marking();
+  };
+
+  marking(){
+    setTimeout(() => {
+      this.photos.forEach((photo) => {
+        let isPhotoLiked = this.bookmarkedPhotosList.find(x => x.id == photo._id);
+        if(isPhotoLiked != undefined){
+          let like = document.getElementById(photo._id);
+          if(like != null){
+            like.classList.add("liked");
+          }
+        }
+      })
+    }, 350);
   };
 }

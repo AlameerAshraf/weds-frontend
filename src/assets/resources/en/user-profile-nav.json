@@ -6,31 +6,23 @@
       "child": [
         {
           "name": "Check List",
-          "url": ""
+          "url": "/en/checklist"
         },
         {
           "name": "Budgeter",
-          "url": ""
+          "url": "/en/budgeter"
         },
         {
           "name": "Registry List",
-          "url": ""
+          "url": "/en/registry-list"
         },
         {
           "name": "Guest List",
-          "url": ""
+          "url": "/en/guest-list"
         },
         {
           "name": "Wedding Website",
-          "url": ""
-        },
-        {
-          "name": "Couple Website",
-          "url": ""
-        },
-        {
-          "name": "More",
-          "url": ""
+          "url": "/en/wedding-website"
         }
       ]
     },
