@@ -25,8 +25,8 @@ export class ProfileMainLayoutComponent implements OnInit {
   selectedTitle: any;
   baseUrlWithLang: string;
 
-  name: 'me';
-  photo: 'assets/images/defaults/avatar/me.jpg'
+  name = 'me';
+  photo = 'assets/images/defaults/avatar/vendor.png';
 
 
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
@@ -36,8 +36,8 @@ export class ProfileMainLayoutComponent implements OnInit {
     this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
     const username = this.localStorage.getLocalStorage("weds360#name")
     const photo = this.localStorage.getLocalStorage("weds360#avatar");
-    this.photo = photo ?? this.photo;
-    this.name = username ?? this.name;
+    this.photo = !photo ? this.photo : photo;
+    this.name = !username ? this.name : username;
   }
 
   async ngOnInit() {
