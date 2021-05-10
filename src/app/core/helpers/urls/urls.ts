@@ -136,6 +136,7 @@ export class urls {
   public static get GET_ALL_COMMENTS(): string { return this.BASE_URL + '/vendors/get-all-comments' };
   public static get RATE_VENDOR(): string { return this.BASE_URL + '/vendors/rate-vendor' };
   public static get GET_ALL_VENDOR_FEATURES_COUNT(): string { return this.BASE_URL + '/vendors/get-all-vendor-features-count' };
+  public static get GET_SERVICES_BY_TYPE(): string { return this.BASE_URL + '/vendors/get-service-by-type' };
 
   // Messages ..
   public static get SEND_MESSAGE(): string { return this.BASE_URL + '/message/send' };

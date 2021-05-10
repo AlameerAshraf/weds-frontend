@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { constants, httpService, resources } from 'src/app/core';
+import { constants, httpService, localStorageService, resources, vendorService } from 'src/app/core';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-single-dress',
@@ -10,10 +10,26 @@ export class SingleDressComponent implements OnInit {
   //labels
   labels: any = {};
   lang: string;
-  constructor(private resources: resources, private http: httpService) { this.loadResources() }
+  currentUserEmail: string;
+  vendorName: string;
+
+    dress = new vendorService();
+
+    constructor(private resources: resources, private locatStorage: localStorageService,
+       private http: httpService) {
+      this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+      this.loadResources()
+    }
 
   ngOnInit() {
+    this.dress = this.locatStorage.getLocalStorage("weds360#dress");
+    console.log(this.dress)
   }
+
+  openVendor(vendorId: any) {
+    window.open(`/segment/en/vendor/${vendorId}`);
+  };
+
   async loadResources() {
     let lang = window.location.href.toLowerCase().indexOf(`/ar/`) > -1 ? "ar" : "en";
     let resourceLang = lang == null || lang == undefined ? environment.defaultLang : lang;
