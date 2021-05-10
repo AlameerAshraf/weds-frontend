@@ -79,6 +79,8 @@ export class urls {
   public static get GET_ALL_DEFAULT_EVENT(): string { return this.BASE_URL + '/admin/get-all-default-events' };
   public static get DELETE_DEFAULT_EVENT(): string { return this.BASE_URL + '/admin/delete-default-event' };
 
+  public static get TOGGLE_WEBSITE_PUBLISH_STATUS(): string { return this.BASE_URL + '/admin/approve-wedding-website' };
+
   //Checklists
   public static get CREATE_CHECKLIST(): string { return this.BASE_URL + '/wedding/create-new-checklist' };
   public static get GET_ALL_CHECKLISTS(): string { return this.BASE_URL + '/wedding/get-checklist' };

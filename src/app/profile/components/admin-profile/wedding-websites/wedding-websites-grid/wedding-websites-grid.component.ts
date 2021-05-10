@@ -41,7 +41,7 @@ export class WeddingWebsitesGridComponent implements OnInit {
   private router: Router,
   private storage: localStorageService,
   private elementRef: ElementRef, private resources: resources,
-  private http: httpService,
+  private http: httpService,private toastr: ToastrService,
   private ngxSpinner: NgxSpinnerService,
   private actictedRoute: ActivatedRoute) {
     this.loadResources();
@@ -61,7 +61,7 @@ export class WeddingWebsitesGridComponent implements OnInit {
     this.http.Get(getAllWeddingWebsitesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.weddingWebsiteList= this.searchableList = response.data as weddingWebsite[];
-        this.collectionSize = this.weddingWebsiteList.length;
+        this.collectionSize =  this.weddingWebsiteList.length;
         this.pageChange(1);
         this.ngxSpinner.hide();
       } else {
@@ -75,6 +75,27 @@ export class WeddingWebsitesGridComponent implements OnInit {
       e.data.angularThis.selectedSearchCriteria = $("#cats").chosen().val();
     });
   };
+
+  toggleWeddingPublishStatus(isPublished, weddingId){
+      this.ngxSpinner.show();
+      let targetPost = this.weddingWebsiteList.find(x => x._id == weddingId);
+      
+      targetPost.isPublished = isPublished;
+
+      let updatePostURL = `${urls.TOGGLE_WEBSITE_PUBLISH_STATUS}/${constants.APP_IDENTITY_FOR_ADMINS}/${targetPost.email}`;
+      this.http.Post(updatePostURL, {}, { }).subscribe((response: responseModel) => {
+        if (!response.error) {
+          this.ngxSpinner.hide();
+          this.toastr.success("Gooood!", "Amazing Website has been published successfully 💕");
+          this.getAllWebsites();
+        } else {
+          this.ngxSpinner.hide();
+          this.toastr.error("Our bad sorry!", "My bad, server couldn't publish your website.");
+        }
+      });
+
+  
+  }
 
   ngAfterViewInit(): void {
     this.loadScripts();
