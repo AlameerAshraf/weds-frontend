@@ -44,5 +44,12 @@
   "CANCEL": "Cancel",
   "DELETE": "Delete",
   "EDIT": "Edit",
-  "UPDATE": "Update"
+  "UPDATE": "Update",
+  "ALL_LOCATIONS": "All Locations",  
+  "PROMOTED_VENDORS": "Promoted Vendors",
+  "SEARCH_KEY": "What are you looking for?",
+  "CATEGORIES": "Categories",
+  "VENDORS_TITLE": "We care about you little angel! 💚",
+  "VENDORS_SUBTITLE": "Search top rated vendors and experts that will make your wedding looks like a carnaval!",
+  "RESET": "Reset"
 }

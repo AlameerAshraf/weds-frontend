@@ -17,7 +17,7 @@ export class vendor {
     descriptionURLEn?: string = "";
     descriptionAr?: string = "";
     descriptionEn?: string = "";
-    area: [];
+    area: any[];
     location: {
         latitude?: string
         longtitude?: string
@@ -43,4 +43,5 @@ export class vendor {
     categoryEnglish?: string;
     categoryArabic?: string;
     avatar?: string;
+    totalRank?: number = 0;
 };
