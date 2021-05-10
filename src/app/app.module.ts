@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { THEME_MODULE } from './app.imports';
 import * as COMPONENTS from './app-module-components';
 
-import { AppConfig, CanRouteActivate, headerInterceptor, httpService, localStorageService, resources , ValidateService} from './core';
+import { AppConfig, CanRouteActivate, headerInterceptor, httpService, localStorageService, resources, TruncateTextPipe, ValidateService } from './core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { AgmCoreModule } from '@agm/core';
@@ -23,6 +23,7 @@ import { AgmCoreModule } from '@agm/core';
     COMPONENTS.RegistryListComponent,
     COMPONENTS.WeddingWebsiteComponent,
     COMPONENTS.GuestListComponent,
+    TruncateTextPipe
   ],
   imports: [
     BrowserModule,
@@ -41,12 +42,12 @@ import { AgmCoreModule } from '@agm/core';
     ToastrService,
     CanRouteActivate,
     {
-      provide: APP_INITIALIZER ,
+      provide: APP_INITIALIZER,
       useFactory: (ds: AppConfig) => () => ds.load(),
-      deps: [AppConfig] ,
+      deps: [AppConfig],
       multi: true
     },
-    { provide: HTTP_INTERCEPTORS , useClass : headerInterceptor , multi : true  },
+    { provide: HTTP_INTERCEPTORS, useClass: headerInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
