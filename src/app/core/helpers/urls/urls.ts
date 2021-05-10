@@ -151,4 +151,6 @@ export class urls {
   //User
   public static get GET_ALL_USER_FEATURES_COUNT(): string { return this.BASE_URL + '/users/get-all-user-features-count' };
   public static get GET_SINGLE_PHOTO(): string { return this.BASE_URL + '/admin/get-single-photo' };
+  public static get RATE_PHOTO(): string { return this.BASE_URL + '/users/rate-photo' };
+
 }

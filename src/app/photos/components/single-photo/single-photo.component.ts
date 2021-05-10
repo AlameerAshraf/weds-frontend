@@ -17,6 +17,7 @@ export class SinglePhotoComponent implements OnInit {
   photo: photo = new photo();
   photoId: any;
   vendorName: any;
+  userRank: { value: any; userEmail: string; };
 
   constructor(private localStorage: localStorageService , private http: httpService,
     private ActivatedRoute: ActivatedRoute,
@@ -45,6 +46,7 @@ export class SinglePhotoComponent implements OnInit {
         this.spinner.hide();
         this.photo = response.data[0] as photo;
         this.loadVendorData(this.photo.vendor);
+        this.viewAggregatedPhotoRate(this.photo.ranks);
       }
     })
   };
@@ -52,6 +54,41 @@ export class SinglePhotoComponent implements OnInit {
   openVendor(vendorId: any) {
     window.open(`/segment/en/vendor/${vendorId}`);
   };
+
+
+
+  rate(rateValue){
+    this.userRank = {
+      value: rateValue,
+      userEmail: this.currentUserEmail
+    };
+
+    let rateURL = `${urls.RATE_PHOTO}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}?photoId=${this.photo._id}`;
+    this.http.Post(rateURL , {} , { "rank" : this.userRank }).subscribe((response: responseModel) => {
+      if(!response.error){
+        this.spinner.hide();
+        this.toaster.success("Gooood!" , `Thanks your rate has been saved ⭐`);
+      }else{
+        this.spinner.hide();
+        this.toaster.error("Our bad sorry!" , "My bad, Server couldn't save your rate, try again later.");
+      }
+    })
+  };
+
+  viewAggregatedPhotoRate(vendorRates: { user?: string, value?: number, userEmail?: string }[]){
+    let counter = 0;
+    let aggregatedTotalRank = 0;
+
+    vendorRates.forEach((rank) => {
+      counter = counter + rank.value;
+    });
+    aggregatedTotalRank = Math.ceil(Number(counter) / Number(vendorRates.length));
+    let htmlElementAggrgated = document.getElementById(`star${aggregatedTotalRank}-agg`) as any;
+    htmlElementAggrgated.checked = true;
+  };
+
+
+
 
   loadVendorData(id: any){
     let getVendorByIdURL = `${urls.GET_VENDOR_BY_ID}/${constants.APP_IDENTITY_FOR_USERS}/${this.currentUserEmail}`;
@@ -61,7 +98,6 @@ export class SinglePhotoComponent implements OnInit {
       }
     });
   };
-
 
   checkLoginStatus(){
     let isLogined = this.localStorage.getLocalStorage("weds360#data");
