@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   labels: any = {};
   baseUrlWithLang: string;
 
-  name: 'me';
-  photo: 'assets/images/defaults/avatar/me.jpg'
+  name = 'me';
+  photo = 'assets/images/defaults/avatar/vendor.png';
 
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
     @Inject(DOCUMENT) private document: any, private localStorage: localStorageService,
@@ -34,9 +34,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private router: Router) {
     this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
     const username = this.localStorage.getLocalStorage("weds360#name")
-    const photo = this.localStorage.getLocalStorage("weds360#avatar").toString();
-    this.photo = photo;
-    this.name = username;
+    const photo = this.localStorage.getLocalStorage("weds360#avatar");
+    this.photo = !photo ? this.photo : photo;
+    this.name = !username ? this.name : username;
   }
 
   ngOnInit() {
