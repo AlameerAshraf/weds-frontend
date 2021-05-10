@@ -12,6 +12,7 @@ export class urls {
 
   //Blogs ..
   public static get GET_ALL_BLOGS_PER_CATEGORY(): string { return this.BASE_URL + '/blog/category-blogs' };
+  public static get GET_POST_BY_ID(): string { return this.BASE_URL + '/blog/single-post' };
 
 
   // Users ...
@@ -26,6 +27,7 @@ export class urls {
   public static get GET_WEDDING_AND_PARTNER_DETAILS(): string { return this.BASE_URL + '/users/get-wedding-and-partner-details' };
   public static get UPDATE_WEDDING_AND_PARTNER_DETAILS(): string { return this.BASE_URL + '/users/update-wedding-and-partner-details' };
   public static get GET_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/get-all-bookmarks' };
+  public static get GET_USER_BOOKMARKS_PER_TYPE(): string { return this.BASE_URL + '/users/get-bookmarks-by-type' };
   public static get DELETE_USER_BOOKMARKS(): string { return this.BASE_URL + '/users/bookmark' };
   public static get GET_USER_BY_ID(): string { return this.BASE_URL + '/users/get-user-by-id' };
   public static get RESEt_USER_PASSSWORD(): string { return this.BASE_URL + '/users/reset-password' };
@@ -123,6 +125,7 @@ export class urls {
   public static get CREATE_VENDOR(): string { return this.BASE_URL + '/vendors/create-new-vendor' };
   public static get UPDATE_VENDOR(): string { return this.BASE_URL + '/vendors/update-vendor' };
   public static get DELETE_VENDOR(): string { return this.BASE_URL + '/vendors/delete-vendor' };
+  public static get GET_VENDOR_BY_CATEGORY(): string { return this.BASE_URL + '/vendors/get-vendor-by-category' };
 
   //Vendor service
   public static get CREATE_VENDOR_SERVICE(): string { return this.BASE_URL + '/vendors/create-new-service' };
@@ -133,6 +136,7 @@ export class urls {
   public static get GET_ALL_COMMENTS(): string { return this.BASE_URL + '/vendors/get-all-comments' };
   public static get RATE_VENDOR(): string { return this.BASE_URL + '/vendors/rate-vendor' };
   public static get GET_ALL_VENDOR_FEATURES_COUNT(): string { return this.BASE_URL + '/vendors/get-all-vendor-features-count' };
+  public static get GET_SERVICES_BY_TYPE(): string { return this.BASE_URL + '/vendors/get-service-by-type' };
 
   // Messages ..
   public static get SEND_MESSAGE(): string { return this.BASE_URL + '/message/send' };
@@ -147,6 +151,7 @@ export class urls {
 
   //User
   public static get GET_ALL_USER_FEATURES_COUNT(): string { return this.BASE_URL + '/users/get-all-user-features-count' };
-
+  public static get GET_SINGLE_PHOTO(): string { return this.BASE_URL + '/admin/get-single-photo' };
+  public static get RATE_PHOTO(): string { return this.BASE_URL + '/users/rate-photo' };
 
 }

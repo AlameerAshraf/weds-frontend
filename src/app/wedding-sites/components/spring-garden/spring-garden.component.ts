@@ -63,13 +63,11 @@ export class SpringGardenComponent implements OnInit {
     this.loadGuestAlbum();
 
     this.titleService.setTitle(`${this.userInfo.name} & ${this.userInfo.partener.name} ❤ are getting married!`);
-
     console.log(this.weddingData["wedding"] , this.websiteData)
   }
 
   //#region Helpers
   scrollToElement($element): void {
-    console.log($element);
     $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   };
 

@@ -56,7 +56,7 @@ export class VendorsGridComponent implements OnInit {
     this.http.Get(getAllItemsURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.vendorsList = response.data as vendor[];
-        this.vendorsList = this.searchableList = this.vendorsList.filter(x => x.isActive == true);
+        this.vendorsList = this.searchableList = this.vendorsList;
         this.collectionSize = this.vendorsList.length;
         this.pageChange(1);
         this.ngxSpinner.hide();

@@ -190,4 +190,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     )) as any;
     this.labels = resData.res;
   }
+  changeLanguge() {
+    const baseUrl = window.location.href.toString().toLowerCase();
+    const isArabic = this.lang === 'ar';
+    const url = isArabic ? baseUrl.replace('/ar/', '/en/') : baseUrl.replace('/en/', '/ar/')
+    window.location.href = url
+  }
 }

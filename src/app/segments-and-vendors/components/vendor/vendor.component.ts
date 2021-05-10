@@ -30,9 +30,11 @@ export class VendorComponent implements OnInit, AfterViewInit {
   allComments: comment[] = [];
 
   userRank: { user?: string, criteria?: string, value?: number, userEmail?: string } = {};
-  locationRankValues: number;
-  serviceRankValues: number;
-  valueForMoneyRankValues: number;
+  locationRankValues: string;
+  serviceRankValues: string;
+  valueForMoneyRankValues: string;
+  gallery = []
+  images: number;
 
 
   constructor(@Inject(DOCUMENT) private document: any, private ActivatedRoute: ActivatedRoute,
@@ -60,6 +62,11 @@ export class VendorComponent implements OnInit, AfterViewInit {
       if(!response.error){
         this.spineer.hide();
         this.vendor = response.data as vendor;
+        this.images = this.vendor.gallery.length;
+        this.vendor.gallery.forEach((img) => {
+          this.gallery.push(img)
+        })
+
         this.telRef = `tel:${this.vendor.phone}`;
         this.mailTo = `mailto:${this.vendor.email}`;
 
@@ -67,6 +74,8 @@ export class VendorComponent implements OnInit, AfterViewInit {
         this.instagramURL = this.vendor.social.find(x => x.includes('instagram'));
         this.pinterestURL = this.vendor.social.find(x => x.includes('pinterest'));
         this.twitterURL = this.vendor.social.find(x => x.includes('twitter'));
+
+        console.log(this.vendor)
 
         this.htmlView = this._sanitizer.bypassSecurityTrustHtml(this.vendor.descriptionURLAr);
         this.vendor.avatar = this.vendor.avatar == undefined ? 'assets/images/defaults/avatar/vendor.png' : this.vendor.avatar;
@@ -118,9 +127,9 @@ export class VendorComponent implements OnInit, AfterViewInit {
     });
 
     aggregatedTotalRank = Math.ceil(Number(counter) / Number(vendorRates.length));
-    this.locationRankValues = Number(locationRanks) / Number(locationNumberOfRates);
-    this.serviceRankValues = Number(serviceRanks) / Number(serviceNumberOfRates);
-    this.valueForMoneyRankValues = Number(valueForMoneyRanks) / Number(valueForMoneyNumberOfRates);
+    this.locationRankValues = (Number(locationRanks) / Number(locationNumberOfRates)).toFixed(1);
+    this.serviceRankValues = (Number(serviceRanks) / Number(serviceNumberOfRates)).toFixed(1);
+    this.valueForMoneyRankValues = (Number(valueForMoneyRanks) / Number(valueForMoneyNumberOfRates)).toFixed(1);
 
     let htmlElementAggrgated = document.getElementById(`star${aggregatedTotalRank}-agg`) as any;
     let htmlElementTotals = document.getElementById(`star${aggregatedTotalRank}-totals`) as any;
@@ -226,7 +235,7 @@ export class VendorComponent implements OnInit, AfterViewInit {
   };
 
   ngAfterViewInit(): void {
-    this.loadScripts();
+    //this.loadScripts();
   };
 
   loadScripts(){

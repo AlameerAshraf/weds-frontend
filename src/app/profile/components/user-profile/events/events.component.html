@@ -1,4 +1,4 @@
-<div id="titlebar" class="gradient" [align]="lang==='ar'?'left':'right'">
+<div id="titlebar" class="gradient" [ngClass]="lang === 'ar' ? 'rtl' : ''">
   <div class="row">
     <div class="col-md-12">
       <h2>{{labels.EVENTS_TITLE}}</h2>

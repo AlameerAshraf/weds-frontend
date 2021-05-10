@@ -2,48 +2,49 @@
 
 
 <div class="container margin-top-100">
-	<div class="row">
+  <div class="row">
 
     <div class="col-lg-5 col-md-4 margin-top-0 margin-bottom-60">
-			<div class="listing-item-container compact order-summary-widget">
-				<div class="listing-item" style="height: 400px;">
-					<img src="images/listing-item-04.jpg" alt="">
+      <div class="listing-item-container compact order-summary-widget">
+        <div class="listing-item" style="height: 400px;">
+          <img [src]="ring.attributes.image" alt="">
 
-					<div class="listing-item-content">
-						<div class="numerical-rating" data-rating="5.0"></div>
-						<h3>Burger House</h3>
-						<span>2726 Shinn Street, New York</span>
-					</div>
-				</div>
-			</div>
+          <div class="listing-item-content">
+            <!-- <div class="numerical-rating" data-rating="5.0"></div> -->
+            <h3>{{ lang == "en" ? ring.attributes.nameEn : ring.attributes.nameEn  }}</h3>
+            <span>{{ lang == "en" ? ring.vendorNameEn : ring.vendorNameAr }}</span>
+          </div>
+        </div>
+      </div>
 
-		</div>
-		<div class="col-lg-7 col-md-8 padding-right-30">
-			<h4 class="margin-top-0" style="color: #046B69 !important; cursor: pointer;" >Champagne mermaid dress</h4>
-			<h2 class="margin-top-0 margin-bottom-30">Champagne mermaid dress</h2>
-			<div class="row">
-				<div class="col-md-12">
-					<p style="font-size: 20px;">
-            The stunningly designed champagne wedding dress features a mermaid cut,
-            with a sweetheart neckline, and the dress is made of embroidered tulle,
-            with very elegant detailing at the tail of the dress.
+    </div>
+    <div class="col-lg-7 col-md-8 padding-right-30">
+      <h4 (click) = "openVendor(ring.vendor)"
+        class="margin-top-0" style="color: #046B69 !important; cursor: pointer;">
+        {{ lang == "en" ? ring.vendorNameEn : ring.vendorNameAr }}
+      </h4>
+      <h2 class="margin-top-0 margin-bottom-30">{{ lang == "en" ? ring.attributes.nameEn : ring.attributes.nameEn  }}</h2>
+      <div class="row">
+        <div class="col-md-12">
+          <p style="font-size: 20px;">
+            {{ lang == "en" ? ring.attributes.descriptionEn : ring.attributes.descriptionAr }}
           </p>
-				</div>
-			</div>
+        </div>
+      </div>
 
       <h3 class="margin-top-10" style="font-size: 20px;">
-        <i class="sl sl-icon-user-female" style="font-size: 15px;"></i> Gender: Female <br>
-        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Stoneshape: Sweetheart<br>
-        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Style: Sweetheart
+        <i class="sl sl-icon-user-female" style="font-size: 15px;"></i> Gender: {{ ring.attributes.gender }} <br>
+        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Stoneshape: {{ ring.attributes.EMERALD }}<br>
+        <i class="sl sl-icon-note" style="font-size: 15px;"></i> Style: {{ ring.attributes.style }}
       </h3>
 
-			<h3 class="margin-top-55 margin-bottom-10">
-        How do you feel it?
+      <h3 class="margin-top-55 margin-bottom-10">
+        {{labels.RATE}}
       </h3>
       <div class="sub-rating-stars">
         <div class="clearfix"></div>
         <form class="leave-rating">
-          <input type="radio" name="rating" id="rating-21" value="1" rate-map="LOCATION-1"/>
+          <input type="radio" name="rating" id="rating-21" value="1" rate-map="LOCATION-1" />
           <label for="rating-21" class="fa fa-star"></label>
           <input type="radio" name="rating" id="rating-22" value="2" rate-map="LOCATION-2" />
           <label for="rating-22" class="fa fa-star"></label>
@@ -60,18 +61,18 @@
 
       <a style="background-color: #F91942 !important; margin: 2px;"
         class="button booking-confirmation-btn margin-top-40 margin-bottom-65">
-        <i class="im im-icon-Heart"></i> I loved it
+        <i class="im im-icon-Heart"></i> {{labels.I_LOVE}}
       </a>
 
-      <a  class="button booking-confirmation-btn margin-top-40 margin-bottom-65">
-        <i class="sl sl-icon-envelope-open"></i> Message
+      <a class="button booking-confirmation-btn margin-top-40 margin-bottom-65">
+        <i class="sl sl-icon-envelope-open"></i> {{labels.MESSAGE}}
       </a>
-		</div>
+    </div>
 
 
 
 
-	</div>
+  </div>
 </div>
 
 <weds-footer></weds-footer>

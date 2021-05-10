@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <weds-header [authorizedUser] = "isAuthed" ></weds-header>
 <div class="container">
   <div class="col-md-12 margin-top-50">
@@ -37,39 +38,35 @@
 		<div class="col-lg-12 col-md-12 padding-right-30">
 
 			<div class="row">
+        <ng-container *ngFor="let photo of photos | slice:skip:limit">
+          <div class="col-lg-3 col-md-12" style="cursor: pointer;">
+            <a (click) = "navigateToPhoto(photo._id)" class="listing-item-container">
+              <div class="listing-item">
+                <img [src]="photo.image" [alt]="photo.titleEn">
 
-				<div class="col-lg-3 col-md-12">
-					<a href="listings-single-page.html" class="listing-item-container">
-						<div class="listing-item">
-							<img src="images/listing-item-01.jpg" alt="">
 
-
-							<div class="listing-item-content">
-								<h3>Tom's Restaurant</h3>
-							</div>
-							<span class="like-icon"></span>
-						</div>
-					</a>
-				</div>
+                <div class="listing-item-content">
+                  <h3>{{ lang == "en" ?  photo.titleEn : photo.tagAr }}</h3>
+                </div>
+                <span style="z-index: 55;" (click) = "selectBookmark($event , photo._id)" [id]="photo._id"
+                  class="like-icon"></span>
+              </div>
+            </a>
+          </div>
+        </ng-container>
 
 			</div>
 
 
-			<div class="clearfix"></div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="pagination-container margin-top-20 margin-bottom-40">
-						<nav class="pagination">
-							<ul>
-								<li><a href="#" class="current-page">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
+      <div class="clearfix"></div>
+
+      <div class="row" *ngIf="collectionSize > 0 && showPaging">
+        <div class="col-md-12">
+          <weds-paging (changePasge)="pageChange($event)" [pageSize]="pageSize" [collectionSize]="collectionSize" [maxSize]="5">
+          </weds-paging>
+        </div>
+      </div>
+
 		</div>
 	</div>
 </div>

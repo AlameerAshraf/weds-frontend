@@ -53,8 +53,12 @@ export class ListOfCategoriesComponent implements OnInit, AfterViewInit {
   }
 
   navigateToVendorsList(categoryName, categoryId) {
-    categoryName = categoryName.replace(/ /g, "-");
-    this.router.navigate([`segment/en/all-vendors/${categoryName}/${categoryId}`]);
+    if(categoryName == "PHOTOS"){
+      this.router.navigate([`photos/${this.lang}/all`]);
+    } else {
+      categoryName = categoryName.replace(/ /g, "-");
+      this.router.navigate([`segment/${this.lang}/all-vendors/${categoryName}/${categoryId}`]);
+    }
   };
 
   //#region Searches Helpers ..

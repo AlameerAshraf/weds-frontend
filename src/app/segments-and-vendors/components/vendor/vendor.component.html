@@ -2,10 +2,14 @@
 
 <weds-header [authorizedUser]="isAuthed" type="not-sticky"></weds-header>
 
-<div class="listing-slider mfp-gallery-container margin-bottom-0">
-    <ng-container *ngFor="let image of vendor.gallery">
-      <a [href]="image" [attr.data-background-image]="image" class="item mfp-gallery" title="Title 3"></a>
-    </ng-container>
+<div *ngIf="images > 0">
+  <div class="listing-slider mfp-gallery-container margin-bottom-0">
+    <a
+      *ngFor = "let image of gallery"
+      [href]="image"
+      [attr.data-background-image] = "image" class="item mfp-gallery" title="Title 3">
+    </a>
+</div>
 </div>
 
 

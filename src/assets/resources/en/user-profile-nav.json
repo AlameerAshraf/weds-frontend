@@ -40,27 +40,27 @@
       "child": [
         {
           "name": "Designers",
-          "url": ""
+          "url": "/segment/en/all-vendors/desginers/6087338b21ce659724e9a5f2"
         },
         {
           "name": "Bridal Boutique",
-          "url": ""
+          "url": "/segment/en/all-vendors/bridal-boutique/6087338b21ce659724e9a5d8"
         },
         {
           "name": "Wedding Dresses",
-          "url": ""
+          "url": "/segment/en/all-vendors/wedding-dresses/6087338b21ce659724e9a5da"
         },
         {
           "name": "Rings",
-          "url": ""
+          "url": "/segment/en/all-vendors/rings/6087338b21ce659724e9a5f1"
         },
         {
           "name": "Makeup Artists",
-          "url": ""
+          "url": "/segment/en/all-vendors/makeup-artists/6087338b21ce659724e9a5e6"
         },
         {
           "name": "More",
-          "url": "segment/ar/her"
+          "url": "/segment/en/all-categories/HER"
         }
       ]
     },
@@ -70,23 +70,23 @@
       "child": [
         {
           "name": "Suits",
-          "url": ""
+          "url": "/segment/en/all-vendors/suits/6087338b21ce659724e9a5e0"
         },
         {
           "name": "Health",
-          "url": ""
+          "url": "/segment/en/all-vendors/health/6087338b21ce659724e9a5e1"
         },
         {
           "name": "Men's Grooming",
-          "url": ""
+          "url": "/segment/en/all-vendors/men-grooming/6087338b21ce659724e9a5df"
         },
         {
           "name": "Fitness",
-          "url": ""
+          "url": "/segment/en/all-vendors/Fitness/6087338b21ce659724e9a5e3"
         },
         {
           "name": "More",
-          "url": ""
+          "url": "/segment/en/all-categories/HIM"
         }
       ]
     },
@@ -96,27 +96,27 @@
       "child": [
         {
           "name": "Venues",
-          "url": ""
+          "url": "/segment/en/all-vendors/venues/6087338b21ce659724e9a5e2"
         },
         {
           "name": "Outdoor Wedding Venues",
-          "url": ""
+          "url": "/segment/en/all-vendors/outdoor-wedding-venues/6087338b21ce659724e9a5f0"
         },
         {
           "name": "Videographers",
-          "url": ""
+          "url": "/segment/en/all-vendors/videographers/6087338b21ce659724e9a5db"
         },
         {
           "name": "Photographers",
-          "url": ""
+          "url": "/segment/en/all-vendors/photographers/6087338b21ce659724e9a5dc"
         },
         {
           "name": "DJs",
-          "url": ""
+          "url": "/segment/en/all-vendors/djs/6087338b21ce659724e9a5de"
         },
         {
           "name": "More",
-          "url": ""
+          "url": "/segment/en/all-categories/WEDDING"
         }
       ]
     },
@@ -126,11 +126,11 @@
       "child": [
         {
           "name": "Wedding Ideas",
-          "url": ""
+          "url": "/segment/en/all-vendors/wedding-ideas/6087338b21ce659724e9a5eb"
         },
         {
           "name": "More",
-          "url": ""
+          "url": "/segment/en/all-categories/PHOTOS"
         }
       ]
     },
@@ -140,15 +140,15 @@
       "child": [
         {
           "name": "Tips & Etiquette",
-          "url": ""
+          "url": "/segment/en/all-vendors/tips-&-etiquette/6087338b21ce659724e9a5ee"
         },
         {
           "name": "Wedding Of The Week",
-          "url": ""
+          "url": "/segment/en/all-vendors/wedding-of-the-week/6087338b21ce659724e9a5d9"
         },
         {
           "name": "More",
-          "url": ""
+          "url": "/segment/en/all-categories/POSTS"
         }
       ]
     }

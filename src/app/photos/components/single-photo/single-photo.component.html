@@ -6,25 +6,24 @@
     <div class="col-lg-6 col-md-4 margin-top-0 margin-bottom-60">
 			<div class="listing-item-container compact order-summary-widget">
 				<div class="listing-item" style="height: 550px;">
-					<img src="images/listing-item-04.jpg" alt="">
+					<img [src]="photo.image" alt="">
 
 					<div class="listing-item-content">
-						<h3>Burger House</h3>
-						<span>2726 Shinn Street, New York</span>
+						<h3>{{ lang == "en" ? photo.titleEn : photo.titleAr }}</h3>
+						<span>{{ lang == "en" ? photo.titleEn : photo.titleAr }}</span>
 					</div>
 				</div>
 			</div>
 
 		</div>
 		<div class="col-lg-6 col-md-8 padding-right-30">
-			<h4 class="margin-top-0" style="color: #046B69 !important; cursor: pointer;" >Champagne mermaid dress</h4>
-			<h2 class="margin-top-0 margin-bottom-30">Champagne mermaid dress</h2>
+			<h4 (click) = "openVendor(photo.vendor)"
+        class="margin-top-0" style="color: #046B69 !important; cursor: pointer;" >{{ vendorName }}</h4>
+			<h2 class="margin-top-0 margin-bottom-30">{{ lang == "en" ? photo.titleEn : photo.titleAr }}</h2>
 			<div class="row">
 				<div class="col-md-12">
 					<p style="font-size: 20px;">
-            The stunningly designed champagne wedding dress features a mermaid cut,
-            with a sweetheart neckline, and the dress is made of embroidered tulle,
-            with very elegant detailing at the tail of the dress.
+            {{ lang == "en" ? photo.descriptionEn : photo.descriptionAr }}
           </p>
 				</div>
 			</div>
@@ -50,16 +49,16 @@
       <div class="sub-rating-stars">
         <div class="clearfix"></div>
         <form class="leave-rating">
-          <input type="radio" name="rating" id="rating-21" value="1" rate-map="LOCATION-1"/>
-          <label for="rating-21" class="fa fa-star"></label>
-          <input type="radio" name="rating" id="rating-22" value="2" rate-map="LOCATION-2" />
-          <label for="rating-22" class="fa fa-star"></label>
-          <input type="radio" name="rating" id="rating-23" value="3" rate-map="LOCATION-3" />
-          <label for="rating-23" class="fa fa-star"></label>
-          <input type="radio" name="rating" id="rating-24" value="4" rate-map="LOCATION-4" />
-          <label for="rating-24" class="fa fa-star"></label>
-          <input type="radio" name="rating" id="rating-25" value="5" rate-map="LOCATION-5" />
-          <label for="rating-25" class="fa fa-star"></label>
+          <input type="radio" name="rating" id="star5-agg" rate-map="PHOTO-1" value="1" (click)="rate(5)"/>
+          <label for="star5-agg" class="fa fa-star"></label>
+          <input type="radio" name="rating" id="star4-agg" rate-map="PHOTO-2" value="2" (click)="rate(4)"/>
+          <label for="star4-agg" class="fa fa-star"></label>
+          <input type="radio" name="rating" id="star3-agg" rate-map="PHOTO-3" value="3" (click)="rate(3)"/>
+          <label for="star3-agg" class="fa fa-star"></label>
+          <input type="radio" name="rating" id="star2-agg" rate-map="PHOTO-4" value="4" (click)="rate(2)"/>
+          <label for="star2-agg" class="fa fa-star"></label>
+          <input type="radio" name="rating" id="star1-agg" rate-map="PHOTO-5" value="5" (click)="rate(1)"/>
+          <label for="star1-agg" class="fa fa-star"></label>
         </form>
       </div>
 

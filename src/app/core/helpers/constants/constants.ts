@@ -34,7 +34,10 @@ export class constants {
       "WEDDING_DETAILS": "wedding-detail",
       "BOOKMARKS": "bookmarks",
       "PHOTOS": "photos",
-      "FOOTER": "footer"
+      "FOOTER": "footer",
+      "SEGMENTS_SERVICE": "segement-service",
+      "BLOG": "blog"
+
     }
   };
 
@@ -373,87 +376,87 @@ export class constants {
   public static get APP_VIEWS() {
     return [
       {
-        "ref" : "USER_CHECKLIST",
+        "ref": "USER_CHECKLIST",
         "name": "Checklist"
       },
       {
-        "ref" : "USER_BUDGETER",
+        "ref": "USER_BUDGETER",
         "name": "Budgeter"
       },
       {
-        "ref" : "USER_EVENTS_GUESTLIST",
+        "ref": "USER_EVENTS_GUESTLIST",
         "name": "Events & Guest List"
       },
       {
-        "ref" : "USER_CREATE_EVENT",
+        "ref": "USER_CREATE_EVENT",
         "name": "Create Event"
-      },       
+      },
       {
-        "ref" : "USER_EVENT_DETAILS",
+        "ref": "USER_EVENT_DETAILS",
         "name": "Event Details"
-      }, 
+      },
       {
-        "ref" : "USER_INVITE_FRIENDS",
+        "ref": "USER_INVITE_FRIENDS",
         "name": "Invite Friends"
-      },       
+      },
       {
-        "ref" : "USER_CHAT",
+        "ref": "USER_CHAT",
         "name": "Chat"
-      },    
+      },
       {
-        "ref" : "USER_REGISTRYLIST",
+        "ref": "USER_REGISTRYLIST",
         "name": "Registry List"
       },
       {
-        "ref" : "USER_WEDDING_WEBSITE",
+        "ref": "USER_WEDDING_WEBSITE",
         "name": "Wedding Website"
       },
       {
-        "ref" : "USER_WEDDING_DETAILS",
+        "ref": "USER_WEDDING_DETAILS",
         "name": "Wedding Details"
-      },      
+      },
       {
-        "ref" : "USER_SITE_STATUS",
+        "ref": "USER_SITE_STATUS",
         "name": "Site Status"
       },
       {
-        "ref" : "USER_PERSONAL_DETAILS",
+        "ref": "USER_PERSONAL_DETAILS",
         "name": "User Personal Details"
       },
       {
-        "ref" : "USER_BOOKMARKS_LOVES",
+        "ref": "USER_BOOKMARKS_LOVES",
         "name": "Bookmarks & Loves"
       },
       {
-        "ref" : "USER_OVERVIEW",
+        "ref": "USER_OVERVIEW",
         "name": "User Overview"
       },
       {
-        "ref" : "USER_MESSAGES",
+        "ref": "USER_MESSAGES",
         "name": "User Messages"
       },
       {
-        "ref" : "VENDOR_PERSONAL_DETAILS",
+        "ref": "VENDOR_PERSONAL_DETAILS",
         "name": "Vendor Personal Details"
       },
       {
-        "ref" : "VENDOR_CHAT",
+        "ref": "VENDOR_CHAT",
         "name": "Chat"
       },
       {
-        "ref" : "VENDOR_SERVICES",
+        "ref": "VENDOR_SERVICES",
         "name": "Services"
       },
       {
-        "ref" : "VENDOR_SERVICE_FORM",
+        "ref": "VENDOR_SERVICE_FORM",
         "name": "Service Form"
       },
       {
-        "ref" : "VENDOR_OVERVIEW",
+        "ref": "VENDOR_OVERVIEW",
         "name": "Vendor Overview"
       },
       {
-        "ref" : "VENDOR_MESSAGES",
+        "ref": "VENDOR_MESSAGES",
         "name": "Vendor Messages"
       }
     ]

@@ -1,4 +1,4 @@
-<header id="header-container" >
+<header id="header-container">
   <div id="header" [class]="type">
     <div class="container">
 
@@ -43,9 +43,20 @@
             <i class="sl sl-icon-login"></i> {{labels.SIGN_IN}}
           </a>
           <span>
-            <a (click)="changeLanguge()" class="button border with-icon"> <b style="padding:5px"
-                *ngIf="lang === 'ar'">English</b>
-              <b style="padding:5px" *ngIf="lang === 'en'">العربية</b> <i class="sl sl-icon-globe"></i></a>
+
+            <!-- <li style="list-style-type: none;" onclick="changeLanguge()">
+              <a>
+                <i class="sl sl-icon-globe"></i>
+                <b style="padding:5px" *ngIf="lang === 'ar'">English</b>
+                <b style="padding:5px" *ngIf="lang === 'en'">العربية</b>
+              </a>
+            </li> -->
+
+            <!-- <a [href]="changeLanguge()" class="button border with-icon">
+              <b style="padding:5px" *ngIf="lang === 'ar'">English</b>
+              <b style="padding:5px" *ngIf="lang === 'en'">العربية</b>
+              <i class="sl sl-icon-globe"></i>
+            </a> -->
           </span>
         </div>
       </div>
@@ -70,11 +81,11 @@
             </ul>
           </div>
 
-          <span>
-            <a (click)="changeLanguge()" class="button border with-icon"> <b style="padding:5px"
-                *ngIf="lang === 'ar'">English</b>
-              <b style="padding:5px" *ngIf="lang === 'en'">العربية</b> <i class="sl sl-icon-globe"></i></a>
-          </span>
+          <a (click)="changeLanguge()" class="button border with-icon">
+            <b style="padding:5px" *ngIf="lang === 'ar'">English</b>
+            <b style="padding:5px" *ngIf="lang === 'en'">العربية</b>
+            <i class="sl sl-icon-globe"></i>
+          </a>
         </div>
       </div>
     </div>

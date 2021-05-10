@@ -9,5 +9,9 @@ export class photo {
     category?: string = "";
     vendor?: string = "";
     image?: string = "assets/images/defaults/wedding/cover-photo.png";
+    ranks: { user?: string, value?: number, userEmail?: string }[] = [];
+
+
+    //UI
+    isLiked?: boolean = false;
   };
-  

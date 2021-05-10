@@ -16,5 +16,6 @@
   "DELETE": "Delete",
   "EDIT": "Edit",
   "UPDATE": "Update",
-  "USER_INFO" : "User information"
+  "USER_INFO" : "User information",
+  "FILTER_USERS" : "Filter & Search users"
 }
