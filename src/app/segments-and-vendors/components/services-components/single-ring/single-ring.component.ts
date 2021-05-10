@@ -14,7 +14,8 @@ export class SingleRingComponent implements OnInit {
   currentUserEmail: string;
   vendorName: string;
 
-  dress = new vendorService();
+  ring = new vendorService();
+
   constructor(private resources: resources, private locatStorage: localStorageService,
      private http: httpService) {
     this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
@@ -22,8 +23,8 @@ export class SingleRingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dress = this.locatStorage.getLocalStorage("weds360#dress");
-    console.log(this.dress)
+    this.ring = this.locatStorage.getLocalStorage("weds360#ring");
+    console.log(this.ring)
   }
 
   loadVendorData(id: any){
@@ -43,5 +44,9 @@ export class SingleRingComponent implements OnInit {
     this.lang = ((resourceLang == null) || (resourceLang == undefined)) ? environment.defaultLang : resourceLang;
     let resData = await this.resources.load(this.lang, constants.VIEWS["SEGMENTS_SERVICE"]) as any;;
     this.labels = resData.res;
+  };
+
+  openVendor(vendorId: any) {
+    window.open(`/segment/en/vendor/${vendorId}`);
   };
 }

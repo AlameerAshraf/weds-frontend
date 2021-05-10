@@ -58,7 +58,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-8 padding-right-30">
 
-        <div class="col-md-4" *ngFor="let dress of dressess">
+        <div class="col-md-4" *ngFor="let dress of dressess | slice:skip:limit">
           <a class="blog-compact-item-container" style="cursor: pointer;" (click) = "navigateToDress(dress._id)">
             <div class="blog-compact-item">
               <img [src]="dress.attributes.image" alt="">

@@ -29,6 +29,7 @@ export class DressesComponent implements OnInit {
   constructor(private localStorage: localStorageService , private http: httpService , private resources: resources,
     private spinner: NgxSpinnerService, private toaster: ToastrService, private router: Router) {
       this.currentUserEmail = atob(window.localStorage.getItem("weds360#email"));
+      this.loadResources()
     }
 
   ngOnInit() {
