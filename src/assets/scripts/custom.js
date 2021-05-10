@@ -798,11 +798,11 @@ $(document).ready(function(){
     /*----------------------------------------------------*/
     /*  Like Icon Trigger
     /*----------------------------------------------------*/
-    $('.like-icon, .widget-button, .like-button').on('click', function(e){
-    	e.preventDefault();
-		$(this).toggleClass('liked');
-		$(this).children('.like-icon').toggleClass('liked');
-	});
+  //   $('.like-icon, .widget-button, .like-button').on('click', function(e){
+  //   	e.preventDefault();
+	// 	$(this).toggleClass('liked');
+	// 	$(this).children('.like-icon').toggleClass('liked');
+	// });
 
     /*----------------------------------------------------*/
     /*  Searh Form More Options
