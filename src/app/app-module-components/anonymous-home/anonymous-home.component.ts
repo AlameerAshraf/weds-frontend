@@ -4,9 +4,9 @@ import { httpService } from './../../core/services/http/http';
 import { Component, OnInit } from '@angular/core';
 import { Inject, AfterViewInit, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { constants, resources, area, category } from 'src/app/core';
+import { constants, resources, area, category, Common, post } from 'src/app/core';
 import { environment } from '../../../environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,20 +19,25 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   allCategories = [];
   allAreas = [];
+  blogs: post[] = [];
+  featuredAreas; //vendorsd
   //labels
   labels: any = {};
   lang: string;
+  defaultBlogImage: string
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private resources: resources,
-    private http: httpService,
+    private http: httpService, private common: Common, private router: Router,
     private actictedRoute: ActivatedRoute) {
     this.loadResources();
+    this.defaultBlogImage = 'assets/images/defaultImage/blog-default.png'
   }
 
 
   ngOnInit() {
     this.getAllCategories();
     this.getAllAreas();
+    this.getAllBlog();
   };
 
   /** Use this function at each view to load corrosponding resources! */
@@ -52,6 +57,8 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
     this.http.Get(allCatesURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allCategories = response.data;
+        if (this.allCategories.length > 0) this.allCategories = this.allCategories.slice(0, 10);
+
       } else {
         console.log(response.error);
       }
@@ -62,7 +69,6 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
     this.http.Get(allAreasURL, {}).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allAreas = response.data;
-
       } else {
         console.log(response.error);
       }
@@ -79,10 +85,23 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
       this.elementRef.nativeElement.appendChild(s);
     });
   };
+  getAllBlog() {
 
-  getRandom(arr) {
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    const item = arr[randomIndex];
-    return item;
-  }
+    let url = `${urls.GET_ALL_BLOGS}/${constants.APP_IDENTITY_FOR_USERS}`;
+    this.http.Get(url, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.blogs = response.data as post[];
+        if (this.blogs.length > 0) this.blogs = this.blogs.sort((d1, d2) => new Date(d1.publishedAt).getTime() - new Date(d2.publishedAt).getTime()).slice(0, 3);
+
+        console.log(this.blogs)
+
+      } else {
+        console.log(response.error);
+      }
+    });
+  };
+  navigateToBlog(categoryName, blogId) {
+    categoryName = categoryName.replace(/ /g, "-");
+    this.router.navigate([`blogs/${this.lang}/blog/${categoryName}/${blogId}`]);
+  };
 }

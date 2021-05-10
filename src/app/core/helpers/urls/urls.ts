@@ -13,6 +13,7 @@ export class urls {
   //Blogs ..
   public static get GET_ALL_BLOGS_PER_CATEGORY(): string { return this.BASE_URL + '/blog/category-blogs' };
   public static get GET_POST_BY_ID(): string { return this.BASE_URL + '/blog/single-post' };
+  public static get GET_ALL_BLOGS(): string { return this.BASE_URL + '/blog/bulk-load' };
 
 
   // Users ...
@@ -143,7 +144,7 @@ export class urls {
 
 
   // Authed ..
-  public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendor/get-featured-vendors' };
+  public static get GET_FEATURED_VENDORS(): string { return this.BASE_URL + '/vendors/get-featured-vendors' };
 
 
 

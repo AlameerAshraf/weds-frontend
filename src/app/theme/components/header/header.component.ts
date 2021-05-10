@@ -1,4 +1,4 @@
-import { Common, constants, resources } from 'src/app/core';
+import { Common, constants, localStorageService, resources } from 'src/app/core';
 import { Component, ElementRef, Inject, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -25,17 +25,24 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   labels: any = {};
   baseUrlWithLang: string;
 
+  name: 'me';
+  photo: 'assets/images/defaults/avatar/me.jpg'
+
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
-    @Inject(DOCUMENT) private document: any,
+    @Inject(DOCUMENT) private document: any, private localStorage: localStorageService,
     private elementRef: ElementRef, private common: Common,
     private router: Router) {
     this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
-
+    const username = this.localStorage.getLocalStorage("weds360#name")
+    const photo = this.localStorage.getLocalStorage("weds360#avatar").toString();
+    this.photo = photo;
+    this.name = username;
   }
 
   ngOnInit() {
     let currentUserEnc = window.localStorage.getItem("weds360#role");
     let currentUser = atob(currentUserEnc);
+
     this.loadResources(currentUser);
     this.checkViewAuthority();
     this.loginURL = `/security/${this.lang}/login`;

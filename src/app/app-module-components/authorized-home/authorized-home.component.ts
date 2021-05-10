@@ -1,7 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { constants, resources, responseModel, urls } from 'src/app/core';
+import { Observable } from 'rxjs';
+import { constants, resources, responseModel, urls, vendor } from 'src/app/core';
 import { environment } from '../../../environments/environment';
 import { httpService } from './../../core/services/http/http';
 
@@ -17,6 +18,13 @@ export class AuthorizedHomeComponent implements OnInit {
   lang: string;
   reviews = []
   allAreas = [];
+  allVendors: vendor[] = [];
+  fitnessVendors: vendor[] = [];
+  venuesVendors: vendor[] = [];
+  designerVendors: vendor[] = [];
+  photographerVendors: vendor[] = [];
+  newVendors: vendor[] = [];
+
   constructor(@Inject(DOCUMENT) private document: any, private elementRef: ElementRef, private resources: resources,
     private http: httpService,
     private actictedRoute: ActivatedRoute) {
@@ -26,6 +34,7 @@ export class AuthorizedHomeComponent implements OnInit {
   ngOnInit() {
     this.getAllCategories();
     this.getAllAreas();
+
     const englishReviews = [
       {
         name: "Mohammed & Mona",
@@ -64,6 +73,11 @@ export class AuthorizedHomeComponent implements OnInit {
       },
     ]
     this.reviews = this.lang === 'ar' ? [...arabicReviews] : [...englishReviews]
+    this.getFeaturedVendors()
+    this.getCategoriesById("6087338b21ce659724e9a5e7", 'fitness')
+    this.getCategoriesById("6087338b21ce659724e9a5e2", 'venues')
+    this.getCategoriesById("6087338b21ce659724e9a5f2", 'designer')
+    this.getCategoriesById("6087338b21ce659724e9a5dc", 'photographer')
   }
 
   ngAfterViewInit(): void {
@@ -108,4 +122,43 @@ export class AuthorizedHomeComponent implements OnInit {
       }
     });
   };
+
+  getFeaturedVendors() {
+    let url = `${urls.GET_FEATURED_VENDORS}/${constants.APP_IDENTITY_FOR_USERS} `;
+    this.http.Get(url, {}).subscribe((response: responseModel) => {
+      if (!response.error) {
+        this.allVendors = response.data as vendor[];
+        if (this.allVendors.length > 0) this.allVendors.slice(0, 6)
+      } else {
+        console.log(response.error);
+      }
+    });
+  }
+  async getVendorById(id) {
+    let url = `${urls.GET_FEATURED_VENDORS}/${constants.APP_IDENTITY_FOR_USERS} `;
+    return this.http.Get(url, { "vendorId": id }).toPromise();
+
+  }
+  async getCategoriesById(id, name) {
+
+    const response = await this.getVendorById(id) as responseModel;
+    const vendors = response.data
+    console.log('getCategoriesById,', vendors)
+    if (vendors.length > 0) {
+      switch (name) {
+        case "fitness":
+          this.fitnessVendors = vendors;
+          break;
+        case "venues":
+          this.venuesVendors = vendors;
+          break;
+        case "designer":
+          this.designerVendors = vendors;
+          break;
+        case "photographer":
+          this.photographerVendors = vendors;
+      }
+    }
+
+  }
 }

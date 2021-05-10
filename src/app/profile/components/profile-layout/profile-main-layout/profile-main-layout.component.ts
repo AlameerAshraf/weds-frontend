@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { constants, resources, Common } from '../../../../core';
+import { constants, resources, Common, localStorageService } from '../../../../core';
 
 @Component({
   selector: 'app-profile-main-layout',
@@ -25,12 +25,19 @@ export class ProfileMainLayoutComponent implements OnInit {
   selectedTitle: any;
   baseUrlWithLang: string;
 
+  name: 'me';
+  photo: 'assets/images/defaults/avatar/me.jpg'
+
 
   constructor(private actictedRoute: ActivatedRoute, private resources: resources,
     @Inject(DOCUMENT) private document: any, private common: Common,
-    private elementRef: ElementRef,
+    private elementRef: ElementRef, private localStorage: localStorageService,
     private router: Router) {
     this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
+    const username = this.localStorage.getLocalStorage("weds360#name")
+    const photo = this.localStorage.getLocalStorage("weds360#avatar").toString();
+    this.photo = photo;
+    this.name = username;
   }
 
   async ngOnInit() {

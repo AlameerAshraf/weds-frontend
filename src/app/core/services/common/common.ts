@@ -46,5 +46,9 @@ export class Common {
     url = url.replace(originURL, '');
     return url
   }
-
+  public getRandom(arr) {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    const item = arr[randomIndex];
+    return item;
+  }
 }

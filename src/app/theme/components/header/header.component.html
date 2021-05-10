@@ -65,8 +65,8 @@
 
 
           <div class="user-menu">
-            <div class="user-name"><span><img src="assets/images/defaults/avatar/me.jpg" alt="">
-              </span>Hi, Alameer!</div>
+            <div class="user-name"><span><img [src]="photo" alt="">
+              </span>{{name}}</div>
             <ul>
               <ng-container *ngFor="let link of profileLinks">
                 <li *ngIf="!link.hasImage">
