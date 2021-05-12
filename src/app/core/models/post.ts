@@ -31,4 +31,5 @@ export class post {
   categoryNameArabic?: string;
   isPublished?: boolean = false;
   isRemoved?: boolean = false;
+  categoryName?: string;
 }

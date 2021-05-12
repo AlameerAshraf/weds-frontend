@@ -77,7 +77,11 @@ export class PostsGridComponent implements OnInit, AfterViewInit {
 
 
   navigateToCreateNewPost() {
-    this.router.navigate([`profile/${this.lang}/admin/posts-action/new`]);
+    if( atob(this.storage.getLocalStorage("weds360#role")) == "EDITOR" ){
+      this.router.navigate([`profile/${this.lang}/editor/posts-action/new`]);
+    } else {
+      this.router.navigate([`profile/${this.lang}/admin/posts-action/new`]);
+    }
   };
 
   navigateToUpdatePost(postId: any) {
