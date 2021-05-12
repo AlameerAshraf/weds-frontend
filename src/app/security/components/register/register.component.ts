@@ -40,7 +40,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DOCUMENT) private document: any, private router: Router,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute, private storage: localStorageService,
     private resources: resources, private formBuilder: FormBuilder, private OAuth: SocialAuthService,
-    private httpService: httpService, private spinner: NgxSpinnerService) { }
+    private httpService: httpService, private spinner: NgxSpinnerService) {
+      this.storage.eraseAllLocalStorage();
+    }
 
   async ngOnInit() {
     this.initForm();

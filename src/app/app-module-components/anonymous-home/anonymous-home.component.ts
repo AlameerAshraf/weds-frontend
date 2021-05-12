@@ -54,7 +54,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   getAllCategories() {
     let allCatesURL = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(allCatesURL, {}).subscribe((response: responseModel) => {
+    this.http.Get(allCatesURL, { "anonymous" : true }).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allCategories = response.data;
         if (this.allCategories.length > 0) this.allCategories = this.allCategories.slice(0, 10);
@@ -64,9 +64,11 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
       }
     });
   };
+
+
   getAllAreas() {
     let allAreasURL = `${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(allAreasURL, {}).subscribe((response: responseModel) => {
+    this.http.Get(allAreasURL, { "anonymous" : true }).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allAreas = response.data;
       } else {
@@ -75,20 +77,11 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
     });
   };
 
-  ngAfterViewInit(): void {
-    let scripts = ['assets/scripts/typedwords.js', 'assets/scripts/custom.js'];
 
-    scripts.forEach(element => {
-      const s = this.document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = element;
-      this.elementRef.nativeElement.appendChild(s);
-    });
-  };
   getAllBlog() {
 
     let url = `${urls.GET_ALL_BLOGS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(url, {}).subscribe((response: responseModel) => {
+    this.http.Get(url, { "anonymous" : true }).subscribe((response: responseModel) => {
       if (!response.error) {
         this.blogs = response.data as post[];
         if (this.blogs.length > 0) this.blogs = this.blogs.sort((d1, d2) => new Date(d1.publishedAt).getTime() - new Date(d2.publishedAt).getTime()).slice(0, 3);
@@ -100,8 +93,20 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
       }
     });
   };
+
   navigateToBlog(categoryName, blogId) {
     categoryName = categoryName.replace(/ /g, "-");
     this.router.navigate([`blogs/${this.lang}/blog/${categoryName}/${blogId}`]);
+  };
+
+  ngAfterViewInit(): void {
+    let scripts = ['assets/scripts/typedwords.js', 'assets/scripts/custom.js'];
+
+    scripts.forEach(element => {
+      const s = this.document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = element;
+      this.elementRef.nativeElement.appendChild(s);
+    });
   };
 }

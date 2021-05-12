@@ -1,28 +1,36 @@
 {
-  "menu": [
+  "menu" : [
     {
-      "name": "أجندة الفرح",
+      "name": "360 Planner",
       "url": "",
       "child": [
         {
-          "name": "جدول المهام",
-          "url": "/en/checklist"
+          "name": "Check List",
+          "url": ""
         },
         {
-          "name": "تكاليف الفرح",
-          "url": "/en/budgeter"
+          "name": "Budgeter",
+          "url": ""
         },
         {
-          "name": "هدايا الفرح",
-          "url": "/en/registry-list"
+          "name": "Registry List",
+          "url": ""
         },
         {
-          "name": "قائمة الضيوف",
-          "url": "/en/guest-list"
+          "name": "Guest List",
+          "url": ""
         },
         {
-          "name": "موقع الزفاف",
-          "url": "/en/wedding-website"
+          "name": "Wedding Website",
+          "url": ""
+        },
+        {
+          "name": "Couple Website",
+          "url": ""
+        },
+        {
+          "name": "More",
+          "url": ""
         }
       ]
     },
@@ -145,61 +153,55 @@
       ]
     }
   ],
-  "actions": [
+  "actions" : [
     {
-      "title": "My Account",
-      "url": "/profile/en/vendor/overview",
-      "icon": "sl sl-icon-settings"
+      "title" : "My Account",
+      "url" : "/profile/en/editor/overview",
+      "icon" : "sl sl-icon-settings"
     },
     {
-      "title": "Messages",
-      "url": "/profile/en/vendor/messages",
-      "icon": "sl sl-icon-envelope-open"
+      "title" : "English",
+      "url" : "",
+      "icon" : "",
+      "hasImage" : "assets/images/defaults/flags/en.png"
     },
     {
-      "title": "English",
-      "url": "",
-      "icon": "",
-      "hasImage": "assets/images/defaults/flags/en.png"
-    },
-    {
-      "title": "Logout",
-      "url": "/security/en/login",
-      "icon": "sl sl-icon-power"
+      "title" : "Logout",
+      "url" : "/security/en/login",
+      "icon" : "sl sl-icon-power"
     }
   ],
-  "navigations": [
+  "navigations" : [
     {
-      "menuTitle": "My Dashboard",
-      "childMenuItem": [
+      "menuTitle" : "My Dashboard",
+      "childMenuItem" : [
         {
-          "title": "Overview",
-          "icon": "sl sl-icon-rocket",
-          "url": "overview",
-          "child": []
+          "title" : "Overview",
+          "icon" : "sl sl-icon-rocket",
+          "url" : "overview",
+          "child" : [
+
+          ]
         },
         {
-          "title": "Messages",
-          "icon": "sl sl-icon-envelope-open",
-          "url": "messages",
-          "child": []
-        },
-        {
-          "title": "Services",
-          "icon": "sl sl-icon-basket",
-          "url": "my-services",
-          "child": []
+          "title" : "Posts & Articles",
+          "icon" : "sl sl-icon-book-open",
+          "url" : "posts-actions",
+          "child" : [
+          ]
         }
       ]
     },
     {
-      "menuTitle": "Account & Info",
-      "childMenuItem": [
+      "menuTitle" : "Account & Info",
+      "childMenuItem" : [
         {
-          "title": "Personal Details",
-          "icon": "im im-icon-Male",
-          "url": "my-info",
-          "child": []
+          "title" : "Personal Details",
+          "icon" : "im im-icon-Male",
+          "url" : "profile-details",
+          "child" : [
+
+          ]
         }
       ]
     }

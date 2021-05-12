@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private OAuth: SocialAuthService,
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute,
     private storage: localStorageService, private spinner: NgxSpinnerService,
-    private resources: resources, private formBuilder: FormBuilder, private http: httpService) { }
+    private resources: resources, private formBuilder: FormBuilder, private http: httpService) {
+      this.storage.eraseAllLocalStorage();
+    }
 
   async ngOnInit() {
     this.initForm();

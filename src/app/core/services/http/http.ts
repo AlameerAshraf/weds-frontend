@@ -98,10 +98,10 @@ export class httpService  {
       return throwError(Error);
     }
     else if (Error.status === 403) {
-      //window.location.href = 'en/home/anonymous'
+      window.location.href = 'en/home/anonymous'
     }
     else if (Error.status === 401) {
-      //window.location.href = 'en/home/anonymous'
+      window.location.href = 'en/home/anonymous'
     }
     else {
       return throwError(Error);

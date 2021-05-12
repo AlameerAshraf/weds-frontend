@@ -50,11 +50,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   /** Use this function at each view to load corrosponding resources! */
   async loadResources(currentUserType) {
+    debugger
     let providedlang: any = this.actictedRoute.parent.params;
     let lang = providedlang._value["lang"];
     let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
     this.lang = resourceLang;
     let dashboardNavs = `${currentUserType.toUpperCase()}_DASHBOARD`;
+    console.log(constants.VIEWS[dashboardNavs])
     let resData = await this.resources.load(resourceLang, constants.VIEWS[dashboardNavs]) as any;
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
     if (this.lang === 'ar') this.menuItems.reverse()

@@ -174,7 +174,7 @@
     },
     {
       "title" : "Logout",
-      "url" : "/profile/en/user/checklist",
+      "url" : "/security/en/login",
       "icon" : "sl sl-icon-power"
     }
   ],

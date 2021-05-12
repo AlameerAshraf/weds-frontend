@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminCanActivateService, UserCanActivateService, VendorCanActivateService  } from '../core';
 
 import * as COMPONENTS from './components';
 
@@ -71,7 +72,8 @@ const routes: Routes = [
             path : 'wedding-website-status',
             component: COMPONENTS.SiteStatusComponent
           }
-        ]
+        ],
+        canActivate:[UserCanActivateService]
       },
       {
         path: 'admin',
@@ -222,7 +224,8 @@ const routes: Routes = [
             path: 'photos-action/:actionType',
             component : COMPONENTS.PhotosFormComponent
           },
-        ]
+        ],
+        canActivate: [AdminCanActivateService]
       },
       {
         path: 'vendor',
@@ -259,7 +262,34 @@ const routes: Routes = [
             path: 'vendor-services-dress-action/:actionType',
             component : COMPONENTS.VendorServicesDressFormComponent
           },
-        ]
+        ],
+        canActivate:[VendorCanActivateService]
+      },
+      {
+        path: 'editor',
+        children: [
+          {
+            path: 'posts',
+            component: COMPONENTS.PostsGridComponent
+          },
+          {
+            path: 'posts-action/:actionType',
+            component : COMPONENTS.PostsFormComponent
+          },
+          {
+            path: 'overview',
+            component: COMPONENTS.AdminOverviewComponent
+          },
+          {
+            path: 'messages',
+            component: COMPONENTS.AdminMessagesComponent
+          },
+          {
+            path: 'profile-details',
+            component: COMPONENTS.AdminProfileDetailsComponent
+          },
+        ],
+        // canActivate:[]
       },
     ]
   }

@@ -1,3 +1,6 @@
+import { EditorCanActivateService } from './../core/services/authGurds/editor-can-activate.service';
+import { VendorCanActivateService } from './../core/services/authGurds/vendor-can-activate.service';
+import { AdminCanActivateService } from './../core/services/authGurds/admin-can-activate.service';
 import { LookupsService } from './../core/helpers/lookups/lookups.service';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
@@ -11,6 +14,7 @@ import * as COMPONENTS from './components';
 import { AgmCoreModule } from '@agm/core';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { UserCanActivateService } from '../core';
 
 @NgModule({
   declarations: [
@@ -92,7 +96,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   ],
   providers:[
     NgxSpinnerService,
-    LookupsService
+    LookupsService,
+    AdminCanActivateService,
+    VendorCanActivateService,
+    UserCanActivateService,
+    EditorCanActivateService
   ]
 })
 export class ProfileModule { }
