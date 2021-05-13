@@ -156,7 +156,7 @@
   "actions" : [
     {
       "title" : "My Account",
-      "url" : "/profile/en/editor/overview",
+      "url" : "/profile/en/admin/overview",
       "icon" : "sl sl-icon-settings"
     },
     {

@@ -120,11 +120,11 @@ export class VendorsFormComponent implements OnInit {
   async getLookups() {
     let allTags = (await this.lookupsService.getTags()) as responseModel;
     this.tagsAr = allTags.data.filter((tag: any) => {
-      return tag.langauge == "Ar";
+      return tag.language == "Ar";
     });
 
     this.tagsEn = allTags.data.filter((tag: any) => {
-      return tag.langauge == "En";
+      return tag.language == "En";
     });
 
     this.categories = ((await this.lookupsService.getCategories()) as responseModel).data;
