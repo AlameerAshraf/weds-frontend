@@ -33,10 +33,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private elementRef: ElementRef, private common: Common,
     private router: Router) {
     this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
-    const username = this.localStorage.getLocalStorage("weds360#name")
-    const photo = this.localStorage.getLocalStorage("weds360#avatar");
-    this.photo = !photo ? this.photo : photo;
+    debugger;
+    let username = this.localStorage.getLocalStorage("weds360#name");
+    let photo = this.localStorage.getLocalStorage("weds360#avatar");
+    if (username === 'undefined') {
+      username = atob(this.localStorage.getLocalStorage("weds360#email"))
+    }
+    if (photo === 'undefined') {
+      photo = this.photo
+    }
     this.name = !username ? this.name : username;
+    this.photo = !photo ? this.photo : photo;
   }
 
   ngOnInit() {
