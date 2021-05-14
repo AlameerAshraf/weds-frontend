@@ -133,7 +133,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   }
 
   onCoverPhotoChanged(e: any): void {
-    debugger;
+
     this.ngxSpinner.show();
     const formData = new FormData();
     if (e.target.files && e.target.files[0]) {

@@ -109,7 +109,7 @@
 
     <div class="col-md-6" *ngFor="let area of allAreas">
 
-      <a href="listings-list-with-sidebar.html" class="img-box" data-background-image="https://via.placeholder.com/350">
+      <a href="#" class="img-box" data-background-image="https://via.placeholder.com/350">
         <div class="img-box-content visible">
           <h4>{{lang==='ar'?area.nameAr:area.nameEn}} </h4>
           <!-- <sp  an>14 Listings</sp> -->
@@ -166,7 +166,7 @@
 
 
       <div class="col-md-12 centered-content">
-        <a href="pages-blog.html" class="button border margin-top-10">{{labels.VIEW_BLOG}}</a>
+         <a [href]="postsURL" class="button border margin-top-10">{{labels.VIEW_BLOG}}</a>
       </div>
 
     </div>

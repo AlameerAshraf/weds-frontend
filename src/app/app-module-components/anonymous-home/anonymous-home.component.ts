@@ -25,6 +25,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   labels: any = {};
   lang: string;
   defaultBlogImage: string
+  postsURL: string = `/segment/en/all-categories/POSTS`
   constructor(@Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef, private resources: resources,
     private http: httpService, private common: Common, private router: Router,
@@ -46,7 +47,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
       window.location.href.toLowerCase().indexOf(`/ar/`) > -1 ? "ar" : "en";
     let resourceLang =
       lang == null || lang == undefined ? environment.defaultLang : lang;
-
+    if (lang === 'ar') this.postsURL = this.postsURL.replace('/en/', '/ar/')
     this.lang = ((resourceLang == null) || (resourceLang == undefined)) ? environment.defaultLang : resourceLang;
     let resData = await this.resources.load(this.lang, constants.VIEWS["HOME_LAYOUT"]) as any;;
     this.labels = resData.res;
@@ -54,7 +55,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   getAllCategories() {
     let allCatesURL = `${urls.GET_ALL_CATEGORIES}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(allCatesURL, { "anonymous" : true }).subscribe((response: responseModel) => {
+    this.http.Get(allCatesURL, { "anonymous": true }).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allCategories = response.data;
         if (this.allCategories.length > 0) this.allCategories = this.allCategories.slice(0, 10);
@@ -68,7 +69,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
 
   getAllAreas() {
     let allAreasURL = `${urls.GET_ALL_AREAS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(allAreasURL, { "anonymous" : true }).subscribe((response: responseModel) => {
+    this.http.Get(allAreasURL, { "anonymous": true }).subscribe((response: responseModel) => {
       if (!response.error) {
         this.allAreas = response.data;
       } else {
@@ -81,7 +82,7 @@ export class AnonymousHomeComponent implements OnInit, AfterViewInit {
   getAllBlog() {
 
     let url = `${urls.GET_ALL_BLOGS}/${constants.APP_IDENTITY_FOR_USERS}`;
-    this.http.Get(url, { "anonymous" : true }).subscribe((response: responseModel) => {
+    this.http.Get(url, { "anonymous": true }).subscribe((response: responseModel) => {
       if (!response.error) {
         this.blogs = response.data as post[];
         if (this.blogs.length > 0) this.blogs = this.blogs.sort((d1, d2) => new Date(d1.publishedAt).getTime() - new Date(d2.publishedAt).getTime()).slice(0, 3);

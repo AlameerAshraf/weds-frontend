@@ -12,7 +12,7 @@ export class constants {
       "USER_DASHBOARD": "user-profile-nav",
       "ADMIN_DASHBOARD": "admin-profile-nav",
       "VENDOR_DASHBOARD": "vendor-profile-nav",
-      "EDITOR_DASHBOARD" : "editor-profile-nav",
+      "EDITOR_DASHBOARD": "editor-profile-nav",
       "LOGIN": "login",
       "OVERVIEW": "overview",
       "MESSAGES": "messages",
@@ -71,6 +71,9 @@ export class constants {
       },
       {
         "name": "VENDOR"
+      },
+      {
+        "name": "EDITOR"
       }
     ]
   }

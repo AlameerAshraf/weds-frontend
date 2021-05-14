@@ -41,8 +41,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     private elementRef: ElementRef, private actictedRoute: ActivatedRoute, private storage: localStorageService,
     private resources: resources, private formBuilder: FormBuilder, private OAuth: SocialAuthService,
     private httpService: httpService, private spinner: NgxSpinnerService) {
-      this.storage.eraseAllLocalStorage();
-    }
+    this.storage.eraseAllLocalStorage();
+  }
 
   async ngOnInit() {
     this.initForm();
@@ -157,7 +157,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.httpService.Post(signUpURL, {}, { "user": this.socialUser }).subscribe((response: responseModel) => {
       this.spinner.hide();
       if (!response.error) {
-        debugger
         this.setUserDataInStorage(response.data);
         this.router.navigateByUrl(`/${this.lang}/home`);
       } else {
