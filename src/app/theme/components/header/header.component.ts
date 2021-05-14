@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private elementRef: ElementRef, private common: Common,
     private router: Router) {
     this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
-    debugger;
+
     let username = this.localStorage.getLocalStorage("weds360#name");
     let photo = this.localStorage.getLocalStorage("weds360#avatar");
     if (username === 'undefined') {
