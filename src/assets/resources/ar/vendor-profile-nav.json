@@ -165,7 +165,7 @@
     },
     {
       "title": "تسجيل خروج",
-      "url": "/profile/ar/vendor/checklist",
+      "url" : "/security/ar/login",
       "icon": "sl sl-icon-power"
     }
   ],
