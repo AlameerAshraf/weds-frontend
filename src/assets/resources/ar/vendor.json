@@ -23,16 +23,13 @@
   "CATEGORY": "الفئة",
   "ACTION": "نشر",
   "FORCE_PUBLISH": "نشر بالقوه",
-
-   "SELECT_CATEGORY":"اختار الفئة",
-
+  "SELECT_CATEGORY":"اختار الفئة",
   "LOCATION": "المكان ",
   "ADDRESS": " العنوان",
   "ADDRESS_DETAIL": " اكتب العنوان بالتفصيل للتوضيح",
   "SEARCH": "بحث",
   "STATUS": "الحالة",
   "SOCIAL_DETAILS": " مواقع التواصل الاجتماعي",
-
   "GALLERY": "معرض الصور",
   "UPLOAD_COVER_PHOTO": "ارفق صورة غلاف ",
   "UPLOAD_PHOTO": "ارفق صورة",
@@ -40,7 +37,6 @@
   "SELECT_SEGMENT":" اختار  ",
   "SELECT_PRICE":"  اختار السعر    ",
   "SEARCH_VENUE": " البحث عن أقرب موقع   ",
-
   "UPDATE": "تعديل",
   "DELETE": "حذف",
   "EDIT": "تعديل",
@@ -52,5 +48,13 @@
   "CATEGORIES": "الفئات",
   "VENDORS_TITLE": "نحن نهتم بك أيها الملاك الصغير!",
   "VENDORS_SUBTITLE": "ابحث عن أفضل البائعين والخبراء الذين سيجعلون حفل زفافك يبدو كرنفال!",
-  "RESET": "حذف حقول البحث"
+  "RESET": "حذف حقول البحث",
+  "NAME": "الاسم",
+  "REVOKED": "إلغاء - فسخ",
+  "REVOKE_PUBLISH": "إبطال النشر"
+
+
+
+
+
 }

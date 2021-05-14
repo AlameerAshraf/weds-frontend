@@ -174,7 +174,7 @@
     },
     {
       "title" : "تسجيل الخروج",
-      "url" : "/profile/ar/user/checklist",
+      "url" : "/security/ar/login",
       "icon" : "sl sl-icon-power"
     }
   ],
