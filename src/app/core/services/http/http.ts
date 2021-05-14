@@ -1,31 +1,31 @@
 import { Injectable } from "@angular/core";
-import { HttpClient , HttpHeaders  } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, map } from "rxjs/operators";
 import { headersModel } from "./headersModel";
 import { throwError } from "rxjs";
 
 @Injectable()
-export class httpService  {
+export class httpService {
 
   constructor(private http: HttpClient) {
 
   }
 
-  Fetch(url: string, params: any = null ,  headers: headersModel[] = null) {
+  Fetch(url: string, params: any = null, headers: headersModel[] = null) {
     return this.http.get(url, { responseType: 'text', headers: { 'cache-control': 'no-cache' } });
   }
 
-  Get(url: string, params: any = null ,  headers: headersModel[] = null) {
+  Get(url: string, params: any = null, headers: headersModel[] = null) {
     var requestUrl = this.GenerateUrl(url, params);
     var options = this.GenerateOptions(headers);
 
     return this.http
-      .get(requestUrl, { headers : options })
+      .get(requestUrl, { headers: options })
       .pipe(
         map(res => {
           try {
             return res;
-          } catch (error) {}
+          } catch (error) { }
         })
       ).pipe(catchError((Error: Response) => {
         return this.ErrorHandler(Error);
@@ -33,17 +33,17 @@ export class httpService  {
 
   }
 
-  Post(url: string, params: any = null , entity?: any,headers: headersModel[] = null) {
+  Post(url: string, params: any = null, entity?: any, headers: headersModel[] = null) {
     var requestUrl = this.GenerateUrl(url, params);
     var options = this.GenerateOptions(headers);
 
     return this.http
-      .post(requestUrl, entity )
+      .post(requestUrl, entity)
       .pipe(
         map(res => {
           try {
             return res;
-          } catch (error) {}
+          } catch (error) { }
         })
       ).pipe(catchError((Error: Response) => {
         return this.ErrorHandler(Error);
@@ -60,7 +60,7 @@ export class httpService  {
         map(res => {
           try {
             return res;
-          } catch (error) {}
+          } catch (error) { }
         })
       ).pipe(catchError((Error: Response) => {
         return this.ErrorHandler(Error);
@@ -71,9 +71,9 @@ export class httpService  {
   // Generating the Request url aft er merging it with paramters ..
   private GenerateUrl(url: string, params: any) {
 
-    if(params != null){
+    if (params != null) {
       var requestUrl: string;
-      if(url.includes("?")){
+      if (url.includes("?")) {
         requestUrl = `${url}&`;
       } else {
         requestUrl = `${url}?`;
@@ -94,6 +94,7 @@ export class httpService  {
 
   // Global Error Handler
   private ErrorHandler(Error: Response) {
+    // alert(JSON.stringify(Error))
     if (Error.status === 404) {
       return throwError(Error);
     }

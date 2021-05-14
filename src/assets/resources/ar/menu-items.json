@@ -60,7 +60,7 @@
         },
         {
           "name": "المزيد",
-          "url": "segment/ar/her"
+          "url": "segment/ar/all-categories/her"
         }
       ]
     },
@@ -140,11 +140,11 @@
       "child": [
         {
           "name": "نصائح وآداب",
-          "url": "blogs/en/all/tips-and-etiquette/6087338b21ce659724e9a5ee"
+          "url": "blogs/ar/all/tips-and-etiquette/6087338b21ce659724e9a5ee"
         },
         {
           "name": "زفاف الأسبوع",
-          "url": "blogs/en/all/wedding-of-the-week/6087338b21ce659724e9a5d9"
+          "url": "blogs/ar/all/wedding-of-the-week/6087338b21ce659724e9a5d9"
         },
         {
           "name": "المزيد",

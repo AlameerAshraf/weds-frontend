@@ -1,162 +1,162 @@
 {
   "menu" : [
     {
-      "name": "360 Planner",
+      "name": "أجندة الفرح",
       "url": "",
       "child": [
         {
-          "name": "Check List",
+          "name": "جدول المهام",
           "url": ""
         },
         {
-          "name": "Budgeter",
+          "name": "تكاليف الفرح",
           "url": ""
         },
         {
-          "name": "Registry List",
+          "name": "هدايا الفرح",
           "url": ""
         },
         {
-          "name": "Guest List",
+          "name": "قائمة الضيوف",
           "url": ""
         },
         {
-          "name": "Wedding Website",
+          "name": "موقع الزفاف",
           "url": ""
         },
         {
-          "name": "Couple Website",
+          "name": "موقع الزوجين",
           "url": ""
         },
         {
-          "name": "More",
+          "name": "المزيد",
           "url": ""
         }
       ]
     },
     {
-      "name": "Her",
+      "name": "لها",
       "url": "",
       "child": [
         {
-          "name": "Designers",
-          "url": "/segment/en/all-vendors/desginers/6087338b21ce659724e9a5f2"
+          "name": "المصممين",
+          "url": "/segment/ar/all-vendors/desginers/6087338b21ce659724e9a5f2"
         },
         {
-          "name": "Bridal Boutique",
-          "url": "/segment/en/all-vendors/bridal-boutique/6087338b21ce659724e9a5d8"
+          "name": "بوكية الزفاف",
+          "url": "/segment/ar/all-vendors/bridal-boutique/6087338b21ce659724e9a5d8"
         },
         {
-          "name": "Wedding Dresses",
-          "url": "/segment/en/all-vendors/wedding-dresses/6087338b21ce659724e9a5da"
+          "name": "فساتين زفاف",
+          "url": "/segment/ar/all-vendors/wedding-dresses/6087338b21ce659724e9a5da"
         },
         {
-          "name": "Rings",
-          "url": "/segment/en/all-vendors/rings/6087338b21ce659724e9a5f1"
+          "name": "خواتم",
+          "url": "/segment/ar/all-vendors/rings/6087338b21ce659724e9a5f1"
         },
         {
-          "name": "Makeup Artists",
-          "url": "/segment/en/all-vendors/makeup-artists/6087338b21ce659724e9a5e6"
+          "name": "ميكاب ارتيست",
+          "url": "/segment/ar/all-vendors/makeup-artists/6087338b21ce659724e9a5e6"
         },
         {
-          "name": "More",
-          "url": "/segment/en/all-categories/HER"
+          "name": "المزيد",
+          "url": "/segment/ar/all-categories/HER"
         }
       ]
     },
     {
-      "name": "Him",
+      "name": "له",
       "url": "",
       "child": [
         {
-          "name": "Suits",
-          "url": "/segment/en/all-vendors/suits/6087338b21ce659724e9a5e0"
+          "name": "البدل",
+          "url": "/segment/ar/all-vendors/suits/6087338b21ce659724e9a5e0"
         },
         {
-          "name": "Health",
-          "url": "/segment/en/all-vendors/health/6087338b21ce659724e9a5e1"
+          "name": "صحة",
+          "url": "/segment/ar/all-vendors/health/6087338b21ce659724e9a5e1"
         },
         {
-          "name": "Men's Grooming",
-          "url": "/segment/en/all-vendors/men-grooming/6087338b21ce659724e9a5df"
+          "name": "صالون الرجال",
+          "url": "/segment/ar/all-vendors/men-grooming/6087338b21ce659724e9a5df"
         },
         {
-          "name": "Fitness",
-          "url": "/segment/en/all-vendors/Fitness/6087338b21ce659724e9a5e3"
+          "name": "اللياقة البدنية",
+          "url": "/segment/ar/all-vendors/Fitness/6087338b21ce659724e9a5e3"
         },
         {
-          "name": "More",
-          "url": "/segment/en/all-categories/HIM"
+          "name": "المزيد",
+          "url": "/segment/ar/all-categories/HIM"
         }
       ]
     },
     {
-      "name": "The Wedding",
+      "name": "الزفاف",
       "url": "",
       "child": [
         {
-          "name": "Venues",
-          "url": "/segment/en/all-vendors/venues/6087338b21ce659724e9a5e2"
+          "name": "الأماكن",
+          "url": "/segment/ar/all-vendors/venues/6087338b21ce659724e9a5e2"
         },
         {
-          "name": "Outdoor Wedding Venues",
-          "url": "/segment/en/all-vendors/outdoor-wedding-venues/6087338b21ce659724e9a5f0"
+          "name": "قاعات أفراح خارجية",
+          "url": "/segment/ar/all-vendors/outdoor-wedding-venues/6087338b21ce659724e9a5f0"
         },
         {
-          "name": "Videographers",
-          "url": "/segment/en/all-vendors/videographers/6087338b21ce659724e9a5db"
+          "name": "مصوري الفيديو",
+          "url": "/segment/ar/all-vendors/videographers/6087338b21ce659724e9a5db"
         },
         {
-          "name": "Photographers",
-          "url": "/segment/en/all-vendors/photographers/6087338b21ce659724e9a5dc"
+          "name": "المصورين",
+          "url": "/segment/ar/all-vendors/photographers/6087338b21ce659724e9a5dc"
         },
         {
-          "name": "DJs",
-          "url": "/segment/en/all-vendors/djs/6087338b21ce659724e9a5de"
+          "name": "دي جي",
+          "url": "/segment/ar/all-vendors/djs/6087338b21ce659724e9a5de"
         },
         {
-          "name": "More",
-          "url": "/segment/en/all-categories/WEDDING"
+          "name": "المزيد",
+          "url": "/segment/ar/all-categories/WEDDING"
         }
       ]
     },
     {
-      "name": "Gallery",
+      "name": "الاستديو",
       "url": "",
       "child": [
         {
-          "name": "Wedding Ideas",
-          "url": "/segment/en/all-vendors/wedding-ideas/6087338b21ce659724e9a5eb"
+          "name": "أفكار الزفاف",
+          "url": "/segment/ar/all-vendors/wedding-ideas/6087338b21ce659724e9a5eb"
         },
         {
-          "name": "More",
-          "url": "/segment/en/all-categories/PHOTOS"
+          "name": "المزيد",
+          "url": "/segment/ar/all-categories/PHOTOS"
         }
       ]
     },
     {
-      "name": "Ideas & More",
+      "name": "أفكار والمزيد",
       "url": "",
       "child": [
         {
-          "name": "Tips & Etiquette",
-          "url": "/segment/en/all-vendors/tips-&-etiquette/6087338b21ce659724e9a5ee"
+          "name": "نصائح وآداب",
+          "url": "/segment/ar/all-vendors/tips-&-etiquette/6087338b21ce659724e9a5ee"
         },
         {
-          "name": "Wedding Of The Week",
-          "url": "/segment/en/all-vendors/wedding-of-the-week/6087338b21ce659724e9a5d9"
+          "name": "زفاف الأسبوع",
+          "url": "/segment/ar/all-vendors/wedding-of-the-week/6087338b21ce659724e9a5d9"
         },
         {
-          "name": "More",
-          "url": "/segment/en/all-categories/POSTS"
+          "name": "المزيد",
+          "url": "/segment/ar/all-categories/POSTS"
         }
       ]
     }
   ],
   "actions" : [
     {
-      "title" : "My Account",
-      "url" : "/profile/en/editor/overview",
+      "title": "حسابي",
+      "url" : "/profile/ar/editor/overview",
       "icon" : "sl sl-icon-settings"
     },
     {
@@ -166,14 +166,14 @@
       "hasImage" : "assets/images/defaults/flags/en.png"
     },
     {
-      "title" : "Logout",
-      "url" : "/security/en/login",
+      "title": "تسجيل خروج",
+      "url" : "/security/ar/login",
       "icon" : "sl sl-icon-power"
     }
   ],
   "navigations" : [
     {
-      "menuTitle" : "My Dashboard",
+      "menuTitle": "لوحة التحكم",
       "childMenuItem" : [
         {
           "title" : "Overview",
@@ -184,7 +184,7 @@
           ]
         },
         {
-          "title" : "Posts & Articles",
+          "title" : "المقالات",
           "icon" : "sl sl-icon-book-open",
           "url" : "posts-actions",
           "child" : [
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "menuTitle" : "Account & Info",
+      "menuTitle" : "بيانات الحساب",
       "childMenuItem" : [
         {
           "title" : "Personal Details",

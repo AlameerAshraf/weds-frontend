@@ -56,5 +56,6 @@
   "CANCEL": "Cancel",
   "DELETE": "Delete",
   "EDIT": "Edit",
-  "UPDATE": "Update"
+  "UPDATE": "Update",
+  "ENABLED": "Enabled"
 }

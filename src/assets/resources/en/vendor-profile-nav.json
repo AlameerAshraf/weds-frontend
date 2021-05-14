@@ -1,27 +1,27 @@
 {
   "menu": [
     {
-      "name": "أجندة الفرح",
+      "name": "360 Planner",
       "url": "",
       "child": [
         {
-          "name": "جدول المهام",
+          "name": "Check List",
           "url": "/en/checklist"
         },
         {
-          "name": "تكاليف الفرح",
+          "name": "Budgeter",
           "url": "/en/budgeter"
         },
         {
-          "name": "هدايا الفرح",
+          "name": "Registry List",
           "url": "/en/registry-list"
         },
         {
-          "name": "قائمة الضيوف",
+          "name": "Guest List",
           "url": "/en/guest-list"
         },
         {
-          "name": "موقع الزفاف",
+          "name": "Wedding Website",
           "url": "/en/wedding-website"
         }
       ]

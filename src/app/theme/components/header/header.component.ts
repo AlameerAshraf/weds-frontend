@@ -33,10 +33,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private elementRef: ElementRef, private common: Common,
     private router: Router) {
     this.baseUrlWithLang = this.common.basUrlLanguageSwitch;
-    const username = this.localStorage.getLocalStorage("weds360#name")
-    const photo = this.localStorage.getLocalStorage("weds360#avatar");
-    this.photo = !photo ? this.photo : photo;
+
+    let username = this.localStorage.getLocalStorage("weds360#name");
+    let photo = this.localStorage.getLocalStorage("weds360#avatar");
+    if (username === 'undefined') {
+      username = atob(this.localStorage.getLocalStorage("weds360#email"))
+    }
+    if (photo === 'undefined') {
+      photo = this.photo
+    }
     this.name = !username ? this.name : username;
+    this.photo = !photo ? this.photo : photo;
   }
 
   ngOnInit() {
@@ -50,12 +57,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   /** Use this function at each view to load corrosponding resources! */
   async loadResources(currentUserType) {
-    debugger
     let providedlang: any = this.actictedRoute.parent.params;
     let lang = providedlang._value["lang"];
     let resourceLang = this.lang = ((lang == null) || (lang == undefined)) ? environment.defaultLang : lang;
     this.lang = resourceLang;
     let dashboardNavs = `${currentUserType.toUpperCase()}_DASHBOARD`;
+    //what the fuk is ÉE_DASHBOARD ...no items in localStorage...
+    dashboardNavs = dashboardNavs === 'ÉE_DASHBOARD' ? "USER_DASHBOARD" : dashboardNavs;
     console.log(constants.VIEWS[dashboardNavs])
     let resData = await this.resources.load(resourceLang, constants.VIEWS[dashboardNavs]) as any;
     this.menuItems = this.menuItems.concat(resData.res["menu"]);
