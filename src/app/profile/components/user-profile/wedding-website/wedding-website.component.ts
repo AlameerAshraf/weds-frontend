@@ -63,7 +63,7 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.loadScripts();
-    this.mapsLoader();
+    // this.mapsLoader();
     this.loadThemesTemplates();
     this.getCurrentWeddingWebsiteDetails();
     this.loadResources();
@@ -227,24 +227,24 @@ export class WeddingWebsiteComponent implements OnInit, AfterViewInit {
 
 
   //#region Address Helper Function..
-  mapsLoader() {
-    this.mapsAPILoader.load().then(() => {
-      this.geoCoder = new google.maps.Geocoder;
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          this.latitude = this.weddingWebsite.location.latitude = place.geometry.location.lat();
-          this.longitude = this.weddingWebsite.location.longtitude = place.geometry.location.lng();
-          this.getAddress(this.latitude, this.longitude);
-          this.zoom = 12;
-        });
-      });
-    });
-  };
+  // mapsLoader() {
+  //   this.mapsAPILoader.load().then(() => {
+  //     this.geoCoder = new google.maps.Geocoder;
+  //     let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+  //     autocomplete.addListener("place_changed", () => {
+  //       this.ngZone.run(() => {
+  //         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  //         if (place.geometry === undefined || place.geometry === null) {
+  //           return;
+  //         }
+  //         this.latitude = this.weddingWebsite.location.latitude = place.geometry.location.lat();
+  //         this.longitude = this.weddingWebsite.location.longtitude = place.geometry.location.lng();
+  //         this.getAddress(this.latitude, this.longitude);
+  //         this.zoom = 12;
+  //       });
+  //     });
+  //   });
+  // };
 
   setCurrentLocation() {
     if ('geolocation' in navigator) {

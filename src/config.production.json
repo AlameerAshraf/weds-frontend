@@ -1,6 +1,6 @@
 {
-  "BASE_URL" : "http://localhost:3255/api/v1",
+  "BASE_URL" : "https://betaapi.weds360.com/api/v1",
   "CLIENT_IDENTITY_USERS" : "6PpzNsnEz+5RTZxR0aeQidBSMsTnBKfkNAtdf22s9Fo=",
   "CLIENT_IDENTITY_ADMINS" : "O+PDBSBiQcrTA0AyU8+Vz7CVneY26Xs6KPMPRYTAzYg=",
-  "SERVER_URL" : "http://localhost:3255"
+  "SERVER_URL" : "https://betaapi.weds360.com"
 }

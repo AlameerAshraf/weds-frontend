@@ -106,7 +106,7 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
     this.ngxSpinner.show();
     let tempVar = await this.getLookups();
     this.ngxSpinner.hide();
-    this.mapsLoader();
+    // this.mapsLoader();
     //  this.loadUser();
     this.loadScripts();
     this.documentSelectors();
@@ -252,25 +252,25 @@ export class VendorProfileDetailsComponent implements OnInit, AfterViewInit {
 
 
   //#region Maps Helpers..
-  mapsLoader() {
-    this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.getAddress(this.latitude, this.longitude);
-          this.zoom = 12;
-        });
-      });
-    });
-  };
+  // mapsLoader() {
+  //   this.mapsAPILoader.load().then(() => {
+  //     this.setCurrentLocation();
+  //     this.geoCoder = new google.maps.Geocoder;
+  //     let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
+  //     autocomplete.addListener("place_changed", () => {
+  //       this.ngZone.run(() => {
+  //         let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+  //         if (place.geometry === undefined || place.geometry === null) {
+  //           return;
+  //         }
+  //         this.latitude = place.geometry.location.lat();
+  //         this.longitude = place.geometry.location.lng();
+  //         this.getAddress(this.latitude, this.longitude);
+  //         this.zoom = 12;
+  //       });
+  //     });
+  //   });
+  // };
 
   setCurrentLocation() {
     if ('geolocation' in navigator) {

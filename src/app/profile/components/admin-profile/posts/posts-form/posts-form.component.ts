@@ -57,7 +57,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.spinner.show();
-    let tempVar = await this.getLookups(); // this var is doing nothing just for waiting the results!
+    // let tempVar = await this.getLookups(); // this var is doing nothing just for waiting the results!
     this.spinner.hide();
     this.loadPost();
     this.loadResources();
@@ -287,7 +287,7 @@ export class PostsFormComponent implements OnInit, AfterViewInit {
   //#region Scripts Helpers
   async ngAfterViewInit() {
     this.spinner.show();
-    let tempVar = await this.getLookups(); // this var is doing nothing just for waiting the results!
+    // let tempVar = await this.getLookups(); // this var is doing nothing just for waiting the results!
     this.spinner.hide();
     this.loadScripts();
   };
